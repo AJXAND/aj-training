@@ -384,7 +384,7 @@ async function importExport(file){
 /* ---------- Settings cards (rendered inside the app's Settings screen) ---------- */
 const P = {status, user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
 P.settingsCards = () => {
-  if (!HAS_BACKEND) return `<div class="card"><h2>Account</h2><span class="small muted">Running on this device only. Add your Supabase details in config.js to sync and unlock Claude features.</span></div>`;
+  if (!HAS_BACKEND) return `<div class="card"><h2>Account</h2><span class="small muted">Running on this device only. Add your Supabase details in config.js to sync and unlock AI features.</span></div>`;
   const s = status, when = s.lastSync ? new Date(s.lastSync).toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit"}) : "never";
   const pushTxt = {on:"On. You'll get the weigh-in reminder each morning.", off:"Off.", denied:"Blocked. Turn notifications on for AJ Training in iPhone Settings.", unsupported:"Add the app to your Home Screen first, then open it from there to turn these on.", unconfigured:"Not set up on the server yet."}[P.push] || "Checking…";
   const admin = isAdmin() ? `<div class="card admin"><div class="spread"><h2>Staff</h2><span class="tag rep">Admin</span></div>
@@ -408,7 +408,7 @@ P.settingsCards = () => {
       <div class="grid2"><a class="btn ghost" href="shortcuts://run-shortcut?name=Send%20Steps" data-plat="ran">Sync steps now</a><a class="btn ghost" href="shortcuts://">Open Shortcuts</a></div>
       <span class="small muted">Optional, fully automatic: Shortcuts → Automation → + → Time of Day 23:30, Daily, Run Immediately → Run Shortcut: Send Steps.</span>`
         : `<button class="btn ghost" data-plat="token">Set up Apple Health steps</button>`}</div>
-    <div class="card"><h2>Import from the Claude version</h2><span class="small muted">In the Claude version: Settings, Export all data. Then pick that file here. Photos come across too.</span>
+    <div class="card"><h2>Import from the old version</h2><span class="small muted">In the old version: Settings, Export all data. Then pick that file here. Photos come across too.</span>
       <button class="btn ghost" data-plat="import">Choose export file</button><input type="file" id="ajImport" accept="application/json,.json" hidden></div>`;
 };
 function escH(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;"}[c])); }

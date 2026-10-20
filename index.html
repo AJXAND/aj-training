@@ -3,12 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<script>(function(){try{var t=localStorage.getItem("ajtheme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-<meta name="theme-color" content="#0C0C0E">
+<meta name="theme-color" content="#F4F4F2">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>(function(){var t=null;try{t=localStorage.getItem("ajtheme");}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);
+var dark=t==="dark"||(t!=="light"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+document.querySelector('meta[name="theme-color"]').setAttribute("content",dark?"#0C0C0E":"#F4F4F2");
+document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute("content",dark?"black":"default");})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AJ Training">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
@@ -91,6 +94,16 @@ label.lab{min-width:0}
 textarea.field{resize:vertical;min-height:44px;font-size:15px}
 label.lab{display:grid;gap:6px;font-size:13px;color:var(--muted);font-weight:600}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+input.field:focus,textarea.field:focus,select.field:focus,input.field:focus-visible,textarea.field:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--orange)}
+input[type=range]:focus-visible{outline:none}
+/* Sliders: thick track that fills up to the thumb (--p set from JS), big easy thumb */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;--p:50%;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:12px;border-radius:99px;background:linear-gradient(to right,var(--orange) 0 var(--p),var(--sunk) var(--p) 100%)}
+input[type=range]::-moz-range-track{height:12px;border-radius:99px;background:var(--sunk)}
+input[type=range]::-moz-range-progress{height:12px;border-radius:99px;background:var(--orange)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;margin-top:-9px;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.22);transition:transform .15s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.12)}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.22)}
 
 /* tags + state */
 .tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--ink);white-space:nowrap}
@@ -424,6 +437,8 @@ img{max-width:100%}
 .obopt:active{transform:scale(.985)}
 .obopt b{font-size:17px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .obopt span{font-size:14px;color:var(--muted);line-height:1.45}
+.obopt{box-shadow:inset 0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.04)}
+.obopt b{color:var(--ink)}.obmod>span:nth-child(2){color:var(--ink)}.obmod>span:nth-child(2)>span{color:var(--muted)}
 .obopt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange);background:color-mix(in srgb,var(--orange) 6%,var(--card))}
 .obseq{display:inline-block;margin-top:6px;font-family:var(--display);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .obpoints{display:grid;gap:14px;margin-top:6px}
@@ -436,14 +451,12 @@ img{max-width:100%}
 .obday{aspect-ratio:1/1.15;border:0;border-radius:14px;background:var(--card);font:700 14px var(--body);color:var(--ink);cursor:pointer}
 .obday[aria-pressed="true"]{background:var(--pill);color:var(--pill-ink)}
 .obslider{display:grid;gap:6px;position:relative}
-.ob input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;position:relative;z-index:1}
-.ob input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:var(--sunk)}
-.ob input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:var(--sunk)}
-.ob input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--card);margin-top:-11px;box-shadow:0 0 0 3px var(--orange),0 3px 10px rgba(0,0,0,.18)}
-.ob input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--card);border:3px solid var(--orange)}
+.obslider input[type=range]{position:relative;z-index:1}
 .obslider.rate input[type=range]::-webkit-slider-runnable-track{background:transparent}
-.obslider.rate::before{content:"";position:absolute;left:0;right:0;top:14px;height:8px;border-radius:99px;background:var(--sunk)}
-.obrec{position:absolute;top:14px;height:8px;border-radius:99px;background:color-mix(in srgb,var(--good) 55%,transparent);z-index:0}
+.obslider.rate input[type=range]::-moz-range-progress{background:transparent}
+.obslider.rate::before{content:"";position:absolute;left:0;right:0;top:16px;height:12px;border-radius:99px;background:var(--sunk)}
+.obrec{position:absolute;top:16px;height:12px;border-radius:99px;background:color-mix(in srgb,var(--good) 45%,transparent);z-index:0}
+.obslider.rate .spread{margin-top:2px}
 .obgym{display:grid;gap:10px;background:var(--card);border-radius:18px;padding:14px 16px}
 .obgym .spread{align-items:center}.obseg{width:auto;min-width:160px}
 .obkit{background:var(--card);border-radius:18px;padding:14px 16px}
@@ -504,7 +517,7 @@ img{max-width:100%}
 .obtag{justify-self:center;font-size:13px;font-weight:700;padding:6px 12px;border-radius:99px}
 .obtag.ok{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
 .obtag.warn{background:color-mix(in srgb,var(--warn) 13%,transparent);color:var(--warn)}
-.obproj{width:100%;height:auto;background:var(--card);border-radius:18px;padding:10px}
+.obprojw{background:var(--card);border-radius:18px;padding:10px 10px 12px;display:grid;gap:4px}.obproj{width:100%;height:auto;display:block}
 .obmac{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px}
 .obmac div{background:var(--card);border-radius:16px;padding:12px 8px;display:grid;justify-items:center;gap:2px;box-shadow:inset 0 3px 0 var(--c)}
 .obmac b{font-size:20px}.obmac span{font-size:12px;color:var(--muted);font-weight:600}
@@ -675,6 +688,31 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .runcard .rkm{font:800 34px var(--display)}.runcard .rkm em{font:600 14px var(--body);font-style:normal;color:var(--muted)}
 .ebars{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;height:110px;align-items:end}
 .ebars span{height:100%;display:flex;align-items:flex-end}.ebars i{display:block;width:100%;border-radius:4px 4px 2px 2px;min-height:3px}
+/* Onboarding forms: one label style, one hint style, even spacing */
+.obbody.obform{gap:24px}
+.obbody.fits{overflow:hidden;overscroll-behavior:none}
+.obbody{overscroll-behavior:contain}
+.ob{overscroll-behavior:none}
+.obfld{display:grid;gap:8px;min-width:0}
+.obfld>.spread{align-items:center}
+.obl{font-size:15px;font-weight:700;color:var(--ink)}
+.obhint{font-size:13px;color:var(--muted);line-height:1.45}.obhint.bad{color:var(--warn);font-weight:600}
+.obfld .obseg{min-width:0;width:auto}.obfld .spread .obseg button{padding:7px 12px;font-size:13px}
+.obunitrow{display:flex;align-items:center;gap:8px;min-width:0}
+.obunitrow>span{font-weight:700;color:var(--muted);font-size:15px}
+.obnumf{font:700 22px var(--body)!important;text-align:center;padding:10px 8px!important;background:var(--card)!important;box-shadow:inset 0 0 0 1px var(--line)}
+.obnumf:focus{box-shadow:inset 0 0 0 2px var(--orange)!important}
+.obconv{margin-left:auto;font-style:normal;font-size:13px;color:var(--muted);font-weight:600;text-align:right}
+.obform .field:not(.obnumf){background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.obprot .obopt b{justify-content:flex-start}.obprot .obopt b em{margin-left:auto;font-style:normal;font-family:var(--display);font-size:18px}
+.obleg{justify-content:center}
+.bfg{display:grid;gap:6px;margin-top:4px}
+.bfbar{position:relative;height:44px;border-radius:14px;overflow:hidden;background:var(--sunk)}
+.bfbar button{position:absolute;top:0;bottom:0;border:0;padding:0 2px;background:color-mix(in srgb,var(--c) 22%,var(--card));color:var(--ink);font:700 10.5px var(--body);cursor:pointer;border-right:2px solid var(--page);overflow:hidden}
+.bfbar button span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bfbar i{position:absolute;top:-2px;bottom:-2px;width:4px;margin-left:-2px;background:var(--ink);border-radius:3px;pointer-events:none;transition:left .25s var(--ease,ease)}
+.bflab{position:relative;height:14px;font-size:10.5px;color:var(--muted);font-weight:600}.bflab span{position:absolute;transform:translateX(-50%)}.bflab span:first-child{transform:none}
+.bflook{display:flex;gap:10px;align-items:baseline;background:var(--card);border-radius:14px;padding:10px 14px;box-shadow:inset 0 0 0 1px var(--line)}.bflook b{font-family:var(--display);font-size:15px;flex:none}.bflook span{font-size:13.5px;color:var(--muted)}
 .obhello{display:grid;justify-items:center;text-align:center;gap:16px;padding-top:8vh}.obhello h1{font-size:34px}.obhello .logo{border-radius:24px;box-shadow:0 18px 50px rgba(255,107,26,.25)}
 .obmod{grid-template-columns:44px 1fr auto;align-items:center;gap:14px;display:grid}
 .obmi{width:44px;height:44px;border-radius:13px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}
@@ -824,8 +862,8 @@ const DEFAULT_PROGRAMME = {schema:2, name:"No plan yet", placeholder:true, start
   days:[["mon",1],["tue",2],["wed",3],["thu",4],["fri",5],["sat",6],["sun",0]].map(([k,wd])=>({k, wd, label:"Rest", focus:"", rest:true, cardio:"Build a plan to fill your week"}))};
 const DEFAULT_PROFILE = {name:"", sex:null, birthDate:"1995-01-01", birthSet:false, heightCm:175, bfManual:null, phase:"maintain", phaseStart:"2026-01-01", fallbackKg:75, showSample:false, currency:"£",
   nutrition:{mode:"auto", kcal:null, p:null, f:null, c:null}, modules:null, setupDone:false, gyms:null, habitList:null};
-const MODULES={training:["Gym training","Programmes, live workouts, progression"], endurance:["Running & endurance","Race plans from 5k to multi-day ultras"], nutrition:["Nutrition","Food logging, scanners, adaptive targets"], habits:["Habits","Steps, sleep, quitting things, anything daily"], body:["Body","Weight trend, photos, body fat"]};
-function on(m){ const md=S.profile.modules; return !md || md[m]!==false; }
+const MODULES={training:["Gym training","Programmes, live workouts, progression"], endurance:["Running & endurance","Race plans from 5k to multi-day ultras"], nutrition:["Food and body weight","Food logging, scanners, weigh-ins and adaptive targets"], habits:["Habits","Steps, sleep, quitting things, anything daily"]};
+function on(m){ const md=S.profile.modules; if (m==="body") m="nutrition"; return !md || md[m]!==false; }
 const PHASES = {
   bulk:{label:"Lean bulk", rate:[0.25,0.5], kcalAdj:1.10, prot:2.0, rule:"Top of the range on set one: add load next session. Otherwise beat last time by a rep."},
   recomp:{label:"Recomp", rate:[-0.25,0.25], kcalAdj:1.0, prot:2.2, rule:"Add load only after hitting the top of the range on set one two sessions running."},
@@ -1099,7 +1137,7 @@ function head(title, opts={}){
   const today=new Date().toLocaleDateString("en-GB",{weekday:"long",month:"long",day:"numeric"});
   return `<div class="top">
     <div class="brand">${opts.back?`<button class="iconbtn" data-back="${opts.back}" aria-label="Back">${ICON.back}</button>`:LOGO(30)}<span class="date">${opts.sub||today}</span></div>
-    <div class="row" style="gap:8px"><button class="coachbtn" data-act="coach" aria-label="Ask Claude">${ICON.spark}</button><button class="iconbtn" data-goto="settings" aria-label="Settings">${ICON.gear}</button></div>
+    <div class="row" style="gap:8px"><button class="coachbtn" data-act="coach" aria-label="Ask AJ Training AI">${ICON.spark}</button><button class="iconbtn" data-goto="settings" aria-label="Settings">${ICON.gear}</button></div>
   </div><h1>${title}</h1>`;
 }
 function sampleBanner(){
@@ -1140,15 +1178,15 @@ const STEP_RATE = {
 const PHONE_ON_DEFAULT = {walk:true, run:true, cycle:true};
 const HABIT_ICONS = {steps:"steps", sun:"sun", nosnus:"nosnus", check:"check", drop:"drop", moon:"moon", book:"book", stretch:"stretch", pill:"pill"};
 const HABIT_TEMPLATES = [
-  {tpl:"steps", type:"count", name:"Daily steps", unit:"steps", target:8000, step:500, icon:"steps", color:"var(--carb)", health:true, src:"habits", why:"About 7,000-10,000 steps a day is where the drop in mortality risk levels off (Paluch 2022; Ding 2025)."},
-  {tpl:"wake", type:"time", name:"Up by", target:"07:00", grace:5, icon:"sun", color:"var(--fat)", src:"habits", why:"A fixed wake time anchors your body clock and makes the rest of the day's habits easier to stack."},
-  {tpl:"sleep", type:"count", name:"Sleep", unit:"h", target:7.5, step:0.25, icon:"moon", color:"var(--weight)", src:"habits", why:"Adults should sleep at least 7 hours a night regularly (AASM/SRS consensus, Watson 2015)."},
-  {tpl:"water", type:"count", name:"Water", unit:"L", target:2.5, step:0.25, icon:"drop", color:"var(--cardio)", src:"habits", why:"Total water needs are about 2.0 L (women) to 2.5 L (men) a day, more in heat and training (EFSA 2010)."},
-  {tpl:"quit", type:"quit", name:"Quit nicotine", unit:"pouches", perDay:10, cost:0.33, icon:"nosnus", color:"var(--prot)", src:"habits", why:"Logging every slip and craving keeps you honest; pair it with GP or pharmacist support, which roughly doubles quit rates (Cochrane 2025)."},
-  {tpl:"alcohol", type:"quit", name:"No alcohol", unit:"drinks", perDay:1, cost:6, icon:"nosnus", color:"var(--warn)", src:"habits", why:"Tracking every drink against a plan is one of the most reliable ways to cut back."},
-  {tpl:"mobility", type:"check", name:"Mobility, 10 min", icon:"stretch", color:"var(--orange)", src:"habits", why:"Small, specific daily habits stick faster than big vague ones."},
-  {tpl:"read", type:"check", name:"Read 10 pages", icon:"book", color:"var(--weight)", src:"habits", why:"Morning, self-chosen habits form fastest (Singh 2024)."},
-  {tpl:"supp", type:"check", name:"Creatine 3-5 g", icon:"pill", color:"var(--carb)", src:"habits", why:"Daily dosing keeps muscle stores saturated; timing doesn't matter."}
+  {tpl:"steps", plan:"I'll take a 20-minute walk straight after lunch", type:"count", name:"Daily steps", unit:"steps", target:8000, step:500, icon:"steps", color:"var(--carb)", health:true, src:"habits", why:"About 7,000-10,000 steps a day is where the drop in mortality risk levels off (Paluch 2022; Ding 2025)."},
+  {tpl:"wake", plan:"Alarm on the far side of the room; feet on the floor when it goes off", type:"time", name:"Up by", target:"07:00", grace:5, icon:"sun", color:"var(--fat)", src:"habits", why:"A fixed wake time anchors your body clock and makes the rest of the day's habits easier to stack."},
+  {tpl:"sleep", plan:"Phone charging outside the bedroom by 10:30 pm", type:"count", name:"Sleep", unit:"h", target:7.5, step:0.25, icon:"moon", color:"var(--weight)", src:"habits", why:"Adults should sleep at least 7 hours a night regularly (AASM/SRS consensus, Watson 2015)."},
+  {tpl:"water", plan:"A full glass with every meal and a bottle on my desk", type:"count", name:"Water", unit:"L", target:2.5, step:0.25, icon:"drop", color:"var(--cardio)", src:"habits", why:"Total water needs are about 2.0 L (women) to 2.5 L (men) a day, more in heat and training (EFSA 2010)."},
+  {tpl:"quit", plan:"When I crave one, I'll drink water and walk for 5 minutes", type:"quit", name:"Quit nicotine", unit:"pouches", perDay:10, cost:0.33, icon:"nosnus", color:"var(--prot)", src:"habits", why:"Logging every slip and craving keeps you honest; pair it with GP or pharmacist support, which roughly doubles quit rates (Cochrane 2025)."},
+  {tpl:"alcohol", plan:"At the pub, every other drink is a soft drink", type:"quit", name:"No alcohol", unit:"drinks", perDay:1, cost:6, icon:"nosnus", color:"var(--warn)", src:"habits", why:"Tracking every drink against a plan is one of the most reliable ways to cut back."},
+  {tpl:"mobility", plan:"10 minutes of stretching right after I brush my teeth", type:"check", name:"Mobility, 10 min", icon:"stretch", color:"var(--orange)", src:"habits", why:"Small, specific daily habits stick faster than big vague ones."},
+  {tpl:"read", plan:"10 pages in bed before I switch off the light", type:"check", name:"Read 10 pages", icon:"book", color:"var(--weight)", src:"habits", why:"Morning, self-chosen habits form fastest (Singh 2024)."},
+  {tpl:"supp", plan:"Creatine goes in my morning coffee or shake", type:"check", name:"Creatine 3-5 g", icon:"pill", color:"var(--carb)", src:"habits", why:"Daily dosing keeps muscle stores saturated; timing doesn't matter."}
 ];
 function habitList(){
   if (Array.isArray(S.profile.habitList)) return S.profile.habitList;
@@ -1248,11 +1286,11 @@ function renderHabits(){
     const v=hval(h,sel), q=h.type==="quit"?quitStats(h):null, rate=hrate(h,30), hs=hday(sel);
     let extra="";
     if (h.health) extra=`<div class="kv" style="border:0;padding:0"><div><span>Phone (Apple Health)</span><span class="num">${hs.phone!=null?fmtN(hs.phone):"–"}</span></div>${S.cardio.filter(c=>c.date===sel).map(c=>`<div><span>${CARDIO[c.type]?CARDIO[c.type].n:c.type} · ${c.mins} min <button class="link muted" data-act="phoneToggle" data-id="${c.id}">${cardioPhoneOn(c)?"phone was on me":"phone not on me"}</button></span><span class="num">${cardioPhoneOn(c)?"in Health":"+"+fmtN(Math.round(stepRate(c)*c.mins))}</span></div>`).join("")}${hs.extra?`<div><span>Extra</span><span class="num">+${fmtN(hs.extra)}</span></div>`:""}</div>
-      <span class="small muted">Sessions with your phone in a bag are added from per-minute rates (tennis singles 160, doubles 110, golf 100, padel ~70). ${window.AJP&&AJP.hasBackend?`<button class="link" data-goto="settings">Link Apple Health</button>`:""}</span>`;
+      <span class="small muted">Sessions with your phone in a bag are added from per-minute rates (for example tennis singles 160 a minute, golf 100). ${window.AJP&&AJP.hasBackend?`<button class="link" data-goto="settings">Link Apple Health</button>`:""}</span>`;
     if (h.type==="quit"&&q){ const vv=v||{}; extra=`<div class="stat"><div><span>Clean streak</span><b>${hstreak(h).n} d</b></div><div><span>${h.cost?"Saved":"Days"}</span><b>${h.cost?(S.profile.currency||"£")+q.saved.toFixed(0):q.days}</b></div><div><span>Avoided</span><b>${fmtN(q.avoided)}</b></div></div>
       <div class="grid2"><button class="btn ghost" data-act="hCrave" data-h="${h.id}">I'm craving</button><button class="btn danger" data-act="hSlip" data-h="${h.id}">${S.confirm==="slip-"+h.id?"Tap again to log one":"I had one"}</button></div>
       <span class="small muted">${(vv.cravings||[]).length?`${vv.cravings.length} craving${vv.cravings.length>1?"s":""} beaten ${isToday?"today":"this day"}. `:""}Cravings usually pass within a few minutes: water, gum or a short walk.${vv.used?` ${vv.used} logged ${isToday?"today":"this day"}. <button class="link muted" data-act="hUnslip" data-h="${h.id}">Remove one</button>`:""}</span>`; }
-    if (h.type==="time") extra=`<div class="row" style="flex-wrap:nowrap"><input class="field" type="time" id="ht-${h.id}" value="${esc(v||"")}" style="flex:1" aria-label="Time">${isToday?`<button class="btn small orange" data-act="hNow" data-h="${h.id}" data-d="${sel}">Now</button>`:""}<button class="btn small ghost" data-act="hTime" data-h="${h.id}" data-d="${sel}">Save</button></div>`;
+    if (h.type==="time") extra=`<div class="row" style="flex-wrap:nowrap"><input class="field" type="time" id="ht-${h.id}" value="${esc(v||"")}" style="flex:1" aria-label="Time">${isToday?`<button class="btn small orange" data-act="hNow" data-h="${h.id}" data-d="${sel}">Now</button>`:""}<button class="btn small ghost" data-act="hTime" data-h="${h.id}" data-d="${sel}">Save</button></div>${S.profile.honestyNote===false?"":`<span class="small muted hhonest">Logging later? Enter the time it really happened, not when you remembered. An honest streak is the one that changes things. <button class="link muted" data-act="hHonestOff">Don't show</button></span>`}`;
     return `<section class="card hcard" style="--hc:${h.color||"var(--orange)"}">
       <div class="hhead"><span class="hic">${hicon(h)}</span><span class="hl2"><b>${esc(h.name)}${h.type==="time"?" "+esc(h.target):h.type==="count"?` <span class="muted small">${hfmt(h,+h.target)}</span>`:""}</b><span class="small muted">${habitSub(h,sel)}</span></span>
         ${edit?`<span class="hedit"><button class="iconbtn" data-act="hMove" data-h="${h.id}" data-x="-1" aria-label="Move up" ${i?"":"disabled"}>↑</button><button class="iconbtn" data-act="hOpen" data-h="${h.id}" aria-label="Edit">✎</button></span>`:(h.type==="time"?"":habitControl(h,sel,false))}</div>
@@ -1288,7 +1326,7 @@ function renderHabitSheet(){
       ${d.type==="time"?`<div class="grid2"><label class="lab">By<input class="field" id="hsTarget" type="time" value="${esc(d.target||"07:00")}"></label><label class="lab">Grace (min)<input class="field" id="hsGrace" inputmode="numeric" value="${esc(d.grace??5)}"></label></div>`:""}
       ${d.type==="quit"?`<div class="grid2"><label class="lab">What you're quitting (unit)<input class="field" id="hsUnit" value="${esc(d.unit||"")}" placeholder="e.g. pouches"></label><label class="lab">How many a day before<input class="field" id="hsPer" inputmode="decimal" value="${esc(d.perDay??"")}"></label>
         <label class="lab">Cost each (${S.profile.currency||"£"})<input class="field" id="hsCost" inputmode="decimal" value="${esc(d.cost??"")}"></label><label class="lab">Start day<input class="field" id="hsQuit" type="date" value="${esc(d.quitDate||"")}"></label></div>`:""}
-      <label class="lab">Your plan <span class="muted">(optional, but it roughly doubles follow-through)</span><input class="field" id="hsCue" value="${esc(d.cue||"")}" placeholder="${d.type==="quit"?"When I crave one, I'll drink water and walk for 5 min":"After my morning coffee, I'll do it in the kitchen"}"></label>
+      <label class="lab">Your plan <span class="muted">(optional, but it roughly doubles follow-through)</span><input class="field" id="hsCue" value="${esc(d.cue||"")}" placeholder="${esc(d.plan||{quit:"When I crave one, I'll drink water and walk for 5 minutes",time:"Alarm set 10 minutes earlier, clothes laid out the night before",count:"Straight after breakfast, at the kitchen table"}[d.type]||"After my morning coffee, I'll do it straight away")}"></label>
       <label class="lab">Colour<span class="hcols">${["var(--orange)","var(--carb)","var(--fat)","var(--prot)","var(--cardio)","var(--weight)","var(--warn)"].map(c=>`<button class="hcol ${d.color===c?"on":""}" data-hs="col" data-c="${c}" style="background:${c}" aria-label="Colour"></button>`).join("")}</span></label>
       ${habitList().some(h=>h.id===d.id)?`<button class="btn danger" data-hs="del">${S.confirm==="hdel"?"Tap again to remove (history is kept)":"Remove habit"}</button>`:""}`;
   }
@@ -1298,7 +1336,7 @@ function habitSheetInput(){}
 function habitSheetClick(e){
   const b=e.target.closest("[data-hs]"); if (!b) return; const k=b.dataset.hs, d=S.hDraft;
   if (k==="close"){ S.hDraft=undefined; S.confirm=null; renderHabitSheet(); return; }
-  if (k==="tpl"){ const t=HABIT_TEMPLATES.find(x=>x.tpl===b.dataset.t); S.hDraft={...clone(t), id:uid("h"), since:ymd(new Date())}; delete S.hDraft.why; renderHabitSheet(); return; }
+  if (k==="tpl"){ const t=HABIT_TEMPLATES.find(x=>x.tpl===b.dataset.t); S.hDraft={...clone(t), id:uid("h"), since:ymd(new Date())}; delete S.hDraft.why; delete S.hDraft.tplPlan; renderHabitSheet(); return; }
   if (k==="custom"){ const ty=b.dataset.t; S.hDraft={id:uid("h"), type:ty, name:"", icon:ty==="quit"?"nosnus":ty==="time"?"sun":"check", color:"var(--orange)", target:ty==="count"?1:ty==="time"?"07:00":undefined, unit:"", since:ymd(new Date())}; renderHabitSheet(); return; }
   if (k==="col"){ readHabitForm(); d.color=b.dataset.c; renderHabitSheet(); return; }
   if (k==="del"){ if (S.confirm!=="hdel"){ S.confirm="hdel"; renderHabitSheet(); return; } S.confirm=null; saveHabitList(habitList().filter(h=>h.id!==d.id)); S.hDraft=undefined; renderHabitSheet(); render(); toast("Habit removed"); return; }
@@ -1319,6 +1357,7 @@ function habitAct(act, b){
   const h=habitList().find(x=>x.id===b.dataset.h), date=b.dataset.d||S.habitDate||ymd(new Date());
   switch(act){
     case "hAdd": habitSheet(null); return true;
+    case "hHonestOff": S.profile={...S.profile, honestyNote:false}; saveProfile(); render(); toast("Hidden. Turn it back on in Settings."); return true;
     case "hOpen": habitSheet(h); return true;
     case "hEditMode": S.habitEdit=!S.habitEdit; render(); return true;
     case "hMove": { const list=habitList().slice(), i=list.findIndex(x=>x.id===h.id), j=i+(+b.dataset.x); if (j<0||j>=list.length) return true; [list[i],list[j]]=[list[j],list[i]]; saveHabitList(list); render(); return true; }
@@ -1391,7 +1430,7 @@ function renderHome(){
   } else if (runFor(todayStr) && !(d.variants&&(d.variants[dayGym(d)]||[]).length)){
     today=runCard(runFor(todayStr), todayStr);
   } else if (d.rest){
-    today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Rest day</h2></div><span class="tag">${esc(d.cardio)}</span></div><button class="btn ghost" data-act="coach" data-msg="">Tell Claude what you did</button></div>`;
+    today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Rest day</h2></div><span class="tag">${esc(d.cardio)}</span></div><button class="btn ghost" data-act="coach" data-msg="">Tell AJ Training AI what you did</button></div>`;
   } else {
     const doneToday=sessionsOn(todayStr).length;
     today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>${esc(d.label)}${d.optional?" (optional)":""}</h2></div><span class="tag ${doneToday?"up":"rep"}" ${d.gym?"":"hidden"}>${doneToday?"Done":gymName(d.gym)}</span></div>
@@ -1407,7 +1446,7 @@ function renderHome(){
   const used=[...new Set(S.sessions.flatMap(s=>(s.ex||[]).map(e=>e.k)))];
   const adv=used.map(k=>advice(k)), up=adv.filter(a=>a.status==="up").length, fl=adv.filter(a=>a.flag).length;
   const ds=deloadStatus(), ex=tg.ex;
-  const setup=((on("training")||on("endurance"))&&S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your plan</b><span>Gym, running or both: sessions, effort and progression from the research.</span></span><i>›</i></button>`:"")
+  const setup=((on("training")||on("endurance"))&&S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic food" style="background:var(--orange)">${ICON.lift}</span><span><b>Build your plan</b><span>Gym, running or both: sessions, effort and progression from the research.</span></span><i>›</i></button>`:"")
     +(on("nutrition")&&!S.profile.goal?`<button class="card ctacard" data-act="nutGoal"><span class="ctaic food">${ICON.food}</span><span><b>Set your nutrition goal</b><span>Pick a goal and pace. Calories and macros follow, and adapt weekly.</span></span><i>›</i></button>`:"");
   return head(S.profile.name?`Hi ${esc(S.profile.name)}`:"Dashboard")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setup+(on("training")||on("endurance")?today:"")+(on("habits")?habitsSummaryCard():"")+(on("nutrition")?food:"")+`
   <div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${ph.label}</span></div>
@@ -1470,8 +1509,8 @@ Reply with only JSON: [{"name": string, "brand": string or "", "per100": {"kcal"
 Values per 100 g (or 100 ml for drinks).`,{modelTier:"default"});
     S.aiFoods=(Array.isArray(res)?res:[]).slice(0,4).filter(f=>f&&f.per100&&!isNaN(+f.per100.kcal)).map(f=>({schema:SCHEMA,id:uid("food"),name:String(f.name).slice(0,80),brand:String(f.brand||"").slice(0,60),src:"claude",
       per100:{kcal:+f.per100.kcal||0,p:+f.per100.p||0,c:+f.per100.c||0,f:+f.per100.f||0},serving:f.serving&&+f.serving.g?{g:+f.serving.g,label:String(f.serving.label||"serving")}:null,liquid:LIQUID.test(f.name)}));
-    if (!S.aiFoods.length) toast("Claude couldn't find that. Try different words.");
-  }catch(e){ toast(e&&e.code==="not_granted"?"Allow Claude for this app to look up foods":`Lookup failed (${(e&&e.code)||"unknown"})`); }
+    if (!S.aiFoods.length) toast("AJ Training AI couldn't find that. Try different words.");
+  }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to look up foods":`Lookup failed (${(e&&e.code)||"unknown"})`); }
   S.busy=null; if (S.tab==="food"){ render(); }
 }
 function foodDate(){ return S.foodDate||ymd(new Date()); }
@@ -1550,23 +1589,23 @@ function renderFood(){
   const dbHits=q?searchDb(q,20):[];
   const list=entries.length?entries.map(e=>`<button class="fe" data-act="editEntry" data-id="${e.id}">
       <span class="ft num">${new Date(e.t).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</span>
-      <span class="fn"><b>${esc(e.name)}</b><span class="muted small num">${e.amount?esc(e.amount+" "+e.unit):""}${e.src==="coach"?" · via Claude":e.src==="label"?" · label scan":""}${e.sample?" · sample":""}</span></span>
+      <span class="fn"><b>${esc(e.name)}</b><span class="muted small num">${e.amount?esc(e.amount+" "+e.unit):""}${e.src==="coach"?" · via AI":e.src==="label"?" · label scan":""}${e.sample?" · sample":""}</span></span>
       <span class="fk num"><b>${fmtN(e.kcal)}</b><span class="mini"><i style="color:var(--prot)">${Math.round(e.p)}P</i> <i style="color:var(--fat)">${Math.round(e.f)}F</i> <i style="color:var(--carb)">${Math.round(e.c)}C</i></span></span></button>`).join("")
-    :`<div class="empty">Nothing logged ${isToday?"yet today":"on this day"}. Search your foods, scan a label or barcode, or just tell Claude what you ate.</div>`;
+    :`<div class="empty">Nothing logged ${isToday?"yet today":"on this day"}. Search your foods, scan a label or barcode, or just tell AJ Training AI what you ate.</div>`;
   return head("Food")+`
   <div class="datenav"><button class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">${ICON.back}</button><b>${isToday?"Today":fmtD(date)}</b><button class="iconbtn flip" data-act="fday" data-d="1" aria-label="Next day" ${isToday?"disabled":""}>${ICON.back}</button></div>
   <div class="card"><div class="spread"><h2>${rem?"Remaining":"Consumed"}</h2>${seg("foodMode",[["consumed","Consumed"],["remaining","Remaining"]],rem?"remaining":"consumed")}</div>
     <div class="macros">${macroBar("Calories",t.kcal,tg.kcal,"var(--kcal)","",rem)}${macroBar("Protein",t.p,tg.p,"var(--prot)","g",rem)}${macroBar("Fat",t.f,tg.f,"var(--fat)","g",rem)}${macroBar("Carbs",t.c,tg.c,"var(--carb)","g",rem)}</div>
     ${dayStatusRow(date)}${goalLine(tg)}</div>
   <div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search any food" value="${esc(S.foodQuery)}" autocomplete="off" aria-label="Search foods"></span>
-    <button class="iconbtn sq" data-act="scanBarcode" aria-label="Scan barcode">${ICON.barcode}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to Claude">${ICON.spark}</button></div>
+    <button class="iconbtn sq" data-act="scanBarcode" aria-label="Scan barcode">${ICON.barcode}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to AJ Training AI">${ICON.spark}</button></div>
   ${q?`<div class="card"><div class="list">
     ${results.map(f=>`<button class="li btnli" data-act="pickFood" data-id="${f.id}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="num muted small">${fmtN(f.per100.kcal)} kcal/100g</span><span class="sub"><span class="tag">Saved</span></span></button>`).join("")}
     ${dbHits.map(([i,x])=>`<button class="li btnli" data-act="pickDb" data-i="${i}"><span><b>${esc(prettyName(x[0]))}</b></span><span class="num muted small">${fmtN(x[1])} kcal/100g</span><span class="sub num"><span>${x[2]}P ${x[4]}F ${x[3]}C</span></span></button>`).join("")}
     ${FOODDB===null?`<div class="li"><span class="row small muted"><span class="spinner"></span>Loading food database…</span><span></span></div>`:""}
     ${!results.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches "${esc(S.foodQuery)}".</p>`:""}
-    ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with Claude`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
-    ${(S.aiFoods||[]).map((f,i)=>`<button class="li btnli" data-act="pickAi" data-i="${i}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="num muted small">${fmtN(f.per100.kcal)} kcal/100g</span><span class="sub"><span class="tag rep">Claude estimate</span>${f.serving?`<span>${esc(f.serving.label)} = ${f.serving.g} g</span>`:""}</span></button>`).join("")}
+    ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
+    ${(S.aiFoods||[]).map((f,i)=>`<button class="li btnli" data-act="pickAi" data-i="${i}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="num muted small">${fmtN(f.per100.kcal)} kcal/100g</span><span class="sub"><span class="tag rep">AI estimate</span>${f.serving?`<span>${esc(f.serving.label)} = ${f.serving.g} g</span>`:""}</span></button>`).join("")}
     <button class="li btnli" data-act="quickAdd"><span><b>Quick add</b> <span class="muted small">enter calories and macros</span></span><span></span></button></div></div>`:""}
   <div class="actrow">
     <button class="pillact" data-act="scanLabel">${ICON.label}<span>Scan label</span></button>
@@ -1592,7 +1631,7 @@ function renderFoodSheet(){
       <label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal" value="${esc(a.f??"")}"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal" value="${esc(a.c??"")}"></label></div>`;
   } else {
     const f=a.food, m=foodMacros(f,a.amount,a.unit), units=[["g","grams"]].concat(f.liquid?[["ml","ml"]]:[]).concat(f.serving&&f.serving.g?[["serving",`${f.serving.label||"serving"} (${f.serving.g} g)`]]:[]);
-    body=`${a.isNew?`<label class="lab">Name<input class="field" id="faName" value="${esc(f.name)}"></label>`:""}<div class="stack" style="gap:2px"><h2>${esc(f.name)}</h2><span class="small muted">${esc(f.brand||"")}${f.barcode?" · "+esc(f.barcode):""} · ${fmtN(f.per100.kcal)} kcal, ${r1(f.per100.p)}P ${r1(f.per100.f)}F ${r1(f.per100.c)}C per 100 g${f.src==="usda"?" · USDA":f.src==="claude"?" · Claude estimate":""}</span></div>
+    body=`${a.isNew?`<label class="lab">Name<input class="field" id="faName" value="${esc(f.name)}"></label>`:""}<div class="stack" style="gap:2px"><h2>${esc(f.name)}</h2><span class="small muted">${esc(f.brand||"")}${f.barcode?" · "+esc(f.barcode):""} · ${fmtN(f.per100.kcal)} kcal, ${r1(f.per100.p)}P ${r1(f.per100.f)}F ${r1(f.per100.c)}C per 100 g${f.src==="usda"?" · USDA":f.src==="claude"?" · AI estimate":""}</span></div>
       <div class="row" style="flex-wrap:nowrap"><input class="field big" id="faAmt" inputmode="decimal" value="${esc(a.amount)}" aria-label="Amount" style="flex:1">${dd("faUnit",units,a.unit,"Unit")}</div>
       <div class="stat four"><div><span>Calories</span><b id="faK">${fmtN(m.kcal)}</b></div><div><span>Protein</span><b id="faP" style="color:var(--prot)">${r1(m.p)}</b></div><div><span>Fat</span><b id="faF" style="color:var(--fat)">${r1(m.f)}</b></div><div><span>Carbs</span><b id="faC" style="color:var(--carb)">${r1(m.c)}</b></div></div>${per100Editor(f, a)}`;
   }
@@ -1619,7 +1658,7 @@ function renderPlan(){
   const view=S.planView||"week", ph=PHASES[S.profile.phase], ds=deloadStatus();
   const bi=blockInfo();
   return head("Plan")+`<div class="row"><span class="tag rep">${S.prog.endurance?esc(S.prog.endurance.eventName):ph.label}</span><span class="tag">${esc(S.prog.name)}</span>${bi?(bi.pre?`<span class="tag">Starts ${fmtD(bi.starts)}</span>`:`<span class="tag">Week ${bi.week} of ${bi.len}</span><span class="tag ${bi.deload?"hold":"up"}">${bi.deload?"Deload week":"Target "+bi.rir+" RIR"}</span>`):ds?`<span class="tag">Week ${ds.weeks} of ${ds.every}</span>`:""}</div>
-    ${S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your plan</b><span>Gym, running or both. Two-minute setup, backed by the research.</span></span><i>›</i></button>`:`<div class="row" style="justify-content:space-between"><span class="small muted">${S.prog.splitName?esc(S.prog.splitName):""}</span><span class="row" style="gap:14px"><button class="link muted" data-act="science">Why it's built this way</button><button class="link" data-act="buildProg">Rebuild</button></span></div>`}
+    ${S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic food" style="background:var(--orange)">${ICON.lift}</span><span><b>Build your plan</b><span>Gym, running or both. Two-minute setup, backed by the research.</span></span><i>›</i></button>`:`<div class="row" style="justify-content:space-between"><span class="small muted">${S.prog.splitName?esc(S.prog.splitName):""}</span><span class="row" style="gap:14px"><button class="link muted" data-act="science">Why it's built this way</button><button class="link" data-act="buildProg">Rebuild</button></span></div>`}
     ${seg("planView",[["week","Week"],["month","Month"]],view)}
     ${view==="week"?renderWeekView():renderMonthView()}`;
 }
@@ -1765,10 +1804,10 @@ function renderLive(){
       <div class="exfoot"><span>${esc(ex.note||"")}</span><span class="row" style="gap:16px"><button class="link" data-act="addDrop" data-e="${ei}" data-s="${e.sets.length-1}">+ Drop set</button><button class="link" data-act="addset" data-e="${ei}">+ Set</button></span></div>
       <textarea class="field" id="note-${ei}" data-note="${ei}" rows="1" placeholder="Form notes, shown next time">${esc(e.note)}</textarea></section>`;
   }).join("");
-  return `<div class="top"><div class="brand">${LOGO(30)}<span class="date">${esc(d.label)} · ${gymName(a.gym)}${a.deload?" · deload":""}</span></div><button class="coachbtn" data-act="coach" aria-label="Ask Claude">${ICON.spark}</button></div>
+  return `<div class="top"><div class="brand">${LOGO(30)}<span class="date">${esc(d.label)} · ${gymName(a.gym)}${a.deload?" · deload":""}</span></div><button class="coachbtn" data-act="coach" aria-label="Ask AJ Training AI">${ICON.spark}</button></div>
     <div class="livehead"><h1 class="num">${done}/${total} sets</h1><div style="text-align:right"><div class="date">Elapsed</div><div class="clock num" id="elapsed">${fmtT((Date.now()-a.startedAt)/1000)}</div></div></div>
     <div class="progress"><i style="width:${total?done/total*100:0}%"></i></div>
-    <div class="pills">${done?"":dd("liveGym",gymOpts(),a.gym,"Gym")}<button class="tgl" data-act="coach">${ICON.spark}Ask Claude</button></div>
+    <div class="pills">${done?"":dd("liveGym",gymOpts(),a.gym,"Gym")}<button class="tgl" data-act="coach">${ICON.spark}Ask AI</button></div>
     ${cards}
     <button class="btn orange" data-act="finish">${S.confirm==="finish"?"Tap again to save":"Finish and save"}</button>
     <button class="btn danger" data-act="discard">${S.confirm==="discard"?"Tap again to discard":"Discard session"}</button>`;
@@ -1850,7 +1889,7 @@ function renderCardioHistory(){
   const dates=weekDates(), ws=dates[0].getTime()-12*36e5, week=S.cardio.filter(c=>parseD(c.date).getTime()>=ws);
   return `<div class="card"><div class="spread"><h2>This week</h2><button class="btn small orange" data-goto="cardio">Log cardio</button></div>
       <div class="stat"><div><span>Sessions</span><b>${week.length}</b></div><div><span>Minutes</span><b>${week.reduce((a,c)=>a+c.mins,0)}</b></div><div><span>Extra kcal</span><b>${fmtN(week.reduce((a,c)=>a+c.net,0))}</b></div></div>
-      <button class="btn ghost" data-act="coach" data-ctx="cardio">${ICON.spark} Tell Claude what you did instead</button></div>
+      <button class="btn ghost" data-act="coach" data-ctx="cardio">${ICON.spark} Tell AJ Training AI what you did instead</button></div>
     <div class="card"><h2>History</h2>${S.cardio.length?`<div class="list">${S.cardio.slice(0,40).map(x=>`<div class="li"><span><b>${CARDIO[x.type]?CARDIO[x.type].n:esc(x.type)}</b> <span class="muted small">${esc(x.level)}</span>${x.sample?' <span class="tag">Sample</span>':""}</span><span class="num"><b>${x.net}</b> <span class="muted small">kcal</span></span>
       <div class="sub num"><span>${fmtD(x.date)}</span><span>${x.mins} min${x.km?" · "+x.km+" km":""}</span><span>${x.kcal} gross</span><button class="link muted" data-act="cardioDel" data-id="${x.id}">Delete</button></div></div>`).join("")}</div>`:`<p class="small muted">Nothing logged yet.</p>`}</div>`;
 }
@@ -1881,7 +1920,7 @@ function renderCardio(){
     <span class="small muted" id="cHow">${calcExplain(m,kg)}</span>
     <div class="spread"><span class="small"><b>Phone on you?</b> <span class="muted">If not, its steps are added to today's count</span></span><button class="switch" data-act="cPhone" role="switch" aria-checked="${f.phoneOn!=null?f.phoneOn:!!PHONE_ON_DEFAULT[f.type]}" aria-label="Phone on you"><i></i></button></div>
     <button class="btn orange" data-act="cardioSave">Save cardio</button></div>
-    <button class="card coachcta" data-act="coach" data-ctx="cardio"><span class="coachbtn">${ICON.spark}</span><span><b>Just tell Claude</b><span class="small muted">"90 min padel, mostly matches, then a 20 min walk home"</span></span></button>`;
+    <button class="card coachcta" data-act="coach" data-ctx="cardio"><span class="coachbtn">${ICON.spark}</span><span><b>Just tell AJ Training AI</b><span class="small muted">"90 min padel, mostly matches, then a 20 min walk home"</span></span></button>`;
 }
 
 /* ---------- Body ---------- */
@@ -1954,7 +1993,7 @@ function renderSettings(){
   <div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Sample data</h2><span class="small muted">Example workouts, cardio, food and weigh-ins for testing.</span></div>
     <button class="switch" data-act="sampleToggle" role="switch" aria-checked="${p.showSample!==false}" aria-label="Show sample data"><i></i></button></div></div>
   ${window.AJP?AJP.settingsCards():""}
-  <div class="card"><h2>Food data</h2><span class="small muted">Food search uses USDA FoodData Central (public domain) via the TempoLife food dataset (CC-BY-4.0). Barcodes use Open Food Facts (ODbL). Anything not in either is looked up by Claude and marked as an estimate.</span></div>
+  <div class="card"><h2>Food data</h2><span class="small muted">Food search uses USDA FoodData Central (public domain) via the TempoLife food dataset (CC-BY-4.0). Barcodes use Open Food Facts (ODbL). Anything not in either is looked up by AJ Training AI and marked as an estimate.</span></div>
   <div class="card"><h2>Your data</h2><span class="small muted">Everything is stored as plain, versioned data so it moves to the offline app unchanged.</span><button class="btn ghost" data-act="export">Export all data</button></div>`;
 }
 
@@ -2004,6 +2043,7 @@ function setTheme(v){
   const r=document.documentElement; v==="system" ? r.removeAttribute("data-theme") : r.setAttribute("data-theme", v);
   const dark=v==="dark"||(v==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);
   document.querySelector('meta[name="theme-color"]').setAttribute("content", dark?"#0C0C0E":"#F4F4F2");
+  document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute("content", dark?"black":"default");
   r.classList.add("theming"); setTimeout(()=>r.classList.remove("theming"), 400);
 }
 function go(tab, seg){
@@ -2019,9 +2059,9 @@ function openActions(){
   const items=[
     S.active?["train","var(--ink)",ICON.lift,"Resume workout","Back to your session"]:["train","var(--orange)",ICON.lift,"Start workout",t.rest?"Pick a session":`Today: ${t.label}`],
     ["food","var(--prot)",ICON.food,"Log food","Search, scan a label or barcode"],
-    ["coach","linear-gradient(140deg,#FF9A3D,#C2410C)",ICON.spark,"Tell Claude","Describe a meal or a session in words"],
+    ["coach","linear-gradient(140deg,#FF9A3D,#C2410C)",ICON.spark,"Tell AJ Training AI","Describe a meal or a session in words"],
     ["cardio","var(--cardio)",ICON.cardio,"Log cardio","Walk, run, tennis, padel, golf"],
-    ["habits","var(--carb)",ICON.steps,"Habits","Wake time, steps, snus"],
+    ["habits","var(--carb)",ICON.steps,"Habits","Tick off today's habits"],
     ["weigh","var(--weight)",ICON.scale,"Log weight","Morning weigh-in"],
     ["photo","var(--fat)",ICON.camera,"Progress photos","Estimate body fat"]
   ];
@@ -2119,7 +2159,7 @@ $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="faUnit"){ const
 
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
 async function scanLabel(file){
-  if (!sampler || !S.canImages){ toast("Label scanning needs Claude with images allowed"); return; }
+  if (!sampler || !S.canImages){ toast("Label scanning needs AI with images allowed"); return; }
   const imgs=Array.isArray(file)?file:[file];
   S.busy="label"; render();
   try{
@@ -2141,7 +2181,7 @@ Return only JSON: {"name": product name if visible else a short sensible descrip
     openFood(food,{src:"label", isNew:true});
   } catch(e){ S.busy=null; render();
     if (e&&e.code==="notlabel"&&window.openScanner){ openScanner("label", "Couldn't read that"+(e.msg?" ("+String(e.msg).toLowerCase().slice(0,40)+")":"")+". Fill the box with the table and hold still."); return; }
-    const why=e&&e.code==="notlabel"?("Couldn't read it"+(e.msg?": "+e.msg:"")+". Try again closer up."):e&&e.code==="not_granted"?"Allow Claude to see images to scan labels":"Label reader error: "+(e&&(e.code||e.message)||"unknown")+(e&&e.status?" ("+e.status+")":"");
+    const why=e&&e.code==="notlabel"?("Couldn't read it"+(e.msg?": "+e.msg:"")+". Try again closer up."):e&&e.code==="not_granted"?"Allow AI to see images to scan labels":"Label reader error: "+(e&&(e.code||e.message)||"unknown")+(e&&e.status?" ("+e.status+")":"");
     toast(why); }
 }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
@@ -2227,12 +2267,12 @@ async function analyse(blobs, prevSet, cond){
 }
 function analyseErr(e){
   const c=(e&&e.code)||"unknown";
-  const m={not_granted:"Claude isn't allowed to see images in this app. Turn it on in the app's Permissions menu.",
+  const m={not_granted:"AI isn't allowed to see images in this app. Turn it on in the app's Permissions menu.",
     images_unavailable:"Image analysis isn't available in this view. Sign in to use it.",
     image_rejected:"One of the photos couldn't be read. Try retaking it.",
     rate_limited:"You've hit a usage limit. Try again in a bit.",
-    refused:"Claude declined to estimate from these photos.",
-    invalid_json:"Claude replied but not with an estimate. Tap Analyse again.",
+    refused:"AJ Training AI declined to estimate from these photos.",
+    invalid_json:"AJ Training AI replied but not with an estimate. Tap Analyse again.",
     session_expired:"Sign in again, then retry."}[c];
   return (m||"Estimate failed.")+` (${c})`;
 }
@@ -2444,7 +2484,7 @@ let chatImg=null, chatCtl=null;
 const SUGG={
   default:["Woke up at 6:50","Phone says 7,400 steps today","Played 90 min of singles tennis","Had chicken, rice and broccoli for lunch","What should I eat with my remaining macros?","How's my bulk going?"],
   food:["2 eggs, 2 slices of sourdough and a flat white","Nando's half chicken, spicy rice and halloumi","Protein shake with 50g oats and a banana","What can I eat to hit my protein?"],
-  cardio:["90 min padel, mostly matches","45 min singles tennis match then 30 min hitting","Walked 6 km in an hour","Cycled to White City and back"],
+  cardio:["90 min padel, mostly matches","45 min singles tennis match then 30 min hitting","Walked 6 km in an hour","Cycled 12 km to work and back"],
   live:["The cable's taken, what instead?","Shoulder feels tight on incline, swap it","Should I drop set the last set?","How many reps in reserve am I aiming for?"]
 };
 function mdLite(t){
@@ -2458,16 +2498,16 @@ function mdLite(t){
 const ACT_STYLE={food:["var(--prot)",ICON.food],cardio:["var(--cardio)",ICON.cardio],weight:["var(--weight)",ICON.scale],swap:["var(--orange)",ICON.lift],delete:["var(--warn)",'<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg>'],habit:["var(--carb)",ICON.steps]};
 function renderChat(streamText){
   const box=$("#chatMsgs");
-  if (!sampler){ box.innerHTML=`<div class="chat-empty">${LOGO(56)}<h2>Coach</h2><p>Chat with Claude isn't available in this view. Sign in to use it.</p></div>`; $("#chatChips").innerHTML=""; return; }
+  if (!sampler){ box.innerHTML=`<div class="chat-empty">${LOGO(56)}<h2>Coach</h2><p>Chat with AJ Training AI isn't available in this view. Sign in to use it.</p></div>`; $("#chatChips").innerHTML=""; return; }
   const ctx=S.active?"live":S.chatCtx||"default";
   let html = S.chat.length ? "" : `<div class="chat-empty">${LOGO(64)}<h2>Coach</h2><p>Tell me what you ate or did in plain words and I'll log it. I can see your plan, targets, today's food and your training.</p></div>`;
   html += S.chat.map((m,i)=>{
     if (m.role==="user") return `<div class="msg me">${m.img?`<img class="att" src="${m.img}" alt="Attached photo">`:""}${esc(m.content)}</div>`;
-    if (m.role==="assistant") return `<div class="msg ai"><div class="who">${LOGO(18)}Claude</div>${mdLite(m.content)}</div>`;
+    if (m.role==="assistant") return `<div class="msg ai"><div class="who">${LOGO(18)}AJ Training AI</div>${mdLite(m.content)}</div>`;
     if (m.role==="action"){ const [c,ic]=ACT_STYLE[m.kind]||ACT_STYLE.food; return `<div class="acard ${m.undone?"undone":""}"><span class="ai" style="background:${c}">${ic}</span><span><b>${esc(m.title)}</b><span>${esc(m.detail)}</span></span>${m.undo&&!m.undone?`<button class="link" data-undo="${i}">Undo</button>`:m.undone?`<span class="small">Undone</span>`:""}</div>`; }
     return `<div class="msg sys">${esc(m.content)}</div>`;
   }).join("");
-  if (streamText!=null) html+=`<div class="msg ai" id="streamMsg"><div class="who">${LOGO(18)}Claude</div>${streamText?mdLite(streamText):'<div class="typing"><i></i><i></i><i></i></div>'}</div>`;
+  if (streamText!=null) html+=`<div class="msg ai" id="streamMsg"><div class="who">${LOGO(18)}AJ Training AI</div>${streamText?mdLite(streamText):'<div class="typing"><i></i><i></i><i></i></div>'}</div>`;
   box.innerHTML=html; box.scrollTop=box.scrollHeight;
   $("#chatChips").innerHTML = S.chat.length>2 ? "" : SUGG[ctx].map(s=>`<button class="chip" data-sugg="${esc(s)}">${esc(s)}</button>`).join("");
   $("#chatImgBtn").hidden=!S.canImages;
@@ -2504,7 +2544,7 @@ function chatContext(){
     live=`\nLIVE WORKOUT NOW: ${(dayBy(a.dayKey)||{}).label} at ${GYMS[a.gym]}${a.deload?" (deload)":""}, ${Math.round((Date.now()-a.startedAt)/60000)} min in. Equipment: ${GYM_KIT[a.gym]}\n`+a.ex.map((e,i)=>{ const x=exDef(e.k,e.custom), h=liftHistory(e.k,false,a.gym).slice(0,3);
       return `${i}. ${x.n} [${x.m}, ${x.lo}-${x.hi} reps, rest ${x.rest}s] today: ${e.sets.filter(s=>s.done).map(s=>s.w+"x"+s.r).join(", ")||"not started"} of ${e.sets.length} sets; recent first sets here: ${h.map(q=>q.date+" "+q.sets[0].w+"x"+q.sets[0].r).join(" | ")||"none"}${e.note?"; their note: "+e.note:""}`; }).join("\n"); }
   const a7=avgWindow(td,7), p7=avgWindow(ymd(new Date(Date.now()-7*864e5)),7);
-  return `You are Claude, the coach inside AJ Training, an all-in-one training, nutrition and habits app. The user's name is ${S.profile.name||"not set"}. They reads on their phone. Today is ${new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}, ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} time.
+  return `You are AJ Training AI, the coach inside AJ Training, an all-in-one training, nutrition and habits app. The user's name is ${S.profile.name||"not set"}. They read on their phone. Today is ${new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}, ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} time.
 Style: direct, warm, short (usually 1-3 sentences, max ~120 words). No preamble, no em dashes. Evidence-based; match their level and skip basics they clearly know.
 
 LOGGING: When they describe food they ate or activity they did, log it immediately with the tools. Don't ask permission. Use portion norms and standard nutrition data (cooked weights unless they say raw). If a quantity is genuinely ambiguous and would change calories a lot, assume the most typical portion, log it, and say what you assumed so they can correct you. For restaurant chains use their published nutrition if you know it. If they attaches a meal photo, estimate portions from it. After logging, confirm in one line and give what's left for the day (calories and protein).
@@ -2616,7 +2656,7 @@ async function sendChat(){
   chatCtl=new AbortController();
   let text="";
   try{
-    const opts={cache:false, modelTier:"coach", signal:chatCtl.signal, onText:({text:t})=>{ text=t; const el=$("#streamMsg"); if(el){ el.innerHTML=`<div class="who">${LOGO(18)}Claude</div>`+mdLite(t); $("#chatMsgs").scrollTop=$("#chatMsgs").scrollHeight; } }};
+    const opts={cache:false, modelTier:"coach", signal:chatCtl.signal, onText:({text:t})=>{ text=t; const el=$("#streamMsg"); if(el){ el.innerHTML=`<div class="who">${LOGO(18)}AJ Training AI</div>`+mdLite(t); $("#chatMsgs").scrollTop=$("#chatMsgs").scrollHeight; } }};
     if (S.canTools) opts.tools=chatTools();
     if (img && S.canImages) opts.images=[img];
     const res=await sampler(turns, opts);
@@ -2624,7 +2664,7 @@ async function sendChat(){
     S.chat.push({role:"assistant", content:finalText.trim()});
   } catch(err){
     if (err && err.text) S.chat.push({role:"assistant",content:err.text});
-    if (!err || err.code!=="cancelled") S.chat.push({role:"sys",content: err&&err.code==="not_granted"?"Allow Claude for this app to use chat.":err&&err.code==="rate_limited"?"Too many messages. Try again shortly.":"Message failed. Try again."});
+    if (!err || err.code!=="cancelled") S.chat.push({role:"sys",content: err&&err.code==="not_granted"?"Allow AI for this app to use chat.":err&&err.code==="rate_limited"?"Too many messages. Try again shortly.":"Message failed. Try again."});
   }
   chatCtl=null; $("#chatSend").disabled=false; saveChat(); renderChat();
 }

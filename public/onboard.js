@@ -299,7 +299,7 @@ function generate(ans, seed){
   const sportSet = new Set(ans.sport || []);
   const days = WD.map(([k, wd, short]) => {
     const i = placed.findIndex(p => p.wd === wd);
-    if (i < 0) return {k, wd, label:"Rest", focus:sportSet.has(k) ? "Tennis, padel or harder cardio" : "Recovery, walk or easy cardio", rest:true, cardio:sportSet.has(k) ? "Sport day: tennis, padel or harder cardio" : "Walk or easy cardio"};
+    if (i < 0) return {k, wd, label:"Rest", focus:sportSet.has(k) ? "Sport or harder cardio" : "Recovery, walk or easy cardio", rest:true, cardio:sportSet.has(k) ? "Sport day" : "Walk or easy cardio"};
     const tk = placed[i].tk;
     const next = WD.find(x => x[1] === (wd + 1) % 7)[0];
     return {k, wd, label:T[tk].label, tpl:tk, focus:focusOf(first.days[i].list), gym:gl.some(g => g.id === (ans.gymOf || {})[k]) ? ans.gymOf[k] : gl[0].id,
@@ -466,7 +466,7 @@ const clearDraft = k => { try{ localStorage.removeItem(DRAFT + k); }catch(e){} }
 function el(){ let o = document.getElementById("ob"); if (!o){ o = document.createElement("div"); o.id = "ob"; o.className = "ob"; o.setAttribute("role", "dialog"); document.body.appendChild(o); bind(o); } return o; }
 function close(){ const o = document.getElementById("ob"); document.body.style.overflow = "";
   if (F && F.kind === "nut" && !F.accepted) S.profile.activity = F.prevAct;
-  if (F && F.kind === "welcome" && !F.accepted){ S.profile = {...S.profile, setupDone:true, modules:S.profile.modules || {training:true, endurance:true, nutrition:true, habits:true, body:true}}; saveProfile(); } F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
+  if (F && F.kind === "welcome" && !F.accepted){ S.profile = {...S.profile, setupDone:true, modules:S.profile.modules || {training:true, endurance:true, nutrition:true, habits:true}}; saveProfile(); } F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
 function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
@@ -492,8 +492,52 @@ function nutDefaults(){
   const g = S.profile.goal, kg = currentKg();
   if (g) return clone(g);
   const type = S.profile.phase === "cut" ? "cut" : S.profile.phase === "recomp" ? "recomp" : S.profile.phase === "maintain" ? "maintain" : "bulk";
-  return {type, startKg:r1(kg), targetKg:r1(type === "cut" ? kg * 0.94 : kg * 1.05), rate:GOALS[type].def, prot:type === "cut" ? 2.3 : 2.0, fat:"balanced", dist:"even", activity:actDefaults()};
+  return {type, startKg:r1(kg), targetKg:r1(type === "cut" ? kg * 0.94 : kg * 1.05), rate:GOALS[type].def, prot:type === "cut" ? 2.2 : 2.0, fat:"balanced", dist:"even", activity:actDefaults()};
 }
+
+/* ---------- Units and typed number fields ----------
+   Every number can be typed or slid. Heights in cm or ft/in, weights in kg, lb or st/lb; stored in cm and kg. */
+const LB = 2.20462;
+function units(){ return Object.assign({h:"cm", w:"kg"}, S.profile.units || {}, F && F.ans && F.ans.units || {}); }
+function ftIn(cm){ const t = cm / 2.54; let ft = Math.floor(t / 12), inch = Math.round(t - ft * 12); if (inch === 12){ ft++; inch = 0; } return [ft, inch]; }
+function stLb(kg){ const t = kg * LB; let st = Math.floor(t / 14), lb = Math.round(t - st * 14); if (lb === 14){ st++; lb = 0; } return [st, lb]; }
+function fmtW(kg, u){ u = u || units().w; if (kg == null || !isFinite(kg)) return "–"; if (u === "lb") return Math.round(kg * LB) + " lb"; if (u === "st"){ const [st, lb] = stLb(kg); return st + " st " + lb + " lb"; } return (+kg).toFixed(1) + " kg"; }
+function fmtH(cm, u){ u = u || units().h; if (u === "ftin"){ const [f, i] = ftIn(cm); return f + " ft " + i + " in"; } return Math.round(cm) + " cm"; }
+function nf(key, conv, val, label, w){ return `<input class="field obnumf" ${w ? `style="width: ${w}px;"` : ""} inputmode="${conv === "kg" || conv === "bf" ? "decimal" : "numeric"}" data-key="${key}" data-conv="${conv}" value="${val}" aria-label="${label}" autocomplete="off">`; }
+function heightRow(key, cm){
+  const u = units().h;
+  if (u === "ftin"){ const [f, i] = ftIn(cm); return `<div class="obunitrow">${nf(key, "ft", f, "Feet", 72)}<span>ft</span>${nf(key, "in", i, "Inches", 72)}<span>in</span><em class="obconv">${Math.round(cm)} cm</em></div>`; }
+  return `<div class="obunitrow">${nf(key, "cm", Math.round(cm), "Height in centimetres", 104)}<span>cm</span><em class="obconv">${fmtH(cm, "ftin")}</em></div>`;
+}
+function weightRow(key, kg){
+  const u = units().w;
+  if (u === "st"){ const [st, lb] = stLb(kg); return `<div class="obunitrow">${nf(key, "st", st, "Stone", 72)}<span>st</span>${nf(key, "stlb", lb, "Pounds", 72)}<span>lb</span><em class="obconv">${(+kg).toFixed(1)} kg</em></div>`; }
+  if (u === "lb") return `<div class="obunitrow">${nf(key, "lb", Math.round(kg * LB), "Weight in pounds", 104)}<span>lb</span><em class="obconv">${(+kg).toFixed(1)} kg</em></div>`;
+  return `<div class="obunitrow">${nf(key, "kg", (+kg).toFixed(1), "Weight in kilograms", 104)}<span>kg</span><em class="obconv">${fmtW(kg, "st")}</em></div>`;
+}
+function unitSeg(kind){ const u = units(); return kind === "h" ? seg2("units.h", [["cm","cm"],["ftin","ft/in"]], u.h) : seg2("units.w", [["kg","kg"],["lb","lb"],["st","st/lb"]], u.w); }
+const LIMITS = {heightCm:[120, 230], kg:[30, 250], kgNow:[30, 250], bf:[3, 60]};
+// value of a typed field group (ft+in, st+lb) in the stored unit; null while incomplete or out of range
+function readConv(row, key){
+  const v = c => { const x = row.querySelector(`[data-key="${key}"][data-conv="${c}"]`); return x ? +String(x.value).replace(",", ".") : NaN; };
+  const c0 = row.querySelector(`[data-key="${key}"]`).dataset.conv; let out;
+  if (c0 === "cm") out = v("cm"); else if (c0 === "ft") out = ((v("ft") || 0) * 12 + (v("in") || 0)) * 2.54;
+  else if (c0 === "kg") out = v("kg"); else if (c0 === "lb") out = v("lb") / LB; else if (c0 === "st") out = ((v("st") || 0) * 14 + (v("stlb") || 0)) / LB;
+  else out = v(c0);
+  const [lo, hi] = LIMITS[key] || [-Infinity, Infinity];
+  return isFinite(out) && out >= lo && out <= hi ? out : null;
+}
+function fmtDob(raw){ const d = String(raw).replace(/\D/g, "").slice(0, 8); return d.length > 4 ? d.slice(0, 2) + "/" + d.slice(2, 4) + "/" + d.slice(4) : d.length > 2 ? d.slice(0, 2) + "/" + d.slice(2) : d; }
+function parseDob(txt){
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(txt || ""); if (!m) return null;
+  const d = new Date(+m[3], +m[2] - 1, +m[1], 12); if (d.getDate() !== +m[1] || d.getMonth() !== +m[2] - 1) return null;
+  const age = (Date.now() - d) / (365.25 * 864e5); if (age < 13 || age > 100) return null;
+  return {iso:ymd(d), age:Math.floor(age)};
+}
+function isoToDob(iso){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
+function pctOf(t){ const lo = +t.min || 0, hi = +t.max || 100; return Math.max(0, Math.min(100, (+t.value - lo) / (hi - lo) * 100)); }
+function fillRanges(root){ (root || document).querySelectorAll('input[type=range]').forEach(t => t.style.setProperty("--p", pctOf(t) + "%")); }
+window.AJFillRanges = fillRanges;
 
 /* ---------- Programme steps ---------- */
 const PSTEPS_GYM = ["intro","kind","goal","level","days","gyms","sport","split","pri","inj","lifts","block","build","review"];
@@ -664,25 +708,27 @@ function review(a){
 
 /* ---------- Welcome (first run) ---------- */
 const WSTEPS = ["hello","sections","about","next"];
-const MODICON = {training:"lift", endurance:"cardio", nutrition:"food", habits:"steps", body:"scale"};
+const MODICON = {training:"lift", endurance:"cardio", nutrition:"food", habits:"steps"};
 function wStep(s, a){
   switch (s){
   case "hello": return {title:"", body:`<div class="obhello">${LOGO(96)}<h1>Welcome${a.name ? ", " + esc(a.name) : ""}</h1>
     <p class="oblead">One app for training, running, food and habits, built on the research and shaped around you. Use all of it, or just the parts you need.</p></div>`, cta:"Get started"};
   case "sections": return {title:"What do you want to use?", body:`<p class="obnote" style="margin-top:0">Pick as many as you like. You can change this any time in Settings.</p>
     <div class="obopts">${Object.entries(MODULES).map(([k, [n, d]]) => `<button class="obopt obmod" data-tog="mods" data-val="${k}" aria-pressed="${a.mods.includes(k)}"><span class="obmi">${ICON[MODICON[k]]}</span><span><b>${n}</b><span>${d}</span></span><i class="obtick"></i></button>`).join("")}</div>`};
-  case "about": return {title:"About you", body:`<p class="obnote" style="margin-top:0">Used for calorie burn, targets and body-fat estimates. Nothing is shared.</p>
-    <label class="lab">First name<input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></label>
-    <div class="lab">Sex (for energy and body-fat maths)${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}</div>
-    <label class="lab">Date of birth<input class="field" type="date" data-input="birthDate" value="${esc(a.birthDate)}"></label>
-    <h3 class="obh">Height</h3><div class="spread"><b class="num">${a.heightCm} cm</b><span class="muted small">${(() => { const t = Math.round(a.heightCm / 2.54); return Math.floor(t / 12) + " ft " + (t % 12) + " in"; })()}</span></div>
-    <div class="obslider"><input type="range" min="140" max="215" step="1" value="${a.heightCm}" data-range="heightCm"></div>
-    <h3 class="obh">Weight</h3><div class="spread"><b class="num">${(+a.kg).toFixed(1)} kg</b><span class="muted small">${(a.kg * 2.20462 / 14 | 0)} st ${Math.round(a.kg * 2.20462 % 14)} lb</span></div>
-    <div class="obslider"><input type="range" min="40" max="180" step="0.5" value="${a.kg}" data-range="kg"></div>`};
+  case "about": { const dob = parseDob(a.dob);
+    return {title:"About you", cls:"obform", body:`<p class="obnote" style="margin-top:0">Used to work out your calorie burn, targets and body-fat estimates. Nothing is shared.</p>
+    <div class="obfld"><span class="obl">First name</span><input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></div>
+    <div class="obfld"><span class="obl">Sex</span>${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}<span class="obhint">Used for the energy and body-fat maths.</span></div>
+    <div class="obfld"><span class="obl">Date of birth</span><input class="field" data-dob="1" inputmode="numeric" maxlength="10" value="${esc(a.dob || "")}" placeholder="DD/MM/YYYY, e.g. 01/04/1999" autocomplete="bday">
+      <span class="obhint ${a.dob && a.dob.length === 10 && !dob ? "bad" : ""}">${dob ? "Age " + dob.age : a.dob && a.dob.length === 10 ? "That date doesn't look right" : "Day, month, year"}</span></div>
+    <div class="obfld"><div class="spread"><span class="obl">Height</span>${unitSeg("h")}</div>${heightRow("heightCm", a.heightCm)}
+      <div class="obslider"><input type="range" min="140" max="215" step="1" value="${Math.min(215, Math.max(140, a.heightCm))}" data-range="heightCm" aria-label="Height"></div></div>
+    <div class="obfld"><div class="spread"><span class="obl">Weight</span>${unitSeg("w")}</div>${weightRow("kg", a.kg)}
+      <div class="obslider"><input type="range" min="35" max="200" step="0.5" value="${Math.min(200, Math.max(35, a.kg))}" data-range="kg" aria-label="Weight"></div></div>`}; }
   case "next": {
     const m = new Set(a.mods), items = [];
     if (m.has("training") || m.has("endurance")) items.push(["prog", "Build your plan", m.has("endurance") && !m.has("training") ? "Race or running plan with the right mix of easy, hard and long" : "Two minutes: sessions, sets and progression from the research", "lift"]);
-    if (m.has("nutrition")) items.push(["nut", "Set your nutrition goal", "Goal, pace and targets that adapt to your real data", "food"]);
+    if (m.has("nutrition")) items.push(["nut", "Set your food goal", "Goal, pace and targets that adapt to your real weight and food data", "food"]);
     if (m.has("habits")) items.push(["habits", "Add your habits", "Steps, sleep, water, quitting something, or your own", "steps"]);
     return {title:"You're set", body:`<p class="oblead">Next, set up the parts you picked. You can do them now or later from the dashboard.</p>
       <div class="obopts">${items.map(([k, t, d, ic]) => `<button class="obopt obmod" data-wnext="${k}"><span class="obmi">${ICON[ic]}</span><span><b>${t}</b><span>${d}</span></span><i class="obarrow">›</i></button>`).join("")}</div>`, cta:"Go to my dashboard"};
@@ -691,12 +737,13 @@ function wStep(s, a){
 }
 function welcomeDefaults(){
   const p = S.profile, md = p.modules;
-  return {mods:md ? Object.keys(MODULES).filter(k => md[k] !== false) : ["training","nutrition","habits","body"], name:p.name || "", sex:p.sex || null,
-    birthDate:p.birthSet ? p.birthDate : "1995-01-01", heightCm:p.heightCm || 175, kg:r1(currentKg() || 75)};
+  return {mods:md ? Object.keys(MODULES).filter(k => md[k] !== false) : ["training","nutrition","habits"], name:p.name || "", sex:p.sex || null,
+    birthDate:p.birthSet ? p.birthDate : "1995-01-01", dob:p.birthSet ? isoToDob(p.birthDate) : "", heightCm:p.heightCm || 175, kg:r1(currentKg() || 75), units:Object.assign({h:"cm", w:"kg"}, p.units || {})};
 }
 function acceptWelcome(then){
   const a = F.ans, mods = Object.fromEntries(Object.keys(MODULES).map(k => [k, a.mods.includes(k)]));
-  S.profile = {...S.profile, modules:mods, name:a.name.trim(), sex:a.sex, birthDate:a.birthDate, birthSet:a.birthDate !== "1995-01-01", heightCm:+a.heightCm, fallbackKg:+a.kg, setupDone:true};
+  const dob = parseDob(a.dob);
+  S.profile = {...S.profile, modules:mods, name:a.name.trim(), sex:a.sex, birthDate:dob ? dob.iso : S.profile.birthDate, birthSet:!!dob || !!S.profile.birthSet, heightCm:Math.round(+a.heightCm), fallbackKg:+a.kg, units:a.units, setupDone:true};
   saveProfile();
   if (!S.weights.some(w => w.d === ymd(new Date())) && Math.abs((currentKg() || 0) - a.kg) > 0.05){ try{ logWeight(+a.kg, ymd(new Date())); }catch(e){} }
   clearDraft("welcome"); F.accepted = true;
@@ -709,6 +756,23 @@ function acceptWelcome(then){
 }
 
 /* ---------- Nutrition steps ---------- */
+const JOBEG = {desk:"Office work, driving, studying, working from home", mixed:"Teaching, retail, lab work: some walking about", active:"Trades, nursing, hospitality, warehouse, labouring"};
+// Tudor-Locke & Bassett 2004 / Tudor-Locke 2011 step-defined activity bands
+const STEPBANDS = [[5000, "Sedentary"], [7500, "Low active"], [10000, "Somewhat active"], [12500, "Active"], [Infinity, "Highly active"]];
+const STEPGUESS = [["Mostly sitting", "Drive most places, little walking", 4000], ["Some walking", "Errands, the odd short walk", 6500], ["Walk most days", "Walk to work or the station, dog walks", 9000], ["On the move a lot", "Long daily walks or an on-your-feet job", 12500]];
+// ACE body-fat categories (percent)
+const BFBANDS = {male:[[5, 13, "Athletic"], [14, 17, "Fit"], [18, 24, "Average"], [25, 35, "Higher"]],
+  female:[[12, 20, "Athletic"], [21, 24, "Fit"], [25, 31, "Average"], [32, 42, "Higher"]]};
+const BFLOOK = {male:[[8, "Clear abs and veins, very lean"], [12, "Abs visible, some muscle separation"], [15, "Outline of abs, lean look"], [20, "Little definition, soft midsection"], [25, "No ab outline, fat around the waist"], [30, "Rounded waist and chest"]],
+  female:[[16, "Visible abs, very defined"], [20, "Some ab outline, toned arms and legs"], [24, "Lean but soft, little definition"], [28, "Curvier, soft hips and thighs"], [32, "Rounder midsection, no definition"], [38, "Fuller face, arms and thighs"]]};
+function bfGuide(sex, v){
+  const sx = sex === "female" ? "female" : "male", bands = BFBANDS[sx], lo = bands[0][0], hi = bands[bands.length - 1][1], pc = x => (x - lo) / (hi - lo) * 100;
+  const cols = ["var(--good)", "var(--carb)", "var(--fat)", "var(--prot)"];
+  const look = BFLOOK[sx].reduce((b, x) => Math.abs(x[0] - v) < Math.abs(b[0] - v) ? x : b);
+  return `<div class="bfg"><div class="bfbar">${bands.map((b, i) => `<button data-bf="${Math.round((b[0] + b[1]) / 2)}" style="left:${pc(b[0])}%;width:${pc(b[1] + 1) - pc(b[0])}%;--c:${cols[i]}" aria-label="${b[2]} ${b[0]}-${b[1]}%"><span>${b[2]}</span></button>`).join("")}<i style="left:${Math.max(0, Math.min(100, pc(v)))}%"></i></div>
+    <div class="bflab">${bands.map(b => `<span style="left:${pc(b[0])}%">${b[0]}</span>`).join("")}</div>
+    <div class="bflook"><b>~${look[0]}%</b><span>${look[1]}</span></div></div>`;
+}
 function nStep(s, a){
   const kg = currentKg(), ex = expenditure(), G = GOALS[a.type];
   switch (s){
@@ -722,25 +786,35 @@ function nStep(s, a){
   case "goal": return {title:"What's the goal?", body:`<div class="obopts">${Object.entries(GOALS).map(([k, g]) => opt("type", k, g.label, g.sub, a.type)).join("")}</div>
     <p class="obnote">${currentBf().v <= 15 ? `At ~${Math.round(currentBf().v)}% body fat (${esc(currentBf().src)}), a lean bulk is a good default.` : `At ~${Math.round(currentBf().v)}% body fat, a cut or recomp first is worth considering.`}</p>`};
   case "activity": {
-    const A = a.activity, pm = priorModel(kg), logged = loggedSteps();
-    return {title:"How active are you?", body:`
-      <p class="obnote" style="margin-top:0">This sets your starting estimate. After that, your food logs and weigh-ins take over and correct it every day.</p>
-      <h3 class="obh" style="margin-top:4px">Outside training, your day is mostly…</h3>
-      <div class="obopts">${Object.entries(JOB).map(([k, v]) => `<button class="obopt" data-set="activity.job" data-val="${k}" aria-pressed="${A.job === k}"><b>${v[0]}</b></button>`).join("")}</div>
-      <h3 class="obh">Typical steps a day</h3>
-      <div class="spread"><b class="num">${fmtN(A.steps)} steps</b><span class="muted small">${logged ? `your logged average: ${fmtN(logged.avg)} (${logged.n} days)` : "used on days you don't log steps"}</span></div>
-      <div class="obslider"><input type="range" min="2000" max="25000" step="500" value="${A.steps}" data-range="activity.steps"></div>
-      <h3 class="obh">Cycling commute</h3>
-      <div class="spread"><b class="num">${A.commute} min a week</b><span class="muted small">${A.commute ? "so don't also log it as cardio" : "0 if you don't"}</span></div>
-      <div class="obslider"><input type="range" min="0" max="600" step="10" value="${A.commute}" data-range="activity.commute"></div>
+    const A = a.activity, pm = priorModel(kg), logged = loggedSteps(), band = STEPBANDS.find(b => A.steps < b[0]) || STEPBANDS[STEPBANDS.length - 1];
+    return {title:"How active are you?", cls:"obform", body:`
+      <p class="obnote" style="margin-top:0">This sets your starting estimate. From there your food logs and weigh-ins take over and correct it every day.</p>
+      <div class="obfld"><span class="obl">Outside training, your day is mostly…</span>
+      <div class="obopts">${Object.entries(JOB).map(([k, v]) => `<button class="obopt" data-set="activity.job" data-val="${k}" aria-pressed="${A.job === k}"><b>${v[0]}</b><span>${JOBEG[k]}</span></button>`).join("")}</div></div>
+      <div class="obfld"><span class="obl">Steps a day, on a typical day</span>
+        <div class="obunitrow">${nf("activity.steps", "steps", A.steps, "Steps a day", 120)}<span>steps</span><em class="obconv">${band[1]}</em></div>
+        <div class="obslider"><input type="range" min="1000" max="30000" step="250" value="${Math.min(30000, A.steps)}" data-range="activity.steps" aria-label="Steps a day"></div>
+        <span class="obhint">${logged ? `Your logged average is ${fmtN(logged.avg)} over ${logged.n} days. <button class="obsrc" data-setsteps="${logged.avg}">Use it</button>` : "Used on days you don't log steps. Linking Apple Health in Settings replaces it with your real count."}</span></div>
+      <details class="obkit obguess" ${A.guess ? "open" : ""}><summary><b>Not sure of your steps?</b><span class="muted small">pick the closest</span></summary>
+        <div class="obopts" style="margin-top:12px">${STEPGUESS.map(([n, d, v]) => `<button class="obopt" data-setsteps="${v}" aria-pressed="${A.steps === v}"><b>${n}</b><span>${d} · about ${fmtN(v)} steps</span></button>`).join("")}</div>
+        <p class="obnote">Bands from step-count research: under 5,000 a day is sedentary, 7,500-10,000 somewhat active, 12,500+ highly active. ${src("steps")}</p></details>
+      <details class="obkit" ${A.commute ? "open" : ""}><summary><b>Cycle to get around?</b><span class="muted small">${A.commute ? A.commute + " min a week" : "optional"}</span></summary>
+        <p class="obnote">Cycling doesn't show up as steps, so add your usual weekly minutes (commuting, errands). Log one-off rides and sport as cardio instead.</p>
+        <div class="obunitrow">${nf("activity.commute", "mins", A.commute, "Cycling minutes a week", 104)}<span>min a week</span></div>
+        <div class="obslider"><input type="range" min="0" max="600" step="10" value="${A.commute}" data-range="activity.commute" aria-label="Cycling minutes a week"></div></details>
       <div class="card"><div class="spread"><h3>Starting estimate</h3><b class="num">${fmtN(pm.total)} kcal</b></div>
-        <span class="small muted">Lifting comes from your programme (${(S.prog.days || []).filter(d => !d.rest && !d.optional).length} sessions a week) and cardio from what you log, so you don't need to count them here.</span></div>`, cta:F.single ? "Save" : undefined};
+        <span class="small muted">Lifting comes from your programme (${(S.prog.days || []).filter(d => !d.rest && !d.optional).length} sessions a week) and sport or cardio from what you log, so you don't count them here.</span></div>`, cta:F.single ? "Save" : undefined};
   }
-  case "stats": return {title:"Check your numbers", body:`
-    <div class="obsum"><div><span>Weight (7-day avg)</span><b>${kg.toFixed(1)} kg</b></div><div><span>Body fat</span><b>${Math.round(currentBf().v)}%</b></div><div><span>Height</span><b>${S.profile.heightCm} cm</b></div></div>
+  case "stats": { const bf = currentBf(), today = (S.weights.find(w => w.d === ymd(new Date())) || S.weights[S.weights.length - 1] || {}).kg || kg;
+    return {title:"Check your numbers", cls:"obform", body:`
+    <div class="obfld"><div class="spread"><span class="obl">Weight today</span>${unitSeg("w")}</div>${weightRow("kgNow", a.kgNow != null ? a.kgNow : today)}
+      <span class="obhint">Saved as today's weigh-in. Targets use your 7-day average, now ${fmtW(kg)}.</span></div>
+    <div class="obfld"><span class="obl">Body fat</span>
+      <div class="obunitrow">${nf("bf", "bf", Math.round(a.bf != null ? a.bf : bf.v), "Body fat percent", 90)}<span>%</span><em class="obconv">${a.bf != null ? "set by you" : esc(bf.src)}</em></div>
+      ${bfGuide(S.profile.sex, a.bf != null ? +a.bf : bf.v)}
+      <span class="obhint">Tap the band that looks most like you, or type a number. A guess within ~5% is fine: it only fine-tunes the energy maths, and photo check-ins can estimate it later.</span></div>
     <div class="card"><div class="spread"><h3>Expenditure</h3><b class="num">${fmtN(ex.kcal)} kcal</b></div>
-      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate from your activity answers. Formulas can be off by a few hundred calories, so from 5 fully logged days it starts measuring your real burn, and leans on your data more each day.`} ${src("energy")}</span></div>
-    <p class="obnote">Wrong weight or body fat? Log a weigh-in or update body fat in Settings, then come back.</p>`};
+      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate from your activity answers. Formulas can be off by a few hundred calories, so after 5 fully logged days it starts measuring your real burn, leaning on your data more each day.`} ${src("energy")}</span></div>`}; }
   case "target": {
     const step = 0.5, [lo, hi] = targetBounds(a.type, kg);
     if (+a.targetKg < lo || +a.targetKg > hi) a.targetKg = Math.min(hi, Math.max(lo, +a.targetKg));
@@ -759,17 +833,17 @@ function nStep(s, a){
         <input type="range" min="${G.min}" max="${G.max}" step="0.05" value="${a.rate}" data-range="rate">
         <div class="spread small muted"><span>${a.type === "bulk" ? "Slower, leaner" : "Gentler"}</span><span>${a.type === "bulk" ? "Faster, more fat" : "Aggressive"}</span></div></div>
       <div class="obtag ${inRec ? "ok" : "warn"}">${inRec ? "In the recommended range" : a.rate < G.rec[0] ? "Slower than the recommended range" : a.type === "bulk" ? "Faster than recommended: more of the gain will be fat" : "Faster than recommended: higher risk of losing muscle"}</div>
-      ${projChart(kg, +a.targetKg, rk, weeks)}
+      ${projChart(kg, +a.targetKg, rk, weeks, G)}
       <div class="obsum"><div><span>Daily calories</span><b class="num">${fmtN(tg.kcal)}</b></div><div><span>${a.type === "bulk" ? "Surplus" : "Deficit"}</span><b class="num">${fmtN(Math.abs(tg.kcal - ex.kcal))}</b></div><div><span>Reach goal</span><b>${isFinite(weeks) && weeks < 300 ? eta.toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"}) : "–"}</b></div></div>
       <p class="obnote">${a.type === "bulk" ? "For trained lifters, about 0.25-0.5% of body weight a week (a 5-10% surplus) builds muscle with little extra fat; bigger surpluses mostly add fat." : "About 0.5-1% of body weight a week. Slower (~0.7%) kept more muscle than faster loss in elite athletes."} ${src(G.src)}</p>`};
   }
   case "macros": {
-    const tg = goalTargets(a, ex.kcal, kg, null), pr = a.type === "cut" ? [1.8, 2.7] : [1.6, 2.4];
+    const P = protOpts(a.type); if (!P.some(o => o[0] === +a.prot)) a.prot = P.reduce((b, o) => Math.abs(o[0] - a.prot) < Math.abs(b[0] - a.prot) ? o : b)[0];
+    const tg = goalTargets(a, ex.kcal, kg, null);
     return {title:"Protein and macros", body:`
       <h3 class="obh" style="margin-top:0">Protein</h3>
-      <div class="obrate"><b class="num">${Math.round(kg * a.prot)} <span>g a day</span></b><span class="num muted">${(+a.prot).toFixed(1)} g per kg</span></div>
-      <div class="obslider"><input type="range" min="${pr[0]}" max="${pr[1]}" step="0.1" value="${a.prot}" data-range="prot"></div>
-      <p class="obnote">${a.type === "cut" ? "In a deficit, higher protein (around 2.3-3.1 g per kg of lean mass) helps keep muscle." : "Benefits level off around 1.6 g/kg; up to 2.2 g/kg covers almost everyone."} ${src("protein")}</p>
+      <div class="obopts obprot">${P.map(([v, n, d, rec]) => `<button class="obopt" data-set="prot" data-val="${v}" aria-pressed="${+a.prot === v}"><b>${n}${rec ? ' <span class="tag rep">Recommended</span>' : ""}<em class="num">${Math.round(kg * v)} g</em></b><span>${v.toFixed(1)} g per kg · ${d}</span></button>`).join("")}</div>
+      <p class="obnote">${a.type === "cut" ? "In a deficit, more protein helps keep muscle: about 2.3-3.1 g per kg of lean mass for lean lifters, which is roughly 1.8-2.6 g per kg of body weight." : "Muscle growth from extra protein levels off at about 1.6 g per kg on average; 2.2 g per kg covers almost everyone. Going lower than 1.6 isn't offered."} ${src("protein")}</p>
       <h3 class="obh">Carbs and fat</h3>
       ${seg2("fat", Object.entries(FATPREF).map(([k, v]) => [k, v[0]]), a.fat)}
       <p class="obnote">Fat stays at least 0.6 g/kg for hormones; the rest of your calories go to carbs to fuel training. ${src("fat")}</p>
@@ -792,20 +866,38 @@ function nStep(s, a){
   }
   }
 }
+// Protein presets (g per kg of body weight). Morton 2018: gains plateau ~1.6 g/kg (upper CI ~2.2). Helms 2014: 2.3-3.1 g/kg of lean mass when cutting.
+function protOpts(type){ return type === "cut"
+  ? [[1.8, "Minimum", "the low end that still protects muscle in a moderate deficit"], [2.2, "Standard", "keeps the most muscle for most people", true], [2.6, "High", "very lean or cutting hard; also keeps you fuller"]]
+  : [[1.6, "Minimum", "where extra growth levels off on average"], [2.0, "Standard", "a safety margin above that for most lifters", true], [2.4, "High", "if you like eating more protein; no extra growth expected"]]; }
 // a cut can't target a heavier weight and a bulk can't target a lighter one
 function targetBounds(type, kg){ return type === "bulk" ? [Math.ceil((kg + 0.5) * 2) / 2, Math.round(kg * 1.3)] : [Math.round(kg * 0.7), Math.floor((kg - 0.5) * 2) / 2]; }
-function projChart(kg, target, rk, weeks){
+// Projected weight. The x-axis is fixed by the slowest recommended pace, so a faster pace visibly reaches the goal sooner.
+function projChart(kg, target, rk, weeks, G){
   if (!isFinite(weeks) || weeks <= 0) return "";
-  const W = 320, H = 120, L0 = 8, R0 = 8, wk = Math.min(weeks, 104), lo = Math.min(kg, target) - 1, hi = Math.max(kg, target) + 1;
-  const x = t => L0 + t / wk * (W - L0 - R0), y = v => H - 18 - (v - lo) / (hi - lo) * (H - 34);
-  const pts = []; for (let t = 0; t <= wk; t += wk / 24) pts.push([x(t), y(kg + rk * t)]);
-  const end = new Date(Date.now() + wk * 7 * 864e5);
-  return `<svg class="obproj" viewBox="0 0 ${W} ${H}" aria-label="Projected weight">
-    <line x1="${L0}" x2="${W - R0}" y1="${y(target)}" y2="${y(target)}" stroke="var(--line)" stroke-dasharray="4 4"/>
-    <path d="M${pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L")}" fill="none" stroke="var(--orange)" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${x(0)}" cy="${y(kg)}" r="4.5" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/><circle cx="${x(wk)}" cy="${y(kg + rk * wk)}" r="5" fill="var(--orange)"/>
-    <text x="${x(0)}" y="${H - 2}" font-size="11" fill="var(--muted)">Now · ${kg.toFixed(1)}</text>
-    <text x="${W - R0}" y="${H - 2}" font-size="11" fill="var(--muted)" text-anchor="end">${end.toLocaleDateString("en-GB", {day:"numeric", month:"short"})} · ${(kg + rk * wk).toFixed(1)} kg</text></svg>`;
+  const slow = Math.abs((target - kg) / (G.rec[0] / 100 * kg)), fast = Math.abs((target - kg) / (G.rec[1] / 100 * kg));
+  const span = Math.max(6, Math.min(104, Math.max(slow, weeks) * 1.08));
+  const u = units().w, W = 340, H = 168, L0 = u === "st" ? 54 : 44, R0 = 14, T0 = 26, B0 = 26, lo = Math.min(kg, target), hi = Math.max(kg, target), pad = Math.max(0.6, (hi - lo) * 0.18);
+  const x = t => L0 + Math.min(t, span) / span * (W - L0 - R0), y = v => T0 + (1 - (v - (lo - pad)) / (hi - lo + 2 * pad)) * (H - T0 - B0);
+  const path = wk => `M${x(0)} ${y(kg)} L${x(Math.min(wk, span))} ${y(wk <= span ? target : kg + (target - kg) * span / wk)}${wk < span ? ` L${x(span)} ${y(target)}` : ""}`;
+  const eta = new Date(Date.now() + weeks * 7 * 864e5), months = [];
+  for (let m = 1; m <= 24; m++){ const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + m); const t = (d - Date.now()) / (7 * 864e5); if (t > span) break; months.push([t, d]); }
+  const every = Math.ceil(months.length / 5), lab = v => u === "kg" ? v.toFixed(1) : u === "lb" ? Math.round(v * LB) + " lb" : stLb(v)[0] + "st " + stLb(v)[1];
+  const ex = x(Math.min(weeks, span)), right = ex < W - 90;
+  return `<div class="obprojw"><svg class="obproj" viewBox="0 0 ${W} ${H}" role="img" aria-label="Projected weight: goal reached around ${eta.toLocaleDateString("en-GB", {day:"numeric", month:"long"})}">
+    <defs><linearGradient id="pjg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--orange)" stop-opacity=".22"/><stop offset="1" stop-color="var(--orange)" stop-opacity="0"/></linearGradient></defs>
+    ${months.filter((_, i) => i % every === 0).map(([t, d]) => `<line x1="${x(t)}" x2="${x(t)}" y1="${T0 - 6}" y2="${H - B0}" stroke="var(--line)"/><text x="${x(t)}" y="${H - 8}" font-size="10.5" fill="var(--muted)" text-anchor="middle">${d.toLocaleDateString("en-GB", {month:"short"})}</text>`).join("")}
+    <line x1="${L0}" x2="${W - R0}" y1="${y(target)}" y2="${y(target)}" stroke="var(--good)" stroke-dasharray="5 4" stroke-width="1.5"/>
+    <text x="${L0 - 6}" y="${y(target) + 4}" font-size="11" font-weight="700" fill="var(--good)" text-anchor="end">${lab(target)}</text>
+    <text x="${L0 - 6}" y="${y(kg) + 4}" font-size="11" font-weight="700" fill="var(--muted)" text-anchor="end">${lab(kg)}</text>
+    <path d="${path(slow)}" fill="none" stroke="var(--muted)" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 4"/>
+    <path d="${path(fast)}" fill="none" stroke="var(--muted)" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 4"/>
+    <path d="${path(weeks)} L${x(span)} ${H - B0} L${x(0)} ${H - B0} Z" fill="url(#pjg)"/>
+    <path d="${path(weeks)}" fill="none" stroke="var(--orange)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="${x(0)}" cy="${y(kg)}" r="5" fill="var(--card)" stroke="var(--orange)" stroke-width="3"/>
+    ${weeks <= span ? `<circle cx="${x(weeks)}" cy="${y(target)}" r="6.5" fill="var(--orange)" stroke="var(--card)" stroke-width="2.5"/>
+    <text x="${right ? ex + 10 : ex - 10}" y="${y(target) + (target > kg ? 20 : -12)}" font-size="12" font-weight="800" fill="var(--ink)" text-anchor="${right ? "start" : "end"}">${eta.toLocaleDateString("en-GB", {day:"numeric", month:"short"})}</text>` : ""}
+  </svg><div class="legend obleg"><span><i style="background:var(--orange)"></i>Your pace</span><span><i style="background:var(--muted);opacity:.4"></i>Recommended range</span><span><i style="background:var(--good)"></i>Goal</span></div></div>`;
 }
 
 /* ---------- Render + events ---------- */
@@ -814,15 +906,20 @@ function draw(){
   const blocked = F.kind === "prog" && F.step === "days" && F.ans.days.length < 2;
   const scrollY = o.querySelector(".obbody") ? o.querySelector(".obbody").scrollTop : 0;
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
+  const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
   o.innerHTML = `<div class="obtop"><button class="iconbtn" data-ob="back" aria-label="Back">${ICON.back}</button>
       <div class="obprog"><i style="width:${(i + 1) / steps.length * 100}%"></i></div><button class="iconbtn" data-ob="close" aria-label="Close">✕</button></div>
-    <div class="obbody ${s.wide ? "wide" : ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>
+    <div class="obbody ${s.wide ? "wide" : ""} ${s.cls || ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>
     ${s.nofoot ? "" : `<div class="obfoot">${s.alt ? `<button class="btn ghost" data-ob="alt">${s.alt}</button>` : ""}<button class="btn orange" data-ob="next" ${blocked ? "disabled" : ""}>${s.cta || "Continue"}</button></div>`}`;
   o.querySelectorAll("details summary b").forEach(x => { if (openD.includes(x.textContent)) x.closest("details").open = true; });
   if (!F.keepScroll && F.dir){ const bd = o.querySelector(".obbody"); [...bd.children].forEach((c, i) => c.style.setProperty("--i", i)); bd.classList.add(F.dir === "back" ? "ob-back" : "ob-fwd"); F.dir = null; }
   if (F.keepScroll) o.querySelector(".obbody").scrollTop = scrollY; F.keepScroll = false;
+  if (focusKey){ const x = o.querySelector(focusKey); if (x){ x.focus({preventScroll:true}); try{ const n = x.value.length; x.setSelectionRange(n, n); }catch(e){} } }
+  fillRanges(o); fitCheck();
   if (F.step === "build") runBuild();
 }
+// No rubber-band scrolling when everything fits on screen
+function fitCheck(){ const b = document.querySelector("#ob .obbody"); if (!b) return; requestAnimationFrame(() => b.classList.toggle("fits", b.scrollHeight <= b.clientHeight + 1)); }
 function go2(step, dir){ F.dir = dir || "fwd"; F.step = step; saveDraft(); draw(); const b = document.querySelector("#ob .obbody"); if (b) b.scrollTop = 0; }
 function next(){
   const steps = stepsOf(), i = steps.indexOf(F.step);
@@ -831,6 +928,7 @@ function next(){
   if (F.kind === "welcome" && F.step === "next") return acceptWelcome("home");
   if (F.kind === "welcome" && F.step === "sections" && !F.ans.mods.length){ toast("Pick at least one"); return; }
   if (F.kind === "welcome" && F.step === "about" && !F.ans.sex){ toast("Choose one so the energy maths is right"); return; }
+  if (F.kind === "welcome" && F.step === "about" && F.ans.dob && !parseDob(F.ans.dob)){ toast("Enter your date of birth as DD/MM/YYYY, or leave it blank"); return; }
   if (F.kind === "nut" && F.single && F.step === "activity"){ F.accepted = true; S.profile.activity = clone(F.ans.activity); saveProfile(); toast("Activity saved: starting estimate " + fmtN(priorModel(currentKg()).total) + " kcal"); return close(); }
   if (F.kind === "prog" && F.step === "rundays"){ if ((F.ans.runDays || []).length < 2){ toast("Pick at least 2 run days"); return; } if (!F.ans.runDays.includes(F.ans.longDay)) F.ans.longDay = F.ans.runDays[F.ans.runDays.length - 1]; }
   if (F.kind === "prog" && F.step === "kind" && !F.ans.kind){ toast("Pick one"); return; }
@@ -877,10 +975,11 @@ function bind(o){
     if (b.dataset.wnext) return acceptWelcome(b.dataset.wnext);
     if (b.dataset.set){
       if (b.dataset.set === "_gym"){ F.gym = b.dataset.val; F.keepScroll = true; return draw(); }
-      let v = b.dataset.val; if (b.dataset.set === "block") v = +v;
+      let v = b.dataset.val; if (b.dataset.set === "block" || b.dataset.set === "prot") v = +v;
       setPath(F.ans, b.dataset.set, v);
       if (b.dataset.set.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
-      if (b.dataset.set === "type"){ const kg = currentKg(); F.ans.rate = GOALS[v].def; F.ans.prot = v === "cut" ? 2.3 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
+      if (b.dataset.set.startsWith("units.")){ S.profile = {...S.profile, units:Object.assign({}, S.profile.units, F.ans.units)}; saveProfile(); }
+      if (b.dataset.set === "type"){ const kg = currentKg(); F.ans.rate = GOALS[v].def; F.ans.prot = v === "cut" ? 2.2 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
       saveDraft(); F.keepScroll = true; draw();
       if (b.classList.contains("obopt") && ["goal","level","type","split","kind","event"].includes(b.dataset.set)) setTimeout(() => { if (F) next(); }, 220);
       return;
@@ -900,22 +999,58 @@ function bind(o){
       else a.love.push(k);
       saveDraft(); F.keepScroll = true; draw(); return;
     }
+    if (b.dataset.setsteps){ F.ans.activity.steps = +b.dataset.setsteps; F.ans.activity.guess = !!b.closest(".obguess"); S.profile.activity = clone(F.ans.activity); saveDraft(); F.keepScroll = true; draw(); return; }
+    if (b.dataset.bf){ F.ans.bf = +b.dataset.bf; commitBf(); F.keepScroll = true; draw(); return; }
     if (b.dataset.bump){ const k = b.dataset.bump; let v = r1((+F.ans[k]) + (+b.dataset.d)); if (k === "targetKg"){ const [lo, hi] = targetBounds(F.ans.type, currentKg()); v = Math.min(hi, Math.max(lo, v)); } F.ans[k] = v; saveDraft(); F.keepScroll = true; draw(); return; }
   });
   o.addEventListener("input", e => {
     const t = e.target;
     if (t.dataset.range){ setPath(F.ans, t.dataset.range, +t.value); if (t.dataset.range.startsWith("activity.")) S.profile.activity = clone(F.ans.activity); saveDraft(); liveRange(t); }
     if (t.dataset.input){ F.ans[t.dataset.input] = t.value; saveDraft(); }
+    if (t.dataset.dob){ const v = fmtDob(t.value); if (v !== t.value) t.value = v; F.ans.dob = v; saveDraft(); liveRange(t); }
+    if (t.dataset.conv){ const v = readConv(t.closest(".obunitrow"), t.dataset.key); if (v != null){ setConv(t.dataset.key, v, false); liveRange(t); } }
   });
-  o.addEventListener("change", e => { if (e.target.dataset.range){ F.keepScroll = true; draw(); } });
+  o.addEventListener("change", e => { const t = e.target;
+    if (t.dataset.range){ if (t.dataset.range === "kgNow") commitKg(); F.keepScroll = true; draw(); }
+    // no full redraw here: a redraw on blur would swallow the tap that caused the blur
+    if (t.dataset.conv){ const v = readConv(t.closest(".obunitrow"), t.dataset.key); if (v == null) toast("That's outside the range this app supports"); else { setConv(t.dataset.key, v, true); liveRange(t); } }
+  });
+  // stop iOS bouncing the whole sheet when nothing needs scrolling
+  o.addEventListener("touchmove", e => { const b = o.querySelector(".obbody"); if (e.target.closest && e.target.closest("input[type=range]")) return; if (b && b.classList.contains("fits")) e.preventDefault(); }, {passive:false});
 }
-// Live update while dragging: rebuild the step off-screen and swap only the blocks that changed, never the slider under the finger.
+function setConv(key, v, final){
+  const r = key === "bf" ? Math.round(v) : key === "activity.steps" || key === "activity.commute" ? Math.round(v) : key === "heightCm" ? Math.round(v * 10) / 10 : Math.round(v * 10) / 10;
+  setPath(F.ans, key, r);
+  if (key.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
+  if (final && key === "kgNow") commitKg();
+  if (final && key === "bf") commitBf();
+  saveDraft();
+}
+function commitKg(){ const v = +F.ans.kgNow; if (!(v >= 30 && v <= 250)) return; try{ logWeight(v, ymd(new Date())); toast("Saved as today's weigh-in"); }catch(e){} }
+function commitBf(){ const v = +F.ans.bf; if (!(v >= 3 && v <= 60)) return; S.profile = {...S.profile, bfManual:v}; saveProfile(); }
+// Live update while dragging or typing: rebuild the step off-screen and swap only what changed, never the control under the finger.
+// outerHTML without the styles added after render (animation index, slider fill), so unchanged blocks compare equal
+function norm(el){
+  if (!el.querySelector("[style]") && !el.hasAttribute("style")) return el.outerHTML;
+  const c = el.cloneNode(true);
+  [c, ...c.querySelectorAll("[style]")].forEach(x => { if (!x.style || !/--[ip]\s*:/.test(x.getAttribute("style") || "")) return; x.style.removeProperty("--i"); x.style.removeProperty("--p"); if (!x.getAttribute("style") || !x.getAttribute("style").trim()) x.removeAttribute("style"); });
+  return c.outerHTML;
+}
+function patchTree(oldEl, newEl, t){
+  const o = [...oldEl.children], n = [...newEl.children];
+  if (o.length !== n.length) return false;
+  for (let i = 0; i < o.length; i++){
+    if (o[i] === t) continue;
+    if (o[i].contains(t)){ if (!patchTree(o[i], n[i], t)) return false; }
+    else if (norm(o[i]) !== n[i].outerHTML){ const keepOpen = o[i].tagName === "DETAILS" && o[i].open; o[i].replaceWith(n[i]); if (keepOpen) n[i].open = true; }
+  }
+  return true;
+}
 function liveRange(t){
   const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = document.querySelector("#ob .obbody");
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
-  const olds = [...body.children], news = [...tmp.children];
-  if (olds.length !== news.length){ F.keepScroll = true; return draw(); }
-  olds.forEach((c, i) => { if (c.contains(t)) return; if (c.outerHTML !== news[i].outerHTML) c.replaceWith(news[i]); });
+  if (!patchTree(body, tmp, t)){ F.keepScroll = true; return draw(); }
+  fillRanges(body); if (t.type === "range") t.style.setProperty("--p", pctOf(t) + "%");
 }
 window.AJOnboard = {
   welcome(fresh){

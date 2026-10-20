@@ -125,11 +125,11 @@ const LIB = [
    f:"Losing ~0.7% a week gained lean mass (+2.1%); losing ~1-1.4% a week did not (-0.2%).", a:"Cut default is 0.6% a week.", check:"DOI not confirmed; library record linked"}]},
  {id:"protein", title:"Protein", items:[
   {kind:"meta", t:"A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains", c:"Morton, Murphy, McKellar, Schoenfeld, Henselmans, Helms, Aragon, ... Phillips. British Journal of Sports Medicine, 2018", u:"https://bjsm.bmj.com/content/52/6/376",
-   f:"Gains in lean mass levelled off at 1.62 g/kg a day (upper confidence limit 2.2 g/kg).", a:"Bulk and maintenance protein defaults to 2.0 g/kg, adjustable 1.6-2.4."},
+   f:"Gains in lean mass levelled off at 1.62 g/kg a day (upper confidence limit 2.2 g/kg).", a:"Bulk and maintenance protein: Minimum 1.6, Standard 2.0, High 2.4 g/kg. Nothing below 1.6 is offered."},
   {kind:"review", t:"A systematic review of dietary protein during caloric restriction in resistance trained lean athletes", c:"Helms, Zinn, Rowlands & Brown. International Journal of Sport Nutrition and Exercise Metabolism, 2014", u:"https://doi.org/10.1123/ijsnem.2013-0054",
-   f:"While dieting, 2.3-3.1 g per kg of lean mass, higher for leaner people and bigger deficits.", a:"Cut protein defaults to 2.3 g/kg body weight, adjustable to 2.7."},
+   f:"While dieting, 2.3-3.1 g per kg of lean mass, higher for leaner people and bigger deficits.", a:"Cut protein: Minimum 1.8, Standard 2.2, High 2.6 g/kg of body weight (about 2.1-3.1 g/kg of lean mass at typical body fat)."},
   {kind:"meta", t:"Systematic review and meta-analysis of protein intake to support muscle mass and function in healthy adults", c:"Nunes, Colenso-Semple, McKellar, ... Atherton. Journal of Cachexia, Sarcopenia and Muscle, 2022", u:"https://doi.org/10.1002/jcsm.12922",
-   f:"Across 74 trials, more protein with lifting increased lean mass; ≥1.6 g/kg also helped lower-body strength.", a:"The protein slider never goes below 1.6 g/kg."}]},
+   f:"Across 74 trials, more protein with lifting increased lean mass; ≥1.6 g/kg also helped lower-body strength.", a:"The protein options never go below 1.6 g/kg."}]},
  {id:"fat", title:"Fat and carbs", items:[
   {kind:"review", t:"Nutrition recommendations for bodybuilders in the off-season", c:"Iraki, Fitschen, Espinar & Helms. Sports, 2019", u:"https://doi.org/10.3390/sports7070154",
    f:"Fat 0.5-1.5 g/kg (about 20-35% of calories); carbs fill the rest to fuel training.", a:"Fat never drops below 0.6 g/kg. Balanced = 27% of calories from fat, higher carb = 20%, higher fat = 35%."}]},
@@ -137,9 +137,17 @@ const LIB = [
   {kind:"review", t:"What is the required energy deficit per unit weight loss?", c:"Hall. International Journal of Obesity, 2008", u:"https://doi.org/10.1038/sj.ijo.0803720",
    f:"The 7,700 kcal per kg rule is a rough average; lean people lose more lean tissue per kg, so it overstates the energy per kg for them.", a:"Your weight change is converted to energy with a Forbes/Hall body-composition model (about 5,500-6,500 kcal per kg at your body fat, not 7,700), using a trend line fitted through every weigh-in. Only fully logged days count, and the estimate is recalculated every day."},
   {kind:"text", t:"Katch-McArdle resting energy equation", c:"McArdle, Katch & Katch. Exercise Physiology (textbook)", u:"",
-   f:"Resting energy = 370 + 21.6 × lean body mass (kg). Uses body fat, so it suits lean, muscular people better than weight-only formulas.", a:"Starting expenditure = Katch-McArdle × 1.6, using body fat from your photos, until your own data takes over."},
+   f:"Resting energy = 370 + 21.6 × lean body mass (kg). Uses body fat, so it suits lean, muscular people better than weight-only formulas.", a:"Starting expenditure = Katch-McArdle resting burn + daily life (job), steps, cycling, training and logged cardio, plus ~10% for digesting food. Your own food and weight data then takes over."},
   {kind:"review", t:"2024 Adult Compendium of Physical Activities", c:"Herrmann et al. Journal of Sport and Health Science, 2024", u:"https://doi.org/10.1016/j.jshs.2023.10.010",
    f:"Standard energy costs (METs) for hundreds of activities, from tennis singles to walking speed.", a:"Cardio calories use the Compendium MET for the exact activity and intensity, scaled by your weight; resting burn is subtracted so calories aren't double counted."}]},
+ {id:"steps", title:"Daily steps", items:[
+  {kind:"review", t:"How many steps/day are enough? Preliminary pedometer indices for public health", c:"Tudor-Locke & Bassett. Sports Medicine, 2004", u:"https://doi.org/10.2165/00007256-200434010-00001",
+   f:"Proposed step bands for adults: under 5,000 a day sedentary, 5,000-7,499 low active, 7,500-9,999 somewhat active, 10,000+ active, 12,500+ highly active.", a:"If you don't know your steps, the activity question offers typical days mapped to these bands."},
+  {kind:"review", t:"How many steps/day are enough? For adults", c:"Tudor-Locke et al. International Journal of Behavioral Nutrition and Physical Activity, 2011", u:"https://doi.org/10.1186/1479-5868-8-79",
+   f:"Healthy adults typically take 4,000-18,000 steps a day; 7,000-8,000 is roughly equivalent to meeting activity guidelines.", a:"The steps slider spans 1,000-30,000 with these bands labelled."}]},
+ {id:"bodyfat", title:"Body fat ranges", items:[
+  {kind:"prac", t:"Body fat percentage categories", c:"American Council on Exercise (ACE) body-fat chart", u:"https://www.acefitness.org/resources/everyone/tools-calculators/percent-body-fat-calculator/",
+   f:"Men: essential 2-5%, athletes 6-13%, fitness 14-17%, average 18-24%, above 25%. Women: essential 10-13%, athletes 14-20%, fitness 21-24%, average 25-31%, above 32%.", a:"The body-fat guide uses these bands for your sex. It only fine-tunes resting burn, so a rough estimate is fine.", check:"Practitioner categories, not derived from outcome trials"}]},
  {id:"recomp", title:"Recomposition", items:[
   {kind:"review", t:"Body recomposition: can trained individuals build muscle and lose fat at the same time?", c:"Barakat, Pearson, Escalante, Campbell & De Souza. Strength and Conditioning Journal, 2020", u:"https://doi.org/10.1519/SSC.0000000000000584",
    f:"Yes, in trained lifters with progressive training, high protein and good sleep, though slowly.", a:"Recomp holds calories at maintenance with protein at 2.0-2.4 g/kg; progress is judged on lifts and photos, not the scale."}]}
