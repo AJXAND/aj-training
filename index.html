@@ -299,6 +299,28 @@ h2.sect{margin-top:4px}
 .pillact{display:grid;justify-items:center;gap:6px;background:var(--card);border:0;border-radius:16px;padding:12px 4px;font:600 12px var(--body);color:var(--ink);cursor:pointer;text-align:center}
 .pillact svg{width:22px;height:22px;stroke:var(--orange);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .flist{display:grid}
+.addbar{display:grid;grid-template-columns:1fr auto auto auto;gap:8px}
+.addsearch{display:flex;align-items:center;gap:10px;border:0;border-radius:16px;background:var(--card);padding:0 16px;font:600 16px var(--body);color:var(--muted);cursor:pointer;min-height:48px}.addsearch svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+.relog{display:grid;gap:6px}.relogrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.rl{flex:none;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;border:0;background:var(--card);border-radius:16px;padding:10px 12px;font:inherit;color:inherit;cursor:pointer;max-width:200px}
+.rl b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rl span{font-size:12px;color:var(--muted)}.rl i{grid-row:1/3;grid-column:2;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font:700 20px var(--body);font-style:normal}
+.mealcard{gap:6px}.mealgrp{border-radius:14px;transition:background .15s;padding:2px 0}.mealgrp.over{background:var(--orange-soft)}
+.mealhd{display:flex;align-items:center;gap:10px;padding:10px 0 4px}.mealhd b{font-family:var(--display);font-size:13px;letter-spacing:.05em;text-transform:uppercase}.mealhd span{margin-left:auto}
+.iconbtn.sm{width:30px;height:30px;font:700 18px var(--body)}
+.mealempty{font-size:13px;color:var(--muted);padding:4px 0 8px}
+.mealgrp .fe{grid-template-columns:24px 1fr;padding:6px 0}.fgrip{color:var(--muted);font-size:14px;letter-spacing:-2px;cursor:grab;touch-action:none;user-select:none;display:grid;place-items:center;height:100%}
+.fbody{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:6px 0}
+.fe.dragging{position:relative;z-index:5;pointer-events:none;background:var(--card);box-shadow:0 10px 30px rgba(0,0,0,.18);border-radius:12px;opacity:.95}
+.fe.flash{animation:flash 1.6s ease}@keyframes flash{0%,40%{background:var(--orange-soft)}100%{background:transparent}}
+.addtabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.addtabs button{flex:none;border:0;border-radius:99px;padding:9px 14px;background:var(--card);font:600 14px var(--body);color:var(--ink);cursor:pointer}.addtabs button[aria-pressed="true"]{background:var(--pill);color:var(--pill-ink)}
+.addli{display:flex!important;align-items:center;gap:8px}.addli .grow{flex:1;min-width:0;display:grid;gap:2px;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:0}
+.plusb{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:var(--orange);color:#fff;font:700 22px var(--body);cursor:pointer}
+.starb{flex:none;border:0;background:none;font-size:20px;color:var(--line);cursor:pointer}.starb.on{color:var(--fat)}
+.bigacts{gap:10px}.bigact{display:grid;justify-items:start;gap:6px;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer}.bigact svg{width:28px;height:28px;stroke:var(--orange);fill:none;stroke-width:2}.bigact span{font-size:13px;color:var(--muted)}
+.photoprev{width:100%;border-radius:16px;max-height:260px;object-fit:cover}
+.traybar{position:sticky;bottom:calc(var(--navh) + 12px + env(safe-area-inset-bottom,0px));display:grid;gap:8px;background:var(--card);border-radius:22px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.16);z-index:4}
+.trayitems{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.tchip{flex:none;display:flex;align-items:center;gap:6px;background:var(--sunk);border-radius:12px;padding:6px 8px 6px 10px;font-size:13px}.tchip em{font-style:normal;color:var(--muted)}.tchip button{border:0;background:none;color:var(--muted);cursor:pointer}
+.acard .acts{display:flex;gap:12px;align-items:center}
 .fe{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border:0;border-top:1px solid var(--line);background:none;text-align:left;color:inherit;font:inherit;cursor:pointer;width:100%}
 .fe:first-child{border-top:0;padding-top:0}
 .ft{font-size:12px;color:var(--muted);font-weight:600}
@@ -1490,12 +1512,12 @@ function render(){
   const navShow={food:on("nutrition")};
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>{ if (b.dataset.tab in navShow) b.hidden=!navShow[b.dataset.tab]; });
   const navIn=$(".nav .in"); if (navIn) navIn.style.gridTemplateColumns=`repeat(${[...navIn.children].filter(b=>!b.hidden).length},1fr)`;
-  const navTab = {train:"plan", cardio:"plan", habits:"home", energy:"food", settings:{train:"plan",cardio:"plan",habits:"home",energy:"food"}[S.prevTab]||S.prevTab||"home"}[S.tab] || S.tab;
+  const navTab = {train:"plan", cardio:"plan", habits:"home", energy:"food", foodadd:"food", settings:{train:"plan",cardio:"plan",habits:"home",energy:"food"}[S.prevTab]||S.prevTab||"home"}[S.tab] || S.tab;
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab));
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
   plus.innerHTML = S.active ? ICON.lift : '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   plus.setAttribute("aria-label", S.active ? "Resume workout" : "Add or start");
-  const f={energy:renderEnergy, home:renderHome, food:renderFood, plan:renderPlan, train:S.active?renderLive:renderTrain, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
+  const f={energy:renderEnergy, home:renderHome, food:renderFood, foodadd:renderFoodAdd, plan:renderPlan, train:S.active?renderLive:renderTrain, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
   $("#main").innerHTML=f();
   renderFoodSheet();
 }
@@ -1638,6 +1660,22 @@ function searchDb(q, max){
 }
 const LIQUID=/beverage|coffee|espresso|tea\b|milk|juice|drink|soda|water|smoothie|beer|wine|spirits|kombucha|shake/i;
 function dbFood(i){ const x=FOODDB[i]; return {schema:SCHEMA,id:"usda-"+i, name:prettyName(x[0]), brand:"", src:"usda", per100:{kcal:x[1],p:x[2],c:x[3],f:x[4]}, serving:null, liquid:LIQUID.test(x[0])}; }
+/* Photo of a meal: AI estimates items and grams; they land in the tray to check before logging */
+async function photoFood(){
+  const ph=S.photoFood; if (!ph||!ph.blob||!sampler) return;
+  ph.note=($("#photoNote")||{}).value||ph.note||""; S.busy="photoFood"; render();
+  try{
+    const img=await toJpeg(ph.blob,1400);
+    const res=await sampler.json(`You estimate the food in a meal photo for a UK nutrition tracking app.${ph.note?` The user's note: """${ph.note.slice(0,300)}"""`:""}
+List each distinct food or drink with an estimated cooked/served weight in grams and its calories and macros for that amount, using standard composition data. Include cooking oil or sauces only if visible or mentioned.
+Reply with only JSON: {"items":[{"name": string, "grams": number, "kcal": number, "p": number, "c": number, "f": number}], "notes": one short sentence on what was hard to judge}`,{images:[img], modelTier:"default", cache:false});
+    const items=(res&&Array.isArray(res.items)?res.items:[]).filter(x=>x&&+x.kcal>=0&&x.name).slice(0,12);
+    if (!items.length) throw {code:"empty"};
+    items.forEach(x=>{ const g=+x.grams||0; S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:String(x.name).slice(0,60), amount:g||"", unit:g?"g":"", g, kcal:Math.round(+x.kcal||0), p:r1(+x.p||0), f:r1(+x.f||0), c:r1(+x.c||0), src:"photo"}]; });
+    S.photoFood={...ph, notes:res.notes?String(res.notes).slice(0,200):"" }; toast(`${items.length} item${items.length>1?"s":""} added to the tray: check them, then log`);
+  }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI to see images to use this":"Couldn't estimate that photo. Try a clearer, top-down shot."); }
+  S.busy=null; render();
+}
 async function askFood(q){
   if (!sampler||S.busy==="askFood") return;
   S.busy="askFood"; S.aiFoods=[]; render();
@@ -1650,9 +1688,20 @@ Values per 100 g (or 100 ml for drinks).`,{modelTier:"default"});
       per100:{kcal:+f.per100.kcal||0,p:+f.per100.p||0,c:+f.per100.c||0,f:+f.per100.f||0},serving:f.serving&&+f.serving.g?{g:+f.serving.g,label:String(f.serving.label||"serving")}:null,liquid:LIQUID.test(f.name)}));
     if (!S.aiFoods.length) toast("AJ Training AI couldn't find that. Try different words.");
   }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to look up foods":`Lookup failed (${(e&&e.code)||"unknown"})`); }
-  S.busy=null; if (S.tab==="food"){ render(); }
+  S.busy=null; if (S.tab==="food"||S.tab==="foodadd"){ render(); }
 }
 function foodDate(){ return S.foodDate||ymd(new Date()); }
+/* Meals: grouped automatically by the time you logged, with shakes and treats recognised by name. Drag to fix. */
+const MEALS=[["breakfast","Breakfast"],["lunch","Lunch"],["dinner","Dinner"],["snacks","Snacks"],["shake","Protein shakes"],["treats","Treats"]];
+const SHAKE_RE=/\b(shake|whey|protein powder|casein|isolate|protein drink)\b/i, TREAT_RE=/\b(chocolate|crisps|sweets|candy|cake|biscuit|cookie|ice cream|doughnut|donut|brownie|beer|wine|cider|prosecco|gin|vodka|whisky|cocktail|haribo|pudding)\b/i;
+function mealOf(e){
+  if (e.meal) return e.meal;
+  if (SHAKE_RE.test(e.name||"")) return "shake";
+  if (TREAT_RE.test(e.name||"")) return "treats";
+  const h=new Date(e.t||0).getHours();
+  return h>=4&&h<11?"breakfast":h>=11&&h<15?"lunch":h>=17&&h<22?"dinner":"snacks";
+}
+function defaultAmt(f){ if (f.lastAmt) return {amount:f.lastAmt, unit:f.lastUnit||"g"}; return f.serving&&f.serving.g?{amount:1, unit:"serving"}:{amount:100, unit:"g"}; }
 function renderEnergy(){
   const ex=expenditureToday(), kg=currentKg(), pm=priorModel(kg), a=act();
   const hist=[]; for (let w=8; w>=0; w--){ const d=ymd(new Date(Date.now()-w*7*864e5)); const e=expenditure(d); hist.push({t:parseD(d).getTime(), v:e.kcal, adaptive:e.adaptive}); }
@@ -1717,54 +1766,87 @@ function blockInfo(){
   const len=p.deloadEvery||p.rir.length, i=bw%len, r=p.rir[i]||"2";
   return {week:i+1, len, block:Math.floor(bw/len)+1, rir:r, deload:r==="DL"};
 }
+function entryRow(e){
+  return `<div class="fe" data-id="${e.id}"><span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span><button class="fbody" data-act="editEntry" data-id="${e.id}">
+      <span class="fn"><b>${esc(e.name)}</b><span class="muted small num">${new Date(e.t).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}${e.amount?" · "+esc(e.amount+" "+e.unit):""}${e.src==="coach"?" · via AI":e.src==="label"?" · label scan":e.src==="photo"?" · photo estimate":""}${e.sample?" · sample":""}</span></span>
+      <span class="fk num"><b>${fmtN(e.kcal)}</b><span class="mini"><i style="color:var(--prot)">${Math.round(e.p)}P</i> <i style="color:var(--fat)">${Math.round(e.f)}F</i> <i style="color:var(--carb)">${Math.round(e.c)}C</i></span></span></button></div>`;
+}
 function renderFood(){
   if (FOODDB===undefined) setTimeout(loadFoodDb,0);
-  const date=foodDate(), t=dayTotals(date), tg=targets(date), rem=S.foodMode==="remaining";
-  const isToday=date===ymd(new Date());
+  const date=foodDate(), t=dayTotals(date), tg=targets(date), rem=S.foodMode==="remaining", isToday=date===ymd(new Date());
   const entries=((S.foodlog[date]||{}).entries||[]).slice().sort((a,b)=>a.t-b.t);
-  const q=S.foodQuery.trim().toLowerCase();
-  const recent=[...S.foods].sort((a,b)=>(b.last||0)-(a.last||0)).slice(0,8);
-  const results=q?S.foods.filter(f=>(f.name+" "+(f.brand||"")).toLowerCase().includes(q)).slice(0,5):[];
-  if (q && FOODDB===undefined) loadFoodDb();
-  const dbHits=q?searchDb(q,20):[];
-  const list=entries.length?entries.map(e=>`<button class="fe" data-act="editEntry" data-id="${e.id}">
-      <span class="ft num">${new Date(e.t).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</span>
-      <span class="fn"><b>${esc(e.name)}</b><span class="muted small num">${e.amount?esc(e.amount+" "+e.unit):""}${e.src==="coach"?" · via AI":e.src==="label"?" · label scan":""}${e.sample?" · sample":""}</span></span>
-      <span class="fk num"><b>${fmtN(e.kcal)}</b><span class="mini"><i style="color:var(--prot)">${Math.round(e.p)}P</i> <i style="color:var(--fat)">${Math.round(e.f)}F</i> <i style="color:var(--carb)">${Math.round(e.c)}C</i></span></span></button>`).join("")
-    :`<div class="empty">Nothing logged ${isToday?"yet today":"on this day"}. Search your foods, scan a label or barcode, or just tell AJ Training AI what you ate.</div>`;
+  const groups=MEALS.map(([k,n])=>{ const es=entries.filter(e=>mealOf(e)===k); if (!es.length && ["shake","treats"].includes(k)) return ""; const kc=es.reduce((a,e)=>a+(+e.kcal||0),0);
+    return `<div class="mealgrp" data-meal="${k}"><div class="mealhd"><b>${n}</b><span class="num small muted">${es.length?fmtN(kc)+" kcal":""}</span><button class="iconbtn sm" data-act="addTo" data-meal="${k}" aria-label="Add to ${n}">+</button></div>${es.map(entryRow).join("")||`<div class="mealempty">Nothing yet</div>`}</div>`; }).join("");
+  const recent=[...S.foods].sort((a,b)=>(b.last||0)-(a.last||0)).slice(0,10), favs=S.foods.filter(f=>f.fav);
   return head("Food")+`
   <div class="datenav"><button class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">${ICON.back}</button><b>${isToday?"Today":fmtD(date)}</b><button class="iconbtn flip" data-act="fday" data-d="1" aria-label="Next day" ${isToday?"disabled":""}>${ICON.back}</button></div>
-  <div class="card"><div class="spread"><h2>${rem?"Remaining":"Consumed"}</h2>${seg("foodMode",[["consumed","Consumed"],["remaining","Remaining"]],rem?"remaining":"consumed")}</div>
+  <div class="card"><div class="spread"><h2>${rem?"Remaining":"Eaten"}</h2>${seg("foodMode",[["consumed","Eaten"],["remaining","Left"]],rem?"remaining":"consumed")}</div>
     <div class="macros">${macroBar("Calories",t.kcal,tg.kcal,"var(--kcal)","",rem)}${macroBar("Protein",t.p,tg.p,"var(--prot)","g",rem)}${macroBar("Fat",t.f,tg.f,"var(--fat)","g",rem)}${macroBar("Carbs",t.c,tg.c,"var(--carb)","g",rem)}</div>
     ${dayStatusRow(date)}${goalLine(tg)}</div>
-  ${isToday?weighCard():""}
-  <div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search any food" value="${esc(S.foodQuery)}" autocomplete="off" aria-label="Search foods"></span>
-    <button class="iconbtn sq" data-act="scanBarcode" aria-label="Scan barcode">${ICON.barcode}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to AJ Training AI">${ICON.spark}</button></div>
-  ${q?`<div class="card"><div class="list">
-    ${results.map(f=>`<button class="li btnli" data-act="pickFood" data-id="${f.id}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="num muted small">${fmtN(f.per100.kcal)} kcal/100g</span><span class="sub"><span class="tag">Saved</span></span></button>`).join("")}
-    ${dbHits.map(([i,x])=>`<button class="li btnli" data-act="pickDb" data-i="${i}"><span><b>${esc(prettyName(x[0]))}</b></span><span class="num muted small">${fmtN(x[1])} kcal/100g</span><span class="sub num"><span>${x[2]}P ${x[4]}F ${x[3]}C</span></span></button>`).join("")}
-    ${FOODDB===null?`<div class="li"><span class="row small muted"><span class="spinner"></span>Loading food database…</span><span></span></div>`:""}
-    ${!results.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches "${esc(S.foodQuery)}".</p>`:""}
-    ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
-    ${(S.aiFoods||[]).map((f,i)=>`<button class="li btnli" data-act="pickAi" data-i="${i}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="num muted small">${fmtN(f.per100.kcal)} kcal/100g</span><span class="sub"><span class="tag rep">AI estimate</span>${f.serving?`<span>${esc(f.serving.label)} = ${f.serving.g} g</span>`:""}</span></button>`).join("")}
-    <button class="li btnli" data-act="quickAdd"><span><b>Quick add</b> <span class="muted small">enter calories and macros</span></span><span></span></button></div></div>`:""}
-  <div class="actrow">
-    <button class="pillact" data-act="scanLabel">${ICON.label}<span>Scan label</span></button>
-    <button class="pillact" data-act="scanBarcode">${ICON.barcode}<span>Barcode</span></button>
-    <button class="pillact" data-act="quickAdd">${ICON.food}<span>Quick add</span></button>
-    <button class="pillact" data-act="copyDay">${ICON.back}<span>Copy yesterday</span></button>
-  </div>
-  ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> I haven't seen this one. Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
+  <div class="addbar"><button class="addsearch" data-act="foodAddOpen" data-tab="search">${ICON.search}<span>Add food</span></button>
+    <button class="iconbtn sq" data-act="foodAddOpen" data-tab="scan" aria-label="Scan">${ICON.barcode}</button><button class="iconbtn sq" data-act="foodAddOpen" data-tab="photo" aria-label="Photo of your meal">${ICON.camera}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to AJ Training AI">${ICON.spark}</button></div>
+  ${(favs.length||recent.length)?`<div class="relog"><span class="small muted">${favs.length?"Favourites and recent":"Recent"}: tap + to log your usual amount</span><div class="relogrow">${[...favs,...recent.filter(f=>!f.fav)].slice(0,12).map(f=>{ const d=defaultAmt(f), m=foodMacros(f,d.amount,d.unit); return `<button class="rl" data-act="relog" data-id="${f.id}"><b>${f.fav?"★ ":""}${esc(f.name)}</b><span class="num">${fmtN(m.kcal)} kcal</span><i>+</i></button>`; }).join("")}</div></div>`:""}
+  ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
   ${S.busy==="label"||S.busy==="barcode"?`<div class="card"><div class="row"><span class="spinner"></span><span>${S.busy==="label"?"Reading the label…":"Reading the barcode…"}</span></div></div>`:""}
-  <div class="card"><div class="spread"><h2>Log</h2><span class="small muted num">${entries.length} item${entries.length===1?"":"s"}</span></div><div class="flist">${list}</div></div>
-  ${recent.length?`<div class="card"><h3>Recent foods</h3><div class="chips">${recent.map(f=>`<button class="chip" data-act="pickFood" data-id="${f.id}">${esc(f.name)}</button>`).join("")}</div></div>`:""}
+  ${isToday?weighCard():""}
+  <div class="card mealcard"><div class="spread"><h2>Log</h2><span class="small muted">Drag ⋮⋮ to move between meals</span></div>${entries.length?groups:`<div class="empty">Nothing logged ${isToday?"yet today":"on this day"}. Add food, scan a barcode, photograph your plate, or just tell AJ Training AI what you ate.</div>`}
+    <div class="row" style="justify-content:space-between"><button class="link muted" data-act="copyDay">Copy the day before</button><button class="link" data-act="foodAddOpen" data-tab="quick">Quick add calories</button></div></div>
   <input type="file" id="labelCam" accept="image/*" capture="environment" hidden><input type="file" id="barcodeCam" accept="image/*" capture="environment" hidden>`;
+}
+/* Add food: one page, five ways in, and a tray so several foods log at once */
+function trayTotal(){ return (S.tray||[]).reduce((a,x)=>({kcal:a.kcal+x.kcal,p:a.p+x.p,f:a.f+x.f,c:a.c+x.c}),{kcal:0,p:0,f:0,c:0}); }
+function trayAdd(f, amount, unit, src){ const m=foodMacros(f,amount,unit); S.tray=[...(S.tray||[]), {k:uid("t"), food:f, amount, unit, name:f.name, kcal:Math.round(m.kcal), p:r1(m.p), f:r1(m.f), c:r1(m.c), g:Math.round(m.g), src:src||f.src||"food"}]; }
+function renderFoodAdd(){
+  const tab=S.addTab||"search", q=(S.foodQuery||"").trim().toLowerCase(), tray=S.tray||[], tt=trayTotal();
+  const meal=S.addMeal?MEALS.find(x=>x[0]===S.addMeal)[1]:null;
+  let body="";
+  if (tab==="search"){
+    const saved=q?S.foods.filter(f=>(f.name+" "+(f.brand||"")).toLowerCase().includes(q)).slice(0,6):[], dbHits=q?searchDb(q,20):[];
+    if (q && FOODDB===undefined) loadFoodDb();
+    const recent=[...S.foods].sort((a,b)=>(b.last||0)-(a.last||0)).slice(0,12), favs=S.foods.filter(f=>f.fav);
+    const row=(f,act,attr,sub)=>`<div class="li addli"><button class="btnli grow" data-act="${act}" ${attr}><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub">${sub}</span></button><button class="plusb" data-act="${act}" ${attr} data-quick="1" aria-label="Add to tray">+</button></div>`;
+    body=`<div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search any food or brand" value="${esc(S.foodQuery)}" autocomplete="off" aria-label="Search foods"></span></div>
+      ${!q&&favs.length?`<div class="card"><h3>Favourites</h3><div class="list">${favs.map(f=>{ const d=defaultAmt(f); return row(f,"pickFood",`data-id="${f.id}"`,`<span class="num">${fmtN(foodMacros(f,d.amount,d.unit).kcal)} kcal · ${d.unit==="serving"?esc((f.serving||{}).label||"serving"):d.amount+" "+d.unit}</span>`); }).join("")}</div></div>`:""}
+      ${!q&&recent.length?`<div class="card"><h3>Recent</h3><div class="list">${recent.map(f=>{ const d=defaultAmt(f); return row(f,"pickFood",`data-id="${f.id}"`,`<span class="num">${fmtN(foodMacros(f,d.amount,d.unit).kcal)} kcal · ${d.unit==="serving"?esc((f.serving||{}).label||"serving"):d.amount+" "+d.unit}</span>`); }).join("")}</div></div>`:""}
+      ${!q&&!recent.length?`<p class="small muted">Search over 7,000 foods, or use Scan, Photo or AI above. Foods you log show here next time, with a + to add them in one tap.</p>`:""}
+      ${q?`<div class="card"><div class="list">
+        ${saved.map(f=>row(f,"pickFood",`data-id="${f.id}"`,`<span class="tag">Saved</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}
+        ${dbHits.map(([i,x])=>row({name:prettyName(x[0])},"pickDb",`data-i="${i}"`,`<span class="num">${fmtN(x[1])} kcal/100g · ${x[2]}P ${x[4]}F ${x[3]}C</span>`)).join("")}
+        ${FOODDB===null?`<div class="li"><span class="row small muted"><span class="spinner"></span>Loading food database…</span></div>`:""}
+        ${!saved.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches. Try the AI lookup below.</p>`:""}
+        ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
+        ${(S.aiFoods||[]).map((f,i)=>row(f,"pickAi",`data-i="${i}"`,`<span class="tag rep">AI estimate</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}</div></div>`:""}`;
+  } else if (tab==="scan"){
+    body=`<div class="grid2 bigacts"><button class="card bigact" data-act="scanBarcode">${ICON.barcode}<b>Barcode</b><span>Packaged food, in a second</span></button><button class="card bigact" data-act="scanLabel">${ICON.label}<b>Nutrition label</b><span>Anything without a barcode match</span></button></div>`;
+  } else if (tab==="photo"){
+    const ph=S.photoFood||{};
+    body=`<div class="card"><h2>Photograph your meal</h2><p class="small muted">AJ Training AI estimates what's on the plate and how much. Add a note for anything a photo can't show ("cooked in a tablespoon of olive oil", "large portion", "no sauce"). Check the amounts before logging: estimates from photos can be off by 20-30%.</p>
+      ${ph.url?`<img class="photoprev" src="${ph.url}" alt="Your meal">`:""}
+      <div class="grid2"><button class="btn ghost" data-act="photoFoodTake">${ICON.camera} ${ph.url?"Retake":"Take photo"}</button><button class="btn ghost" data-act="photoFoodPick">${ICON.image} Choose photo</button></div>
+      <textarea class="field" id="photoNote" rows="2" placeholder="Optional note">${esc(ph.note||"")}</textarea>
+      <button class="btn orange" data-act="photoFoodGo" ${!ph.blob||S.busy==="photoFood"?"disabled":""}>${S.busy==="photoFood"?"Estimating…":"Estimate and add to tray"}</button>
+      ${!S.canImages?`<p class="small warn">This needs AI image access, which isn't available here.</p>`:""}
+      <input type="file" id="photoFoodCam" accept="image/*" capture="environment" hidden><input type="file" id="photoFoodLib" accept="image/*" hidden></div>
+      ${ph.notes?`<p class="small muted">${esc(ph.notes)}</p>`:""}`;
+  } else if (tab==="quick"){
+    body=`<div class="card"><h2>Quick add</h2><label class="lab">Name<input class="field" id="qaName" placeholder="e.g. Office cake"></label>
+      <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal"></label></div>
+      <button class="btn orange" data-act="quickToTray">Add to tray</button></div>`;
+  } else if (tab==="mine"){
+    const all=[...S.foods].sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||a.name.localeCompare(b.name));
+    body=all.length?`<div class="card"><div class="list">${all.map(f=>`<div class="li addli"><button class="starb ${f.fav?"on":""}" data-act="favTog" data-id="${f.id}" aria-label="Favourite">★</button><button class="btnli grow" data-act="pickFood" data-id="${f.id}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub num">${fmtN(f.per100.kcal)} kcal/100g · ${f.uses||0} logs</span></button><button class="plusb" data-act="pickFood" data-id="${f.id}" data-quick="1" aria-label="Add to tray">+</button></div>`).join("")}</div></div>`:`<p class="small muted">Foods you log are saved here. Star the ones you have most.</p>`;
+  }
+  return head("Add food",{back:"food"})+`${meal?`<p class="small muted">Adding to <b>${meal}</b> · <button class="link" data-act="addTo" data-meal="">auto by time</button></p>`:""}
+    <div class="addtabs">${[["search","Search"],["scan","Scan"],["photo","Photo AI"],["quick","Quick"],["mine","My foods"]].map(([k,n])=>`<button data-act="addTab" data-tab="${k}" aria-pressed="${tab===k}">${n}</button>`).join("")}</div>
+    ${body}
+    ${tray.length?`<div class="traybar"><div class="trayitems">${tray.map((x,i)=>`<span class="tchip"><b>${esc(x.name)}</b><em class="num">${x.unit==="serving"?x.amount+"×":x.amount+" "+x.unit} · ${fmtN(x.kcal)}</em><button data-act="trayDel" data-i="${i}" aria-label="Remove">✕</button></span>`).join("")}</div>
+      <button class="btn orange" data-act="trayLog">Log ${tray.length} item${tray.length>1?"s":""} · ${fmtN(tt.kcal)} kcal</button></div>`:""}`;
 }
 function weighCard(){
   const today=ymd(new Date()), w=S.weights.find(x=>x.d===today), a7=avgWindow(today,7);
   return `<div class="card" id="weighin"><div class="spread"><h2>Weigh-in</h2><span class="small muted num">${a7?"7-day avg "+a7.toFixed(1)+" kg":"Weigh in each morning"}</span></div>
     ${w&&!S.reweigh?`<div class="spread"><span><b class="num" style="font-size:22px">${w.kg.toFixed(1)} kg</b> <span class="small muted">today</span></span><button class="link" data-act="reweigh">Change</button></div>`
-    :`<div class="row" style="flex-wrap:nowrap"><input class="field big" id="kg" inputmode="decimal" placeholder="${S.weights.length?S.weights[S.weights.length-1].kg.toFixed(1):"75.0"} kg" aria-label="Weight in kg" style="flex:1"><input class="field" id="kgDate" type="date" value="${today}" aria-label="Date" style="width:auto;flex:0 1 auto"><button class="btn small orange" data-act="kg">Save</button></div>`}
+    :`<div class="row" style="flex-wrap:nowrap"><input class="field big" id="kg" inputmode="decimal" placeholder="${S.weights.length?S.weights[S.weights.length-1].kg.toFixed(1):"75.0"} kg" aria-label="Weight in kg" style="flex:1"><input class="field" id="kgDate" type="date" value="${today}" aria-label="Date" style="width:132px;flex:none;font-size:14px"><button class="btn small orange" data-act="kg">Save</button></div>`}
     <span class="small muted">First thing, after the toilet, before food or drink. Your targets use the 7-day average, so one high or low reading barely moves them.</span></div>`;
 }
 function renderFoodSheet(){
@@ -1783,8 +1865,11 @@ function renderFoodSheet(){
       <div class="row" style="flex-wrap:nowrap"><input class="field big" id="faAmt" inputmode="decimal" value="${esc(a.amount)}" aria-label="Amount" style="flex:1">${dd("faUnit",units,a.unit,"Unit")}</div>
       <div class="stat four"><div><span>Calories</span><b id="faK">${fmtN(m.kcal)}</b></div><div><span>Protein</span><b id="faP" style="color:var(--prot)">${r1(m.p)}</b></div><div><span>Fat</span><b id="faF" style="color:var(--fat)">${r1(m.f)}</b></div><div><span>Carbs</span><b id="faC" style="color:var(--carb)">${r1(m.c)}</b></div></div>${per100Editor(f, a)}`;
   }
-  $("#foodSheetIn").innerHTML=`<div class="grab"></div>${body}
-    <button class="btn orange" data-fs="save">${a.entryId?"Update":"Log it"}</button>
+  const toTray=S.tab==="foodadd"&&!a.entryId;
+  const mealSel=a.entryId||!toTray?`<div class="lab">Meal<div class="chips">${MEALS.map(([k,n])=>`<button class="chip" data-fs="meal" data-m="${k}" aria-pressed="${(a.meal||(a.entryId?a.autoMeal:S.addMeal)||"")===k}">${n}</button>`).join("")}</div></div>`:"";
+  $("#foodSheetIn").innerHTML=`<div class="grab"></div>${body}${mealSel}
+    ${!a.quick&&a.food&&a.food.id&&S.foods.some(x=>x.id===a.food.id)?`<button class="link" data-fs="fav">${a.food.fav?"★ Favourite":"☆ Add to favourites"}</button>`:""}
+    <button class="btn orange" data-fs="save">${a.entryId?"Update":toTray?"Add to tray":"Log it"}</button>
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
     <button class="btn ghost" data-fs="close">Cancel</button>`;
 }
@@ -2358,7 +2443,7 @@ let toastT;
 function toast(msg, undo){ const t=$("#toast"); t.innerHTML=esc(msg)+(undo?' <button class="tundo">Undo</button>':""); t.hidden=false; clearTimeout(toastT);
   if (undo) t.querySelector(".tundo").onclick=()=>{ undo(); t.hidden=true; render(); };
   toastT=setTimeout(()=>t.hidden=true, undo?6000:2600); }
-const NAV_ORDER=["home","plan","food","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1};
+const NAV_ORDER=["home","plan","food","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1,foodadd:1};
 let pgT=null;
 // Animate the page that was just rendered: children rise in with a short stagger, direction follows the nav.
 function pageAnim(kind){
@@ -2490,9 +2575,11 @@ function foodSheetSave(){
     const f=a.food;
     if ($("#faName")) f.name=$("#faName").value.trim()||f.name;
     const m=foodMacros(f,amt,unit);
+    if (S.tab==="foodadd" && !a.entryId){ trayAdd(f, amt, unit, a.src); saveFood({...f, lastAmt:amt, lastUnit:unit}); S.foodAdd=null; renderFoodSheet(); render(); toast(`Added ${f.name} to the tray`); return; }
     entry={id:a.entryId||uid("f"), t:a.t||entryTime(date), name:f.name, foodId:f.id, amount:amt, unit:unit==="serving"?(f.serving.label||"serving"):unit, grams:Math.round(m.g), kcal:Math.round(m.kcal), p:r1(m.p), f:r1(m.f), c:r1(m.c), src:a.src||"food"};
-    saveFood({...f, uses:(f.uses||0)+1, last:Date.now()});
+    saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:amt, lastUnit:unit});
   }
+  if (a.meal) entry.meal=a.meal; else if (!a.entryId && S.addMeal) entry.meal=S.addMeal;
   addFoodEntry(date, entry);
   S.foodAdd=null; S.foodQuery=""; S.pendingBarcode=null; S.confirm=null; render(); toast(`Logged ${entry.name}: ${fmtN(entry.kcal)} kcal`);
 }
@@ -2501,6 +2588,8 @@ $("#foodSheet").addEventListener("click",e=>{
   const k=b.dataset.fs;
   if (k==="close"){ S.foodAdd=null; S.confirm=null; renderFoodSheet(); }
   if (k==="save") foodSheetSave();
+  if (k==="meal"){ S.foodAdd.meal=b.dataset.m; renderFoodSheet(); }
+  if (k==="fav"){ const f=S.foods.find(x=>x.id===S.foodAdd.food.id); if (f){ saveFood({...f, fav:!f.fav}); S.foodAdd.food={...S.foodAdd.food, fav:!f.fav}; renderFoodSheet(); } }
   if (k==="delete"){ if (S.confirm!=="fdel"){ S.confirm="fdel"; renderFoodSheet(); return; } removeFoodEntry(foodDate(), S.foodAdd.entryId); S.foodAdd=null; S.confirm=null; render(); toast("Entry deleted"); }
 });
 function updateFaLive(){
@@ -2681,6 +2770,16 @@ $("#main").addEventListener("input", e=>{
   if (i.id==="cDate") S.cardioForm.date=i.value;
   if (i.id==="foodQ"){ if (S.aiFoods&&S.aiFoods.length) S.aiFoods=[]; S.foodQuery=i.value; const pos=i.selectionStart; render(); const n=$("#foodQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } }
 });
+/* drag a food entry to another meal */
+let fdrag=null;
+$("#main").addEventListener("pointerdown", e=>{ const g=e.target.closest("[data-grip]"); if(!g) return; e.preventDefault(); const row=g.closest(".fe"); fdrag={id:g.dataset.grip,row,y0:e.clientY,over:null}; row.classList.add("dragging"); try{ g.setPointerCapture(e.pointerId); }catch(err){} });
+$("#main").addEventListener("pointermove", e=>{ if(!fdrag) return; fdrag.row.style.transform=`translateY(${e.clientY-fdrag.y0}px)`;
+  const el=document.elementFromPoint(e.clientX,e.clientY), grp=el&&el.closest(".mealgrp"); document.querySelectorAll(".mealgrp.over").forEach(x=>x.classList.remove("over")); if (grp){ grp.classList.add("over"); fdrag.over=grp.dataset.meal; } });
+const fdragEnd=()=>{ if(!fdrag) return; const d=fdrag; fdrag=null; d.row.classList.remove("dragging"); d.row.style.transform="";
+  document.querySelectorAll(".mealgrp.over").forEach(x=>x.classList.remove("over"));
+  const date=foodDate(), doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===d.id);
+  if (en && d.over && d.over!==mealOf(en)){ en.meal=d.over; saveFoodDay(date); render(); toast(`Moved to ${MEALS.find(m=>m[0]===d.over)[1]}`); } };
+$("#main").addEventListener("pointerup", fdragEnd); $("#main").addEventListener("pointercancel", fdragEnd);
 $("#main").addEventListener("keydown", e=>{
   const i=e.target;
   if (e.key==="Enter" && S.active && i.dataset.f==="r" && i.dataset.d==null){ e.preventDefault(); i.blur(); logSet(+i.dataset.e,+i.dataset.s); }
@@ -2697,6 +2796,7 @@ $("#main").addEventListener("change", e=>{
   else if (id==="cType"){ S.cardioForm.type=v; S.cardioForm.level=CARDIO[v].def; S.cardioForm.km=""; S.cardioForm.phoneOn=null; render(); }
   else if (id==="cLevel"){ S.cardioForm.level=v; render(); }
   
+  else if ((id==="photoFoodCam"||id==="photoFoodLib")&&e.target.files[0]){ const f=e.target.files[0]; S.photoFood={blob:f, url:URL.createObjectURL(f), note:($("#photoNote")||{}).value||""}; render(); }
   else if (id==="labelCam"&&e.target.files[0]){ scanLabel(e.target.files[0]); }
   else if (id==="barcodeCam"&&e.target.files[0]){ scanBarcode(e.target.files[0]); }
   else if ((id==="photoCam"||id==="photoLib")&&e.target.files.length){ stagePhotos(e.target.files); }
@@ -2817,16 +2917,32 @@ $("#main").addEventListener("click", async e=>{
       if (assets&&p) for (const ph of p.photos){ try{ await assets.delete(ph.id); }catch(err){} }
       render(); return; }
     case "fday": { const d=parseD(foodDate()); d.setDate(d.getDate()+(+b.dataset.d)); const s=ymd(d); if (s>ymd(new Date())) return; S.foodDate=s; render(); return; }
-    case "pickDb": { if(!FOODDB) return; const f=dbFood(+b.dataset.i); const ex=S.foods.find(x=>x.id===f.id); openFood(ex||f); return; }
-    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(f) openFood(f); return; }
+    case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); return; } openFood(f); return; }
+    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); return; } openFood(f); return; }
     case "askFood": askFood(S.foodQuery.trim()); return;
-    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(f) openFood(f); return; }
+    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); trayAdd(f,d.amount,d.unit); render(); toast(`${f.name} added to the tray`); return; } openFood(f, S.tab==="foodadd"?defaultAmt(f):{}); return; }
+    case "foodAddOpen": S.addTab=b.dataset.tab||"search"; S.addMeal=null; S.aiFoods=[]; go("foodadd"); return;
+    case "addTo": { S.addMeal=b.dataset.meal||null; if (S.tab!=="foodadd"){ S.addTab="search"; go("foodadd"); } else render(); return; }
+    case "addTab": S.addTab=b.dataset.tab; render(); return;
+    case "favTog": { const f=S.foods.find(x=>x.id===b.dataset.id); if (f){ saveFood({...f, fav:!f.fav}); render(); } return; }
+    case "trayDel": S.tray.splice(+b.dataset.i,1); render(); return;
+    case "quickToTray": { const k=+$("#qaK").value||0; if (!k){ toast("Enter the calories"); return; } S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:$("#qaName").value.trim()||"Quick add", amount:"", unit:"", kcal:k, p:+$("#qaP").value||0, f:+$("#qaF").value||0, c:+$("#qaC").value||0, src:"quick"}]; render(); toast("Added to the tray"); return; }
+    case "trayLog": { const date=foodDate(), tray=S.tray||[]; if (!tray.length) return; let t0=entryTime(date);
+      tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"}; if (S.addMeal) en.meal=S.addMeal; addFoodEntry(date,en);
+        if (x.food){ const f=S.foods.find(y=>y.id===x.food.id)||x.food; saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:x.amount, lastUnit:x.unit}); } });
+      const tk=tray.reduce((a,x)=>a+x.kcal,0); S.tray=[]; S.foodQuery=""; S.addMeal=null; go("food"); toast(`Logged ${tray.length} item${tray.length>1?"s":""}: ${fmtN(tk)} kcal`); return; }
+    case "relog": { const f=S.foods.find(x=>x.id===b.dataset.id); if (!f) return; const d=defaultAmt(f), m=foodMacros(f,d.amount,d.unit), date=foodDate();
+      addFoodEntry(date,{id:uid("f"), t:entryTime(date), name:f.name, foodId:f.id, amount:d.amount, unit:d.unit==="serving"?((f.serving||{}).label||"serving"):d.unit, grams:Math.round(m.g), kcal:Math.round(m.kcal), p:r1(m.p), f:r1(m.f), c:r1(m.c), src:"food"});
+      saveFood({...f, uses:(f.uses||0)+1, last:Date.now()}); render(); toast(`Logged ${f.name}: ${fmtN(m.kcal)} kcal`); return; }
+    case "photoFoodTake": $("#photoFoodCam").click(); return;
+    case "photoFoodPick": $("#photoFoodLib").click(); return;
+    case "photoFoodGo": photoFood(); return;
     case "quickAdd": S.foodAdd={quick:true, name:S.foodQuery}; renderFoodSheet(); return;
     case "editEntry": {
       const en=((S.foodlog[foodDate()]||{}).entries||[]).find(x=>x.id===b.dataset.id); if(!en) return;
       const f=en.foodId&&S.foods.find(x=>x.id===en.foodId);
-      if (f) S.foodAdd={food:f, entryId:en.id, t:en.t, amount:en.amount, unit:(en.unit==="g"||en.unit==="ml")?en.unit:"serving"};
-      else S.foodAdd={quick:true, entryId:en.id, t:en.t, name:en.name, kcal:en.kcal, p:en.p, f:en.f, c:en.c};
+      if (f) S.foodAdd={food:f, entryId:en.id, t:en.t, amount:en.amount, unit:(en.unit==="g"||en.unit==="ml")?en.unit:"serving", meal:en.meal, autoMeal:mealOf(en)};
+      else S.foodAdd={quick:true, entryId:en.id, t:en.t, name:en.name, kcal:en.kcal, p:en.p, f:en.f, c:en.c, meal:en.meal, autoMeal:mealOf(en)};
       renderFoodSheet(); return; }
     case "copyDay": {
       const date=foodDate(), y=ymd(new Date(parseD(date)-864e5)), src=(S.foodlog[y]||{}).entries||[];
@@ -2890,7 +3006,7 @@ function renderChat(streamText){
   html += S.chat.map((m,i)=>{
     if (m.role==="user") return `<div class="msg me">${m.img?`<img class="att" src="${m.img}" alt="Attached photo">`:""}${esc(m.content)}</div>`;
     if (m.role==="assistant") return `<div class="msg ai"><div class="who">${LOGO(18)}AJ Training AI</div>${mdLite(m.content)}</div>`;
-    if (m.role==="action"){ const [c,ic]=ACT_STYLE[m.kind]||ACT_STYLE.food; return `<div class="acard ${m.undone?"undone":""}"><span class="ai" style="background:${c}">${ic}</span><span><b>${esc(m.title)}</b><span>${esc(m.detail)}</span></span>${m.undo&&!m.undone?`<button class="link" data-undo="${i}">Undo</button>`:m.undone?`<span class="small">Undone</span>`:""}</div>`; }
+    if (m.role==="action"){ const [c,ic]=ACT_STYLE[m.kind]||ACT_STYLE.food; return `<div class="acard ${m.undone?"undone":""}"><span class="ai" style="background:${c}">${ic}</span><span><b>${esc(m.title)}</b><span>${esc(m.detail)}</span></span><span class="acts">${!m.undone&&m.kind!=="delete"?`<button class="link" data-view="${i}">View</button>`:""}${m.undo&&!m.undone?`<button class="link muted" data-undo="${i}">Undo</button>`:m.undone?`<span class="small">Undone</span>`:""}</span></div>`; }
     return `<div class="msg sys">${esc(m.content)}</div>`;
   }).join("");
   if (streamText!=null) html+=`<div class="msg ai" id="streamMsg"><div class="who">${LOGO(18)}AJ Training AI</div>${streamText?mdLite(streamText):'<div class="typing"><i></i><i></i><i></i></div>'}</div>`;
@@ -2904,7 +3020,17 @@ function openChat(ctx){
 }
 $("#chatClose").onclick=()=>{ hideAnim($("#chat"),260); document.body.style.overflow=""; if(chatCtl) chatCtl.abort(); render(); };
 $("#chatChips").addEventListener("click",e=>{ const b=e.target.closest("[data-sugg]"); if(!b) return; $("#chatIn").value=b.dataset.sugg; sendChat(); });
-$("#chatMsgs").addEventListener("click",e=>{ const b=e.target.closest("[data-undo]"); if(!b) return; undoAction(+b.dataset.undo); });
+$("#chatMsgs").addEventListener("click",e=>{
+  const v=e.target.closest("[data-view]");
+  if (v){ const m=S.chat[+v.dataset.view], u=m.undo||{}; hideAnim($("#chat"),260); document.body.style.overflow="";
+    if (m.kind==="food"){ S.foodDate=u.date||ymd(new Date()); go("food"); setTimeout(()=>{ const el=document.querySelector(`[data-id="${(u.ids||[])[0]}"]`); el&&el.scrollIntoView({block:"center"}); el&&el.classList.add("flash"); },120); }
+    else if (m.kind==="cardio"){ S.planView="today"; go("plan"); }
+    else if (m.kind==="weight") go("food");
+    else if (m.kind==="habit") go("habits");
+    else if (m.kind==="swap") go("train");
+    else go("home");
+    return; }
+  const b=e.target.closest("[data-undo]"); if(!b) return; undoAction(+b.dataset.undo); });
 $("#chatIn").addEventListener("input",e=>{ const t=e.target; t.style.height="auto"; t.style.height=Math.min(120,t.scrollHeight)+"px"; });
 $("#chatIn").addEventListener("keydown",e=>{ if (e.key==="Enter" && !e.shiftKey){ e.preventDefault(); sendChat(); } });
 $("#chatForm").addEventListener("submit",e=>{ e.preventDefault(); sendChat(); });
