@@ -47,7 +47,8 @@ document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').set
 [hidden]{display:none!important}
 body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--page)}
-.wrap{max-width:540px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px calc(var(--navh) + 130px)}
+.wrap{max-width:540px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px calc(var(--navh) + 36px + env(safe-area-inset-bottom,0px))}
+body:has(.timer:not([hidden])) .wrap{padding-bottom:calc(var(--navh) + 130px + env(safe-area-inset-bottom,0px))}
 main{display:grid;gap:16px}
 main > *{min-width:0}
 .spread .seg{width:auto;flex:none}
@@ -279,7 +280,7 @@ h1{margin-top:2px}
 .tdic,.wic{width:44px;height:44px;border-radius:13px;background:var(--orange);color:#fff;display:grid;place-items:center}.tdic svg,.wic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .wic{background:var(--weight)}
 .tdpills{display:flex;gap:6px;flex-wrap:wrap}.tdpills span{background:var(--sunk);border-radius:999px;padding:6px 11px;font-size:13px;color:var(--muted)}.tdpills b{color:var(--ink);font-weight:700}
-.tdmus{display:flex;gap:6px;flex-wrap:wrap}.tdmus span{font-size:12px;font-weight:600;color:var(--orange);background:color-mix(in srgb,var(--orange) 12%,transparent);border-radius:999px;padding:4px 10px}
+.tdmus{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-2px;padding-inline:2px}.tdmus::-webkit-scrollbar{display:none}.tdmus span{flex:none}.tdmus span{font-size:12px;font-weight:600;color:var(--orange);background:color-mix(in srgb,var(--orange) 12%,transparent);border-radius:999px;padding:4px 10px}
 .tdlist{display:grid;gap:2px}.tdlist>div{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0}.tdlist b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tdlist .num{font-size:13px;color:var(--muted)}.tdlist .link{justify-self:start;margin-top:2px}
 .wcard{display:grid;gap:10px}.wtop{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}.wtop h2{margin:0}.wmain{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
 .wnum{font-family:var(--display);font-size:26px;font-weight:800;line-height:1.1}.wnum em{font-style:normal;font-size:14px;color:var(--muted);font-weight:700}
@@ -1766,7 +1767,7 @@ function homeParts(){
         today=`<div class="card hero"><div class="spread"><h2>${esc((dayBy(a.dayKey)||{}).label||"Workout")} in progress</h2><span class="tag rep">${gymName(a.gym)}</span></div><div class="progress"><i style="width:${tt?dn/tt*100:0}%"></i></div><span class="small muted num">${dn} of ${tt} sets · ${fmtT((Date.now()-a.startedAt)/1000)}</span><button class="btn orange" data-goto="train">Resume workout</button></div>`; }
       else if (S.prog.startDate && todayStr<S.prog.startDate) today=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Your plan</span><h2>${esc(S.prog.name)}</h2></div><span class="small muted">Starts ${fmtD(S.prog.startDate)}.</span><button class="btn ghost" data-goto="plan">See the plan</button></div>`;
       else if (list.length){
-        const nSets=list.reduce((a,x)=>a+x[1],0), mus=[...new Set(list.map(([k])=>exDef(k).m).filter(Boolean))], show=list.slice(0,4);
+        const nSets=list.reduce((a,x)=>a+x[1],0), mus=[...new Set(list.map(([k])=>exDef(k).m).filter(Boolean))], show=list.slice(0,3);
         today=`<div class="card hero tdcard"><div class="tdtop"><span class="tdic">${ICON.lift}</span><div class="stack" style="gap:1px;min-width:0"><span class="small muted">Today's training${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(t.label)}</h2></div>${done?'<span class="tag up">Done</span>':""}</div>
           <div class="tdpills"><span><b class="num">${list.length}</b> exercises</span><span><b class="num">${nSets}</b> sets</span><span><b class="num">~${sessionMins(t,g)}</b> min</span></div>
           ${mus.length?`<div class="tdmus">${mus.map(m=>`<span>${esc(m)}</span>`).join("")}</div>`:""}
@@ -1812,7 +1813,7 @@ const GOALLABEL={cut:"Lose fat", bulk:"Build muscle", recomp:"Recomp", maintain:
 // Today: what you need now (food, training, weight, habits). The week grid and insights live in Progress.
 function renderHome(){
   const p=homeParts();
-  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setupCard()+p.food+p.today+p.weight+p.habits;
+  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setupCard()+p.food+p.today+p.habits+p.weight;
 }
 // small trend line with a soft fill and an end dot
 function miniTrend(vals){
