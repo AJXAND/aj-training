@@ -275,6 +275,15 @@ svg text{fill:var(--muted);font-family:var(--body);font-size:11px}
 h1{margin-top:2px}
 .top{align-items:center}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
+.tdcard{display:grid;gap:12px}.tdtop{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}
+.tdic,.wic{width:44px;height:44px;border-radius:13px;background:var(--orange);color:#fff;display:grid;place-items:center}.tdic svg,.wic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wic{background:var(--weight)}
+.tdpills{display:flex;gap:6px;flex-wrap:wrap}.tdpills span{background:var(--sunk);border-radius:999px;padding:6px 11px;font-size:13px;color:var(--muted)}.tdpills b{color:var(--ink);font-weight:700}
+.tdmus{display:flex;gap:6px;flex-wrap:wrap}.tdmus span{font-size:12px;font-weight:600;color:var(--orange);background:color-mix(in srgb,var(--orange) 12%,transparent);border-radius:999px;padding:4px 10px}
+.tdlist{display:grid;gap:2px}.tdlist>div{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0}.tdlist b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tdlist .num{font-size:13px;color:var(--muted)}.tdlist .link{justify-self:start;margin-top:2px}
+.wcard{display:grid;gap:10px}.wtop{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}.wtop h2{margin:0}.wmain{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.wnum{font-family:var(--display);font-size:26px;font-weight:800;line-height:1.1}.wnum em{font-style:normal;font-size:14px;color:var(--muted);font-weight:700}
+.wspark svg{display:block}.wcard .btn,.wtoday{justify-self:start}
 .topmain h1{margin:0;min-width:0}
 .brand .logo{border-radius:9px;flex:none;display:block}
 .iconbtn{width:38px;height:38px;border-radius:50%;border:0;background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;flex:none}
@@ -1712,7 +1721,7 @@ function quickActions(){
   q.push(["coach",ICON.spark,"Ask AI","linear-gradient(140deg,#FF9A3D,#C2410C)"]);
   return `<div class="quick">${q.slice(0,8).map(([a,ic,l,c])=>`<button class="qa" ${a.startsWith("goto:")?`data-goto="${a.slice(5)}"`:`data-act="${a}"`}><span style="background:${c}">${ic}</span>${l}</button>`).join("")}</div>`;
 }
-function renderHome(){
+function homeParts(){
   const dates=weekDates(), todayStr=ymd(new Date());
   const selIdx=S.homeDay!=null?S.homeDay:dates.findIndex(d=>ymd(d)===todayStr);
   const tg=targets();
@@ -1756,9 +1765,14 @@ function renderHome(){
       if (S.active){ const a=S.active, dn=a.ex.reduce((x,e)=>x+e.sets.filter(q=>q.done).length,0), tt=a.ex.reduce((x,e)=>x+e.sets.length,0);
         today=`<div class="card hero"><div class="spread"><h2>${esc((dayBy(a.dayKey)||{}).label||"Workout")} in progress</h2><span class="tag rep">${gymName(a.gym)}</span></div><div class="progress"><i style="width:${tt?dn/tt*100:0}%"></i></div><span class="small muted num">${dn} of ${tt} sets · ${fmtT((Date.now()-a.startedAt)/1000)}</span><button class="btn orange" data-goto="train">Resume workout</button></div>`; }
       else if (S.prog.startDate && todayStr<S.prog.startDate) today=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Your plan</span><h2>${esc(S.prog.name)}</h2></div><span class="small muted">Starts ${fmtD(S.prog.startDate)}.</span><button class="btn ghost" data-goto="plan">See the plan</button></div>`;
-      else if (list.length) today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today's training</span><h2>${esc(t.label)}</h2></div>${done?'<span class="tag up">Done</span>':""}</div>
-        <span class="small muted">${esc(t.focus||"")} · ${list.reduce((a,x)=>a+x[1],0)} sets · ~${sessionMins(t,g)} min${run?` · plus ${esc(run.n.toLowerCase())} ${runAmt(run)}`:""}</span>
-        <div class="grid2"><button class="btn ghost" data-goto="plan">Details</button><button class="btn ${done?"ghost":"orange"}" data-act="startDay" data-k="${t.k}" data-g="${g}">${done?"Train again":"Start"}</button></div></div>`;
+      else if (list.length){
+        const nSets=list.reduce((a,x)=>a+x[1],0), mus=[...new Set(list.map(([k])=>exDef(k).m).filter(Boolean))], show=list.slice(0,4);
+        today=`<div class="card hero tdcard"><div class="tdtop"><span class="tdic">${ICON.lift}</span><div class="stack" style="gap:1px;min-width:0"><span class="small muted">Today's training${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(t.label)}</h2></div>${done?'<span class="tag up">Done</span>':""}</div>
+          <div class="tdpills"><span><b class="num">${list.length}</b> exercises</span><span><b class="num">${nSets}</b> sets</span><span><b class="num">~${sessionMins(t,g)}</b> min</span></div>
+          ${mus.length?`<div class="tdmus">${mus.map(m=>`<span>${esc(m)}</span>`).join("")}</div>`:""}
+          <div class="tdlist">${show.map(([k,n])=>{ const x=exDef(k); return `<div><span class="ph ic sm"></span><b>${esc(x.n)}</b><span class="num">${n} × ${x.lo}–${x.hi}</span></div>`; }).join("")}${list.length>show.length?`<button class="link muted" data-goto="plan">+ ${list.length-show.length} more</button>`:""}</div>
+          ${run?`<span class="small muted">Plus ${esc(run.n.toLowerCase())} ${runAmt(run)}</span>`:""}
+          <div class="grid2"><button class="btn ghost" data-goto="plan">Details</button><button class="btn ${done?"ghost":"orange"}" data-act="startDay" data-k="${t.k}" data-g="${g}">${done?"Train again":"Start"}</button></div></div>`; }
       else if (run) today=runCard(run,todayStr);
       else { const nx=nextSession(new Date()); today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today's training</span><h2>Rest day</h2></div></div><span class="small muted">${nx?`Next: ${esc(nx.d.label)} on ${nx.dt.toLocaleDateString("en-GB",{weekday:"long"})}.`:""} Walking or easy cardio helps recovery.</span></div>`; }
     }
@@ -1777,8 +1791,10 @@ function renderHome(){
   let weight="";
   if (on("nutrition")){
     const pts=S.weights.filter(w=>(Date.now()-parseD(w.d))/864e5<=42).map(e=>({t:parseD(e.d).getTime(), v:avgWindow(e.d,7)})), todayW=S.weights.find(x=>x.d===todayStr);
-    weight=`<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Weight</h2><span class="small muted">${a7?`7-day average ${a7.toFixed(1)} kg${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}`:"Weigh in each morning to see your trend"}</span></div>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
-      ${pts.length>=3?multiChart([{color:"var(--weight)",pts}],{minSpan:1,fmt:v=>v.toFixed(1),label:"7-day average weight, last 6 weeks"}):""}</div>`;
+    const trend=S.weights.filter(w=>(Date.now()-parseD(w.d))/864e5<=28).map(e=>avgWindow(e.d,7));
+    weight=`<div class="card wcard"><div class="wtop"><span class="wic">${ICON.scale}</span><h2>Weight</h2>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} kg today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
+      <button class="wmain" data-goto="progress" data-seg="body">${a7?`<span class="stack" style="gap:2px"><b class="wnum num">${a7.toFixed(1)}<em> kg</em></b><span class="small muted">7-day average${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}</span></span>`:`<span class="small muted">Weigh in each morning to see your trend</span>`}
+        ${trend.length>=3?`<span class="wspark">${miniTrend(trend)}</span>`:""}</button></div>`;
   }
   const habits=on("habits")?(habitList().length?habitsSummaryCard():nsCard(ICON.steps,"Your daily habits show here","Tick them off in one tap and watch the streaks build.","hAdd","Add habit")):"";
   const wkLegend=[lift?'<span><i style="background:var(--orange)"></i>Sets</span>':"", on("nutrition")?'<span><i style="background:var(--kcal)"></i>Calories</span>':"", '<span><i style="background:var(--cardio)"></i>Cardio</span>', on("nutrition")?'<span><i style="background:var(--weight)"></i>Weight</span>':""].join("");
@@ -1789,11 +1805,25 @@ function renderHome(){
     on("training")&&!S.prog.placeholder?`<button class="tile" data-goto="plan"><h3>Block</h3><span class="small muted">Training block</span><span class="v num">${ds?`W${ds.weeks}/${ds.every}`:"–"}</span><span class="small ${ds&&ds.weeks>=ds.every-1?"warn":"muted"}">${!ds?"Starts with your first session":ds.weeks>=ds.every?"Deload due":ds.weeks>=ds.every-1?"Deload next week":"On track"}</span></button>`:"",
     on("nutrition")?`<button class="tile" data-goto="progress" data-seg="body"><h3>Body fat</h3><span class="small muted">${bfs.length?"Photo estimate":S.profile.bfManual?"Set by you":"Default"}</span><span class="v num">${r1(bf.v)}%</span><span class="small muted">${bfs.length?"":"Photos can estimate it"}</span>${spark(bfs,"var(--fat)")}</button>`:""
   ].filter(Boolean);
-  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")
-    +setupCard()+food+today+weight+habits+`
-  <div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${ph.label}</span></div>
-    <div class="wk">${grid}</div>${detail}<div class="legend">${wkLegend}</div></div>
-  ${tiles.length?`<h2 class="sect">Insights</h2><div class="tiles">${tiles.join("")}</div>`:""}`;
+  return {food, today, weight, habits,
+    week:`<div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${S.profile.goal&&window.AJGoal?esc(GOALLABEL[S.profile.goal.type]||ph.label):ph.label}</span></div>
+    <div class="wk">${grid}</div>${detail}<div class="legend">${wkLegend}</div></div>`,
+    insights:tiles.length?`<h2 class="sect">Insights</h2><div class="tiles">${tiles.join("")}</div>`:""};
+}
+const GOALLABEL={cut:"Lose fat", bulk:"Build muscle", recomp:"Recomp", maintain:"Maintain"};
+// Today: what you need now (food, training, weight, habits). The week grid and insights live in Progress.
+function renderHome(){
+  const p=homeParts();
+  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setupCard()+p.food+p.today+p.weight+p.habits;
+}
+// small trend line with a soft fill and an end dot
+function miniTrend(vals){
+  const v=vals.filter(x=>x!=null); if (v.length<2) return "";
+  const lo=Math.min(...v), hi=Math.max(...v), span=hi-lo||1, W=120, H=44, P=5;
+  const pts=v.map((x,i)=>[P+i*(W-2*P)/(v.length-1), H-P-(x-lo)/span*(H-2*P)]);
+  const d=pts.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join(" "), last=pts[pts.length-1], id="mt"+(++logoN);
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--weight)" stop-opacity=".28"/><stop offset="1" stop-color="var(--weight)" stop-opacity="0"/></linearGradient></defs>
+    <path d="${d} L${last[0].toFixed(1)} ${H} L${P} ${H} Z" fill="url(#${id})"/><path d="${d}" fill="none" stroke="var(--weight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="3.5" fill="var(--card)" stroke="var(--weight)" stroke-width="2.5"/></svg>`;
 }
 
 /* ---------- Food ---------- */
@@ -2361,9 +2391,10 @@ function firstDate(){
 function renderOverview(){
   const start=firstDate();
   if (!start) return `<div class="card nscard"><span class="nsic">${ICON.lift}</span><span><b>Your progress will show up here</b><span>Log a workout, a weigh-in, some food or a habit and this page fills with how far you've come.</span></span></div>`;
-  const days=Math.max(1,Math.round((Date.now()-parseD(start))/864e5)), out=[];
+  const days=Math.max(1,Math.round((Date.now()-parseD(start))/864e5)), out=[], hp=homeParts();
   out.push(`<div class="card hero ovhero"><span class="small muted">Since ${fmtD(start)}</span><h2>${days} day${days===1?"":"s"} in</h2>
     <div class="tdstats"><div><b class="num">${S.sessions.length}</b><span>workouts</span></div><div><b class="num">${fmtN(S.sessions.reduce((a,x)=>a+(x.ex||[]).reduce((b,e)=>b+e.sets.length,0),0))}</b><span>sets</span></div><div><b class="num">${S.cardio.length}</b><span>cardio</span></div><div><b class="num">${Object.values(S.foodlog).filter(d=>(d.entries||[]).length).length}</b><span>food days</span></div></div></div>`);
+  out.push(hp.week+hp.insights);
   // strength: best improvements by estimated 1RM
   const gains=allLifts().map(l=>{ const h=liftHistory(l.k); if (h.length<2) return null; const f=h[h.length-1].sets[0], la=h[0].sets[0]; const a=e1(f.w,f.r), b=e1(la.w,la.r); return a&&b?{n:l.def.n, a, b, d:b-a, pct:(b-a)/a*100, k:l.k}:null; }).filter(Boolean).sort((x,y)=>y.pct-x.pct).slice(0,5);
   out.push(`<div class="card"><div class="spread"><h2>Strength</h2><button class="link" data-segset="progSeg" data-val="lifts">All lifts</button></div>${gains.length?`<div class="ovlist">${gains.map(g=>`<button class="ovrow" data-exview="${esc(g.k)}"><span><b>${esc(g.n)}</b><span class="small muted num">${r1(g.a)} → ${r1(g.b)} kg estimated 1RM</span></span><span class="num ${g.d>=0?"good":"warn"}"><b>${g.d>=0?"+":""}${Math.round(g.pct)}%</b></span></button>`).join("")}</div>`:`<p class="small muted">Log the same lift twice and its progress shows here.</p>`}</div>`);
