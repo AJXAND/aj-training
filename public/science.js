@@ -82,7 +82,7 @@ const LIB = [
    f:"Fat 0.5-1.5 g/kg (about 20-35% of calories); carbs fill the rest to fuel training.", a:"Fat never drops below 0.6 g/kg. Balanced = 27% of calories from fat, higher carb = 20%, higher fat = 35%."}]},
  {id:"energy", title:"Energy and expenditure", items:[
   {kind:"review", t:"What is the required energy deficit per unit weight loss?", c:"Hall. International Journal of Obesity, 2008", u:"https://doi.org/10.1038/sj.ijo.0803720",
-   f:"The 7,700 kcal per kg rule is a rough average; lean people lose more lean tissue per kg, so it overstates the energy per kg for them.", a:"7,700 kcal/kg is used only to turn your weight trend into an expenditure estimate, which is re-measured every week from your logs, so errors self-correct."},
+   f:"The 7,700 kcal per kg rule is a rough average; lean people lose more lean tissue per kg, so it overstates the energy per kg for them.", a:"Your weight change is converted to energy with a Forbes/Hall body-composition model (about 5,500-6,500 kcal per kg at your body fat, not 7,700), using a trend line fitted through every weigh-in. Only fully logged days count, and the estimate is recalculated every day."},
   {kind:"text", t:"Katch-McArdle resting energy equation", c:"McArdle, Katch & Katch. Exercise Physiology (textbook)", u:"",
    f:"Resting energy = 370 + 21.6 × lean body mass (kg). Uses body fat, so it suits lean, muscular people better than weight-only formulas.", a:"Starting expenditure = Katch-McArdle × 1.6, using body fat from your photos, until your own data takes over."},
   {kind:"review", t:"2024 Adult Compendium of Physical Activities", c:"Herrmann et al. Journal of Sport and Health Science, 2024", u:"https://doi.org/10.1016/j.jshs.2023.10.010",

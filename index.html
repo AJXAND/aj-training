@@ -618,6 +618,21 @@ details[open] > :not(summary){animation:pgSoft .3s var(--ease)}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
 }
+
+.ehero{justify-items:start;gap:8px}
+.ehero>b{font:800 46px var(--display);letter-spacing:-.02em;line-height:1}.ehero>b em{font:600 15px var(--body);font-style:normal;color:var(--muted);letter-spacing:0;margin-left:6px}
+.ehero .spread{width:100%;align-items:center;border-top:1px solid var(--line);padding-top:10px}
+.econf{width:100%;height:8px;border-radius:99px;background:var(--sunk);overflow:hidden}.econf i{display:block;height:100%;background:var(--orange);border-radius:99px}
+main.pg .econf i{animation:grow 1s var(--ease) .2s both;transform-origin:left}
+.edays{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.eday{border:0;border-radius:14px;background:var(--sunk);padding:8px 2px;display:grid;justify-items:center;gap:2px;font:inherit;color:var(--muted);cursor:pointer;min-width:0}
+.eday span{font-size:11px;font-weight:700;display:grid;justify-items:center}.eday span em{font-style:normal;font-size:15px;color:var(--ink)}
+.eday b{font-size:11px;color:var(--ink)}.eday i{font-style:normal;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.eday.ok{background:color-mix(in srgb,var(--good) 14%,var(--card))}.eday.ok i{color:var(--good)}
+.eday.part{box-shadow:inset 0 0 0 1.5px var(--line);background:var(--card)}.eday.part i{color:var(--warn)}
+.daystat{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;text-align:left;border:0;background:none;padding:2px 0;font:inherit;color:inherit;cursor:pointer}
+.daystat i{width:10px;height:10px;border-radius:50%;background:var(--warn);grid-row:span 2}.daystat.ok i{background:var(--good)}
+.daystat span{font-size:14px;font-weight:600}.daystat em{font-style:normal;font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -822,7 +837,7 @@ function saveActive(now){
 }
 function saveWeights(){ derive(); if (db) queue("state/bodyweight", () => db.doc("state/bodyweight").set({entries:S.all.weights})); else lsSet("weights", S.all.weights); }
 function saveProfile(){ derive(); if (db) queue("meta/profile", () => db.doc("meta/profile").set(S.profile)); else lsSet("profile", S.profile); }
-function saveFoodDay(date){ const doc=S.all.foodlog[date]||{date,entries:[]}; derive(); if (!doc.entries.length) return delDoc("foodlog",date); putDoc("foodlog", date, {schema:SCHEMA, date, entries:doc.entries}); }
+function saveFoodDay(date){ const doc=S.all.foodlog[date]||{date,entries:[]}; derive(); if (!doc.entries.length) return delDoc("foodlog",date); const out={schema:SCHEMA, date, entries:doc.entries}; if (doc.status) out.status=doc.status; putDoc("foodlog", date, out); }
 function saveFood(f){ S.all.foods=[f, ...S.all.foods.filter(x=>x.id!==f.id)]; derive(); putDoc("foods", f.id, f); }
 let chatT=null;
 function saveChat(){ clearTimeout(chatT); chatT=setTimeout(()=>{ const m=S.chat.slice(-40); if (db) queue("state/chat",()=>db.doc("state/chat").set({messages:m})); else lsSet("chat", m); }, 400); }
@@ -848,22 +863,79 @@ function cardioMet(type, level, mins, km){
 }
 function cardioKcal(met, mins, kg){ const gross=met*3.5*kg/200*mins; return {gross:Math.round(gross), net:Math.max(0,Math.round(gross-rmr()/1440*mins))}; }
 
-/* ---------- Nutrition: expenditure + targets ----------
-   Starting estimate: Katch-McArdle RMR x 1.6 (training most days, ~11k steps, cycling commute).
-   Adaptive: over the last 28 days, expenditure = mean logged intake - (change in 7-day weight average x 7700 kcal/kg) / days,
-   blended with the starting estimate in proportion to how many days have both food and weight logged. */
+/* ---------- Nutrition: expenditure ----------
+   Two parts, blended:
+   1. Starting model from your answers: RMR (Katch-McArdle) + daily life (job) + cycling commute + steps + lifting + cardio,
+      then /0.9 for the thermic effect of food (~10% of intake).
+   2. Measured from your data: over the last 28 days, using ONLY days marked as fully logged,
+      base burn = average(intake - that day's activity) - (weight trend slope x energy per kg of tissue).
+      The slope is a least-squares fit through every weigh-in in the window, so single noisy weigh-ins barely move it.
+      Energy per kg follows Forbes/Hall: leaner people gain/lose a larger share of lean tissue, so each kg holds fewer kcal than 7,700.
+   The measured part's weight grows with the number of logged days (about 50% at 7 days, 80% at 28), so it improves daily.
+   Daily activity (steps, sessions, cardio) is added on top, so a tennis day or a 15k-step day is credited properly. */
 function dayTotals(date){ const e=(S.foodlog[date]||{}).entries||[]; return e.reduce((a,x)=>({kcal:a.kcal+(+x.kcal||0),p:a.p+(+x.p||0),c:a.c+(+x.c||0),f:a.f+(+x.f||0),n:a.n+1}),{kcal:0,p:0,c:0,f:0,n:0}); }
-function expenditure(){
-  const prior=Math.round(rmr()*1.6), today=new Date(); const days=[];
-  for (let i=1;i<=28;i++){ const d=ymd(new Date(today-i*864e5)); const t=dayTotals(d); if (t.n && t.kcal>800) days.push({d,kcal:t.kcal}); }
-  if (days.length<7) return {kcal:prior, prior, n:days.length, adaptive:false};
-  const first=days[days.length-1].d, last=days[0].d, span=Math.max(7,(parseD(last)-parseD(first))/864e5+1);
-  const wA=avgWindow(first,7), wB=avgWindow(last,7);
-  if (wA==null||wB==null) return {kcal:prior, prior, n:days.length, adaptive:false};
-  const intake=days.reduce((a,x)=>a+x.kcal,0)/days.length, measured=intake-(wB-wA)*7700/span;
-  const w=Math.min(1,days.length/21);
-  return {kcal:Math.round((measured*w+prior*(1-w))/10)*10, prior, n:days.length, adaptive:true, intake:Math.round(intake), change:wB-wA};
+const ACT_DEFAULT = {job:"desk", steps:9000, commute:0, set:false};
+function act(){ return {...ACT_DEFAULT, ...(S.profile.activity||{})}; }
+const JOB = {desk:["Desk job / mostly sitting",0.15], mixed:["On your feet some of the day",0.28], active:["On your feet most of the day",0.45]};
+function stepKcal(steps, kg){ return Math.max(0, steps) * 0.00045 * kg; }                 // net ~0.04 kcal per step at 88 kg
+function liftKcal(mins, kg){ return 3.5 * kg * mins / 60; }                                 // resistance training ~4.5 MET gross (2024 Compendium), net of resting
+function dayActivity(date, kg){
+  const a=act(), st=stepsTotal(date), steps=st!=null ? st : a.steps;
+  const lift=S.sessions.filter(x=>x.date===date).reduce((t,x)=>t+liftKcal(+x.mins||60,kg),0);
+  const cardio=S.cardio.filter(c=>c.date===date && !(a.commute>0 && c.type==="cycle" && c.level==="Commute")).reduce((t,c)=>t+(+c.net||0),0);
+  return {steps:stepKcal(steps,kg), lift, cardio, total:stepKcal(steps,kg)+lift+cardio, stepsLogged:st!=null};
 }
+function energyPerKg(){
+  const kg=currentKg(), fm=kg*currentBf().v/100, p=10.4/(10.4+fm);                     // Forbes: lean share of a weight change
+  return Math.round(p*1816 + (1-p)*9441);                                                 // kcal per kg of lean / fat tissue (Hall 2008)
+}
+// Was this day fully logged? Explicit choice wins; otherwise a day under ~45% of your expected burn is treated as partial.
+function dayCounted(date, priorKcal){
+  const doc=S.foodlog[date]; if (!doc || !(doc.entries||[]).length) return {ok:false, why:"Not logged"};
+  if (doc.status==="partial") return {ok:false, why:"Marked partial"};
+  if (doc.status==="complete") return {ok:true};
+  const k=dayTotals(date).kcal;
+  return k >= (priorKcal||2400)*0.45 ? {ok:true, auto:true} : {ok:false, why:"Looks partial", auto:true};
+}
+function priorModel(kg){
+  const a=act(), r=rmr(), life=r*JOB[a.job][1], commute=a.commute/7*6.8*kg/60*0.85;   // cycling commute ~6.8 MET, net
+  const progDays=(S.prog.days||[]).filter(d=>!d.rest&&!d.optional).length;
+  const lift=liftKcal(70,kg)*progDays/7, steps=stepKcal(a.steps,kg);
+  const cardioWk=S.cardio.filter(c=>(Date.now()-parseD(c.date))/864e5<28 && !(a.commute>0 && c.type==="cycle" && c.level==="Commute")).reduce((t,c)=>t+(+c.net||0),0)/4;
+  const cardio=cardioWk/7, active=steps+lift+cardio;
+  const total=(r+life+commute+active)/0.9;
+  return {total, base:(r+life+commute)/0.9, rmr:r, life, commute, steps, lift, cardio, tef:total*0.1, activeAvg:active};
+}
+function slopeKgPerDay(from, to){
+  const pts=S.weights.filter(w=>w.d>=from&&w.d<=to).map(w=>[(parseD(w.d)-parseD(from))/864e5, +w.kg]);
+  if (pts.length<4) return null;
+  const span=pts[pts.length-1][0]-pts[0][0]; if (span<7) return null;
+  const n=pts.length, mx=pts.reduce((a,p)=>a+p[0],0)/n, my=pts.reduce((a,p)=>a+p[1],0)/n;
+  let sxy=0,sxx=0; pts.forEach(([x,y])=>{ sxy+=(x-mx)*(y-my); sxx+=(x-mx)**2; });
+  const b=sxy/sxx, res=pts.reduce((a,[x,y])=>a+(y-(my+b*(x-mx)))**2,0), se=Math.sqrt(res/Math.max(1,n-2)/sxx);
+  return {b, se, n, span};
+}
+function expenditure(endDate){
+  const end=endDate||ymd(new Date()), kg=currentKg(), pm=priorModel(kg), prior=Math.round(pm.total/10)*10;
+  let win=28, used=[], skipped=[];
+  const collect=w=>{ used=[]; skipped=[]; for (let i=1;i<=w;i++){ const d=ymd(new Date(parseD(end)-i*864e5)); const c=dayCounted(d,pm.total); if (c.ok) used.push(d); else if (S.foodlog[d]) skipped.push({d,why:c.why}); } };
+  collect(win); if (used.length<10){ win=42; collect(win); }
+  const from=ymd(new Date(parseD(end)-win*864e5)), sl=slopeKgPerDay(from, ymd(new Date(parseD(end)-864e5)));
+  const base={...pm, kcal:prior, prior, n:used.length, used, skipped, win, adaptive:false, ed:energyPerKg()};
+  if (used.length<5 || !sl) return base;
+  const ed=energyPerKg();
+  const rows=used.map(d=>{ const t=dayTotals(d).kcal, a=dayActivity(d,kg).total; return {d, intake:t, act:a, net:t-a}; });
+  const mean=rows.reduce((x,r)=>x+r.net,0)/rows.length, sd=Math.sqrt(rows.reduce((x,r)=>x+(r.net-mean)**2,0)/Math.max(1,rows.length-1));
+  const measuredBase=mean - sl.b*ed;                                                   // burn excluding that day's activity
+  const w=Math.min(0.9, rows.length/(rows.length+7));
+  const blendedBase=w*measuredBase + (1-w)*(pm.total-pm.activeAvg);
+  let actAvg=0; for (let i=1;i<=28;i++) actAvg+=dayActivity(ymd(new Date(parseD(end)-i*864e5)),kg).total; actAvg/=28;
+  const kcal=Math.round((blendedBase+actAvg)/10)*10;
+  const err=Math.round(Math.sqrt((sd/Math.sqrt(rows.length))**2 + (sl.se*ed)**2) * (1-w*0.3) / 10)*10;
+  return {...base, kcal, adaptive:true, measuredBase:Math.round(measuredBase), blendedBase:Math.round(blendedBase), actAvg:Math.round(actAvg), w, err,
+    intake:Math.round(rows.reduce((x,r)=>x+r.intake,0)/rows.length), change:sl.b*7, weighins:sl.n, ed};
+}
+function expenditureToday(){ const ex=expenditure(), kg=currentKg(), a=dayActivity(ymd(new Date()),kg); return {...ex, today:Math.round((ex.kcal-(ex.actAvg??ex.activeAvg)+a.total)/10)*10, actToday:a}; }
 function targets(date){
   const n=S.profile.nutrition||{}, ph=PHASES[S.profile.phase], kg=currentKg(), ex=expenditure();
   if (n.mode==="manual" && n.kcal) return {kcal:+n.kcal, p:+n.p||0, f:+n.f||0, c:+n.c||0, mode:"manual", ex};
@@ -1077,12 +1149,12 @@ function renderHabits(){
 
 /* ---------- Render root ---------- */
 function render(){
-  const navTab = {train:"plan", cardio:"progress", habits:"home", settings:S.prevTab||"home"}[S.tab] || S.tab;
+  const navTab = {train:"plan", cardio:"progress", habits:"home", energy:"food", settings:S.prevTab||"home"}[S.tab] || S.tab;
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab));
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
   plus.innerHTML = S.active ? ICON.lift : '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   plus.setAttribute("aria-label", S.active ? "Resume workout" : "Add or start");
-  const f={home:renderHome, food:renderFood, plan:renderPlan, train:S.active?renderLive:renderTrain, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
+  const f={energy:renderEnergy, home:renderHome, food:renderFood, plan:renderPlan, train:S.active?renderLive:renderTrain, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
   $("#main").innerHTML=f();
   renderFoodSheet();
 }
@@ -1208,11 +1280,46 @@ Values per 100 g (or 100 ml for drinks).`,{modelTier:"default"});
   S.busy=null; if (S.tab==="food"){ render(); }
 }
 function foodDate(){ return S.foodDate||ymd(new Date()); }
+function renderEnergy(){
+  const ex=expenditureToday(), kg=currentKg(), pm=priorModel(kg), a=act();
+  const hist=[]; for (let w=8; w>=0; w--){ const d=ymd(new Date(Date.now()-w*7*864e5)); const e=expenditure(d); hist.push({t:parseD(d).getTime(), v:e.kcal, adaptive:e.adaptive}); }
+  const chart=multiChart([{color:"var(--orange)",pts:hist}],{minSpan:300,fmt:v=>fmtN(v),label:"Expenditure estimate, last 8 weeks"});
+  const conf=ex.adaptive?Math.round(ex.w*100):0;
+  const rows=[["Resting (Katch-McArdle)",pm.rmr],["Daily life · "+JOB[a.job][0].toLowerCase(),pm.life],a.commute?["Cycling commute",pm.commute]:null,["Steps (~"+fmtN(a.steps)+" a day)",pm.steps],["Lifting",pm.lift],["Cardio and sport (last 4 weeks)",pm.cardio],["Digesting food (~10%)",pm.tef]].filter(Boolean);
+  const days=[]; for (let i=1;i<=14;i++){ const d=ymd(new Date(Date.now()-i*864e5)), c=dayCounted(d,pm.total); days.push({d,c,k:dayTotals(d).kcal}); }
+  return head("Expenditure",{back:"food"})+`
+  <div class="card ehero"><span class="date">${ex.adaptive?"Measured from your data":"Starting estimate"}</span>
+    <b class="num">${fmtN(ex.kcal)}<em> kcal a day</em></b>
+    ${ex.adaptive?`<span class="small muted num">±${fmtN(Math.max(40,ex.err))} kcal · ${ex.n} logged days · ${ex.weighins} weigh-ins · trend ${ex.change>=0?"+":""}${ex.change.toFixed(2)} kg/wk</span>`:`<span class="small muted">Log food fully and weigh in most mornings. After 5 logged days and a week of weigh-ins it starts measuring your real burn.</span>`}
+    <div class="econf"><i style="width:${conf}%"></i></div><span class="small muted">${ex.adaptive?`${conf}% from your own data, ${100-conf}% from the starting model. Every fully logged day shifts it further.`:"0% from your data so far."}</span>
+    <div class="spread"><span class="small muted">Today, with today's activity</span><b class="num">${fmtN(ex.today)} kcal</b></div></div>
+  ${chart?`<div class="card">${chart}<span class="small muted">Each point is the estimate as it stood that week.</span></div>`:""}
+  <div class="card"><div class="spread"><h2>Starting model</h2><button class="link" data-act="nutGoal" data-step="activity">Edit activity</button></div>
+    <div class="kv" style="border:0;padding:0">${rows.map(([l,v])=>`<div><span>${esc(l)}</span><span class="num">${fmtN(v)}</span></div>`).join("")}<div><span><b>Total</b></span><span class="num"><b>${fmtN(pm.total)}</b></span></div></div>
+    <span class="small muted">This is where the estimate starts. Formulas can be off by a few hundred calories, which is why your own data takes over. ${'<button class="obsrc" data-act="science" data-src="energy">Evidence</button>'}</span></div>
+  ${ex.adaptive?`<div class="card"><h2>What your data says</h2><div class="kv" style="border:0;padding:0">
+    <div><span>Average intake on logged days</span><span class="num">${fmtN(ex.intake)}</span></div>
+    <div><span>Weight trend (fitted through ${ex.weighins} weigh-ins)</span><span class="num">${ex.change>=0?"+":""}${ex.change.toFixed(2)} kg/wk</span></div>
+    <div><span>Energy in that change (${fmtN(ex.ed)} kcal/kg)</span><span class="num">${ex.change>=0?"−":"+"}${fmtN(Math.abs(ex.change/7*ex.ed))}/day</span></div>
+    <div><span>Base burn, excluding activity</span><span class="num">${fmtN(ex.measuredBase)}</span></div>
+    <div><span>Plus average daily activity</span><span class="num">+${fmtN(ex.actAvg)}</span></div></div>
+    <span class="small muted">${fmtN(ex.ed)} kcal per kg, not 7,700: at your body fat, part of any weight change is lean tissue, which holds far less energy than fat.</span></div>`:""}
+  <div class="card"><div class="spread"><h2>Last 14 days</h2><span class="small muted">${days.filter(x=>x.c.ok).length} counted</span></div>
+    <div class="edays">${days.map(x=>`<button class="eday ${x.c.ok?"ok":x.k?"part":""}" data-act="dayStatus" data-d="${x.d}"><span>${parseD(x.d).toLocaleDateString("en-GB",{weekday:"narrow"})}<em>${parseD(x.d).getDate()}</em></span><b class="num">${x.k?fmtN(x.k):"–"}</b><i>${x.c.ok?"✓":x.k?(x.c.why==="Marked partial"?"Part":"Part?"):"–"}</i></button>`).join("")}</div>
+    <span class="small muted">Only fully logged days count. Days with nothing logged are ignored instead of dragging the average down. A day well under your usual intake is assumed partial; tap any day to mark it complete or partial.</span></div>`;
+}
+function dayStatusRow(date){
+  const pm=priorModel(currentKg()), c=dayCounted(date,pm.total), doc=S.foodlog[date];
+  if (!doc) return "";
+  return `<button class="daystat ${c.ok?"ok":""}" data-act="dayStatus" data-d="${date}"><i></i><span>${c.ok?"Counts toward expenditure":"Not counted: "+c.why.toLowerCase()}</span><em>${c.auto?"auto · tap to change":"tap to change"}</em></button>`;
+}
 function goalLine(tg){
   if (tg.mode!=="auto") return `<span class="small muted">Manual targets, set in Settings.</span>`;
   const g=window.AJGoal&&AJGoal.summary();
-  if (!g) return `<button class="goalrow" data-act="nutGoal"><span><b>Set your goal</b><span class="small muted">${PHASES[S.profile.phase].label}: expenditure ${fmtN(tg.ex.kcal)} kcal. Pick a goal and pace for proper targets.</span></span><i>›</i></button>`;
-  return `<button class="goalrow" data-act="nutGoal"><span><b>${esc(g.line)}</b><span class="small muted">${g.done?"Goal weight reached. Tap to set the next one.":g.eta?`${Math.abs(g.left).toFixed(1)} kg to go · on pace for ${g.eta.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}`:"Maintenance calories"} · expenditure ${fmtN(tg.ex.kcal)} kcal${tg.ex.adaptive?" (adaptive)":" (estimate)"}</span></span><i>›</i></button>`;
+  if (!g) return `<button class="goalrow" data-act="nutGoal"><span><b>Set your goal</b><span class="small muted">Pick a goal and pace for proper targets.</span></span><i>›</i></button>
+    <button class="goalrow" data-goto="energy"><span><b>Expenditure ${fmtN(tg.ex.kcal)} kcal</b><span class="small muted">${tg.ex.adaptive?`${tg.ex.n} logged days`:"Starting estimate"}</span></span><i>›</i></button>`;
+  return `<button class="goalrow" data-act="nutGoal"><span><b>${esc(g.line)}</b><span class="small muted">${g.done?"Goal weight reached. Tap to set the next one.":g.eta?`${Math.abs(g.left).toFixed(1)} kg to go · on pace for ${g.eta.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}`:"Maintenance calories"}</span></span><i>›</i></button>
+    <button class="goalrow" data-goto="energy"><span><b>Expenditure ${fmtN(tg.ex.kcal)} kcal${tg.ex.adaptive?` <span class="tag up">±${fmtN(Math.max(40,tg.ex.err))}</span>`:` <span class="tag">estimate</span>`}</b><span class="small muted">${tg.ex.adaptive?`${tg.ex.n} logged days, ${Math.round(tg.ex.w*100)}% from your data`:"Starting model until you've logged 5 full days"}</span></span><i>›</i></button>`;
 }
 function blockInfo(){
   const p=S.prog; if (!p.rir) return null;
@@ -1239,7 +1346,7 @@ function renderFood(){
   <div class="datenav"><button class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">${ICON.back}</button><b>${isToday?"Today":fmtD(date)}</b><button class="iconbtn flip" data-act="fday" data-d="1" aria-label="Next day" ${isToday?"disabled":""}>${ICON.back}</button></div>
   <div class="card"><div class="spread"><h2>${rem?"Remaining":"Consumed"}</h2>${seg("foodMode",[["consumed","Consumed"],["remaining","Remaining"]],rem?"remaining":"consumed")}</div>
     <div class="macros">${macroBar("Calories",t.kcal,tg.kcal,"var(--kcal)","",rem)}${macroBar("Protein",t.p,tg.p,"var(--prot)","g",rem)}${macroBar("Fat",t.f,tg.f,"var(--fat)","g",rem)}${macroBar("Carbs",t.c,tg.c,"var(--carb)","g",rem)}</div>
-    ${goalLine(tg)}</div>
+    ${dayStatusRow(date)}${goalLine(tg)}</div>
   <div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search any food" value="${esc(S.foodQuery)}" autocomplete="off" aria-label="Search foods"></span>
     <button class="iconbtn sq" data-act="scanBarcode" aria-label="Scan barcode">${ICON.barcode}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to Claude">${ICON.spark}</button></div>
   ${q?`<div class="card"><div class="list">
@@ -1638,7 +1745,7 @@ let toastT;
 function toast(msg, undo){ const t=$("#toast"); t.innerHTML=esc(msg)+(undo?' <button class="tundo">Undo</button>':""); t.hidden=false; clearTimeout(toastT);
   if (undo) t.querySelector(".tundo").onclick=()=>{ undo(); t.hidden=true; render(); };
   toastT=setTimeout(()=>t.hidden=true, undo?6000:2600); }
-const NAV_ORDER=["home","food","plan","progress"], SUB={settings:1,habits:1,cardio:1,train:1};
+const NAV_ORDER=["home","food","plan","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1};
 let pgT=null;
 // Animate the page that was just rendered: children rise in with a short stagger, direction follows the nav.
 function pageAnim(kind){
@@ -1973,7 +2080,9 @@ $("#main").addEventListener("click", async e=>{
   switch(act){
     case "coach": openChat(b.dataset.ctx); return;
     case "buildProg": window.AJOnboard&&AJOnboard.programme(); return;
-    case "nutGoal": window.AJOnboard&&AJOnboard.nutrition(); return;
+    case "nutGoal": window.AJOnboard&&AJOnboard.nutrition(false, b.dataset.step); return;
+    case "dayStatus": { const d=b.dataset.d, doc=S.all.foodlog[d]; if (!doc||!(doc.entries||[]).length){ toast("Nothing logged that day"); return; }
+      const c=dayCounted(d, priorModel(currentKg()).total); doc.status=c.ok?"partial":"complete"; saveFoodDay(d); render(); toast(c.ok?"Marked partial: left out of expenditure":"Marked complete: counts toward expenditure"); return; }
     case "science": window.AJScience&&AJScience.open(b.dataset.src||null); return;
     case "deload": S.deload=!S.deload; render(); return;
     case "start": { const d=dayBy(S.pick||todayDay().k); startSession(d, chosenGym(d)); return; }

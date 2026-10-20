@@ -328,7 +328,8 @@ const saveDraft = () => { try{ localStorage.setItem(DRAFT + F.kind, JSON.stringi
 const loadDraft = k => { try{ return JSON.parse(localStorage.getItem(DRAFT + k)); }catch(e){ return null; } };
 const clearDraft = k => { try{ localStorage.removeItem(DRAFT + k); }catch(e){} };
 function el(){ let o = document.getElementById("ob"); if (!o){ o = document.createElement("div"); o.id = "ob"; o.className = "ob"; o.setAttribute("role", "dialog"); document.body.appendChild(o); bind(o); } return o; }
-function close(){ const o = document.getElementById("ob"); document.body.style.overflow = ""; F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
+function close(){ const o = document.getElementById("ob"); document.body.style.overflow = "";
+  if (F && F.kind === "nut" && !F.accepted) S.profile.activity = F.prevAct; F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
 function progDefaults(){
@@ -341,16 +342,22 @@ function progDefaults(){
   return {goal:"size", level:"inter", days:days.length ? days : ["mon","tue","wed","thu","fri"], mins:75, gymOf, kit:clone(KIT_DEFAULT), sport:["sat"],
     split:null, pri:["chest","sdelt","triceps"], inj:[], love, ban:[], block:6, start:nextMonday(), phase:S.profile.phase || "bulk", name:"Hypertrophy block 1"};
 }
+function loggedSteps(){ const v = []; for (let i = 1; i <= 21; i++){ const t = stepsTotal(ymd(new Date(Date.now() - i * 864e5))); if (t != null) v.push(t); } return v.length >= 3 ? {avg:Math.round(v.reduce((a, b) => a + b, 0) / v.length / 100) * 100, n:v.length} : null; }
+function actDefaults(){
+  const cur = S.profile.activity; if (cur && cur.set) return clone(cur);
+  const ls = loggedSteps(), shwc = (S.prog.days || []).filter(d => !d.rest && d.gym === "shwc").length;
+  return {job:"desk", steps:ls ? ls.avg : 9000, commute:shwc * 70, set:true};
+}
 function nutDefaults(){
   const g = S.profile.goal, kg = currentKg();
   if (g) return clone(g);
   const type = S.profile.phase === "cut" ? "cut" : S.profile.phase === "recomp" ? "recomp" : S.profile.phase === "maintain" ? "maintain" : "bulk";
-  return {type, startKg:r1(kg), targetKg:r1(type === "cut" ? kg * 0.94 : kg * 1.05), rate:GOALS[type].def, prot:type === "cut" ? 2.3 : 2.0, fat:"balanced", dist:"even"};
+  return {type, startKg:r1(kg), targetKg:r1(type === "cut" ? kg * 0.94 : kg * 1.05), rate:GOALS[type].def, prot:type === "cut" ? 2.3 : 2.0, fat:"balanced", dist:"even", activity:actDefaults()};
 }
 
 /* ---------- Programme steps ---------- */
 const PSTEPS = ["intro","goal","level","days","gyms","sport","split","pri","inj","lifts","block","build","review"];
-const NSTEPS = ["intro","goal","stats","target","rate","macros","review"];
+const NSTEPS = ["intro","goal","activity","stats","target","rate","macros","review"];
 function stepsOf(){ return F.kind === "prog" ? PSTEPS : NSTEPS.filter(s => !(s === "target" || s === "rate") || (F.ans.type === "bulk" || F.ans.type === "cut")); }
 function src(id, txt){ return `<button class="obsrc" data-src="${id}">${txt || "Evidence"}</button>`; }
 function opt(name, val, title, sub, cur){ return `<button class="obopt" data-set="${name}" data-val="${val}" aria-pressed="${cur === val}"><b>${title}</b>${sub ? `<span>${sub}</span>` : ""}</button>`; }
@@ -471,10 +478,25 @@ function nStep(s, a){
     </div>`, cta:"Start"};
   case "goal": return {title:"What's the goal?", body:`<div class="obopts">${Object.entries(GOALS).map(([k, g]) => opt("type", k, g.label, g.sub, a.type)).join("")}</div>
     <p class="obnote">${currentBf().v <= 15 ? `At ~${Math.round(currentBf().v)}% body fat (${esc(currentBf().src)}), a lean bulk is a good default.` : `At ~${Math.round(currentBf().v)}% body fat, a cut or recomp first is worth considering.`}</p>`};
+  case "activity": {
+    const A = a.activity, pm = priorModel(kg), logged = loggedSteps();
+    return {title:"How active are you?", body:`
+      <p class="obnote" style="margin-top:0">This sets your starting estimate. After that, your food logs and weigh-ins take over and correct it every day.</p>
+      <h3 class="obh" style="margin-top:4px">Outside training, your day is mostly…</h3>
+      <div class="obopts">${Object.entries(JOB).map(([k, v]) => `<button class="obopt" data-set="activity.job" data-val="${k}" aria-pressed="${A.job === k}"><b>${v[0]}</b></button>`).join("")}</div>
+      <h3 class="obh">Typical steps a day</h3>
+      <div class="spread"><b class="num">${fmtN(A.steps)} steps</b><span class="muted small">${logged ? `your logged average: ${fmtN(logged.avg)} (${logged.n} days)` : "used on days you don't log steps"}</span></div>
+      <div class="obslider"><input type="range" min="2000" max="25000" step="500" value="${A.steps}" data-range="activity.steps"></div>
+      <h3 class="obh">Cycling commute</h3>
+      <div class="spread"><b class="num">${A.commute} min a week</b><span class="muted small">${A.commute ? "so don't also log it as cardio" : "0 if you don't"}</span></div>
+      <div class="obslider"><input type="range" min="0" max="600" step="10" value="${A.commute}" data-range="activity.commute"></div>
+      <div class="card"><div class="spread"><h3>Starting estimate</h3><b class="num">${fmtN(pm.total)} kcal</b></div>
+        <span class="small muted">Lifting comes from your programme (${(S.prog.days || []).filter(d => !d.rest && !d.optional).length} sessions a week) and cardio from what you log, so you don't need to count them here.</span></div>`, cta:F.single ? "Save" : undefined};
+  }
   case "stats": return {title:"Check your numbers", body:`
     <div class="obsum"><div><span>Weight (7-day avg)</span><b>${kg.toFixed(1)} kg</b></div><div><span>Body fat</span><b>${Math.round(currentBf().v)}%</b></div><div><span>Height</span><b>${S.profile.heightCm} cm</b></div></div>
     <div class="card"><div class="spread"><h3>Expenditure</h3><b class="num">${fmtN(ex.kcal)} kcal</b></div>
-      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate: resting rate from your lean mass (Katch-McArdle) × 1.6 for training, steps and cycling. Formulas can be off by a few hundred calories, so it switches to your measured number over ~3 weeks of logging.`} ${src("energy")}</span></div>
+      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate from your activity answers. Formulas can be off by a few hundred calories, so from 5 fully logged days it starts measuring your real burn, and leans on your data more each day.`} ${src("energy")}</span></div>
     <p class="obnote">Wrong weight or body fat? Log a weigh-in or update body fat in Settings, then come back.</p>`};
   case "target": {
     const step = 0.5, lo = a.type === "bulk" ? Math.ceil(kg) : Math.round(kg * 0.8), hi = a.type === "bulk" ? Math.round(kg * 1.25) : Math.floor(kg);
@@ -560,6 +582,7 @@ function next(){
   const steps = stepsOf(), i = steps.indexOf(F.step);
   if (F.kind === "prog" && F.step === "review") return acceptProg();
   if (F.kind === "nut" && F.step === "review") return acceptNut();
+  if (F.kind === "nut" && F.single && F.step === "activity"){ F.accepted = true; S.profile.activity = clone(F.ans.activity); saveProfile(); toast("Activity saved: starting estimate " + fmtN(priorModel(currentKg()).total) + " kcal"); return close(); }
   if (F.kind === "prog" && F.step === "split" && !F.ans.split) F.ans.split = (SPLITS[F.ans.days.length] || [])[0]?.id;
   go2(steps[Math.min(steps.length - 1, i + 1)]);
 }
@@ -584,6 +607,7 @@ function putDocP(p){ try{ queue("programme/current", () => db.doc("programme/cur
 function acceptNut(){
   const a = F.ans, kg = currentKg();
   S.profile.goal = Object.assign({}, a, {startKg:r1(kg), startDate:ymd(new Date()), set:Date.now(), rate:+a.rate, prot:+a.prot, targetKg:+a.targetKg});
+  F.accepted = true; S.profile.activity = clone(a.activity); delete S.profile.goal.activity;
   S.profile.phase = GOALS[a.type].phase; S.profile.nutrition = Object.assign({}, S.profile.nutrition, {mode:"auto"});
   saveProfile(); clearDraft("nut"); close(); go("food"); toast("Targets set: " + fmtN(targets().kcal) + " kcal");
 }
@@ -601,6 +625,7 @@ function bind(o){
       if (b.dataset.set === "_gym"){ F.gym = b.dataset.val; F.keepScroll = true; return draw(); }
       let v = b.dataset.val; if (b.dataset.set === "block") v = +v;
       setPath(F.ans, b.dataset.set, v);
+      if (b.dataset.set.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
       if (b.dataset.set === "type"){ const kg = currentKg(); F.ans.rate = GOALS[v].def; F.ans.prot = v === "cut" ? 2.3 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
       saveDraft(); F.keepScroll = true; draw();
       if (b.classList.contains("obopt") && ["goal","level","type","split"].includes(b.dataset.set)) setTimeout(() => { if (F) next(); }, 220);
@@ -625,7 +650,7 @@ function bind(o){
   });
   o.addEventListener("input", e => {
     const t = e.target;
-    if (t.dataset.range){ F.ans[t.dataset.range] = +t.value; saveDraft(); liveRange(t); }
+    if (t.dataset.range){ setPath(F.ans, t.dataset.range, +t.value); if (t.dataset.range.startsWith("activity.")) S.profile.activity = clone(F.ans.activity); saveDraft(); liveRange(t); }
     if (t.dataset.input){ F.ans[t.dataset.input] = t.value; saveDraft(); }
   });
   o.addEventListener("change", e => { if (e.target.dataset.range){ F.keepScroll = true; draw(); } });
@@ -645,9 +670,12 @@ window.AJOnboard = {
     if (F.step === "build" || F.step === "review") F.step = "block";
     F.dir = "fwd"; document.body.style.overflow = "hidden"; draw();
   },
-  nutrition(fresh){
-    const d = !fresh && loadDraft("nut");
-    F = {kind:"nut", step:d ? d.step : "intro", ans:d ? Object.assign(nutDefaults(), d.ans) : nutDefaults(), dir:"fwd"};
+  nutrition(fresh, step){
+    const d = !fresh && !step && loadDraft("nut");
+    F = {kind:"nut", step:step || (d ? d.step : "intro"), ans:d ? Object.assign(nutDefaults(), d.ans) : nutDefaults(), dir:"fwd", prevAct:S.profile.activity ? clone(S.profile.activity) : undefined};
+    if (!F.ans.activity) F.ans.activity = actDefaults();
+    F.single = step === "activity";
+    S.profile.activity = clone(F.ans.activity);
     document.body.style.overflow = "hidden"; draw();
   },
   lib:L, MUS, generate, KIT_DEFAULT, targetsFor
