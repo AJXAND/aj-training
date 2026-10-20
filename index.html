@@ -1409,6 +1409,7 @@ function removeSample(){
 }
 const hasSample=()=>S.all.sessions.some(x=>x.sample)||S.all.weights.some(x=>x.s)||Object.values(S.all.foodlog).some(d=>(d.entries||[]).some(x=>x.sample))||!!S.prog.sample;
 function sampleBanner(){
+  return "";   // no banner: sample data is switched on and off in Settings, Data, so screens look as a real user sees them
   if (S.profile.showSample===false) return "";
   const n=S.sessions.filter(s=>s.sample).length+S.cardio.filter(c=>c.sample).length;
   if (!n) return "";
