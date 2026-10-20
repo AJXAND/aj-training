@@ -3332,7 +3332,8 @@ function splashDone(){
   setTimeout(()=>{ sp.classList.add("out"); pageAnim("up"); setTimeout(()=>sp.remove(), 600); }, wait);
 }
 setTimeout(splashDone, 3500);
-boot();
+// onboard.js (AJGoal, AJOnboard) loads after this script. Boot once every script has run, or the first render can use the old phase formula.
+if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 function routeHash(h){ if (h==="#weigh"||h==="#photos"){ h==="#weigh"&&on("nutrition")?go("food"):go("progress","body"); setTimeout(()=>{ const el=document.getElementById(h==="#weigh"?"weighin":"photocard"); el&&el.scrollIntoView({block:"start"}); if(h==="#weigh"&&$("#kg")) $("#kg").focus(); },120); } else if (h==="#habits") go("habits"); else if (h==="#food") go("food"); history.replaceState(null,"",location.pathname); }
 if (location.hash) setTimeout(()=>routeHash(location.hash),400);
 if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",e=>{ if(e.data&&e.data.type==="open") routeHash(new URL(e.data.url,location.href).hash); });

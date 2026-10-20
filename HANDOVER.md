@@ -18,7 +18,7 @@ You are taking over development of **AJ Training**, an all-in-one fitness, food 
 ## Repo, hosting, deploy
 - GitHub: `AJXAND/aj-training`, branch `main`. Live at https://ajtraining.quotientgroup.co.uk (GitHub Pages, custom domain in public/CNAME; ajxand.github.io/aj-training redirects there).
 - Deploy = push to main. `.github/workflows/deploy.yml` runs `npm ci && npm run build` (Vite 5.4.11) and publishes `dist`.
-- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v22"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
+- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v23"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
 - Commit messages end with the attribution lines from your session instructions.
 - Backend: Supabase (auth, a `docs` table of `{user_id, path, col, data, deleted, updated_at}`, photo storage, edge functions for the Claude API). See supabase/ and scripts/setup-supabase.sh. The app gets its config from `config.js` (`window.AJ_CONFIG = {supabaseUrl, supabaseAnonKey, vapidPublicKey}`).
 
@@ -64,7 +64,10 @@ You are taking over development of **AJ Training**, an all-in-one fitness, food 
   - lbl2 needs fake-camera .mjpeg clips (blank, handheld, cam, dark). Regenerate them with ffmpeg if you need that test.
 - Check visual changes with screenshots at 390x844 and look at them.
 
-## OPEN BUG (do this first): "kcal left" on Today flips between 2,710 and 2,930 on refresh
+## FIXED in v23: "kcal left" on Today flipped between 2,710 and 2,930 on refresh
+Cause: `boot()` ran before `onboard.js` had loaded (it is the last script tag). On a fresh tab the data was ready first, so `targets()` found no `window.AJGoal` and fell back to the old phase formula, expenditure x 0.80 for a cut (3,660 x 0.8 = 2,928, shown as 2,930). Nothing re-rendered when onboard.js arrived. Fix: boot on DOMContentLoaded. Repro: delay onboard.js by 1.5 s in Playwright; before the fix 5/5 loads showed 2,930, after it 15/15 show 2,710.
+
+### Original notes
 Facts established so far:
 - AJ's current (demo) profile: cut at 1%/week, `dist:"even"`, 86.4 kg (no weigh-ins, so it uses `fallbackKg`), body fat 14% (set manually).
   - Activity: job desk, 9,000 steps, commute 270 min/week.
