@@ -1330,11 +1330,89 @@ function head(title, opts={}){
     <div class="row" style="gap:8px"><button class="coachbtn" data-act="coach" aria-label="Ask AJ Training AI">${ICON.spark}</button><button class="iconbtn" data-goto="settings" aria-label="Settings">${ICON.gear}</button></div>
   </div><h1>${title}</h1>`;
 }
+
+/* ---------- Sample data ----------
+   Six weeks of a believable user, built from the app's current pieces: a 4-day plan (if there's no plan yet),
+   a steady fat-loss goal (if none), logged workouts with double progression, food days near target,
+   weigh-ins trending down, a weekly run, steps and sleep. Everything is flagged sample and is deleted when switched off. */
+function loadSample(){
+  let seed=7; const rnd=()=>{ seed=(seed*16807)%2147483647; return (seed-1)/2147483646; }, jit=(a)=>(rnd()*2-1)*a;
+  const today=new Date(); today.setHours(12,0,0,0); const DAYS=34, dayAt=i=>{ const d=new Date(today); d.setDate(d.getDate()-i); return d; };
+  const start=weekStart(dayAt(DAYS));
+  if (S.prog.placeholder && window.AJOnboard){
+    const ans={kind:"gym",goal:"size",level:"inter",days:["mon","tue","thu","fri"],mins:60,gymOf:{},sports:[],split:null,pri:[],inj:[],love:[],ban:[],block:6,ramp:"rec",rest:"std",start:ymd(start),name:"Sample plan"};
+    S.prog={...AJOnboard.generate(ans,""), sample:true}; saveProg();
+  }
+  if (!S.profile.goal){
+    S.profile={...S.profile, goal:{type:"cut",rate:0.5,prot:2.2,fat:"balanced",dist:"even",startKg:82,targetKg:77,startDate:ymd(dayAt(DAYS)),set:Date.now(),sample:true,prevPhase:S.profile.phase||"maintain"}, phase:"cut"};
+  }
+  if (!habitList().length){
+    const mk=t=>{ const h={...clone(HABIT_TEMPLATES.find(x=>x.tpl===t)), id:uid("h"), since:ymd(dayAt(DAYS)), sample:true}; delete h.why; return h; };
+    S.profile={...S.profile, habitList:[mk("steps"), mk("sleep")]};
+  }
+  S.profile={...S.profile, showSample:true}; saveProfile();
+  const sleepH=habitList().find(h=>h.tpl==="sleep");
+  // weigh-ins: ~0.35 kg a week down, day-to-day water noise, a few missed mornings
+  const w=[]; for (let i=DAYS;i>=1;i--){ if (rnd()<0.18) continue; w.push({d:ymd(dayAt(i)), kg:r1(82-(DAYS-i)*0.05+jit(0.45)), s:true}); }
+  S.all.weights=[...S.all.weights.filter(x=>!x.s), ...w].sort((a,b)=>a.d<b.d?-1:1); saveWeights();
+  // workouts: follow the plan's days, double progression (add reps to the top of the range, then add load)
+  const g=gymList()[0].id, prog={};
+  // realistic starting loads for an intermediate, by movement (dumbbells are per hand)
+  const LOAD={squat:{bb:80,machine:120,smith:80,db:24},hinge:{bb:90,db:28,machine:60},ipress:{bb:60,db:24,machine:60},fpress:{bb:70,db:28,machine:70,cable:20,bw:0},ohp:{bb:40,db:18,machine:45},
+    vpull:{machine:55,cable:20,bw:0},row:{bb:60,db:28,machine:60,cable:55},lat:{db:9,cable:7.5,machine:30},rear:{db:7,cable:10,machine:35},fly:{db:14,cable:12,machine:45},
+    curl:{db:12,bb:30,cable:22,machine:30},triext:{cable:25,db:16,bb:25},pushdown:{cable:27.5},tripress:{bb:60,bw:0,machine:50},kneeflex:{machine:40,bw:0},kneeext:{machine:50},
+    calf:{machine:80,bb:60,db:20},glute:{bb:90,machine:80,cable:20},lunge:{db:18,bb:50},abs:{bw:0,cable:30,machine:40},latiso:{cable:25},abd:{machine:45},add:{machine:50}};
+  const base=(k,x)=>{ const L=(AJOnboard.lib||{})[String(k).replace(/-hvy$/,"")], t=L&&LOAD[L.p]; return t ? (t[x.eq] ?? Object.values(t)[0]) : ({bb:40, db:12, cable:20, machine:40, bw:0}[x.eq] ?? 20); };
+  for (let i=DAYS;i>=1;i--){
+    const dt=dayAt(i), d=dayForDate(dt); if (!d||d.rest||!d.variants) continue; if (rnd()<0.1) continue;
+    const list=d.variants[g]||d.variants[dayGym(d)]||[]; if (!list.length) continue;
+    const ex=list.map(([k,n])=>{ const x=exDef(k); const st=prog[k]||(prog[k]={w:base(k,x), r:x.lo});
+      const sets=Array.from({length:n},(_,j)=>({w:st.w, r:Math.max(x.lo-1, st.r-(j>1?1:0)), drops:[]}));
+      if (st.r>=x.hi){ st.w=r1(st.w+(x.eq==="bw"?0:x.eq==="db"?2:st.w>=40?2.5:1.25)); st.r=x.lo; } else st.r+=x.hi-x.lo>=5?2:1;
+      return {k, n:x.n, m:x.m, custom:null, note:"", sets}; });
+    const ts=new Date(dt); ts.setHours(18,10,0,0);
+    const doc={schema:SCHEMA, id:"smp-s-"+ymd(dt), ts:ts.getTime(), date:ymd(dt), dayKey:d.k, gym:g, phase:"cut", deload:false, mins:52+Math.round(rnd()*18), ex, sample:true};
+    upsert("sessions",doc); putDoc("sessions",doc.id,doc);
+  }
+  // a weekly run and the odd bike ride
+  for (let i=DAYS;i>=1;i--){ const dt=dayAt(i), wd=dt.getDay(); if (!(wd===6 || (wd===3 && rnd()<0.5))) continue;
+    const type=wd===6?"run":"cycle", mins=wd===6?28+Math.round(rnd()*10):40, km=wd===6?r1(mins/5.6):null, kg=currentKg(), m=cardioMet(type, type==="run"?"Easy, 10 km/h":"Moderate, 20-22 km/h", mins, km), kc=cardioKcal(m.met,mins,kg);
+    const doc={schema:SCHEMA,id:"smp-c-"+ymd(dt),ts:dt.getTime(),date:ymd(dt),type,level:m.level,mins,km,met:m.met,code:m.code,kg:r1(kg),kcal:kc.gross,net:kc.net,sample:true};
+    upsert("cardio",doc); putDoc("cardio",doc.id,doc); }
+  // food: four meals a day, dinner sized so the day lands near target
+  const target=targets().kcal||2300;
+  const B=[["Porridge with whey and berries",520,42,64,10],["Eggs on toast",480,28,40,22],["Greek yoghurt, granola and fruit",450,32,55,12]];
+  const Lu=[["Chicken, rice and veg",640,52,74,14],["Tuna wrap and salad",560,40,52,18],["Chicken Caesar salad",590,46,22,34]];
+  const Sn=[["Protein bar",210,20,22,7],["Banana and peanut butter",290,8,30,16],["Skyr pot",150,15,18,2]];
+  const Dn=[["Salmon, potatoes and greens",0,0.07,0.09,0.042],["Beef chilli with rice",0,0.075,0.11,0.03],["Chicken stir-fry with noodles",0,0.08,0.11,0.025]];
+  for (let i=DAYS;i>=1;i--){ const dt=dayAt(i), date=ymd(dt), at=h=>{ const t=new Date(dt); t.setHours(h,Math.round(rnd()*40),0,0); return t.getTime(); };
+    const pick=a=>a[Math.floor(rnd()*a.length)], b=pick(B), l=pick(Lu), sn=pick(Sn), dn=pick(Dn);
+    const dk=Math.max(450, Math.round(target+jit(170)-b[1]-l[1]-sn[1]));
+    const e=(id,t,[n,k,p,c,f])=>({id:"smp-f-"+date+"-"+id, t, name:n, amount:1, unit:"serving", kcal:k, p, c, f, src:"food", sample:true});
+    const entries=[e("b",at(8),b), e("l",at(13),l), e("s",at(16),sn), e("d",at(19),[dn[0],dk,Math.round(dk*dn[2]),Math.round(dk*dn[3]),Math.round(dk*dn[4])])];
+    const cur=S.all.foodlog[date]; S.all.foodlog[date]={date, entries:[...((cur&&cur.entries)||[]).filter(x=>!x.sample), ...entries], status:"complete"}; saveFoodDay(date); }
+  // steps and sleep
+  for (let i=DAYS;i>=1;i--){ const date=ymd(dayAt(i)), cur=S.all.habits[date];
+    if (cur && !cur.sample) continue;
+    const doc={date, schema:SCHEMA, sample:true, phone:Math.round(6500+rnd()*6500), v:sleepH?{[sleepH.id]:Math.round((7.0+rnd()*1.6)*4)/4}:{}};
+    S.all.habits[date]=doc; putDoc("habits",date,doc); }
+  derive();
+}
+function removeSample(){
+  for (const l of ["sessions","cardio","photosets"]) S.all[l].filter(x=>x.sample).forEach(x=>removeItem(l,x.id));
+  for (const [date,doc] of Object.entries(S.all.foodlog)){ if ((doc.entries||[]).some(x=>x.sample)){ doc.entries=doc.entries.filter(x=>!x.sample); saveFoodDay(date); } }
+  for (const [date,doc] of Object.entries(S.all.habits)){ if (doc.sample){ delete S.all.habits[date]; delDoc("habits",date); } }
+  if (S.all.weights.some(x=>x.s)){ S.all.weights=S.all.weights.filter(x=>!x.s); saveWeights(); }
+  if (S.prog.sample){ S.prog=clone(DEFAULT_PROGRAMME); saveProg(); }
+  const p={...S.profile, showSample:false}; if (p.goal&&p.goal.sample){ p.phase=p.goal.prevPhase||"maintain"; delete p.goal; } if (Array.isArray(p.habitList)) p.habitList=p.habitList.filter(h=>!h.sample);
+  S.profile=p; saveProfile(); derive();
+}
+const hasSample=()=>S.all.sessions.some(x=>x.sample)||S.all.weights.some(x=>x.s)||Object.values(S.all.foodlog).some(d=>(d.entries||[]).some(x=>x.sample))||!!S.prog.sample;
 function sampleBanner(){
   if (S.profile.showSample===false) return "";
   const n=S.sessions.filter(s=>s.sample).length+S.cardio.filter(c=>c.sample).length;
   if (!n) return "";
-  return `<div class="banner info"><b>Sample data on.</b> Entries before today are examples. <button class="link" data-act="sampleOff">Hide them</button></div>`;
+  return `<div class="banner info"><b>Sample data on.</b> Entries before today are examples. <button class="link" data-act="sampleOff">Remove them</button></div>`;
 }
 function weekDates(ref){ const ws=weekStart(ref); return [0,1,2,3,4,5,6].map(i=>{ const d=new Date(ws); d.setDate(ws.getDate()+i); return d; }); }
 /* Sessions can be moved within a week: programme.moves[weekStartDate] = {dayKey: newWeekday}. Moving onto a session swaps them. */
@@ -2512,8 +2590,8 @@ function settingsPage(pg){
   if (pg==="health") return window.AJP?AJP.settingsCards("health"):"";
   if (pg==="data") return `<div class="card"><h2>Export</h2><span class="small muted">Everything you've logged, as one file you own.</span><button class="btn ghost" data-act="export">Export all data</button></div>
     ${window.AJP?AJP.settingsCards("import"):""}
-    <div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Sample data</h2><span class="small muted">Example workouts, cardio, food and weigh-ins to explore the app.</span></div>
-      <button class="switch" data-act="sampleToggle" role="switch" aria-checked="${p.showSample!==false}" aria-label="Show sample data"><i></i></button></div></div>
+    <div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Sample data</h2><span class="small muted">Five weeks of example workouts, food, weigh-ins, cardio and habits, so you can see the app in use. Turning it off deletes all of it, including any sample plan and goal it added.</span></div>
+      <button class="switch" data-act="sampleToggle" role="switch" aria-checked="${hasSample()}" aria-label="Sample data"><i></i></button></div></div>
     <div class="card"><h2>Data sources</h2><span class="small muted">Food search: USDA FoodData Central (public domain) via the TempoLife dataset (CC-BY-4.0). Barcodes: Open Food Facts (ODbL). Anything else is estimated by AJ Training AI and marked as an estimate. Activity energy: 2024 Adult Compendium of Physical Activities.</span></div>`;
   if (pg==="help") return `<div class="card"><h2>Science library</h2><span class="small muted">Every rule your plan, progression and targets follow, the study behind it, and exactly how the app uses it.</span><button class="btn orange" data-act="science">Open the library</button></div>`;
   if (pg==="account") return window.AJP?AJP.settingsCards("account"):"";
@@ -3012,7 +3090,7 @@ $("#main").addEventListener("click", async e=>{
       if (n.mode==="manual" && $("#nK")){ n.kcal=+$("#nK").value||null; n.p=+$("#nP").value||0; n.f=+$("#nF").value||0; n.c=+$("#nC").value||0; }
       S.profile={...p, name:($("#pName")?$("#pName").value.trim():p.name), sex:($("#pSex")?$("#pSex").value||null:p.sex), birthDate:birth||p.birthDate, birthSet:p.birthSet||!!birth&&birth!==DEFAULT_PROFILE.birthDate, heightCm:+$("#pH").value||p.heightCm, bfManual:parseFloat($("#pBf").value)||null, phase:ph, phaseStart:changed?ymd(new Date()):p.phaseStart, nutrition:n};
       saveProfile(); render(); toast(changed?`Phase set to ${PHASES[ph].label}`:"Saved"); return; }
-    case "sampleOff": case "sampleToggle": S.profile.showSample = act==="sampleOff" ? false : S.profile.showSample===false; saveProfile(); render(); toast(S.profile.showSample?"Sample data shown":"Sample data hidden"); return;
+    case "sampleOff": case "sampleToggle": { const on=act==="sampleToggle" && !hasSample(); if (on){ loadSample(); render(); toast("Sample data added: 5 weeks of workouts, food, weigh-ins, cardio and habits"); } else { removeSample(); render(); toast("Sample data removed"); } return; }
     case "export": exportAll(); return;
     case "takePhoto": $("#photoCam").click(); return;
     case "uploadPhoto": $("#photoLib").click(); return;
