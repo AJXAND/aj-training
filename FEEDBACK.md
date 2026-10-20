@@ -84,6 +84,14 @@ Names: none of the first six landed. Keep the propeller logo; more options neede
 Spotted by me during this stop:
 - **Numbers disagree between screens**: review shows Upper back 6 / Triceps 6.5 (fractional, direct + half indirect) while Plan's "Sets this week" shows 2 and 4 (direct only). Must use one consistent count.
 
+54. **Rest times feel far too long** (compounds currently 3 min, isolations 1.5 min). Everything must be evidence-backed and explained; let users adjust.
+55. **"Start lower a · My" button looks awful** (bad casing and the gym name truncated).
+56. **Workout picking**: one tap to start today's workout; week and month shown separately. Possibly Today / Week / Month tabs.
+57. **Supersets** in the live workout.
+58. **Substitute an exercise** with a close alternative, for a reason (machine taken, body doesn't feel right for it).
+59. **Live workout layout**: the current exercise expands and the others collapse, with a clear "you're here" state. Logging weight and reps must be super fast and never glitchy.
+60. **Auto-suggested weights and reps** for the next session from last time (progressive overload), at least as an option; design the best way to do it.
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
