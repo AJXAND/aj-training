@@ -1746,7 +1746,11 @@ function goalLine(tg){
 }
 // Running plans: this week's prescribed session for a date (sessions change week to week as volume builds).
 function enduWeek(date){ const P=S.prog.endurance; if (!P) return null; const t=parseD(date||ymd(new Date())); return P.weeks.find(w=>{ const a=parseD(w.start); return t>=a && t<new Date(a.getTime()+7*864e5); })||null; }
-function runFor(date){ const w=enduWeek(date); if (!w) return null; const wd=parseD(date).getDay(), s=w.sessions[wd]; return s?{...s, ...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), week:w}:null; }
+function runFor(date){ const w=enduWeek(date); if (!w) return null; const dt=parseD(date), mv=movesFor(dt), here=dayForDate(dt);
+  let wd=dt.getDay();
+  if (here && here.movedFrom!=null) wd=here.movedFrom;
+  else if (here && here.rest && String(here.k).startsWith("_r")) return null;
+  const s=w.sessions[wd]; return s?{...s, ...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), week:w}:null; }
 function runAmt(r){ return r.type==="hysim"?r.km+" rounds":r.km?r.km+" km":r.mins?r.mins+" min":""; }
 function runCard(r, date){
   const sp={run:"run",swim:"swim",cycle:"cycle",hyrox:"hyrox"}[r.sport||"run"]||"run", done=S.cardio.filter(c=>c.date===date && c.type===sp);
@@ -1889,7 +1893,7 @@ function foodMacros(f, amount, unit){
 /* ---------- Plan ---------- */
 function renderPlan(){
   const view=S.planView||"today", ph=PHASES[S.profile.phase], bi=blockInfo();
-  const tags=S.prog.placeholder?"":`<div class="row"><span class="tag rep">${S.prog.endurance?esc(S.prog.endurance.eventName):ph.label}</span><span class="tag">${esc(S.prog.name)}</span>${bi?(bi.pre?`<span class="tag">Starts ${fmtD(bi.starts)}</span>`:`<span class="tag">Week ${bi.week} of ${bi.len}</span><span class="tag ${bi.deload?"hold":"up"}">${bi.deload?"Deload week":"Target "+bi.rir+" RIR"}</span>`):""}</div>`;
+  const tags=S.prog.placeholder?"":`<div class="row"><span class="tag rep">${S.prog.endurance?esc(S.prog.endurance.eventName):ph.label}</span><span class="tag">${esc(S.prog.name)}</span>${bi?(bi.pre?`<span class="tag">Starts ${fmtD(bi.starts)}</span>`:(bi.brk?`<span class="tag hold">Break week: the block is paused</span>`:`<span class="tag">Week ${bi.week} of ${bi.len}</span><span class="tag ${bi.deload?"hold":"up"}">${bi.deload?"Deload week":"Target "+bi.rir+" RIR"}</span>`)):""}</div>`;
   return head("Train")+tags+seg("planView",[["today","Today"],["week","Week"],["month","Month"]],view)
     +(view==="today"?renderTrainToday():view==="week"?renderWeekView()+planFoot():renderMonthView()+planFoot());
 }
@@ -1918,7 +1922,7 @@ function renderTrainToday(){
     if (!pre && list.length){
       const sets=list.reduce((a,x)=>a+x[1],0);
       out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today${t.movedFrom!=null?" · moved":""}</span><h2>${esc(t.label)}</h2></div>${done.length?`<span class="tag up">Done</span>`:gymList().length>1?`<span class="tag rep">${esc(gymName(g))}</span>`:""}</div>
-        <div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(t,g)}</b><span>min</span></div><div><b class="num">${bi&&!bi.pre?(bi.deload?"DL":bi.rir):"–"}</b><span>${bi&&bi.deload?"deload":"RIR"}</span></div></div>
+        <div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(t,g)}</b><span>min</span></div><div><b class="num">${bi&&!bi.pre&&!bi.brk?(bi.deload?"DL":bi.rir):"–"}</b><span>${bi&&bi.brk?"break":bi&&bi.deload?"deload":"RIR"}</span></div></div>
         <div class="tdlist">${list.slice(0,8).map(([k,n])=>{ const x=exDef(k); return `<span><b>${esc(x.n)}</b><em class="num">${n} × ${x.lo}–${x.hi}</em></span>`; }).join("")}</div>
         <div class="grid2"><button class="btn ghost" data-goto="train">Preview or change</button><button class="btn orange" data-act="startDay" data-k="${t.k}" data-g="${g}">${done.length?"Train again":"Start workout"}</button></div></div>`;
     } else if (!pre && !run){
@@ -2141,8 +2145,8 @@ function swapClick(ev){
   if (k==="pick"){
     const a=S.active, e=a.ex[sw.ei], x=AJOnboard.lib[b.dataset.k], old=e.k;
     const def={n:x.n, lo:x.lo, hi:x.hi, rest:x.rest, eq:x.eq, m:AJOnboard.MUS[Object.keys(x.mu).find(m=>x.mu[m]>=1)]||"Other", mu:x.mu, len:x.len, note:x.note};
-    const fresh=buildEx(x.k, e.sets.length, def, a.gym);
-    e.sets=e.sets.map((st,i)=>st.done?st:{...fresh.sets[i]}); e.k=x.k; e.custom=def; e.sub={from:old, reason:sw.reason||"pref"}; e.rest=null;
+    const fresh=buildEx(x.k, S.deload?e.sets.length*2:e.sets.length, def, a.gym);
+    e.sets=e.sets.map((st,i)=>st.done?st:{w:"",r:"",done:false,pw:"",pr:"",drops:[],...(fresh.sets[i]||{})}); e.k=x.k; e.custom=def; e.sub={from:old, reason:sw.reason||"pref"}; e.rest=null;
     if (sw.always){ const d=S.prog.days.find(dd=>dd.k===a.dayKey); if (d&&d.variants&&d.variants[a.gym]){ d.variants[a.gym]=d.variants[a.gym].map(v=>v[0]===old?[x.k,...v.slice(1)]:v); S.prog.exercises={...S.prog.exercises, [x.k]:def}; e.custom=null; saveProg(); } }
     S.swap=null; saveActive(); renderSwap(); render(); toast(`Swapped to ${x.n}${sw.always?", saved to your plan":" for today"}`); return;
   }
@@ -2472,6 +2476,7 @@ function setTheme(v){
 function go(tab, seg){
   const from=S.tab;
   if (tab==="settings" && S.tab!=="settings"){ S.prevTab=S.tab; S.setPage=null; }
+  if (S.tab==="foodadd" && tab!=="foodadd") S.addMeal=null;
   if (tab==="progress" && seg) { S.progSeg=seg; }
   if (tab!=="progress") S.exView=null;
   S.tab=tab; S.confirm=null; closeActions(); render(); window.scrollTo(0,0);
@@ -2579,7 +2584,7 @@ function foodSheetSave(){
     entry={id:a.entryId||uid("f"), t:a.t||entryTime(date), name:f.name, foodId:f.id, amount:amt, unit:unit==="serving"?(f.serving.label||"serving"):unit, grams:Math.round(m.g), kcal:Math.round(m.kcal), p:r1(m.p), f:r1(m.f), c:r1(m.c), src:a.src||"food"};
     saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:amt, lastUnit:unit});
   }
-  if (a.meal) entry.meal=a.meal; else if (!a.entryId && S.addMeal) entry.meal=S.addMeal;
+  if (a.meal) entry.meal=a.meal; else if (!a.entryId && S.addMeal && S.tab==="foodadd") entry.meal=S.addMeal;
   addFoodEntry(date, entry);
   S.foodAdd=null; S.foodQuery=""; S.pendingBarcode=null; S.confirm=null; render(); toast(`Logged ${entry.name}: ${fmtN(entry.kcal)} kcal`);
 }
@@ -2818,11 +2823,11 @@ $("#main").addEventListener("click", async e=>{
     if (n==="progSeg"){ S.progSeg=v; S.exView=null; }
     else if (n==="planView") S.planView=v;
     else if (n==="foodMode") S.foodMode=v;
-    else if (n==="nutMode") S.profile.nutrition={...(S.profile.nutrition||{}), mode:v};
+    else if (n==="nutMode") { S.profile.nutrition={...(S.profile.nutrition||{}), mode:v}; saveProfile(); }
     else if (n==="theme") setTheme(v);
     else if (n==="restPref") { S.profile={...S.profile, restPref:v}; saveProfile(); }
     else if (n==="pSexSeg") S.profile={...S.profile, sex:v}, saveProfile();
-    else if (n==="unitH"||n==="unitW") { S.profile={...S.profile, units:{...(S.profile.units||{}), [n==="unitH"?"h":"w"]:v}}; saveProfile(); }
+    else if (n==="unitH"||n==="unitW") { if ($("#pName")){ S.profile={...S.profile, name:$("#pName").value.trim()}; } S.profile={...S.profile, units:{...(S.profile.units||{}), [n==="unitH"?"h":"w"]:v}}; saveProfile(); }
     render(); if (["progSeg","planView"].includes(n)) pageAnim("soft"); return;
   }
   const act=b.dataset.act, prev=S.confirm;
@@ -2890,7 +2895,7 @@ $("#main").addEventListener("click", async e=>{
     case "saveTargets": { const n={...(S.profile.nutrition||{}), mode:"manual", kcal:+$("#nK").value||null, p:+$("#nP").value||0, f:+$("#nF").value||0, c:+$("#nC").value||0}; S.profile={...S.profile, nutrition:n}; saveProfile(); render(); toast("Targets saved"); return; }
     case "saveYou": {
       const p=S.profile, dv=($("#pDob").value||"").trim(); let birthDate=p.birthDate, birthSet=p.birthSet;
-      if (dv){ const m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(dv), d=m&&new Date(+m[3],+m[2]-1,+m[1],12); if (!d||d.getDate()!==+m[1]){ toast("Enter your date of birth as DD/MM/YYYY"); return; } birthDate=ymd(d); birthSet=true; }
+      if (dv){ const m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(dv), d=m&&new Date(+m[3],+m[2]-1,+m[1],12); if (!d||d.getDate()!==+m[1]||d.getMonth()!==+m[2]-1){ toast("Enter your date of birth as DD/MM/YYYY"); return; } birthDate=ymd(d); birthSet=true; }
       let h=p.heightCm; if ($("#pH")) h=+$("#pH").value||h; else if ($("#pFt")) h=Math.round(((+$("#pFt").value||0)*12+(+$("#pIn").value||0))*2.54);
       if (!(h>=120&&h<=230)){ toast("Height looks off. Check it and try again."); return; }
       const bf=parseFloat($("#pBf").value); 

@@ -19,6 +19,15 @@ Phase 1 bugs (done, live):
 - ℹ️ Camera permission prompt: iOS asks each time a home-screen web app opens the camera; only a native app avoids it.
 - ❓ Creatine habit: saves correctly in testing; ask AJ whether he cancelled it.
 
+Phases 1b-6 (done, live, 20 Oct):
+- ✅ Phase 1 polish: items 1-9, 16, 43, 61-69, 71-73, 76, 82 (typed DOB/height/weight with units, body-fat guides, protein presets, projection, sliders, status bar, Claude renamed, Body merged into Food, generic activity with step estimates, habit plan examples, honesty reminder).
+- ✅ Phase 2 structure: items 11-13, 15, 50, 53, 56, 74, 77, 78, 84 (Today/Train/Food/Progress, Train hub with one-tap start, move sessions, 70-sport picker, Progress showcase, dashboard, + menu, grouped Settings).
+- ✅ Phase 3 training engine: items 18-25, 26-27 (minus machine pictures), 28-29 (minus icons), 30-32, 34, 35 (minus illustrations), 36-38, 40-42, 44-47, 49, 51, 52, 54.
+- ✅ Phase 4 live workout: items 57-60 (accordion, supersets, swap with reason, suggestions carried set to set, adjustable rest).
+- ✅ Phase 5 food: items 14, 70, 79, 80, 83 (Add food page, tray, favourites, re-log, meal groups with drag, photo AI, View links).
+- ⏸ Excluded by AJ for now: pictures and icons (items 26 machine pictures, 28/74 sport icons, 33 muscle icons, 35 exercise illustrations, 81 food icons).
+- ⏸ Later: wearables (75), rebrand (17), native app.
+
 ## Stop 1: Launch and first-time setup
 
 1. **Section cards look greyed out** on "What do you want to use?" (unselected state is too faded; should look clearly tappable).

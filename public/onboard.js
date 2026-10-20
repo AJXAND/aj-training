@@ -291,7 +291,7 @@ const special = p => ["cond","sled","carry","erg"].includes(p);
 function exTime(ex, sets){ const r = SUPER && !ex.c && !special(ex.p) ? ex.rest * 0.55 : ex.rest; return sets * (r + 45) / 60 + 2; }
 function buildVariant(dayKeys, gym, ans, seed){
   SUPER = ans.supersets !== false;
-  const kit = (ans.kit && ans.kit[gym]) || ((gymList().find(g => g.id === gym) || {}).kit) || KIT_DEFAULT[gym] || KIT_FULL, used = new Set(), tg = targetsFor(ans), pri = new Set(ans.pri || []);
+  const kit = (ans.kit && ans.kit[gym]) || (((flowGyms() || gymList()).find(g => g.id === gym) || {}).kit) || KIT_DEFAULT[gym] || KIT_FULL, used = new Set(), tg = targetsFor(ans), pri = new Set(ans.pri || []);
   const days = dayKeys.map(tk => {
     const dayUsed = new Set(), list = [];
     const slots = ans.goal === "strength" && T[tk].slots[0] === "ipress" ? ["fpress", ...T[tk].slots.slice(1).filter(x => x !== "fpress")] : T[tk].slots;
@@ -437,7 +437,7 @@ function generate(ans, seed){
     : (SPLITS[n] || []).find(s => s.id === ans.split) || (SPLITS[n] || [])[0];
   const placed = placeDays(split.days, ans);
   const seq = placed.map(p => p.tk);
-  const gl = gymList(), vs = Object.fromEntries(gl.map(g => [g.id, buildVariant(seq, g.id, ans, seed)])), first = vs[gl[0].id];
+  const gl = (flowGyms() || gymList()), vs = Object.fromEntries(gl.map(g => [g.id, buildVariant(seq, g.id, ans, seed)])), first = vs[gl[0].id];
   const exercises = {};
   const rs = RESTSCALE[ans.rest || "std"] || 1;
   const toList = (v, i) => { let heavyDone = false; return v.days[i].list.map((x, j) => {
@@ -645,7 +645,7 @@ function autoLiftDays(plan, n){
   return [1,2,3,4,5,6,0].sort((a, b) => score(a) - score(b)).slice(0, n).filter(d => score(d) < 99).sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7));
 }
 function generateEndu(ans, seed){
-  const plan = ans.kind === "hyrox" ? hyroxPlan(ans) : ans.kind === "tri" ? triPlan(ans) : enduPlan(ans), gl = gymList(), hybrid = ans.kind === "hybrid";
+  const plan = ans.kind === "hyrox" ? hyroxPlan(ans) : ans.kind === "tri" ? triPlan(ans) : enduPlan(ans), gl = (flowGyms() || gymList()), hybrid = ans.kind === "hybrid";
   let liftDays = ans.kind === "hyrox" ? plan.strengthDays : WD.filter(([k]) => (ans.liftDays || []).includes(k)).map(x => x[1]);
   if (ans.kind !== "hyrox" && !liftDays.length && +ans.strengthN > 0) liftDays = autoLiftDays(plan, +ans.strengthN);
   const exercises = {};
@@ -656,7 +656,7 @@ function generateEndu(ans, seed){
     else tplSeq = liftDays.map((_, i) => i % 2 ? "runB" : "runA");
   }
   const vs = Object.fromEntries(gl.map(g => [g.id, tplSeq.length ? buildVariant(tplSeq, g.id, {...ans, pri:hybrid ? (ans.pri || []) : [], mins:hybrid ? (ans.mins || 60) : 45, level:ans.level || "inter"}, seed) : null]));
-  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
+  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return x.ss && hybrid ? [e.k, x.sets, x.ss] : [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
   const w0 = plan.weeks[0];
   const days = WD.map(([k, wd]) => {
     const run = w0.sessions[wd] || plan.weeks.find(w => w.sessions[wd])?.sessions[wd];
@@ -725,6 +725,8 @@ function close(){ const o = document.getElementById("ob"); document.body.style.o
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
 function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
+// during the plan builder, generators use the gyms being edited; they're only saved with the plan
+const flowGyms = () => (F && F.kind === "prog" && F.ans && F.ans.gyms && F.ans.gyms.length) ? F.ans.gyms : null;
 function gymsDraft(){ return gymList().map(g => ({id:g.id, name:g.name, kit:(g.kit || KIT_FULL).slice(), dbMax:g.dbMax || 40, dbStep:g.dbStep || 2, plate:g.plate || 1.25})); }
 function progDefaults(){
   const p = S.prog || {}, prev = p.setup, gyms = gymsDraft();
@@ -732,7 +734,7 @@ function progDefaults(){
   const base = {gtype:null, kind:"gym", goal:"size", level:"inter", days:DAYPICK[4].slice(), mins:70, gymOf:{}, gyms, kit, sports:[], split:null, customSeq:null, pri:[], inj:[], injText:"", injAI:null, love:[], ban:[],
     block:6, ramp:"rec", rest:"std", breaks:[], start:nextMonday(), phase:S.profile.phase || "maintain", name:"Block 1",
     event:"general", goalKm:15, hasDate:false, raceDate:addWeeks(16), runLevel:2, weeklyKm:22, longest:10, runs:3, longDay:"sat", runDays:null, strengthN:2, liftDays:[], nDays:4, tri:"olympic", triLevel:1, division:"Open"};
-  if (prev && prev.gtype) return Object.assign(base, clone(prev), {gyms, kit});
+  if (prev && prev.gtype) return Object.assign(base, clone(prev), {gyms, kit, start:nextMonday(), breaks:[], customAI:null, customDone:false, hasDate:prev.hasDate && prev.raceDate > ymd(new Date())});
   return base;
 }
 function endDefaults(){ return {}; }
@@ -966,7 +968,7 @@ function pStep(s, a){
     <div class="obfld"><span class="obl">Longest run in the last 30 days</span><div class="obunitrow">${nf("longest", "num", a.longest, "Longest run in km", 90)}<span>km</span></div>
       <div class="obslider"><input type="range" min="0" max="60" step="1" value="${a.longest}" data-range="longest" aria-label="Longest run"></div>
       <span class="obhint">Long runs never grow more than 10% beyond your longest of the last month: in 5,200 runners, single runs that jumped past that predicted injury. ${src("progression-run")}</span></div>`
-    : `<p class="obnote">You'll start with a 9-week run/walk build (modelled on the NHS Couch to 5K: three sessions a week), then move on to your goal.</p>`}`};
+    : a.kind === "hyrox" ? `<p class="obnote">Runs start short and easy, with walk breaks whenever you need them; the race-pace work builds gradually.</p>` : `<p class="obnote">You'll start with a 9-week run/walk build (modelled on the NHS Couch to 5K: three sessions a week), then move on to your goal.</p>`}`};
   case "rundays": return {title:"How often can you run?", body:`
     ${numSeg("runs", 2, 7, a.runs, +a.runLevel <= 1 ? 3 : 4)}
     <div class="obfld"><span class="obl">Long run day</span>${seg2("longDay", [["sat","Saturday"],["sun","Sunday"],["wed","Midweek"]], a.longDay)}</div>
@@ -1009,7 +1011,7 @@ function volChart(prog, gym){
 }
 function sessLabel(s2){ return s2.km ? s2.km + " km" : s2.mins ? s2.mins + " min" : ""; }
 function reviewEndu(a){
-  const prog = F.out, P = prog.endurance, gl = gymList(), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, byMins = P.unit === "mins" || P.weeks.some(w => w.phase === "Run/walk");
+  const prog = F.out, P = prog.endurance, gl = (flowGyms() || gymList()), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, byMins = P.unit === "mins" || P.weeks.some(w => w.phase === "Run/walk");
   const val = w => P.unit === "mins" ? w.mins : w.km || (w.mins ? w.mins / 8 : 0);
   const mx = Math.max(...P.weeks.map(val), 10), col = {"Run/walk":"var(--weight)", Base:"var(--cardio)", Build:"var(--orange)", Peak:"var(--prot)", Taper:"var(--carb)"};
   const w0 = P.weeks[0], peak = P.weeks.find(w => w.phase === "Peak") || P.weeks.slice().sort((x, y) => val(y) - val(x))[0];
@@ -1041,7 +1043,7 @@ function reviewEndu(a){
     </div>`, cta:"Save plan"};
 }
 function review(a){
-  const prog = F.out, gl = gymList(), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, gn = id => { const n = (gl.find(x => x.id === id) || {}).name || ""; return n.length > 12 ? n.split(/\s+/).map(w => w[0]).join("").toUpperCase() : n; };
+  const prog = F.out, gl = (flowGyms() || gymList()), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, gn = id => { const n = (gl.find(x => x.id === id) || {}).name || ""; return n.length > 12 ? n.split(/\s+/).map(w => w[0]).join("").toUpperCase() : n; };
   const train = prog.days.filter(d => !d.rest), su = prog.setup;
   const reps = su.level === "new" ? "Compounds 8-12 reps, isolation 10-15 while you learn the lifts." : su.goal === "strength" ? "Main barbell lifts 3-6 reps for strength; the rest 6-15 reps for muscle." : su.goal === "power" ? "One heavy lift a day (4-6 reps), the rest 6-15 reps." : "Mostly 6-15 reps. Muscle grows similarly from about 6 to 30 reps when sets end close to failure; heavier loads mainly build more maximal strength.";
   return {title:"Your block", wide:true, body:`
@@ -1268,7 +1270,7 @@ function projChart(kg, target, rk, weeks, G){
 /* ---------- Render + events ---------- */
 function draw(){
   const o = el(), steps = stepsOf(), i = Math.max(0, steps.indexOf(F.step)), s = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans);
-  const blocked = F.kind === "prog" && F.step === "days" && F.ans.days.length < 2;
+  const blocked = F.kind === "prog" && F.step === "days" && F.ans.kind === "gym" && F.ans.days.length < 1;
   const scrollY = o.querySelector(".obbody") ? o.querySelector(".obbody").scrollTop : 0;
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
   const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
@@ -1304,7 +1306,7 @@ function next(){
     if (F.step === "days" && a.kind === "gym" && !a.days.length){ toast("Pick at least one day"); return; }
     if (F.step === "event" && a.event === "ultra" && !(+a.goalKm > 42.2)){ toast("An ultra is anything longer than 42.2 km"); return; }
     if (F.step === "rundays"){ a.runDays = spreadDays(+a.runs, a.longDay); }
-    if (F.step === "gyms"){ a.kit = Object.fromEntries(a.gyms.map(g => [g.id, g.kit.slice()])); S.profile = {...S.profile, gyms:clone(a.gyms)}; saveProfile(); }
+    if (F.step === "gyms"){ a.kit = Object.fromEntries(a.gyms.map(g => [g.id, g.kit.slice()])); }
     if (F.step === "split"){ const r = recommendSplit(a); if (!a.split) a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; if (a.split === "custom" && !(a.customSeq && a.customSeq.length === a.days.length)) a.customSeq = ((SPLITS[a.days.length] || [])[0] || {days:[]}).days.slice(); }
   }
   go2(steps[Math.min(steps.length - 1, i + 1)]);
@@ -1312,7 +1314,7 @@ function next(){
 function back(){ const steps = stepsOf(), i = steps.indexOf(F.step); if (F.step === "custom" || i < 0){ return go2("goal", "back"); } if (i <= 0) return close(); go2(steps[F.step === "review" && F.kind === "prog" ? i - 2 : i - 1], "back"); }
 function runBuild(){
   const a = F.ans, k = a.kind;
-  const lines = k === "gym" ? [a.goal === "crossfit" ? "Mixing strength and conditioning" : "Choosing your split", "Placing sessions around your week", ...gymList().map(g => "Picking exercises for " + g.name), "Setting weekly volume per muscle", "Fitting sessions into " + a.mins + " min", "Planning effort, rest and the deload"]
+  const lines = k === "gym" ? [a.goal === "crossfit" ? "Mixing strength and conditioning" : "Choosing your split", "Placing sessions around your week", ...(flowGyms() || gymList()).map(g => "Picking exercises for " + g.name), "Setting weekly volume per muscle", "Fitting sessions into " + a.mins + " min", "Planning effort, rest and the deload"]
     : k === "hyrox" ? ["Mapping the weeks to " + (a.hasDate ? "race day" : "a 12-week build"), "Setting run intervals at race pace", "Building race simulations", "Writing station strength", "Planning recovery weeks"]
     : k === "tri" ? ["Mapping the weeks to " + (a.hasDate ? "race day" : "your distance"), "Balancing swim, bike and run", "Keeping most of it easy", "Adding the weekly brick", ...(+a.strengthN ? ["Writing strength sessions"] : []), "Planning the taper"]
     : ["Mapping the weeks to " + (a.event === "general" ? "your goal" : a.hasDate ? "race day" : "being ready"), ...(+a.runLevel === 0 ? ["Starting with a run/walk build"] : []), "Splitting base, build, peak" + (a.event === "general" ? "" : " and taper"), "Setting the long-run progression", "Balancing easy and hard runs", ...(+a.strengthN ? ["Writing strength sessions"] : []), ...((EVENTS[a.event] || {}).heat ? ["Adding pack and heat training"] : [])];
@@ -1327,7 +1329,7 @@ function runBuild(){
 }
 function acceptProg(){
   const p = F.out; delete p.vol; const keep = clone(p);
-  S.profile = {...S.profile, gyms:gymList().map(g => ({...g, kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
+  S.profile = {...S.profile, gyms:clone(F.ans.gyms || gymList()).map(g => ({...g, kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
   S.prog = keep; if (db) putDocP(keep); else lsSet("prog", keep);
   clearDraft("prog"); S.planView = "today"; close(); go("plan"); toast("Plan saved. Week 1 starts " + fmtD(keep.startDate));
 }
@@ -1419,7 +1421,7 @@ function bind(o){
       let nv = cur.includes(v) ? cur.filter(x => x !== v) : cur.concat(v);
       if (path === "pri" && nv.length > 3) nv = nv.slice(1);
       setPath(F.ans, path, nv);
-      if (path === "days"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!gymList().some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = gymList()[0].id; }); F.ans.split = null; }
+      if (path === "days"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!(flowGyms() || gymList()).some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = (flowGyms() || gymList())[0].id; }); F.ans.split = null; }
       saveDraft(); F.keepScroll = true; draw(); return;
     }
     if (b.dataset.lift){
@@ -1513,7 +1515,8 @@ window.AJOnboard = {
   programme(fresh){
     const d = !fresh && loadDraft("prog");
     F = {kind:"prog", step:d ? d.step : "intro", ans:d ? Object.assign(progDefaults(), d.ans) : progDefaults(), seed:""};
-    if (F.step === "build" || F.step === "review") F.step = "block";
+    if (F.step === "build" || F.step === "review"){ const st = stepsOf(); F.step = st[Math.max(0, st.indexOf("build") - 1)]; }
+    if (!stepsOf().includes(F.step)) F.step = "intro";
     F.dir = "fwd"; document.body.style.overflow = "hidden"; draw();
   },
   nutrition(fresh, step){
@@ -1524,6 +1527,6 @@ window.AJOnboard = {
     S.profile.activity = clone(F.ans.activity);
     document.body.style.overflow = "hidden"; draw();
   },
-  lib:L, MUS, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
+  lib:L, MUS, fmtH, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
 };
 })();
