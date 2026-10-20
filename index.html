@@ -396,6 +396,7 @@ img{max-width:100%}
 .sc-hint{margin:0;font-weight:600;text-align:center}
 .sc-ring{width:160px;height:4px;border-radius:2px;background:#fff3;overflow:hidden}
 .sc-ring i{display:block;height:100%;width:0;background:var(--orange);transition:width .18s}
+.sc-torch{flex:none;margin-left:auto;width:42px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);font-size:20px;cursor:pointer}.sc-torch.on{background:var(--orange)}
 .sc-shutter{width:68px;height:68px;border-radius:50%;border:4px solid #fff;background:var(--orange);cursor:pointer}
 </style>
 </head>
@@ -1489,18 +1490,23 @@ $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="faUnit"){ const
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
 async function scanLabel(file){
   if (!sampler || !S.canImages){ toast("Label scanning needs Claude with images allowed"); return; }
+  const imgs=Array.isArray(file)?file:[file];
   S.busy="label"; render();
   try{
-    const res=await sampler.json(`This is a photo of a food product's nutrition information panel (UK/EU style most likely). Read it carefully.
-Return only JSON: {"name": product name if visible else a short sensible description, "brand": string or "", "per100": {"kcal": number, "p": protein g, "c": carbohydrate g, "f": fat g}, "serving": {"g": grams per serving or null, "label": e.g. "1 bar" or "1 pot" or ""}, "error": "" }.
-Use kcal, not kJ. If only per-serving values are shown, convert to per 100 g using the serving weight. If this is not a nutrition label, set "error" to a short reason.`, {images:[file], modelTier:"default", cache:false});
+    const res=await sampler.json(`${imgs.length>1?"These are two versions of the same photo of a food product's nutrition panel: the first is contrast-boosted greyscale for legibility, the second is the original colour.":"This is a photo of a food product's nutrition panel."} It may be dim, grainy, at an angle, on a curved or shiny pack, or partly in glare. UK/EU style most likely.
+Find the Energy, Fat, Carbohydrate and Protein rows. Prefer the per 100 g (or per 100 ml) column; if only per-serving values are readable, convert to per 100 g using the serving weight.
+Use kcal, not kJ (if only kJ is legible, divide by 4.184). Sanity check: kcal should be close to 9×fat + 4×carbs + 4×protein; if a digit is ambiguous, pick the reading that satisfies this.
+Do not guess numbers you cannot see. If the key rows are unreadable, set "error" to a short reason such as "too blurry" or "glare over the numbers".
+Return only JSON: {"name": product name if visible else a short sensible description, "brand": string or "", "per100": {"kcal": number, "p": protein g, "c": carbohydrate g, "f": fat g}, "serving": {"g": grams per serving or null, "label": e.g. "1 bar" or ""}, "error": ""}.`, {images:imgs, modelTier:"default", cache:false});
     if (res.error || !res.per100 || isNaN(+res.per100.kcal)) throw {code:"notlabel", msg:res.error};
     const food={schema:SCHEMA, id:uid("food"), name:String(res.name||"Scanned food").slice(0,80), brand:String(res.brand||"").slice(0,60), barcode:S.pendingBarcode||null,
       per100:{kcal:+res.per100.kcal||0, p:+res.per100.p||0, c:+res.per100.c||0, f:+res.per100.f||0},
       serving:res.serving&&+res.serving.g?{g:+res.serving.g, label:String(res.serving.label||"serving")}:null, uses:0, last:Date.now()};
     saveFood(food); S.pendingBarcode=null; S.busy=null; render();
     openFood(food,{src:"label", isNew:true});
-  } catch(e){ S.busy=null; render(); toast(e&&e.code==="notlabel"?"That doesn't look like a nutrition label. Try again closer up.":e&&e.code==="not_granted"?"Allow Claude to see images to scan labels":"Couldn't read the label. Try again in better light."); }
+  } catch(e){ S.busy=null; render();
+    const why=e&&e.code==="notlabel"?("Couldn't read it"+(e.msg?": "+e.msg:"")+". Try again closer up."):e&&e.code==="not_granted"?"Allow Claude to see images to scan labels":"Label reader error: "+(e&&(e.code||e.message)||"unknown")+(e&&e.status?" ("+e.status+")":"");
+    toast(why); }
 }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
 async function decodeBarcode(file){

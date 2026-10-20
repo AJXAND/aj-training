@@ -13,7 +13,7 @@ function stop(){
   document.body.style.overflow = "";
 }
 function setMode(m){
-  mode = m; steady = 0; best = 0;
+  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; labelStart = Date.now(); prev = null;
   if (m === "barcode") setTimeout(pump, 50);
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
@@ -28,7 +28,7 @@ async function open(m){
   ov = el(`<div class="scanner" role="dialog" aria-label="Scanner">
     <video playsinline muted autoplay></video><canvas hidden></canvas>
     <div class="sc-top"><button class="sc-x" aria-label="Close">✕</button>
-      <div class="seg sc-seg"><button data-smode="barcode">Barcode</button><button data-smode="label">Label</button></div></div>
+      <div class="seg sc-seg"><button data-smode="barcode">Barcode</button><button data-smode="label">Label</button></div><button class="sc-torch" aria-label="Torch" hidden>💡</button></div>
     <div class="sc-frame"></div>
     <div class="sc-bottom"><div class="sc-ring"><i></i></div><p class="sc-hint"></p><button class="sc-shutter" aria-label="Capture now" hidden></button></div>
   </div>`);
@@ -42,6 +42,8 @@ async function open(m){
   }catch(e){ stop(); toast("Camera access was blocked. Allow it in Settings, or use a photo instead."); fallback(m); return; }
   const v = ov.querySelector("video"); v.srcObject = stream; await v.play().catch(() => {});
   try{ const t = stream.getVideoTracks()[0], c = t.getCapabilities ? t.getCapabilities() : {}; if (c.focusMode && c.focusMode.includes("continuous")) await t.applyConstraints({advanced:[{focusMode:"continuous"}]}); }catch(e){}
+  try{ const t = stream.getVideoTracks()[0], c = t.getCapabilities ? t.getCapabilities() : {};
+    if (c.torch){ const bt = ov.querySelector(".sc-torch"); bt.hidden = false; let on = false; bt.onclick = async () => { on = !on; try{ await t.applyConstraints({advanced:[{torch:on}]}); bt.classList.toggle("on", on); }catch(e){ bt.hidden = true; } }; } }catch(e){}
   if ("BarcodeDetector" in window){ try{ detector = new BarcodeDetector({formats:["ean_13", "ean_8", "upc_a", "upc_e"]}); }catch(e){ detector = null; } }
   if (!detector) startWorker();
   loop = setInterval(tick, 180);
@@ -53,20 +55,56 @@ async function tick(){
   if (!ov || busy) return;
   const v = ov.querySelector("video"); if (!v.videoWidth) return;
   if (mode === "barcode") return;   // barcodes are read by pump(), as fast as the decoder allows
-  // Label: measure motion and sharpness on a small greyscale copy of the frame.
-  const w = 160, h = Math.round(160 * v.videoHeight / v.videoWidth), c = document.createElement("canvas"); c.width = w; c.height = h;
-  const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(v, 0, 0, w, h);
+  // Label: watch motion and sharpness inside the scan box, keep the sharpest still frame, and capture automatically.
+  // Thresholds adapt to the scene, so dim, noisy kitchens still trigger; after a few seconds the best frame so far is used anyway.
+  const box = boxInVideo(v), w = 200, h = Math.max(1, Math.round(200 * box.h / box.w)), c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(v, box.x, box.y, box.w, box.h, 0, 0, w, h);
   const px = g.getImageData(0, 0, w, h).data, grey = new Float32Array(w * h);
-  for (let i = 0; i < w * h; i++) grey[i] = px[i * 4] * 0.299 + px[i * 4 + 1] * 0.587 + px[i * 4 + 2] * 0.114;
-  let motion = 0; if (prev) { for (let i = 0; i < grey.length; i += 4) motion += Math.abs(grey[i] - prev[i]); motion /= grey.length / 4; } prev = grey;
+  let mean = 0; for (let i = 0; i < w * h; i++){ grey[i] = px[i * 4] * 0.299 + px[i * 4 + 1] * 0.587 + px[i * 4 + 2] * 0.114; mean += grey[i]; } mean /= w * h;
+  let motion = 0; if (prev && prev.length === grey.length){ for (let i = 0; i < grey.length; i += 3) motion += Math.abs(grey[i] - prev[i]); motion /= grey.length / 3; } else motion = 99; prev = grey;
   let sum = 0, sq = 0, n = 0;
   for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++){ const i = y * w + x, l = 4 * grey[i] - grey[i - 1] - grey[i + 1] - grey[i - w] - grey[i + w]; sum += l; sq += l * l; n++; }
-  const sharp = sq / n - (sum / n) ** 2; best = Math.max(best * 0.995, sharp);
-  const still = motion < 4, crisp = sharp > 120 && sharp >= best * 0.8;
-  steady = still && crisp ? steady + 1 : Math.max(0, steady - 2);
-  setProgress(Math.min(1, steady / 6));
-  hint(!crisp ? "Move closer so the numbers are sharp" : !still ? "Hold still…" : "Got it…");
-  if (steady >= 6) captureLabel();
+  const sharp = (sq / n - (sum / n) ** 2) / Math.max(20, mean);       // normalised by brightness so low light isn't penalised
+  minMotion = Math.min(minMotion, motion); best = Math.max(best * 0.99, sharp);
+  const still = motion < Math.max(3, minMotion * 2.5), crisp = sharp >= best * 0.85;
+  if (still && sharp >= keptScore){ keptScore = sharp; keep(v); }
+  steady = still && crisp ? steady + 1 : Math.max(0, steady - 1);
+  setProgress(Math.min(1, Math.max(steady / 5, (Date.now() - labelStart) / 6000)));
+  hint(mean < 45 ? "It's dark: turn on the light, or hold steady and I'll still try" : !still ? "Hold still…" : !crisp ? "Focusing…" : "Got it…");
+  if (steady >= 5 || (Date.now() - labelStart > 6000 && keptScore > 0)) captureLabel();
+}
+let minMotion = 99, keptScore = 0, labelStart = 0;
+const keepCan = document.createElement("canvas");
+// The scan box on screen, mapped into video pixels (the video fills the screen with object-fit: cover).
+function boxInVideo(v, pad = 0.08){
+  const f = ov.querySelector(".sc-frame").getBoundingClientRect(), r = v.getBoundingClientRect();
+  const k = Math.max(r.width / v.videoWidth, r.height / v.videoHeight), ox = (v.videoWidth * k - r.width) / 2, oy = (v.videoHeight * k - r.height) / 2;
+  let x = (f.left - r.left + ox) / k, y = (f.top - r.top + oy) / k, w = f.width / k, h = f.height / k;
+  x -= w * pad; y -= h * pad; w *= 1 + pad * 2; h *= 1 + pad * 2;
+  x = Math.max(0, x); y = Math.max(0, y); w = Math.min(v.videoWidth - x, w); h = Math.min(v.videoHeight - y, h);
+  return {x, y, w:Math.max(8, w), h:Math.max(8, h)};
+}
+let keptBox = null;
+function keep(v){ keepCan.width = v.videoWidth; keepCan.height = v.videoHeight; keepCan.getContext("2d").drawImage(v, 0, 0); keptBox = boxInVideo(v, 0.3); }
+function cropKept(){ const b = keptBox || {x:0, y:0, w:keepCan.width, h:keepCan.height}, c = document.createElement("canvas"); c.width = Math.round(b.w); c.height = Math.round(b.h); c.getContext("2d").drawImage(keepCan, b.x, b.y, b.w, b.h, 0, 0, c.width, c.height); return c; }
+// Brighten and sharpen a copy for reading: per-channel contrast stretch, then a light unsharp mask, in greyscale.
+function enhance(src){
+  const max = 2000, k = Math.min(1, max / Math.max(src.width, src.height)), w = Math.round(src.width * k), h = Math.round(src.height * k);
+  const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(src, 0, 0, w, h);
+  const im = g.getImageData(0, 0, w, h), d = im.data, grey = new Float32Array(w * h), hist = new Uint32Array(256);
+  for (let i = 0; i < w * h; i++){ const v = d[i * 4] * 0.299 + d[i * 4 + 1] * 0.587 + d[i * 4 + 2] * 0.114; grey[i] = v; hist[v | 0]++; }
+  let lo = 0, hi = 255, acc = 0; const n = w * h;
+  for (let i = 0; i < 256; i++){ acc += hist[i]; if (acc > n * 0.01){ lo = i; break; } }
+  acc = 0; for (let i = 255; i >= 0; i--){ acc += hist[i]; if (acc > n * 0.01){ hi = i; break; } }
+  const span = Math.max(30, hi - lo);
+  for (let i = 0; i < n; i++) grey[i] = Math.min(255, Math.max(0, (grey[i] - lo) * 255 / span));
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+    const i = y * w + x, v = grey[i];
+    const blur = (x > 0 && x < w - 1 && y > 0 && y < h - 1) ? (grey[i - 1] + grey[i + 1] + grey[i - w] + grey[i + w] + v) / 5 : v;
+    const o = Math.min(255, Math.max(0, v + (v - blur) * 0.8));
+    d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = o;
+  }
+  g.putImageData(im, 0, 0); return c;
 }
 /* Barcode pipeline: grab a frame, decode it off the main thread, and immediately grab the next one.
    zxing-cpp tries 0/90/180/270 degrees itself; every other frame is also drawn rotated 45 degrees so diagonal codes read too. */
@@ -109,12 +147,14 @@ async function found(code){
 }
 async function captureLabel(){
   if (!ov || busy) return; busy = true;
-  const v = ov.querySelector("video"), c = document.createElement("canvas"); c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext("2d").drawImage(v, 0, 0);
+  const v = ov.querySelector("video");
+  if (!keptScore) keep(v);
   try{ navigator.vibrate && navigator.vibrate(40); }catch(e){}
-  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.9));
+  hint("Reading the label…");
+  const colour = await new Promise(r => keepCan.toBlob(r, "image/jpeg", 0.9));
+  const sharp = await new Promise(r => enhance(cropKept()).toBlob(r, "image/jpeg", 0.9));
   stop(); busy = false;
-  if (blob) scanLabel(blob);
+  if (colour) scanLabel([sharp, colour].filter(Boolean));
 }
 
 async function offLookup(code){
