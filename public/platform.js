@@ -258,10 +258,16 @@ function loginScreen(){
     el.innerHTML = `<div class="ajlogin-in">${window.LOGO ? LOGO(72) : ""}<h1>AJ TRAINING</h1><p class="muted">Sign in to sync your training, food and photos.</p>
       <form id="ajLoginForm"><input class="field" id="ajEmail" type="email" autocomplete="username" placeholder="Email" required>
       <input class="field" id="ajPass" type="password" autocomplete="current-password" placeholder="Password" required minlength="8">
-      <button class="btn orange" id="ajLoginBtn">Sign in</button><button type="button" class="link" id="ajSignup">First time? Create your account</button>
+      <button class="btn orange" id="ajLoginBtn">Sign in</button><button type="button" class="link muted" id="ajForgot">Forgot password?</button><button type="button" class="link" id="ajSignup">First time? Create your account</button>
       <p class="small warn" id="ajLoginErr"></p></form></div>`;
     document.body.appendChild(el);
     let mode = "in";
+    el.querySelector("#ajForgot").onclick = async () => {
+      const email = el.querySelector("#ajEmail").value.trim(), err = el.querySelector("#ajLoginErr");
+      if (!/.+@.+\..+/.test(email)){ err.textContent = "Type your email above first, then tap Forgot password."; return; }
+      const r = await sb.auth.resetPasswordForEmail(email, {redirectTo:location.origin + "/?reset=1"});
+      err.textContent = r.error ? r.error.message : "Check your email for a link to set a new password. Open it on this phone.";
+    };
     el.querySelector("#ajSignup").onclick = () => { mode = mode === "in" ? "up" : "in"; el.querySelector("#ajLoginBtn").textContent = mode === "in" ? "Sign in" : "Create account"; el.querySelector("#ajSignup").textContent = mode === "in" ? "First time? Create your account" : "Have an account? Sign in"; };
     el.querySelector("#ajLoginForm").onsubmit = async e => {
       e.preventDefault(); const email = el.querySelector("#ajEmail").value.trim(), password = el.querySelector("#ajPass").value, err = el.querySelector("#ajLoginErr");
@@ -274,11 +280,41 @@ function loginScreen(){
     };
   });
 }
+/* Set a new password: after a reset link, or from Settings while signed in. */
+function newPasswordScreen(){
+  return new Promise(resolve => {
+    const el = document.createElement("div"); el.className = "ajlogin";
+    el.innerHTML = `<div class="ajlogin-in">${window.LOGO ? LOGO(72) : ""}<h1>NEW PASSWORD</h1><p class="muted">At least 8 characters. Save it in your password manager when your phone offers.</p>
+      <form id="ajPwForm"><input type="email" autocomplete="username" value="${escH(user ? user.email : "")}" hidden>
+      <input class="field" id="ajPw1" type="password" autocomplete="new-password" placeholder="New password" required minlength="8">
+      <input class="field" id="ajPw2" type="password" autocomplete="new-password" placeholder="Type it again" required minlength="8">
+      <button class="btn orange" id="ajPwBtn">Save password</button><button type="button" class="link muted" id="ajPwCancel">Cancel</button><p class="small warn" id="ajPwErr"></p></form></div>`;
+    document.body.appendChild(el);
+    el.querySelector("#ajPwCancel").onclick = () => { el.remove(); resolve(false); };
+    el.querySelector("#ajPwForm").onsubmit = async e => {
+      e.preventDefault(); const a = el.querySelector("#ajPw1").value, b = el.querySelector("#ajPw2").value, err = el.querySelector("#ajPwErr");
+      if (a !== b){ err.textContent = "Those don't match."; return; }
+      el.querySelector("#ajPwBtn").disabled = true; const r = await sb.auth.updateUser({password:a}); el.querySelector("#ajPwBtn").disabled = false;
+      if (r.error){ err.textContent = r.error.message; return; }
+      el.remove(); (window.toast || alert)("Password changed"); resolve(true);
+    };
+  });
+}
+async function handleRecoveryLink(){
+  const q = new URLSearchParams(location.search), h = new URLSearchParams(location.hash.replace(/^#/, ""));
+  let ok = false;
+  if (h.get("type") === "recovery" && h.get("access_token")){ const r = await sb.auth.setSession({access_token:h.get("access_token"), refresh_token:h.get("refresh_token")}); ok = !r.error; }
+  else if (q.get("code")){ const r = await sb.auth.exchangeCodeForSession(q.get("code")); ok = !r.error; }
+  if (q.get("reset") || h.get("type") === "recovery") history.replaceState(null, "", location.pathname);
+  return ok && (q.get("reset") || h.get("type") === "recovery");
+}
 const authReady = (async () => {
   if (!sb) return null;
+  let recovering = false; try{ recovering = await handleRecoveryLink(); }catch(e){ console.warn(e); }
   const {data} = await sb.auth.getSession();
   if (!data.session && document.readyState === "loading") await new Promise(r => document.addEventListener("DOMContentLoaded", r, {once:true}));
   user = data.session ? data.session.user : await loginScreen();
+  if (recovering){ if (window.splashDone) setTimeout(window.splashDone, 0); await newPasswordScreen(); }
   sb.auth.onAuthStateChange((ev, session) => { user = session ? session.user : null; if (ev === "SIGNED_OUT") location.reload(); });
   return user;
 })();
@@ -358,7 +394,8 @@ P.settingsCards = () => {
   return admin + `<div class="card"><h2>Account</h2><div class="kv" style="border:0;padding:0"><div><span>Signed in</span><span>${user ? escH(user.email) : "–"}</span></div>
       <div><span>Sync</span><span>${{synced:"Up to date", syncing:"Syncing…", offline:"Offline, will sync later", error:"Sync problem", local:"This device only"}[s.sync] || s.sync} · ${when}</span></div>
       ${s.pending ? `<div><span>Waiting to sync</span><span>${s.pending}</span></div>` : ""}${s.error ? `<div class="note">${escH(s.error)}</div>` : ""}</div>
-      <div class="grid2"><button class="btn ghost" data-plat="sync">Sync now</button><button class="btn ghost" data-plat="signout">Sign out</button></div></div>
+      <div class="grid2"><button class="btn ghost" data-plat="sync">Sync now</button><button class="btn ghost" data-plat="signout">Sign out</button></div>
+      <button class="btn ghost" data-plat="password">Change password</button></div>
     <div class="card"><h2>Notifications</h2><span class="small muted">${pushTxt}</span>
       <div class="row" style="flex-wrap:nowrap"><input class="field" id="pushTime" type="time" value="${escH(P.pushTime || "07:00")}" style="flex:1" aria-label="Reminder time">
       <button class="btn small ${P.push === "on" ? "ghost" : "orange"}" data-plat="${P.push === "on" ? "pushOff" : "pushOn"}">${P.push === "on" ? "Turn off" : "Turn on"}</button></div>
@@ -382,6 +419,7 @@ document.addEventListener("click", async e => {
   try{
     if (a === "sync"){ await sync(); rerender(); t(status.sync === "synced" ? "Synced" : "Couldn't sync: " + (status.error || status.sync)); }
     if (a === "signout"){ await sb.auth.signOut(); }
+    if (a === "password"){ await newPasswordScreen(); }
     if (a === "pushOn"){ const time = (document.getElementById("pushTime") || {}).value || "07:00"; P.pushTime = time; await enablePush(time); P.push = await pushState(); rerender(); t(`Reminder set for ${time}`); }
     if (a === "pushOff"){ await disablePush(); P.push = await pushState(); rerender(); t("Reminders off"); }
     if (a === "token"){ P.token = await healthToken(); rerender(); }
