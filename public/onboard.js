@@ -952,7 +952,7 @@ function acceptProg(){
   const p = F.out; delete p.vol; const keep = clone(p);
   S.profile = {...S.profile, gyms:gymList().map(g => ({...g, kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
   S.prog = keep; if (db) putDocP(keep); else lsSet("prog", keep);
-  clearDraft("prog"); S.planView = "week"; close(); go("plan"); toast("Plan saved. Week 1 starts " + fmtD(keep.startDate));
+  clearDraft("prog"); S.planView = "today"; close(); go("plan"); toast("Plan saved. Week 1 starts " + fmtD(keep.startDate));
 }
 function putDocP(p){ try{ queue("programme/current", () => db.doc("programme/current").set(p)); }catch(e){ console.warn(e); } }
 function acceptNut(){
