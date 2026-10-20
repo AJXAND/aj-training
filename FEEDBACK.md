@@ -74,6 +74,16 @@ Names: none of the first six landed. Keep the propeller logo; more options neede
 48. ✅ The running plan did build this time.
 49. **More programme types**: HYROX, CrossFit, triathlon and the other most popular formats to start with (add more over time), all evidence-backed.
 
+## Stop 4: Plan review, Plan page, workouts
+
+50. **No Workout tab** while there is a Food tab; the overall navigation feels off and less intuitive than it should be. Consider renaming Plan to **Train**, with the plan shown elsewhere or differently on the same page.
+51. **"Your block" review needs work**: the black tick lines on the weekly-sets bars aren't understandable (they mark the target, but that isn't clear).
+52. **Volumes badly wrong**: e.g. 2 sets a week of upper back (on the Plan page) is far too little; priorities (chest, side delts, lats) came out at 7-8 sets instead of ~18, so priority selection didn't work. (4 days × 60 min; the time cap is squeezing everything.)
+53. **Move workouts on the Plan page**: drag/move a session to another day and the plan smartly reorganises to keep you on track.
+
+Spotted by me during this stop:
+- **Numbers disagree between screens**: review shows Upper back 6 / Triceps 6.5 (fractional, direct + half indirect) while Plan's "Sets this week" shows 2 and 4 (direct only). Must use one consistent count.
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
