@@ -667,7 +667,26 @@ main.pg .tile svg path{stroke-dasharray:600;stroke-dashoffset:600;animation:draw
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,14px) scale(.92)}}
 @keyframes slideIn{from{transform:translateX(100%)}} @keyframes slideOut{to{transform:translateX(100%)}}
 /* onboarding steps slide with direction */
-.obbody.obfit{overflow:hidden;display:block}.obbody.obfit.scrolls{overflow-y:auto}.obfitin{display:grid;gap:14px;align-content:start}.obbody.obform .obfitin{gap:24px}
+.ob{--sz:1;--sp:1}
+.obbody.obfit{overflow:hidden;display:block;padding-top:calc(8px*var(--sp));padding-bottom:calc(12px*var(--sp))}.obbody.obfit.scrolls{overflow-y:auto}
+.obfitin{display:grid;gap:calc(14px*var(--sp));align-content:start;min-height:100%}.obbody.obform .obfitin{gap:calc(22px*var(--sp))}
+.obfit.tight .fopt{display:none}
+.obfit .obtitle{font-size:calc(30px*var(--sz));margin:calc(6px*var(--sp)) 0 calc(2px*var(--sp))}
+.obfit .obfld{gap:calc(8px*var(--sp))}
+.obfit .obl{font-size:max(14px,calc(15px*var(--sz)))}
+.obfit .obnote,.obfit .obhint{font-size:max(12.5px,calc(13.5px*var(--sz)))}
+.obfit .oblead{font-size:max(15px,calc(17px*var(--sz)))}
+.obfit input.field{padding:calc(12px*var(--sz)) 14px;font-size:16px}
+.obfit .obnumf{font-size:max(19px,calc(22px*var(--sz)))!important;padding:calc(10px*var(--sz)) 8px!important}
+.obfit .seg button{padding:calc(9px*var(--sz)) 6px;font-size:max(13px,calc(14px*var(--sz)))}
+.obfit input[type=range]{height:max(34px,calc(44px*var(--sz)))}
+.obfit .obslider{gap:calc(6px*var(--sp))}
+.obfit .obopt{padding:calc(16px*var(--sz)) 18px;border-radius:calc(18px*var(--sz))}
+.obfit .obopt b{font-size:max(15.5px,calc(17px*var(--sz)))}.obfit .obopt span{font-size:max(12.5px,calc(14px*var(--sz)))}
+.obfit .obmod{grid-template-columns:calc(44px*var(--sz)) 1fr auto}.obfit .obmi{width:calc(44px*var(--sz));height:calc(44px*var(--sz))}
+.obfit .obopts{gap:calc(10px*var(--sp))}.obfit .obmi svg{width:calc(22px*var(--sz));height:calc(22px*var(--sz))}.obfit .obmi.duo svg{width:calc(17px*var(--sz));height:calc(17px*var(--sz))}
+.obfit .obhello{gap:calc(16px*var(--sp))}.obfit .obhello h1{font-size:calc(34px*var(--sz))}.obfit .obhello .logo{width:calc(96px*var(--sz));height:calc(96px*var(--sz))}
+
 .obfitin:has(.obhello){align-content:center}.obfit .obhello{padding-top:0}
 .obbody.obfit.ob-fwd > .obfitin,.obbody.obfit.ob-back > .obfitin{animation:none}
 .obbody.obfit.ob-fwd > .obfitin > *{animation:pgR .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}

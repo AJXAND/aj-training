@@ -1169,9 +1169,9 @@ function wStep(s, a){
   case "sections": return {title:"What do you want to use?", body:`<p class="obnote" style="margin-top:0">Habits are always included, so you can track anything daily. You can change this any time in Settings.</p>
     ${useCards(a.use, "data-set=\"use\" data-val")}`};
   case "about": { const dob = parseDob(a.dob);
-    return {title:"About you", cls:"obform", body:`<p class="obnote" style="margin-top:0">Used to work out your calorie burn, targets and body-fat estimates. Nothing is shared.</p>
+    return {title:"About you", cls:"obform", body:`<p class="obnote fopt" style="margin-top:0">Used to work out your calorie burn, targets and body-fat estimates. Nothing is shared.</p>
     <div class="obfld"><span class="obl">First name</span><input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></div>
-    <div class="obfld"><span class="obl">Sex</span>${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}<span class="obhint">Used for the energy and body-fat maths.</span></div>
+    <div class="obfld"><span class="obl">Sex</span>${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}<span class="obhint fopt">Used for the energy and body-fat maths.</span></div>
     <div class="obfld"><span class="obl">Date of birth</span><input class="field" data-dob="1" inputmode="numeric" maxlength="10" value="${esc(a.dob || "")}" placeholder="DD/MM/YYYY, e.g. 01/04/1999" autocomplete="bday">
       <span class="obhint ${a.dob && a.dob.length === 10 && !dob ? "bad" : ""}">${dob ? "Age " + dob.age : a.dob && a.dob.length === 10 ? "That date doesn't look right" : "Day, month, year"}</span></div>
     <div class="obfld"><div class="spread"><span class="obl">Height</span>${unitSeg("h")}</div>${heightRow("heightCm", a.heightCm)}
@@ -1393,19 +1393,28 @@ function draw(){
 const fitFlow = () => F && F.kind === "welcome";
 const bodyBox = b => (b && b.querySelector(".obfitin")) || b;
 function fitScreen(){
-  const b = document.querySelector("#ob .obbody.obfit"), inn = b && b.querySelector(".obfitin"); if (!inn) return;
-  inn.style.zoom = ""; inn.style.minHeight = ""; inn.style.rowGap = "";
-  const cs = getComputedStyle(b), avail = b.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-  const fits = k => { inn.style.zoom = k; return b.scrollHeight <= b.clientHeight + 1; };
-  let hi = Math.min(1.25, Math.max(0.8, b.clientWidth / 390)), k = hi;
-  if (!fits(hi)){ let lo = 0.62; for (let n = 0; n < 9; n++){ const m = (lo + hi) / 2; if (fits(m)) lo = m; else hi = m; } k = lo; fits(k); }
-  const over = b.scrollHeight > b.clientHeight + 1; b.classList.toggle("fits", !over); b.classList.toggle("scrolls", over);
-  if (over) return;
-  // spare height: widen the gaps (up to a limit) so the page fills the screen; the hello screen centres instead
-  const spare = avail - inn.getBoundingClientRect().height, kids = inn.children.length;
-  if (spare > 0 && kids > 1 && !inn.querySelector(".obhello")){ const g = parseFloat(getComputedStyle(inn).rowGap) || 0; inn.style.rowGap = (g + Math.min(spare / (kids - 1), 36 * k) / k) + "px"; }
-  inn.style.minHeight = (avail / k) + "px";
-  if (b.scrollHeight > b.clientHeight + 1) inn.style.minHeight = "";
+  // Smart fit for the first-run screens, in order of what matters least:
+  // 1) sizes follow the phone's width; 2) too tall: tighten the spacing first; 3) still too tall: shrink sizes a little
+  // (text never below a readable floor); 4) still too tall: drop optional helper lines; 5) spare height: open the spacing up.
+  const b = document.querySelector("#ob .obbody.obfit"); if (!b) return;
+  const o = b.closest(".ob"), set = (sz, sp) => { o.style.setProperty("--sz", sz.toFixed(3)); o.style.setProperty("--sp", sp.toFixed(3)); };
+  const fits = () => b.scrollHeight <= b.clientHeight + 1;
+  const search = (lo, hi, f) => { for (let n = 0; n < 8; n++){ const m = (lo + hi) / 2; if (f(m)) lo = m; else hi = m; } return lo; };   // largest value that still fits
+  b.classList.remove("tight", "scrolls");
+  const sz0 = Math.min(1.15, Math.max(0.92, b.clientWidth / 390));
+  set(sz0, 1);
+  if (fits()){
+    // spare height: open the spacing a little, then grow sizes (tall phones), then open the spacing the rest of the way
+    if (!(set(sz0, 1.6), fits())){ const sp = search(1, 1.6, v => (set(sz0, v), fits())); set(sz0, sp); return b.classList.add("fits"); }
+    const szMax = Math.min(1.25, sz0 * 1.15), sz = (set(szMax, 1.6), fits()) ? szMax : search(sz0, szMax, v => (set(v, 1.6), fits()));
+    const sp = (set(sz, 2.6), fits()) ? 2.6 : search(1.6, 2.6, v => (set(sz, v), fits())); set(sz, sp); return b.classList.add("fits");
+  }
+  if (set(sz0, 0.35), fits()){ const sp = search(0.35, 1, v => (set(sz0, v), fits())); set(sz0, sp); return b.classList.add("fits"); }
+  const MINSZ = 0.84;
+  if (set(MINSZ, 0.35), fits()){ const sz = search(MINSZ, sz0, v => (set(v, 0.35), fits())); set(sz, 0.35); return b.classList.add("fits"); }
+  b.classList.add("tight");
+  if (fits()){ const sz = search(MINSZ, sz0, v => (set(v, 0.35), fits())); set(sz, 0.35); const sp = search(0.35, 1, v => (set(sz, v), fits())); set(sz, sp); return b.classList.add("fits"); }
+  b.classList.add("scrolls"); b.classList.remove("fits");     // last resort on very small screens
 }
 let fitT = null;
 window.addEventListener("resize", () => { const ae = document.activeElement; if (ae && /INPUT|TEXTAREA/.test(ae.tagName) && ae.closest("#ob")) return; clearTimeout(fitT); fitT = setTimeout(fitScreen, 60); });
