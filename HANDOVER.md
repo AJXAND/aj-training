@@ -56,6 +56,7 @@ You are taking over development of **AJ Training**, an all-in-one fitness, food 
 - **docs/EVIDENCE_NOTES.md**: all the research decisions with DOIs. **FEEDBACK.md**: history of AJ's feedback and phase progress.
 
 ## Testing
+- **Speed rule (AJ, 20 Oct):** before each push, run only the checks for the screen you touched (screenshots + its own test). Run the full suite once per finished section. Note pre-existing failures in one line and fix them at the end of the section; never stop mid-task to chase them.
 - Playwright (Python) scripts are in tests/e2e (see its README).
   - Build, then serve: `cd dist && python3 -m http.server 8765`.
   - The scripts route config.js to `window.AJ_CONFIG={};`, so they run in local IndexedDB mode.
