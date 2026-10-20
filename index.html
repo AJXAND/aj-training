@@ -645,6 +645,46 @@ html.theming *{transition:background-color .35s ease,color .35s ease,border-colo
 .fedit summary{display:grid;gap:2px;cursor:pointer;list-style:none}.fedit summary::-webkit-details-marker{display:none}
 .fedit .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.fedit .field{background:var(--card);padding:10px 8px}
 .fwarn{margin-top:10px;font-size:13px;font-weight:600;color:var(--warn)}
+
+.modlist{display:grid;gap:14px}.modlist .spread{align-items:center}
+.gymrow{background:var(--sunk)}.gymrow .lab{margin-top:12px}
+.hcard{gap:12px}
+.hhead{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center}.hhead .hl2{min-width:0}.hcard .row{flex-wrap:nowrap}.hcard .row .field{min-width:0}
+.hcard .hic{width:40px;height:40px;border-radius:12px;background:var(--hc);display:grid;place-items:center}
+.hic svg,.htpi .hic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hcheck{width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:transparent;display:grid;place-items:center;cursor:pointer;color:transparent;transition:all .25s var(--spring)}
+.hcheck svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.hcheck.on{background:var(--good);border-color:var(--good);color:#fff;animation:tickpop .45s var(--spring)}
+.hstep{display:flex;align-items:center;background:var(--sunk);border-radius:999px;padding:3px}
+.hstep button{border:0;background:transparent;font:700 18px var(--body);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer}
+.hstep .hv{width:auto;min-width:56px;padding:0 6px;font-size:15px;border-radius:12px}
+.hcue{font-size:13.5px;color:var(--muted);background:var(--sunk);border-radius:12px;padding:8px 12px;display:flex;gap:8px}.hcue em{font-style:normal;font-weight:700;color:var(--ink)}
+.hedit{display:flex;gap:6px}
+.hsheet .in{max-height:85vh;overflow-y:auto}
+.htpl{display:grid;gap:8px}
+.htpi{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;text-align:left;border:0;background:var(--sunk);border-radius:16px;padding:12px;font:inherit;color:inherit;cursor:pointer}
+.htpi .hic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center}
+.htpi b{display:block}.htpi em{font-style:normal;font-size:12.5px;color:var(--muted);line-height:1.35;display:block;margin-top:2px}
+.htpi[disabled]{opacity:.45}
+.hcols{display:flex;gap:10px;flex-wrap:wrap}.hcol{width:30px;height:30px;border-radius:50%;border:0;cursor:pointer;box-shadow:0 0 0 2px var(--card),0 0 0 2px transparent}.hcol.on{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)}
+.hsteps{margin:0;padding-left:20px;display:grid;gap:6px;line-height:1.45}
+a.btn{display:block;text-align:center;text-decoration:none}
+
+.runcard .rkm{font:800 34px var(--display)}.runcard .rkm em{font:600 14px var(--body);font-style:normal;color:var(--muted)}
+.ebars{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;height:110px;align-items:end}
+.ebars span{height:100%;display:flex;align-items:flex-end}.ebars i{display:block;width:100%;border-radius:4px 4px 2px 2px;min-height:3px}
+.obhello{display:grid;justify-items:center;text-align:center;gap:16px;padding-top:8vh}.obhello h1{font-size:34px}.obhello .logo{border-radius:24px;box-shadow:0 18px 50px rgba(255,107,26,.25)}
+.obmod{grid-template-columns:44px 1fr auto;align-items:center;gap:14px;display:grid}
+.obmi{width:44px;height:44px;border-radius:13px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}
+.obmi svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.obmod>span:nth-child(2){display:grid;gap:2px}
+.obtick{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--line);transition:all .2s}
+.obmod[aria-pressed="true"] .obtick{background:var(--orange);box-shadow:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E");background-size:16px;background-position:center;background-repeat:no-repeat}
+.obarrow{font-style:normal;font-size:26px;color:var(--muted)}
+.obday[disabled]{opacity:.35}
+
+.hcard .hstrip{display:grid;grid-template-columns:repeat(28,1fr);gap:3px;width:100%}
+.hcard .hstrip .hd{width:100%;height:10px;border-radius:3px;margin:0}
 </style>
 </head>
 <body>
@@ -712,12 +752,14 @@ html.theming *{transition:background-color .35s ease,color .35s ease,border-colo
    Records flagged sample:true (or s:true for weigh-ins) are examples and can be hidden.
    ========================================================= */
 const SCHEMA = 2;
-const GYMS = {home:"Home gym", shwc:"Soho House White City"};
-const GYM_KIT = {
-  home:"Squat rack with safety arms, barbell and plates, dumbbells up to 32.5 kg, landmine with V-handle, one cable usable only at high or waist height, dip bars, pull-up bar, adjustable bench. No leg machines.",
-  shwc:"Full commercial gym: leg extension, lying curl, hack squat, hip extension, adductor, calf raise, Smith machine, dual adjustable cables, full dumbbell range. No seated leg curl."
-};
-const DEFAULT_PROGRAMME = {
+/* Gyms are the user's own: each has a name and an equipment list. Exercises are only picked if the kit exists. */
+const KIT_FULL=["bb","rack","bench","db","cable_hi","cable_mid","cable_low","cable_dual","smith","hack","legpress","legext","lyingcurl","seatedcurl","hipext","adductor","calfm","pecdeck","chestpress","rowm","latpd","preacher","pullup","dip"];
+function gymList(){ const g=S.profile&&S.profile.gyms; return g&&g.length?g:[{id:"gym", name:"My gym", kit:KIT_FULL}]; }
+function defGym(){ return gymList()[0].id; }
+const GYMS=new Proxy({}, {get:(_,k)=>{ const g=gymList().find(x=>x.id===k); return g?g.name:(k==="home"?"Home gym":k==="shwc"?"Soho House White City":String(k)); }});
+const GYM_KIT=new Proxy({}, {get:(_,k)=>{ const g=gymList().find(x=>x.id===k), names=Object.fromEntries((window.AJOnboard&&AJOnboard.EQUIP)||[]); return g?(g.kit||[]).map(x=>names[x]||x).join(", "):"unknown"; }});
+function gymOpts(){ return gymList().map(g=>[g.id,g.name]); }
+const LEGACY_PROGRAMME = {
   schema:1, name:"Placeholder programme", placeholder:true, startDate:"2026-10-19", deloadEvery:6,
   exercises:{
     legext:{n:"Leg extension",lo:10,hi:15,rest:75,eq:"machine",m:"Quads",pri:1},
@@ -771,7 +813,12 @@ const DEFAULT_PROGRAMME = {
                shwc:[["incfly",4],["dblat",2],["hammer",3],["cablat",3],["ohext",3],["pdmove",3],["bayes",3]]}}
   ]
 };
-const DEFAULT_PROFILE = {birthDate:"2005-01-01", birthSet:false, heightCm:188, sex:"male", bfManual:null, phase:"bulk", phaseStart:"2026-09-01", fallbackKg:88, showSample:true, nutrition:{mode:"auto", kcal:null, p:null, f:null, c:null}, habits:null};
+const DEFAULT_PROGRAMME = {schema:2, name:"No plan yet", placeholder:true, startDate:"2026-01-05", deloadEvery:6, exercises:{},
+  days:[["mon",1],["tue",2],["wed",3],["thu",4],["fri",5],["sat",6],["sun",0]].map(([k,wd])=>({k, wd, label:"Rest", focus:"", rest:true, cardio:"Build a plan to fill your week"}))};
+const DEFAULT_PROFILE = {name:"", sex:null, birthDate:"1995-01-01", birthSet:false, heightCm:175, bfManual:null, phase:"maintain", phaseStart:"2026-01-01", fallbackKg:75, showSample:false, currency:"£",
+  nutrition:{mode:"auto", kcal:null, p:null, f:null, c:null}, modules:null, setupDone:false, gyms:null, habitList:null};
+const MODULES={training:["Gym training","Programmes, live workouts, progression"], endurance:["Running & endurance","Race plans from 5k to multi-day ultras"], nutrition:["Nutrition","Food logging, scanners, adaptive targets"], habits:["Habits","Steps, sleep, quitting things, anything daily"], body:["Body","Weight trend, photos, body fat"]};
+function on(m){ const md=S.profile.modules; return !md || md[m]!==false; }
 const PHASES = {
   bulk:{label:"Lean bulk", rate:[0.25,0.5], kcalAdj:1.10, prot:2.0, rule:"Top of the range on set one: add load next session. Otherwise beat last time by a rep."},
   recomp:{label:"Recomp", rate:[-0.25,0.25], kcalAdj:1.0, prot:2.2, rule:"Add load only after hitting the top of the range on set one two sessions running."},
@@ -974,7 +1021,7 @@ function advice(k, custom, gym){
   if (!h.length && gym){ h=liftHistory(k,false); cross=h.length>0; }
   if (!h.length) return {status:"new", pill:`<span class="tag">New: find a ${ex.lo}–${ex.hi} rep weight</span>`, last:null};
   const f=h[0].sets[0], w=+f.w, r=+f.r, inc=incFor(ex.eq);
-  if (cross) return {status:"cross", pill:`<span class="tag">First time at ${gym==="shwc"?"SHWC":"home"}: stacks differ, aim ${ex.lo}–${ex.hi}</span>`, last:h[0], tw:"", tr:"", cross:true};
+  if (cross) return {status:"cross", pill:`<span class="tag">First time at ${esc(gymName(gym))}: stacks differ, aim ${ex.lo}–${ex.hi}</span>`, last:h[0], tw:"", tr:"", cross:true};
   const topHit=r>=ex.hi, prevTop=h[1] && +h[1].sets[0].w===w && +h[1].sets[0].r>=ex.hi;
   const addLoad=(phase==="recomp"||phase==="maintain") ? (topHit&&prevTop) : topHit;
   let pill, tw=w, tr=r, status;
@@ -1034,8 +1081,8 @@ const ICON = {
   nosnus:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/><circle cx="12" cy="12" r="3.5"/></svg>'
 };
 const initials = n => String(n).replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
-const gymName = g => g==="shwc" ? "SHWC" : "Home";
-const GYM_OPTS=[["home","Home gym"],["shwc","Soho House White City"]];
+const gymName = g => { const n=GYMS[g]; return n.length>14 ? n.split(/\s+/).map(w=>w[0]).join("").toUpperCase() : n.replace(/ gym$/i,""); };
+
 const fmtN = n => Math.round(n).toLocaleString("en-GB");
 function dd(id, options, value, label, full){
   return `<span class="dd${full?" full":""}"><select id="${id}" aria-label="${esc(label)}">${options.map(([v,t])=>`<option value="${esc(v)}" ${v===value?"selected":""}>${esc(t)}</option>`).join("")}</select></span>`;
@@ -1056,7 +1103,7 @@ function sampleBanner(){
 }
 function weekDates(ref){ const ws=weekStart(ref); return [0,1,2,3,4,5,6].map(i=>{ const d=new Date(ws); d.setDate(ws.getDate()+i); return d; }); }
 function dayForDate(d){ return S.prog.days.find(x=>x.wd===d.getDay()); }
-function plannedSets(day){ if(!day||day.rest) return 0; return (day.variants[day.gym||"home"]||[]).reduce((a,[,n])=>a+n,0); }
+function plannedSets(day){ if(!day||day.rest) return 0; return (day.variants[day.gym||defGym()]||[]).reduce((a,[,n])=>a+n,0); }
 function sessionsOn(ds){ return S.sessions.filter(s=>s.date===ds); }
 function spark(vals, color){
   const v=vals.filter(x=>x!=null); if (v.length<2) return "";
@@ -1072,18 +1119,35 @@ function macroBar(label, val, target, color, unit, remaining){
 
 
 /* ---------- Habits ----------
-   habits/{date}: {date, wake:"HH:MM", phone:steps from Apple Health, extra:manual extra steps, snus:{used:n, cravings:[{t,resisted}]}}
-   Off-phone steps: added from cardio logged with phone not on you. Step rates per minute: tennis singles 160 and doubles 110,
-   golf walking 100 and buggy 70 (activity step-equivalent chart); padel ~70 from pro match distance (~2.4 km/h, short court strides);
-   walking 120 and running 170 (typical cadence); cycling excluded because it isn't steps. */
+   A list of habits you choose, each with a type:
+     check: done or not (e.g. mobility, reading)       count: hit a number (steps, water, sleep)
+     time: done by a time (up by 07:00)               quit: avoid something (nicotine, alcohol), with money saved and cravings
+   Each can carry an implementation intention ("When/where … I will …"): planning the cue roughly doubles follow-through
+   (Gollwitzer & Sheeran 2006, d≈0.65). Streaks forgive one miss a week: a single missed day doesn't undo habit formation (Lally 2010).
+   Daily values live in habits/{date}.v[habitId]. Older records keep their original fields (wake, phone/extra, snus). */
 const STEP_RATE = {
   walk:{_:120}, run:{_:170},
   tennis:{"Singles match":160,"Singles casual":160,"Doubles match":110,"Doubles casual":110,"Hitting / drills":110},
   padel:{_:70}, golf:{"Walking, carrying":100,"Walking, trolley":100,"Buggy":70,"Driving range":0}, rugby:{_:110}, cycle:{_:0}
 };
 const PHONE_ON_DEFAULT = {walk:true, run:true, cycle:true};
-const DEFAULT_HABITS = {snus:{on:true, quitDate:null, perDay:10, canCost:6.5, perCan:20}, wake:{on:true, target:"07:00", grace:5}, steps:{on:true, target:10000}};
-function hcfg(){ const h=S.profile.habits||{}; return {snus:{...DEFAULT_HABITS.snus,...(h.snus||{})}, wake:{...DEFAULT_HABITS.wake,...(h.wake||{})}, steps:{...DEFAULT_HABITS.steps,...(h.steps||{})}}; }
+const HABIT_ICONS = {steps:"steps", sun:"sun", nosnus:"nosnus", check:"check", drop:"drop", moon:"moon", book:"book", stretch:"stretch", pill:"pill"};
+const HABIT_TEMPLATES = [
+  {tpl:"steps", type:"count", name:"Daily steps", unit:"steps", target:8000, step:500, icon:"steps", color:"var(--carb)", health:true, src:"habits", why:"About 7,000-10,000 steps a day is where the drop in mortality risk levels off (Paluch 2022; Ding 2025)."},
+  {tpl:"wake", type:"time", name:"Up by", target:"07:00", grace:5, icon:"sun", color:"var(--fat)", src:"habits", why:"A fixed wake time anchors your body clock and makes the rest of the day's habits easier to stack."},
+  {tpl:"sleep", type:"count", name:"Sleep", unit:"h", target:7.5, step:0.25, icon:"moon", color:"var(--weight)", src:"habits", why:"Adults should sleep at least 7 hours a night regularly (AASM/SRS consensus, Watson 2015)."},
+  {tpl:"water", type:"count", name:"Water", unit:"L", target:2.5, step:0.25, icon:"drop", color:"var(--cardio)", src:"habits", why:"Total water needs are about 2.0 L (women) to 2.5 L (men) a day, more in heat and training (EFSA 2010)."},
+  {tpl:"quit", type:"quit", name:"Quit nicotine", unit:"pouches", perDay:10, cost:0.33, icon:"nosnus", color:"var(--prot)", src:"habits", why:"Logging every slip and craving keeps you honest; pair it with GP or pharmacist support, which roughly doubles quit rates (Cochrane 2025)."},
+  {tpl:"alcohol", type:"quit", name:"No alcohol", unit:"drinks", perDay:1, cost:6, icon:"nosnus", color:"var(--warn)", src:"habits", why:"Tracking every drink against a plan is one of the most reliable ways to cut back."},
+  {tpl:"mobility", type:"check", name:"Mobility, 10 min", icon:"stretch", color:"var(--orange)", src:"habits", why:"Small, specific daily habits stick faster than big vague ones."},
+  {tpl:"read", type:"check", name:"Read 10 pages", icon:"book", color:"var(--weight)", src:"habits", why:"Morning, self-chosen habits form fastest (Singh 2024)."},
+  {tpl:"supp", type:"check", name:"Creatine 3-5 g", icon:"pill", color:"var(--carb)", src:"habits", why:"Daily dosing keeps muscle stores saturated; timing doesn't matter."}
+];
+function habitList(){
+  if (Array.isArray(S.profile.habitList)) return S.profile.habitList;
+  return [];
+}
+function saveHabitList(list){ S.profile={...S.profile, habitList:list}; saveProfile(); }
 function hday(date){ return S.habits[date]||{date}; }
 function saveHabit(date, patch){
   const cur=S.all.habits[date]||{date}; const doc={...cur, ...patch, date, schema:SCHEMA}; delete doc.sample;
@@ -1094,73 +1158,181 @@ function cardioPhoneOn(c){ return c.phoneOn!=null ? c.phoneOn : !!PHONE_ON_DEFAU
 function offPhoneSteps(date){ return S.cardio.filter(c=>c.date===date && !cardioPhoneOn(c)).reduce((a,c)=>a+Math.round(stepRate(c)*c.mins),0); }
 function stepsTotal(date){ const h=hday(date); if (h.phone==null && !h.extra && !offPhoneSteps(date)) return null; return (+h.phone||0)+(+h.extra||0)+offPhoneSteps(date); }
 function toMin(t){ if (!t || !/^\d{1,2}:\d{2}/.test(String(t))) return null; const [h,m]=String(t).split(":").map(Number); return h*60+m; }
-function wakeStatus(date){ const h=hday(date), w=toMin(h.wake), cfg=hcfg().wake; if (w==null) return null; return w<=toMin(cfg.target)+(+cfg.grace||0); }
-function snusQuit(){ return hcfg().snus.quitDate; }
-function snusStatus(date){ const q=snusQuit(); if (!q || date<q) return null; const h=hday(date); return !((h.snus&&h.snus.used)>0); }
-function stepsStatus(date){ const t=stepsTotal(date); return t==null?null:t>=hcfg().steps.target; }
-function streak(fn){ let n=0; const d=new Date(); const today=ymd(d); if (fn(today)!==true) d.setDate(d.getDate()-1);
+// value of a habit on a date (older records keep their own fields)
+function hval(h, date){
+  const d=hday(date);
+  if (h.health) return stepsTotal(date);
+  if (h.legacy==="wake") return d.wake||null;
+  if (h.legacy==="snus") return d.snus||null;
+  return (d.v||{})[h.id] ?? null;
+}
+function hset(h, date, value){
+  if (h.legacy==="wake") return saveHabit(date,{wake:value});
+  if (h.legacy==="snus") return saveHabit(date,{snus:value});
+  if (h.health) return saveHabit(date,{phone:value});
+  const d=hday(date); saveHabit(date,{v:{...(d.v||{}),[h.id]:value}});
+}
+// true = done, false = missed, null = nothing to judge yet
+function hstatus(h, date){
+  const v=hval(h,date);
+  if (h.type==="check") return v===true?true:(date<ymd(new Date())&&date>=(h.since||"0")?false:null);
+  if (h.type==="count") return v==null?null:(+v)>=(+h.target);
+  if (h.type==="time"){ const w=toMin(v); return w==null?null:w<=toMin(h.target)+(+h.grace||0); }
+  if (h.type==="quit"){ if (!h.quitDate||date<h.quitDate) return null; return !((v&&v.used)>0); }
+  return null;
+}
+// streak that forgives one miss in any 7 days
+function hstreak(h){
+  let n=0, misses=[]; const d=new Date(); if (hstatus(h,ymd(d))!==true) d.setDate(d.getDate()-1);
+  for (let i=0;i<400;i++){ const s=ymd(d), v=hstatus(h,s);
+    if (v===true){ n++; } else if (v===false && i>0 && !misses.some(m=>i-m<7)) misses.push(i); else break;
+    d.setDate(d.getDate()-1); }
+  return {n, forgiven:misses.length};
+}
+function streak(fn){ let n=0; const d=new Date(); if (fn(ymd(d))!==true) d.setDate(d.getDate()-1);
   for (let i=0;i<400;i++){ const s=ymd(d), v=fn(s); if (v===true){ n++; d.setDate(d.getDate()-1); } else break; } return n; }
-function snusStats(){
-  const c=hcfg().snus; if (!c.quitDate) return null;
-  const days=Math.max(0,Math.floor((parseD(ymd(new Date()))-parseD(c.quitDate))/864e5)+1);
-  let used=0; Object.values(S.habits).forEach(h=>{ if (h.date>=c.quitDate) used+=(h.snus&&h.snus.used)||0; });
-  const avoided=Math.max(0,days*c.perDay-used), per=c.canCost/c.perCan;
-  const sinceLast=(()=>{ const slips=Object.values(S.habits).filter(h=>h.date>=c.quitDate&&h.snus&&h.snus.used>0).map(h=>h.date).sort(); const from=slips.length?slips[slips.length-1]:null; return from; })();
-  const cravToday=((hday(ymd(new Date())).snus||{}).cravings||[]).length;
-  return {days, used, avoided, saved:avoided*per, lastSlip:sinceLast, streak:streak(snusStatus), cravToday};
+function hrate(h, days){ let ok=0, n=0; for (let i=0;i<days;i++){ const v=hstatus(h, ymd(new Date(Date.now()-i*864e5))); if (v!=null){ n++; if (v) ok++; } } return n?Math.round(ok/n*100):null; }
+function quitStats(h){
+  if (!h.quitDate) return null;
+  const days=Math.max(0,Math.floor((parseD(ymd(new Date()))-parseD(h.quitDate))/864e5)+1);
+  let used=0; Object.values(S.habits).forEach(d=>{ if (d.date>=h.quitDate){ const v=h.legacy==="snus"?d.snus:(d.v||{})[h.id]; used+=(v&&v.used)||0; } });
+  const avoided=Math.max(0,days*(+h.perDay||0)-used);
+  return {days, used, avoided, saved:avoided*(+h.cost||0)};
 }
 function dotStrip(fn, days){
   const out=[]; for (let i=days-1;i>=0;i--){ const d=ymd(new Date(Date.now()-i*864e5)), v=fn(d); out.push(`<i class="hd ${v===true?"ok":v===false?"bad":""} ${i===0?"now":""}" title="${d}"></i>`); }
   return `<span class="hstrip">${out.join("")}</span>`;
 }
+const HICON = {
+  check:'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  drop:'<svg viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.3 6 10.5a6 6 0 0 1-12 0c0-3.2 3-6.5 6-10.5z"/></svg>',
+  moon:'<svg viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></svg>',
+  book:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20"/></svg>',
+  stretch:'<svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M5 9l7 1.5L19 9M12 10.5V15l-4 6M12 15l4 6"/></svg>',
+  pill:'<svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="M9.5 8.5l5 7.5"/></svg>'
+};
+function hicon(h){ return ICON[h.icon]||HICON[h.icon]||HICON.check; }
+function hfmt(h, v){ if (v==null) return "–"; if (h.unit==="steps") return fmtN(v); return (Math.round(v*100)/100)+(h.unit?" "+h.unit:""); }
+function habitControl(h, date, compact){
+  const v=hval(h,date), st=hstatus(h,date), isToday=date===ymd(new Date());
+  if (h.type==="check") return `<button class="hcheck ${v===true?"on":""}" data-act="hTog" data-h="${h.id}" data-d="${date}" aria-label="${v===true?"Done":"Mark done"}">${HICON.check}</button>`;
+  if (h.type==="time") return v?`<span class="tag ${st?"up":"flag"}">${esc(v)}</span>`:(isToday?`<button class="btn small orange" data-act="hNow" data-h="${h.id}" data-d="${date}">Done now</button>`:`<button class="btn small ghost" data-act="hEditVal" data-h="${h.id}" data-d="${date}">Log</button>`);
+  if (h.type==="quit"){ const q=quitStats(h); if (!q) return `<button class="btn small orange" data-act="hStartQuit" data-h="${h.id}">Start today</button>`; return compact?`<button class="btn small ghost" data-act="hCrave" data-h="${h.id}">Craving</button>`:""; }
+  if (h.type==="count"){
+    if (h.health && compact) return `<button class="btn small ghost" data-act="hEditVal" data-h="${h.id}" data-d="${date}">${v!=null?"Update":"Add"}</button>`;
+    return `<span class="hstep"><button data-act="hBump" data-h="${h.id}" data-d="${date}" data-x="-1" aria-label="Less">−</button><button class="hv num" data-act="hEditVal" data-h="${h.id}" data-d="${date}">${hfmt(h,v)}</button><button data-act="hBump" data-h="${h.id}" data-d="${date}" data-x="1" aria-label="More">+</button></span>`;
+  }
+  return "";
+}
+function habitSub(h, date){
+  const v=hval(h,date), s=hstreak(h);
+  if (h.type==="quit"){ const q=quitStats(h); return q?`${s.n} day${s.n===1?"":"s"} clean${h.cost?` · ${S.profile.currency||"£"}${q.saved.toFixed(0)} saved`:""} · ${fmtN(q.avoided)} ${esc(h.unit||"")} avoided`:"Set your start day to begin the count"; }
+  const tgt=h.type==="count"?`${hfmt(h,v)} of ${hfmt(h,+h.target)}`:h.type==="time"?(v?`Done at ${v}`:"Not logged yet"):(v===true?"Done today":"Not done yet");
+  return `${tgt} · ${s.n} day streak${s.forgiven?` (${s.forgiven} miss forgiven)`:""}`;
+}
 function habitsSummaryCard(){
-  const td=ymd(new Date()), cfg=hcfg(), h=hday(td), st=stepsTotal(td), ss=snusStats(), hour=new Date().getHours();
-  const wakeRow = cfg.wake.on ? `<div class="hrowx"><span class="hic" style="background:var(--fat)">${ICON.sun}</span><span class="hl2"><b>Up by ${cfg.wake.target}</b><span class="small muted">${h.wake?`Up at ${h.wake}`:"Not logged yet"} · ${streak(wakeStatus)} day streak</span></span>
-      ${h.wake?`<span class="tag ${wakeStatus(td)?"up":"flag"}">${wakeStatus(td)?"Done":"Late"}</span>`:hour<13?`<button class="btn small orange" data-act="wakeNow">I'm up</button>`:`<button class="btn small ghost" data-goto="habits">Log</button>`}</div>`:"";
-  const stepRow = cfg.steps.on ? `<div class="hrowx"><span class="hic" style="background:var(--carb)">${ICON.steps}</span><span class="hl2"><b>${st!=null?fmtN(st):"–"} / ${fmtN(cfg.steps.target)} steps</b><span class="small muted">${h.phone!=null?`${fmtN(h.phone)} phone`:"Add today's Health steps"}${offPhoneSteps(td)?` + ${fmtN(offPhoneSteps(td))} off-phone`:""} · ${streak(stepsStatus)} day streak</span></span>
-      <button class="btn small ghost" data-goto="habits">${h.phone!=null?"Update":"Add"}</button></div>`:"";
-  const snusRow = cfg.snus.on ? (ss?`<div class="hrowx"><span class="hic" style="background:var(--prot)">${ICON.nosnus}</span><span class="hl2"><b>${ss.streak} day${ss.streak===1?"":"s"} snus-free</b><span class="small muted">£${ss.saved.toFixed(2)} saved · ${fmtN(ss.avoided)} pouches avoided</span></span>
-      <button class="btn small ghost" data-act="craving">Craving</button></div>`:`<div class="hrowx"><span class="hic" style="background:var(--prot)">${ICON.nosnus}</span><span class="hl2"><b>Quit snus</b><span class="small muted">Set your quit date to start the count</span></span><button class="btn small orange" data-act="snusStart">Start today</button></div>`):"";
-  return `<div class="card"><div class="spread"><h2>Habits</h2><button class="link" data-goto="habits">See all</button></div><div class="hlist">${wakeRow}${stepRow}${snusRow}</div></div>`;
+  const list=habitList().filter(h=>h.on!==false).slice(0,5), td=ymd(new Date());
+  if (!list.length) return `<button class="card ctacard" data-goto="habits"><span class="ctaic food" style="background:var(--carb)">${ICON.steps}</span><span><b>Add your first habit</b><span>Steps, sleep, water, quitting something: pick from evidence-based templates or make your own.</span></span><i>›</i></button>`;
+  return `<div class="card"><div class="spread"><h2>Habits</h2><button class="link" data-goto="habits">See all</button></div><div class="hlist">${list.map(h=>`<div class="hrowx"><span class="hic" style="background:${h.color||"var(--orange)"}">${hicon(h)}</span><span class="hl2"><b>${esc(h.name)}${h.type==="time"?" "+esc(h.target):""}</b><span class="small muted">${habitSub(h,td)}</span></span>${habitControl(h,td,true)}</div>`).join("")}</div></div>`;
 }
 function renderHabits(){
-  const td=ymd(new Date()), cfg=hcfg(), h=hday(td), ss=snusStats(), sel=S.habitDate||td, hs=hday(sel), isToday=sel===td;
-  // wake chart: last 21 days of wake times
-  const wpts=[]; for (let i=20;i>=0;i--){ const d=ymd(new Date(Date.now()-i*864e5)), w=toMin(hday(d).wake); if (w!=null) wpts.push({t:parseD(d).getTime(), v:w}); }
-  const tgt=toMin(cfg.wake.target);
-  const wakeChart = wpts.length>=2 ? multiChart([{color:"var(--fat)",pts:wpts},{color:"var(--line)",pts:[{t:wpts[0].t,v:tgt},{t:wpts[wpts.length-1].t,v:tgt}]}],{minSpan:60,fmt:v=>pad(Math.floor(v/60))+":"+pad(Math.round(v%60)),label:"Wake time, last 3 weeks"}) : "";
-  const spts=[]; for (let i=13;i>=0;i--){ const d=ymd(new Date(Date.now()-i*864e5)), v=stepsTotal(d); spts.push({d,v}); }
-  const smax=Math.max(cfg.steps.target*1.2,...spts.map(x=>x.v||0));
-  const stepBars=`<div class="sbars">${spts.map(x=>`<span class="sb2"><i style="height:${(x.v||0)/smax*100}%;background:${x.v>=cfg.steps.target?"var(--carb)":"var(--orange)"}"></i><em>${parseD(x.d).toLocaleDateString("en-GB",{weekday:"narrow"})}</em></span>`).join("")}<span class="sline" style="bottom:calc(${cfg.steps.target/smax*100}% + 18px)"></span></div>`;
-  const offList=S.cardio.filter(c=>c.date===sel);
-  const cravs=((hs.snus||{}).cravings||[]);
-  return head("Habits",{back:"home"})+sampleBanner()+`
-  <div class="datenav"><button class="iconbtn" data-act="hday" data-d="-1" aria-label="Previous day">${ICON.back}</button><b>${isToday?"Today":fmtD(sel)}</b><button class="iconbtn flip" data-act="hday" data-d="1" aria-label="Next day" ${isToday?"disabled":""}>${ICON.back}</button></div>
-
-  ${cfg.snus.on?`<div class="card"><div class="spread"><div class="row"><span class="hic" style="background:var(--prot)">${ICON.nosnus}</span><h2>Quit snus</h2></div>${ss?`<span class="tag ${snusStatus(sel)===false?"flag":"up"}">${snusStatus(sel)===false?"Slipped":"Clean"}</span>`:""}</div>
-    ${ss?`<div class="stat"><div><span>Snus-free streak</span><b>${ss.streak} d</b></div><div><span>Money saved</span><b>£${ss.saved.toFixed(0)}</b></div><div><span>Pouches avoided</span><b>${fmtN(ss.avoided)}</b></div></div>
-      ${dotStrip(snusStatus,28)}
-      <div class="grid2"><button class="btn ghost" data-act="craving">I'm craving</button><button class="btn danger" data-act="slip">${S.confirm==="slip"?"Tap again to log 1 pouch":"I had one"}</button></div>
-      <span class="small muted">${cravs.length?`${cravs.length} craving${cravs.length>1?"s":""} logged ${isToday?"today":"this day"}, ${cravs.filter(c=>c.resisted).length} beaten. `:""}Cravings usually pass within a few minutes: drink water, chew gum or take a short walk. Quit day ${fmtD(cfg.snus.quitDate)}.${(hs.snus&&hs.snus.used)?` ${hs.snus.used} pouch${hs.snus.used>1?"es":""} logged ${isToday?"today":"this day"}. <button class="link muted" data-act="unslip">Remove one</button>`:""}</span>`
-    :`<p class="muted">Pick your quit day and I'll track your streak, money saved and cravings. Set your usual pouches per day and cost in Settings.</p><button class="btn orange" data-act="snusStart">Start today</button>`}</div>`:""}
-
-  ${cfg.wake.on?`<div class="card"><div class="spread"><div class="row"><span class="hic" style="background:var(--fat)">${ICON.sun}</span><h2>Up by ${cfg.wake.target}</h2></div>${hs.wake?`<span class="tag ${wakeStatus(sel)?"up":"flag"}">${hs.wake}</span>`:""}</div>
-    <div class="row" style="flex-wrap:nowrap"><input class="field big" id="wakeT" type="time" value="${esc(hs.wake||"")}" aria-label="Wake time" style="flex:1">${isToday?`<button class="btn small orange" data-act="wakeNow">I'm up now</button>`:""}<button class="btn small ghost" data-act="wakeSave">Save</button></div>
-    ${dotStrip(wakeStatus,28)}${wakeChart}
-    <span class="small muted">${streak(wakeStatus)} day streak. Counts if you're up within ${cfg.wake.grace} min of ${cfg.wake.target}. Tap "I'm up" when the 6:59 reminder lands.</span></div>`:""}
-
-  ${cfg.steps.on?`<div class="card"><div class="spread"><div class="row"><span class="hic" style="background:var(--carb)">${ICON.steps}</span><h2>${fmtN(cfg.steps.target)} steps</h2></div><span class="num"><b>${stepsTotal(sel)!=null?fmtN(stepsTotal(sel)):"–"}</b></span></div>
-    <div class="grid2"><label class="lab">Phone steps (Health)<input class="field" id="stPhone" inputmode="numeric" value="${esc(hs.phone??"")}" placeholder="e.g. 7450"></label><label class="lab">Extra steps<input class="field" id="stExtra" inputmode="numeric" value="${esc(hs.extra||"")}" placeholder="0"></label></div>
-    <button class="btn ghost" data-act="stepsSave">Save steps</button>
-    <div class="kv" style="border:0;padding:0"><div><span>Phone (Apple Health)</span><span class="num">${hs.phone!=null?fmtN(hs.phone):"–"}</span></div>
-      ${offList.map(c=>`<div><span>${CARDIO[c.type]?CARDIO[c.type].n:c.type} · ${esc(c.level)} · ${c.mins} min <button class="link muted" data-act="phoneToggle" data-id="${c.id}">${cardioPhoneOn(c)?"phone was on me":"phone not on me"}</button></span><span class="num">${cardioPhoneOn(c)?"in Health":"+"+fmtN(Math.round(stepRate(c)*c.mins))}</span></div>`).join("")}
-      ${hs.extra?`<div><span>Extra</span><span class="num">+${fmtN(hs.extra)}</span></div>`:""}</div>
-    ${stepBars}
-    <span class="small muted">${streak(stepsStatus)} day streak. Your phone only counts steps while it's on you, so sessions you log with the phone in your bag are added from per-minute rates (tennis singles 160, doubles 110, golf 100, padel ~70). Tap a session to change whether the phone was on you. Apple Health can't be read from inside Claude, so type the number from Health or tell the coach.</span></div>`:""}`;
+  const td=ymd(new Date()), sel=S.habitDate||td, isToday=sel===td, list=habitList(), edit=!!S.habitEdit;
+  const cards=list.map((h,i)=>{
+    const v=hval(h,sel), q=h.type==="quit"?quitStats(h):null, rate=hrate(h,30), hs=hday(sel);
+    let extra="";
+    if (h.health) extra=`<div class="kv" style="border:0;padding:0"><div><span>Phone (Apple Health)</span><span class="num">${hs.phone!=null?fmtN(hs.phone):"–"}</span></div>${S.cardio.filter(c=>c.date===sel).map(c=>`<div><span>${CARDIO[c.type]?CARDIO[c.type].n:c.type} · ${c.mins} min <button class="link muted" data-act="phoneToggle" data-id="${c.id}">${cardioPhoneOn(c)?"phone was on me":"phone not on me"}</button></span><span class="num">${cardioPhoneOn(c)?"in Health":"+"+fmtN(Math.round(stepRate(c)*c.mins))}</span></div>`).join("")}${hs.extra?`<div><span>Extra</span><span class="num">+${fmtN(hs.extra)}</span></div>`:""}</div>
+      <span class="small muted">Sessions with your phone in a bag are added from per-minute rates (tennis singles 160, doubles 110, golf 100, padel ~70). ${window.AJP&&AJP.hasBackend?`<button class="link" data-goto="settings">Link Apple Health</button>`:""}</span>`;
+    if (h.type==="quit"&&q){ const vv=v||{}; extra=`<div class="stat"><div><span>Clean streak</span><b>${hstreak(h).n} d</b></div><div><span>${h.cost?"Saved":"Days"}</span><b>${h.cost?(S.profile.currency||"£")+q.saved.toFixed(0):q.days}</b></div><div><span>Avoided</span><b>${fmtN(q.avoided)}</b></div></div>
+      <div class="grid2"><button class="btn ghost" data-act="hCrave" data-h="${h.id}">I'm craving</button><button class="btn danger" data-act="hSlip" data-h="${h.id}">${S.confirm==="slip-"+h.id?"Tap again to log one":"I had one"}</button></div>
+      <span class="small muted">${(vv.cravings||[]).length?`${vv.cravings.length} craving${vv.cravings.length>1?"s":""} beaten ${isToday?"today":"this day"}. `:""}Cravings usually pass within a few minutes: water, gum or a short walk.${vv.used?` ${vv.used} logged ${isToday?"today":"this day"}. <button class="link muted" data-act="hUnslip" data-h="${h.id}">Remove one</button>`:""}</span>`; }
+    if (h.type==="time") extra=`<div class="row" style="flex-wrap:nowrap"><input class="field" type="time" id="ht-${h.id}" value="${esc(v||"")}" style="flex:1" aria-label="Time">${isToday?`<button class="btn small orange" data-act="hNow" data-h="${h.id}" data-d="${sel}">Now</button>`:""}<button class="btn small ghost" data-act="hTime" data-h="${h.id}" data-d="${sel}">Save</button></div>`;
+    return `<section class="card hcard" style="--hc:${h.color||"var(--orange)"}">
+      <div class="hhead"><span class="hic">${hicon(h)}</span><span class="hl2"><b>${esc(h.name)}${h.type==="time"?" "+esc(h.target):h.type==="count"?` <span class="muted small">${hfmt(h,+h.target)}</span>`:""}</b><span class="small muted">${habitSub(h,sel)}</span></span>
+        ${edit?`<span class="hedit"><button class="iconbtn" data-act="hMove" data-h="${h.id}" data-x="-1" aria-label="Move up" ${i?"":"disabled"}>↑</button><button class="iconbtn" data-act="hOpen" data-h="${h.id}" aria-label="Edit">✎</button></span>`:(h.type==="time"?"":habitControl(h,sel,false))}</div>
+      ${h.cue?`<div class="hcue"><em>Plan</em>${esc(h.cue)}</div>`:""}
+      ${edit?"":extra}
+      ${edit?"":`${dotStrip(d=>hstatus(h,d),28)}<span class="small muted num">${rate!=null?`Hit ${rate}% of the last 30 days`:"Last 4 weeks"}</span>`}
+    </section>`;
+  }).join("");
+  return head("Habits",{back:"home"})+`
+  <div class="row" style="justify-content:space-between"><div class="datenav" style="flex:1"><button class="iconbtn" data-act="hday" data-d="-1" aria-label="Previous day">${ICON.back}</button><b>${isToday?"Today":fmtD(sel)}</b><button class="iconbtn flip" data-act="hday" data-d="1" aria-label="Next day" ${isToday?"disabled":""}>${ICON.back}</button></div></div>
+  <div class="row" style="justify-content:space-between"><button class="btn small orange" data-act="hAdd">+ Add habit</button>${list.length?`<button class="btn small ${edit?"":"ghost"}" data-act="hEditMode">${edit?"Done":"Edit"}</button>`:""}</div>
+  ${cards||`<div class="card"><p class="muted" style="text-align:center">No habits yet. Tap Add habit to pick one.</p></div>`}
+  <p class="small muted">Habits take about 2 months to become automatic on average, with a wide range (Lally 2010; Singh 2024). Missing one day doesn't undo the progress, so streaks here forgive one miss a week. <button class="obsrc" data-act="science" data-src="habits">Evidence</button></p>`;
+}
+/* habit editor sheet */
+function habitSheet(h){
+  S.hDraft=h?clone(h):null; renderHabitSheet();
+}
+function renderHabitSheet(){
+  let el=$("#habitSheet"); if (!el){ el=document.createElement("div"); el.id="habitSheet"; el.className="actions hsheet"; el.hidden=true; document.body.appendChild(el); el.addEventListener("click", habitSheetClick); el.addEventListener("input", habitSheetInput); }
+  const d=S.hDraft;
+  if (d===undefined){ hideAnim(el,240); hideAnim($("#scrim")); return; }
+  el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
+  let body;
+  if (d===null){
+    const have=new Set(habitList().map(h=>h.tpl));
+    body=`<h2>Add a habit</h2><div class="htpl">${HABIT_TEMPLATES.map(t=>`<button class="htpi" data-hs="tpl" data-t="${t.tpl}" ${have.has(t.tpl)&&t.tpl!=="quit"?"disabled":""}><span class="hic" style="background:${t.color}">${ICON[t.icon]||HICON[t.icon]}</span><span><b>${esc(t.name)}</b><em>${esc(t.why)}</em></span></button>`).join("")}</div>
+      <h3>Or make your own</h3><div class="grid2">${[["check","Done / not done"],["count","Hit a number"],["time","Done by a time"],["quit","Quit something"]].map(([k,n])=>`<button class="btn ghost" data-hs="custom" data-t="${k}">${n}</button>`).join("")}</div>`;
+  } else {
+    body=`<h2>${d.id&&habitList().some(h=>h.id===d.id)?"Edit habit":"New habit"}</h2>
+      <label class="lab">Name<input class="field" id="hsName" value="${esc(d.name||"")}" placeholder="e.g. Stretch"></label>
+      ${d.type==="count"?`<div class="grid2"><label class="lab">Daily target<input class="field" id="hsTarget" inputmode="decimal" value="${esc(d.target??"")}"></label><label class="lab">Unit<input class="field" id="hsUnit" value="${esc(d.unit||"")}" ${d.health?"readonly":""}></label></div>`:""}
+      ${d.type==="time"?`<div class="grid2"><label class="lab">By<input class="field" id="hsTarget" type="time" value="${esc(d.target||"07:00")}"></label><label class="lab">Grace (min)<input class="field" id="hsGrace" inputmode="numeric" value="${esc(d.grace??5)}"></label></div>`:""}
+      ${d.type==="quit"?`<div class="grid2"><label class="lab">What you're quitting (unit)<input class="field" id="hsUnit" value="${esc(d.unit||"")}" placeholder="e.g. pouches"></label><label class="lab">How many a day before<input class="field" id="hsPer" inputmode="decimal" value="${esc(d.perDay??"")}"></label>
+        <label class="lab">Cost each (${S.profile.currency||"£"})<input class="field" id="hsCost" inputmode="decimal" value="${esc(d.cost??"")}"></label><label class="lab">Start day<input class="field" id="hsQuit" type="date" value="${esc(d.quitDate||"")}"></label></div>`:""}
+      <label class="lab">Your plan <span class="muted">(optional, but it roughly doubles follow-through)</span><input class="field" id="hsCue" value="${esc(d.cue||"")}" placeholder="${d.type==="quit"?"When I crave one, I'll drink water and walk for 5 min":"After my morning coffee, I'll do it in the kitchen"}"></label>
+      <label class="lab">Colour<span class="hcols">${["var(--orange)","var(--carb)","var(--fat)","var(--prot)","var(--cardio)","var(--weight)","var(--warn)"].map(c=>`<button class="hcol ${d.color===c?"on":""}" data-hs="col" data-c="${c}" style="background:${c}" aria-label="Colour"></button>`).join("")}</span></label>
+      ${habitList().some(h=>h.id===d.id)?`<button class="btn danger" data-hs="del">${S.confirm==="hdel"?"Tap again to remove (history is kept)":"Remove habit"}</button>`:""}`;
+  }
+  el.innerHTML=`<div class="in"><div class="grab"></div>${body}${d?`<button class="btn orange" data-hs="save">Save</button>`:""}<button class="btn ghost" data-hs="close">Cancel</button></div>`;
+}
+function habitSheetInput(){}
+function habitSheetClick(e){
+  const b=e.target.closest("[data-hs]"); if (!b) return; const k=b.dataset.hs, d=S.hDraft;
+  if (k==="close"){ S.hDraft=undefined; S.confirm=null; renderHabitSheet(); return; }
+  if (k==="tpl"){ const t=HABIT_TEMPLATES.find(x=>x.tpl===b.dataset.t); S.hDraft={...clone(t), id:uid("h"), since:ymd(new Date())}; delete S.hDraft.why; renderHabitSheet(); return; }
+  if (k==="custom"){ const ty=b.dataset.t; S.hDraft={id:uid("h"), type:ty, name:"", icon:ty==="quit"?"nosnus":ty==="time"?"sun":"check", color:"var(--orange)", target:ty==="count"?1:ty==="time"?"07:00":undefined, unit:"", since:ymd(new Date())}; renderHabitSheet(); return; }
+  if (k==="col"){ readHabitForm(); d.color=b.dataset.c; renderHabitSheet(); return; }
+  if (k==="del"){ if (S.confirm!=="hdel"){ S.confirm="hdel"; renderHabitSheet(); return; } S.confirm=null; saveHabitList(habitList().filter(h=>h.id!==d.id)); S.hDraft=undefined; renderHabitSheet(); render(); toast("Habit removed"); return; }
+  if (k==="save"){ readHabitForm(); if (!d.name){ toast("Give it a name"); return; } const list=habitList().slice(), i=list.findIndex(h=>h.id===d.id); if (i>=0) list[i]=d; else list.push(d); saveHabitList(list); S.hDraft=undefined; renderHabitSheet(); render(); toast("Saved"); return; }
+}
+function readHabitForm(){
+  const d=S.hDraft, v=id=>{ const x=$("#"+id); return x?x.value:undefined; };
+  if (v("hsName")!=null) d.name=v("hsName").trim();
+  if (v("hsTarget")!=null) d.target=d.type==="time"?v("hsTarget"):+String(v("hsTarget")).replace(",",".")||d.target;
+  if (v("hsUnit")!=null) d.unit=v("hsUnit").trim();
+  if (v("hsGrace")!=null) d.grace=+v("hsGrace")||0;
+  if (v("hsPer")!=null) d.perDay=+String(v("hsPer")).replace(",",".")||0;
+  if (v("hsCost")!=null) d.cost=+String(v("hsCost")).replace(",",".")||0;
+  if (v("hsQuit")!=null) d.quitDate=v("hsQuit")||null;
+  if (v("hsCue")!=null) d.cue=v("hsCue").trim();
+}
+function habitAct(act, b){
+  const h=habitList().find(x=>x.id===b.dataset.h), date=b.dataset.d||S.habitDate||ymd(new Date());
+  switch(act){
+    case "hAdd": habitSheet(null); return true;
+    case "hOpen": habitSheet(h); return true;
+    case "hEditMode": S.habitEdit=!S.habitEdit; render(); return true;
+    case "hMove": { const list=habitList().slice(), i=list.findIndex(x=>x.id===h.id), j=i+(+b.dataset.x); if (j<0||j>=list.length) return true; [list[i],list[j]]=[list[j],list[i]]; saveHabitList(list); render(); return true; }
+    case "hTog": { const v=hval(h,date); hset(h,date,v===true?null:true); render(); if (v!==true){ try{ navigator.vibrate&&navigator.vibrate(30); }catch(e){} } return true; }
+    case "hNow": { const n=new Date(); hset(h,date,pad(n.getHours())+":"+pad(n.getMinutes())); render(); toast(hstatus(h,date)?"On time. Nice.":"Logged."); return true; }
+    case "hTime": { const x=$("#ht-"+h.id); if (!x||!x.value){ toast("Pick a time"); return true; } hset(h,date,x.value); render(); toast("Saved"); return true; }
+    case "hBump": { const cur=+hval(h,date)||0, stp=+h.step||1; const nv=Math.max(0,Math.round((cur+(+b.dataset.x)*stp)*100)/100); if (h.health) saveHabit(date,{phone:nv}); else hset(h,date,nv); render(); return true; }
+    case "hEditVal": { const cur=hval(h,date); const x=prompt(`${h.name}${h.unit?" ("+h.unit+")":""}`, cur==null?"":(h.health?(hday(date).phone??""):cur)); if (x===null) return true; const n=x.trim()===""?null:+x.replace(/[^0-9.]/g,""); if (h.health) saveHabit(date,{phone:n}); else if (h.type==="time") hset(h,date,x.trim()||null); else hset(h,date,n); render(); return true; }
+    case "hStartQuit": { const list=habitList().map(x=>x.id===h.id?{...x, quitDate:ymd(new Date())}:x); saveHabitList(list); render(); toast("Day 1. You've got this."); return true; }
+    case "hCrave": { const d=ymd(new Date()), v={used:0,cravings:[],...(hval(h,d)||{})}; v.cravings=[...(v.cravings||[]),{t:Date.now(),resisted:true}]; hset(h,d,v); render(); toast("Craving beaten. It usually fades within minutes."); return true; }
+    case "hSlip": { if (S.confirm!=="slip-"+h.id){ S.confirm="slip-"+h.id; render(); return true; } S.confirm=null; const v={used:0,cravings:[],...(hval(h,date)||{})}; v.used=(v.used||0)+1; hset(h,date,v); render(); toast("Logged. One slip doesn't undo your progress."); return true; }
+    case "hUnslip": { const v={...(hval(h,date)||{})}; v.used=Math.max(0,(v.used||0)-1); hset(h,date,v); render(); return true; }
+  }
+  return false;
 }
 
 /* ---------- Render root ---------- */
 function render(){
+  const navShow={food:on("nutrition"), plan:on("training")||on("endurance")};
+  document.querySelectorAll(".nav button[data-tab]").forEach(b=>{ if (b.dataset.tab in navShow) b.hidden=!navShow[b.dataset.tab]; });
+  const navIn=$(".nav .in"); if (navIn) navIn.style.gridTemplateColumns=`repeat(${[...navIn.children].filter(b=>!b.hidden).length},1fr)`;
   const navTab = {train:"plan", cardio:"progress", habits:"home", energy:"food", settings:S.prevTab||"home"}[S.tab] || S.tab;
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab));
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
@@ -1207,11 +1379,15 @@ function renderHome(){
     today=`<div class="card hero"><div class="spread"><h2>${esc((dayBy(a.dayKey)||{}).label||"Workout")} in progress</h2><span class="tag rep">${gymName(a.gym)}</span></div>
       <div class="progress"><i style="width:${tt?dn/tt*100:0}%"></i></div><span class="small muted num">${dn} of ${tt} sets · ${fmtT((Date.now()-a.startedAt)/1000)} elapsed</span>
       <button class="btn orange" data-goto="train">Resume workout</button></div>`;
+  } else if (!S.prog.placeholder && S.prog.startDate && todayStr<S.prog.startDate){
+    today=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Your plan</span><h2>${esc(S.prog.name)}</h2></div><span class="small muted">Starts ${fmtD(S.prog.startDate)}. Until then, train as you like or ease in with easy sessions.</span><button class="btn ghost" data-goto="plan">See the plan</button></div>`;
+  } else if (runFor(todayStr) && !(d.variants&&(d.variants[d.gym||defGym()]||[]).length)){
+    today=runCard(runFor(todayStr), todayStr);
   } else if (d.rest){
     today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Rest day</h2></div><span class="tag">${esc(d.cardio)}</span></div><button class="btn ghost" data-act="coach" data-msg="">Tell Claude what you did</button></div>`;
   } else {
     const doneToday=sessionsOn(todayStr).length;
-    today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>${esc(d.label)}${d.optional?" (optional)":""}</h2></div><span class="tag ${doneToday?"up":"rep"}">${doneToday?"Done":gymName(d.gym)}</span></div>
+    today=`<div class="card hero"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>${esc(d.label)}${d.optional?" (optional)":""}</h2></div><span class="tag ${doneToday?"up":"rep"}" ${d.gym?"":"hidden"}>${doneToday?"Done":gymName(d.gym)}</span></div>
       <span class="small muted">${esc(d.focus)} · ${plannedSets(d)} sets · ${esc(d.cardio)}</span>
       <button class="btn ${doneToday?"ghost":"orange"}" data-goto="train">${doneToday?"Train again":"Start workout"}</button></div>`;
   }
@@ -1224,9 +1400,9 @@ function renderHome(){
   const used=[...new Set(S.sessions.flatMap(s=>(s.ex||[]).map(e=>e.k)))];
   const adv=used.map(k=>advice(k)), up=adv.filter(a=>a.status==="up").length, fl=adv.filter(a=>a.flag).length;
   const ds=deloadStatus(), ex=tg.ex;
-  const setup=(S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your programme</b><span>Two minutes. Split, exercises for both gyms, volume and effort, from the research.</span></span><i>›</i></button>`:"")
-    +(!S.profile.goal?`<button class="card ctacard" data-act="nutGoal"><span class="ctaic food">${ICON.food}</span><span><b>Set your nutrition goal</b><span>Pick a goal and pace. Calories and macros follow, and adapt weekly.</span></span><i>›</i></button>`:"");
-  return head("Dashboard")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setup+today+habitsSummaryCard()+food+`
+  const setup=((on("training")||on("endurance"))&&S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your plan</b><span>Gym, running or both: sessions, effort and progression from the research.</span></span><i>›</i></button>`:"")
+    +(on("nutrition")&&!S.profile.goal?`<button class="card ctacard" data-act="nutGoal"><span class="ctaic food">${ICON.food}</span><span><b>Set your nutrition goal</b><span>Pick a goal and pace. Calories and macros follow, and adapt weekly.</span></span><i>›</i></button>`:"");
+  return head(S.profile.name?`Hi ${esc(S.profile.name)}`:"Dashboard")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setup+(on("training")||on("endurance")?today:"")+(on("habits")?habitsSummaryCard():"")+(on("nutrition")?food:"")+`
   <div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${ph.label}</span></div>
     <div class="wk">${grid}</div>${detail}
     <div class="legend"><span><i style="background:var(--orange)"></i>Sets</span><span><i style="background:var(--kcal)"></i>Calories</span><span><i style="background:var(--cardio)"></i>Cardio</span><span><i style="background:var(--weight)"></i>Weight</span></div></div>
@@ -1333,6 +1509,15 @@ function goalLine(tg){
   return `<button class="goalrow" data-act="nutGoal"><span><b>${esc(g.line)}</b><span class="small muted">${g.done?"Goal weight reached. Tap to set the next one.":g.eta?`${Math.abs(g.left).toFixed(1)} kg to go · on pace for ${g.eta.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}`:"Maintenance calories"}</span></span><i>›</i></button>
     <button class="goalrow" data-goto="energy"><span><b>Expenditure ${fmtN(tg.ex.kcal)} kcal${tg.ex.adaptive?` <span class="tag up">±${fmtN(Math.max(40,tg.ex.err))}</span>`:` <span class="tag">estimate</span>`}</b><span class="small muted">${tg.ex.adaptive?`${tg.ex.n} logged days, ${Math.round(tg.ex.w*100)}% from your data`:"Starting model until you've logged 5 full days"}</span></span><i>›</i></button>`;
 }
+// Running plans: this week's prescribed session for a date (sessions change week to week as volume builds).
+function enduWeek(date){ const P=S.prog.endurance; if (!P) return null; const t=parseD(date||ymd(new Date())); return P.weeks.find(w=>{ const a=parseD(w.start); return t>=a && t<new Date(a.getTime()+7*864e5); })||null; }
+function runFor(date){ const w=enduWeek(date); if (!w) return null; const wd=parseD(date).getDay(), s=w.sessions[wd]; return s?{...s, ...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), week:w}:null; }
+function runCard(r, date){
+  const done=S.cardio.filter(c=>c.date===date && c.type==="run");
+  return `<div class="card runcard"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery":""}</span><h2>${esc(r.n)}</h2></div><b class="num rkm">${r.km}<em> km</em></b></div>
+    <span class="small muted">${esc(r.rpe)}</span>${r.week.notes.length?`<div class="hcue"><em>This week</em>${r.week.notes.map(esc).join(". ")}</div>`:""}
+    ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>`:`<button class="btn orange" data-act="logRun" data-km="${r.km}" data-lv="${esc(r.level||"Steady")}">Log this run</button>`}</div>`;
+}
 function blockInfo(){
   const p=S.prog; if (!p.rir) return null;
   const bw=blockWeek(Date.now()); if (bw<0) return {pre:true, starts:p.startDate};
@@ -1419,8 +1604,8 @@ function foodMacros(f, amount, unit){
 function renderPlan(){
   const view=S.planView||"week", ph=PHASES[S.profile.phase], ds=deloadStatus();
   const bi=blockInfo();
-  return head("Plan")+`<div class="row"><span class="tag rep">${ph.label}</span><span class="tag">${esc(S.prog.name)}</span>${bi?(bi.pre?`<span class="tag">Starts ${fmtD(bi.starts)}</span>`:`<span class="tag">Week ${bi.week} of ${bi.len}</span><span class="tag ${bi.deload?"hold":"up"}">${bi.deload?"Deload week":"Target "+bi.rir+" RIR"}</span>`):ds?`<span class="tag">Week ${ds.weeks} of ${ds.every}</span>`:""}</div>
-    ${S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your programme</b><span>Two-minute setup. Every day written for home and SHWC, backed by the research.</span></span><i>›</i></button>`:`<div class="row" style="justify-content:space-between"><span class="small muted">${S.prog.splitName?esc(S.prog.splitName):""}</span><span class="row" style="gap:14px"><button class="link muted" data-act="science">Why it's built this way</button><button class="link" data-act="buildProg">Rebuild</button></span></div>`}
+  return head("Plan")+`<div class="row"><span class="tag rep">${S.prog.endurance?esc(S.prog.endurance.eventName):ph.label}</span><span class="tag">${esc(S.prog.name)}</span>${bi?(bi.pre?`<span class="tag">Starts ${fmtD(bi.starts)}</span>`:`<span class="tag">Week ${bi.week} of ${bi.len}</span><span class="tag ${bi.deload?"hold":"up"}">${bi.deload?"Deload week":"Target "+bi.rir+" RIR"}</span>`):ds?`<span class="tag">Week ${ds.weeks} of ${ds.every}</span>`:""}</div>
+    ${S.prog.placeholder?`<button class="card ctacard" data-act="buildProg"><span class="ctaic">${LOGO(44)}</span><span><b>Build your plan</b><span>Gym, running or both. Two-minute setup, backed by the research.</span></span><i>›</i></button>`:`<div class="row" style="justify-content:space-between"><span class="small muted">${S.prog.splitName?esc(S.prog.splitName):""}</span><span class="row" style="gap:14px"><button class="link muted" data-act="science">Why it's built this way</button><button class="link" data-act="buildProg">Rebuild</button></span></div>`}
     ${seg("planView",[["week","Week"],["month","Month"]],view)}
     ${view==="week"?renderWeekView():renderMonthView()}`;
 }
@@ -1432,27 +1617,33 @@ function renderWeekView(){
     let st;
     if (d.rest) st=cardio.length?`<span class="status done">${cardio.length} cardio</span>`:`<span class="status">Rest</span>`;
     else if (done.length) st=`<span class="status done">Done · ${gymName(done[0].gym)}</span>`;
+    else if (d.run && cardio.some(c=>c.type==="run")) st=`<span class="status done">Run done</span>`;
     else if (isToday) st=`<span class="status next">Today</span>`;
     else if (S.prog.startDate && ymd(dt)<S.prog.startDate) st=`<span class="status">Before block</span>`;
     else st=`<span class="status">${dt<new Date()?"Missed":"Planned"}</span>`;
     return `<button class="wday ${isToday?"is-today":""}" data-act="dayview" data-k="${d.k}"><span class="d">${dt.toLocaleDateString("en-GB",{weekday:"short"})}<b class="num">${dt.getDate()}</b></span>
-      <span class="f"><b>${esc(d.label)}${d.optional?" (optional)":""}</b><span>${esc(d.focus)}${!d.rest&&cardio.length?" · "+cardio.map(c=>CARDIO[c.type].n).join(", "):""}</span></span>${st}</button>${S.dayView===d.k?dayDetail(d,ymd(dt)):""}`;
+      <span class="f"><b>${(()=>{ const r=runFor(ymd(dt)); return r?esc(r.n)+" · "+r.km+" km"+(d.variants&&Object.keys(d.variants).length&&(d.variants[d.gym||defGym()]||[]).length?" + strength":""):esc(d.label); })()}${d.optional?" (optional)":""}</b><span>${esc(d.focus)}${!d.rest&&cardio.length?" · "+cardio.map(c=>CARDIO[c.type].n).join(", "):""}</span></span>${st}</button>${S.dayView===d.k?dayDetail(d,ymd(dt)):""}`;
   }).join("");
   const sess=S.sessions.filter(s=>{ const x=parseD(s.date); return x>=dates[0]&&x<=dates[6]; });
   const planned={}, got={};
-  S.prog.days.forEach(d=>{ if(d.rest||d.optional) return; (d.variants[d.gym||"home"]||[]).forEach(([k,n])=>{ const m=exDef(k).m; planned[m]=(planned[m]||0)+n; }); });
+  S.prog.days.forEach(d=>{ if(d.rest||d.optional) return; (d.variants[d.gym||defGym()]||[]).forEach(([k,n])=>{ const m=exDef(k).m; planned[m]=(planned[m]||0)+n; }); });
   sess.forEach(s=>(s.ex||[]).forEach(e=>{ const m=e.m||exDef(e.k).m; got[m]=(got[m]||0)+e.sets.length; }));
   const bars=Object.keys(planned).sort((a,b)=>planned[b]-planned[a]).map(m=>`<div class="bar-row"><span>${m}</span><span class="track"><b style="width:${Math.min(100,(got[m]||0)/planned[m]*100)}%"></b></span><span class="num small">${got[m]||0}/${planned[m]}</span></div>`).join("");
-  return `<div class="stack" style="gap:8px">${days}</div>
-    <div class="card"><h2>Sets this week</h2><div class="bars">${bars}</div><span class="small muted">Done against planned, Sunday excluded.</span></div>`;
+  const ew=enduWeek(ymd(new Date())), runKm=S.cardio.filter(c=>c.type==="run"&&parseD(c.date)>=dates[0]&&parseD(c.date)<=dates[6]).reduce((a,c)=>a+(+c.km||0),0);
+  const runSum=ew?`<div class="card"><div class="spread"><h2>Running this week</h2><span class="small muted">${esc(ew.phase)}${ew.recovery?" · recovery":""}</span></div>
+    <div class="bar-row"><span>Distance</span><span class="track"><b style="width:${Math.min(100,runKm/ew.km*100)}%"></b></span><span class="num small">${r1(runKm)}/${ew.km} km</span></div>
+    <span class="small muted">Long run ${ew.long} km${ew.b2b?`, then ${ew.b2b} km the next day`:""}. ${S.prog.endurance.raceDate?`${Math.max(0,Math.ceil((parseD(S.prog.endurance.raceDate)-new Date())/864e5))} days to ${esc(S.prog.endurance.eventName)}.`:""}</span></div>`:"";
+  const hasLift=Object.keys(planned).length;
+  return `<div class="stack" style="gap:8px">${days}</div>${runSum}${hasLift?"":"<!--"}
+    <div class="card"><h2>Sets this week</h2><div class="bars">${bars}</div><span class="small muted">Done against planned, optional days excluded.</span></div>${hasLift?"":"-->"}`;
 }
 function dayDetail(d, dateStr){
   if (d.rest) return `<div class="card small muted">${esc(d.cardio)}.</div>`;
   const done=dateStr?sessionsOn(dateStr):[];
   if (done.length) return done.map(s=>`<div class="card"><div class="spread"><b>Done at ${gymName(s.gym)}</b><span class="small muted num">${s.mins||"?"} min</span></div><div class="kv" style="border:0;padding:0">${(s.ex||[]).map(e=>`<div><span>${esc(e.n||exDef(e.k).n)}</span><span class="num">${setsStr(e.sets)}</span></div>`).join("")}</div></div>`).join("");
-  const g=S.planGym[d.k]||d.gym||"home", list=d.variants[g]||[];
+  const g=S.planGym[d.k]||d.gym||defGym(), list=d.variants[g]||[];
   const future=!dateStr||dateStr>=ymd(new Date());
-  return `<div class="card">${dd("planGym-"+d.k,GYM_OPTS,g,"Gym",true)}
+  return `<div class="card">${dd("planGym-"+d.k,gymOpts(),g,"Gym",true)}
     <div class="list">${list.map(([k,n])=>{const x=exDef(k);return `<div class="li"><span>${esc(x.n)}</span><span class="num muted">${n} × ${x.lo}–${x.hi}</span><div class="sub"><span class="tag">${esc(x.m)}</span></div></div>`}).join("")}</div>
     ${future||true?`<button class="btn orange" data-act="startDay" data-k="${d.k}" data-g="${g}">Start ${esc(d.label.toLowerCase())} · ${gymName(g)}</button>`:""}</div>`;
 }
@@ -1496,7 +1687,7 @@ function renderMonthView(){
 }
 
 /* ---------- Train ---------- */
-function chosenGym(d){ return S.gym || d.gym || "home"; }
+function chosenGym(d){ return S.gym || d.gym || defGym(); }
 function dayOptions(){ const t=todayDay(); return S.prog.days.map(x=>[x.k, `${x.label}${x.k===t.k?" (today)":""}`]); }
 function renderTrain(){
   const t=todayDay(), d=dayBy(S.pick||t.k), gym=d.rest?null:chosenGym(d), ds=deloadStatus();
@@ -1504,7 +1695,9 @@ function renderTrain(){
   const bi=blockInfo();
   if (bi&&!bi.pre){ if (bi.deload&&!S.deload) banner+=`<div class="banner"><b>Deload week.</b> Turn on Deload below: half the sets at about 3 reps in reserve.</div>`; }
   else if (ds && ds.weeks>=ds.every-1) banner+=`<div class="banner"><b>${ds.weeks>=ds.every?"Deload due.":"Deload next week."}</b> Week ${ds.weeks} of ${ds.every}. Half sets, about 3 reps in reserve.</div>`;
-  const pills=`<div class="pills">${dd("pickDay",dayOptions(),d.k,"Day")}${d.rest?"":dd("pickGym",GYM_OPTS,gym,"Gym")}${d.rest?"":`<button class="tgl" data-act="deload" aria-pressed="${S.deload}">Deload</button>`}</div>`;
+  const pills=`<div class="pills">${dd("pickDay",dayOptions(),d.k,"Day")}${d.rest?"":dd("pickGym",gymOpts(),gym,"Gym")}${d.rest?"":`<button class="tgl" data-act="deload" aria-pressed="${S.deload}">Deload</button>`}</div>`;
+  const todayRun=d.k===t.k?runFor(ymd(new Date())):null;
+  if (d.run && !(d.variants&&(d.variants[gym]||[]).length)) return head("Workout",{back:"plan"})+`<div class="pills">${dd("pickDay",dayOptions(),d.k,"Day")}</div>`+(todayRun?runCard(todayRun,ymd(new Date())):`<div class="card"><h2>${esc(d.label)}</h2><p class="muted">${esc(d.focus)}</p><button class="btn orange" data-act="logRun">Log a run</button></div>`);
   if (d.rest) return head("Workout",{back:"plan"})+pills+`<div class="card"><h2>Rest day</h2><p class="muted">${esc(d.cardio)}. If a lifting day slipped, pick it above. Drop Sunday first and keep 48 hours between leg days.</p><button class="btn ghost" data-goto="cardio">Log cardio</button></div>`;
   const list=d.variants[gym]||[];
   const flagged=list.filter(([k])=>advice(k,null,gym).flag).length;
@@ -1516,7 +1709,7 @@ function renderTrain(){
     return `<div class="exi"><span class="ic">${initials(ex.n)}</span><span class="nm">${esc(ex.n)}</span><span class="tg num">${sets} × ${ex.lo}–${ex.hi}</span>
       <div class="sub"><span class="tag">${esc(ex.m)}</span>${S.deload?'<span class="tag">~3 RIR</span>':(bi&&!bi.pre?`<span class="tag">${bi.rir} RIR</span>`:"")+a.pill}${a.last&&!a.cross?`<span class="num">Last: ${setsStr([a.last.sets[0]])}</span>`:""}</div></div>`;
   }).join("");
-  return head("Workout",{back:"plan"})+pills+banner+`
+  return head("Workout",{back:"plan"})+pills+banner+(todayRun?runCard(todayRun,ymd(new Date())):"")+`
   <div class="card"><div class="spread"><h2>${esc(d.label)}${d.k!==t.k?` <span class="small muted">moved</span>`:""}</h2><span class="small muted num">${total} sets · ~${Math.round(total*2.6+5)} min</span></div>
     <h3>Target muscles</h3><div class="mus">${Object.entries(mus).map(([m,v])=>`<div><b>${esc(m)}</b><span class="num">${v.ex} exercise${v.ex>1?"s":""} · ${v.sets} sets</span></div>`).join("")}</div></div>
   <div class="card"><div class="spread"><h3>${list.length} exercises</h3><span class="small muted">${gymName(gym)} weights</span></div><div class="exlist">${rows}</div></div>
@@ -1558,7 +1751,7 @@ function renderLive(){
   return `<div class="top"><div class="brand">${LOGO(30)}<span class="date">${esc(d.label)} · ${gymName(a.gym)}${a.deload?" · deload":""}</span></div><button class="coachbtn" data-act="coach" aria-label="Ask Claude">${ICON.spark}</button></div>
     <div class="livehead"><h1 class="num">${done}/${total} sets</h1><div style="text-align:right"><div class="date">Elapsed</div><div class="clock num" id="elapsed">${fmtT((Date.now()-a.startedAt)/1000)}</div></div></div>
     <div class="progress"><i style="width:${total?done/total*100:0}%"></i></div>
-    <div class="pills">${done?"":dd("liveGym",GYM_OPTS,a.gym,"Gym")}<button class="tgl" data-act="coach">${ICON.spark}Ask Claude</button></div>
+    <div class="pills">${done?"":dd("liveGym",gymOpts(),a.gym,"Gym")}<button class="tgl" data-act="coach">${ICON.spark}Ask Claude</button></div>
     ${cards}
     <button class="btn orange" data-act="finish">${S.confirm==="finish"?"Tap again to save":"Finish and save"}</button>
     <button class="btn danger" data-act="discard">${S.confirm==="discard"?"Tap again to discard":"Discard session"}</button>`;
@@ -1618,7 +1811,7 @@ function renderExercise(k){
   const lift=allLifts().find(l=>l.k===k); if(!lift){ S.exView=null; return renderProgress(); }
   const def=lift.def, gyms=[...lift.gyms];
   const g=S.exGym&&S.exGym!=="all"&&gyms.includes(S.exGym)?S.exGym:"all";
-  const colors={home:"var(--orange)",shwc:"var(--cardio)"};
+  const PAL=["var(--orange)","var(--cardio)","var(--carb)","var(--weight)","var(--fat)"], colors=new Proxy({},{get:(_,k)=>PAL[Math.max(0,gymList().findIndex(g=>g.id===k))%PAL.length]});
   const series=(g==="all"?gyms:[g]).map(gg=>({color:colors[gg], pts:liftHistory(k,true,gg).slice().reverse().map(x=>({t:x.ts,v:e1(x.sets[0].w,x.sets[0].r)}))}));
   const h=liftHistory(k,true,g);
   const best=h.reduce((b,x)=>{ x.sets.forEach(s=>{ const v=e1(s.w,s.r); if(!b||v>b.v) b={v,s,ts:x.ts,gym:x.gym}; }); return b; },null);
@@ -1715,7 +1908,16 @@ function renderSettings(){
   let theme="system"; try{ theme=localStorage.getItem("ajtheme")||"system"; }catch(e){}
   return head("Settings",{back:S.prevTab||"home"})+`
   <div class="card"><h2>Appearance</h2>${seg("theme",[["system","Match system"],["light","Light"],["dark","Dark"]],theme)}</div>
+  <div class="card"><h2>Sections</h2><span class="small muted">Turn on only what you use. Everything you've logged is kept if you switch something off.</span>
+    <div class="modlist">${Object.entries(MODULES).map(([k,[n,d]])=>`<div class="spread"><div class="stack" style="gap:1px"><b>${n}</b><span class="small muted">${d}</span></div><button class="switch" data-act="modTog" data-m="${k}" role="switch" aria-checked="${on(k)}" aria-label="${n}"><i></i></button></div>`).join("")}</div></div>
+  ${on("training")?`<div class="card"><div class="spread"><h2>Gyms</h2><button class="btn small ghost" data-act="gymAdd">+ Add gym</button></div>
+    <span class="small muted">Programmes are written for every gym here, using only the kit each one has.</span>
+    ${gymList().map(g=>`<details class="obkit gymrow"><summary><b>${esc(g.name)}</b><span class="muted small">${(g.kit||[]).length} items · edit</span></summary>
+      <label class="lab">Name<input class="field" data-gymname="${g.id}" value="${esc(g.name)}"></label>
+      <div class="chips">${((window.AJOnboard&&AJOnboard.EQUIP)||[]).map(([k,n])=>`<button class="chip" data-act="gymKit" data-g="${g.id}" data-k="${k}" aria-pressed="${(g.kit||[]).includes(k)}">${n}</button>`).join("")}</div>
+      ${gymList().length>1?`<button class="btn danger" data-act="gymDel" data-g="${g.id}">${S.confirm==="gymdel-"+g.id?"Tap again to remove":"Remove gym"}</button>`:""}</details>`).join("")}</div>`:""}
   <div class="card"><h2>You</h2>
+    <div class="grid2"><label class="lab">Name<input class="field" id="pName" value="${esc(p.name||"")}" placeholder="Your name"></label><label class="lab">Sex<span class="dd full"><select id="pSex"><option value="" ${!p.sex?"selected":""}>Choose</option><option value="male" ${p.sex==="male"?"selected":""}>Male</option><option value="female" ${p.sex==="female"?"selected":""}>Female</option></select></span></label></div>
     <label class="lab">Birthday<input class="field" id="pBirth" type="date" value="${esc(p.birthDate)}"></label>
     <span class="small muted">${p.birthSet?`You're ${age()}. Updates itself on your birthday.`:"Set once and your age stays up to date."}</span>
     <div class="grid2"><label class="lab">Height (cm)<input class="field" id="pH" inputmode="numeric" value="${p.heightCm}"></label>
@@ -1726,11 +1928,6 @@ function renderSettings(){
     ${(n.mode||"auto")==="auto"?`<p class="small muted">Set from your phase and an expenditure estimate that adapts to your logged food and weight trend. Now: ${fmtN(tg.kcal)} kcal, ${tg.p}P ${tg.f}F ${tg.c}C.</p>`:
     `<div class="grid2"><label class="lab">Calories<input class="field" id="nK" inputmode="numeric" value="${esc(n.kcal||tg.kcal)}"></label><label class="lab">Protein g<input class="field" id="nP" inputmode="numeric" value="${esc(n.p||tg.p)}"></label>
       <label class="lab">Fat g<input class="field" id="nF" inputmode="numeric" value="${esc(n.f||tg.f)}"></label><label class="lab">Carbs g<input class="field" id="nC" inputmode="numeric" value="${esc(n.c||tg.c)}"></label></div>`}</div>
-  <div class="card"><h2>Habits</h2>
-    <div class="grid2"><label class="lab">Snus quit day<input class="field" id="hQuit" type="date" value="${esc(hcfg().snus.quitDate||"")}"></label><label class="lab">Pouches a day before<input class="field" id="hPer" inputmode="numeric" value="${hcfg().snus.perDay}"></label>
-      <label class="lab">Cost per can (£)<input class="field" id="hCost" inputmode="decimal" value="${hcfg().snus.canCost}"></label><label class="lab">Pouches per can<input class="field" id="hPerCan" inputmode="numeric" value="${hcfg().snus.perCan}"></label>
-      <label class="lab">Wake-up target<input class="field" id="hWake" type="time" value="${hcfg().wake.target}"></label><label class="lab">Grace (minutes)<input class="field" id="hGrace" inputmode="numeric" value="${hcfg().wake.grace}"></label>
-      <label class="lab">Daily step goal<input class="field" id="hSteps" inputmode="numeric" value="${hcfg().steps.target}"></label></div></div>
   <button class="btn orange" data-act="saveProfile">Save</button>
   <div class="card"><h2>Programme and goal</h2>
     <button class="goalrow" data-act="buildProg"><span><b>${S.prog.placeholder?"Build your programme":esc(S.prog.name)}</b><span class="small muted">${S.prog.placeholder?"Guided setup: split, exercises for both gyms, volume and effort":esc(S.prog.splitName||"")+" · "+(S.prog.deloadEvery||6)+"-week blocks · rebuild any time"}</span></span><i>›</i></button>
@@ -1811,14 +2008,15 @@ function openActions(){
     ["weigh","var(--weight)",ICON.scale,"Log weight","Morning weigh-in"],
     ["photo","var(--fat)",ICON.camera,"Progress photos","Estimate body fat"]
   ];
-  $("#actionsIn").innerHTML=`<div class="grab"></div>`+items.map(([k,c,ic,b,s])=>`<button class="act" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><span><b>${b}</b><span>${esc(s)}</span></span></button>`).join("");
+  const need={train:on("training")||on("endurance"), food:on("nutrition"), cardio:true, habits:on("habits"), weigh:on("body")||on("nutrition"), photo:on("body")};
+  $("#actionsIn").innerHTML=`<div class="grab"></div>`+items.filter(([k])=>need[k]!==false).map(([k,c,ic,b,s])=>`<button class="act" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><span><b>${b}</b><span>${esc(s)}</span></span></button>`).join("");
   [...$("#actionsIn").querySelectorAll(".act")].forEach((a,i)=>a.style.setProperty("--i",i));
   $("#actions").classList.remove("out"); $("#scrim").classList.remove("out");
   $("#actions").hidden=false; $("#scrim").hidden=false; $("#plusBtn").classList.add("open");
 }
 function closeActions(){ hideAnim($("#actions"),240); $("#plusBtn").classList.remove("open"); if (!S.foodAdd) hideAnim($("#scrim")); }
 $("#plusBtn").onclick=()=>{ S.active ? go("train") : openActions(); };
-$("#scrim").onclick=()=>{ closeActions(); if (S.foodAdd){ S.foodAdd=null; renderFoodSheet(); } };
+$("#scrim").onclick=()=>{ if (S.hDraft!==undefined){ S.hDraft=undefined; renderHabitSheet(); } closeActions(); if (S.foodAdd){ S.foodAdd=null; renderFoodSheet(); } };
 $("#actionsIn").addEventListener("click",e=>{
   const b=e.target.closest("[data-sheet]"); if(!b) return;
   const k=b.dataset.sheet;
@@ -1978,16 +2176,16 @@ async function toJpeg(blob, max=1600){
 }
 function bfPrompt(n, prevSet, cond){
   const kg=currentKg(), p=S.profile;
-  return `These are AJ's own progress photos from his fitness app. He has asked for an honest body fat estimate to track his physique over time.
-Him: male, ${age()}, ${p.heightCm} cm, ${r1(kg)} kg (7-day average), natural, about 2 years of serious training, phase: ${PHASES[p.phase].label}. He flexes in every photo.
+  return `These are the user's own progress photos from their fitness app. They have asked for an honest body fat estimate to track their physique over time.
+Them: ${p.sex||"sex not given"}, ${age()}, ${p.heightCm} cm, ${r1(kg)} kg (7-day average), phase: ${PHASES[p.phase].label}. ${p.sex==="female"?"Use female body fat norms (essential fat ~10-13%; athletic ~14-20%; fit ~21-24%), shifting the male anchors below up by about 8-10 points.":""}
 There are ${n} photos. First label each one by what it is mainly for:
 - "legs": the legs are uncovered (shorts or underwear, trousers pulled down) or the shot is framed on the lower body. Use this even if the torso is also visible.
 - "front": facing the camera with legs covered, torso is the focus.
 - "side": body turned roughly 90 degrees, showing the side of the torso.
 - "back": back to the camera.
 - "other": anything else.
-${prevSet&&prevSet.bf?`Previous check-in ${prevSet.date}: ${prevSet.bf.point}% (${prevSet.bf.low}-${prevSet.bf.high}) at ${prevSet.kg} kg. Markers then: ${(prevSet.bf.markers||[]).join("; ")}. Judge change relative to that.`:"This is his first check-in."}
-Conditions he reported: ${condText(cond)}. Also judge the lighting yourself from the photos.
+${prevSet&&prevSet.bf?`Previous check-in ${prevSet.date}: ${prevSet.bf.point}% (${prevSet.bf.low}-${prevSet.bf.high}) at ${prevSet.kg} kg. Markers then: ${(prevSet.bf.markers||[]).join("; ")}. Judge change relative to that.`:"This is their first check-in."}
+Conditions they reported: ${condText(cond)}. Also judge the lighting yourself from the photos.
 
 Work in two steps.
 Step 1, as seen: list the markers you can actually see, then give the body fat these photos show at face value, using these anchors for men (DEXA-referenced, relaxed, neutral light):
@@ -1995,7 +2193,7 @@ Step 1, as seen: list the markers you can actually see, then give the body fat t
 - 11-13%: upper four abs clear relaxed, lower abs visible mainly when flexed, obliques visible, some arm vascularity, quad separation visible.
 - 14-16%: upper abs visible mostly when flexed or in good light, softer lower belly, slight love handles, little vascularity.
 - 17-20%: ab outline only in good light, smooth waist, no quad separation.
-Step 2, adjusted: correct the face-value number to what a relaxed DEXA-style reading in neutral morning light would say. Visual estimates of lean, flexed lifters usually read low. As a guide add roughly 1-2 points for flattering overhead or side light, 0.5-1 for a pump, 0.5 for later in the day, and about 1 because he always flexes. Use less if the photos themselves show flat light. If the reported conditions and what you see disagree, trust what you see and say so.
+Step 2, adjusted: correct the face-value number to what a relaxed DEXA-style reading in neutral morning light would say. Visual estimates of lean, flexed lifters usually read low. As a guide add roughly 1-2 points for flattering overhead or side light, 0.5-1 for a pump, 0.5 for later in the day, and about 1 because they always flexes. Use less if the photos themselves show flat light. If the reported conditions and what you see disagree, trust what you see and say so.
 Be honest; don't flatter.
 Reply with only JSON:
 {"poses": [one per photo, in order], "as_seen": number, "point": number (adjusted), "low": number, "high": number, "adjustment": "short reason for the difference, e.g. +1.5 overhead light and flex", "confidence": "low"|"medium"|"high", "markers": [up to 6 short strings], "vs_previous": string, "notes": "max 2 sentences"}`;
@@ -2074,6 +2272,7 @@ $("#main").addEventListener("keydown", e=>{
   if (e.key==="Enter" && S.active && i.dataset.f==="r" && i.dataset.d==null){ e.preventDefault(); i.blur(); logSet(+i.dataset.e,+i.dataset.s); }
 });
 $("#main").addEventListener("change", e=>{
+  if (e.target.dataset.gymname){ const id=e.target.dataset.gymname, v=e.target.value.trim()||"Gym"; S.profile={...S.profile, gyms:gymList().map(g=>g.id===id?{...g,name:v}:g)}; saveProfile(); toast("Saved"); return; }
   const id=e.target.id, v=e.target.value;
   if (id==="pickDay"){ S.pick=v; S.gym=null; render(); }
   else if (id==="pickGym"){ S.gym=v; render(); }
@@ -2108,10 +2307,16 @@ $("#main").addEventListener("click", async e=>{
     render(); if (["progSeg","planView"].includes(n)) pageAnim("soft"); return;
   }
   const act=b.dataset.act, prev=S.confirm;
-  if (!["finish","discard","del","photoDel","slip"].includes(act)) S.confirm=null;
+  if (!["finish","discard","del","photoDel","slip","hSlip"].includes(act)) S.confirm=null;
+  if (act && act[0]==="h" && act!=="hday" && habitAct(act, b)) return;
   switch(act){
     case "coach": openChat(b.dataset.ctx); return;
     case "buildProg": window.AJOnboard&&AJOnboard.programme(); return;
+    case "logRun": { S.cardioForm={type:"run", level:b.dataset.lv||"Steady", mins:"", km:b.dataset.km||"", date:null}; go("cardio"); return; }
+    case "modTog": { const m=b.dataset.m, md={training:true,endurance:true,nutrition:true,habits:true,body:true,...(S.profile.modules||{})}; md[m]=!on(m); S.profile={...S.profile, modules:md}; saveProfile(); render(); return; }
+    case "gymAdd": { const id=uid("g"), list=[...gymList(), {id, name:"New gym", kit:KIT_FULL.slice()}]; S.profile={...S.profile, gyms:list}; saveProfile(); render(); setTimeout(()=>{ const d=[...document.querySelectorAll(".gymrow")].pop(); if(d){ d.open=true; d.scrollIntoView({block:"center"}); } },50); return; }
+    case "gymDel": { const g=b.dataset.g; if (S.confirm!=="gymdel-"+g){ S.confirm="gymdel-"+g; render(); return; } S.confirm=null; S.profile={...S.profile, gyms:gymList().filter(x=>x.id!==g)}; saveProfile(); render(); toast("Gym removed. Rebuild your programme to update its sessions."); return; }
+    case "gymKit": { const gid=b.dataset.g, k=b.dataset.k; S.profile={...S.profile, gyms:gymList().map(g=>g.id!==gid?g:{...g, kit:(g.kit||[]).includes(k)?g.kit.filter(x=>x!==k):[...(g.kit||[]),k]})}; saveProfile(); const open=[...document.querySelectorAll(".gymrow")].map(d=>d.open); render(); document.querySelectorAll(".gymrow").forEach((d,i)=>d.open=!!open[i]); return; }
     case "nutGoal": window.AJOnboard&&AJOnboard.nutrition(false, b.dataset.step); return;
     case "dayStatus": { const d=b.dataset.d, doc=S.all.foodlog[d]; if (!doc||!(doc.entries||[]).length){ toast("Nothing logged that day"); return; }
       const c=dayCounted(d, priorModel(currentKg()).total); doc.status=c.ok?"partial":"complete"; saveFoodDay(d); render(); toast(c.ok?"Marked partial: left out of expenditure":"Marked complete: counts toward expenditure"); return; }
@@ -2138,17 +2343,11 @@ $("#main").addEventListener("click", async e=>{
       const f=S.cardioForm, mins=+($("#cMins").value||0), km=+(($("#cKm")||{}).value||0)||null, date=$("#cDate").value||ymd(new Date());
       if (!(mins>0&&mins<600)){ toast("Enter the duration in minutes"); return; }
       const doc=makeCardio(f.type,f.level,mins,km,date,f.phoneOn);
+      if (f.type==="run" && +km>0){ const prevMax=Math.max(0,...S.cardio.filter(c=>c.type==="run"&&c.id!==doc.id&&(parseD(date)-parseD(c.date))/864e5<=30&&(parseD(date)-parseD(c.date))>0).map(c=>+c.km||0)); if (prevMax>=3 && +km>prevMax*1.1) setTimeout(()=>toast(`Heads up: ${km} km is ${Math.round((km/prevMax-1)*100)}% past your longest run this month. Runs that jump past +10% carry more injury risk.`),2700); }
       S.cardioForm={type:f.type,level:f.level,mins:"",km:"",date:null}; go("progress","cardio"); toast(`Saved: ${doc.net} kcal extra`); return; }
     case "cardioDel": { const c=S.all.cardio.find(x=>x.id===b.dataset.id); if(!c) return; removeItem("cardio",c.id); render(); toast(`Deleted ${CARDIO[c.type]?CARDIO[c.type].n:"cardio"}`, ()=>{ upsert("cardio",c); putDoc("cardio",c.id,c); }); return; }
     case "phoneToggle": { const c=S.all.cardio.find(x=>x.id===b.dataset.id); if(!c) return; const d={...c, phoneOn:!cardioPhoneOn(c)}; upsert("cardio",d); putDoc("cardio",d.id,d); render(); return; }
     case "hday": { const d=parseD(S.habitDate||ymd(new Date())); d.setDate(d.getDate()+(+b.dataset.d)); const x=ymd(d); if (x>ymd(new Date())) return; S.habitDate=x; render(); return; }
-    case "wakeNow": { const n=new Date(); saveHabit(ymd(n),{wake:pad(n.getHours())+":"+pad(n.getMinutes())}); render(); toast(wakeStatus(ymd(n))?"Up on time. Nice.":"Logged. Earlier tomorrow."); return; }
-    case "wakeSave": { const v=$("#wakeT").value; if(!v){ toast("Pick a time"); return; } saveHabit(S.habitDate||ymd(new Date()),{wake:v}); render(); toast("Wake time saved"); return; }
-    case "stepsSave": { const ph=$("#stPhone").value.replace(/[^0-9]/g,""), ex=$("#stExtra").value.replace(/[^0-9]/g,""); saveHabit(S.habitDate||ymd(new Date()),{phone:ph===""?null:+ph, extra:+ex||0}); render(); toast("Steps saved"); return; }
-    case "snusStart": { const hc=hcfg(); hc.snus.quitDate=ymd(new Date()); S.profile={...S.profile, habits:hc}; saveProfile(); render(); toast("Day 1. You've got this."); return; }
-    case "craving": { const d=ymd(new Date()), h=hday(d), sn={used:0,cravings:[],...(h.snus||{})}; sn.cravings=[...(sn.cravings||[]),{t:Date.now(),resisted:true}]; saveHabit(d,{snus:sn}); render(); toast("Craving logged. It'll pass in a few minutes. Drink some water."); return; }
-    case "slip": { if (prev!=="slip"){ S.confirm="slip"; render(); return; } S.confirm=null; const d=S.habitDate||ymd(new Date()), h=hday(d), sn={used:0,cravings:[],...(h.snus||{})}; sn.used=(sn.used||0)+1; saveHabit(d,{snus:sn}); render(); toast("Logged. One slip doesn't undo the progress. Back to it."); return; }
-    case "unslip": { const d=S.habitDate||ymd(new Date()), h=hday(d), sn={...(h.snus||{})}; sn.used=Math.max(0,(sn.used||0)-1); saveHabit(d,{snus:sn}); render(); return; }
     case "kg": {
       const v=parseFloat(($("#kg").value||"").replace(",",".")), d=$("#kgDate").value||ymd(new Date());
       if (!(v>30&&v<250)){ toast("Enter a weight in kg"); return; }
@@ -2158,8 +2357,7 @@ $("#main").addEventListener("click", async e=>{
       const p=S.profile, ph=$("#pPhase").value, changed=ph!==p.phase, birth=$("#pBirth").value;
       const n={...(p.nutrition||{mode:"auto"})};
       if (n.mode==="manual" && $("#nK")){ n.kcal=+$("#nK").value||null; n.p=+$("#nP").value||0; n.f=+$("#nF").value||0; n.c=+$("#nC").value||0; }
-      const hc=hcfg(); if ($("#hQuit")){ hc.snus={...hc.snus, quitDate:$("#hQuit").value||null, perDay:+$("#hPer").value||hc.snus.perDay, canCost:+$("#hCost").value||hc.snus.canCost, perCan:+$("#hPerCan").value||hc.snus.perCan}; hc.wake={...hc.wake, target:$("#hWake").value||hc.wake.target, grace:+$("#hGrace").value||0}; hc.steps={...hc.steps, target:+$("#hSteps").value||hc.steps.target}; }
-      S.profile={...p, habits:hc, birthDate:birth||p.birthDate, birthSet:p.birthSet||!!birth&&birth!==DEFAULT_PROFILE.birthDate, heightCm:+$("#pH").value||p.heightCm, bfManual:parseFloat($("#pBf").value)||null, phase:ph, phaseStart:changed?ymd(new Date()):p.phaseStart, nutrition:n};
+      S.profile={...p, name:($("#pName")?$("#pName").value.trim():p.name), sex:($("#pSex")?$("#pSex").value||null:p.sex), birthDate:birth||p.birthDate, birthSet:p.birthSet||!!birth&&birth!==DEFAULT_PROFILE.birthDate, heightCm:+$("#pH").value||p.heightCm, bfManual:parseFloat($("#pBf").value)||null, phase:ph, phaseStart:changed?ymd(new Date()):p.phaseStart, nutrition:n};
       saveProfile(); render(); toast(changed?`Phase set to ${PHASES[ph].label}`:"Saved"); return; }
     case "sampleOff": case "sampleToggle": S.profile.showSample = act==="sampleOff" ? false : S.profile.showSample===false; saveProfile(); render(); toast(S.profile.showSample?"Sample data shown":"Sample data hidden"); return;
     case "export": exportAll(); return;
@@ -2287,21 +2485,21 @@ function chatContext(){
   let live="";
   if (S.active){ const a=S.active;
     live=`\nLIVE WORKOUT NOW: ${(dayBy(a.dayKey)||{}).label} at ${GYMS[a.gym]}${a.deload?" (deload)":""}, ${Math.round((Date.now()-a.startedAt)/60000)} min in. Equipment: ${GYM_KIT[a.gym]}\n`+a.ex.map((e,i)=>{ const x=exDef(e.k,e.custom), h=liftHistory(e.k,false,a.gym).slice(0,3);
-      return `${i}. ${x.n} [${x.m}, ${x.lo}-${x.hi} reps, rest ${x.rest}s] today: ${e.sets.filter(s=>s.done).map(s=>s.w+"x"+s.r).join(", ")||"not started"} of ${e.sets.length} sets; recent first sets here: ${h.map(q=>q.date+" "+q.sets[0].w+"x"+q.sets[0].r).join(" | ")||"none"}${e.note?"; his note: "+e.note:""}`; }).join("\n"); }
+      return `${i}. ${x.n} [${x.m}, ${x.lo}-${x.hi} reps, rest ${x.rest}s] today: ${e.sets.filter(s=>s.done).map(s=>s.w+"x"+s.r).join(", ")||"not started"} of ${e.sets.length} sets; recent first sets here: ${h.map(q=>q.date+" "+q.sets[0].w+"x"+q.sets[0].r).join(" | ")||"none"}${e.note?"; their note: "+e.note:""}`; }).join("\n"); }
   const a7=avgWindow(td,7), p7=avgWindow(ymd(new Date(Date.now()-7*864e5)),7);
-  return `You are Claude, AJ's coach inside his all-in-one training and nutrition app. He reads on his phone. Today is ${new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}, ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} UK time.
-Style: direct, warm, short (usually 1-3 sentences, max ~120 words). No preamble, no em dashes. Evidence-based; he's an intermediate lifter with advanced knowledge, so skip basics.
+  return `You are Claude, the coach inside AJ Training, an all-in-one training, nutrition and habits app. The user's name is ${S.profile.name||"not set"}. They reads on their phone. Today is ${new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}, ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})} time.
+Style: direct, warm, short (usually 1-3 sentences, max ~120 words). No preamble, no em dashes. Evidence-based; match their level and skip basics they clearly know.
 
-LOGGING: When he describes food he ate or activity he did, log it immediately with the tools. Don't ask permission. Use UK portion norms and standard UK nutrition data (cooked weights unless he says raw). If a quantity is genuinely ambiguous and would change calories a lot, assume the most typical portion, log it, and say what you assumed so he can correct you. For restaurant chains use their published nutrition if you know it. If he attaches a meal photo, estimate portions from it. After logging, confirm in one line and give what's left for the day (calories and protein).
-If he hasn't given a duration for cardio or sport, ask how long (one short question) instead of guessing. Targets already account for normal activity through the expenditure estimate, so never tell him to eat back cardio calories.
-FIXING MISTAKES: if he says something was wrong, a test, or didn't happen, delete it with delete_entries using the ids listed under RECENT RECORDS, then re-log the corrected version if needed. Never tell him you can't delete or edit.
-HABITS: wake-up target ${hcfg().wake.target}, steps goal ${hcfg().steps.target}, quitting snus${hcfg().snus.quitDate?" since "+hcfg().snus.quitDate:" (no quit date yet)"}. Use log_habit when he tells you his wake time, his phone's step count, a snus craving or that he had a pouch. Be supportive and factual about quitting, never preachy.
+LOGGING: When they describe food they ate or activity they did, log it immediately with the tools. Don't ask permission. Use portion norms and standard nutrition data (cooked weights unless they say raw). If a quantity is genuinely ambiguous and would change calories a lot, assume the most typical portion, log it, and say what you assumed so they can correct you. For restaurant chains use their published nutrition if you know it. If they attaches a meal photo, estimate portions from it. After logging, confirm in one line and give what's left for the day (calories and protein).
+If they haven't given a duration for cardio or sport, ask how long (one short question) instead of guessing. Targets already account for normal activity through the expenditure estimate, so never tell them to eat back cardio calories.
+FIXING MISTAKES: if they say something was wrong, a test, or didn't happen, delete it with delete_entries using the ids listed under RECENT RECORDS, then re-log the corrected version if needed. Never tell them you can't delete or edit.
+HABITS: ${habitList().length?habitList().map(h=>`${h.name} [id ${h.id}, ${h.type}${h.type==="count"?", target "+h.target+" "+(h.unit||""):h.type==="time"?", by "+h.target:h.type==="quit"?(h.quitDate?", quit since "+h.quitDate:", not started"):""}]: today ${JSON.stringify(hval(h,td))}`).join("; "):"none set up"}. Use log_habit when the user reports one (steps from their phone, a time, done/not done, a craving or a slip). Be supportive and brief.
 For cardio choose the closest type and level from: ${Object.entries(CARDIO).map(([k,v])=>`${k} [${Object.keys(v.levels).join(" | ")}]`).join("; ")}. Split mixed sessions into separate log_cardio calls.
-Only log weight when he gives a number.
+Only log weight when they give a number.
 
-PROFILE: male, ${age()}, ${S.profile.heightCm} cm, ${r1(currentKg())} kg (7-day avg ${a7?a7.toFixed(1):"n/a"}, prior week ${p7?p7.toFixed(1):"n/a"}), ~${r1(currentBf().v)}% body fat. Phase: ${ph.label} (target ${ph.rate[0]} to ${ph.rate[1]}% bodyweight a week). Progression rule: ${ph.rule}
+PROFILE: ${S.profile.sex||"sex not set"}, ${age()}, ${S.profile.heightCm} cm, ${r1(currentKg())} kg (7-day avg ${a7?a7.toFixed(1):"n/a"}, prior week ${p7?p7.toFixed(1):"n/a"}), ~${r1(currentBf().v)}% body fat. Phase: ${ph.label} (target ${ph.rate[0]} to ${ph.rate[1]}% bodyweight a week). Progression rule: ${ph.rule}
 NUTRITION TODAY: targets ${tg.kcal} kcal, ${tg.p}P ${tg.f}F ${tg.c}C (expenditure ${tg.ex.kcal}${tg.ex.adaptive?", adaptive":", starting estimate"}). Eaten so far: ${Math.round(tt.kcal)} kcal, ${Math.round(tt.p)}P ${Math.round(tt.f)}F ${Math.round(tt.c)}C. Items: ${todayFood}.
-His saved foods (reuse these numbers when he mentions them):
+Their saved foods (reuse these numbers when they mentions them):
 ${recentFoods}
 RECENT RECORDS (last 3 days, with ids):
 ${recentRecords()}
@@ -2320,7 +2518,7 @@ function recentRecords(){
 }
 function chatTools(){
   const tools=[
-    {name:"log_food", description:"Log foods he ate. Each item needs a name, a human-readable amount, and its calories and macros for that amount. Returns the new day totals.",
+    {name:"log_food", description:"Log foods they ate. Each item needs a name, a human-readable amount, and its calories and macros for that amount. Returns the new day totals.",
       inputSchema:{type:"object",properties:{date:{type:"string",description:"YYYY-MM-DD, default today"},items:{type:"array",items:{type:"object",properties:{name:{type:"string"},amount:{type:"string",description:"e.g. 200 g, 1 bowl, 2 slices"},kcal:{type:"number"},protein:{type:"number"},fat:{type:"number"},carbs:{type:"number"}},required:["name","kcal","protein","fat","carbs"]}}},required:["items"]},
       execute:(inp)=>{
         const date=/^\d{4}-\d{2}-\d{2}$/.test(String(inp.date||""))?String(inp.date):ymd(new Date()), items=Array.isArray(inp.items)?inp.items.slice(0,20):[];
@@ -2332,8 +2530,8 @@ function chatTools(){
         renderChat(""); render(); const tt=dayTotals(date), tg=targets();
         return {ok:true, day_totals:{kcal:Math.round(tt.kcal),protein:Math.round(tt.p),fat:Math.round(tt.f),carbs:Math.round(tt.c)}, remaining:{kcal:Math.round(tg.kcal-tt.kcal),protein:Math.round(tg.p-tt.p)}};
       }},
-    {name:"log_cardio", description:"Log one cardio or sport session. Calories are calculated by the app from MET values, his weight and body fat. Returns the calories.",
-      inputSchema:{type:"object",properties:{type:{type:"string",enum:Object.keys(CARDIO)},level:{type:"string",description:"One of that type's levels"},minutes:{type:"number"},km:{type:"number"},date:{type:"string"},phone_on:{type:"boolean",description:"Was his phone on him (so Apple Health counted the steps)? Omit if unknown."}},required:["type","minutes"]},
+    {name:"log_cardio", description:"Log one cardio or sport session. Calories are calculated by the app from MET values, their weight and body fat. Returns the calories.",
+      inputSchema:{type:"object",properties:{type:{type:"string",enum:Object.keys(CARDIO)},level:{type:"string",description:"One of that type's levels"},minutes:{type:"number"},km:{type:"number"},date:{type:"string"},phone_on:{type:"boolean",description:"Was their phone on them (so Apple Health counted the steps)? Omit if unknown."}},required:["type","minutes"]},
       execute:(inp)=>{
         const type=CARDIO[inp.type]?inp.type:"walk", mins=Math.round(+inp.minutes||0); if (!(mins>0)) throw new Error("minutes required");
         const date=/^\d{4}-\d{2}-\d{2}$/.test(String(inp.date||""))?String(inp.date):ymd(new Date());
@@ -2354,20 +2552,19 @@ function chatTools(){
         S.chat.push({role:"action",kind:"delete",title:`Deleted ${gone.length} entr${gone.length>1?"ies":"y"}`,detail:gone.join(", "),undo:{kind:"restore",cardio,foods,weights}});
         renderChat(""); render(); return {ok:true, deleted:gone};
       }},
-    {name:"log_habit", description:"Record habit data: wake time (HH:MM), phone step count from Apple Health, a snus craving, or snus pouches used.",
-      inputSchema:{type:"object",properties:{date:{type:"string"},wake_time:{type:"string"},phone_steps:{type:"integer"},extra_steps:{type:"integer"},snus_pouches:{type:"integer"},craving:{type:"boolean"}}},
+    {name:"log_habit", description:"Record a habit for a date (default today). Use the habit id from HABITS. value: number for count habits (steps, litres, hours), 'HH:MM' for time habits, true/false for check habits. For quit habits use slip (number used) or craving:true.",
+      inputSchema:{type:"object",properties:{habit_id:{type:"string"},date:{type:"string"},value:{},slip:{type:"integer"},craving:{type:"boolean"}},required:["habit_id"]},
       execute:(inp)=>{
-        const d=/^\d{4}-\d{2}-\d{2}$/.test(String(inp.date||""))?String(inp.date):ymd(new Date()), h=hday(d), patch={}, done=[];
-        if (/^\d{1,2}:\d{2}$/.test(String(inp.wake_time||""))){ const [hh,mm]=String(inp.wake_time).split(":"); patch.wake=pad(+hh)+":"+mm; done.push("woke "+patch.wake); }
-        if (inp.phone_steps!=null){ patch.phone=Math.max(0,Math.round(+inp.phone_steps)); done.push(fmtN(patch.phone)+" phone steps"); }
-        if (inp.extra_steps!=null){ patch.extra=Math.max(0,Math.round(+inp.extra_steps)); done.push(fmtN(patch.extra)+" extra steps"); }
-        if (inp.snus_pouches||inp.craving){ const sn={used:0,cravings:[],...(h.snus||{})}; if (inp.snus_pouches){ sn.used=(sn.used||0)+Math.max(0,+inp.snus_pouches); done.push(inp.snus_pouches+" pouch"+(inp.snus_pouches>1?"es":"")); } if (inp.craving){ sn.cravings=[...(sn.cravings||[]),{t:Date.now(),resisted:!inp.snus_pouches}]; done.push("craving"); } patch.snus=sn; }
-        if (!done.length) throw new Error("Nothing to log");
-        const prev=clone(h); saveHabit(d,patch);
-        S.chat.push({role:"action",kind:"habit",title:"Habits · "+done.join(", "),detail:`${stepsTotal(d)!=null?fmtN(stepsTotal(d))+" steps total":""}${hcfg().snus.quitDate?" · "+streak(snusStatus)+" days snus-free":""}`,undo:{kind:"habit",d,prev}});
-        renderChat(""); render(); return {ok:true, steps_total:stepsTotal(d), wake_on_time:wakeStatus(d), snus_free_streak:streak(snusStatus)};
+        const h=habitList().find(x=>x.id===String(inp.habit_id)||x.name.toLowerCase()===String(inp.habit_id).toLowerCase()); if (!h) throw new Error("Unknown habit id");
+        const d=/^\d{4}-\d{2}-\d{2}$/.test(String(inp.date||""))?String(inp.date):ymd(new Date()), prev=clone(hday(d));
+        if (h.type==="quit"){ const v={used:0,cravings:[],...(hval(h,d)||{})}; if (inp.slip) v.used=(v.used||0)+Math.max(0,+inp.slip); if (inp.craving) v.cravings=[...(v.cravings||[]),{t:Date.now(),resisted:true}]; hset(h,d,v); }
+        else if (h.type==="time"){ if (!/^\d{1,2}:\d{2}$/.test(String(inp.value||""))) throw new Error("time must be HH:MM"); const [hh,mm]=String(inp.value).split(":"); hset(h,d,pad(+hh)+":"+mm); }
+        else if (h.type==="check") hset(h,d,inp.value===false?null:true);
+        else { const n=+String(inp.value).replace(/[^0-9.]/g,""); if (isNaN(n)) throw new Error("value must be a number"); if (h.health) saveHabit(d,{phone:Math.round(n)}); else hset(h,d,n); }
+        S.chat.push({role:"action",kind:"habit",title:`${h.name} · ${h.type==="quit"?(inp.craving?"craving beaten":"slip logged"):hfmt(h,hval(h,d))}`,detail:habitSub(h,d),undo:{kind:"habit",d,prev}});
+        renderChat(""); render(); return {ok:true, status:hstatus(h,d), streak:hstreak(h).n};
       }},
-    {name:"log_weight", description:"Log his bodyweight in kg for a date (default today).",
+    {name:"log_weight", description:"Log the user's bodyweight in kg for a date (default today).",
       inputSchema:{type:"object",properties:{kg:{type:"number"},date:{type:"string"}},required:["kg"]},
       execute:(inp)=>{
         const kg=+inp.kg; if(!(kg>30&&kg<250)) throw new Error("kg out of range");
@@ -2376,7 +2573,7 @@ function chatTools(){
         renderChat(""); render(); return {ok:true, avg7:avgWindow(ymd(new Date()),7)};
       }}
   ];
-  if (S.active) tools.push({name:"swap_exercise", description:"Replace the exercise at an index in today's live session. Logged sets on it are discarded. Only when he asks.",
+  if (S.active) tools.push({name:"swap_exercise", description:"Replace the exercise at an index in today's live session. Logged sets on it are discarded. Only when they asks.",
     inputSchema:{type:"object",properties:{index:{type:"integer"},name:{type:"string"},muscle:{type:"string"},sets:{type:"integer"},rep_low:{type:"integer"},rep_high:{type:"integer"},rest_seconds:{type:"integer"},equipment:{type:"string",enum:["bb","db","cable","machine","bw","other"]}},required:["index","name","sets","rep_low","rep_high"]},
     execute:(inp)=>{
       const i=Number(inp.index), a=S.active; if(!a||!a.ex[i]) throw new Error("No exercise at that index");
@@ -2420,7 +2617,7 @@ function loadLocal(){
   const obj=k=>Object.values(lsGet(k)||{});
   S.all.sessions=obj("sessions"); S.all.cardio=obj("cardio"); S.all.photosets=obj("photosets"); S.all.foods=obj("foods");
   S.all.foodlog=lsGet("foodlog")||{}; S.all.habits=lsGet("habits")||{}; S.all.weights=lsGet("weights")||[]; S.active=lsGet("active"); S.chat=lsGet("chat")||[];
-  S.profile={...DEFAULT_PROFILE,...(lsGet("profile")||{})}; const lp=lsGet("prog"); if (lp&&lp.days) S.prog=lp; derive();
+  const lprof=lsGet("profile"); S.profExisted=!!lprof; S.profile={...DEFAULT_PROFILE,...(lprof||{})}; const lp=lsGet("prog"); if (lp&&lp.days) S.prog=lp; derive();
 }
 function watch(col, apply, order){
   let q=db.collection(col); if (order) q=q.orderBy(order,"desc").limit(1000);
@@ -2439,13 +2636,13 @@ async function boot(){
   const [gotDb,gotAssets,gotSample,gotDl]=await Promise.all([use("db"),use("assets"),use("sample"),use("downloads")]);
   assets=gotAssets; sampler=gotSample; downloads=gotDl;
   if (sampler){ try{ const lim=await sampler.limits(); S.canImages=!!lim.images; S.canTools=!!lim.tools; }catch(e){} }
-  if (!gotDb){ loadLocal(); S.ready=true; render(); splashDone(); return; }
+  if (!gotDb){ loadLocal(); S.ready=true; afterLoad(); render(); splashDone(); return; }
   db=gotDb;
   try{
     const [act,bw,prof,prog,chat]=await Promise.all(["state/active","state/bodyweight","meta/profile","programme/current","state/chat"].map(p=>db.doc(p).get()));
     S.active=act.exists&&act.data().session?clone(act.data().session):lsGet("active");
     S.all.weights=bw.exists?clone(bw.data().entries||[]):[];
-    if (prof.exists) S.profile={...DEFAULT_PROFILE,...clone(prof.data())};
+    if (prof.exists){ S.profile={...DEFAULT_PROFILE,...clone(prof.data())}; S.profExisted=true; }
     if (prog.exists&&prog.data().days) S.prog=clone(prog.data());
     S.chat=chat.exists?clone(chat.data().messages||[]):[];
   } catch(e){ console.warn(e); S.active=lsGet("active"); }
@@ -2457,8 +2654,33 @@ async function boot(){
   watch("foods", l=>S.all.foods=l);
   watch("habits", l=>{ const m={}; l.forEach(d=>m[d.date||d.id]=d); S.all.habits=m; });
   watch("foodlog", l=>{ const m={}; l.forEach(d=>m[d.date||d.id]=d); S.all.foodlog=m; });
-  S.ready=true; render(); splashDone();
+  S.ready=true; afterLoad(); render(); splashDone();
   if (S.active) keepAwake();
+}
+/* Accounts created before setup existed keep everything: sections all on, their two gyms, their habits and their plan. */
+function migrateLegacy(){
+  const p=S.profile; if (p.setupDone || !S.profExisted) return;
+  const K=window.AJOnboard?AJOnboard.KIT_DEFAULT:{home:KIT_FULL, shwc:KIT_FULL}, old=p.habits||{};
+  p.modules={training:true, endurance:true, nutrition:true, habits:true, body:true};
+  if (!p.gyms) p.gyms=[{id:"home", name:"Home gym", kit:K.home},{id:"shwc", name:"Soho House White City", kit:K.shwc}];
+  if (!p.sex) p.sex="male";
+  if (!p.name){ const em=(window.AJP&&AJP.user&&AJP.user()&&AJP.user().email)||""; p.name=/^smythjonesa@/i.test(em)?"AJ":""; }
+  if (p.heightCm===175 && !p.birthSet) p.heightCm=188;
+  if (!Array.isArray(p.habitList)){
+    const sn={on:true, quitDate:null, perDay:10, canCost:6.5, perCan:20, ...(old.snus||{})}, wk={on:true, target:"07:00", grace:5, ...(old.wake||{})}, st={on:true, target:10000, ...(old.steps||{})};
+    p.habitList=[
+      {id:"wake", legacy:"wake", type:"time", name:"Up by", target:wk.target, grace:wk.grace, icon:"sun", color:"var(--fat)"},
+      {id:"steps", health:true, type:"count", name:"Daily steps", unit:"steps", target:st.target, step:500, icon:"steps", color:"var(--carb)"},
+      {id:"snus", legacy:"snus", type:"quit", name:"Quit snus", unit:"pouches", perDay:sn.perDay, cost:sn.canCost/sn.perCan, quitDate:sn.quitDate, icon:"nosnus", color:"var(--prot)"}
+    ].filter((h,i)=>[wk.on,st.on,sn.on][i]!==false);
+  }
+  p.setupDone=true;
+  if (S.prog.placeholder){ S.prog=clone(LEGACY_PROGRAMME); if (db) queue("programme/current",()=>db.doc("programme/current").set(S.prog)); else lsSet("prog",S.prog); }
+  saveProfile();
+}
+function afterLoad(){
+  migrateLegacy();
+  if (!S.profile.setupDone) setTimeout(()=>{ if (window.AJOnboard && !S.profile.setupDone) AJOnboard.welcome(); }, 1700);
 }
 // Launch: hold the splash until data is ready (at least ~1.3 s so the animation lands), then lift it and bring the page in.
 let splashGone=false;

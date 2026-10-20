@@ -115,7 +115,9 @@ const T = {
   fbA:{label:"Full body A", slots:["squat","ipress","vpull","kneeflex","lat","curl"]},
   fbB:{label:"Full body B", slots:["hinge","row","fpress","kneeext","rear","triext"]},
   fbC:{label:"Full body C", slots:["lunge","ohp","vpull","kneeflex","lat","pushdown","calf"]},
-  arms:{label:"Arms & delts", slots:["lat","curl","triext","rear","curl","pushdown","lat"]}
+  arms:{label:"Arms & delts", slots:["lat","curl","triext","rear","curl","pushdown","lat"]},
+  runA:{label:"Strength A", slots:["squat","hinge","calf","vpull","abs"]},
+  runB:{label:"Strength B", slots:["lunge","kneeflex","calf","row","abs"]}
 };
 const LOWER = new Set(["loA","loB","legs","lower"]);
 const SPLITS = {
@@ -162,7 +164,7 @@ function targetsFor(ans){
 }
 function exTime(ex, sets){ return sets * (ex.rest + 45) / 60 + 2; }   // minutes: work + rest per set, plus setup
 function buildVariant(dayKeys, gym, ans, seed){
-  const kit = (ans.kit && ans.kit[gym]) || KIT_DEFAULT[gym], used = new Set(), tg = targetsFor(ans), pri = new Set(ans.pri || []);
+  const kit = (ans.kit && ans.kit[gym]) || ((gymList().find(g => g.id === gym) || {}).kit) || KIT_DEFAULT[gym] || KIT_FULL, used = new Set(), tg = targetsFor(ans), pri = new Set(ans.pri || []);
   const days = dayKeys.map(tk => {
     const dayUsed = new Set(), list = [];
     for (const pat of T[tk].slots){
@@ -258,7 +260,7 @@ function generate(ans, seed){
   const split = (SPLITS[ans.days.length] || []).find(s => s.id === ans.split) || (SPLITS[ans.days.length] || [])[0];
   const placed = placeDays(split.days, ans);
   const seq = placed.map(p => p.tk);
-  const home = buildVariant(seq, "home", ans, seed), shwc = buildVariant(seq, "shwc", ans, seed);
+  const gl = gymList(), vs = Object.fromEntries(gl.map(g => [g.id, buildVariant(seq, g.id, ans, seed)])), first = vs[gl[0].id];
   const exercises = {};
   const strengthFirst = ans.goal === "strength";
   const toList = (v, i) => v.days[i].list.map((x, j) => {
@@ -272,15 +274,123 @@ function generate(ans, seed){
   const days = WD.map(([k, wd, short]) => {
     const i = placed.findIndex(p => p.wd === wd);
     if (i < 0) return {k, wd, label:"Rest", focus:sportSet.has(k) ? "Tennis, padel or harder cardio" : "Recovery, walk or easy cardio", rest:true, cardio:sportSet.has(k) ? "Sport day: tennis, padel or harder cardio" : "Walk or easy cardio"};
-    const tk = placed[i].tk, hl = toList(home, i), sl = toList(shwc, i);
+    const tk = placed[i].tk;
     const next = WD.find(x => x[1] === (wd + 1) % 7)[0];
-    return {k, wd, label:T[tk].label, tpl:tk, focus:focusOf(shwc.days[i].list), gym:(ans.gymOf || {})[k] || "home",
+    return {k, wd, label:T[tk].label, tpl:tk, focus:focusOf(first.days[i].list), gym:(ans.gymOf || {})[k] || gl[0].id,
       cardio:sportSet.has(next) && LOWER.has(tk) ? "Easy cardio only: sport tomorrow" : LOWER.has(tk) ? "No hard cardio" : "Easy cardio only",
-      variants:{home:hl, shwc:sl}};
+      variants:Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], i)]))};
   });
   const weeks = +ans.block || 6;
   return {schema:2, name:(ans.name || "Hypertrophy block"), placeholder:false, startDate:ans.start, deloadEvery:weeks, rir:rirPlan(weeks),
-    split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:home.tg, vol:{home:home.vol, shwc:shwc.vol}, mins:{home:home.mins, shwc:shwc.mins}, exercises, days};
+    kind:"gym", split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:first.tg, vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id].vol])), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id].mins])), exercises, days};
+}
+
+/* ---------- Endurance + hybrid plans ----------
+   Rules (see the science library, "Running and endurance"):
+   - Intensity: ~80% of running easy, ~20% hard; hard sessions are capped, not added freely (Seiler 2010; Stöggl & Sperlich 2014; Oliveira 2024).
+   - Long run never more than 10% longer than your longest run in the previous 30 days: single-session spikes are what predict injury
+     (Frandsen 2025, 5,200 runners). Weekly growth is kept gentle, but the old "10% rule" itself isn't proven protective (Buist 2008).
+   - Taper: 2 weeks for marathon and longer (1 for shorter), volume cut 40-60%, intensity and frequency kept (Bosquet 2007).
+   - Strength 2x a week in base/build, 1x in peak and taper: improves running economy ~2-8% (Balsalobre-Fernández 2016; Blagrove 2018).
+   - Desert stage races: heat block in the last ~2.5 weeks, 10-14 sessions (Périard 2015; Tyler 2024); pack runs build to race weight;
+     back-to-back long days; fuelling practice 60-90 g carbohydrate an hour on long runs (Jeukendrup 2014).
+   - Recovery week every 4th week and phase lengths are coaching convention, not trial evidence (labelled as such). */
+const EVENTS = {
+  general:{name:"Get fitter running", sub:"No race: build a solid, injury-proof base", peak:[20, 40], longMax:14, taper:0, q:"general"},
+  "5k":{name:"5k", sub:"Speed and VO2max work", dist:5, peak:[30, 50], longMax:13, taper:1, q:"vo2"},
+  "10k":{name:"10k", sub:"Threshold and VO2max", dist:10, peak:[35, 60], longMax:17, taper:1, q:"vo2"},
+  half:{name:"Half marathon", sub:"Threshold and long runs", dist:21.1, peak:[45, 70], longMax:22, taper:1, q:"thr"},
+  marathon:{name:"Marathon", sub:"Aerobic volume and marathon-pace work", dist:42.2, peak:[55, 90], longMax:32, taper:2, q:"mp"},
+  ultra:{name:"Ultra (50-100 km)", sub:"Time on feet, hills, back-to-back long days", dist:60, peak:[65, 110], longMax:42, taper:2, q:"hill", b2b:true},
+  stage:{name:"Multi-day desert ultra", sub:"E.g. Marathon des Sables: pack running, heat, back-to-backs", dist:250, peak:[65, 110], longMax:40, taper:2, q:"hill", b2b:true, pack:true, heat:true}
+};
+const RUNTYPE = {
+  easy:{n:"Easy run", rpe:"RPE 3-4: you could hold a conversation", level:"Easy"},
+  long:{n:"Long run", rpe:"RPE 3-4, steady and relaxed", level:"Steady"},
+  b2b:{n:"Back-to-back long", rpe:"RPE 3-4 on tired legs: the point is time on feet", level:"Steady"},
+  vo2:{n:"Intervals", rpe:"5-6 × 3 min at RPE 8-9 (about 5k effort), 2 min easy jog between", level:"Hard"},
+  thr:{n:"Threshold", rpe:"3 × 10 min at RPE 6-7 (comfortably hard), 2 min easy between", level:"Tempo"},
+  mp:{n:"Marathon-pace run", rpe:"Warm up, then 6-12 km at goal marathon pace (RPE 5-6)", level:"Tempo"},
+  hill:{n:"Hill repeats", rpe:"8-10 × 90 s uphill at RPE 7-8, walk or jog down; power-hike the steepest bits", level:"Hills"},
+  general:{n:"Strides", rpe:"Easy run with 6 × 20 s quick, relaxed strides at the end", level:"Steady"}
+};
+function enduPlan(ans){
+  const E = EVENTS[ans.event] || EVENTS.general, start = parseD(ans.start), race = ans.event !== "general" && ans.raceDate ? parseD(ans.raceDate) : null;
+  let N = race ? Math.max(4, Math.min(40, Math.ceil((race - start) / (7 * 864e5)))) : 12;
+  const days = WD.filter(([k]) => (ans.runDays || []).includes(k)).map(x => x[1]);
+  const longWd = days.includes(WD.find(x => x[0] === ans.longDay)?.[1]) ? WD.find(x => x[0] === ans.longDay)[1] : days[days.length - 1];
+  const nQ = days.length >= 5 ? 2 : days.length >= 3 ? 1 : 0;
+  const cur = Math.max(8, +ans.weeklyKm || 15), fewDays = days.length <= 3 ? 0.75 : 1;
+  const peakKm = Math.round(Math.min(E.peak[1] * fewDays, Math.max(E.peak[0] * fewDays, cur * 1.6)));
+  const T = race ? E.taper : 0, P = race ? Math.min(3, Math.max(1, Math.round((N - T) * 0.2))) : 0;
+  const B = Math.max(0, Math.round((N - T - P) * 0.45)), BASE = N - T - P - B;
+  let longest = Math.max(3, +ans.longest || cur * 0.35), km = cur, weeks = [];
+  for (let w = 0; w < N; w++){
+    const phase = w < BASE ? "Base" : w < BASE + B ? "Build" : w < BASE + B + P ? "Peak" : "Taper";
+    const recovery = phase !== "Taper" && phase !== "Peak" && w > 0 && (w + 1) % 4 === 0;
+    if (phase === "Taper"){ const tIdx = w - (N - T); km = Math.round(peakKm * (T === 2 ? (tIdx === 0 ? 0.7 : 0.45) : 0.55)); }
+    else if (phase === "Peak") km = peakKm;
+    else km = Math.min(peakKm, Math.round((w === 0 ? cur : km) * (w === 0 ? 1 : 1.07)));
+    const weekKm = recovery ? Math.round(km * 0.8) : km;
+    // long run: ~28% of the week (convention), never >10% beyond the longest run of the previous 30 days (Frandsen 2025)
+    // build ~8% a week (inside the +10% limit), never more than half the week, never above the event's useful maximum
+    let long;
+    if (phase === "Taper") long = longest * (w === N - 1 ? 0.45 : 0.7);
+    else if (recovery) long = longest * 0.85;
+    else long = Math.min(E.longMax, longest * 1.08, Math.max(5, weekKm * 0.5));
+    const longRaw = Math.max(3, long); long = Math.round(longRaw);
+    if (!recovery && phase !== "Taper") longest = Math.max(longest, longRaw);
+    const b2b = E.b2b && (phase === "Build" || phase === "Peak") && !recovery ? Math.round(long * 0.6) : 0;
+    const qType = phase === "Base" ? "general" : (E.q === "mp" && phase !== "Taper" && w % 2 ? "thr" : E.q === "general" ? "general" : E.q);
+    const qs = phase === "Base" ? Math.min(1, nQ) : phase === "Taper" ? Math.min(1, nQ) : nQ;
+    // place sessions: long on its day, b2b the day after (if a run day), quality away from the long run
+    const sessions = {}, rest = weekKm - long - b2b;
+    sessions[longWd] = {type:"long", km:long};
+    const after = days.find(d => d === (longWd + 1) % 7);
+    if (b2b && after != null) sessions[after] = {type:"b2b", km:b2b};
+    const free = days.filter(d => sessions[d] == null);
+    const far = free.slice().sort((a, b) => Math.min(Math.abs(b - longWd), 7 - Math.abs(b - longWd)) - Math.min(Math.abs(a - longWd), 7 - Math.abs(a - longWd)));
+    const qDays = []; for (const d of far){ if (qDays.length >= qs) break; if (!qDays.some(q => Math.abs(q - d) === 1 || Math.abs(q - d) === 6)) qDays.push(d); }
+    const easyDays = free.filter(d => !qDays.includes(d)), perQ = Math.max(5, Math.min(Math.round(long * 0.8), Math.round(rest * 0.22 / Math.max(1, qDays.length))));
+    qDays.forEach(d => sessions[d] = {type:qType, km:Math.min(perQ, 14)});
+    const left = Math.max(0, rest - qDays.reduce((a, d) => a + sessions[d].km, 0));
+    // easy runs never longer than ~70% of the long run; the week total is whatever that allows
+    easyDays.forEach(d => sessions[d] = {type:"easy", km:Math.max(3, Math.min(Math.round(long * 0.85), Math.round(left / Math.max(1, easyDays.length))))});
+    const ws = new Date(start); ws.setDate(ws.getDate() + w * 7);
+    const notes = [];
+    if (E.pack && (phase === "Build" || phase === "Peak")) notes.push(`Long runs with your pack: ${Math.min(7, 3 + Math.round((w - BASE) * 0.5))} kg this week, building to race weight`);
+    if (E.heat && race && (race - ws) / 864e5 <= 21 && phase !== "Base") notes.push("Heat block: 4-5 heat sessions this week (overdress on easy runs, or 20-30 min sauna/hot bath right after)");
+    if (long * 6 >= 90) notes.push("Practise fuelling on the long run: 60-90 g carbohydrate an hour, using what you'll race with");
+    weeks.push({start:ymd(ws), w:w + 1, phase, recovery, km:Object.values(sessions).reduce((a, s) => a + s.km, 0), long, b2b, sessions, notes, strength:phase === "Taper" || phase === "Peak" ? 1 : 2});
+  }
+  return {event:ans.event, eventName:E.name, raceDate:race ? ans.raceDate : null, weeks, peakKm, longWd, phases:{base:BASE, build:B, peak:P, taper:T}};
+}
+function generateEndu(ans, seed){
+  const plan = enduPlan(ans), gl = gymList(), hybrid = ans.kind === "hybrid";
+  const liftDays = WD.filter(([k]) => (ans.liftDays || []).includes(k)).map(x => x[1]);
+  const exercises = {};
+  let tplSeq = [];
+  if (liftDays.length){
+    if (hybrid){ const sp = (SPLITS[liftDays.length] || SPLITS[3])[0]; tplSeq = sp.days.slice(0, liftDays.length); }
+    else tplSeq = liftDays.map((_, i) => i % 2 ? "runB" : "runA");
+  }
+  const vs = Object.fromEntries(gl.map(g => [g.id, tplSeq.length ? buildVariant(tplSeq, g.id, {...ans, pri:hybrid ? (ans.pri || []) : [], mins:hybrid ? (ans.mins || 60) : 45, level:ans.level || "inter"}, seed) : null]));
+  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
+  const w0 = plan.weeks[0];
+  const days = WD.map(([k, wd]) => {
+    const run = w0.sessions[wd] || plan.weeks.find(w => w.sessions[wd])?.sessions[wd];
+    const li = liftDays.indexOf(wd);
+    const d = {k, wd, rest:!run && li < 0, label:"Rest", focus:"", cardio:"Rest or an easy walk"};
+    if (run){ d.run = {type:run.type}; d.label = RUNTYPE[run.type].n; d.focus = RUNTYPE[run.type].rpe; d.cardio = ""; }
+    if (li >= 0){
+      d.variants = Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], li)])); d.gym = (ans.gymOf || {})[k] || gl[0].id;
+      const sLabel = hybrid ? T[tplSeq[li]].label : "Strength for runners";
+      d.label = run ? d.label + " + " + sLabel.toLowerCase() : sLabel; d.focus = run ? d.focus : focusOf(vs[gl[0].id].days[li].list); d.tpl = tplSeq[li];
+    } else if (run) d.variants = {};
+    return d;
+  });
+  return {schema:2, kind:ans.kind, name:ans.name || (plan.eventName + " plan"), placeholder:false, startDate:ans.start, deloadEvery:4, endurance:plan, setup:ans, built:Date.now(),
+    exercises, days, splitName:plan.eventName + (hybrid ? " + lifting" : ""), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id] ? vs[g.id].mins : []])), vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id] ? vs[g.id].vol : {}])), targets:vs[gl[0].id] ? vs[gl[0].id].tg : {}};
 }
 
 /* ---------- Nutrition math ---------- */
@@ -329,19 +439,23 @@ const loadDraft = k => { try{ return JSON.parse(localStorage.getItem(DRAFT + k))
 const clearDraft = k => { try{ localStorage.removeItem(DRAFT + k); }catch(e){} };
 function el(){ let o = document.getElementById("ob"); if (!o){ o = document.createElement("div"); o.id = "ob"; o.className = "ob"; o.setAttribute("role", "dialog"); document.body.appendChild(o); bind(o); } return o; }
 function close(){ const o = document.getElementById("ob"); document.body.style.overflow = "";
-  if (F && F.kind === "nut" && !F.accepted) S.profile.activity = F.prevAct; F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
+  if (F && F.kind === "nut" && !F.accepted) S.profile.activity = F.prevAct;
+  if (F && F.kind === "welcome" && !F.accepted){ S.profile = {...S.profile, setupDone:true, modules:S.profile.modules || {training:true, endurance:true, nutrition:true, habits:true, body:true}}; saveProfile(); } F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
+function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
 function progDefaults(){
-  const p = S.prog || {}, prev = p.setup;
-  if (prev) return clone(prev);
-  // seed from the current week: training days, which gym each is at, and the lifts you already do
-  const days = (p.days || []).filter(d => !d.rest && !d.optional).map(d => d.k);
-  const gymOf = {}; (p.days || []).forEach(d => { if (!d.rest) gymOf[d.k] = d.gym || "home"; });
-  const love = []; (p.days || []).forEach(d => { if (d.rest) return; Object.values(d.variants || {}).forEach(v => v.forEach(([k]) => { if (L[k] && !love.includes(k) && ["incbench","incfly","cablat","ohext","bayes","sulek","revfly","legext","hack","standcalf"].includes(k)) love.push(k); })); });
-  return {goal:"size", level:"inter", days:days.length ? days : ["mon","tue","wed","thu","fri"], mins:75, gymOf, kit:clone(KIT_DEFAULT), sport:["sat"],
-    split:null, pri:["chest","sdelt","triceps"], inj:[], love, ban:[], block:6, start:nextMonday(), phase:S.profile.phase || "bulk", name:"Hypertrophy block 1"};
+  const p = S.prog || {}, prev = p.setup, gl = gymList();
+  const kit = Object.fromEntries(gl.map(g => [g.id, (g.kit || KIT_FULL).slice()]));
+  if (prev) return Object.assign(endDefaults(), clone(prev), {kit});
+  const days = (p.days || []).filter(d => !d.rest && !d.optional && d.variants && Object.keys(d.variants).length).map(d => d.k);
+  const gymOf = {}; (p.days || []).forEach(d => { if (!d.rest) gymOf[d.k] = d.gym || gl[0].id; });
+  const love = []; (p.days || []).forEach(d => { if (d.rest) return; Object.values(d.variants || {}).forEach(v => v.forEach(([k]) => { if (L[k] && !love.includes(k) && L[k].len === 2) love.push(k); })); });
+  const kind = on("training") && on("endurance") ? null : on("endurance") ? "endurance" : "gym";
+  return Object.assign(endDefaults(), {kind, goal:"size", level:"inter", days:days.length ? days : ["mon","tue","thu","fri"], mins:60, gymOf, kit, sport:[],
+    split:null, pri:[], inj:[], love, ban:[], block:6, start:nextMonday(), phase:S.profile.phase || "maintain", name:"Block 1"});
 }
+function endDefaults(){ return {event:"general", raceDate:addWeeks(16), weeklyKm:15, longest:8, runDays:["tue","thu","sat"], longDay:"sat", liftDays:on("training") ? ["mon","wed"] : []}; }
 function loggedSteps(){ const v = []; for (let i = 1; i <= 21; i++){ const t = stepsTotal(ymd(new Date(Date.now() - i * 864e5))); if (t != null) v.push(t); } return v.length >= 3 ? {avg:Math.round(v.reduce((a, b) => a + b, 0) / v.length / 100) * 100, n:v.length} : null; }
 function actDefaults(){
   const cur = S.profile.activity; if (cur && cur.set) return clone(cur);
@@ -356,23 +470,53 @@ function nutDefaults(){
 }
 
 /* ---------- Programme steps ---------- */
-const PSTEPS = ["intro","goal","level","days","gyms","sport","split","pri","inj","lifts","block","build","review"];
+const PSTEPS_GYM = ["intro","kind","goal","level","days","gyms","sport","split","pri","inj","lifts","block","build","review"];
+const PSTEPS_END = ["intro","kind","event","racedate","current","rundays","strength","gyms","build","review"];
+const PSTEPS_HYB = ["intro","kind","event","racedate","current","rundays","liftdays","gyms","pri","inj","build","review"];
+function psteps(){ const k = F.ans.kind; return k === "endurance" ? PSTEPS_END.filter(x => x !== "racedate" || F.ans.event !== "general").filter(x => x !== "gyms" || (F.ans.liftDays || []).length) : k === "hybrid" ? PSTEPS_HYB.filter(x => x !== "racedate" || F.ans.event !== "general") : PSTEPS_GYM; }
 const NSTEPS = ["intro","goal","activity","stats","target","rate","macros","review"];
-function stepsOf(){ return F.kind === "prog" ? PSTEPS : NSTEPS.filter(s => !(s === "target" || s === "rate") || (F.ans.type === "bulk" || F.ans.type === "cut")); }
+function stepsOf(){ if (F.kind === "welcome") return WSTEPS; return F.kind === "prog" ? psteps() : NSTEPS.filter(s => !(s === "target" || s === "rate") || (F.ans.type === "bulk" || F.ans.type === "cut")); }
 function src(id, txt){ return `<button class="obsrc" data-src="${id}">${txt || "Evidence"}</button>`; }
 function opt(name, val, title, sub, cur){ return `<button class="obopt" data-set="${name}" data-val="${val}" aria-pressed="${cur === val}"><b>${title}</b>${sub ? `<span>${sub}</span>` : ""}</button>`; }
 function chip(name, val, label, on){ return `<button class="chip" data-tog="${name}" data-val="${val}" aria-pressed="${!!on}">${label}</button>`; }
 
 function pStep(s, a){
   switch (s){
-  case "intro": return {title:"Build your programme", body:`
-    <p class="oblead">Answer a few questions and I'll build a full training block: the split, every exercise for <b>both gyms</b>, sets, rep ranges, rest times and how hard to push each week.</p>
+  case "intro": return {title:"Build your plan", body:`
+    <p class="oblead">Answer a few questions and I'll build a full plan: gym, running, or both. Every session, how hard to go, and how it progresses week to week.</p>
     <div class="obpoints">
-      <div><i>1</i><span><b>Built from the research</b><em>Weekly volume, frequency, effort, rest and exercise choice follow the current meta-analyses. Tap <u>Evidence</u> anywhere to see the study.</em></span></div>
-      <div><i>2</i><span><b>Home and SHWC, every day</b><em>Each session is written twice, matched to the kit at each gym.</em></span></div>
-      <div><i>3</i><span><b>Planned around your sport</b><em>Leg days stay away from the day before tennis or padel.</em></span></div>
-      <div><i>4</i><span><b>Your history carries over</b><em>Lifts you already do keep their logs, so "what to lift next" keeps working.</em></span></div>
+      <div><i>1</i><span><b>Built from the research</b><em>Volume, effort, intensity mix, long-run limits and tapering follow current meta-analyses. Tap <u>Evidence</u> anywhere to see the study.</em></span></div>
+      <div><i>2</i><span><b>Fits your gyms and your week</b><em>Strength sessions are written for every gym you add, using only the kit it has.</em></span></div>
+      <div><i>3</i><span><b>Race-ready</b><em>From a first 5k to multi-day desert ultras: base, build, peak and taper, with long runs that never jump too far.</em></span></div>
     </div>`, cta:"Start"};
+  case "kind": return {title:"What are you training for?", body:`<div class="obopts">
+    ${opt("kind","gym","Muscle and strength","Gym programme: split, exercises, sets and progression.",a.kind)}
+    ${opt("kind","endurance","Running or an endurance event","5k to ultra and multi-day stage races, with strength work for runners.",a.kind)}
+    ${opt("kind","hybrid","Both: lifting and running","A full lifting split around a running plan, scheduled so they don't clash.",a.kind)}</div>`};
+  case "event": return {title:"What's the goal?", body:`<div class="obopts">${Object.entries(EVENTS).map(([k, e]) => opt("event", k, e.name, e.sub, a.event)).join("")}</div>`};
+  case "racedate": { const wks = Math.ceil((parseD(a.raceDate) - parseD(a.start)) / (7 * 864e5)); const E = EVENTS[a.event];
+    return {title:"When is it?", body:`<label class="lab">Race date<input class="field" type="date" data-input="raceDate" value="${esc(a.raceDate)}"></label>
+      <label class="lab">Plan starts<input class="field" type="date" data-input="start" value="${esc(a.start)}"></label>
+      <p class="obnote">${wks >= 1 ? `${wks} weeks of training, including a ${E.taper}-week taper.` : "Pick a date after the start."} ${wks > 0 && wks < 8 ? "That's short: the plan will compress the base phase and keep the long-run progression safe rather than rushing it." : ""} ${src("taper")}</p>`}; }
+  case "current": return {title:"Where are you now?", body:`
+    <h3 class="obh" style="margin-top:0">Running per week, lately</h3><div class="spread"><b class="num">${a.weeklyKm} km</b><span class="muted small">average of the last month</span></div>
+    <div class="obslider"><input type="range" min="0" max="120" step="1" value="${a.weeklyKm}" data-range="weeklyKm"></div>
+    <h3 class="obh">Longest run in the last 30 days</h3><div class="spread"><b class="num">${a.longest} km</b><span class="muted small">the plan builds from here</span></div>
+    <div class="obslider"><input type="range" min="0" max="60" step="1" value="${a.longest}" data-range="longest"></div>
+    <p class="obnote">Long runs never grow more than 10% beyond your longest run of the previous month: in 5,200 runners, single runs that jumped past that were what predicted injury, not weekly totals. ${src("progression-run")}</p>`};
+  case "rundays": return {title:"Which days can you run?", body:`
+    <div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="runDays" data-val="${k}" aria-pressed="${(a.runDays || []).includes(k)}">${sh}</button>`).join("")}</div>
+    <h3 class="obh">Long run day</h3><div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-set="longDay" data-val="${k}" aria-pressed="${a.longDay === k}" ${(a.runDays || []).includes(k) ? "" : "disabled"}>${sh}</button>`).join("")}</div>
+    <p class="obnote">${(a.runDays || []).length} runs a week, about 80% easy and 20% hard. Most gains come from easy volume; hard sessions are capped rather than piled on. ${src("intensity")}</p>`};
+  case "strength": return {title:"Strength sessions", body:`
+    <p class="obnote" style="margin-top:0">Two sessions a week through base and build (one in peak and taper) improve running economy by about 2-8%. Pick days, ideally not the day before your long run. ${src("strength-run")}</p>
+    <div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="liftDays" data-val="${k}" aria-pressed="${(a.liftDays || []).includes(k)}">${sh}</button>`).join("")}</div>
+    <p class="obnote">${(a.liftDays || []).length ? (a.liftDays || []).length + " a week." : "None selected: running only."}</p>`};
+  case "liftdays": return {title:"Which days can you lift?", body:`
+    <div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="liftDays" data-val="${k}" aria-pressed="${(a.liftDays || []).includes(k)}">${sh}</button>`).join("")}</div>
+    <div class="spread" style="margin-top:8px"><b class="num obmins">${a.mins || 60} min</b><span class="muted small">per lifting session</span></div>
+    <div class="obslider"><input type="range" min="30" max="120" step="5" value="${a.mins || 60}" data-range="mins"></div>
+    <p class="obnote">Lifting doesn't blunt your running, and on average running doesn't blunt muscle growth either; keep hard leg sessions away from your long run and intervals so both stay good. ${src("interference")}</p>`};
   case "goal": return {title:"What's the main goal?", body:`<div class="obopts">
     ${opt("goal","size","Maximum size","Hypertrophy first: moderate reps near failure, the most productive volume.",a.goal)}
     ${opt("goal","strength","Size + strength","Same, but your first barbell lift each day goes heavy (4-6 reps).",a.goal)}
@@ -389,13 +533,13 @@ function pStep(s, a){
     <h3 class="obh">Time per session</h3>
     <div class="spread"><b class="num obmins">${a.mins} min</b><span class="muted small">including rest</span></div>
     <div class="obslider"><input type="range" min="40" max="120" step="5" value="${a.mins}" data-range="mins"></div>`};
-  case "gyms": return {title:"Where's each session?", body:`
-    <p class="obnote" style="margin-top:0">Set the usual gym for each day. Both versions are written anyway, so you can switch on the day.</p>
-    <div class="obgym">${WD.filter(([k]) => a.days.includes(k)).map(([k,, sh]) => `<div class="spread"><b>${sh}</b>${seg2("gymOf." + k, [["home","Home"],["shwc","SHWC"]], (a.gymOf || {})[k] || "home")}</div>`).join("")}</div>
+  case "gyms": { const gl = gymList(), dk = a.kind === "gym" ? a.days : (a.liftDays || []);
+    return {title:gl.length > 1 ? "Where's each session?" : "Your gym", body:`
+    ${gl.length > 1 ? `<p class="obnote" style="margin-top:0">Set the usual gym for each day. Every session is written for every gym, so you can switch on the day.</p>
+    <div class="obgym">${WD.filter(([k]) => dk.includes(k)).map(([k,, sh]) => `<div class="spread"><b>${sh}</b>${seg2("gymOf." + k, gl.map(g => [g.id, g.name.length > 12 ? g.name.split(/\s+/).map(w => w[0]).join("").toUpperCase() : g.name]), (a.gymOf || {})[k] || gl[0].id)}</div>`).join("")}</div>` : `<p class="obnote" style="margin-top:0">Exercises are only picked if your gym has the kit. Check the list, and add more gyms in Settings if you train in more than one place.</p>`}
     <h3 class="obh">Equipment</h3>
-    ${["home","shwc"].map(g => `<details class="obkit"><summary><b>${g === "home" ? "Home gym" : "Soho House White City"}</b><span class="muted small">${(a.kit[g] || []).length} items · tap to edit</span></summary>
-      <div class="chips">${EQUIP.map(([k, n]) => chip("kit." + g, k, n, (a.kit[g] || []).includes(k))).join("")}</div></details>`).join("")}
-    <p class="obnote">I filled these in from what you told me before. Untick anything that isn't there and tick anything I missed; exercises are only picked if the kit exists.</p>`};
+    ${gl.map(g => `<details class="obkit" ${gl.length === 1 ? "open" : ""}><summary><b>${esc(g.name)}</b><span class="muted small">${(a.kit[g.id] || []).length} items · tap to edit</span></summary>
+      <div class="chips">${EQUIP.map(([k, n]) => chip("kit." + g.id, k, n, (a.kit[g.id] || []).includes(k))).join("")}</div></details>`).join("")}`}; }
   case "sport": return {title:"Tennis, padel or hard cardio?", body:`
     <p class="obnote" style="margin-top:0">Pick the days you usually play or do hard cardio. Leg days are kept off the day before, so your legs are fresh for both.</p>
     <div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="sport" data-val="${k}" aria-pressed="${(a.sport || []).includes(k)}">${sh}</button>`).join("")}</div>
@@ -429,8 +573,8 @@ function pStep(s, a){
     <p class="obnote">Effort rises through the block: start ~3 reps in reserve and finish near failure, then deload with half the sets. Taking sets closer to failure grows more muscle, with diminishing returns on strength. ${src("rir")} ${src("deload","Deload evidence")}</p>
     <label class="lab">Start date<input class="field" type="date" data-input="start" value="${esc(a.start)}"></label>
     <label class="lab">Name<input class="field" data-input="name" value="${esc(a.name)}"></label>`};
-  case "build": return {title:"", body:`<div class="obbuild"><div class="obspin">${LOGO(72)}</div><h2>Building your block</h2><div class="obticks" id="obticks"></div></div>`, nofoot:true};
-  case "review": return review(a);
+  case "build": return {title:"", body:`<div class="obbuild"><div class="obspin">${LOGO(72)}</div><h2>Building your plan</h2><div class="obticks" id="obticks"></div></div>`, nofoot:true};
+  case "review": return a.kind === "gym" ? review(a) : reviewEndu(a);
   }
 }
 function seg2(name, opts, cur){ return `<div class="seg obseg" style="grid-template-columns:repeat(${opts.length},1fr)">${opts.map(([k, v]) => `<button data-set="${name}" data-val="${k}" aria-pressed="${k === cur}">${v}</button>`).join("")}</div>`; }
@@ -442,14 +586,40 @@ function volChart(prog, gym){
   return `<div class="obvol">${rows.map(m => `<div class="obvr"><span>${MUS[m]}${pri.has(m) ? ' <i class="obpri">★</i>' : ""}</span><span class="obtrack"><b style="width:${Math.min(100, (v[m] || 0) / mx * 100)}%" class="${(v[m] || 0) >= (tg[m] || 0) - 1 ? "ok" : ""}"></b><i style="left:${(tg[m] || 0) / mx * 100}%"></i></span><span class="num small">${r1(v[m] || 0)}</span></div>`).join("")}
     <div class="obvl"><span></span><span class="small muted">Sets a week (direct + half for indirect). Tick = target.</span><span></span></div></div>`;
 }
+function reviewEndu(a){
+  const prog = F.out, P = prog.endurance, gl = gymList(), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id;
+  const mx = Math.max(...P.weeks.map(w => w.km), 10), col = {Base:"var(--cardio)", Build:"var(--orange)", Peak:"var(--prot)", Taper:"var(--carb)"};
+  const w0 = P.weeks[0], peak = P.weeks.find(w => w.phase === "Peak") || P.weeks[P.weeks.length - 1];
+  const wk = w => WD.filter(([, wd]) => w.sessions[wd] || (prog.days.find(d => d.wd === wd) || {}).variants && Object.keys((prog.days.find(d => d.wd === wd) || {}).variants || {}).length).map(([k, wd, sh]) => {
+    const s2 = w.sessions[wd], d = prog.days.find(x => x.wd === wd), lift = d && d.variants && (d.variants[g] || []).length;
+    return `<div><span><b>${sh} · ${s2 ? RUNTYPE[s2.type].n : ""}${s2 && lift ? " + " : ""}${lift ? "strength" : ""}</b><em>${s2 ? esc(RUNTYPE[s2.type].rpe) : esc(d.focus || "")}</em></span><span class="num">${s2 ? s2.km + " km" : ""}</span></div>`; }).join("");
+  const E = EVENTS[P.event];
+  return {title:"Your plan", wide:true, body:`
+    <div class="obsum"><div class="full"><span>Goal</span><b>${esc(P.eventName)}${P.raceDate ? " · " + fmtD(P.raceDate) : ""}</b></div><div><span>Length</span><b>${P.weeks.length} weeks</b></div><div><span>Peak week</span><b>${P.peakKm} km</b></div><div><span>Longest run</span><b>${Math.max(...P.weeks.map(w => w.long))} km</b></div></div>
+    <div class="card"><h2>Weekly running</h2><div class="ebars">${P.weeks.map(w => `<span title="Week ${w.w}: ${w.km} km"><i style="height:${w.km / mx * 100}%;background:${col[w.phase]};opacity:${w.recovery ? .5 : 1}"></i></span>`).join("")}</div>
+      <div class="legend">${Object.entries(col).filter(([k]) => P.weeks.some(w => w.phase === k)).map(([k, c]) => `<span><i style="background:${c}"></i>${k}</span>`).join("")}<span><i style="background:var(--line)"></i>Recovery week</span></div></div>
+    <div class="card"><h2>Week 1</h2><div class="oblist">${wk(w0)}</div>${w0.notes.length ? `<p class="small muted">${w0.notes.map(esc).join(". ")}.</p>` : ""}</div>
+    <div class="card"><h2>Peak week (week ${peak.w})</h2><div class="oblist">${wk(peak)}</div>${peak.notes.length ? `<p class="small muted">${peak.notes.map(esc).join(". ")}.</p>` : ""}</div>
+    ${(a.liftDays || []).length ? `<details class="card obdayc"><summary><b>Strength sessions${gl.length > 1 ? " · " + esc((gl.find(x => x.id === g) || {}).name) : ""}</b><span class="small muted">${(a.liftDays || []).length} a week</span></summary>
+      ${prog.days.filter(d => d.variants && (d.variants[g] || []).length).map(d => `<div class="oblist"><div><span><b>${WD.find(x => x[0] === d.k)[2]}</b></span><span></span></div>${(d.variants[g] || []).map(([k, n]) => { const e = prog.exercises[k]; return `<div><span><b>${esc(e.n)}</b><em>${esc(e.m)}</em></span><span class="num">${n} × ${e.lo}–${e.hi}</span></div>`; }).join("")}</div>`).join("")}</details>` : ""}
+    <div class="card obwhy"><h2>Why it's built this way</h2>
+      <div><b>Easy most days</b><span>About 80% of running easy, 20% hard. Polarised and pyramidal mixes both work; piling on hard sessions doesn't. ${src("intensity")}</span></div>
+      <div><b>Long run limit</b><span>Never more than 10% beyond your longest run of the last 30 days, the clearest injury signal in 5,200 runners. ${src("progression-run")}</span></div>
+      ${P.raceDate ? `<div><b>Taper</b><span>${E.taper} week${E.taper > 1 ? "s" : ""}: volume down 40-60%, intensity kept. ${src("taper")}</span></div>` : ""}
+      ${(a.liftDays || []).length ? `<div><b>Strength</b><span>2 sessions in base and build, 1 later: running economy improves ~2-8%. ${src("strength-run")}</span></div>` : ""}
+      ${E.heat ? `<div><b>Heat</b><span>10-14 heat sessions in the last ~2.5 weeks; most adaptation comes in the first 4-7 days. ${src("heat")}</span></div>` : ""}
+      ${Math.max(...P.weeks.map(w => w.long)) * 6 >= 90 ? `<div><b>Fuelling</b><span>Practise 60-90 g carbohydrate an hour on long runs so your gut can take it on race day. ${src("fuel")}</span></div>` : ""}
+      <div><b>Recovery weeks</b><span>Every 4th week drops ~20%. This one is coaching convention rather than trial evidence.</span></div>
+    </div>`, cta:"Save plan"};
+}
 function review(a){
-  const prog = F.out, g = F.gym || "shwc";
+  const prog = F.out, gl = gymList(), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, gn = id => { const n = (gl.find(x => x.id === id) || {}).name || ""; return n.length > 12 ? n.split(/\s+/).map(w => w[0]).join("").toUpperCase() : n; };
   const train = prog.days.filter(d => !d.rest);
   return {title:"Your block", wide:true, body:`
     <div class="obsum"><div class="full"><span>Split</span><b>${esc(prog.splitName)}</b></div><div><span>Block</span><b>${prog.deloadEvery} weeks</b></div><div><span>Starts</span><b>${fmtD(prog.startDate)}</b></div><div><span>Days</span><b>${prog.days.filter(d => !d.rest).length} a week</b></div></div>
-    <div class="obweek">${prog.days.map(d => `<div class="${d.rest ? "rest" : ""}"><span>${WD.find(x => x[0] === d.k)[2]}</span><b>${d.rest ? "–" : esc(d.label.replace("Upper ","U").replace("Lower ","L").replace("Full body ","FB").replace("Arms & delts","Arms"))}</b><em>${d.rest ? "" : d.gym === "shwc" ? "SHWC" : "Home"}</em></div>`).join("")}</div>
-    <div class="card"><div class="spread"><h2>Weekly sets</h2>${seg2("_gym", [["shwc","SHWC"],["home","Home"]], g)}</div>${volChart(prog, g)}
-      <p class="small muted">Shown for a week done entirely at ${g === "shwc" ? "SHWC" : "home"}. ${src("volume")}</p></div>
+    <div class="obweek">${prog.days.map(d => `<div class="${d.rest ? "rest" : ""}"><span>${WD.find(x => x[0] === d.k)[2]}</span><b>${d.rest ? "–" : esc(d.label.replace("Upper ","U").replace("Lower ","L").replace("Full body ","FB").replace("Arms & delts","Arms"))}</b><em>${d.rest || gl.length < 2 ? "" : esc(gn(d.gym))}</em></div>`).join("")}</div>
+    <div class="card"><div class="spread"><h2>Weekly sets</h2>${gl.length > 1 ? seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g) : ""}</div>${volChart(prog, g)}
+      <p class="small muted">${gl.length > 1 ? `Shown for a week done entirely at ${esc(gn(g))}.` : ""} ${src("volume")}</p></div>
     ${train.map(d => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
       return `<details class="card obdayc"><summary><div class="stack" style="gap:2px"><b>${WD.find(x => x[0] === d.k)[2]} · ${esc(d.label)}</b><span class="small muted">${esc(d.focus)}</span></div><span class="small muted num">${list.reduce((s, x) => s + x[1], 0)} sets · ~${Math.round(mins)} min</span></summary>
         <div class="oblist">${list.map(([k, n]) => { const e = prog.exercises[k]; return `<div><span><b>${esc(e.n)}</b><em>${esc(e.m)}${e.len === 2 ? " · stretch" : ""}</em></span><span class="num">${n} × ${e.lo}–${e.hi}<em>${Math.round(e.rest / 60 * 10) / 10} min rest</em></span></div>`; }).join("")}</div>
@@ -463,6 +633,52 @@ function review(a){
       <div><b>Progression</b><span>Double progression: add reps across the range, then add load. ${src("progression")}</span></div>
       <div><b>Deload</b><span>Every ${prog.deloadEvery}th week, half the sets at ~3 RIR. ${src("deload")}</span></div>
     </div>`, cta:"Save programme", alt:"Shuffle exercises"};
+}
+
+/* ---------- Welcome (first run) ---------- */
+const WSTEPS = ["hello","sections","about","next"];
+const MODICON = {training:"lift", endurance:"cardio", nutrition:"food", habits:"steps", body:"scale"};
+function wStep(s, a){
+  switch (s){
+  case "hello": return {title:"", body:`<div class="obhello">${LOGO(96)}<h1>Welcome${a.name ? ", " + esc(a.name) : ""}</h1>
+    <p class="oblead">One app for training, running, food and habits, built on the research and shaped around you. Use all of it, or just the parts you need.</p></div>`, cta:"Get started"};
+  case "sections": return {title:"What do you want to use?", body:`<p class="obnote" style="margin-top:0">Pick as many as you like. You can change this any time in Settings.</p>
+    <div class="obopts">${Object.entries(MODULES).map(([k, [n, d]]) => `<button class="obopt obmod" data-tog="mods" data-val="${k}" aria-pressed="${a.mods.includes(k)}"><span class="obmi">${ICON[MODICON[k]]}</span><span><b>${n}</b><span>${d}</span></span><i class="obtick"></i></button>`).join("")}</div>`};
+  case "about": return {title:"About you", body:`<p class="obnote" style="margin-top:0">Used for calorie burn, targets and body-fat estimates. Nothing is shared.</p>
+    <label class="lab">First name<input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></label>
+    <div class="lab">Sex (for energy and body-fat maths)${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}</div>
+    <label class="lab">Date of birth<input class="field" type="date" data-input="birthDate" value="${esc(a.birthDate)}"></label>
+    <h3 class="obh">Height</h3><div class="spread"><b class="num">${a.heightCm} cm</b><span class="muted small">${Math.floor(a.heightCm / 30.48)} ft ${Math.round(a.heightCm / 2.54 % 12)} in</span></div>
+    <div class="obslider"><input type="range" min="140" max="215" step="1" value="${a.heightCm}" data-range="heightCm"></div>
+    <h3 class="obh">Weight</h3><div class="spread"><b class="num">${(+a.kg).toFixed(1)} kg</b><span class="muted small">${(a.kg * 2.20462 / 14 | 0)} st ${Math.round(a.kg * 2.20462 % 14)} lb</span></div>
+    <div class="obslider"><input type="range" min="40" max="180" step="0.5" value="${a.kg}" data-range="kg"></div>`};
+  case "next": {
+    const m = new Set(a.mods), items = [];
+    if (m.has("training") || m.has("endurance")) items.push(["prog", "Build your plan", m.has("endurance") && !m.has("training") ? "Race or running plan with the right mix of easy, hard and long" : "Two minutes: sessions, sets and progression from the research", "lift"]);
+    if (m.has("nutrition")) items.push(["nut", "Set your nutrition goal", "Goal, pace and targets that adapt to your real data", "food"]);
+    if (m.has("habits")) items.push(["habits", "Add your habits", "Steps, sleep, water, quitting something, or your own", "steps"]);
+    return {title:"You're set", body:`<p class="oblead">Next, set up the parts you picked. You can do them now or later from the dashboard.</p>
+      <div class="obopts">${items.map(([k, t, d, ic]) => `<button class="obopt obmod" data-wnext="${k}"><span class="obmi">${ICON[ic]}</span><span><b>${t}</b><span>${d}</span></span><i class="obarrow">›</i></button>`).join("")}</div>`, cta:"Go to my dashboard"};
+  }
+  }
+}
+function welcomeDefaults(){
+  const p = S.profile, md = p.modules;
+  return {mods:md ? Object.keys(MODULES).filter(k => md[k] !== false) : ["training","nutrition","habits","body"], name:p.name || "", sex:p.sex || null,
+    birthDate:p.birthSet ? p.birthDate : "1995-01-01", heightCm:p.heightCm || 175, kg:r1(currentKg() || 75)};
+}
+function acceptWelcome(then){
+  const a = F.ans, mods = Object.fromEntries(Object.keys(MODULES).map(k => [k, a.mods.includes(k)]));
+  S.profile = {...S.profile, modules:mods, name:a.name.trim(), sex:a.sex, birthDate:a.birthDate, birthSet:a.birthDate !== "1995-01-01", heightCm:+a.heightCm, fallbackKg:+a.kg, setupDone:true};
+  saveProfile();
+  if (!S.weights.some(w => w.d === ymd(new Date())) && Math.abs((currentKg() || 0) - a.kg) > 0.05){ try{ logWeight(+a.kg, ymd(new Date())); }catch(e){} }
+  clearDraft("welcome"); F.accepted = true;
+  const o = document.getElementById("ob"); F = null; document.body.style.overflow = "";
+  if (then === "prog") return setTimeout(() => { if (o) o.remove(); window.AJOnboard.programme(true); }, 10);
+  if (then === "nut") return setTimeout(() => { if (o) o.remove(); window.AJOnboard.nutrition(true); }, 10);
+  if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); }
+  if (then === "habits"){ go("habits"); setTimeout(() => habitSheet(null), 350); return; }
+  go("home"); toast(a.name ? `Welcome, ${a.name}` : "Welcome");
 }
 
 /* ---------- Nutrition steps ---------- */
@@ -564,7 +780,7 @@ function projChart(kg, target, rk, weeks){
 
 /* ---------- Render + events ---------- */
 function draw(){
-  const o = el(), steps = stepsOf(), i = Math.max(0, steps.indexOf(F.step)), s = F.kind === "prog" ? pStep(F.step, F.ans) : nStep(F.step, F.ans);
+  const o = el(), steps = stepsOf(), i = Math.max(0, steps.indexOf(F.step)), s = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans);
   const blocked = F.kind === "prog" && F.step === "days" && F.ans.days.length < 2;
   const scrollY = o.querySelector(".obbody") ? o.querySelector(".obbody").scrollTop : 0;
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
@@ -582,26 +798,33 @@ function next(){
   const steps = stepsOf(), i = steps.indexOf(F.step);
   if (F.kind === "prog" && F.step === "review") return acceptProg();
   if (F.kind === "nut" && F.step === "review") return acceptNut();
+  if (F.kind === "welcome" && F.step === "next") return acceptWelcome("home");
+  if (F.kind === "welcome" && F.step === "sections" && !F.ans.mods.length){ toast("Pick at least one"); return; }
+  if (F.kind === "welcome" && F.step === "about" && !F.ans.sex){ toast("Choose one so the energy maths is right"); return; }
   if (F.kind === "nut" && F.single && F.step === "activity"){ F.accepted = true; S.profile.activity = clone(F.ans.activity); saveProfile(); toast("Activity saved: starting estimate " + fmtN(priorModel(currentKg()).total) + " kcal"); return close(); }
+  if (F.kind === "prog" && F.step === "rundays"){ if ((F.ans.runDays || []).length < 2){ toast("Pick at least 2 run days"); return; } if (!F.ans.runDays.includes(F.ans.longDay)) F.ans.longDay = F.ans.runDays[F.ans.runDays.length - 1]; }
+  if (F.kind === "prog" && F.step === "kind" && !F.ans.kind){ toast("Pick one"); return; }
   if (F.kind === "prog" && F.step === "split" && !F.ans.split) F.ans.split = (SPLITS[F.ans.days.length] || [])[0]?.id;
   go2(steps[Math.min(steps.length - 1, i + 1)]);
 }
 function back(){ const steps = stepsOf(), i = steps.indexOf(F.step); if (i <= 0) return close(); go2(steps[F.step === "review" && F.kind === "prog" ? i - 2 : i - 1], "back"); }
 function runBuild(){
-  const lines = ["Choosing your split", "Placing leg days around your sport", "Picking exercises for home", "Picking exercises for SHWC", "Setting weekly volume per muscle", "Fitting sessions into " + F.ans.mins + " min", "Planning effort and the deload"];
+  const k = F.ans.kind, lines = k === "gym" ? ["Choosing your split", "Placing hard days around your week", ...gymList().map(g => "Picking exercises for " + g.name), "Setting weekly volume per muscle", "Fitting sessions into " + F.ans.mins + " min", "Planning effort and the deload"]
+    : ["Mapping the weeks to " + (F.ans.event === "general" ? "your goal" : "race day"), "Splitting base, build, peak" + (F.ans.event === "general" ? "" : " and taper"), "Setting the long-run progression", "Balancing easy and hard runs", ...((F.ans.liftDays || []).length ? ["Writing strength sessions"] : []), ...(EVENTS[F.ans.event].heat ? ["Adding pack and heat training"] : [])];
   const box = document.getElementById("obticks"); let n = 0;
-  if (!F.ans.split || !(SPLITS[F.ans.days.length] || []).some(s => s.id === F.ans.split)) F.ans.split = (SPLITS[F.ans.days.length] || [])[0]?.id;
-  F.out = generate(F.ans, F.seed);
+  if (k === "gym"){ if (!F.ans.split || !(SPLITS[F.ans.days.length] || []).some(s => s.id === F.ans.split)) F.ans.split = (SPLITS[F.ans.days.length] || [])[0]?.id; F.out = generate(F.ans, F.seed); }
+  else F.out = generateEndu(F.ans, F.seed);
   const t = setInterval(() => {
     if (!box.isConnected){ clearInterval(t); return; }
     box.innerHTML = lines.slice(0, n + 1).map((l, j) => `<div class="${j < n ? "done" : ""}"><i>${j < n ? "✓" : ""}</i>${l}</div>`).join("");
-    if (++n > lines.length){ clearInterval(t); F.gym = "shwc"; go2("review"); }
+    if (++n > lines.length){ clearInterval(t); F.gym = null; go2("review"); }
   }, 260);
 }
 function acceptProg(){
   const p = F.out; delete p.vol; const keep = clone(p);
+  S.profile = {...S.profile, gyms:gymList().map(g => ({...g, kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
   S.prog = keep; if (db) putDocP(keep); else lsSet("prog", keep);
-  clearDraft("prog"); S.planView = "week"; close(); go("plan"); toast("Programme saved. Week 1 starts " + fmtD(keep.startDate));
+  clearDraft("prog"); S.planView = "week"; close(); go("plan"); toast("Plan saved. Week 1 starts " + fmtD(keep.startDate));
 }
 function putDocP(p){ try{ queue("programme/current", () => db.doc("programme/current").set(p)); }catch(e){ console.warn(e); } }
 function acceptNut(){
@@ -621,6 +844,7 @@ function bind(o){
     if (b.dataset.ob === "close") return close();
     if (b.dataset.ob === "alt"){ F.seed = Math.random().toString(36).slice(2, 7); F.out = generate(F.ans, F.seed); F.keepScroll = true; draw(); toast("New exercise picks"); return; }
     if (b.dataset.src) return window.AJScience && AJScience.open(b.dataset.src);
+    if (b.dataset.wnext) return acceptWelcome(b.dataset.wnext);
     if (b.dataset.set){
       if (b.dataset.set === "_gym"){ F.gym = b.dataset.val; F.keepScroll = true; return draw(); }
       let v = b.dataset.val; if (b.dataset.set === "block") v = +v;
@@ -628,7 +852,7 @@ function bind(o){
       if (b.dataset.set.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
       if (b.dataset.set === "type"){ const kg = currentKg(); F.ans.rate = GOALS[v].def; F.ans.prot = v === "cut" ? 2.3 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
       saveDraft(); F.keepScroll = true; draw();
-      if (b.classList.contains("obopt") && ["goal","level","type","split"].includes(b.dataset.set)) setTimeout(() => { if (F) next(); }, 220);
+      if (b.classList.contains("obopt") && ["goal","level","type","split","kind","event"].includes(b.dataset.set)) setTimeout(() => { if (F) next(); }, 220);
       return;
     }
     if (b.dataset.tog){
@@ -657,13 +881,18 @@ function bind(o){
 }
 // Live update while dragging: rebuild the step off-screen and swap only the blocks that changed, never the slider under the finger.
 function liveRange(t){
-  const st = F.kind === "prog" ? pStep(F.step, F.ans) : nStep(F.step, F.ans), body = document.querySelector("#ob .obbody");
+  const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = document.querySelector("#ob .obbody");
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
   const olds = [...body.children], news = [...tmp.children];
   if (olds.length !== news.length){ F.keepScroll = true; return draw(); }
   olds.forEach((c, i) => { if (c.contains(t)) return; if (c.outerHTML !== news[i].outerHTML) c.replaceWith(news[i]); });
 }
 window.AJOnboard = {
+  welcome(fresh){
+    const d = !fresh && loadDraft("welcome");
+    F = {kind:"welcome", step:d ? d.step : "hello", ans:d ? Object.assign(welcomeDefaults(), d.ans) : welcomeDefaults(), dir:"fwd"};
+    document.body.style.overflow = "hidden"; draw();
+  },
   programme(fresh){
     const d = !fresh && loadDraft("prog");
     F = {kind:"prog", step:d ? d.step : "intro", ans:d ? Object.assign(progDefaults(), d.ans) : progDefaults(), seed:""};
@@ -678,6 +907,6 @@ window.AJOnboard = {
     S.profile.activity = clone(F.ans.activity);
     document.body.style.overflow = "hidden"; draw();
   },
-  lib:L, MUS, generate, KIT_DEFAULT, targetsFor
+  lib:L, MUS, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
 };
 })();

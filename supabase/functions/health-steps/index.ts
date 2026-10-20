@@ -6,11 +6,14 @@ const sb = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SE
 const reply = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { "Content-Type": "application/json" } });
 
 Deno.serve(async (req) => {
-  if (req.method !== "POST") return reply({ error: "POST only" }, 405);
-  const token = req.headers.get("x-token") ?? "";
+  // Accepts either POST {steps} with header x-token, or a single link: GET/POST ?k=<key>&steps=<number> (easiest Shortcut).
+  const url = new URL(req.url);
+  const token = req.headers.get("x-token") ?? url.searchParams.get("k") ?? "";
   const { data: t } = await sb.from("health_tokens").select("user_id").eq("token", token).maybeSingle();
   if (!t) return reply({ error: "Unknown key" }, 403);
-  const body = await req.json().catch(() => ({}));
+  const body: Record<string, unknown> = req.method === "POST" ? await req.json().catch(() => ({})) : {};
+  if (url.searchParams.get("steps") != null) body.steps = url.searchParams.get("steps");
+  if (url.searchParams.get("date")) body.date = url.searchParams.get("date");
   const raw = String(body.steps ?? "").replace(/[^0-9.]/g, "");
   const steps = Math.round(Number(raw));
   if (!raw || !Number.isFinite(steps) || steps < 0 || steps > 200000) return reply({ error: "steps must be a number" }, 400);

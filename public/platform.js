@@ -66,7 +66,14 @@ function docRef(path){
   };
 }
 function collection(col){ return Object.assign(query(col), {path:col, doc:id => docRef(col + "/" + (id || Math.random().toString(36).slice(2))), add:async data => { const r = docRef(col + "/" + Math.random().toString(36).slice(2)); await r.set(data); return r; }}); }
-const dbApi = {doc:docRef, collection};
+/* Demo space: the staff admin can switch to a separate, untouched "new user" copy of the app.
+   It lives under paths prefixed "demo~/" in the admin's own rows, so it syncs like everything else and never mixes with real data. */
+const ADMIN_EMAILS = ["smythjonesa@gmail.com"];
+const isAdmin = () => !!(user && ADMIN_EMAILS.includes(String(user.email || "").toLowerCase()));
+let MODE = "me"; try{ MODE = localStorage.getItem("ajmode") === "demo" ? "demo" : "me"; }catch(e){}
+const NS = () => (MODE === "demo" && isAdmin()) ? "demo~/" : "";
+const dbApi = {doc:p => docRef(NS() + p), collection:c => collection(NS() + c)};
+async function resetDemo(){ await ready; for (const d of [...mem.values()]) if (d.path.startsWith("demo~/") && !d.deleted) await write(d.path, null, true); await sync(); }
 
 /* ---------- Sync with Supabase ---------- */
 let syncTimer = null, syncing = false, resync = false;
@@ -339,12 +346,16 @@ async function importExport(file){
 }
 
 /* ---------- Settings cards (rendered inside the app's Settings screen) ---------- */
-const P = {status, user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null};
+const P = {status, user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
 P.settingsCards = () => {
   if (!HAS_BACKEND) return `<div class="card"><h2>Account</h2><span class="small muted">Running on this device only. Add your Supabase details in config.js to sync and unlock Claude features.</span></div>`;
   const s = status, when = s.lastSync ? new Date(s.lastSync).toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit"}) : "never";
   const pushTxt = {on:"On. You'll get the weigh-in reminder each morning.", off:"Off.", denied:"Blocked. Turn notifications on for AJ Training in iPhone Settings.", unsupported:"Add the app to your Home Screen first, then open it from there to turn these on.", unconfigured:"Not set up on the server yet."}[P.push] || "Checking…";
-  return `<div class="card"><h2>Account</h2><div class="kv" style="border:0;padding:0"><div><span>Signed in</span><span>${user ? escH(user.email) : "–"}</span></div>
+  const admin = isAdmin() ? `<div class="card admin"><div class="spread"><h2>Staff</h2><span class="tag rep">Admin</span></div>
+      <div class="seg" role="group" style="grid-template-columns:1fr 1fr"><button data-plat="modeMe" aria-pressed="${MODE !== "demo"}">My account</button><button data-plat="modeDemo" aria-pressed="${MODE === "demo"}">Demo (new user)</button></div>
+      <span class="small muted">${MODE === "demo" ? "You're in the demo: exactly what a brand-new user sees. Nothing here touches your real data." : "Switch to the demo to see the app as a new user would, before any setup."}</span>
+      ${MODE === "demo" ? `<button class="btn danger" data-plat="resetDemo">${P.confirmReset ? "Tap again to wipe the demo" : "Reset demo to brand new"}</button>` : `<button class="btn ghost" data-plat="rerunSetup">Run first-time setup again</button>`}</div>` : "";
+  return admin + `<div class="card"><h2>Account</h2><div class="kv" style="border:0;padding:0"><div><span>Signed in</span><span>${user ? escH(user.email) : "–"}</span></div>
       <div><span>Sync</span><span>${{synced:"Up to date", syncing:"Syncing…", offline:"Offline, will sync later", error:"Sync problem", local:"This device only"}[s.sync] || s.sync} · ${when}</span></div>
       ${s.pending ? `<div><span>Waiting to sync</span><span>${s.pending}</span></div>` : ""}${s.error ? `<div class="note">${escH(s.error)}</div>` : ""}</div>
       <div class="grid2"><button class="btn ghost" data-plat="sync">Sync now</button><button class="btn ghost" data-plat="signout">Sign out</button></div></div>
@@ -352,10 +363,14 @@ P.settingsCards = () => {
       <div class="row" style="flex-wrap:nowrap"><input class="field" id="pushTime" type="time" value="${escH(P.pushTime || "07:00")}" style="flex:1" aria-label="Reminder time">
       <button class="btn small ${P.push === "on" ? "ghost" : "orange"}" data-plat="${P.push === "on" ? "pushOff" : "pushOn"}">${P.push === "on" ? "Turn off" : "Turn on"}</button></div>
       ${P.push === "on" ? `<button class="link" data-plat="pushOn">Save new time</button>` : ""}</div>
-    <div class="card"><h2>Apple Health steps</h2><span class="small muted">A Shortcut on your iPhone sends today's steps here every night. Set it up once (steps below).</span>
-      ${P.token ? `<label class="lab">Your sync address<input class="field" readonly value="${escH(CFG.supabaseUrl)}/functions/v1/health-steps"></label><label class="lab">Your key<input class="field" readonly value="${escH(P.token)}"></label>
-      <ol class="small" style="margin:0;padding-left:18px;display:grid;gap:4px"><li>Shortcuts app, Automation, +, Time of Day: 23:30, Daily, Run Immediately.</li><li>Add "Find Health Samples": Steps, Start Date is Today. Then "Calculate Statistics": Sum.</li><li>Add "Get Contents of URL": the address above, Method POST, Header <b>x-token</b> = your key, JSON body: <b>steps</b> = the Statistics result.</li><li>Run it once to allow access.</li></ol>`
-        : `<button class="btn ghost" data-plat="token">Show setup</button>`}</div>
+    <div class="card"><h2>Apple Health steps</h2>
+      <span class="small muted">Apple only lets App Store apps read Health directly, so a tiny Shortcut on your iPhone passes your steps across. Set it up once (about a minute), then tap Sync whenever you like, or let it run nightly.</span>
+      ${P.token ? `<button class="btn orange" data-plat="copyLink">${P.copied ? "Link copied ✓" : "1. Copy your personal link"}</button>
+      <ol class="small hsteps"><li>Open <b>Shortcuts</b>, tap <b>+</b>, name it <b>Send Steps</b>.</li><li>Add <b>Find Health Samples</b>: Type <b>Steps</b>, Start Date <b>is Today</b>.</li><li>Add <b>Calculate Statistics</b>: <b>Sum</b>.</li>
+        <li>Add <b>Get Contents of URL</b>: paste your link, then tap the end of it and insert the <b>Statistics</b> variable.</li><li>Done. Come back and tap Sync.</li></ol>
+      <div class="grid2"><a class="btn ghost" href="shortcuts://run-shortcut?name=Send%20Steps" data-plat="ran">Sync steps now</a><a class="btn ghost" href="shortcuts://">Open Shortcuts</a></div>
+      <span class="small muted">Optional, fully automatic: Shortcuts → Automation → + → Time of Day 23:30, Daily, Run Immediately → Run Shortcut: Send Steps.</span>`
+        : `<button class="btn ghost" data-plat="token">Set up Apple Health steps</button>`}</div>
     <div class="card"><h2>Import from the Claude version</h2><span class="small muted">In the Claude version: Settings, Export all data. Then pick that file here. Photos come across too.</span>
       <button class="btn ghost" data-plat="import">Choose export file</button><input type="file" id="ajImport" accept="application/json,.json" hidden></div>`;
 };
@@ -370,6 +385,10 @@ document.addEventListener("click", async e => {
     if (a === "pushOn"){ const time = (document.getElementById("pushTime") || {}).value || "07:00"; P.pushTime = time; await enablePush(time); P.push = await pushState(); rerender(); t(`Reminder set for ${time}`); }
     if (a === "pushOff"){ await disablePush(); P.push = await pushState(); rerender(); t("Reminders off"); }
     if (a === "token"){ P.token = await healthToken(); rerender(); }
+    if (a === "copyLink"){ const link = `${CFG.supabaseUrl}/functions/v1/health-steps?k=${P.token}&steps=`; await navigator.clipboard.writeText(link); P.copied = true; rerender(); t("Link copied. Now open Shortcuts."); }
+    if (a === "modeMe" || a === "modeDemo"){ if (!isAdmin()) return; localStorage.setItem("ajmode", a === "modeDemo" ? "demo" : "me"); t(a === "modeDemo" ? "Opening the demo…" : "Back to your account…"); setTimeout(() => location.reload(), 500); }
+    if (a === "resetDemo"){ if (!isAdmin() || MODE !== "demo") return; if (!P.confirmReset){ P.confirmReset = true; rerender(); setTimeout(() => { P.confirmReset = false; rerender(); }, 4000); return; } t("Resetting demo…"); await resetDemo(); try{ localStorage.removeItem("ajlog2:obdraft:prog"); localStorage.removeItem("ajlog2:obdraft:nut"); localStorage.removeItem("ajlog2:obdraft:welcome"); }catch(e){} setTimeout(() => location.reload(), 600); }
+    if (a === "rerunSetup"){ window.AJOnboard && AJOnboard.welcome(true); }
     if (a === "import") document.getElementById("ajImport").click();
   }catch(err){ console.warn(err); t(String(err.message || err)); }
 });

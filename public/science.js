@@ -3,6 +3,59 @@
 (function(){
 "use strict";
 const LIB = [
+ {id:"intensity", title:"Running: easy vs hard", items:[
+  {kind:"review", t:"What is best practice for training intensity and duration distribution in endurance athletes?", c:"Seiler. International Journal of Sports Physiology and Performance, 2010", u:"https://doi.org/10.1123/ijspp.5.3.276",
+   f:"Successful endurance athletes do about 80% of sessions at low intensity and about 20% hard; adding more high-intensity work doesn't reliably help well-trained athletes.", a:"Plans are ~80% easy running with hard sessions capped at 1-2 a week."},
+  {kind:"rct", t:"Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training", c:"Stöggl & Sperlich. Frontiers in Physiology, 2014", u:"https://doi.org/10.3389/fphys.2014.00033",
+   f:"Over 9 weeks, polarised training improved VO2peak 11.7% vs 4.8% for HIIT; threshold-only and high-volume groups didn't improve. Small groups.", a:"Build phases use a polarised mix by default."},
+  {kind:"meta", t:"Comparison of polarized versus other types of endurance training intensity distribution on athletes' endurance performance", c:"Oliveira et al. Sports Medicine, 2024", u:"https://doi.org/10.1007/s40279-024-02034-z",
+   f:"Polarised training gave a small extra VO2peak gain (SMD 0.24) but no difference in time-trial performance versus other mixes.", a:"Either polarised or pyramidal works; the app keeps hard work limited rather than prescribing one exact model."}]},
+ {id:"progression-run", title:"Running: progression and injury", items:[
+  {kind:"rct", t:"How much running is too much? Identifying high-risk running sessions in a 5200-person cohort study", c:"Frandsen, ... Nielsen. British Journal of Sports Medicine, 2025", u:"https://doi.org/10.1136/bjsports-2024-109380",
+   f:"A single run more than 10% longer than your longest run of the previous 30 days raised injury rate (up to 2.3x for runs over double). Week-to-week totals showed no link.", a:"Long runs never exceed your recent longest by more than 10%, and logging a run that does triggers a warning."},
+  {kind:"rct", t:"No effect of a graded training program on the number of running-related injuries in novice runners", c:"Buist et al. American Journal of Sports Medicine, 2008", u:"https://doi.org/10.1177/0363546507307505",
+   f:"A gradual '10% rule' programme had the same injury rate as a standard one (20.8% vs 20.3%).", a:"Weekly volume still builds gently (~7%), but the app doesn't present the 10% rule as proven."},
+  {kind:"rct", t:"Excessive progression in weekly running distance and risk of running-related injuries", c:"Nielsen et al. Journal of Orthopaedic & Sports Physical Therapy, 2014", u:"https://doi.org/10.2519/jospt.2014.5164",
+   f:"Weekly increases over 30% showed a non-significant trend to more distance-related injuries.", a:"Treated as a soft guide only."}]},
+ {id:"taper", title:"Running: taper", items:[
+  {kind:"meta", t:"Effects of tapering on performance: a meta-analysis", c:"Bosquet et al. Medicine & Science in Sports & Exercise, 2007", u:"https://doi.org/10.1249/mss.0b013e31806010e0",
+   f:"Best results with a 2-week taper, cutting volume 41-60% while keeping intensity and frequency.", a:"Marathon and longer: 2-week taper; shorter races: 1 week. Volume drops, hard sessions stay."}]},
+ {id:"strength-run", title:"Running: strength training", items:[
+  {kind:"meta", t:"Effects of strength training on running economy in highly trained runners", c:"Balsalobre-Fernández, Santos-Concejero & Grivas. Journal of Strength and Conditioning Research, 2016", u:"https://doi.org/10.1519/JSC.0000000000001316",
+   f:"2-3 strength or plyometric sessions a week for 8-12 weeks gave a large improvement in running economy.", a:"Two strength sessions a week in base and build, one in peak and taper."},
+  {kind:"review", t:"Effects of strength training on the physiological determinants of middle- and long-distance running performance", c:"Blagrove, Howatson & Hayes. Sports Medicine, 2018", u:"https://doi.org/10.1007/s40279-017-0835-7",
+   f:"Running economy improved about 2-8% in most of 24 studies.", a:"Described as a 2-8% economy gain, not a guarantee."}]},
+ {id:"heat", title:"Running: heat", items:[
+  {kind:"review", t:"Adaptations and mechanisms of human heat acclimation", c:"Périard, Racinais & Sawka. Scandinavian Journal of Medicine & Science in Sports, 2015", u:"https://doi.org/10.1111/sms.12408",
+   f:"75-80% of heat adaptations happen in the first 4-7 days; full benefit takes about 10-14 days. Roughly 1 day of heat exposure keeps 5 days of adaptation.", a:"Desert races get 10-14 heat sessions in the last ~2.5 weeks."},
+  {kind:"meta", t:"Effects of heat adaptation on physiology, perception and exercise performance in the heat: an updated meta-analysis", c:"Tyler, Reeve, Sieh & Cheung. Journal of Science in Sport and Exercise, 2024", u:"https://doi.org/10.1007/s42978-023-00263-8",
+   f:"Heat adaptation improved performance in the heat (g=0.7); passive heat (sauna, hot baths) works too.", a:"Sauna or a hot bath straight after an easy run counts as a heat session."}]},
+ {id:"fuel", title:"Running: fuelling and multi-day ultras", items:[
+  {kind:"review", t:"A step towards personalized sports nutrition: carbohydrate intake during exercise", c:"Jeukendrup. Sports Medicine, 2014", u:"https://pubmed.ncbi.nlm.nih.gov/24791914/",
+   f:"Up to 60 g/h for 2-3 hours; up to 90 g/h of mixed glucose and fructose for longer events. Lower for slow ultra paces.", a:"Long runs over ~90 minutes prompt fuelling practice at 60-90 g/h."},
+  {kind:"rct", t:"Compromised energy and macronutrient intake of ultra-endurance runners during a multi-stage ultra-marathon in a hot environment", c:"Costa et al. International Journal of Sports Science, 2013", u:"https://doi.org/10.5923/j.sports.20130302.03",
+   f:"In a 5-day, 225 km hot stage race, runners averaged only 24 g carbohydrate an hour while running; 85% had gut problems.", a:"Gut training on long runs is built into multi-day plans."},
+  {kind:"rct", t:"Energy balance during a self-sufficient, multistage ultramarathon", c:"Hough & Earle. Journal of Human Performance in Extreme Environments, 2017", u:"https://doi.org/10.7771/2327-2937.1103",
+   f:"Case study at the Marathon des Sables: ~4,900 kcal burned vs ~2,950 eaten per day, a ~1,900 kcal daily deficit.", a:"Multi-day plans flag that race food should be energy-dense. Single-person data, so indicative only."}]},
+ {id:"habits", title:"Habits", items:[
+  {kind:"rct", t:"How are habits formed: modelling habit formation in the real world", c:"Lally, van Jaarsveld, Potts & Wardle. European Journal of Social Psychology, 2010", u:"https://doi.org/10.1002/ejsp.674",
+   f:"Habits took 18 to 254 days to become automatic (about 66 days typical). Missing one opportunity did not materially affect habit formation.", a:"Streaks forgive one miss a week, and the app sets expectations at about 2 months, not 21 days."},
+  {kind:"meta", t:"Time to form a habit: a systematic review and meta-analysis of health behaviour habit formation", c:"Singh, Murphy, Maher & Smith. Healthcare, 2024", u:"https://doi.org/10.3390/healthcare12232488",
+   f:"Median 59-66 days to form a habit; morning and self-chosen habits formed faster.", a:"You choose your own habits; templates suggest a morning slot where it fits."},
+  {kind:"meta", t:"Implementation intentions and goal achievement: a meta-analysis of effects and processes", c:"Gollwitzer & Sheeran. Advances in Experimental Social Psychology, 2006", u:"https://doi.org/10.1016/S0065-2601(06)38002-1",
+   f:"Planning 'when X happens, I will do Y' had a medium-to-large effect on reaching goals (d=0.65) across 94 tests.", a:"Each habit has an optional plan line, shown on the habit."},
+  {kind:"meta", t:"Does monitoring goal progress promote goal attainment? A meta-analysis", c:"Harkin et al. Psychological Bulletin, 2016", u:"https://doi.org/10.1037/bul0000025",
+   f:"Monitoring progress improved goal attainment (d=0.40), more so when progress was physically recorded.", a:"Every habit shows a 28-day strip and a 30-day hit rate."},
+  {kind:"meta", t:"Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts", c:"Paluch et al. Lancet Public Health, 2022", u:"https://doi.org/10.1016/S2468-2667(21)00302-9",
+   f:"Risk kept falling up to about 8,000-10,000 steps a day for under-60s and 6,000-8,000 for over-60s.", a:"The steps template defaults to 8,000."},
+  {kind:"meta", t:"Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis", c:"Ding et al. Lancet Public Health, 2025", u:"https://doi.org/10.1016/S2468-2667(25)00164-1",
+   f:"7,000 steps a day was linked to 47% lower mortality than 2,000, close to the benefit at 10,000.", a:"Supports a 7,000-10,000 target range.", check:"Details from the university summary"},
+  {kind:"review", t:"Recommended amount of sleep for a healthy adult: AASM and SRS consensus", c:"Watson et al. Journal of Clinical Sleep Medicine, 2015", u:"https://doi.org/10.5664/jcsm.4758",
+   f:"Adults should sleep 7 or more hours a night on a regular basis.", a:"The sleep template defaults to 7.5 h."},
+  {kind:"review", t:"Scientific opinion on dietary reference values for water", c:"EFSA NDA Panel. EFSA Journal, 2010", u:"https://doi.org/10.2903/j.efsa.2010.1459",
+   f:"Adequate total water intake is 2.0 L a day for women and 2.5 L for men (food and drink), more in heat or with activity.", a:"The water template defaults to 2.5 L."},
+  {kind:"meta", t:"Interventions for smokeless tobacco use cessation", c:"Livingstone-Banks et al. Cochrane Database of Systematic Reviews, 2025", u:"https://doi.org/10.1002/14651858.CD015314.pub2",
+   f:"Behavioural support and varenicline raised quit rates; evidence specific to snus is limited.", a:"The quit template tracks slips and cravings and points to GP or pharmacist support; it gives no medication advice."}]},
  {id:"volume", title:"Weekly volume", items:[
   {kind:"meta", t:"The resistance training dose response: meta-regressions on weekly volume and frequency", c:"Pelland, Remmert, Robinson, Hinson, Zourdos et al. Sports Medicine, 2025", u:"https://doi.org/10.1007/s40279-025-02344-w",
    f:"Muscle growth keeps rising with weekly sets but with diminishing returns: each further detectable step costs ~6 extra sets at 5-10 sets, ~8.5 at 11-18 and ~11 at 19-29. Strength plateaus at about 5 sets. Counting indirect sets as half fitted the data best.",
