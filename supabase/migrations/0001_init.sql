@@ -56,3 +56,7 @@ create policy "own photos read"   on storage.objects for select using (bucket_id
 create policy "own photos write"  on storage.objects for insert with check (bucket_id = 'photos' and (storage.foldername(name))[1] = auth.uid()::text);
 create policy "own photos update" on storage.objects for update using (bucket_id = 'photos' and (storage.foldername(name))[1] = auth.uid()::text);
 create policy "own photos delete" on storage.objects for delete using (bucket_id = 'photos' and (storage.foldername(name))[1] = auth.uid()::text);
+
+-- Explicit API access for signed-in users (works whether or not "expose new tables" is on). Row Level Security above still limits each user to their own rows.
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.docs, public.push_subs, public.health_tokens to authenticated;
