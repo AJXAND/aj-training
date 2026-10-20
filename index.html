@@ -60,6 +60,7 @@ h3{font-size:17px;font-weight:700;margin:0}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .spread{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nowrap{white-space:nowrap;flex:none}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .sync{font-size:12px;color:var(--muted);text-align:right;padding-bottom:4px}
@@ -299,6 +300,14 @@ h2.sect{margin-top:4px}
 .pillact{display:grid;justify-items:center;gap:6px;background:var(--card);border:0;border-radius:16px;padding:12px 4px;font:600 12px var(--body);color:var(--ink);cursor:pointer;text-align:center}
 .pillact svg{width:22px;height:22px;stroke:var(--orange);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .flist{display:grid}
+.dfood{gap:12px}.dfrow{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center}
+.ring{position:relative;width:118px;height:118px;border:0;background:none;padding:0;cursor:pointer;color:inherit}.ring svg{width:100%;height:100%}.ring circle{transition:stroke-dashoffset .8s var(--ease,ease)}
+.ring>span{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.ring b{font:800 22px var(--display)}.ring em{font-style:normal;font-size:11.5px;color:var(--muted);font-weight:600}
+.dmacs{display:grid;gap:10px}.dmac span{font-size:13px;font-weight:600}.dmac b{font-size:14px}.dmac em{font-style:normal;color:var(--muted);font-size:12px;font-weight:600}
+.dbar{height:7px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:4px}.dbar i{display:block;height:100%;border-radius:99px}
+.dacts .btn{display:flex;align-items:center;justify-content:center;gap:6px;padding-inline:6px}.dacts svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+.nowrap{white-space:nowrap;flex:none}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .addbar{display:grid;grid-template-columns:1fr auto auto auto;gap:8px}
 .addsearch{display:flex;align-items:center;gap:10px;border:0;border-radius:16px;background:var(--card);padding:0 16px;font:600 16px var(--body);color:var(--muted);cursor:pointer;min-height:48px}.addsearch svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
 .relog{display:grid;gap:6px}.relogrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
@@ -450,6 +459,7 @@ img{max-width:100%}
 .sc-ring{width:160px;height:4px;border-radius:2px;background:#fff3;overflow:hidden}
 .sc-ring i{display:block;height:100%;width:0;background:var(--orange);transition:width .18s}
 .sc-torch{flex:none;margin-left:auto;width:42px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);font-size:20px;cursor:pointer}.sc-torch.on{background:var(--orange)}
+.scanner.reading video{filter:brightness(.6)}.scanner.reading .sc-ring i{animation:spload 1s linear infinite;width:40%!important}
 .sc-shutter{width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:var(--orange);cursor:pointer;position:relative}.sc-shutter span{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);font:700 12px var(--body);color:#fff;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
 
 /* onboarding flows (programme builder + nutrition goal) */
@@ -849,9 +859,10 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 
 <nav class="nav" aria-label="Sections"><div class="in" role="tablist">
   <button role="tab" data-tab="home" aria-selected="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="9" rx="1.5"/><rect x="13" y="4" width="7" height="5" rx="1.5"/><rect x="4" y="15" width="7" height="5" rx="1.5"/><rect x="13" y="11" width="7" height="9" rx="1.5"/></svg>Today</button>
-  <button role="tab" data-tab="plan" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/></svg>Train</button>
-  <button id="plusBtn" class="plus" aria-label="Add or start"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
   <button role="tab" data-tab="food" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M16 21V3c-2.5 1.5-3.5 4-3.5 7v3H16"/></svg>Food</button>
+  <button role="tab" data-tab="habits" aria-selected="false" hidden><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 6.5"/></svg>Habits</button>
+  <button id="plusBtn" class="plus" aria-label="Add or start"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  <button role="tab" data-tab="plan" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/></svg>Train</button>
   <button role="tab" data-tab="progress" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 19h16M5 15l4-4 3 3 6-7"/><path d="M15 7h3v3"/></svg>Progress</button>
 </div></nav>
 
@@ -1509,10 +1520,11 @@ function habitAct(act, b){
 
 /* ---------- Render root ---------- */
 function render(){
-  const navShow={food:on("nutrition")};
+  const navShow={food:on("nutrition"), habits:!on("nutrition")&&on("habits")};
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>{ if (b.dataset.tab in navShow) b.hidden=!navShow[b.dataset.tab]; });
+  { const hb=$('.nav button[data-tab="habits"]'), spacer=!navShow.food&&!navShow.habits; if (spacer){ hb.hidden=false; } hb.style.visibility=spacer?"hidden":""; hb.tabIndex=spacer?-1:0; }
   const navIn=$(".nav .in"); if (navIn) navIn.style.gridTemplateColumns=`repeat(${[...navIn.children].filter(b=>!b.hidden).length},1fr)`;
-  const navTab = {train:"plan", cardio:"plan", habits:"home", energy:"food", foodadd:"food", settings:{train:"plan",cardio:"plan",habits:"home",energy:"food"}[S.prevTab]||S.prevTab||"home"}[S.tab] || S.tab;
+  const navTab = {train:"plan", cardio:"plan", habits:on("nutrition")?"home":"habits", energy:"food", foodadd:"food", settings:{train:"plan",cardio:"plan",habits:"home",energy:"food"}[S.prevTab]||S.prevTab||"home"}[S.tab] || S.tab;
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab));
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
   plus.innerHTML = S.active ? ICON.lift : '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
@@ -1605,22 +1617,29 @@ function renderHome(){
   if (on("nutrition")){
     if (!S.profile.goal && (S.profile.nutrition||{}).mode!=="manual") food=nsCard(ICON.food,"Your food targets show here","Calories, protein, fat and carbs for today, adjusting to your real burn.","nutGoal","Set goal");
     else { const ft=dayTotals(todayStr);
-      food=`<button class="card tilecard" data-goto="food"><div class="spread"><h2>Food today</h2><span class="small muted num">${fmtN(Math.max(0,tg.kcal-ft.kcal))} kcal left</span></div>
-        <div class="macros">${macroBar("Calories",ft.kcal,tg.kcal,"var(--kcal)","",true)}${macroBar("Protein",ft.p,tg.p,"var(--prot)","g",true)}${macroBar("Fat",ft.f,tg.f,"var(--fat)","g",true)}${macroBar("Carbs",ft.c,tg.c,"var(--carb)","g",true)}</div></button>`; }
+      const pc=Math.min(1,ft.kcal/Math.max(1,tg.kcal)), C=2*Math.PI*44, mb=(n,v,t,c)=>`<div class="dmac"><div class="spread"><span>${n}</span><b class="num">${Math.round(v)}<em>/${Math.round(t)}g</em></b></div><div class="dbar"><i style="width:${Math.min(100,v/Math.max(1,t)*100)}%;background:${c}"></i></div></div>`;
+      food=`<div class="card dfood"><div class="spread"><h2>Food today</h2><button class="link" data-goto="food">Open</button></div>
+        <div class="dfrow"><button class="ring" data-goto="food" aria-label="Calories"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" stroke="var(--sunk)" stroke-width="10" fill="none"/><circle cx="50" cy="50" r="44" stroke="${ft.kcal>tg.kcal*1.05?"var(--warn)":"var(--orange)"}" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pc)}" transform="rotate(-90 50 50)"/></svg><span><b class="num">${fmtN(Math.max(0,tg.kcal-ft.kcal))}</b><em>kcal left</em></span></button>
+          <div class="dmacs">${mb("Protein",ft.p,tg.p,"var(--prot)")}${mb("Carbs",ft.c,tg.c,"var(--carb)")}${mb("Fat",ft.f,tg.f,"var(--fat)")}</div></div>
+        <div class="grid3 dacts"><button class="btn ghost small" data-act="foodAddOpen" data-tab="search">${ICON.search} Log food</button><button class="btn ghost small" data-act="scanBarcode">${ICON.barcode} Scan</button><button class="btn ghost small" data-act="coach" data-ctx="food">${ICON.spark} Describe</button></div></div>`; }
+  }
+  let weight="";
+  if (on("nutrition")){
+    const pts=S.weights.filter(w=>(Date.now()-parseD(w.d))/864e5<=42).map(e=>({t:parseD(e.d).getTime(), v:avgWindow(e.d,7)})), todayW=S.weights.find(x=>x.d===todayStr);
+    weight=`<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Weight</h2><span class="small muted">${a7?`7-day average ${a7.toFixed(1)} kg${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}`:"Weigh in each morning to see your trend"}</span></div>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
+      ${pts.length>=3?multiChart([{color:"var(--weight)",pts}],{minSpan:1,fmt:v=>v.toFixed(1),label:"7-day average weight, last 6 weeks"}):""}</div>`;
   }
   const habits=on("habits")?(habitList().length?habitsSummaryCard():nsCard(ICON.steps,"Your daily habits show here","Tick them off in one tap and watch the streaks build.","hAdd","Add habit")):"";
   const wkLegend=[lift?'<span><i style="background:var(--orange)"></i>Sets</span>':"", on("nutrition")?'<span><i style="background:var(--kcal)"></i>Calories</span>':"", '<span><i style="background:var(--cardio)"></i>Cardio</span>', on("nutrition")?'<span><i style="background:var(--weight)"></i>Weight</span>':""].join("");
   const tiles=[
-    on("nutrition")?`<button class="tile" data-goto="progress" data-seg="body"><h3>Weight trend</h3><span class="small muted">7-day average</span><span class="v num">${a7?a7.toFixed(1)+" kg":"–"}</span><span class="small ${rate!=null&&(rate<ph.rate[0]||rate>ph.rate[1])?"warn":"muted"}">${rate==null?"Weigh in daily":(rate>=0?"+":"")+rate.toFixed(2)+"% a week"}</span>${spark(wSeries,"var(--weight)")}</button>`:"",
     on("nutrition")?`<button class="tile" data-goto="energy"><h3>Expenditure</h3><span class="small muted">${ex.adaptive?`From ${ex.n} days of data`:"Starting estimate"}</span><span class="v num">${fmtN(ex.kcal)}</span><span class="small muted">kcal a day</span></button>`:"",
     on("training")?`<button class="tile" data-goto="progress" data-seg="lifts"><h3>Strength</h3><span class="small muted">${used.length} lifts tracked</span><span class="v num">${up} ready</span><span class="small ${fl?"warn":"muted"}">${fl?fl+" trending down":"to add load next time"}</span></button>`:"",
     `<button class="tile" data-goto="progress" data-seg="cardio"><h3>Cardio</h3><span class="small muted">This week</span><span class="v num">${fmtN(totK)}</span><span class="small muted">kcal, ${totM} min</span>${spark(rows.map(r=>r.kcal),"var(--cardio)")}</button>`,
     on("training")&&!S.prog.placeholder?`<button class="tile" data-goto="plan"><h3>Block</h3><span class="small muted">Training block</span><span class="v num">${ds?`W${ds.weeks}/${ds.every}`:"–"}</span><span class="small ${ds&&ds.weeks>=ds.every-1?"warn":"muted"}">${!ds?"Starts with your first session":ds.weeks>=ds.every?"Deload due":ds.weeks>=ds.every-1?"Deload next week":"On track"}</span></button>`:"",
     on("nutrition")?`<button class="tile" data-goto="progress" data-seg="body"><h3>Body fat</h3><span class="small muted">${bfs.length?"Photo estimate":S.profile.bfManual?"Set by you":"Default"}</span><span class="v num">${r1(bf.v)}%</span><span class="small muted">${bfs.length?"":"Photos can estimate it"}</span>${spark(bfs,"var(--fat)")}</button>`:""
   ].filter(Boolean);
-  const hello=new Date().getHours()<12?"Good morning":new Date().getHours()<18?"Good afternoon":"Good evening";
-  return head(S.profile.name?`${hello}, ${esc(S.profile.name)}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")
-    +setupCard()+quickActions()+today+food+habits+`
+  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")
+    +setupCard()+food+today+weight+habits+`
   <div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${ph.label}</span></div>
     <div class="wk">${grid}</div>${detail}<div class="legend">${wkLegend}</div></div>
   ${tiles.length?`<h2 class="sect">Insights</h2><div class="tiles">${tiles.join("")}</div>`:""}`;
@@ -1788,7 +1807,7 @@ function renderFood(){
     <div class="macros">${macroBar("Calories",t.kcal,tg.kcal,"var(--kcal)","",rem)}${macroBar("Protein",t.p,tg.p,"var(--prot)","g",rem)}${macroBar("Fat",t.f,tg.f,"var(--fat)","g",rem)}${macroBar("Carbs",t.c,tg.c,"var(--carb)","g",rem)}</div>
     ${dayStatusRow(date)}${goalLine(tg)}</div>
   <div class="addbar"><button class="addsearch" data-act="foodAddOpen" data-tab="search">${ICON.search}<span>Add food</span></button>
-    <button class="iconbtn sq" data-act="foodAddOpen" data-tab="scan" aria-label="Scan">${ICON.barcode}</button><button class="iconbtn sq" data-act="foodAddOpen" data-tab="photo" aria-label="Photo of your meal">${ICON.camera}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to AJ Training AI">${ICON.spark}</button></div>
+    <button class="iconbtn sq" data-act="scanBarcode" aria-label="Scan a barcode">${ICON.barcode}</button><button class="iconbtn sq" data-act="photoFoodQuick" aria-label="Photograph your meal">${ICON.camera}</button><button class="coachbtn sq" data-act="coach" data-ctx="food" aria-label="Describe to AJ Training AI">${ICON.spark}</button></div>
   ${(favs.length||recent.length)?`<div class="relog"><span class="small muted">${favs.length?"Favourites and recent":"Recent"}: tap + to log your usual amount</span><div class="relogrow">${[...favs,...recent.filter(f=>!f.fav)].slice(0,12).map(f=>{ const d=defaultAmt(f), m=foodMacros(f,d.amount,d.unit); return `<button class="rl" data-act="relog" data-id="${f.id}"><b>${f.fav?"★ ":""}${esc(f.name)}</b><span class="num">${fmtN(m.kcal)} kcal</span><i>+</i></button>`; }).join("")}</div></div>`:""}
   ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
   ${S.busy==="label"||S.busy==="barcode"?`<div class="card"><div class="row"><span class="spinner"></span><span>${S.busy==="label"?"Reading the label…":"Reading the barcode…"}</span></div></div>`:""}
@@ -2447,7 +2466,7 @@ let toastT;
 function toast(msg, undo){ const t=$("#toast"); t.innerHTML=esc(msg)+(undo?' <button class="tundo">Undo</button>':""); t.hidden=false; clearTimeout(toastT);
   if (undo) t.querySelector(".tundo").onclick=()=>{ undo(); t.hidden=true; render(); };
   toastT=setTimeout(()=>t.hidden=true, undo?6000:2600); }
-const NAV_ORDER=["home","plan","food","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1,foodadd:1};
+const NAV_ORDER=["home","food","habits","plan","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1,foodadd:1};
 let pgT=null;
 // Animate the page that was just rendered: children rise in with a short stagger, direction follows the nav.
 function pageAnim(kind){
@@ -2608,10 +2627,14 @@ $("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFa
 $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
 
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
-async function scanLabel(file){
-  if (!sampler || !S.canImages){ toast("Label scanning needs AI with images allowed"); return; }
-  const imgs=Array.isArray(file)?file:[file];
-  S.busy="label"; render();
+// Live scanner path: read without leaving the camera. Returns {food} or {error}.
+window.readLabel=async function(imgs){
+  if (!sampler || !S.canImages) return {error:"label scanning needs AI with images allowed"};
+  const r=await readLabelCore(imgs);
+  return r;
+};
+window.labelDone=function(food){ saveFood(food); S.pendingBarcode=null; render(); openFood(food,{src:"label", isNew:true}); };
+async function readLabelCore(imgs){
   try{
     const P=`${imgs.length>1?"These are two versions of the same photo of a food product's nutrition panel: the first is contrast-boosted greyscale for legibility, the second is the original colour.":"This is a photo of a food product's nutrition panel."} It may be dim, grainy, at an angle, on a curved or shiny pack, or partly in glare. UK/EU style most likely.
 Find the Energy, Fat, Carbohydrate and Protein rows. Prefer the per 100 g (or per 100 ml) column; if only per-serving values are readable, convert to per 100 g using the serving weight.
@@ -2627,12 +2650,17 @@ Return only JSON: {"name": product name if visible else a short sensible descrip
     const food={schema:SCHEMA, id:uid("food"), name:String(res.name||"Scanned food").slice(0,80), brand:String(res.brand||"").slice(0,60), barcode:S.pendingBarcode||null,
       per100:{kcal:+res.per100.kcal||0, p:+res.per100.p||0, c:+res.per100.c||0, f:+res.per100.f||0},
       serving:res.serving&&+res.serving.g?{g:+res.serving.g, label:String(res.serving.label||"serving")}:null, uses:0, last:Date.now()};
-    saveFood(food); S.pendingBarcode=null; S.busy=null; render();
-    openFood(food,{src:"label", isNew:true});
-  } catch(e){ S.busy=null; render();
-    if (e&&e.code==="notlabel"&&window.openScanner){ openScanner("label", "Couldn't read that"+(e.msg?" ("+String(e.msg).toLowerCase().slice(0,40)+")":"")+". Fill the box with the table and hold still."); return; }
-    const why=e&&e.code==="notlabel"?("Couldn't read it"+(e.msg?": "+e.msg:"")+". Try again closer up."):e&&e.code==="not_granted"?"Allow AI to see images to scan labels":"Label reader error: "+(e&&(e.code||e.message)||"unknown")+(e&&e.status?" ("+e.status+")":"");
-    toast(why); }
+    return {food};
+  } catch(e){ return {error:e&&e.code==="notlabel"?(e.msg||"not a readable nutrition table"):e&&e.code==="not_granted"?"AI image access isn't allowed":"reader error "+(e&&(e.code||e.message)||"")}; }
+}
+// Photo-file path (fallback when the live camera isn't available)
+async function scanLabel(file){
+  if (!sampler || !S.canImages){ toast("Label scanning needs AI with images allowed"); return; }
+  const imgs=Array.isArray(file)?file:[file];
+  S.busy="label"; render();
+  const r=await readLabelCore(imgs); S.busy=null; render();
+  if (r.food){ window.labelDone(r.food); return; }
+  toast("Couldn't read it: "+r.error+". Try again closer up.");
 }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
 async function decodeBarcode(file){
@@ -2940,6 +2968,7 @@ $("#main").addEventListener("click", async e=>{
       addFoodEntry(date,{id:uid("f"), t:entryTime(date), name:f.name, foodId:f.id, amount:d.amount, unit:d.unit==="serving"?((f.serving||{}).label||"serving"):d.unit, grams:Math.round(m.g), kcal:Math.round(m.kcal), p:r1(m.p), f:r1(m.f), c:r1(m.c), src:"food"});
       saveFood({...f, uses:(f.uses||0)+1, last:Date.now()}); render(); toast(`Logged ${f.name}: ${fmtN(m.kcal)} kcal`); return; }
     case "photoFoodTake": $("#photoFoodCam").click(); return;
+    case "photoFoodQuick": { const inp=document.createElement("input"); inp.type="file"; inp.accept="image/*"; inp.capture="environment"; inp.onchange=()=>{ const f=inp.files[0]; if (!f) return; S.photoFood={blob:f, url:URL.createObjectURL(f), note:""}; S.addTab="photo"; S.addMeal=null; go("foodadd"); }; inp.click(); return; }
     case "photoFoodPick": $("#photoFoodLib").click(); return;
     case "photoFoodGo": photoFood(); return;
     case "quickAdd": S.foodAdd={quick:true, name:S.foodQuery}; renderFoodSheet(); return;

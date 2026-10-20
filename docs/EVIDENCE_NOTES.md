@@ -11,3 +11,14 @@
 - Beginner running: NHS Couch to 5K, 9 weeks, 3 runs/week (nhs.uk). Riegel 1981 American Scientist 69(3):285-290: t2 = t1 (d2/d1)^1.08 (NOT 1.06).
 - Ultra: Knechtle & Nikolaidis 2018 Front Physiol doi 10.3389/fphys.2018.00634: any run longer than 42.195 km.
 - METs: 2024 Adult Compendium (Herrmann 2024, doi 10.1016/j.jshs.2023.10.010), PDF pacompendium.com. No padel, CrossFit or HYROX entries (use paddleball, circuit training 02040 7.5, HIIT 02214 11.0).
+
+## Round 2 (20 Oct 2026)
+- Volume: Pelland et al. 2026 Sports Med 56(2):481-505 doi 10.1007/s40279-025-02344-w. Fractional counting (synergist 0.5) fits hypertrophy best. Min ~4 fractional sets/wk; diminishing returns, no clear plateau; data thin above ~25. Strength plateaus ~4-5 direct sets per lift per week.
+  App rule: fractional counting; 10-14 default per muscle; 18-24 for at most 2 priorities; cap 25 (30 priorities). Front delts 0 direct when >=6 pressing sets. Biceps 6, triceps 6-8, rear delts 6 direct. Hamstrings need hinge + curl. Calves direct.
+- Arms: de França 2015 APNM doi 10.1139/apnm-2015-0109 (no extra arm growth from adding isolation to compounds in trained men).
+- Frequency: Schoenfeld 2016 Sports Med doi 10.1007/s40279-016-0543-8 (2x > 1x); Schoenfeld 2019 J Sports Sci doi 10.1080/02640414.2018.1555906 (volume-equated frequency doesn't matter). Days: beginner 3, intermediate 4 (max 5), advanced 4-6; never 7; >=1 rest day.
+- Cut 0.5-1.0%/wk default 0.7%; <=0.5% when lean (men <~12%, women <~22%, convention) or late in a cut (Helms 2014; Garthe 2011; Ruiz-Castellano 2021 Nutrients doi 10.3390/nu13093255). Bulk 0.25%/wk trained, 0.5% beginners; surplus <=5-10% (Iraki 2019; Helms 2023 Sports Med Open doi 10.1186/s40798-023-00651-y).
+- Powerbuilding: no peer-reviewed definition. Practice: main lifts 1-6 reps 75-90% 1RM + hypertrophy accessories 6-15. Androulakis-Korakakis 2021 Front Sports Act Living doi 10.3389/fspor.2021.713655 (minimum-dose powerlifting: 3-6 sets of 1-5 reps per lift per week at >80%).
+- Hybrid: Schumann 2022 Sports Med doi 10.1007/s40279-021-01587-7 (no loss of hypertrophy or max strength; explosive strength -0.28 SMD, mainly same session; >=3 h apart removes it).
+- Looks: Sell 2017 Proc R Soc B (strength cues explain >70% of male body attractiveness); Swami & Tovée 2005 Body Image doi 10.1016/j.bodyim.2005.08.001 (waist-to-chest ratio); Singh 1993 (female WHR ~0.7); Bozsik 2018 Sex Roles doi 10.1007/s11199-017-0886-0 (thin-and-muscular preferred). Overall size: no priorities.
+- Camera on iOS Home Screen apps: grant lasts one launch only (WebKit bug 327237, open). Workaround: open in Safari tab with per-site Allow, or accept one prompt per launch; keep one stream alive, never call getUserMedia twice.

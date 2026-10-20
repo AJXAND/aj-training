@@ -96,17 +96,15 @@ async function tick(){
   if (textured && (still || motion < 8) && score > keptScore){ keptScore = score; keep(v); }
   const need = isLabel ? 4 : 6;                                              // ~0.35 s still on clear text, ~0.55 s otherwise
   const ready = textured && still && focused;
-  setProgress(Math.min(1, Math.max(ready ? stillN / need : 0, aimedMs / 2000)));
+  setProgress(Math.min(1, isLabel && ready ? stillN / need : 0));
   ov.querySelector(".sc-frame").classList.toggle("ready", ready);
-  if (!textured) hint("Point at the nutrition table");
+  if (!textured || !isLabel) hint("Fill the box with the nutrition table, or tap Capture");
   else if (glare > 0.02) hint("Glare on the label: tilt it slightly");
   else if (!still) hint("Hold still on the table");
   else if (!focused) hint("Focusing…");
   else hint("Hold…");
-  if (age > 800 && ready && stillN >= need && glare <= 0.02) return captureLabel();
-  // aimed at something detailed for ~2 s: take the sharpest frame seen, even if the hand never went fully still
-  if (age > 800 && aimedMs >= 2000 && keptScore > 0) return captureLabel();
-  if (age > 800 && aimedMs >= 2600) return captureLabel();
+  // auto-capture only when it's clearly a nutrition table, in focus and held still; otherwise the shutter is always there
+  if (age > 1200 && isLabel && ready && stillN >= need && glare <= 0.02) return captureLabel();
 }
 let sharpHist = [], stillN = 0, labelN = 0, aimedMs = 0;
 const tc = document.createElement("canvas");
@@ -191,16 +189,22 @@ async function found(code){
   ov.querySelector(".sc-frame").classList.add("hit");
   await gotBarcode(code);      // either opens the food, or switches to label mode; never resumes the barcode loop on its own
 }
+// Read the label without closing the camera: the frame freezes while it reads; a miss lets you try again straight away
+// (closing and reopening the camera is what made iOS ask for permission again).
 async function captureLabel(){
   if (!ov || busy) return; busy = true;
   const v = ov.querySelector("video");
-  if (!keptScore) keep(v);   // manual shutter: use the current frame
+  keep(v);   // the frame you're looking at when you tap, or the sharp still frame that triggered auto-capture
   try{ navigator.vibrate && navigator.vibrate(40); }catch(e){}
-  hint("Reading the label…");
+  ov.classList.add("reading"); hint("Reading the label…"); setProgress(1); try{ v.pause(); }catch(e){}
   const colour = await new Promise(r => scaled(keepCan, 1600).toBlob(r, "image/jpeg", 0.85));
   const sharp = await new Promise(r => enhance(cropKept()).toBlob(r, "image/jpeg", 0.85));
-  stop(); busy = false;
-  if (colour) scanLabel([sharp, colour].filter(Boolean));
+  let res = null;
+  try{ res = await window.readLabel([sharp, colour].filter(Boolean)); }catch(e){ res = {error:e && e.msg ? e.msg : e && e.code === "not_granted" ? "AI image access isn't allowed" : "couldn't read it"}; }
+  if (!ov) return;
+  if (res && res.food){ stop(); busy = false; window.labelDone(res.food); return; }
+  ov.classList.remove("reading"); try{ v.play(); }catch(e){} busy = false; keptScore = 0; stillN = 0; sharpHist = []; labelStart = Date.now() + 1200; setProgress(0);
+  hint("Couldn't read that" + (res && res.error ? ": " + String(res.error).toLowerCase().slice(0, 50) : "") + ". Move closer, avoid glare, and try again.");
 }
 
 async function offLookup(code){

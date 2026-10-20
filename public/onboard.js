@@ -721,7 +721,7 @@ const clearDraft = k => { try{ localStorage.removeItem(DRAFT + k); }catch(e){} }
 function el(){ let o = document.getElementById("ob"); if (!o){ o = document.createElement("div"); o.id = "ob"; o.className = "ob"; o.setAttribute("role", "dialog"); document.body.appendChild(o); bind(o); } return o; }
 function close(){ const o = document.getElementById("ob"); document.body.style.overflow = "";
   if (F && F.kind === "nut" && !F.accepted) S.profile.activity = F.prevAct;
-  if (F && F.kind === "welcome" && !F.accepted){ S.profile = {...S.profile, setupDone:true, modules:S.profile.modules || {training:true, endurance:true, nutrition:true, habits:true}}; saveProfile(); } F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
+  if (F && F.kind === "welcome" && !F.accepted){ S.profile = {...S.profile, setupDone:true, modules:S.profile.modules || {training:true, endurance:true, nutrition:true, habits:true}}; saveProfile(); } F = null; render(); if (o){ o.removeAttribute("id"); o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
 function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
@@ -1117,7 +1117,7 @@ function acceptWelcome(then){
   const o = document.getElementById("ob"); F = null; document.body.style.overflow = "";
   if (then === "prog") return setTimeout(() => { if (o) o.remove(); window.AJOnboard.programme(true); }, 10);
   if (then === "nut") return setTimeout(() => { if (o) o.remove(); window.AJOnboard.nutrition(true); }, 10);
-  if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); }
+  if (o){ o.removeAttribute("id"); o.classList.add("out"); setTimeout(() => o.remove(), 240); }
   if (then === "habits"){ go("habits"); setTimeout(() => habitSheet(null), 350); return; }
   go("home"); toast(a.name ? `Welcome, ${a.name}` : "Welcome");
 }
@@ -1274,10 +1274,16 @@ function draw(){
   const scrollY = o.querySelector(".obbody") ? o.querySelector(".obbody").scrollTop : 0;
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
   const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
-  o.innerHTML = `<div class="obtop"><button class="iconbtn" data-ob="back" aria-label="Back">${ICON.back}</button>
+  const markup = `<div class="obtop"><button class="iconbtn" data-ob="back" aria-label="Back">${ICON.back}</button>
       <div class="obprog"><i style="width:${(i + 1) / steps.length * 100}%"></i></div><button class="iconbtn" data-ob="close" aria-label="Close">✕</button></div>
     <div class="obbody ${s.wide ? "wide" : ""} ${s.cls || ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>
     ${s.nofoot ? "" : `<div class="obfoot">${s.alt ? `<button class="btn ghost" data-ob="alt">${s.alt}</button>` : ""}<button class="btn orange" data-ob="next" ${blocked ? "disabled" : ""}>${s.cta || "Continue"}</button></div>`}`;
+  // Same screen: update in place, element by element, so nothing flashes or jumps. New screen: render fresh.
+  if (o.dataset.step === F.kind + ":" + F.step && !F.dir && o.children.length){
+    const tmp = document.createElement("div"); tmp.innerHTML = markup;
+    if (tmp.children.length === o.children.length){ [...o.children].forEach((c, k) => patchDeep(c, tmp.children[k], null)); fillRanges(o); fitCheck(); F.keepScroll = false; if (F.step === "build") runBuild(); return; }
+  }
+  o.innerHTML = markup; o.dataset.step = F.kind + ":" + F.step;
   o.querySelectorAll("details summary b").forEach(x => { if (openD.includes(x.textContent)) x.closest("details").open = true; });
   if (!F.keepScroll && F.dir){ const bd = o.querySelector(".obbody"); [...bd.children].forEach((c, i) => c.style.setProperty("--i", i)); bd.classList.add(F.dir === "back" ? "ob-back" : "ob-fwd"); F.dir = null; }
   if (F.keepScroll) o.querySelector(".obbody").scrollTop = scrollY; F.keepScroll = false;
@@ -1490,6 +1496,16 @@ function norm(el){
   [c, ...c.querySelectorAll("[style]")].forEach(x => { if (!x.style || !/--[ip]\s*:/.test(x.getAttribute("style") || "")) return; x.style.removeProperty("--i"); x.style.removeProperty("--p"); if (!x.getAttribute("style") || !x.getAttribute("style").trim()) x.removeAttribute("style"); });
   return c.outerHTML;
 }
+// Minimal DOM update: keeps elements (and so focus, scroll, slider drags and open details) and changes only what differs.
+function patchDeep(a, b, t){
+  if (a === t) return;
+  if (!a.contains(t) && norm(a) === b.outerHTML) return;
+  if (a.tagName !== b.tagName || a.childNodes.length !== b.childNodes.length){ if (a.contains(t)) return; a.replaceWith(b); return; }
+  for (const at of [...b.attributes]){ if (a.getAttribute(at.name) !== at.value){ if (at.name === "style" && /--[ip]\s*:/.test(a.getAttribute("style") || "")) continue; a.setAttribute(at.name, at.value); if (at.name === "value" && "value" in a && a !== document.activeElement) a.value = at.value; } }
+  for (const at of [...a.attributes]) if (!b.hasAttribute(at.name) && !["open","style"].includes(at.name)) a.removeAttribute(at.name);
+  const an = [...a.childNodes], bn = [...b.childNodes];
+  an.forEach((n, k) => { const m = bn[k]; if (n.nodeType === 3){ if (n.textContent !== m.textContent) n.textContent = m.textContent; } else if (n.nodeType === 1){ if (m.nodeType !== 1) n.replaceWith(m); else patchDeep(n, m, t); } });
+}
 function patchTree(oldEl, newEl, t){
   const o = [...oldEl.children], n = [...newEl.children];
   if (o.length !== n.length) return false;
@@ -1503,7 +1519,8 @@ function patchTree(oldEl, newEl, t){
 function liveRange(t){
   const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = document.querySelector("#ob .obbody");
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
-  if (!patchTree(body, tmp, t)){ F.keepScroll = true; return draw(); }
+  if (body.children.length !== tmp.children.length){ F.keepScroll = true; return draw(); }
+  [...body.children].forEach((c, k) => patchDeep(c, tmp.children[k], t));
   fillRanges(body); if (t.type === "range") t.style.setProperty("--p", pctOf(t) + "%");
 }
 window.AJOnboard = {
