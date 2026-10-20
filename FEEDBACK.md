@@ -110,6 +110,14 @@ Spotted by me during this stop:
 - Food log empty state still says "tell Claude" (item 16).
 
 
+## Stop 6: Habits
+
+71. **Focused input outline is clipped** at the sides of the new-habit sheet (the orange focus ring is cut off).
+72. **Plan placeholder must match the habit**: e.g. for "Up by 07:00" it currently suggests "After my morning coffee…". Each template needs its own relevant example plan.
+73. **Logging time habits after the fact**: allowed (as now), but show a gentle "log honestly" reminder, which users can switch off.
+
+Spotted by me: the Creatine habit in the first screenshot doesn't appear in the final list. Check whether saving a template habit can fail silently.
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
