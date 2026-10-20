@@ -2,6 +2,23 @@
 
 Recorded during the step-by-step review. Nothing here is fixed yet; we work through the list after the full walkthrough.
 
+## Fix progress
+
+Phase 1 bugs (done, live):
+- ✅ 7-day split blank / plan build hang (items 30, 39): a 7-day option now exists and builds.
+- ✅ Gym for each day defaulted to a non-existent "home" gym, leaving sessions empty for new users: fixed, plus a fallback.
+- ✅ Set counts now match everywhere (review, Plan page): 1 per direct set, ½ per indirect.
+- ✅ Priority volume (item 52): priorities fill first and take time from non-priorities (down to ~5 sets); review warns when time is too short for full priority volume.
+- ✅ Calorie mismatch: was "more on training days" (+8%); Food page now says so.
+- ✅ Height "5 ft 12 in" (item 7).
+- ✅ Target weight can no longer go the wrong way for the goal (item 66).
+- ✅ Label scanner never captured with normal hand shake: now captures in ~1.5-2 s, clear Capture button.
+- ✅ Camera "recording" indicator stayed on after leaving the scanner: camera now stops immediately.
+- ✅ "Start lower a · My" button (item 55).
+- ℹ️ 1,590 kcal demo: matched a 40 kg weight (slider minimum), likely nudged while scrolling; typed weight entry (item 8) prevents it.
+- ℹ️ Camera permission prompt: iOS asks each time a home-screen web app opens the camera; only a native app avoids it.
+- ❓ Creatine habit: saves correctly in testing; ask AJ whether he cancelled it.
+
 ## Stop 1: Launch and first-time setup
 
 1. **Section cards look greyed out** on "What do you want to use?" (unselected state is too faded; should look clearly tappable).

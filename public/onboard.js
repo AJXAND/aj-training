@@ -128,6 +128,7 @@ const SPLITS = {
      {id:"ppl4", name:"Push / Pull / Legs / Upper", days:["push","pull","legs","upper"], why:"More per-session focus; legs only once, so best if legs aren't a priority."}],
   5:[{id:"pplul", name:"Push / Pull / Legs + Upper / Lower", days:["legs","push","pull","lower","upper"], why:"Your current structure. Everything twice a week with room for extra upper-body volume."},
      {id:"ul5", name:"Upper / Lower ×2 + Arms & delts", days:["upA","loA","upB","loB","arms"], why:"Best when arms and side delts are the priority: a fifth day just for them."}],
+  7:[{id:"ppl7", name:"Push / Pull / Legs ×2 + Arms & delts", days:["push","pull","legs","push","pull","legs","arms"], why:"Seven sessions: the seventh is a lighter arms and delts day. Most people progress as well on 5-6 days with a rest day; keep the 7th easy."}],
   6:[{id:"ppl6", name:"Push / Pull / Legs ×2", days:["push","pull","legs","push","pull","legs"], why:"Highest frequency and volume. Needs good recovery and 6 days."},
      {id:"pplul6", name:"PPL + Upper / Lower + Arms & delts", days:["legs","push","pull","lower","upper","arms"], why:"Your current week plus the priority day as a full session."}]
 };
@@ -181,9 +182,12 @@ function buildVariant(dayKeys, gym, ans, seed){
   const dayMins = d => d.list.reduce((a, x) => a + exTime(x.ex, x.sets), 4);
   const isLowerDay = d => LOWER.has(d.tk), lowerMus = new Set(["quads","hams","glutes","adductors","calves"]);
   // fill sets toward each muscle's weekly target (fractional counting), 2-4 sets per exercise (5 for priorities), within the time budget
-  const fill = () => { for (let guard = 0; guard < 300; guard++){
+  // order of filling when time is short: every muscle to a floor (~6-8 sets: enough to keep growing), then priorities to their
+  // full target, then everything else. So a short week squeezes the non-priorities, not the muscles you asked to bring up.
+  let goal = m => tg[m];
+  const fill = () => { for (let guard = 0; guard < 400; guard++){
     const v = vol();
-    const need = Object.keys(tg).filter(m => (v[m] || 0) < tg[m] - 0.25).sort((a, b) => ((v[a] || 0) / tg[a]) - ((v[b] || 0) / tg[b]) || (pri.has(b) - pri.has(a)));
+    const need = Object.keys(tg).filter(m => (v[m] || 0) < goal(m) - 0.25).sort((a, b) => ((v[a] || 0) / goal(a)) - ((v[b] || 0) / goal(b)) || (pri.has(b) - pri.has(a)));
     let added = false;
     for (const m of need){
       const opts = [];
@@ -194,7 +198,29 @@ function buildVariant(dayKeys, gym, ans, seed){
     }
     if (!added) break;
   } };
-  fill();
+  const floor = m => Math.min(tg[m], m === "fdelt" || m === "glutes" || m === "adductors" ? tg[m] : 8);
+  goal = floor; fill();
+  goal = m => pri.has(m) ? tg[m] : floor(m); fill();
+  goal = m => tg[m]; fill();
+  // still short on a priority because the day is full: take sets from non-priority exercises on that day (never below the floor)
+  const primary = x => Object.keys(x.ex.mu).filter(m => x.ex.mu[m] >= 1);
+  for (let guard = 0; guard < 120; guard++){
+    const v = vol(), short = [...pri].filter(m => (v[m] || 0) < tg[m] - 0.5).sort((a, b) => (v[a] || 0) / tg[a] - (v[b] || 0) / tg[b]);
+    let moved = false;
+    for (const m of short){
+      for (const d of days){
+        const take = d.list.find(x => (x.ex.mu[m] || 0) >= 1 && x.sets < 5); if (!take) continue;
+        const donors = d.list.filter(x => x !== take && !primary(x).some(q => pri.has(q)) && primary(x).every(q => (v[q] || 0) - 1 >= Math.min(floor(q), 5)));   // non-priorities can drop to ~5 sets (still above the ~4-set minimum dose, Pelland 2025)
+        if (!donors.length) continue;
+        donors.sort((a, b) => b.sets - a.sets || exTime(b.ex, 1) - exTime(a.ex, 1));
+        const dn = donors[0];
+        if (dn.sets > 1) dn.sets--; else d.list.splice(d.list.indexOf(dn), 1);
+        if (dayMins(d) + exTime(take.ex, 1) - 2 <= cap){ take.sets++; moved = true; break; }
+      }
+      if (moved) break;
+    }
+    if (!moved) break;
+  }
   // still short (usually priorities): add an isolation exercise on the day with the most spare time. Small muscles can go on any day;
   // leg muscles only on leg days, upper-body muscles only off leg days.
   for (let round = 0; round < 6; round++){
@@ -264,7 +290,7 @@ function generate(ans, seed){
   const exercises = {};
   const strengthFirst = ans.goal === "strength";
   const toList = (v, i) => v.days[i].list.map((x, j) => {
-    const e = x.ex, def = {n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], note:e.note || undefined, len:e.len};
+    const e = x.ex, def = {n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note || undefined, len:e.len};
     let key = e.k;
     if (strengthFirst && j === 0 && e.c && e.eq === "bb"){ key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:4, hi:6, rest:210}); }
     exercises[key] = Object.fromEntries(Object.entries(def).filter(([, v]) => v !== undefined));
@@ -276,7 +302,7 @@ function generate(ans, seed){
     if (i < 0) return {k, wd, label:"Rest", focus:sportSet.has(k) ? "Tennis, padel or harder cardio" : "Recovery, walk or easy cardio", rest:true, cardio:sportSet.has(k) ? "Sport day: tennis, padel or harder cardio" : "Walk or easy cardio"};
     const tk = placed[i].tk;
     const next = WD.find(x => x[1] === (wd + 1) % 7)[0];
-    return {k, wd, label:T[tk].label, tpl:tk, focus:focusOf(first.days[i].list), gym:(ans.gymOf || {})[k] || gl[0].id,
+    return {k, wd, label:T[tk].label, tpl:tk, focus:focusOf(first.days[i].list), gym:gl.some(g => g.id === (ans.gymOf || {})[k]) ? ans.gymOf[k] : gl[0].id,
       cardio:sportSet.has(next) && LOWER.has(tk) ? "Easy cardio only: sport tomorrow" : LOWER.has(tk) ? "No hard cardio" : "Easy cardio only",
       variants:Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], i)]))};
   });
@@ -375,7 +401,7 @@ function generateEndu(ans, seed){
     else tplSeq = liftDays.map((_, i) => i % 2 ? "runB" : "runA");
   }
   const vs = Object.fromEntries(gl.map(g => [g.id, tplSeq.length ? buildVariant(tplSeq, g.id, {...ans, pri:hybrid ? (ans.pri || []) : [], mins:hybrid ? (ans.mins || 60) : 45, level:ans.level || "inter"}, seed) : null]));
-  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
+  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
   const w0 = plan.weeks[0];
   const days = WD.map(([k, wd]) => {
     const run = w0.sessions[wd] || plan.weeks.find(w => w.sessions[wd])?.sessions[wd];
@@ -383,7 +409,7 @@ function generateEndu(ans, seed){
     const d = {k, wd, rest:!run && li < 0, label:"Rest", focus:"", cardio:"Rest or an easy walk"};
     if (run){ d.run = {type:run.type}; d.label = RUNTYPE[run.type].n; d.focus = RUNTYPE[run.type].rpe; d.cardio = ""; }
     if (li >= 0){
-      d.variants = Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], li)])); d.gym = (ans.gymOf || {})[k] || gl[0].id;
+      d.variants = Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], li)])); d.gym = gl.some(g => g.id === (ans.gymOf || {})[k]) ? ans.gymOf[k] : gl[0].id;
       const sLabel = hybrid ? T[tplSeq[li]].label : "Strength for runners";
       d.label = run ? d.label + " + " + sLabel.toLowerCase() : sLabel; d.focus = run ? d.focus : focusOf(vs[gl[0].id].days[li].list); d.tpl = tplSeq[li];
     } else if (run) d.variants = {};
@@ -584,7 +610,7 @@ function volChart(prog, gym){
   const rows = Object.keys(MUS).filter(m => (tg[m] || 0) > 0 || (v[m] || 0) > 0);
   const mx = Math.max(22, ...rows.map(m => Math.max(v[m] || 0, tg[m] || 0)));
   return `<div class="obvol">${rows.map(m => `<div class="obvr"><span>${MUS[m]}${pri.has(m) ? ' <i class="obpri">★</i>' : ""}</span><span class="obtrack"><b style="width:${Math.min(100, (v[m] || 0) / mx * 100)}%" class="${(v[m] || 0) >= (tg[m] || 0) - 1 ? "ok" : ""}"></b><i style="left:${(tg[m] || 0) / mx * 100}%"></i></span><span class="num small">${r1(v[m] || 0)}</span></div>`).join("")}
-    <div class="obvl"><span></span><span class="small muted">Sets a week (direct + half for indirect). Tick = target.</span><span></span></div></div>`;
+    <div class="obvl"><span></span><span class="small muted">Bar = weekly sets (a set that trains it directly counts 1, indirectly ½). <b class="obtickkey"></b> = recommended for you.</span><span></span></div></div>`;
 }
 function reviewEndu(a){
   const prog = F.out, P = prog.endurance, gl = gymList(), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id;
@@ -618,6 +644,7 @@ function review(a){
   return {title:"Your block", wide:true, body:`
     <div class="obsum"><div class="full"><span>Split</span><b>${esc(prog.splitName)}</b></div><div><span>Block</span><b>${prog.deloadEvery} weeks</b></div><div><span>Starts</span><b>${fmtD(prog.startDate)}</b></div><div><span>Days</span><b>${prog.days.filter(d => !d.rest).length} a week</b></div></div>
     <div class="obweek">${prog.days.map(d => `<div class="${d.rest ? "rest" : ""}"><span>${WD.find(x => x[0] === d.k)[2]}</span><b>${d.rest ? "–" : esc(d.label.replace("Upper ","U").replace("Lower ","L").replace("Full body ","FB").replace("Arms & delts","Arms"))}</b><em>${d.rest || gl.length < 2 ? "" : esc(gn(d.gym))}</em></div>`).join("")}</div>
+    ${(() => { const v = prog.vol[g] || {}, sh = (prog.setup.pri || []).filter(m => (v[m] || 0) < (prog.targets[m] || 0) - 1.5); return sh.length ? `<div class="banner info"><b>Not enough time for full priority volume.</b> ${sh.map(m => MUS[m] + " " + r1(v[m] || 0) + "/" + prog.targets[m]).join(", ")} sets. Add ~15 min per session or another day to reach the target, or drop a priority.</div>` : ""; })()}
     <div class="card"><div class="spread"><h2>Weekly sets</h2>${gl.length > 1 ? seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g) : ""}</div>${volChart(prog, g)}
       <p class="small muted">${gl.length > 1 ? `Shown for a week done entirely at ${esc(gn(g))}.` : ""} ${src("volume")}</p></div>
     ${train.map(d => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
@@ -648,7 +675,7 @@ function wStep(s, a){
     <label class="lab">First name<input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></label>
     <div class="lab">Sex (for energy and body-fat maths)${seg2("sex", [["male","Male"],["female","Female"]], a.sex)}</div>
     <label class="lab">Date of birth<input class="field" type="date" data-input="birthDate" value="${esc(a.birthDate)}"></label>
-    <h3 class="obh">Height</h3><div class="spread"><b class="num">${a.heightCm} cm</b><span class="muted small">${Math.floor(a.heightCm / 30.48)} ft ${Math.round(a.heightCm / 2.54 % 12)} in</span></div>
+    <h3 class="obh">Height</h3><div class="spread"><b class="num">${a.heightCm} cm</b><span class="muted small">${(() => { const t = Math.round(a.heightCm / 2.54); return Math.floor(t / 12) + " ft " + (t % 12) + " in"; })()}</span></div>
     <div class="obslider"><input type="range" min="140" max="215" step="1" value="${a.heightCm}" data-range="heightCm"></div>
     <h3 class="obh">Weight</h3><div class="spread"><b class="num">${(+a.kg).toFixed(1)} kg</b><span class="muted small">${(a.kg * 2.20462 / 14 | 0)} st ${Math.round(a.kg * 2.20462 % 14)} lb</span></div>
     <div class="obslider"><input type="range" min="40" max="180" step="0.5" value="${a.kg}" data-range="kg"></div>`};
@@ -715,7 +742,8 @@ function nStep(s, a){
       <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate from your activity answers. Formulas can be off by a few hundred calories, so from 5 fully logged days it starts measuring your real burn, and leans on your data more each day.`} ${src("energy")}</span></div>
     <p class="obnote">Wrong weight or body fat? Log a weigh-in or update body fat in Settings, then come back.</p>`};
   case "target": {
-    const step = 0.5, lo = a.type === "bulk" ? Math.ceil(kg) : Math.round(kg * 0.8), hi = a.type === "bulk" ? Math.round(kg * 1.25) : Math.floor(kg);
+    const step = 0.5, [lo, hi] = targetBounds(a.type, kg);
+    if (+a.targetKg < lo || +a.targetKg > hi) a.targetKg = Math.min(hi, Math.max(lo, +a.targetKg));
     return {title:a.type === "bulk" ? "Target weight" : "Goal weight", body:`
       <div class="obbig num"><button class="obstep" data-bump="targetKg" data-d="-${step}">−</button><b>${(+a.targetKg).toFixed(1)}<span> kg</span></b><button class="obstep" data-bump="targetKg" data-d="${step}">+</button></div>
       <input type="range" min="${lo}" max="${hi}" step="0.5" value="${a.targetKg}" data-range="targetKg">
@@ -764,6 +792,8 @@ function nStep(s, a){
   }
   }
 }
+// a cut can't target a heavier weight and a bulk can't target a lighter one
+function targetBounds(type, kg){ return type === "bulk" ? [Math.ceil((kg + 0.5) * 2) / 2, Math.round(kg * 1.3)] : [Math.round(kg * 0.7), Math.floor((kg - 0.5) * 2) / 2]; }
 function projChart(kg, target, rk, weeks){
   if (!isFinite(weeks) || weeks <= 0) return "";
   const W = 320, H = 120, L0 = 8, R0 = 8, wk = Math.min(weeks, 104), lo = Math.min(kg, target) - 1, hi = Math.max(kg, target) + 1;
@@ -860,7 +890,7 @@ function bind(o){
       let nv = cur.includes(v) ? cur.filter(x => x !== v) : cur.concat(v);
       if (path === "pri" && nv.length > 3) nv = nv.slice(1);
       setPath(F.ans, path, nv);
-      if (path === "days"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!F.ans.gymOf[k]) F.ans.gymOf[k] = "home"; }); F.ans.split = null; }
+      if (path === "days"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!gymList().some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = gymList()[0].id; }); F.ans.split = null; }
       saveDraft(); F.keepScroll = true; draw(); return;
     }
     if (b.dataset.lift){
@@ -870,7 +900,7 @@ function bind(o){
       else a.love.push(k);
       saveDraft(); F.keepScroll = true; draw(); return;
     }
-    if (b.dataset.bump){ const k = b.dataset.bump; F.ans[k] = r1((+F.ans[k]) + (+b.dataset.d)); saveDraft(); F.keepScroll = true; draw(); return; }
+    if (b.dataset.bump){ const k = b.dataset.bump; let v = r1((+F.ans[k]) + (+b.dataset.d)); if (k === "targetKg"){ const [lo, hi] = targetBounds(F.ans.type, currentKg()); v = Math.min(hi, Math.max(lo, v)); } F.ans[k] = v; saveDraft(); F.keepScroll = true; draw(); return; }
   });
   o.addEventListener("input", e => {
     const t = e.target;

@@ -13,13 +13,13 @@ function el(html){ const d = document.createElement("div"); d.innerHTML = html; 
 function stop(){
   clearInterval(loop); loop = null; waiting = false; busy = false;
   if (stream && torchOn){ try{ stream.getVideoTracks()[0].applyConstraints({advanced:[{torch:false}]}); }catch(e){} torchOn = false; }
-  clearTimeout(idle); idle = setTimeout(release, KEEP_WARM_MS);
+  release();   // stop the camera straight away so iOS's recording indicator goes off
   if (ov){ const v = ov.querySelector("video"); if (v) v.srcObject = null; ov.remove(); ov = null; }
   document.body.style.overflow = "";
 }
 function setMode(m, msg){
   if (!ov) return;
-  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; sharpHist = []; stillN = 0; labelN = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
+  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; sharpHist = []; stillN = 0; labelN = 0; aimedMs = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
   if (m === "barcode") setTimeout(pump, 30);
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
@@ -36,7 +36,7 @@ async function open(m, msg){
     <div class="sc-top"><button class="sc-x" aria-label="Close">✕</button>
       <div class="seg sc-seg"><button data-smode="barcode">Barcode</button><button data-smode="label">Label</button></div><button class="sc-torch" aria-label="Torch" hidden>💡</button></div>
     <div class="sc-frame"></div>
-    <div class="sc-bottom"><div class="sc-ring"><i></i></div><p class="sc-hint"></p><button class="sc-shutter" aria-label="Capture now" hidden></button></div>
+    <div class="sc-bottom"><div class="sc-ring"><i></i></div><p class="sc-hint"></p><button class="sc-shutter" aria-label="Capture now" hidden><span>Capture</span></button></div>
   </div>`);
   document.body.appendChild(ov); document.body.style.overflow = "hidden";
   ov.querySelector(".sc-x").onclick = stop;
@@ -73,7 +73,10 @@ async function tick(){
   mean /= w * h;
   let vsum = 0; for (let i = 0; i < w * h; i++) vsum += (grey[i] - mean) ** 2; const sdev = Math.sqrt(vsum / (w * h));
   const glare = hot / (w * h);
-  let motion = 0; if (prev && prev.length === grey.length){ for (let i = 0; i < grey.length; i += 3) motion += Math.abs(grey[i] - prev[i]); motion /= grey.length / 3; } else motion = 99; prev = grey;
+  // movement measured on 8x8-pixel block averages, so normal hand shake of a few pixels barely registers
+  const bw = Math.floor(w / 8), bh = Math.floor(h / 8), blk = new Float32Array(bw * bh);
+  for (let by = 0; by < bh; by++) for (let bx = 0; bx < bw; bx++){ let t = 0; for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) t += grey[(by * 8 + y) * w + bx * 8 + x]; blk[by * bw + bx] = t / 64; }
+  let motion = 0; if (prev && prev.length === blk.length){ for (let i = 0; i < blk.length; i++) motion += Math.abs(blk[i] - prev[i]); motion /= blk.length; } else motion = 99; prev = blk;
   let sum = 0, sq = 0, n = 0;
   for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++){ const i = y * w + x, l = 4 * grey[i] - grey[i - 1] - grey[i + 1] - grey[i - w] - grey[i + w]; sum += l; sq += l * l; n++; }
   const sharp = (sq / n - (sum / n) ** 2) / Math.max(20, mean);
@@ -86,23 +89,26 @@ async function tick(){
   minMotion = Math.min(minMotion, motion);
   const age = Date.now() - labelStart;
   if (age < 0){ setProgress(0); return; }   // give time to turn the pack round after a barcode miss
-  const still = motion < Math.max(4, minMotion * 3), textured = sdev > 4 && sharp > 0.02, isLabel = text >= 0.25 && textured;
-  stillN = still ? stillN + 1 : 0;
+  const still = motion < Math.max(3, sdev * 0.12, minMotion * 2.5), textured = sdev > 4 && sharp > 0.02, isLabel = text >= 0.25 && textured;
+  stillN = still ? stillN + 1 : Math.max(0, stillN - 2);          // one shaky frame doesn't reset the count
+  if (textured) aimedMs += 90;
   const score = sharp * (1 - Math.min(0.9, glare * 10));
-  if (textured && still && score > keptScore){ keptScore = score; keep(v); }
+  if (textured && (still || motion < 8) && score > keptScore){ keptScore = score; keep(v); }
   const need = isLabel ? 4 : 6;                                              // ~0.35 s still on clear text, ~0.55 s otherwise
   const ready = textured && still && focused;
-  setProgress(ready ? Math.min(1, stillN / need) : 0);
+  setProgress(Math.min(1, Math.max(ready ? stillN / need : 0, aimedMs / 2000)));
   ov.querySelector(".sc-frame").classList.toggle("ready", ready);
   if (!textured) hint("Point at the nutrition table");
   else if (glare > 0.02) hint("Glare on the label: tilt it slightly");
   else if (!still) hint("Hold still on the table");
   else if (!focused) hint("Focusing…");
   else hint("Hold…");
-  if (age > 900 && ready && stillN >= need && glare <= 0.02) return captureLabel();
-  if (age > 900 && ready && stillN >= need + 8 && keptScore > 0) return captureLabel();   // glare never cleared: use the best still frame
+  if (age > 800 && ready && stillN >= need && glare <= 0.02) return captureLabel();
+  // aimed at something detailed for ~2 s: take the sharpest frame seen, even if the hand never went fully still
+  if (age > 800 && aimedMs >= 2000 && keptScore > 0) return captureLabel();
+  if (age > 800 && aimedMs >= 2600) return captureLabel();
 }
-let sharpHist = [], stillN = 0, labelN = 0;
+let sharpHist = [], stillN = 0, labelN = 0, aimedMs = 0;
 const tc = document.createElement("canvas");
 let minMotion = 99, keptScore = 0, labelStart = 0;
 const keepCan = document.createElement("canvas");
