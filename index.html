@@ -2161,7 +2161,8 @@ function newActive(d, gym){ return {id:uid("s"), dayKey:d.k, gym, phase:S.profil
 const REST_STEPS=[45,60,75,90,120,150,180,210,240,300];
 function restScale(){ return {short:0.8,std:1,long:1.25}[S.profile.restPref||"std"]||1; }
 function restOf(e){ const d=exDef(e.k,e.custom); return Math.round((e.rest||d.rest||90)*(e.rest?1:restScale())); }
-function liveCur(a){ if (a.open!=null && a.ex[a.open] && a.ex[a.open].sets.some(x=>!x.done)) return a.open; const i=a.ex.findIndex(e=>e.sets.some(s=>!s.done)); return a.open!=null&&a.ex[a.open]?(i<0?a.open:i):(i<0?a.ex.length-1:i); }
+function liveCur(a){ if (a.open!=null && a.ex[a.open]) return a.open;   // whatever you opened stays open, finished or not
+  const i=a.ex.findIndex(e=>e.sets.some(s=>!s.done)); return a.open!=null&&a.ex[a.open]?(i<0?a.open:i):(i<0?a.ex.length-1:i); }
 function ssName(a, ei){ const e=a.ex[ei]; if (!e.ss) return ""; const grp=a.ex.map((x,j)=>x.ss===e.ss?j:-1).filter(j=>j>=0); return e.ss+(grp.indexOf(ei)+1); }
 function renderLive(){
   const a=S.active, d=dayBy(a.dayKey)||{label:"Session"}, cur=liveCur(a), LBI=blockInfo();
@@ -2208,7 +2209,11 @@ function renderLive(){
 function swapOptions(ei, reason){
   const a=S.active, e=a.ex[ei], L=(window.AJOnboard&&AJOnboard.lib)||{}, base=L[String(e.k).replace(/-hvy$/,"")]||null, g=gymList().find(x=>x.id===a.gym)||{kit:[]}, kit=new Set(g.kit||[]);
   const cur=exDef(e.k,e.custom), prim=base?Object.keys(base.mu).find(m=>base.mu[m]>=1):null;
-  let list=Object.values(L).filter(x=>x.k!==String(e.k).replace(/-hvy$/,"") && x.q.every(r=>AJOnboard.kitHas([...kit],r)) && !["cond","sled","carry","erg"].includes(x.p) && (base?(x.p===base.p||(prim&&x.mu[prim]>=1)):x.n));
+  // Real substitutes only: the same movement (e.g. incline press for incline press) that this gym has the kit for.
+  // Only if nothing matches, fall back to other exercises for the same main muscle, capped at a few.
+  const ok=x=>x.k!==String(e.k).replace(/-hvy$/,"") && x.q.every(r=>AJOnboard.kitHas([...kit],r)) && !["cond","sled","carry","erg"].includes(x.p);
+  let list=base?Object.values(L).filter(x=>ok(x)&&x.p===base.p):[];
+  if (!list.length){ const mus=prim||Object.keys(AJOnboard.MUS||{}).find(m=>(AJOnboard.MUS[m]||"").toLowerCase()===String(cur.m||"").toLowerCase()); list=mus?Object.values(L).filter(x=>ok(x)&&x.mu[mus]>=1).slice(0,4):[]; }
   const sc=x=>(base&&x.p===base.p?5:0)+x.len+(reason==="pain"?(x.eq==="machine"||x.eq==="cable"?2:0)-((base&&base.inj||[]).some(j=>(x.inj||[]).includes(j))?4:0):0)+(reason==="taken"&&base?(x.q.join()!==base.q.join()?2:-3):0);
   return list.sort((x,y)=>sc(y)-sc(x)).slice(0,10);
 }

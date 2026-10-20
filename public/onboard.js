@@ -66,6 +66,7 @@ X("flatdb","Flat DB press","fpress",{chest:1,fdelt:.5,triceps:.5},["db","bench"]
 X("chestpress","Machine chest press","fpress",{chest:1,fdelt:.5,triceps:.5},["chestpress"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
 X("dips","Dips, chest lean","fpress",{chest:1,triceps:.5,fdelt:.5},["dip"],{c:true,len:2,lo:6,hi:12,rest:150,eq:"bw",inj:["shoulder"]});
 X("incfly","Incline DB flyes","fly",{chest:1},["db","bench"],{len:2,eq:"db"});
+X("scpress","Single-arm high-to-low cable press","fpress",{chest:1,fdelt:.5,triceps:.5},["cable_hi"],{c:true,len:1,lo:10,hi:15,rest:90,eq:"cable",note:"Each arm"});
 X("cabfly","Low-to-high cable fly","fly",{chest:1},["cable_dual","cable_low"],{len:2,eq:"cable"});
 X("pecdeck","Pec deck","fly",{chest:1},["pecdeck"],{eq:"machine"});
 // lats + upper back
@@ -100,6 +101,7 @@ X("ohext","Overhead cable extension","triext",{triceps:1},["cable_hi"],{len:2,eq
 X("dbohext","Overhead DB extension","triext",{triceps:1},["db"],{len:2,eq:"db",inj:["elbow"]});
 X("skull","DB skull crusher","triext",{triceps:1},["db","bench"],{len:1,lo:8,hi:12,eq:"db",inj:["elbow"]});
 X("pdfixed","Pushdown, elbows fixed","pushdown",{triceps:1},["cable_hi"],{len:0,rest:75,eq:"cable"});
+X("pdbar","Straight-bar pushdown","pushdown",{triceps:1},["cable_hi"],{len:0,rest:75,eq:"cable"});
 X("pdmove","Pushdown, elbows moving","pushdown",{triceps:1},["cable_hi"],{len:1,rest:75,eq:"cable"});
 X("cgbench","Close-grip bench","tripress",{triceps:1,chest:.5,fdelt:.5},["bb","rack","bench"],{c:true,lo:6,hi:10,rest:150,eq:"bb"});
 // legs
