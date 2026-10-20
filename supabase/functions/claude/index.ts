@@ -1,5 +1,5 @@
 // Proxies the app's Claude requests to the Anthropic API. The API key never reaches the phone.
-// Secrets: ANTHROPIC_API_KEY (required), ALLOWED_EMAILS (optional, comma-separated), MODEL_QUICK/MODEL_DEFAULT/MODEL_COMPLEX (optional).
+// Secrets: ANTHROPIC_API_KEY or AJ_TRAINING_ANTHROPIC_KEY (required), ALLOWED_EMAILS (optional, comma-separated), MODEL_QUICK/MODEL_DEFAULT/MODEL_COMPLEX (optional).
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 
 const cors = {
@@ -41,7 +41,7 @@ Deno.serve(async (req) => {
 
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: { "x-api-key": Deno.env.get("ANTHROPIC_API_KEY")!, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    headers: { "x-api-key": (Deno.env.get("ANTHROPIC_API_KEY") ?? Deno.env.get("AJ_TRAINING_ANTHROPIC_KEY"))!, "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify(payload),
   });
   return new Response(await r.text(), { status: r.status, headers: { ...cors, "Content-Type": "application/json" } });
