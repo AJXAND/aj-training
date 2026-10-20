@@ -1372,7 +1372,8 @@ function draw(){
   const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
   const markup = `<div class="obtop"><button class="iconbtn" data-ob="back" aria-label="Back" ${F.kind === "welcome" && i === 0 ? 'style="visibility:hidden" tabindex="-1" aria-hidden="true"' : ""}>${ICON.back}</button>
       <div class="obprog"><i style="width:${(i + 1) / steps.length * 100}%"></i></div><button class="iconbtn" data-ob="close" aria-label="Close">✕</button></div>
-    <div class="obbody ${s.wide ? "wide" : ""} ${s.cls || ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>
+    ${fitFlow() ? `<div class="obbody obfit ${s.cls || ""}"><div class="obfitin">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div></div>`
+      : `<div class="obbody ${s.wide ? "wide" : ""} ${s.cls || ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>`}
     ${s.nofoot ? "" : `<div class="obfoot">${s.alt ? `<button class="btn ghost" data-ob="alt">${s.alt}</button>` : ""}<button class="btn orange" data-ob="next" ${blocked ? "disabled" : ""}>${s.cta || "Continue"}</button></div>`}`;
   // Same screen: update in place, element by element, so nothing flashes or jumps. New screen: render fresh.
   if (o.dataset.step === F.kind + ":" + F.step && !F.dir && o.children.length){
@@ -1381,14 +1382,35 @@ function draw(){
   }
   o.innerHTML = markup; o.dataset.step = F.kind + ":" + F.step;
   o.querySelectorAll("details summary b").forEach(x => { if (openD.includes(x.textContent)) x.closest("details").open = true; });
-  if (!F.keepScroll && F.dir){ const bd = o.querySelector(".obbody"); [...bd.children].forEach((c, i) => c.style.setProperty("--i", i)); bd.classList.add(F.dir === "back" ? "ob-back" : "ob-fwd"); F.dir = null; }
+  if (!F.keepScroll && F.dir){ const bd = o.querySelector(".obbody"); [...bodyBox(bd).children].forEach((c, i) => c.style.setProperty("--i", i)); bd.classList.add(F.dir === "back" ? "ob-back" : "ob-fwd"); F.dir = null; }
   if (F.keepScroll) o.querySelector(".obbody").scrollTop = scrollY; F.keepScroll = false;
   if (focusKey){ const x = o.querySelector(focusKey); if (x){ x.focus({preventScroll:true}); try{ const n = x.value.length; x.setSelectionRange(n, n); }catch(e){} } }
   fillRanges(o); fitCheck();
   if (F.step === "build") runBuild();
 }
+// First-run screens: no scrolling. Scale the whole screen to the phone (by width, then down until it fits the height),
+// then spread any spare height into the gaps so it fills the screen.
+const fitFlow = () => F && F.kind === "welcome";
+const bodyBox = b => (b && b.querySelector(".obfitin")) || b;
+function fitScreen(){
+  const b = document.querySelector("#ob .obbody.obfit"), inn = b && b.querySelector(".obfitin"); if (!inn) return;
+  inn.style.zoom = ""; inn.style.minHeight = ""; inn.style.rowGap = "";
+  const cs = getComputedStyle(b), avail = b.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  const fits = k => { inn.style.zoom = k; return b.scrollHeight <= b.clientHeight + 1; };
+  let hi = Math.min(1.25, Math.max(0.8, b.clientWidth / 390)), k = hi;
+  if (!fits(hi)){ let lo = 0.62; for (let n = 0; n < 9; n++){ const m = (lo + hi) / 2; if (fits(m)) lo = m; else hi = m; } k = lo; fits(k); }
+  const over = b.scrollHeight > b.clientHeight + 1; b.classList.toggle("fits", !over); b.classList.toggle("scrolls", over);
+  if (over) return;
+  // spare height: widen the gaps (up to a limit) so the page fills the screen; the hello screen centres instead
+  const spare = avail - inn.getBoundingClientRect().height, kids = inn.children.length;
+  if (spare > 0 && kids > 1 && !inn.querySelector(".obhello")){ const g = parseFloat(getComputedStyle(inn).rowGap) || 0; inn.style.rowGap = (g + Math.min(spare / (kids - 1), 36 * k) / k) + "px"; }
+  inn.style.minHeight = (avail / k) + "px";
+  if (b.scrollHeight > b.clientHeight + 1) inn.style.minHeight = "";
+}
+let fitT = null;
+window.addEventListener("resize", () => { const ae = document.activeElement; if (ae && /INPUT|TEXTAREA/.test(ae.tagName) && ae.closest("#ob")) return; clearTimeout(fitT); fitT = setTimeout(fitScreen, 60); });
 // No rubber-band scrolling when everything fits on screen
-function fitCheck(){ const b = document.querySelector("#ob .obbody"); if (!b) return; requestAnimationFrame(() => b.classList.toggle("fits", b.scrollHeight <= b.clientHeight + 1)); }
+function fitCheck(){ fitScreen(); const b = document.querySelector("#ob .obbody"); if (!b || b.classList.contains("obfit")) return; requestAnimationFrame(() => b.classList.toggle("fits", b.scrollHeight <= b.clientHeight + 1)); }
 function go2(step, dir){ F.dir = dir || "fwd"; F.step = step; saveDraft(); draw(); const b = document.querySelector("#ob .obbody"); if (b) b.scrollTop = 0; }
 function next(){
   const steps = stepsOf(), i = steps.indexOf(F.step);
@@ -1624,7 +1646,7 @@ function patchTree(oldEl, newEl, t){
   return true;
 }
 function liveRange(t){
-  const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = document.querySelector("#ob .obbody");
+  const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = bodyBox(document.querySelector("#ob .obbody"));
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
   if (body.children.length !== tmp.children.length){ F.keepScroll = true; return draw(); }
   const nk = [...tmp.children]; [...body.children].forEach((c, k) => patchDeep(c, nk[k], t));

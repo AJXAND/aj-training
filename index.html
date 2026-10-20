@@ -667,6 +667,11 @@ main.pg .tile svg path{stroke-dasharray:600;stroke-dashoffset:600;animation:draw
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,14px) scale(.92)}}
 @keyframes slideIn{from{transform:translateX(100%)}} @keyframes slideOut{to{transform:translateX(100%)}}
 /* onboarding steps slide with direction */
+.obbody.obfit{overflow:hidden;display:block}.obbody.obfit.scrolls{overflow-y:auto}.obfitin{display:grid;gap:14px;align-content:start}.obbody.obform .obfitin{gap:24px}
+.obfitin:has(.obhello){align-content:center}.obfit .obhello{padding-top:0}
+.obbody.obfit.ob-fwd > .obfitin,.obbody.obfit.ob-back > .obfitin{animation:none}
+.obbody.obfit.ob-fwd > .obfitin > *{animation:pgR .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
+.obbody.obfit.ob-back > .obfitin > *{animation:pgL .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
 .obbody.ob-fwd > *{animation:pgR .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
 .obbody.ob-back > *{animation:pgL .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
 .obopt[aria-pressed="true"]{animation:pick .32s var(--spring)}
