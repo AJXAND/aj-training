@@ -1162,13 +1162,12 @@ function review(a){
 
 /* ---------- Welcome (first run) ---------- */
 const WSTEPS = ["hello","sections","about","next"];
-const MODICON = {training:"lift", endurance:"cardio", nutrition:"food", habits:"steps"};
 function wStep(s, a){
   switch (s){
   case "hello": return {title:"", body:`<div class="obhello">${LOGO(96)}<h1>Welcome${a.name ? ", " + esc(a.name) : ""}</h1>
     <p class="oblead">One app for training, running, food and habits, built on the research and shaped around you. Use all of it, or just the parts you need.</p></div>`, cta:"Get started"};
-  case "sections": return {title:"What do you want to use?", body:`<p class="obnote" style="margin-top:0">Pick as many as you like. You can change this any time in Settings.</p>
-    <div class="obopts">${Object.entries(MODULES).map(([k, [n, d]]) => `<button class="obopt obmod" data-tog="mods" data-val="${k}" aria-pressed="${a.mods.includes(k)}"><span class="obmi">${ICON[MODICON[k]]}</span><span><b>${n}</b><span>${d}</span></span><i class="obtick"></i></button>`).join("")}</div>`};
+  case "sections": return {title:"What do you want to use?", body:`<p class="obnote" style="margin-top:0">Habits are always included, so you can track anything daily. You can change this any time in Settings.</p>
+    ${useCards(a.use, "data-set=\"use\" data-val")}`};
   case "about": { const dob = parseDob(a.dob);
     return {title:"About you", cls:"obform", body:`<p class="obnote" style="margin-top:0">Used to work out your calorie burn, targets and body-fat estimates. Nothing is shared.</p>
     <div class="obfld"><span class="obl">First name</span><input class="field" data-input="name" value="${esc(a.name)}" placeholder="Your name" autocomplete="given-name"></div>
@@ -1180,10 +1179,10 @@ function wStep(s, a){
     <div class="obfld"><div class="spread"><span class="obl">Weight</span>${unitSeg("w")}</div>${weightRow("kg", a.kg)}
       <div class="obslider"><input type="range" min="35" max="200" step="0.5" value="${Math.min(200, Math.max(35, a.kg))}" data-range="kg" aria-label="Weight"></div></div>`}; }
   case "next": {
-    const m = new Set(a.mods), items = [];
-    if (m.has("training") || m.has("endurance")) items.push(["prog", "Build your plan", m.has("endurance") && !m.has("training") ? "Race or running plan with the right mix of easy, hard and long" : "Two minutes: sessions, sets and progression from the research", "lift"]);
-    if (m.has("nutrition")) items.push(["nut", "Set your food goal", "Goal, pace and targets that adapt to your real weight and food data", "food"]);
-    if (m.has("habits")) items.push(["habits", "Add your habits", "Steps, sleep, water, quitting something, or your own", "steps"]);
+    const items = [];
+    if (a.use !== "food") items.push(["prog", "Build your plan", "Gym, running or both. Two minutes, built from the research", "lift"]);
+    if (a.use !== "train") items.push(["nut", "Set your food goal", "Goal, pace and targets that adapt to your real weight and food data", "food"]);
+    items.push(["habits", "Add a habit (optional)", "Steps, sleep, water, quitting something, or your own", "steps"]);
     return {title:"You're set", body:`<p class="oblead">Next, set up the parts you picked. You can do them now or later from the dashboard.</p>
       <div class="obopts">${items.map(([k, t, d, ic]) => `<button class="obopt obmod" data-wnext="${k}"><span class="obmi">${ICON[ic]}</span><span><b>${t}</b><span>${d}</span></span><i class="obarrow">›</i></button>`).join("")}</div>`, cta:"Go to my dashboard"};
   }
@@ -1191,11 +1190,11 @@ function wStep(s, a){
 }
 function welcomeDefaults(){
   const p = S.profile, md = p.modules;
-  return {mods:md ? Object.keys(MODULES).filter(k => md[k] !== false) : ["training","nutrition","habits"], name:p.name || "", sex:p.sex || null,
+  return {use:md ? useOf() : "both", name:p.name || "", sex:p.sex || null,
     birthDate:p.birthSet ? p.birthDate : "1995-01-01", dob:p.birthSet ? isoToDob(p.birthDate) : "", heightCm:p.heightCm || 175, kg:r1(currentKg() || 75), units:Object.assign({h:"cm", w:"kg"}, p.units || {})};
 }
 function acceptWelcome(then){
-  const a = F.ans, mods = Object.fromEntries(Object.keys(MODULES).map(k => [k, a.mods.includes(k)]));
+  const a = F.ans, mods = modsFor(a.use || "both");
   const dob = parseDob(a.dob);
   S.profile = {...S.profile, modules:mods, name:a.name.trim(), sex:a.sex, birthDate:dob ? dob.iso : S.profile.birthDate, birthSet:!!dob || !!S.profile.birthSet, heightCm:Math.round(+a.heightCm), fallbackKg:+a.kg, units:a.units, setupDone:true};
   saveProfile();
@@ -1397,7 +1396,6 @@ function next(){
   if (F.kind === "prog" && F.step === "build") return;
   if (F.kind === "nut" && F.step === "review") return acceptNut();
   if (F.kind === "welcome" && F.step === "next") return acceptWelcome("home");
-  if (F.kind === "welcome" && F.step === "sections" && !F.ans.mods.length){ toast("Pick at least one"); return; }
   if (F.kind === "welcome" && F.step === "about" && !F.ans.sex){ toast("Choose one so the energy maths is right"); return; }
   if (F.kind === "welcome" && F.step === "about" && F.ans.dob && !parseDob(F.ans.dob)){ toast("Enter your date of birth as DD/MM/YYYY, or leave it blank"); return; }
   if (F.kind === "nut" && F.single && F.step === "activity"){ F.accepted = true; S.profile.activity = clone(F.ans.activity); saveProfile(); toast("Activity saved: starting estimate " + fmtN(priorModel(currentKg()).total) + " kcal"); return close(); }

@@ -1,5 +1,5 @@
 /* AJ Training service worker: keeps the app available offline and shows push notifications. */
-const VERSION = "ajt-v23";
+const VERSION = "ajt-v24";
 const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/science.js", "/sports.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
   "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png", "/icons/badge-96.png", "/foods-db.json"];
 

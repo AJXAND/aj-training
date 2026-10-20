@@ -168,3 +168,7 @@ Spotted by me: the Creatine habit in the first screenshot doesn't appear in the 
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
 - **Name parked**: AJ doesn't want the low-quality domain variants; revisit naming later (Wingman/Wingmate still favourites).
+
+## Round 3 (20 Oct, one screen at a time)
+- Welcome screen: approved as is.
+- "What do you want to use?": now three cards, Training (gym, running, any sport), Food and weight, Both. Habits always on. Icons solid orange with white (a text colour rule was greying them). Settings uses the same three cards.

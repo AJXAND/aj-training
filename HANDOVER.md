@@ -18,7 +18,7 @@ You are taking over development of **AJ Training**, an all-in-one fitness, food 
 ## Repo, hosting, deploy
 - GitHub: `AJXAND/aj-training`, branch `main`. Live at https://ajtraining.quotientgroup.co.uk (GitHub Pages, custom domain in public/CNAME; ajxand.github.io/aj-training redirects there).
 - Deploy = push to main. `.github/workflows/deploy.yml` runs `npm ci && npm run build` (Vite 5.4.11) and publishes `dist`.
-- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v23"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
+- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v24"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
 - Commit messages end with the attribution lines from your session instructions.
 - Backend: Supabase (auth, a `docs` table of `{user_id, path, col, data, deleted, updated_at}`, photo storage, edge functions for the Claude API). See supabase/ and scripts/setup-supabase.sh. The app gets its config from `config.js` (`window.AJ_CONFIG = {supabaseUrl, supabaseAnonKey, vapidPublicKey}`).
 
