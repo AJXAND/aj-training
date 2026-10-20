@@ -1,0 +1,10 @@
+project_id = "ajtraining"
+
+[functions.claude]
+verify_jwt = true
+
+[functions.weighin-push]
+verify_jwt = false
+
+[functions.health-steps]
+verify_jwt = false
