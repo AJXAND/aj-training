@@ -2,7 +2,8 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<script>(function(){try{var t=localStorage.getItem("ajtheme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta name="theme-color" content="#0C0C0E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -371,7 +372,10 @@ h3.grp:first-child{margin-top:0}
 
 /* standalone: page reset and safe areas */
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html,body{margin:0;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden;overflow-x:clip}
+.wrap,main{overflow-x:clip}
+input,select,textarea{font-size:max(16px,1em)}
+.dd select{font-size:16px}
 body{overscroll-behavior-y:none}
 img{max-width:100%}
 /* login */
@@ -391,6 +395,7 @@ img{max-width:100%}
 .sc-frame{position:absolute;left:12%;right:12%;top:28%;height:min(76vw,44%);border-radius:18px;box-shadow:0 0 0 9999px #0007;border:2.5px solid #fff;transition:all .25s}
 .sc-frame.label{top:18%;height:56%}
 .sc-frame.barcode::after{content:"";position:absolute;left:8%;right:8%;top:50%;height:2px;background:var(--orange);box-shadow:0 0 12px var(--orange);opacity:.8}
+.sc-frame.ready{border-color:var(--orange);box-shadow:0 0 0 9999px #0007,0 0 0 4px color-mix(in srgb,var(--orange) 45%,transparent)}
 .sc-frame.hit{border-color:var(--good);box-shadow:0 0 0 9999px #0007,0 0 0 4px var(--good)}
 .sc-bottom{position:absolute;left:0;right:0;bottom:0;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));display:grid;justify-items:center;gap:12px;background:linear-gradient(#0000,#000b)}
 .sc-hint{margin:0;font-weight:600;text-align:center}
@@ -633,6 +638,13 @@ main.pg .econf i{animation:grow 1s var(--ease) .2s both;transform-origin:left}
 .daystat{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;text-align:left;border:0;background:none;padding:2px 0;font:inherit;color:inherit;cursor:pointer}
 .daystat i{width:10px;height:10px;border-radius:50%;background:var(--warn);grid-row:span 2}.daystat.ok i{background:var(--good)}
 .daystat span{font-size:14px;font-weight:600}.daystat em{font-style:normal;font-size:12px;color:var(--muted)}
+
+html.theming *{transition:background-color .35s ease,color .35s ease,border-color .35s ease!important}
+
+.fedit{background:var(--sunk);border-radius:16px;padding:12px 14px}
+.fedit summary{display:grid;gap:2px;cursor:pointer;list-style:none}.fedit summary::-webkit-details-marker{display:none}
+.fedit .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.fedit .field{background:var(--card);padding:10px 8px}
+.fwarn{margin-top:10px;font-size:13px;font-weight:600;color:var(--warn)}
 </style>
 </head>
 <body>
@@ -1383,12 +1395,20 @@ function renderFoodSheet(){
     const f=a.food, m=foodMacros(f,a.amount,a.unit), units=[["g","grams"]].concat(f.liquid?[["ml","ml"]]:[]).concat(f.serving&&f.serving.g?[["serving",`${f.serving.label||"serving"} (${f.serving.g} g)`]]:[]);
     body=`${a.isNew?`<label class="lab">Name<input class="field" id="faName" value="${esc(f.name)}"></label>`:""}<div class="stack" style="gap:2px"><h2>${esc(f.name)}</h2><span class="small muted">${esc(f.brand||"")}${f.barcode?" · "+esc(f.barcode):""} · ${fmtN(f.per100.kcal)} kcal, ${r1(f.per100.p)}P ${r1(f.per100.f)}F ${r1(f.per100.c)}C per 100 g${f.src==="usda"?" · USDA":f.src==="claude"?" · Claude estimate":""}</span></div>
       <div class="row" style="flex-wrap:nowrap"><input class="field big" id="faAmt" inputmode="decimal" value="${esc(a.amount)}" aria-label="Amount" style="flex:1">${dd("faUnit",units,a.unit,"Unit")}</div>
-      <div class="stat four"><div><span>Calories</span><b id="faK">${fmtN(m.kcal)}</b></div><div><span>Protein</span><b id="faP" style="color:var(--prot)">${r1(m.p)}</b></div><div><span>Fat</span><b id="faF" style="color:var(--fat)">${r1(m.f)}</b></div><div><span>Carbs</span><b id="faC" style="color:var(--carb)">${r1(m.c)}</b></div></div>`;
+      <div class="stat four"><div><span>Calories</span><b id="faK">${fmtN(m.kcal)}</b></div><div><span>Protein</span><b id="faP" style="color:var(--prot)">${r1(m.p)}</b></div><div><span>Fat</span><b id="faF" style="color:var(--fat)">${r1(m.f)}</b></div><div><span>Carbs</span><b id="faC" style="color:var(--carb)">${r1(m.c)}</b></div></div>${per100Editor(f, a)}`;
   }
   $("#foodSheetIn").innerHTML=`<div class="grab"></div>${body}
     <button class="btn orange" data-fs="save">${a.entryId?"Update":"Log it"}</button>
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
     <button class="btn ghost" data-fs="close">Cancel</button>`;
+}
+function macroCheck(p){ const est=4*(+p.p||0)+4*(+p.c||0)+9*(+p.f||0); if (!(+p.kcal)||est<20) return null; const d=(+p.kcal-est)/(+p.kcal); return Math.abs(d)>0.15?Math.round(d*100):null; }
+function per100Editor(f, a){
+  const scanned=f.src==="off"||a.src==="off"||a.src==="label", bad=macroCheck(f.per100);
+  return `<details class="fedit" ${scanned||bad!=null?"open":""}><summary><b>Per 100 ${f.liquid?"ml":"g"}</b><span class="small muted">${f.src==="off"||a.src==="off"?"From Open Food Facts: check against the pack":a.src==="label"?"Read from the label: check it":"Edit if it's wrong"}</span></summary>
+    ${bad!=null?`<div class="fwarn">These don't add up: calories are ${Math.abs(bad)}% ${bad>0?"higher":"lower"} than protein, carbs and fat suggest. One number is probably wrong.</div>`:""}
+    <div class="grid4"><label class="lab">kcal<input class="field" id="fe100kcal" inputmode="decimal" value="${esc(r1(f.per100.kcal))}"></label><label class="lab">Protein<input class="field" id="fe100p" inputmode="decimal" value="${esc(r1(f.per100.p))}"></label>
+    <label class="lab">Fat<input class="field" id="fe100f" inputmode="decimal" value="${esc(r1(f.per100.f))}"></label><label class="lab">Carbs<input class="field" id="fe100c" inputmode="decimal" value="${esc(r1(f.per100.c))}"></label></div></details>`;
 }
 function foodMacros(f, amount, unit){
   const g = unit==="serving" ? (+amount||0)*((f.serving&&f.serving.g)||100) : (+amount||0);
@@ -1692,7 +1712,9 @@ function renderBody(){
 /* ---------- Settings ---------- */
 function renderSettings(){
   const p=S.profile, n=p.nutrition||{}, tg=targets();
+  let theme="system"; try{ theme=localStorage.getItem("ajtheme")||"system"; }catch(e){}
   return head("Settings",{back:S.prevTab||"home"})+`
+  <div class="card"><h2>Appearance</h2>${seg("theme",[["system","Match system"],["light","Light"],["dark","Dark"]],theme)}</div>
   <div class="card"><h2>You</h2>
     <label class="lab">Birthday<input class="field" id="pBirth" type="date" value="${esc(p.birthDate)}"></label>
     <span class="small muted">${p.birthSet?`You're ${age()}. Updates itself on your birthday.`:"Set once and your age stays up to date."}</span>
@@ -1763,6 +1785,13 @@ function navKind(from, to){
 }
 // Hide with an exit animation, then really hide.
 function hideAnim(el, ms){ if(!el||el.hidden||el.classList.contains("out")) return; el.classList.add("out"); setTimeout(()=>{ el.hidden=true; el.classList.remove("out"); }, ms||220); }
+function setTheme(v){
+  try{ v==="system" ? localStorage.removeItem("ajtheme") : localStorage.setItem("ajtheme", v); }catch(e){}
+  const r=document.documentElement; v==="system" ? r.removeAttribute("data-theme") : r.setAttribute("data-theme", v);
+  const dark=v==="dark"||(v==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", dark?"#0C0C0E":"#F4F4F2");
+  r.classList.add("theming"); setTimeout(()=>r.classList.remove("theming"), 400);
+}
 function go(tab, seg){
   const from=S.tab;
   if (tab==="settings" && S.tab!=="settings") S.prevTab=S.tab;
@@ -1869,7 +1898,8 @@ function updateFaLive(){
   const m=foodMacros(a.food,a.amount,a.unit);
   $("#faK").textContent=fmtN(m.kcal); $("#faP").textContent=r1(m.p); $("#faF").textContent=r1(m.f); $("#faC").textContent=r1(m.c);
 }
-$("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFaLive(); });
+$("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFaLive();
+  const m=/^fe100(kcal|p|f|c)$/.exec(e.target.id); if (m&&S.foodAdd&&S.foodAdd.food){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ S.foodAdd.food.per100={...S.foodAdd.food.per100,[m[1]]:v}; S.foodAdd.food.edited=true; updateFaLive(); } } });
 $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
 
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
@@ -1885,9 +1915,9 @@ Do not guess numbers you cannot see. If the key rows are unreadable, set "error"
 Return only JSON: {"name": product name if visible else a short sensible description, "brand": string or "", "per100": {"kcal": number, "p": protein g, "c": carbohydrate g, "f": fat g}, "serving": {"g": grams per serving or null, "label": e.g. "1 bar" or ""}, "error": ""}.`;
     const ok=r=>r&&!r.error&&r.per100&&+r.per100.kcal>0&&Math.abs(9*(+r.per100.f||0)+4*(+r.per100.c||0)+4*(+r.per100.p||0)-r.per100.kcal)<=Math.max(25,r.per100.kcal*0.2);
     // Fast model first; if its numbers don't add up, re-read with the stronger model.
-    let res=await sampler.json(P,{images:imgs, modelTier:"quick", cache:false}).catch(e=>({_err:e}));
-    if (!ok(res)){ const r2=await sampler.json(P,{images:imgs, modelTier:"default", cache:false}).catch(e=>{ if(res&&res._err) throw e; return res; }); res=r2; }
-    if (res&&res._err) throw res._err;
+    // Accuracy first: the stronger model reads every label; if its numbers still don't add up, it gets one more look.
+    let res=await sampler.json(P,{images:imgs, modelTier:"default", cache:false});
+    if (!ok(res) && !(res&&res.error)){ const r2=await sampler.json(P+"\nYour first reading didn't add up (kcal vs 4P+4C+9F). Re-read each number carefully.",{images:imgs, modelTier:"default", cache:false}).catch(()=>null); if (ok(r2)) res=r2; }
     if (res.error || !res.per100 || isNaN(+res.per100.kcal)) throw {code:"notlabel", msg:res.error};
     const food={schema:SCHEMA, id:uid("food"), name:String(res.name||"Scanned food").slice(0,80), brand:String(res.brand||"").slice(0,60), barcode:S.pendingBarcode||null,
       per100:{kcal:+res.per100.kcal||0, p:+res.per100.p||0, c:+res.per100.c||0, f:+res.per100.f||0},
@@ -1895,6 +1925,7 @@ Return only JSON: {"name": product name if visible else a short sensible descrip
     saveFood(food); S.pendingBarcode=null; S.busy=null; render();
     openFood(food,{src:"label", isNew:true});
   } catch(e){ S.busy=null; render();
+    if (e&&e.code==="notlabel"&&window.openScanner){ openScanner("label", "Couldn't read that"+(e.msg?" ("+String(e.msg).toLowerCase().slice(0,40)+")":"")+". Fill the box with the table and hold still."); return; }
     const why=e&&e.code==="notlabel"?("Couldn't read it"+(e.msg?": "+e.msg:"")+". Try again closer up."):e&&e.code==="not_granted"?"Allow Claude to see images to scan labels":"Label reader error: "+(e&&(e.code||e.message)||"unknown")+(e&&e.status?" ("+e.status+")":"");
     toast(why); }
 }
@@ -2073,6 +2104,7 @@ $("#main").addEventListener("click", async e=>{
     else if (n==="planView") S.planView=v;
     else if (n==="foodMode") S.foodMode=v;
     else if (n==="nutMode") S.profile.nutrition={...(S.profile.nutrition||{}), mode:v};
+    else if (n==="theme") setTheme(v);
     render(); if (["progSeg","planView"].includes(n)) pageAnim("soft"); return;
   }
   const act=b.dataset.act, prev=S.confirm;

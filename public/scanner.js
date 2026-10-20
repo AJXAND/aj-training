@@ -19,7 +19,7 @@ function stop(){
 }
 function setMode(m, msg){
   if (!ov) return;
-  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
+  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; sharpHist = []; stillN = 0; labelN = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
   if (m === "barcode") setTimeout(pump, 30);
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
@@ -29,7 +29,7 @@ function setMode(m, msg){
 function hint(t){ if (ov) ov.querySelector(".sc-hint").textContent = t; }
 function setProgress(p){ if (ov) ov.querySelector(".sc-ring i").style.width = Math.round(p * 100) + "%"; }
 
-async function open(m){
+async function open(m, msg){
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ fallback(m); return; }
   ov = el(`<div class="scanner" role="dialog" aria-label="Scanner">
     <video playsinline muted autoplay></video><canvas hidden></canvas>
@@ -42,7 +42,7 @@ async function open(m){
   ov.querySelector(".sc-x").onclick = stop;
   ov.querySelectorAll("[data-smode]").forEach(b => b.onclick = () => setMode(b.dataset.smode));
   ov.querySelector(".sc-shutter").onclick = () => captureLabel();
-  setMode(m);
+  setMode(m, msg);
   clearTimeout(idle);
   try{
     if (!live()) stream = await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:"environment"}, width:{ideal:1920}, height:{ideal:1080}}});
@@ -63,32 +63,46 @@ async function tick(){
   if (!ov || busy) return;
   const v = ov.querySelector("video"); if (!v.videoWidth) return;
   if (mode === "barcode") return;   // barcodes are read by pump(), as fast as the decoder allows
-  // Label: measure motion, sharpness and glare inside the scan box. Capture the first steady, glare-free frame;
-  // otherwise take the best frame seen by 1.5s. Nothing waits on an absolute brightness or sharpness level, so dim rooms work.
+  // Label: only fire when the box actually contains a nutrition table (rows of text), the camera has finished focusing,
+  // and the phone is still. Nothing depends on absolute brightness, so dim rooms work. Never captures a random scene.
   const box = boxInVideo(v), w = 160, h = Math.max(1, Math.round(160 * box.h / box.w)), c = tc; c.width = w; c.height = h;
   const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(v, box.x, box.y, box.w, box.h, 0, 0, w, h);
   const px = g.getImageData(0, 0, w, h).data, grey = new Float32Array(w * h);
   let mean = 0, hot = 0;
   for (let i = 0; i < w * h; i++){ const r = px[i * 4], gg = px[i * 4 + 1], bb = px[i * 4 + 2]; grey[i] = r * 0.299 + gg * 0.587 + bb * 0.114; mean += grey[i]; if (r > 245 && gg > 245 && bb > 245) hot++; }
   mean /= w * h;
+  let vsum = 0; for (let i = 0; i < w * h; i++) vsum += (grey[i] - mean) ** 2; const sdev = Math.sqrt(vsum / (w * h));
   const glare = hot / (w * h);
   let motion = 0; if (prev && prev.length === grey.length){ for (let i = 0; i < grey.length; i += 3) motion += Math.abs(grey[i] - prev[i]); motion /= grey.length / 3; } else motion = 99; prev = grey;
   let sum = 0, sq = 0, n = 0;
   for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++){ const i = y * w + x, l = 4 * grey[i] - grey[i - 1] - grey[i + 1] - grey[i - w] - grey[i + w]; sum += l; sq += l * l; n++; }
   const sharp = (sq / n - (sum / n) ** 2) / Math.max(20, mean);
-  const score = sharp * (1 - Math.min(0.9, glare * 10));
+  // text-likeness: share of rows with many strong light/dark flips (characters), relative to the scene's own contrast
+  const thr = Math.max(6, sdev * 0.45); let textRows = 0;
+  for (let y = 0; y < h; y++){ let flips = 0, last = 0; for (let x = 1; x < w; x++){ const d = grey[y * w + x] - grey[y * w + x - 1]; if (Math.abs(d) > thr){ const sg = d > 0 ? 1 : -1; if (sg !== last){ flips++; last = sg; } } } if (flips >= w * 0.09) textRows++; }
+  const text = textRows / h;
+  sharpHist.push(sharp); if (sharpHist.length > 8) sharpHist.shift();
+  const focused = sharpHist.length >= 4 && sharp >= Math.max(...sharpHist) * 0.85;
   minMotion = Math.min(minMotion, motion);
   const age = Date.now() - labelStart;
   if (age < 0){ setProgress(0); return; }   // give time to turn the pack round after a barcode miss
-  const still = motion < Math.max(4, minMotion * 3);
-  if (still && score > keptScore){ keptScore = score; keep(v); }
-  steady = still ? steady + 1 : 0;
-  setProgress(Math.min(1, age / 1500));
-  hint(glare > 0.015 ? "Glare on the label: tilt it slightly" : !still ? "Hold still" : "Reading…");
-  if (age > 300 && steady >= 2 && glare <= 0.015) return captureLabel();
-  if (age > 1500 && keptScore > 0) return captureLabel();
-  if (age > 2500) return captureLabel();
+  const still = motion < Math.max(4, minMotion * 3), textured = sdev > 4 && sharp > 0.02, isLabel = text >= 0.25 && textured;
+  stillN = still ? stillN + 1 : 0;
+  const score = sharp * (1 - Math.min(0.9, glare * 10));
+  if (textured && still && score > keptScore){ keptScore = score; keep(v); }
+  const need = isLabel ? 4 : 6;                                              // ~0.35 s still on clear text, ~0.55 s otherwise
+  const ready = textured && still && focused;
+  setProgress(ready ? Math.min(1, stillN / need) : 0);
+  ov.querySelector(".sc-frame").classList.toggle("ready", ready);
+  if (!textured) hint("Point at the nutrition table");
+  else if (glare > 0.02) hint("Glare on the label: tilt it slightly");
+  else if (!still) hint("Hold still on the table");
+  else if (!focused) hint("Focusing…");
+  else hint("Hold…");
+  if (age > 900 && ready && stillN >= need && glare <= 0.02) return captureLabel();
+  if (age > 900 && ready && stillN >= need + 8 && keptScore > 0) return captureLabel();   // glare never cleared: use the best still frame
 }
+let sharpHist = [], stillN = 0, labelN = 0;
 const tc = document.createElement("canvas");
 let minMotion = 99, keptScore = 0, labelStart = 0;
 const keepCan = document.createElement("canvas");
@@ -174,7 +188,7 @@ async function found(code){
 async function captureLabel(){
   if (!ov || busy) return; busy = true;
   const v = ov.querySelector("video");
-  if (!keptScore) keep(v);
+  if (!keptScore) keep(v);   // manual shutter: use the current frame
   try{ navigator.vibrate && navigator.vibrate(40); }catch(e){}
   hint("Reading the label…");
   const colour = await new Promise(r => scaled(keepCan, 1600).toBlob(r, "image/jpeg", 0.85));
@@ -191,7 +205,9 @@ async function offLookup(code){
     if (!r.ok) return null;
     const j = await r.json(); if (j.status !== 1 || !j.product) return null;
     const p = j.product, n = p.nutriments || {};
-    let kcal = n["energy-kcal_100g"]; if (kcal == null && n["energy_100g"] != null) kcal = n["energy_100g"] / 4.184;
+    // Prefer kJ when OFF's kcal disagrees with it: kcal is often user-typed, kJ comes from the printed label.
+    let kcal = n["energy-kcal_100g"], kj = n["energy-kj_100g"] ?? n["energy_100g"];
+    if (kj != null && (kcal == null || Math.abs(kcal - kj / 4.184) / (kj / 4.184) > 0.08)) kcal = kj / 4.184;
     if (kcal == null) return null;
     const sq = +p.serving_quantity;
     return {schema:SCHEMA, id:"off-" + code, name:String(p.product_name_en || p.product_name || "Product " + code).slice(0, 80), brand:String(p.brands || "").split(",")[0].trim().slice(0, 60), barcode:code, src:"off",
