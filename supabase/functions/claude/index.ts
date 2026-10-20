@@ -7,10 +7,12 @@ const cors = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
-const MODELS: Record<string, string> = {
-  quick: Deno.env.get("MODEL_QUICK") ?? "claude-haiku-5-5",
-  default: Deno.env.get("MODEL_DEFAULT") ?? "claude-sonnet-5-5",
-  complex: Deno.env.get("MODEL_COMPLEX") ?? "claude-opus-5-5",
+// Each job uses the cheapest model that does it well. Effort controls how much the model thinks (and costs).
+const TIERS: Record<string, { model: string; effort: string }> = {
+  quick:   { model: Deno.env.get("MODEL_QUICK") ?? "claude-haiku-5-5", effort: "low" },     // barcode digits, small lookups
+  coach:   { model: Deno.env.get("MODEL_COACH") ?? "claude-haiku-5-5", effort: "medium" },  // chat + logging food/cardio/habits
+  default: { model: Deno.env.get("MODEL_DEFAULT") ?? "claude-sonnet-5-5", effort: "low" },  // label reading, food lookups
+  complex: { model: Deno.env.get("MODEL_COMPLEX") ?? "claude-opus-5-5", effort: "medium" }, // body fat from photos
 };
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
@@ -29,8 +31,9 @@ Deno.serve(async (req) => {
   const body = await req.json().catch(() => ({}));
   if (!Array.isArray(body.messages) || !body.messages.length) return json({ type: "error", error: { type: "invalid", message: "messages required" } }, 400);
   const payload: Record<string, unknown> = {
-    model: MODELS[body.tier] ?? MODELS.default,
-    max_tokens: Math.min(Math.max(Number(body.max_tokens) || 2048, 256), 4096),
+    model: (TIERS[body.tier] ?? TIERS.default).model,
+    max_tokens: Math.min(Math.max(Number(body.max_tokens) || 2048, 256), 8192),
+    output_config: { effort: (TIERS[body.tier] ?? TIERS.default).effort },
     messages: body.messages,
   };
   if (Array.isArray(body.tools) && body.tools.length) payload.tools = body.tools.slice(0, 16);

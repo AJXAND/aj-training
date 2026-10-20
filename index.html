@@ -905,7 +905,7 @@ function renderHome(){
   const used=[...new Set(S.sessions.flatMap(s=>(s.ex||[]).map(e=>e.k)))];
   const adv=used.map(k=>advice(k)), up=adv.filter(a=>a.status==="up").length, fl=adv.filter(a=>a.flag).length;
   const ds=deloadStatus(), ex=tg.ex;
-  return head("Dashboard")+sampleBanner()+today+habitsSummaryCard()+food+`
+  return head("Dashboard")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+today+habitsSummaryCard()+food+`
   <div class="card"><div class="spread"><h2>This week</h2><span class="small muted">${ph.label}</span></div>
     <div class="wk">${grid}</div>${detail}
     <div class="legend"><span><i style="background:var(--orange)"></i>Sets</span><span><i style="background:var(--kcal)"></i>Calories</span><span><i style="background:var(--cardio)"></i>Cardio</span><span><i style="background:var(--weight)"></i>Weight</span></div></div>
@@ -1962,7 +1962,7 @@ async function sendChat(){
   chatCtl=new AbortController();
   let text="";
   try{
-    const opts={cache:false, signal:chatCtl.signal, onText:({text:t})=>{ text=t; const el=$("#streamMsg"); if(el){ el.innerHTML=`<div class="who">${LOGO(18)}Claude</div>`+mdLite(t); $("#chatMsgs").scrollTop=$("#chatMsgs").scrollHeight; } }};
+    const opts={cache:false, modelTier:"coach", signal:chatCtl.signal, onText:({text:t})=>{ text=t; const el=$("#streamMsg"); if(el){ el.innerHTML=`<div class="who">${LOGO(18)}Claude</div>`+mdLite(t); $("#chatMsgs").scrollTop=$("#chatMsgs").scrollHeight; } }};
     if (S.canTools) opts.tools=chatTools();
     if (img && S.canImages) opts.images=[img];
     const res=await sampler(turns, opts);

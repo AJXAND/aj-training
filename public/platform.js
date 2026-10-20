@@ -199,7 +199,7 @@ async function sample(input, opts){
   let text = "", stop = "";
   for (let round = 0; round < 6; round++){
     if (opts.signal && opts.signal.aborted) throw {code:"cancelled", text};
-    const res = await callClaude({tier:opts.modelTier || "default", messages:msgs, tools:tools.length ? tools : undefined, max_tokens:opts.maxTokens || 2048});
+    const res = await callClaude({tier:opts.modelTier || "default", messages:msgs, tools:tools.length ? tools : undefined, max_tokens:opts.maxTokens || 4096});
     if (opts.signal && opts.signal.aborted) throw {code:"cancelled", text};
     stop = res.stop_reason;
     const said = (res.content || []).filter(b => b.type === "text").map(b => b.text).join("");
@@ -227,7 +227,7 @@ function parseJsonLoose(t){
 sample.json = async (input, opts) => {
   const add = "\n\nReply with only the JSON value. No other text.";
   const inp = typeof input === "string" ? input + add : input.map((m, i) => i === input.length - 1 ? {...m, content:m.content + add} : m);
-  const {text} = await sample(inp, {...(opts || {}), maxTokens:3000});
+  const {text} = await sample(inp, {...(opts || {}), maxTokens:6000});
   return parseJsonLoose(text.trim());
 };
 sample.limits = async () => ({maxPromptBytes:262144, images:{maxCount:20, maxInputBytes:20e6, mediaTypes:["image/jpeg", "image/png", "image/webp", "image/gif"]}, tools:{maxCount:16}});
@@ -378,7 +378,13 @@ document.addEventListener("change", async e => {
   try{ t("Importing…"); const r = await importExport(e.target.files[0]); t(`Imported ${r.sessions} workouts, ${r.food} food days and ${r.photos} photos`); setTimeout(() => location.reload(), 1500); }
   catch(err){ t("Import failed: " + (err.message || err)); }
 });
-authReady.then(async () => { try{ P.push = await pushState(); if (sb && user){ const {data} = await sb.from("push_subs").select("remind_at").limit(1); if (data && data[0]) P.pushTime = data[0].remind_at; } }catch(e){ P.push = "unsupported"; } });
+authReady.then(async () => { try{ P.push = await pushState(); rerender(); if (sb && user){ const {data} = await sb.from("push_subs").select("remind_at").limit(1); if (data && data[0]) P.pushTime = data[0].remind_at; } }catch(e){ P.push = "unsupported"; } });
+P.dashBanner = () => {
+  const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if (!standalone && /iPhone|iPad/.test(navigator.userAgent)) return `<div class="banner info"><b>Install the app.</b> Tap Share, then Add to Home Screen, and open it from there. That's what turns on offline mode and notifications.</div>`;
+  if (HAS_BACKEND && user && P.push === "off" && CFG.vapidPublicKey) return `<div class="banner info"><b>Morning weigh-in reminder.</b> Get a nudge at 7:00 from AJ Training. <button class="link" data-plat="pushOn">Turn on</button></div>`;
+  return "";
+};
 window.AJP = P;
 
 /* ---------- The claude.use() shim the app calls ---------- */
