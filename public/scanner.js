@@ -3,17 +3,18 @@
    Label: waits until the camera is steady and the text is sharp, then captures automatically and sends it to Claude to read. */
 (function(){
 "use strict";
-let ov = null, stream = null, loop = null, mode = "barcode", detector = null, zx = null, steady = 0, best = 0, busy = false;
+let ov = null, stream = null, loop = null, mode = "barcode", detector = null, steady = 0, best = 0, busy = false;
 
 function el(html){ const d = document.createElement("div"); d.innerHTML = html; return d.firstElementChild; }
 function stop(){
-  clearInterval(loop); loop = null;
+  clearInterval(loop); loop = null; waiting = false;
   if (stream){ stream.getTracks().forEach(t => t.stop()); stream = null; }
   if (ov){ ov.remove(); ov = null; }
   document.body.style.overflow = "";
 }
 function setMode(m){
   mode = m; steady = 0; best = 0;
+  if (m === "barcode") setTimeout(pump, 50);
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
   ov.querySelector(".sc-shutter").hidden = m !== "label";
@@ -42,18 +43,16 @@ async function open(m){
   const v = ov.querySelector("video"); v.srcObject = stream; await v.play().catch(() => {});
   try{ const t = stream.getVideoTracks()[0], c = t.getCapabilities ? t.getCapabilities() : {}; if (c.focusMode && c.focusMode.includes("continuous")) await t.applyConstraints({advanced:[{focusMode:"continuous"}]}); }catch(e){}
   if ("BarcodeDetector" in window){ try{ detector = new BarcodeDetector({formats:["ean_13", "ean_8", "upc_a", "upc_e"]}); }catch(e){ detector = null; } }
-  if (!detector && window.ZXing){
-    const hints = new Map(); hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, [ZXing.BarcodeFormat.EAN_13, ZXing.BarcodeFormat.EAN_8, ZXing.BarcodeFormat.UPC_A, ZXing.BarcodeFormat.UPC_E]); hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
-    zx = new ZXing.MultiFormatReader(); zx.setHints(hints);
-  }
+  if (!detector) startWorker();
   loop = setInterval(tick, 180);
+  pump();
 }
 
 let prev = null;
 async function tick(){
   if (!ov || busy) return;
   const v = ov.querySelector("video"); if (!v.videoWidth) return;
-  if (mode === "barcode") return readBarcode(v);
+  if (mode === "barcode") return;   // barcodes are read by pump(), as fast as the decoder allows
   // Label: measure motion and sharpness on a small greyscale copy of the frame.
   const w = 160, h = Math.round(160 * v.videoHeight / v.videoWidth), c = document.createElement("canvas"); c.width = w; c.height = h;
   const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(v, 0, 0, w, h);
@@ -69,19 +68,44 @@ async function tick(){
   hint(!crisp ? "Move closer so the numbers are sharp" : !still ? "Hold still…" : "Got it…");
   if (steady >= 6) captureLabel();
 }
-async function readBarcode(v){
-  let code = null;
-  try{
-    if (detector){ const r = await detector.detect(v); if (r[0]) code = r[0].rawValue; }
-    else if (zx){
-      const c = ov.querySelector("canvas"), cw = Math.min(1280, v.videoWidth), ch = Math.round(cw * v.videoHeight / v.videoWidth);
-      c.width = cw; c.height = Math.round(ch * 0.5);
-      c.getContext("2d", {willReadFrequently:true}).drawImage(v, 0, v.videoHeight * 0.25, v.videoWidth, v.videoHeight * 0.5, 0, 0, c.width, c.height);
-      const bmp = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(c)));
-      code = zx.decode(bmp).getText();
-    }
-  }catch(e){ /* nothing in frame yet */ }
-  if (code && /^\d{8,14}$/.test(code)){ busy = true; try{ navigator.vibrate && navigator.vibrate(60); }catch(e){} await gotBarcode(code); busy = false; }
+/* Barcode pipeline: grab a frame, decode it off the main thread, and immediately grab the next one.
+   zxing-cpp tries 0/90/180/270 degrees itself; every other frame is also drawn rotated 45 degrees so diagonal codes read too. */
+let worker = null, waiting = false, frameNo = 0, reqId = 0;
+function startWorker(){
+  if (worker) return;
+  try{ worker = new Worker("/barcode-worker.js"); worker.onmessage = e => { waiting = false; if (e.data && e.data.text) found(e.data.text); else pump(); }; worker.onerror = () => { waiting = false; worker = null; }; }
+  catch(e){ worker = null; }
+}
+const fcan = document.createElement("canvas"), fctx = fcan.getContext("2d", {willReadFrequently:true});
+function grab(v, angle){
+  const max = 960, k = Math.min(1, max / Math.max(v.videoWidth, v.videoHeight));
+  const w = Math.round(v.videoWidth * k), h = Math.round(v.videoHeight * k);
+  if (!angle){ fcan.width = w; fcan.height = h; fctx.drawImage(v, 0, 0, w, h); return fctx.getImageData(0, 0, w, h); }
+  const d = Math.round(Math.hypot(w, h)); fcan.width = d; fcan.height = d;
+  fctx.fillStyle = "#fff"; fctx.fillRect(0, 0, d, d);
+  fctx.translate(d / 2, d / 2); fctx.rotate(angle); fctx.drawImage(v, -w / 2, -h / 2, w, h); fctx.setTransform(1, 0, 0, 1, 0, 0);
+  return fctx.getImageData(0, 0, d, d);
+}
+async function pump(){
+  if (!ov || mode !== "barcode" || busy || waiting) return;
+  const v = ov.querySelector("video");
+  if (!v.videoWidth){ requestAnimationFrame(pump); return; }
+  frameNo++;
+  if (detector){
+    waiting = true;
+    try{ const r = await detector.detect(v); waiting = false; if (r[0]) return found(r[0].rawValue); }catch(e){ waiting = false; }
+    requestAnimationFrame(pump); return;
+  }
+  if (!worker){ setTimeout(pump, 300); return; }
+  const img = grab(v, frameNo % 2 ? 0 : Math.PI / 4);
+  waiting = true; worker.postMessage({id:++reqId, img}, [img.data.buffer]);
+}
+async function found(code){
+  if (!ov || busy || !/^\d{8,14}$/.test(code)){ pump(); return; }
+  busy = true; try{ navigator.vibrate && navigator.vibrate(60); }catch(e){}
+  ov.querySelector(".sc-frame").classList.add("hit");
+  await gotBarcode(code); busy = false;
+  if (ov && mode === "barcode") pump();
 }
 async function captureLabel(){
   if (!ov || busy) return; busy = true;
