@@ -1,0 +1,45 @@
+import asyncio
+from playwright.async_api import async_playwright
+O="/tmp/ajt/p1b/"
+async def m():
+    import os; os.makedirs(O,exist_ok=True)
+    async with async_playwright() as p:
+        b=await p.chromium.launch()
+        
+        ctx=await b.new_context(viewport={"width":390,"height":844},device_scale_factor=2,service_workers="block")
+        await ctx.route("**/config.js", lambda r: r.fulfill(body="window.AJ_CONFIG={};", content_type="application/javascript"))
+        await ctx.route("**/fonts.googleapis.com/**", lambda r: r.abort())
+        pg=await ctx.new_page(); errs=[]; pg.on("pageerror", lambda e: errs.append(str(e)))
+        await pg.goto("http://localhost:8765/"); await pg.wait_for_timeout(3600)
+        n=[0]
+        async def shot(name, full=False):
+            n[0]+=1; await pg.wait_for_timeout(450); await pg.screenshot(path=O+f"{n[0]:02d}_{name}.png")
+        await pg.click("[data-ob=next]"); await shot("sections")
+        await pg.click("[data-ob=next]")
+        await pg.fill("[data-input=name]","Sam"); await pg.click("[data-set=sex][data-val=female]")
+        await pg.type("[data-dob]","01041999")
+        await pg.click("[data-set='units.h'][data-val=ftin]")
+        await pg.fill("[data-conv=ft]","5"); await pg.fill("[data-conv=in]","6")
+        await shot("pre"); await pg.click("[data-set='units.w'][data-val=st]"); await shot("post")
+        await pg.fill("[data-conv=st]","10"); await pg.fill("[data-conv=stlb]","3")
+        await pg.click(".obtitle")
+        await shot("about")
+        print(await pg.evaluate("JSON.stringify(document.querySelector('[data-dob]').value)"))
+        await pg.click("[data-ob=next]"); await shot("next")
+        await pg.click("[data-wnext=nut]"); await pg.wait_for_timeout(600)
+        await pg.click("[data-ob=next]"); await shot("goal")
+        await pg.click("[data-set=type][data-val=cut]"); await pg.wait_for_timeout(600); await shot("activity")
+        await pg.click("[data-setsteps='6000']"); await pg.click("[data-setcycle='150']"); await shot("activity2")
+        await pg.evaluate("document.querySelector('#ob .obbody').scrollTop=2000"); await shot("activity3")
+        await pg.click("[data-ob=next]"); await shot("stats")
+        await pg.click("[data-bf='30']"); await shot("stats2")
+        await pg.click("[data-ob=next]"); await shot("target")
+        await pg.click("[data-ob=next]"); await shot("rate")
+        await pg.evaluate("const r=document.querySelector('[data-range=rate]'); r.value=1.1; r.dispatchEvent(new Event('input',{bubbles:true})); r.dispatchEvent(new Event('change',{bubbles:true}))"); await shot("rate_fast")
+        await pg.click("[data-ob=next]"); await shot("macros")
+        await pg.click("[data-set=prot][data-val='2.6']"); await shot("macros2")
+        await pg.click("[data-ob=next]"); await shot("review")
+        print(await pg.evaluate("JSON.stringify({p:S.profile.units,h:S.profile.heightCm,dob:S.profile.birthDate,w:S.weights.slice(-2),bf:S.profile.bfManual,mods:S.profile.modules})"))
+        print("errors:", errs)
+        await b.close()
+asyncio.run(m())
