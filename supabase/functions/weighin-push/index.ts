@@ -20,7 +20,14 @@ function avg7(entries: { d: string; kg: number }[], today: string) {
 
 Deno.serve(async (req) => {
   if (req.headers.get("x-cron-secret") !== Deno.env.get("CRON_SECRET")) return new Response("forbidden", { status: 403 });
+  const opts = await req.json().catch(() => ({}));
   const { data: subs, error } = await sb.from("push_subs").select("*");
+  if (opts.test) {
+    // Manual test: send one notification to every device now, without touching the daily schedule.
+    let ok = 0;
+    for (const s of subs ?? []) { try { await webpush.sendNotification(s.sub, JSON.stringify({ title: "AJ Training", body: "Notifications are working. Your weigh-in reminder comes at " + s.remind_at + ".", url: "/", tag: "test" })); ok++; } catch (e) { console.error("test push failed", (e as any)?.statusCode, (e as any)?.body); } }
+    return new Response(JSON.stringify({ ok: true, test: true, sent: ok, devices: subs?.length ?? 0 }), { headers: { "Content-Type": "application/json" } });
+  }
   if (error) return new Response(error.message, { status: 500 });
   let sent = 0;
   for (const s of subs ?? []) {

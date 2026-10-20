@@ -1308,7 +1308,7 @@ function renderBody(){
   const sets=S.photosets.slice(0,12).map(p=>`<div class="card">
     <div class="spread"><b>${fmtD(p.date)}</b><span class="num">${p.bf&&p.bf.point?`<b>${p.bf.point}%</b> <span class="muted small">${p.bf.low}–${p.bf.high}</span>`:S.busy==="an:"+p.id?'<span class="row small muted"><span class="spinner"></span>Analysing…</span>':'<span class="muted small">Not analysed</span>'}</span></div>
     ${p.bfError&&!(p.bf&&p.bf.point)?`<p class="small warn">${esc(p.bfError)}</p>`:""}
-    <div class="thumbs">${p.photos.map(ph=>`<figure><img src="/_blob/${esc(ph.id)}" alt="${esc(ph.pose)} photo" loading="lazy"><figcaption>${esc(POSE_LABEL[ph.pose]||"")}</figcaption></figure>`).join("")}</div>
+    <div class="thumbs">${p.photos.map(ph=>`<figure><img src="/_blob/${esc(ph.id)}" alt="${esc(ph.pose)} photo" loading="lazy"><figcaption><button class="link muted" data-act="pose" data-id="${p.id}" data-i="${p.photos.indexOf(ph)}" aria-label="Change label">${esc(POSE_LABEL[ph.pose]||"Label")} ▾</button></figcaption></figure>`).join("")}</div>
     ${p.bf&&p.bf.asSeen!=null&&p.bf.asSeen!==p.bf.point?`<p class="small"><b>As seen ${p.bf.asSeen}%</b> <span class="muted">→ ${p.bf.point}% adjusted${p.bf.adjustment?": "+esc(p.bf.adjustment):""}</span></p>`:""}
     ${p.bf&&p.bf.notes?`<p class="small">${esc(p.bf.notes)}</p>`:""}
     ${S.condOpen===p.id?`<div class="conds">${condChips(p.cond,p.id)}</div>`:""}${p.bf&&p.bf.vs_previous?`<p class="small muted">${esc(p.bf.vs_previous)}</p>`:""}
@@ -1552,7 +1552,12 @@ function bfPrompt(n, prevSet, cond){
   const kg=currentKg(), p=S.profile;
   return `These are AJ's own progress photos from his fitness app. He has asked for an honest body fat estimate to track his physique over time.
 Him: male, ${age()}, ${p.heightCm} cm, ${r1(kg)} kg (7-day average), natural, about 2 years of serious training, phase: ${PHASES[p.phase].label}. He flexes in every photo.
-There are ${n} photos. First identify what each one mainly shows: "front" (front of torso), "side" (side of torso), "back" (back), "legs" (mainly lower body), or "other".
+There are ${n} photos. First label each one by what it is mainly for:
+- "legs": the legs are uncovered (shorts or underwear, trousers pulled down) or the shot is framed on the lower body. Use this even if the torso is also visible.
+- "front": facing the camera with legs covered, torso is the focus.
+- "side": body turned roughly 90 degrees, showing the side of the torso.
+- "back": back to the camera.
+- "other": anything else.
 ${prevSet&&prevSet.bf?`Previous check-in ${prevSet.date}: ${prevSet.bf.point}% (${prevSet.bf.low}-${prevSet.bf.high}) at ${prevSet.kg} kg. Markers then: ${(prevSet.bf.markers||[]).join("; ")}. Judge change relative to that.`:"This is his first check-in."}
 Conditions he reported: ${condText(cond)}. Also judge the lighting yourself from the photos.
 
@@ -1729,6 +1734,7 @@ $("#main").addEventListener("click", async e=>{
     case "unstage": { const s=S.staged.splice(+b.dataset.i,1)[0]; s&&URL.revokeObjectURL(s.url); render(); return; }
     case "photoSave": photoCheckin(); return;
     case "reanalyse": reanalyse(b.dataset.id); return;
+    case "pose": { const ps=S.all.photosets.find(x=>x.id===b.dataset.id); if(!ps) return; const order=["front","side","back","legs","other"], i=+b.dataset.i, d=clone(ps); d.photos[i].pose=order[(order.indexOf(d.photos[i].pose)+1)%order.length]; upsert("photosets",d); putDoc("photosets",d.id,d); render(); return; }
     case "condOpen": S.condOpen=S.condOpen===b.dataset.id?null:b.dataset.id; render(); return;
     case "photoDel": {
       const k="pdel:"+b.dataset.id; if(prev!==k){ S.confirm=k; render(); return; } S.confirm=null;
