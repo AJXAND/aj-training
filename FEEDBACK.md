@@ -61,6 +61,20 @@ Spotted by me during this stop (to check):
 
 Names: none of the first six landed. Keep the propeller logo; more options needed.
 
+## Stop 3b: Plan builder (running)
+
+40. **Type your own goal**, analysed by AI.
+41. **Ultra = anything longer than a marathon**, not "50-100 km".
+42. **Distance goals (e.g. 5k) wrongly assume an event**: by default, estimate from current fitness (science-backed) how long it will take to reach the goal; optionally add an event date and the plan builds towards it.
+43. **Sliders look poor everywhere in the app**: redesign them.
+44. **"Where are you now?" needs real thought**: should cover everyone from can barely jog to elite, backed by science, and adjust the plan accordingly.
+45. **Run days**: same problem as gym days (most people don't have fixed days); needs a great flexible-scheduling solution.
+46. **Strength sessions capped at 2**: allow fewer or more, with 2 recommended if that's optimal for running performance.
+47. **Gym equipment step**: same issues as item 26.
+48. ✅ The running plan did build this time.
+49. **More programme types**: HYROX, CrossFit, triathlon and the other most popular formats to start with (add more over time), all evidence-backed.
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
+- **Name parked**: AJ doesn't want the low-quality domain variants; revisit naming later (Wingman/Wingmate still favourites).
