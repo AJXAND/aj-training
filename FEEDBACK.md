@@ -134,6 +134,10 @@ Spotted by me: the Creatine habit in the first screenshot doesn't appear in the 
 82. **Coach must show the brand name, not "Claude"** (item 16).
 83. **AI photo food scanner**: photograph your meal, AI works out what it is and the amounts; editable, and you can add a text note alongside the photo for context.
 
+## Stop 9: Settings
+
+84. **Settings needs a complete rework**: currently chaotic, hard to find anything, no clear structure.
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
