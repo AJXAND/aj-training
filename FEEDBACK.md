@@ -92,6 +92,24 @@ Spotted by me during this stop:
 59. **Live workout layout**: the current exercise expands and the others collapse, with a clear "you're here" state. Logging weight and reps must be super fast and never glitchy.
 60. **Auto-suggested weights and reps** for the next session from last time (progressive overload), at least as an option; design the best way to do it.
 
+## Stop 5: Food and nutrition goal
+
+61. **Icons inconsistent**: "Build your plan" uses the app logo while food and habits use icons. All should be icons.
+62. **Pointless scrolling** in the nutrition onboarding (and maybe elsewhere): the page scrolls/bounces but nothing moves. Polish it (no scroll when content fits; proper behaviour when it doesn't).
+63. **"How active are you?" too restrictive and still built around AJ** (cycling commute as a headline question, etc.). Needs to fit everyone.
+64. **What if people don't know their daily steps?** Offer a way to estimate it (e.g. descriptions of typical days, or read from Health).
+65. **"Check your numbers": weight and body fat must be editable there**, with visual body-fat range guides for both men and women.
+66. **Target weight slider/stepper lets you go the wrong way**: the + goes past the top of the range, and on a cut you can choose a target heavier than now. Constrain it to the goal direction.
+67. **Projection graph looks awful and doesn't change with the chosen rate.** Redesign so it visibly reflects the pace.
+68. **Protein as preset options, not a slider**: offer choices based on preference, show the recommended amounts, and don't allow going below the minimum.
+69. **Same pointless-scroll issue on the macros page.**
+70. **Food log and the whole food tracking system need serious work**, in both function and design (ties to item 14).
+
+Spotted by me during this stop:
+- **Calories disagree**: the pace screen says 2,140 kcal (2,760 − 620), but the Food page target shows 2,310. Find out why (probably the training-day calorie split or a stale value) and make it consistent.
+- Food log empty state still says "tell Claude" (item 16).
+
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
