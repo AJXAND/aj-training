@@ -118,6 +118,14 @@ Spotted by me during this stop:
 
 Spotted by me: the Creatine habit in the first screenshot doesn't appear in the final list. Check whether saving a template habit can fail silently.
 
+## Stop 7: Progress
+
+74. **Far more cardio/sport options**: effectively every sport, each with a uniform icon (same picker as item 28).
+75. **Connect smartwatches and other data sources** (Apple Health/Watch, Garmin, Whoop, Oura, Strava, etc.) at some point, across the whole app, not just cardio.
+76. **"Claude" still appears in several places** (e.g. "Just tell Claude" on Log cardio). Covered by item 16; make sure every instance goes.
+77. **Logging cardio doesn't belong in Progress**: it belongs in the training section.
+78. **Progress should be a showcase of how far you've come** across everything: training, food, body visuals, weight, habits, running. Interactive wherever it makes sense, but no logging of new things here except progress-specific items (e.g. progress photos).
+
 ## To do (decided)
 
 - **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
