@@ -1,5 +1,5 @@
 /* AJ Training service worker: keeps the app available offline and shows push notifications. */
-const VERSION = "ajt-v6";
+const VERSION = "ajt-v7";
 const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/science.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
   "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png", "/icons/badge-96.png", "/foods-db.json"];
 
@@ -15,9 +15,9 @@ self.addEventListener("fetch", e => {
     return;
   }
   if (url.origin !== location.origin) return; // Supabase, Open Food Facts, etc. go straight to the network.
-  // The page itself: network first so updates arrive, cache when offline.
+  // The page itself: network first, revalidating past the 10-minute GitHub Pages cache, so updates arrive on the next open.
   if (req.mode === "navigate"){
-    e.respondWith(fetch(req).then(r => { caches.open(VERSION).then(c => c.put("/index.html", r.clone())); return r; }).catch(() => caches.match("/index.html")));
+    e.respondWith(fetch(req, {cache:"no-cache"}).then(r => { caches.open(VERSION).then(c => c.put("/index.html", r.clone())); return r; }).catch(() => caches.match("/index.html")));
     return;
   }
   // Big static files (libraries, icons, food database): cache first, refresh in the background.
@@ -27,7 +27,7 @@ self.addEventListener("fetch", e => {
   }
   // App code and config: network first (so updates land straight away), cache when offline or slow.
   e.respondWith(caches.open(VERSION).then(async c => {
-    const net = fetch(req).then(r => { if (r.ok) c.put(req, r.clone()); return r; });
+    const net = fetch(req, {cache:"no-cache"}).then(r => { if (r.ok) c.put(req, r.clone()); return r; });
     const timeout = new Promise(res => setTimeout(() => res(null), 3000));
     try{ const r = await Promise.race([net, timeout]); if (r) return r; }catch(err){}
     return (await c.match(req, {ignoreSearch:true})) || net;
