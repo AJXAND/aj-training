@@ -18,7 +18,7 @@ You are taking over development of **AJ Training**, an all-in-one fitness, food 
 ## Repo, hosting, deploy
 - GitHub: `AJXAND/aj-training`, branch `main`. Live at https://ajtraining.quotientgroup.co.uk (GitHub Pages, custom domain in public/CNAME; ajxand.github.io/aj-training redirects there).
 - Deploy = push to main. `.github/workflows/deploy.yml` runs `npm ci && npm run build` (Vite 5.4.11) and publishes `dist`.
-- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v24"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
+- **Every deploy: bump `VERSION` in public/sw.js** (currently `"ajt-v25"`) or phones keep the old cached app. If you add a new file in public/, also add it to `SHELL` in public/sw.js.
 - Commit messages end with the attribution lines from your session instructions.
 - Backend: Supabase (auth, a `docs` table of `{user_id, path, col, data, deleted, updated_at}`, photo storage, edge functions for the Claude API). See supabase/ and scripts/setup-supabase.sh. The app gets its config from `config.js` (`window.AJ_CONFIG = {supabaseUrl, supabaseAnonKey, vapidPublicKey}`).
 
@@ -90,6 +90,14 @@ Facts established so far:
   - Consider adding a debug flag (e.g. localStorage `ajdebug`) that logs each render's target inputs, since you can't inject code before boot.
 - Also consider: a day's calorie target should arguably be locked once per day so it never changes on refresh. Raise this with AJ rather than deciding alone.
 - AJ is (rightly) angry about this one. Fix it properly, verify on a fresh-tab load several times, deploy, and tell him exactly what the cause was.
+
+## Session of 20 Oct (late): where things stand
+- v23: kcal bug fixed (cause above). v24: welcome "What do you want to use?" is now Training / Food and weight / Both; habits always on (`on("habits")` is always true); `USES`, `modsFor()`, `useOf()`, `useCards()` in index.html; Settings > App uses the same cards (`setUse`). Icons were grey because `.obopt span{color:muted}` beat `.obmi`; fixed with `.obopt .obmi{color:#fff}`.
+- v25: no back button on the first welcome screen (it closed the flow to the dashboard).
+- AJ approved the Welcome screen as is. We're going screen by screen from first launch; next is About you, then the dashboard.
+- Open question for AJ: with "Food and weight" only, keep the Train tab (sport logging feeds calorie burn) or hide it?
+- Known broken test: tests/e2e/dark.py clicks `[data-set=gtype][data-val=muscle]`, which no longer exists (goal is now `[data-gfam=...]`). Broken before v24.
+- Local setup: `pip install playwright==1.56.0` (matches the preinstalled Chromium 1194). Serve with `python3 -m http.server 8765 --directory dist` so rebuilds don't kill the server.
 
 ## After the bug: the one-feature-at-a-time process
 Agreed order:
