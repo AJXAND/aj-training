@@ -1791,10 +1791,8 @@ function homeParts(){
   let weight="";
   if (on("nutrition")){
     const pts=S.weights.filter(w=>(Date.now()-parseD(w.d))/864e5<=42).map(e=>({t:parseD(e.d).getTime(), v:avgWindow(e.d,7)})), todayW=S.weights.find(x=>x.d===todayStr);
-    const trend=S.weights.filter(w=>(Date.now()-parseD(w.d))/864e5<=28).map(e=>avgWindow(e.d,7));
-    weight=`<div class="card wcard"><div class="wtop"><span class="wic">${ICON.scale}</span><h2>Weight</h2>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} kg today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
-      <button class="wmain" data-goto="progress" data-seg="body">${a7?`<span class="stack" style="gap:2px"><b class="wnum num">${a7.toFixed(1)}<em> kg</em></b><span class="small muted">7-day average${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}</span></span>`:`<span class="small muted">Weigh in each morning to see your trend</span>`}
-        ${trend.length>=3?`<span class="wspark">${miniTrend(trend)}</span>`:""}</button></div>`;
+    weight=`<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Weight</h2><span class="small muted">${a7?`7-day average ${a7.toFixed(1)} kg${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}`:"Weigh in each morning to see your trend"}</span></div>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
+      ${pts.length>=3?multiChart([{color:"var(--weight)",pts}],{minSpan:1,fmt:v=>v.toFixed(1),label:"7-day average weight, last 6 weeks"}):""}</div>`;
   }
   const habits=on("habits")?(habitList().length?habitsSummaryCard():nsCard(ICON.steps,"Your daily habits show here","Tick them off in one tap and watch the streaks build.","hAdd","Add habit")):"";
   const wkLegend=[lift?'<span><i style="background:var(--orange)"></i>Sets</span>':"", on("nutrition")?'<span><i style="background:var(--kcal)"></i>Calories</span>':"", '<span><i style="background:var(--cardio)"></i>Cardio</span>', on("nutrition")?'<span><i style="background:var(--weight)"></i>Weight</span>':""].join("");
