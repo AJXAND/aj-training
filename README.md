@@ -29,7 +29,7 @@ Without `config.js` filled in, the app runs fully on the device (no sync, no Cla
    `SUPABASE_ACCESS_TOKEN=… PROJECT_REF=… ANTHROPIC_API_KEY=… OWNER_EMAIL=… bash scripts/setup-supabase.sh`
    then put the printed values in `public/config.js`.
 4. **Auth settings** (Supabase dashboard, Authentication): after creating your account in the app, turn off new sign-ups.
-5. **Hosting**: push this repo to GitHub and connect it to a static host (build `npm run build`, output `dist`). Add a CNAME for `ajtraining.quotientgroup.co.uk` pointing at the host.
+5. **Hosting**: GitHub Pages. Pushing to `main` builds and deploys automatically (`.github/workflows/deploy.yml`). In the repo: Settings, Pages, Source: GitHub Actions; custom domain `ajtraining.quotientgroup.co.uk`; Enforce HTTPS. DNS: CNAME `ajtraining` to `ajxand.github.io`.
 6. **Phone**: open the site in Safari, Share, Add to Home Screen. Open it from the Home Screen, sign in, then Settings: turn on Notifications, set up Apple Health steps, and import the export from the Claude version.
 
 ## Data model
