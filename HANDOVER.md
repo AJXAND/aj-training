@@ -117,3 +117,8 @@ AJ's own plan is the old 7-day PPL with no rest day. Once the builder is right, 
   - Volume 10 to 14 fractional sets per muscle per week, about 20 for priority muscles, capped at 25.
   - Frequency at least twice a week per muscle. Never 7 training days, always at least 1 rest day.
   - Full sources and DOIs are in docs/EVIDENCE_NOTES.md.
+
+## Parked (come back to these)
+- **Black status bar on iPhone:** AJ's phone is in Dark Mode while the app is set to Light; iOS colours the bar from the phone's mode, so it shows black. Fix idea: follow the phone's mode by default, and/or draw the page behind the bar (black-translucent) when the app theme matches the phone.
+- **New-user dashboard** (see docs/parked-dashboard-notes.png): setup steps duplicated by the "shows here" cards; insights show made-up numbers on day one (15% body fat default, "Maintenance" with no goal, "0 ready", "Cardio 0"); "Welcome, Sam" toast covers the food card. Suggested: day one shows setup steps + weight card only.
+- One thing at a time in replies: AJ found long multi-point replies too much.
