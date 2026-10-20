@@ -60,3 +60,7 @@ Spotted by me during this stop (to check):
 39. **Building the plan doesn't work** (BUG: hangs, linked to the 7-day split issue). Must be fast and show live progress of what it's doing.
 
 Names: none of the first six landed. Keep the propeller logo; more options needed.
+
+## To do (decided)
+
+- **Rebrand to Wingman or Wingmate** (keep the propeller logo). Exact .com/.app taken for both; candidates that appear free: wingmanfit.com, wingmatefit.com, joinwingmate.com, wingmanfit.app, wingmatefit.app. Exact App Store names "Wingman" and "WingMate" are used by other apps, so the listing name needs a suffix (e.g. "Wingmate: Gym & Food Coach"). Trademark search still to do before committing.
