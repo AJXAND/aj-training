@@ -246,6 +246,7 @@ const downloadsApi = {
 /* ---------- Auth ---------- */
 function loginScreen(){
   return new Promise(resolve => {
+    if (window.splashDone) setTimeout(window.splashDone, 0);   // the sign-in screen replaces the launch animation
     const el = document.createElement("div"); el.className = "ajlogin";
     el.innerHTML = `<div class="ajlogin-in">${window.LOGO ? LOGO(72) : ""}<h1>AJ TRAINING</h1><p class="muted">Sign in to sync your training, food and photos.</p>
       <form id="ajLoginForm"><input class="field" id="ajEmail" type="email" autocomplete="username" placeholder="Email" required>

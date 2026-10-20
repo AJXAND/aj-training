@@ -96,7 +96,7 @@ let q = "", focus = null;
 function draw(){
   let o = document.getElementById("sci");
   if (!o){ o = document.createElement("div"); o.id = "sci"; o.className = "sci"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Science library"); document.body.appendChild(o);
-    o.addEventListener("click", e => { if (e.target.closest("[data-sciclose]")){ o.remove(); if (!document.getElementById("ob")) document.body.style.overflow = ""; } });
+    o.addEventListener("click", e => { if (e.target.closest("[data-sciclose]")){ o.classList.add("out"); setTimeout(() => o.remove(), 260); if (!document.getElementById("ob")) document.body.style.overflow = ""; } });
     o.addEventListener("input", e => { if (e.target.id === "sciq"){ q = e.target.value.toLowerCase(); list(); } });
     o.innerHTML = `<div class="obtop"><button class="iconbtn" data-sciclose aria-label="Close">${ICON.back}</button><div class="date" style="flex:1">Science library</div></div>
       <div class="obbody"><h1 class="obtitle">The evidence</h1>

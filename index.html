@@ -533,9 +533,106 @@ img{max-width:100%}
 .scikind{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:var(--sunk);color:var(--muted);margin-right:6px}
 .scikind.meta{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
 .scikind.prac{background:var(--orange-soft);color:var(--orange)}
+
+/* ---------- Motion ----------
+   One easing family everywhere (fast out, soft landing) so the app feels like one object. */
+:root{--ease:cubic-bezier(.2,.85,.25,1);--spring:cubic-bezier(.34,1.45,.5,1)}
+html{-webkit-tap-highlight-color:transparent}
+/* launch */
+#splash{position:fixed;inset:0;z-index:100;background:#0A0A0B;display:grid;place-items:center;overflow:hidden;transition:opacity .45s var(--ease),transform .55s var(--ease)}
+#splash .sp{display:grid;justify-items:center;gap:22px;position:relative}
+#splash .glow{position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-300px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.42),rgba(255,107,26,0) 62%);opacity:0;animation:spglow 1.6s var(--ease) .1s forwards}
+#splash .mark{width:112px;height:112px;border-radius:27px;position:relative;opacity:0;transform:scale(.55);animation:sppop .8s var(--spring) .05s forwards;box-shadow:0 18px 50px rgba(255,107,26,.25)}
+#splash .mark svg{width:100%;height:100%;display:block}
+#splash .prop{transform-origin:32px 32px;animation:spspin 1.5s cubic-bezier(.15,.6,.25,1) .15s both}
+#splash .word{font:800 15px var(--display);letter-spacing:.32em;color:#fff;text-transform:uppercase;display:flex;gap:.02em;padding-left:.32em}
+#splash .word i{font-style:normal;display:inline-block;opacity:0;transform:translateY(10px);animation:spword .5s var(--ease) forwards;animation-delay:calc(.42s + var(--k)*30ms)}
+#splash .word i.sp-gap{width:.5em}
+#splash .bar{width:44px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;opacity:0;animation:spfade .3s 1s forwards}
+#splash .bar i{display:block;height:100%;width:40%;background:#FF6B1A;border-radius:2px;animation:spload 1s ease-in-out infinite}
+#splash.out{opacity:0;transform:scale(1.08);pointer-events:none}
+#splash.out .mark{transform:scale(1.25);transition:transform .55s var(--ease)}
+@keyframes sppop{to{opacity:1;transform:scale(1)}}
+@keyframes spspin{from{transform:rotate(-560deg)}to{transform:rotate(0)}}
+@keyframes spglow{40%{opacity:1}to{opacity:.55}}
+@keyframes spword{to{opacity:1;transform:none}}
+@keyframes spfade{to{opacity:1}}
+@keyframes spload{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+/* page transitions: children of the page enter with a short stagger, direction follows the nav */
+main.pg > *{animation:var(--pga) .46s var(--ease) both;animation-delay:calc(min(var(--i,0),10) * 32ms)}
+main.pg-r{--pga:pgR} main.pg-l{--pga:pgL} main.pg-up{--pga:pgUp} main.pg-soft{--pga:pgSoft}
+main.pg-soft > *{animation-duration:.3s;animation-delay:calc(min(var(--i,0),6) * 18ms)}
+@keyframes pgR{from{opacity:0;transform:translateX(22px)}}
+@keyframes pgL{from{opacity:0;transform:translateX(-22px)}}
+@keyframes pgUp{from{opacity:0;transform:translateY(16px) scale(.985)}}
+@keyframes pgSoft{from{opacity:.25;transform:translateY(6px)}}
+main.pg .mbt i,main.pg .track b,main.pg .obtrack b,main.pg .progress i,main.pg .wk .cell .b i{animation:grow .9s var(--ease) both;animation-delay:.18s;transform-origin:left bottom}
+main.pg .wk .cell .b i{transform-origin:bottom}
+@keyframes grow{from{transform:scale(0,1)}}
+main.pg .wk .cell .b i{animation-name:growY}
+@keyframes growY{from{transform:scaleY(0)}}
+main.pg .tile svg path{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.1s var(--ease) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+/* tap feedback */
+.btn,.tile,.tilecard,.ctacard,.goalrow,.act,.chip,.wday,.obopt,.obday,.obstep,.iconbtn,.coachbtn,.tick,.fe,.btnli,.mday,.tgl,.seg button,.nav button,.sciitem summary,.dd{transition:transform .16s var(--ease),background-color .22s,color .22s,box-shadow .22s,opacity .2s}
+.btn:active,.tile:active,.tilecard:active,.ctacard:active,.goalrow:active,.act:active,.wday:active,.fe:active,.btnli:active{transform:scale(.975)}
+.chip:active,.obday:active,.obstep:active,.iconbtn:active,.coachbtn:active,.tick:active,.tgl:active,.mday:active,.seg button:active{transform:scale(.92)}
+/* nav: active icon springs, a pill marks the tab */
+.nav button[data-tab]::after{content:"";position:absolute;bottom:-6px;left:50%;width:18px;height:3px;margin-left:-9px;border-radius:2px;background:var(--orange);transform:scaleX(0);transition:transform .35s var(--spring)}
+.nav button[aria-selected="true"]::after{transform:scaleX(1)}
+.nav button[aria-selected="true"] svg{animation:navpop .45s var(--spring)}
+@keyframes navpop{40%{transform:translateY(-3px) scale(1.14)}}
+.nav .plus{transition:transform .35s var(--spring),background-color .25s}
+.nav .plus:active{transform:scale(.88)}
+.nav .plus.open svg{transform:rotate(45deg)}
+.nav .plus svg{transition:transform .35s var(--spring)}
+/* sheets, scrim, toast, timer */
+.scrim:not([hidden]){animation:fadeIn .25s ease both}
+.scrim.out{animation:fadeOut .22s ease both}
+.actions:not([hidden]){animation:sheetUp .42s var(--ease) both}
+.actions.out{animation:sheetDown .24s ease-in both}
+.actions:not([hidden]) .act{animation:pgUp .4s var(--ease) both;animation-delay:calc(var(--i,0) * 30ms + 60ms)}
+.sheet.chat:not([hidden]){animation:sheetUp .45s var(--ease) both}
+.sheet.chat.out{animation:sheetDown .26s ease-in both}
+.toast:not([hidden]){animation:toastIn .38s var(--spring) both}
+.timer:not([hidden]) .in{animation:sheetUp .4s var(--ease) both}
+.sci{animation:slideIn .38s var(--ease) both}
+.sci.out{animation:slideOut .26s ease-in both}
+.ob.out{animation:fadeOut .25s ease both}
+@keyframes fadeIn{from{opacity:0}} @keyframes fadeOut{to{opacity:0}}
+@keyframes sheetUp{from{transform:translateY(100%)}} @keyframes sheetDown{to{transform:translateY(100%)}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,14px) scale(.92)}}
+@keyframes slideIn{from{transform:translateX(100%)}} @keyframes slideOut{to{transform:translateX(100%)}}
+/* onboarding steps slide with direction */
+.obbody.ob-fwd > *{animation:pgR .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
+.obbody.ob-back > *{animation:pgL .42s var(--ease) both;animation-delay:calc(min(var(--i,0),8) * 30ms)}
+.obopt[aria-pressed="true"]{animation:pick .32s var(--spring)}
+@keyframes pick{40%{transform:scale(.97)}}
+/* workout: a logged set pops, finished exercises settle */
+.set.just .tick{animation:tickpop .5s var(--spring)}
+.set.just{animation:rowflash .8s ease}
+@keyframes tickpop{30%{transform:scale(1.25)}}
+@keyframes rowflash{0%{background:color-mix(in srgb,var(--good) 18%,transparent)}100%{background:transparent}}
+.excard{transition:opacity .3s,transform .3s var(--ease)}
+details[open] > :not(summary){animation:pgSoft .3s var(--ease)}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
+<div id="splash" aria-hidden="true"><div class="glow"></div><div class="sp">
+  <div class="mark"><svg viewBox="0 0 64 64"><defs><radialGradient id="spg" cx="78%" cy="88%" r="100%"><stop offset="0" stop-color="#FF7A1F"/><stop offset=".42" stop-color="#A63F0E"/><stop offset=".78" stop-color="#1B0F0A"/><stop offset="1" stop-color="#0A0A0B"/></radialGradient>
+    <linearGradient id="spb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9D9D9"/></linearGradient>
+    <radialGradient id="sph" cx="36%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#E9E9E9"/><stop offset="1" stop-color="#9A9A9A"/></radialGradient></defs>
+    <rect width="64" height="64" rx="15" fill="url(#spg)"/>
+    <g class="prop"><g transform="rotate(-18 32 32)">
+      <path d="M27 29.5 L12 22.5 C7 20.5 4.2 24 4.6 30.5 C5 37.5 7.8 41.6 12.6 40.6 L27 35.5 Z" fill="url(#spb)"/>
+      <path d="M37 29.5 L52 22.5 C57 20.5 59.8 24 59.4 30.5 C59 37.5 56.2 41.6 51.4 40.6 L37 35.5 Z" fill="url(#spb)"/>
+      <path d="M10 25 C8.5 28 8.6 34 10.6 37.5M54 25 C55.5 28 55.4 34 53.4 37.5" stroke="#BDBDBD" stroke-width="1" fill="none" stroke-linecap="round"/></g></g>
+    <circle cx="32" cy="32" r="10.5" fill="#0A0A0B" opacity=".35"/><circle cx="32" cy="32" r="9.5" fill="url(#sph)"/><ellipse cx="28.8" cy="28.6" rx="3.2" ry="2.1" fill="#fff"/></svg></div>
+  <div class="word"><i style="--k:0">A</i><i style="--k:1">J</i><i class="sp-gap"></i><i style="--k:3">T</i><i style="--k:4">R</i><i style="--k:5">A</i><i style="--k:6">I</i><i style="--k:7">N</i><i style="--k:8">I</i><i style="--k:9">N</i><i style="--k:10">G</i></div><div class="bar"><i></i></div></div></div>
+<script>window.__splashT=Date.now();</script>
 
 <div class="wrap"><main id="main"></main></div>
 
@@ -1167,8 +1264,8 @@ function renderFood(){
 }
 function renderFoodSheet(){
   const el=$("#foodSheet"), a=S.foodAdd;
-  if (!a){ el.hidden=true; if ($("#chat").hidden && $("#actions").hidden) $("#scrim").hidden=true; return; }
-  el.hidden=false; $("#scrim").hidden=false;
+  if (!a){ hideAnim(el,240); if ($("#chat").hidden && ($("#actions").hidden||$("#actions").classList.contains("out"))) hideAnim($("#scrim")); return; }
+  el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
   let body;
   if (a.quick){
     body=`<h2>${a.entryId?"Edit entry":"Quick add"}</h2>
@@ -1317,7 +1414,7 @@ function renderLive(){
         <input id="dw-${ei}-${si}-${di}" inputmode="decimal" aria-label="Drop weight kg" data-e="${ei}" data-s="${si}" data-d="${di}" data-f="w" value="${esc(dp.w)}" placeholder="kg">
         <input id="dr-${ei}-${si}-${di}" inputmode="numeric" aria-label="Drop reps" data-e="${ei}" data-s="${si}" data-d="${di}" data-f="r" value="${esc(dp.r)}" placeholder="reps">
         <button class="tick" data-act="dropTick" data-e="${ei}" data-s="${si}" data-d="${di}" aria-label="Drop set done">✓</button></div>`).join("");
-      return `<div class="set ${s.done?"ok":""}"><span class="n">${si+1}</span>
+      return `<div class="set ${s.done?"ok":""}${S.justTicked===ei+"-"+si?" just":""}"><span class="n">${si+1}</span>
         <input id="w-${ei}-${si}" inputmode="decimal" aria-label="Set ${si+1} weight kg" data-e="${ei}" data-s="${si}" data-f="w" value="${esc(s.w)}" placeholder="${esc(s.pw)}">
         <input id="r-${ei}-${si}" inputmode="numeric" enterkeyhint="done" aria-label="Set ${si+1} reps" data-e="${ei}" data-s="${si}" data-f="r" value="${esc(s.r)}" placeholder="${esc(s.pr)}">
         <button class="tick" data-act="tick" data-e="${ei}" data-s="${si}" aria-label="Log set ${si+1}">✓</button></div>${drops}`;
@@ -1541,11 +1638,31 @@ let toastT;
 function toast(msg, undo){ const t=$("#toast"); t.innerHTML=esc(msg)+(undo?' <button class="tundo">Undo</button>':""); t.hidden=false; clearTimeout(toastT);
   if (undo) t.querySelector(".tundo").onclick=()=>{ undo(); t.hidden=true; render(); };
   toastT=setTimeout(()=>t.hidden=true, undo?6000:2600); }
+const NAV_ORDER=["home","food","plan","progress"], SUB={settings:1,habits:1,cardio:1,train:1};
+let pgT=null;
+// Animate the page that was just rendered: children rise in with a short stagger, direction follows the nav.
+function pageAnim(kind){
+  const m=$("#main"); if(!m) return;
+  clearTimeout(pgT); m.classList.remove("pg","pg-r","pg-l","pg-up","pg-soft"); void m.offsetWidth;
+  [...m.children].forEach((c,i)=>c.style.setProperty("--i",i));
+  m.classList.add("pg","pg-"+kind);
+  pgT=setTimeout(()=>m.classList.remove("pg","pg-r","pg-l","pg-up","pg-soft"), 1300);
+}
+function navKind(from, to){
+  if (SUB[to] && !SUB[from]) return "r";
+  if (SUB[from] && !SUB[to]) return "l";
+  const a=NAV_ORDER.indexOf(from), b=NAV_ORDER.indexOf(to);
+  return a<0||b<0||a===b ? "up" : b>a ? "r" : "l";
+}
+// Hide with an exit animation, then really hide.
+function hideAnim(el, ms){ if(!el||el.hidden||el.classList.contains("out")) return; el.classList.add("out"); setTimeout(()=>{ el.hidden=true; el.classList.remove("out"); }, ms||220); }
 function go(tab, seg){
+  const from=S.tab;
   if (tab==="settings" && S.tab!=="settings") S.prevTab=S.tab;
   if (tab==="progress" && seg) { S.progSeg=seg; }
   if (tab!=="progress") S.exView=null;
   S.tab=tab; S.confirm=null; closeActions(); render(); window.scrollTo(0,0);
+  pageAnim(from===tab ? "soft" : navKind(from, tab));
 }
 function openActions(){
   const t=todayDay();
@@ -1559,9 +1676,11 @@ function openActions(){
     ["photo","var(--fat)",ICON.camera,"Progress photos","Estimate body fat"]
   ];
   $("#actionsIn").innerHTML=`<div class="grab"></div>`+items.map(([k,c,ic,b,s])=>`<button class="act" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><span><b>${b}</b><span>${esc(s)}</span></span></button>`).join("");
-  $("#actions").hidden=false; $("#scrim").hidden=false;
+  [...$("#actionsIn").querySelectorAll(".act")].forEach((a,i)=>a.style.setProperty("--i",i));
+  $("#actions").classList.remove("out"); $("#scrim").classList.remove("out");
+  $("#actions").hidden=false; $("#scrim").hidden=false; $("#plusBtn").classList.add("open");
 }
-function closeActions(){ $("#actions").hidden=true; if (!S.foodAdd) $("#scrim").hidden=true; }
+function closeActions(){ hideAnim($("#actions"),240); $("#plusBtn").classList.remove("open"); if (!S.foodAdd) hideAnim($("#scrim")); }
 $("#plusBtn").onclick=()=>{ S.active ? go("train") : openActions(); };
 $("#scrim").onclick=()=>{ closeActions(); if (S.foodAdd){ S.foodAdd=null; renderFoodSheet(); } };
 $("#actionsIn").addEventListener("click",e=>{
@@ -1579,7 +1698,7 @@ function logSet(ei, si){
   if (s.done){ s.done=false; saveActive(); render(); return; }
   const w=s.w!==""?s.w:s.pw, r=s.r!==""?s.r:s.pr;
   if (w===""||r===""||isNaN(+w)||isNaN(+r)){ toast("Enter weight and reps first"); return; }
-  s.w=String(+w); s.r=String(+r); s.done=true;
+  s.w=String(+w); s.r=String(+r); s.done=true; S.justTicked=ei+"-"+si; setTimeout(()=>{ if(S.justTicked===ei+"-"+si) S.justTicked=null; },900);
   const nextSet=ex.sets.findIndex(x=>!x.done);
   let label;
   if (nextSet>=0) label=`${def.n}, set ${nextSet+1}`;
@@ -1838,8 +1957,8 @@ $("#main").addEventListener("click", async e=>{
     render(); return; }
   if (b.dataset.hday!=null){ S.homeDay=+b.dataset.hday; render(); return; }
   if (b.dataset.msel){ S.planSel=b.dataset.msel; render(); return; }
-  if (b.dataset.exview){ S.exView=b.dataset.exview; S.exGym="all"; render(); window.scrollTo(0,0); return; }
-  if (b.dataset.back){ const k=b.dataset.back; if (k==="lifts"){ S.exView=null; go("progress","lifts"); } else if (k==="cardio") go("progress","cardio"); else go(k); return; }
+  if (b.dataset.exview){ S.exView=b.dataset.exview; S.exGym="all"; render(); window.scrollTo(0,0); pageAnim("r"); return; }
+  if (b.dataset.back){ const k=b.dataset.back; if (k==="lifts"){ S.exView=null; go("progress","lifts"); } else if (k==="cardio") go("progress","cardio"); else go(k); pageAnim("l"); return; }
   if (b.dataset.goto && !b.dataset.act){ go(b.dataset.goto, b.dataset.seg); return; }
   if (b.dataset.segset){
     const n=b.dataset.segset, v=b.dataset.val;
@@ -1847,7 +1966,7 @@ $("#main").addEventListener("click", async e=>{
     else if (n==="planView") S.planView=v;
     else if (n==="foodMode") S.foodMode=v;
     else if (n==="nutMode") S.profile.nutrition={...(S.profile.nutrition||{}), mode:v};
-    render(); return;
+    render(); if (["progSeg","planView"].includes(n)) pageAnim("soft"); return;
   }
   const act=b.dataset.act, prev=S.confirm;
   if (!["finish","discard","del","photoDel","slip"].includes(act)) S.confirm=null;
@@ -2001,7 +2120,7 @@ function openChat(ctx){
   S.chatCtx=ctx||null; $("#chat").hidden=false; document.body.style.overflow="hidden"; renderChat();
   setTimeout(()=>$("#chatIn").focus(),60);
 }
-$("#chatClose").onclick=()=>{ $("#chat").hidden=true; document.body.style.overflow=""; if(chatCtl) chatCtl.abort(); render(); };
+$("#chatClose").onclick=()=>{ hideAnim($("#chat"),260); document.body.style.overflow=""; if(chatCtl) chatCtl.abort(); render(); };
 $("#chatChips").addEventListener("click",e=>{ const b=e.target.closest("[data-sugg]"); if(!b) return; $("#chatIn").value=b.dataset.sugg; sendChat(); });
 $("#chatMsgs").addEventListener("click",e=>{ const b=e.target.closest("[data-undo]"); if(!b) return; undoAction(+b.dataset.undo); });
 $("#chatIn").addEventListener("input",e=>{ const t=e.target; t.style.height="auto"; t.style.height=Math.min(120,t.scrollHeight)+"px"; });
@@ -2179,7 +2298,7 @@ async function boot(){
   const [gotDb,gotAssets,gotSample,gotDl]=await Promise.all([use("db"),use("assets"),use("sample"),use("downloads")]);
   assets=gotAssets; sampler=gotSample; downloads=gotDl;
   if (sampler){ try{ const lim=await sampler.limits(); S.canImages=!!lim.images; S.canTools=!!lim.tools; }catch(e){} }
-  if (!gotDb){ loadLocal(); S.ready=true; render(); return; }
+  if (!gotDb){ loadLocal(); S.ready=true; render(); splashDone(); return; }
   db=gotDb;
   try{
     const [act,bw,prof,prog,chat]=await Promise.all(["state/active","state/bodyweight","meta/profile","programme/current","state/chat"].map(p=>db.doc(p).get()));
@@ -2197,9 +2316,18 @@ async function boot(){
   watch("foods", l=>S.all.foods=l);
   watch("habits", l=>{ const m={}; l.forEach(d=>m[d.date||d.id]=d); S.all.habits=m; });
   watch("foodlog", l=>{ const m={}; l.forEach(d=>m[d.date||d.id]=d); S.all.foodlog=m; });
-  S.ready=true; render();
+  S.ready=true; render(); splashDone();
   if (S.active) keepAwake();
 }
+// Launch: hold the splash until data is ready (at least ~1.3 s so the animation lands), then lift it and bring the page in.
+let splashGone=false;
+function splashDone(){
+  if (splashGone) return; splashGone=true;
+  const sp=document.getElementById("splash"); if(!sp) return;
+  const wait=Math.max(0, 1600-(Date.now()-(window.__splashT||0)));
+  setTimeout(()=>{ sp.classList.add("out"); pageAnim("up"); setTimeout(()=>sp.remove(), 600); }, wait);
+}
+setTimeout(splashDone, 3500);
 boot();
 function routeHash(h){ if (h==="#weigh"||h==="#photos"){ go("progress","body"); setTimeout(()=>{ const el=document.getElementById(h==="#weigh"?"weighin":"photocard"); el&&el.scrollIntoView({block:"start"}); if(h==="#weigh"&&$("#kg")) $("#kg").focus(); },120); } else if (h==="#habits") go("habits"); else if (h==="#food") go("food"); history.replaceState(null,"",location.pathname); }
 if (location.hash) setTimeout(()=>routeHash(location.hash),400);

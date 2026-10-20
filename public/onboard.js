@@ -328,7 +328,7 @@ const saveDraft = () => { try{ localStorage.setItem(DRAFT + F.kind, JSON.stringi
 const loadDraft = k => { try{ return JSON.parse(localStorage.getItem(DRAFT + k)); }catch(e){ return null; } };
 const clearDraft = k => { try{ localStorage.removeItem(DRAFT + k); }catch(e){} };
 function el(){ let o = document.getElementById("ob"); if (!o){ o = document.createElement("div"); o.id = "ob"; o.className = "ob"; o.setAttribute("role", "dialog"); document.body.appendChild(o); bind(o); } return o; }
-function close(){ const o = document.getElementById("ob"); if (o) o.remove(); document.body.style.overflow = ""; F = null; render(); }
+function close(){ const o = document.getElementById("ob"); document.body.style.overflow = ""; F = null; render(); if (o){ o.classList.add("out"); setTimeout(() => o.remove(), 240); } }
 function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.getDay()) % 7 || 7; d.setDate(d.getDate() + (d.getDay() === 1 ? 0 : add)); return ymd(d); }
 
 function progDefaults(){
@@ -551,10 +551,11 @@ function draw(){
     <div class="obbody ${s.wide ? "wide" : ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>
     ${s.nofoot ? "" : `<div class="obfoot">${s.alt ? `<button class="btn ghost" data-ob="alt">${s.alt}</button>` : ""}<button class="btn orange" data-ob="next" ${blocked ? "disabled" : ""}>${s.cta || "Continue"}</button></div>`}`;
   o.querySelectorAll("details summary b").forEach(x => { if (openD.includes(x.textContent)) x.closest("details").open = true; });
+  if (!F.keepScroll && F.dir){ const bd = o.querySelector(".obbody"); [...bd.children].forEach((c, i) => c.style.setProperty("--i", i)); bd.classList.add(F.dir === "back" ? "ob-back" : "ob-fwd"); F.dir = null; }
   if (F.keepScroll) o.querySelector(".obbody").scrollTop = scrollY; F.keepScroll = false;
   if (F.step === "build") runBuild();
 }
-function go2(step){ F.step = step; saveDraft(); draw(); const b = document.querySelector("#ob .obbody"); if (b) b.scrollTop = 0; }
+function go2(step, dir){ F.dir = dir || "fwd"; F.step = step; saveDraft(); draw(); const b = document.querySelector("#ob .obbody"); if (b) b.scrollTop = 0; }
 function next(){
   const steps = stepsOf(), i = steps.indexOf(F.step);
   if (F.kind === "prog" && F.step === "review") return acceptProg();
@@ -562,7 +563,7 @@ function next(){
   if (F.kind === "prog" && F.step === "split" && !F.ans.split) F.ans.split = (SPLITS[F.ans.days.length] || [])[0]?.id;
   go2(steps[Math.min(steps.length - 1, i + 1)]);
 }
-function back(){ const steps = stepsOf(), i = steps.indexOf(F.step); if (i <= 0 || F.step === "review" && F.kind === "prog" && false) return close(); go2(steps[F.step === "review" && F.kind === "prog" ? i - 2 : i - 1]); }
+function back(){ const steps = stepsOf(), i = steps.indexOf(F.step); if (i <= 0) return close(); go2(steps[F.step === "review" && F.kind === "prog" ? i - 2 : i - 1], "back"); }
 function runBuild(){
   const lines = ["Choosing your split", "Placing leg days around your sport", "Picking exercises for home", "Picking exercises for SHWC", "Setting weekly volume per muscle", "Fitting sessions into " + F.ans.mins + " min", "Planning effort and the deload"];
   const box = document.getElementById("obticks"); let n = 0;
@@ -642,11 +643,11 @@ window.AJOnboard = {
     const d = !fresh && loadDraft("prog");
     F = {kind:"prog", step:d ? d.step : "intro", ans:d ? Object.assign(progDefaults(), d.ans) : progDefaults(), seed:""};
     if (F.step === "build" || F.step === "review") F.step = "block";
-    document.body.style.overflow = "hidden"; draw();
+    F.dir = "fwd"; document.body.style.overflow = "hidden"; draw();
   },
   nutrition(fresh){
     const d = !fresh && loadDraft("nut");
-    F = {kind:"nut", step:d ? d.step : "intro", ans:d ? Object.assign(nutDefaults(), d.ans) : nutDefaults()};
+    F = {kind:"nut", step:d ? d.step : "intro", ans:d ? Object.assign(nutDefaults(), d.ans) : nutDefaults(), dir:"fwd"};
     document.body.style.overflow = "hidden"; draw();
   },
   lib:L, MUS, generate, KIT_DEFAULT, targetsFor
