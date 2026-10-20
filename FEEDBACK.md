@@ -14,3 +14,18 @@ Recorded during the step-by-step review. Nothing here is fixed yet; we work thro
 8. **Weight: type it as well as slide, choose kg, lb or st/lb, and the range should go up to 200 kg.**
 9. **"You're set" cards also look greyed out** (same issue as item 1).
 10. **No password reset on the sign-in screen.** ✅ Done straight away (AJ needed it): "Forgot password?" on sign-in (emails a link that opens a set-new-password screen) and "Change password" in Settings → Account.
+
+## Stop 2: Dashboard
+
+11. **Setup prompts are split up**: two setup cards, then the "Today / Rest day" card, then the third setup card. All setup prompts should sit together at the top.
+12. **Sections below should show a clear "not set up yet" state** (workout, nutrition, etc.) instead of empty/placeholder content, designed better than a plain "pending" label.
+13. **Dashboard layout needs a rethink**: it should be the most useful screen in the app, with real overviews and one-tap quick links to most things.
+14. **Food logger redesign** (inspo: MacroFactor's logger, attached): tabs for Scan / Search / AI / Quick add / Library, favourites row, recent foods with one-tap +, running calorie total, log several foods at once. Must look and work distinctly ours, not a copy.
+15. **+ menu is decent; make it better.**
+16. **Remove every mention of "Claude"** in the app; call it **"AJ Training AI"** for now (to be renamed with the app).
+17. **App name needed**: all-in-one life improvement app, propeller logo (for now), main audience gym-goers using it mostly for workouts and food.
+
+Spotted by me during this stop (to check):
+- The + menu still says "Habits: Wake time, steps, snus" (AJ-specific).
+- Demo shows **1,590 kcal maintenance** for a 75 kg, 175 cm male, which looks far too low; check the starting expenditure for brand-new users.
+- Morning weigh-in banner text says "from AJ Training" (will follow the rename).
