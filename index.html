@@ -1493,11 +1493,16 @@ async function scanLabel(file){
   const imgs=Array.isArray(file)?file:[file];
   S.busy="label"; render();
   try{
-    const res=await sampler.json(`${imgs.length>1?"These are two versions of the same photo of a food product's nutrition panel: the first is contrast-boosted greyscale for legibility, the second is the original colour.":"This is a photo of a food product's nutrition panel."} It may be dim, grainy, at an angle, on a curved or shiny pack, or partly in glare. UK/EU style most likely.
+    const P=`${imgs.length>1?"These are two versions of the same photo of a food product's nutrition panel: the first is contrast-boosted greyscale for legibility, the second is the original colour.":"This is a photo of a food product's nutrition panel."} It may be dim, grainy, at an angle, on a curved or shiny pack, or partly in glare. UK/EU style most likely.
 Find the Energy, Fat, Carbohydrate and Protein rows. Prefer the per 100 g (or per 100 ml) column; if only per-serving values are readable, convert to per 100 g using the serving weight.
 Use kcal, not kJ (if only kJ is legible, divide by 4.184). Sanity check: kcal should be close to 9×fat + 4×carbs + 4×protein; if a digit is ambiguous, pick the reading that satisfies this.
 Do not guess numbers you cannot see. If the key rows are unreadable, set "error" to a short reason such as "too blurry" or "glare over the numbers".
-Return only JSON: {"name": product name if visible else a short sensible description, "brand": string or "", "per100": {"kcal": number, "p": protein g, "c": carbohydrate g, "f": fat g}, "serving": {"g": grams per serving or null, "label": e.g. "1 bar" or ""}, "error": ""}.`, {images:imgs, modelTier:"default", cache:false});
+Return only JSON: {"name": product name if visible else a short sensible description, "brand": string or "", "per100": {"kcal": number, "p": protein g, "c": carbohydrate g, "f": fat g}, "serving": {"g": grams per serving or null, "label": e.g. "1 bar" or ""}, "error": ""}.`;
+    const ok=r=>r&&!r.error&&r.per100&&+r.per100.kcal>0&&Math.abs(9*(+r.per100.f||0)+4*(+r.per100.c||0)+4*(+r.per100.p||0)-r.per100.kcal)<=Math.max(25,r.per100.kcal*0.2);
+    // Fast model first; if its numbers don't add up, re-read with the stronger model.
+    let res=await sampler.json(P,{images:imgs, modelTier:"quick", cache:false}).catch(e=>({_err:e}));
+    if (!ok(res)){ const r2=await sampler.json(P,{images:imgs, modelTier:"default", cache:false}).catch(e=>{ if(res&&res._err) throw e; return res; }); res=r2; }
+    if (res&&res._err) throw res._err;
     if (res.error || !res.per100 || isNaN(+res.per100.kcal)) throw {code:"notlabel", msg:res.error};
     const food={schema:SCHEMA, id:uid("food"), name:String(res.name||"Scanned food").slice(0,80), brand:String(res.brand||"").slice(0,60), barcode:S.pendingBarcode||null,
       per100:{kcal:+res.per100.kcal||0, p:+res.per100.p||0, c:+res.per100.c||0, f:+res.per100.f||0},

@@ -1,24 +1,30 @@
 /* AJ Training · live camera scanners.
    Barcode: reads EAN/UPC from the video feed continuously, then looks the product up in your saved foods and Open Food Facts.
-   Label: waits until the camera is steady and the text is sharp, then captures automatically and sends it to Claude to read. */
+   Label: captures the first steady, glare-free frame (within ~1.5s at most) and sends it to Claude to read.
+   The camera stream is kept warm for a few minutes after closing, so reopening is instant and iOS doesn't ask again. */
 (function(){
 "use strict";
-let ov = null, stream = null, loop = null, mode = "barcode", detector = null, steady = 0, best = 0, busy = false;
+let ov = null, stream = null, loop = null, mode = "barcode", detector = null, steady = 0, best = 0, busy = false, idle = null, torchOn = false;
+const KEEP_WARM_MS = 5 * 60 * 1000;
+function live(){ return stream && stream.getVideoTracks().some(t => t.readyState === "live"); }
+function release(){ if (stream){ stream.getTracks().forEach(t => t.stop()); stream = null; } }
 
 function el(html){ const d = document.createElement("div"); d.innerHTML = html; return d.firstElementChild; }
 function stop(){
-  clearInterval(loop); loop = null; waiting = false;
-  if (stream){ stream.getTracks().forEach(t => t.stop()); stream = null; }
-  if (ov){ ov.remove(); ov = null; }
+  clearInterval(loop); loop = null; waiting = false; busy = false;
+  if (stream && torchOn){ try{ stream.getVideoTracks()[0].applyConstraints({advanced:[{torch:false}]}); }catch(e){} torchOn = false; }
+  clearTimeout(idle); idle = setTimeout(release, KEEP_WARM_MS);
+  if (ov){ const v = ov.querySelector("video"); if (v) v.srcObject = null; ov.remove(); ov = null; }
   document.body.style.overflow = "";
 }
-function setMode(m){
-  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; labelStart = Date.now(); prev = null;
-  if (m === "barcode") setTimeout(pump, 50);
+function setMode(m, msg){
+  if (!ov) return;
+  mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
+  if (m === "barcode") setTimeout(pump, 30);
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
   ov.querySelector(".sc-shutter").hidden = m !== "label";
-  hint(m === "barcode" ? "Point at the barcode" : "Fill the frame with the nutrition panel and hold still");
+  hint(msg || (m === "barcode" ? "Point at the barcode" : "Fill the frame with the nutrition panel"));
 }
 function hint(t){ if (ov) ov.querySelector(".sc-hint").textContent = t; }
 function setProgress(p){ if (ov) ov.querySelector(".sc-ring i").style.width = Math.round(p * 100) + "%"; }
@@ -37,16 +43,18 @@ async function open(m){
   ov.querySelectorAll("[data-smode]").forEach(b => b.onclick = () => setMode(b.dataset.smode));
   ov.querySelector(".sc-shutter").onclick = () => captureLabel();
   setMode(m);
+  clearTimeout(idle);
   try{
-    stream = await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:"environment"}, width:{ideal:1920}, height:{ideal:1080}}});
-  }catch(e){ stop(); toast("Camera access was blocked. Allow it in Settings, or use a photo instead."); fallback(m); return; }
+    if (!live()) stream = await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:"environment"}, width:{ideal:1920}, height:{ideal:1080}}});
+  }catch(e){ stop(); release(); toast("Camera access was blocked. Allow it in Settings, or use a photo instead."); fallback(m); return; }
+  if (!ov){ return; }
   const v = ov.querySelector("video"); v.srcObject = stream; await v.play().catch(() => {});
   try{ const t = stream.getVideoTracks()[0], c = t.getCapabilities ? t.getCapabilities() : {}; if (c.focusMode && c.focusMode.includes("continuous")) await t.applyConstraints({advanced:[{focusMode:"continuous"}]}); }catch(e){}
   try{ const t = stream.getVideoTracks()[0], c = t.getCapabilities ? t.getCapabilities() : {};
-    if (c.torch){ const bt = ov.querySelector(".sc-torch"); bt.hidden = false; let on = false; bt.onclick = async () => { on = !on; try{ await t.applyConstraints({advanced:[{torch:on}]}); bt.classList.toggle("on", on); }catch(e){ bt.hidden = true; } }; } }catch(e){}
+    if (c.torch){ const bt = ov.querySelector(".sc-torch"); bt.hidden = false; bt.onclick = async () => { torchOn = !torchOn; try{ await t.applyConstraints({advanced:[{torch:torchOn}]}); bt.classList.toggle("on", torchOn); }catch(e){ bt.hidden = true; } }; } }catch(e){}
   if ("BarcodeDetector" in window){ try{ detector = new BarcodeDetector({formats:["ean_13", "ean_8", "upc_a", "upc_e"]}); }catch(e){ detector = null; } }
   if (!detector) startWorker();
-  loop = setInterval(tick, 180);
+  loop = setInterval(tick, 90);
   pump();
 }
 
@@ -55,24 +63,33 @@ async function tick(){
   if (!ov || busy) return;
   const v = ov.querySelector("video"); if (!v.videoWidth) return;
   if (mode === "barcode") return;   // barcodes are read by pump(), as fast as the decoder allows
-  // Label: watch motion and sharpness inside the scan box, keep the sharpest still frame, and capture automatically.
-  // Thresholds adapt to the scene, so dim, noisy kitchens still trigger; after a few seconds the best frame so far is used anyway.
-  const box = boxInVideo(v), w = 200, h = Math.max(1, Math.round(200 * box.h / box.w)), c = document.createElement("canvas"); c.width = w; c.height = h;
+  // Label: measure motion, sharpness and glare inside the scan box. Capture the first steady, glare-free frame;
+  // otherwise take the best frame seen by 1.5s. Nothing waits on an absolute brightness or sharpness level, so dim rooms work.
+  const box = boxInVideo(v), w = 160, h = Math.max(1, Math.round(160 * box.h / box.w)), c = tc; c.width = w; c.height = h;
   const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(v, box.x, box.y, box.w, box.h, 0, 0, w, h);
   const px = g.getImageData(0, 0, w, h).data, grey = new Float32Array(w * h);
-  let mean = 0; for (let i = 0; i < w * h; i++){ grey[i] = px[i * 4] * 0.299 + px[i * 4 + 1] * 0.587 + px[i * 4 + 2] * 0.114; mean += grey[i]; } mean /= w * h;
+  let mean = 0, hot = 0;
+  for (let i = 0; i < w * h; i++){ const r = px[i * 4], gg = px[i * 4 + 1], bb = px[i * 4 + 2]; grey[i] = r * 0.299 + gg * 0.587 + bb * 0.114; mean += grey[i]; if (r > 245 && gg > 245 && bb > 245) hot++; }
+  mean /= w * h;
+  const glare = hot / (w * h);
   let motion = 0; if (prev && prev.length === grey.length){ for (let i = 0; i < grey.length; i += 3) motion += Math.abs(grey[i] - prev[i]); motion /= grey.length / 3; } else motion = 99; prev = grey;
   let sum = 0, sq = 0, n = 0;
   for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++){ const i = y * w + x, l = 4 * grey[i] - grey[i - 1] - grey[i + 1] - grey[i - w] - grey[i + w]; sum += l; sq += l * l; n++; }
-  const sharp = (sq / n - (sum / n) ** 2) / Math.max(20, mean);       // normalised by brightness so low light isn't penalised
-  minMotion = Math.min(minMotion, motion); best = Math.max(best * 0.99, sharp);
-  const still = motion < Math.max(3, minMotion * 2.5), crisp = sharp >= best * 0.85;
-  if (still && sharp >= keptScore){ keptScore = sharp; keep(v); }
-  steady = still && crisp ? steady + 1 : Math.max(0, steady - 1);
-  setProgress(Math.min(1, Math.max(steady / 5, (Date.now() - labelStart) / 6000)));
-  hint(mean < 45 ? "It's dark: turn on the light, or hold steady and I'll still try" : !still ? "Hold still…" : !crisp ? "Focusing…" : "Got it…");
-  if (steady >= 5 || (Date.now() - labelStart > 6000 && keptScore > 0)) captureLabel();
+  const sharp = (sq / n - (sum / n) ** 2) / Math.max(20, mean);
+  const score = sharp * (1 - Math.min(0.9, glare * 10));
+  minMotion = Math.min(minMotion, motion);
+  const age = Date.now() - labelStart;
+  if (age < 0){ setProgress(0); return; }   // give time to turn the pack round after a barcode miss
+  const still = motion < Math.max(4, minMotion * 3);
+  if (still && score > keptScore){ keptScore = score; keep(v); }
+  steady = still ? steady + 1 : 0;
+  setProgress(Math.min(1, age / 1500));
+  hint(glare > 0.015 ? "Glare on the label: tilt it slightly" : !still ? "Hold still" : "Reading…");
+  if (age > 300 && steady >= 2 && glare <= 0.015) return captureLabel();
+  if (age > 1500 && keptScore > 0) return captureLabel();
+  if (age > 2500) return captureLabel();
 }
+const tc = document.createElement("canvas");
 let minMotion = 99, keptScore = 0, labelStart = 0;
 const keepCan = document.createElement("canvas");
 // The scan box on screen, mapped into video pixels (the video fills the screen with object-fit: cover).
@@ -87,15 +104,17 @@ function boxInVideo(v, pad = 0.08){
 let keptBox = null;
 function keep(v){ keepCan.width = v.videoWidth; keepCan.height = v.videoHeight; keepCan.getContext("2d").drawImage(v, 0, 0); keptBox = boxInVideo(v, 0.3); }
 function cropKept(){ const b = keptBox || {x:0, y:0, w:keepCan.width, h:keepCan.height}, c = document.createElement("canvas"); c.width = Math.round(b.w); c.height = Math.round(b.h); c.getContext("2d").drawImage(keepCan, b.x, b.y, b.w, b.h, 0, 0, c.width, c.height); return c; }
+function scaled(src, max){ const k = Math.min(1, max / Math.max(src.width, src.height)); if (k === 1) return src; const c = document.createElement("canvas"); c.width = Math.round(src.width * k); c.height = Math.round(src.height * k); c.getContext("2d").drawImage(src, 0, 0, c.width, c.height); return c; }
 // Brighten and sharpen a copy for reading: per-channel contrast stretch, then a light unsharp mask, in greyscale.
 function enhance(src){
-  const max = 2000, k = Math.min(1, max / Math.max(src.width, src.height)), w = Math.round(src.width * k), h = Math.round(src.height * k);
+  const max = 1600, k = Math.min(1, max / Math.max(src.width, src.height)), w = Math.round(src.width * k), h = Math.round(src.height * k);
   const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(src, 0, 0, w, h);
   const im = g.getImageData(0, 0, w, h), d = im.data, grey = new Float32Array(w * h), hist = new Uint32Array(256);
   for (let i = 0; i < w * h; i++){ const v = d[i * 4] * 0.299 + d[i * 4 + 1] * 0.587 + d[i * 4 + 2] * 0.114; grey[i] = v; hist[v | 0]++; }
   let lo = 0, hi = 255, acc = 0; const n = w * h;
   for (let i = 0; i < 256; i++){ acc += hist[i]; if (acc > n * 0.01){ lo = i; break; } }
-  acc = 0; for (let i = 255; i >= 0; i--){ acc += hist[i]; if (acc > n * 0.01){ hi = i; break; } }
+  const blown = hist[255] + hist[254] + hist[253] + hist[252] + hist[251] + hist[250]; acc = 0;
+  for (let i = 249; i >= 0; i--){ acc += hist[i]; if (acc > (n - blown) * 0.01){ hi = i; break; } }
   const span = Math.max(30, hi - lo);
   for (let i = 0; i < n; i++) grey[i] = Math.min(255, Math.max(0, (grey[i] - lo) * 255 / span));
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
@@ -116,12 +135,13 @@ function startWorker(){
 }
 const fcan = document.createElement("canvas"), fctx = fcan.getContext("2d", {willReadFrequently:true});
 function grab(v, angle){
-  const max = 960, k = Math.min(1, max / Math.max(v.videoWidth, v.videoHeight));
-  const w = Math.round(v.videoWidth * k), h = Math.round(v.videoHeight * k);
-  if (!angle){ fcan.width = w; fcan.height = h; fctx.drawImage(v, 0, 0, w, h); return fctx.getImageData(0, 0, w, h); }
+  // Decode only the scan box (plus a margin), at most 720px: far fewer pixels per frame than the full picture.
+  const b = boxInVideo(v, 0.35), max = 720, k = Math.min(1, max / Math.max(b.w, b.h));
+  const w = Math.round(b.w * k), h = Math.round(b.h * k);
+  if (!angle){ fcan.width = w; fcan.height = h; fctx.drawImage(v, b.x, b.y, b.w, b.h, 0, 0, w, h); return fctx.getImageData(0, 0, w, h); }
   const d = Math.round(Math.hypot(w, h)); fcan.width = d; fcan.height = d;
   fctx.fillStyle = "#fff"; fctx.fillRect(0, 0, d, d);
-  fctx.translate(d / 2, d / 2); fctx.rotate(angle); fctx.drawImage(v, -w / 2, -h / 2, w, h); fctx.setTransform(1, 0, 0, 1, 0, 0);
+  fctx.translate(d / 2, d / 2); fctx.rotate(angle); fctx.drawImage(v, b.x, b.y, b.w, b.h, -w / 2, -h / 2, w, h); fctx.setTransform(1, 0, 0, 1, 0, 0);
   return fctx.getImageData(0, 0, d, d);
 }
 async function pump(){
@@ -135,15 +155,21 @@ async function pump(){
     requestAnimationFrame(pump); return;
   }
   if (!worker){ setTimeout(pump, 300); return; }
-  const img = grab(v, frameNo % 2 ? 0 : Math.PI / 4);
+  const img = grab(v, frameNo % 3 ? 0 : Math.PI / 4);
   waiting = true; worker.postMessage({id:++reqId, img}, [img.data.buffer]);
 }
+function validEAN(code){
+  if (!/^(\d{8}|\d{12}|\d{13}|\d{14})$/.test(code)) return false;
+  const d = code.split("").map(Number), check = d.pop(); let t = 0;
+  d.reverse().forEach((x, i) => t += x * (i % 2 ? 1 : 3));
+  return (10 - t % 10) % 10 === check;
+}
 async function found(code){
-  if (!ov || busy || !/^\d{8,14}$/.test(code)){ pump(); return; }
+  if (!ov || busy || mode !== "barcode") return;
+  if (!validEAN(code)){ pump(); return; }
   busy = true; try{ navigator.vibrate && navigator.vibrate(60); }catch(e){}
   ov.querySelector(".sc-frame").classList.add("hit");
-  await gotBarcode(code); busy = false;
-  if (ov && mode === "barcode") pump();
+  await gotBarcode(code);      // either opens the food, or switches to label mode; never resumes the barcode loop on its own
 }
 async function captureLabel(){
   if (!ov || busy) return; busy = true;
@@ -151,15 +177,17 @@ async function captureLabel(){
   if (!keptScore) keep(v);
   try{ navigator.vibrate && navigator.vibrate(40); }catch(e){}
   hint("Reading the label…");
-  const colour = await new Promise(r => keepCan.toBlob(r, "image/jpeg", 0.9));
-  const sharp = await new Promise(r => enhance(cropKept()).toBlob(r, "image/jpeg", 0.9));
+  const colour = await new Promise(r => scaled(keepCan, 1600).toBlob(r, "image/jpeg", 0.85));
+  const sharp = await new Promise(r => enhance(cropKept()).toBlob(r, "image/jpeg", 0.85));
   stop(); busy = false;
   if (colour) scanLabel([sharp, colour].filter(Boolean));
 }
 
 async function offLookup(code){
   try{
-    const r = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}.json?fields=product_name,product_name_en,brands,nutriments,serving_size,serving_quantity`, {headers:{"Accept":"application/json"}});
+    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 5000);
+    const r = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}.json?fields=product_name,product_name_en,brands,nutriments,serving_size,serving_quantity`, {headers:{"Accept":"application/json"}, signal:ctl.signal});
+    clearTimeout(to);
     if (!r.ok) return null;
     const j = await r.json(); if (j.status !== 1 || !j.product) return null;
     const p = j.product, n = p.nutriments || {};
@@ -178,8 +206,8 @@ async function gotBarcode(code){
   const f = navigator.onLine ? await offLookup(code) : null;
   if (f){ stop(); openFood(f, {src:"off"}); return; }
   S.pendingBarcode = code;
-  hint(navigator.onLine ? "Not in the database. Scan its nutrition label instead." : "Offline. Scan the nutrition label instead.");
-  setTimeout(() => { if (ov) setMode("label"); }, 900);
+  if (!ov) return;
+  setMode("label", navigator.onLine ? "Not in the food database. Point at the nutrition label." : "Offline. Point at the nutrition label.");
 }
 function fallback(m){ const id = m === "label" ? "labelCam" : "barcodeCam", inp = document.getElementById(id); if (inp) inp.click(); }
 
