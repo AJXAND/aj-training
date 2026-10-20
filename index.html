@@ -769,6 +769,37 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .setrow{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;border:0;background:none;padding:10px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;border-top:1px solid var(--line)}
 .setrow:first-of-type{border-top:0}.setrow .ai{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff}
 .setrow .ai svg{width:19px;height:19px}.setrow>span:nth-child(2){display:grid;gap:1px}.setrow>span>span{font-size:13px;color:var(--muted)}.setrow>i{font-style:normal;font-size:22px;color:var(--muted)}
+/* ---------- Placeholders for photos and icons still to be designed ---------- */
+.ph{display:grid;place-items:center;border-radius:14px;background:repeating-linear-gradient(135deg,var(--sunk) 0 8px,color-mix(in srgb,var(--sunk) 60%,var(--card)) 8px 16px);color:var(--muted);font:700 10px var(--body);letter-spacing:.06em;text-transform:uppercase}
+.ph.ic{width:44px;height:44px}.ph.ic:empty::after{content:"Icon"}
+.ph.pic{width:100%;aspect-ratio:3/4}
+.obgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.obcard{display:grid;justify-items:start;gap:6px;text-align:left;border:0;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:14px;font:inherit;color:inherit;cursor:pointer;transition:box-shadow .15s,transform .1s}
+.obcard{grid-template-columns:minmax(0,1fr);align-content:start}.obcard>.ph{justify-self:stretch;width:auto}.obcard>.ph.ic{justify-self:start;width:44px}.obcard.mus>.ph.ic{justify-self:center;width:52px}.obcard>span:not(.ph){font-size:13px;color:var(--muted);line-height:1.35}
+.obcard:active{transform:scale(.98)}.obcard b{font-size:15.5px;color:var(--ink)}.obcard>span:last-child{font-size:13px;color:var(--muted);line-height:1.35}
+.obcard[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange);background:color-mix(in srgb,var(--orange) 6%,var(--card))}
+.bfpics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.bfpic{display:grid;gap:6px;justify-items:center;border:0;background:var(--card);border-radius:16px;padding:6px 6px 8px;box-shadow:inset 0 0 0 1px var(--line);font:inherit;color:inherit;cursor:pointer}
+.bfpic b{font-size:14px}.bfpic[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange)}
+.gtypes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gtype{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;justify-items:start;align-content:start;text-align:left;border:0;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:10px;font:inherit;color:inherit;cursor:pointer}.gtype .ph{margin-bottom:4px}.gtype b{font-size:14px}.gtype>span:last-child{font-size:12px;color:var(--muted);line-height:1.3}.gtype[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--orange)}
+.eqgrp{border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);background:var(--card);overflow:hidden}.eqgrp+.eqgrp{margin-top:8px}.eqgrp summary{display:grid;grid-template-columns:32px 1fr auto auto;gap:10px;align-items:center;padding:12px;cursor:pointer;list-style:none}.eqgrp summary::-webkit-details-marker{display:none}.eqgrp[open] summary{border-bottom:1px solid var(--line)}
+.eqlist{display:grid}.eqrow{display:grid;grid-template-columns:32px 1fr 22px;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:9px 12px;font:inherit;color:inherit;cursor:pointer}.eqrow+.eqrow{border-top:1px solid var(--line)}.eqtick{width:22px;height:22px;border-radius:7px;box-shadow:inset 0 0 0 2px var(--line)}.eqrow[aria-pressed=true] .eqtick{background:var(--orange);box-shadow:none;position:relative}.eqrow[aria-pressed=true] .eqtick::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.eqsearch{margin:4px 0 8px}.obgymc{display:grid;gap:10px}
+.dbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}.dbgrid button{border:0;border-radius:10px;padding:9px 0;font:inherit;font-size:13px;font-variant-numeric:tabular-nums;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);color:inherit;cursor:pointer}.dbgrid button[aria-pressed=true]{background:var(--orange);color:#fff;box-shadow:none}
+.sprows{display:grid;gap:6px}.sprow{display:grid;grid-template-columns:32px 1fr 24px;gap:10px;align-items:center;text-align:left;border:0;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:9px 12px;font:inherit;color:inherit;cursor:pointer}.sprow span span{display:block;font-size:12px;color:var(--muted)}.sprow i{font-style:normal;font-size:22px;color:var(--orange);text-align:center}.obsp{display:flex;gap:10px;align-items:center}
+.obgrid.g3{grid-template-columns:repeat(3,1fr)}.obgrid.g3 .obcard{padding:12px 10px}.obgrid.g3 .obcard b{font-size:14px}.obgrid.g3 .obcard>span:last-child{font-size:12px}
+.obcard.mus{justify-items:center;text-align:center}.obcard.mus .ph.ic{width:52px;height:52px}
+.aicard{width:100%;margin-top:4px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 12%,var(--card)),var(--card) 70%)}
+.ph.pic.sm{aspect-ratio:4/3}.ph.ic.sm{width:32px;height:32px;border-radius:10px;font-size:0}.cpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}.cpick{display:grid;justify-items:center;gap:6px;border:0;border-radius:14px;background:var(--sunk);padding:10px 6px;font:inherit;font-size:12px;line-height:1.25;color:inherit;text-align:center;cursor:pointer}.ph.pic.wide{aspect-ratio:16/10}
+.lookpri{font-style:normal;font-size:12.5px;font-weight:600;color:var(--ink)}.lookev{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}.lookev.ev{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
+.obmore{margin-top:4px}.obmore summary{cursor:pointer;font-weight:700;color:var(--orange);padding:6px 0;list-style:none}.obmore summary::-webkit-details-marker{display:none}.obmore .obgrid{margin-top:8px}
+.bigtext{font-size:16px!important}
+.obcard.lift{position:relative}.obcard.lift.na{opacity:.55}.obcard.lift.love{box-shadow:inset 0 0 0 2px var(--orange)}.obcard.lift.ban{box-shadow:inset 0 0 0 2px var(--muted)}.obcard.lift.ban b{text-decoration:line-through;color:var(--muted)}
+.lbadge{position:absolute;top:10px;right:10px;font-style:normal;font:800 11px var(--body);padding:4px 8px;border-radius:99px;background:var(--orange);color:#fff}.obcard.lift.ban .lbadge{background:var(--ink)}
+.obzones{display:grid;grid-template-columns:15fr 30fr 45fr;font-size:11px;font-weight:700;color:var(--muted);margin-top:-4px}.obzones span{border-top:3px solid var(--line);padding-top:4px}.obzones span.ok{border-color:color-mix(in srgb,var(--good) 55%,transparent);color:var(--good)}
+.obbuildbar{width:220px;height:6px;border-radius:99px;background:var(--sunk);overflow:hidden}.obbuildbar i{display:block;height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .4s var(--ease,ease)}
+.obticks div{opacity:.25;transition:opacity .35s,color .35s;animation:none}.obticks div.on{opacity:1}.obticks div.done{opacity:.6}
+.obticks div i{transition:background .3s,box-shadow .3s}.obticks div.done i{background:var(--orange);box-shadow:none}.obticks div.done i::after{content:"✓";color:#fff;font-size:12px}
 /* ---------- Phase 3 plan builder ---------- */
 .obnums{display:grid;grid-template-columns:repeat(auto-fit,minmax(40px,1fr));gap:6px}
 .obnums button{position:relative;border:0;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);font:800 18px var(--display);color:var(--ink);padding:12px 0;cursor:pointer}
@@ -780,7 +811,7 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .obeqg summary span{margin-left:auto}.obeqg .chips{margin-top:10px}.obeqg .chip{font-size:13.5px}
 .obstepper{display:flex!important;align-items:center;gap:10px}.obstepper button{width:34px;height:34px;border-radius:50%;border:0;background:var(--sunk);font:700 18px var(--body);color:var(--ink);cursor:pointer}
 .obai{display:grid;gap:6px;box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--orange) 40%,transparent)}.obai span{font-size:14.5px;line-height:1.5}
-.oblifts{display:grid;padding:4px 16px;max-height:52vh;overflow:auto}
+.oblifts{display:block}
 .obliftr{display:flex;justify-content:space-between;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:11px 0;font:inherit;color:inherit;cursor:pointer}
 .obliftr:first-child{border-top:0}.obliftr span{display:grid;gap:1px}.obliftr em{font-style:normal;font-size:12.5px;color:var(--muted)}
 .obliftr.love b{color:var(--orange)}.obliftr.ban b{color:var(--muted);text-decoration:line-through}
@@ -1090,7 +1121,7 @@ function cardioKcal(met, mins, kg){ const gross=met*3.5*kg/200*mins; return {gro
 function dayTotals(date){ const e=(S.foodlog[date]||{}).entries||[]; return e.reduce((a,x)=>({kcal:a.kcal+(+x.kcal||0),p:a.p+(+x.p||0),c:a.c+(+x.c||0),f:a.f+(+x.f||0),n:a.n+1}),{kcal:0,p:0,c:0,f:0,n:0}); }
 const ACT_DEFAULT = {job:"desk", steps:9000, commute:0, set:false};
 function act(){ return {...ACT_DEFAULT, ...(S.profile.activity||{})}; }
-const JOB = {desk:["Desk job / mostly sitting",0.15], mixed:["On your feet some of the day",0.28], active:["On your feet most of the day",0.45]};
+const JOB = {desk:["Mostly sitting",0.15], mixed:["Some moving about",0.28], active:["On my feet most of the day",0.45], heavy:["Physical, heavy work",0.6]};
 function stepKcal(steps, kg){ return Math.max(0, steps) * 0.00045 * kg; }                 // net ~0.04 kcal per step at 88 kg
 function liftKcal(mins, kg){ return 3.5 * kg * mins / 60; }                                 // resistance training ~4.5 MET gross (2024 Compendium), net of resting
 function dayActivity(date, kg){
@@ -1170,7 +1201,9 @@ function liftHistory(k, includeDeload, gym){
   return out;
 }
 // smallest sensible jump for this gym's kit: barbell = two of the smallest plates, dumbbells = the rack's step
-function incFor(eq, gym){ const g=gymList().find(x=>x.id===gym)||{}; return eq==="bb" ? 2*(+g.plate||1.25) : eq==="db" ? (+g.dbStep||2) : null; }
+function incFor(eq, gym){ const g=gymList().find(x=>x.id===gym)||{}; return eq==="bb" ? 2*(+g.plate||1.25) : eq==="db" ? (g.dbMode==="step25"?2.5:g.dbMode==="adj"?(+g.dbStep||2):2) : null; }
+// next weight up that this gym actually has (exact dumbbell pairs), otherwise the usual increment
+function nextLoad(eq, gym, w){ const g=gymList().find(x=>x.id===gym)||{}; if (eq==="db" && g.dbMode==="exact" && (g.dbs||[]).length){ const n=g.dbs.find(x=>x>w); return n!=null?n:w; } const inc=incFor(eq,gym); return inc?w+inc:null; }
 function advice(k, custom, gym){
   const ex=exDef(k, custom), phase=S.profile.phase;
   let h=liftHistory(k,false,gym), cross=false;
@@ -1181,7 +1214,7 @@ function advice(k, custom, gym){
   const topHit=r>=ex.hi, prevTop=h[1] && +h[1].sets[0].w===w && +h[1].sets[0].r>=ex.hi;
   const addLoad=(phase==="recomp"||phase==="maintain") ? (topHit&&prevTop) : topHit;
   let pill, tw=w, tr=r, status;
-  if (addLoad){ status="up"; tw=inc?w+inc:w; tr=ex.lo; pill=`<span class="tag up">Add load: ${inc?(w+inc)+" kg":"next weight up"}, aim ${ex.lo}+</span>`; }
+  if (addLoad){ status="up"; const nl=nextLoad(ex.eq,gym,w); tw=nl!=null?nl:w; tr=ex.lo; pill=`<span class="tag up">Add load: ${nl!=null&&nl!==w?nl+" kg":"next weight up"}, aim ${ex.lo}+</span>`; }
   else if (topHit){ status="hold"; pill=`<span class="tag hold">Top once: repeat ${w} × ${ex.hi}+</span>`; }
   else if (r<ex.lo){ if (phase==="cut"){ status="drop"; tw=Math.round(w*0.95/2.5)*2.5; pill=`<span class="tag flag">Below range: ~${tw} kg</span>`; } else { status="reps"; pill=`<span class="tag rep">Hold ${w} kg, get to ${ex.lo}</span>`; } }
   else if (phase==="cut"){ status="hold"; pill=`<span class="tag hold">Hold: match ${w} × ${r}</span>`; }
@@ -2140,7 +2173,7 @@ function renderLive(){
 function swapOptions(ei, reason){
   const a=S.active, e=a.ex[ei], L=(window.AJOnboard&&AJOnboard.lib)||{}, base=L[String(e.k).replace(/-hvy$/,"")]||null, g=gymList().find(x=>x.id===a.gym)||{kit:[]}, kit=new Set(g.kit||[]);
   const cur=exDef(e.k,e.custom), prim=base?Object.keys(base.mu).find(m=>base.mu[m]>=1):null;
-  let list=Object.values(L).filter(x=>x.k!==String(e.k).replace(/-hvy$/,"") && x.q.every(r=>kit.has(r)) && !["cond","sled","carry","erg"].includes(x.p) && (base?(x.p===base.p||(prim&&x.mu[prim]>=1)):x.n));
+  let list=Object.values(L).filter(x=>x.k!==String(e.k).replace(/-hvy$/,"") && x.q.every(r=>AJOnboard.kitHas([...kit],r)) && !["cond","sled","carry","erg"].includes(x.p) && (base?(x.p===base.p||(prim&&x.mu[prim]>=1)):x.n));
   const sc=x=>(base&&x.p===base.p?5:0)+x.len+(reason==="pain"?(x.eq==="machine"||x.eq==="cable"?2:0)-((base&&base.inj||[]).some(j=>(x.inj||[]).includes(j))?4:0):0)+(reason==="taken"&&base?(x.q.join()!==base.q.join()?2:-3):0);
   return list.sort((x,y)=>sc(y)-sc(x)).slice(0,10);
 }
@@ -2305,8 +2338,8 @@ function calcExplain(m,kg){
 function cardioList(q){
   const ids=window.AJSports?AJSports.search(q).filter(k=>CARDIO[k]).concat(["walk","run","cycle"].filter(k=>!q||CARDIO[k].n.toLowerCase().includes(q.toLowerCase()))):Object.keys(CARDIO);
   const uniq=[...new Set(ids)], groups=(window.AJSports?AJSports.GROUPS:["Everyday"]);
-  if (q) return uniq.length?`<div class="list">${uniq.map(k=>`<button class="li btnli" data-act="cardioPick" data-t="${k}"><span><b>${esc(CARDIO[k].n)}</b></span><span class="small muted">${esc(CARDIO[k].g||"")}</span></button>`).join("")}</div>`:`<p class="small muted">No match. Try a broader word, or describe it to the AI.</p>`;
-  return groups.map(g=>{ const ks=uniq.filter(k=>(CARDIO[k].g||"Everyday")===g); return ks.length?`<h3 class="sect2">${g}</h3><div class="chips">${ks.map(k=>`<button class="chip" data-act="cardioPick" data-t="${k}">${esc(CARDIO[k].n)}</button>`).join("")}</div>`:""; }).join("");
+  if (q) return uniq.length?`<div class="list">${uniq.map(k=>`<button class="li btnli" data-act="cardioPick" data-t="${k}"><span class="obsp"><span class="ph ic sm"></span><b>${esc(CARDIO[k].n)}</b></span><span class="small muted">${esc(CARDIO[k].g||"")}</span></button>`).join("")}</div>`:`<p class="small muted">No match. Try a broader word, or describe it to the AI.</p>`;
+  return groups.map(g=>{ const ks=uniq.filter(k=>(CARDIO[k].g||"Everyday")===g); return ks.length?`<h3 class="sect2">${g}</h3><div class="cpgrid">${ks.map(k=>`<button class="cpick" data-act="cardioPick" data-t="${k}"><span class="ph ic sm"></span><span>${esc(CARDIO[k].n)}</span></button>`).join("")}</div>`:""; }).join("");
 }
 function renderCardio(){
   const f=S.cardioForm;

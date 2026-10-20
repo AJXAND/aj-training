@@ -10,28 +10,44 @@ const MUS = {chest:"Chest", lats:"Lats", upback:"Upper back", fdelt:"Front delts
   biceps:"Biceps", triceps:"Triceps", quads:"Quads", hams:"Hamstrings", glutes:"Glutes", adductors:"Adductors", calves:"Calves", abs:"Abs"};
 // Weekly fractional sets for an intermediate (direct set = 1, indirect = 0.5). Pelland 2024: gains keep rising with volume, with
 // diminishing returns; ~10-20 direct sets covers most of the benefit. Front delts and glutes get most of their work from presses and squats.
-const BASE_SETS = {chest:12, lats:12, upback:10, fdelt:4, sdelt:12, rdelt:8, biceps:10, triceps:10, quads:12, hams:10, glutes:6, adductors:4, calves:8, abs:6};
-const PRIORITY_SETS = 18;
+// Fractional weekly sets (Pelland 2026: ~10-14 typical, 4 minimum, diminishing returns). Front delts, rear delts and arms already get
+// a lot from presses and rows at ½ a set each, so their direct work stays small.
+const BASE_SETS = {chest:12, lats:12, upback:12, fdelt:8, sdelt:12, rdelt:10, biceps:10, triceps:10, quads:12, hams:11, glutes:10, adductors:6, calves:10, abs:8};
+const PRIORITY_SETS = 20;
 const PRIORITY_CHOICES = ["chest","lats","upback","sdelt","rdelt","biceps","triceps","quads","hams","glutes","calves","abs"];
 
 /* ---------- Equipment ---------- */
 const EQG = [
-  ["Free weights", [["bb","Barbell + plates"],["rack","Squat rack"],["bench","Adjustable bench"],["db","Dumbbells"],["kb","Kettlebells"],["ez","EZ bar"],["trapbar","Trap bar"],["landmine","Landmine"]]],
-  ["Bodyweight", [["pullup","Pull-up bar"],["dip","Dip bars"],["rings","Rings / TRX"],["anchor","Somewhere to anchor feet"],["bands","Resistance bands"],["box","Plyo box"]]],
-  ["Cables", [["cable_hi","High pulley"],["cable_mid","Waist-height pulley"],["cable_low","Low pulley"],["cable_dual","Two cable stacks"]]],
-  ["Machines", [["smith","Smith machine"],["hack","Hack squat"],["pendulum","Pendulum squat"],["legpress","Leg press"],["legext","Leg extension"],["lyingcurl","Lying leg curl"],["seatedcurl","Seated leg curl"],["hipext","45° hip extension"],["glutedrive","Hip thrust machine"],["adductor","Adductor"],["abductor","Abductor"],["calfm","Standing calf"],["seatedcalf","Seated calf"],["pecdeck","Pec deck / rear delt"],["chestpress","Chest press"],["shoulderpress","Shoulder press"],["rowm","Chest-supported row"],["tbar","T-bar row"],["latpd","Lat pulldown"],["preacher","Preacher bench"]]],
-  ["Conditioning", [["rower","Rowing machine"],["skierg","SkiErg"],["airbike","Bike / assault bike"],["treadmill","Treadmill"],["sled","Sled"],["wallball","Wall ball"],["sandbag","Sandbag"]]]
+  ["Bars and plates", [["bb","Olympic barbell + plates"],["ez","EZ curl bar"],["trapbar","Trap / hex bar"],["ssb","Safety squat bar"],["swissbar","Swiss / football bar"],["cambered","Cambered bar"],["axle","Axle / fat bar"],["fixedbb","Fixed-weight barbells"],["landmine","Landmine"],["chains","Chains"]]],
+  ["Racks and benches", [["rack","Power rack / squat rack"],["halfrack","Half rack / squat stands"],["bench","Adjustable bench"],["flatbench","Flat bench"],["declinebench","Decline bench"],["benchrack","Bench press station"],["inclinestation","Incline bench station"],["preacher","Preacher bench"],["platform","Deadlift platform"],["jhooks","Spotter / safety arms"]]],
+  ["Dumbbells and kettlebells", [["db","Dumbbells"],["kb","Kettlebells"],["adjdb","Adjustable dumbbells"]]],
+  ["Bodyweight and accessories", [["pullup","Pull-up bar"],["dip","Dip bars"],["rings","Gymnastic rings"],["trx","Suspension trainer (TRX)"],["anchor","Somewhere to anchor feet"],["bands","Resistance bands"],["box","Plyo box"],["abwheel","Ab wheel"],["swissball","Stability ball"],["parallettes","Parallettes"],["dipbelt","Dip / weight belt"],["medball","Medicine ball"],["slamball","Slam ball"],["wallball","Wall ball + target"],["battleropes","Battle ropes"],["climbrope","Climbing rope"],["pegboard","Pegboard"]]],
+  ["Cables", [["cable_hi","High pulley"],["cable_mid","Adjustable pulley (any height)"],["cable_low","Low pulley / seated row"],["cable_dual","Cable crossover (two stacks)"],["functional","Functional trainer"],["latpd","Lat pulldown"]]],
+  ["Chest and shoulder machines", [["chestpress","Seated chest press"],["incchestpress","Incline chest press machine"],["declinepress","Decline press machine"],["pecdeck","Pec deck"],["revdelt","Rear delt machine"],["shoulderpress","Shoulder press machine"],["latraisem","Lateral raise machine"],["smith","Smith machine"],["dipm","Assisted dip / pull-up machine"]]],
+  ["Back machines", [["rowm","Chest-supported row machine"],["tbar","T-bar row"],["seatedrowm","Seated row machine"],["highrow","High row machine"],["lowrow","Low row machine"],["pulloverm","Pullover machine"],["latpdplate","Plate-loaded pulldown"],["backext","Back extension machine"]]],
+  ["Arm machines", [["curlm","Biceps curl machine"],["preacherm","Preacher curl machine"],["triextm","Triceps extension machine"],["tridipm","Seated dip machine"]]],
+  ["Leg machines", [["legpress","45° leg press"],["hlegpress","Horizontal leg press"],["hack","Hack squat"],["pendulum","Pendulum squat"],["beltsquat","Belt squat"],["vsquat","V-squat"],["legext","Leg extension"],["lyingcurl","Lying leg curl"],["seatedcurl","Seated leg curl"],["standcurl","Standing leg curl"],["kneelcurl","Kneeling leg curl"],["hipext","45° back extension"],["ghd","Glute-ham developer"],["revhyper","Reverse hyper"],["nordicbench","Nordic curl bench"],["glutedrive","Hip thrust machine"],["kickbackm","Glute kickback machine"],["multihip","Multi-hip machine"],["adductor","Hip adductor"],["abductor","Hip abductor"],["calfm","Standing calf raise"],["seatedcalf","Seated calf raise"],["donkeycalf","Donkey calf raise"],["tibbar","Tibialis bar"]]],
+  ["Core machines", [["abcrunchm","Ab crunch machine"],["torso","Rotary torso"],["captain","Captain's chair"],["declinesitup","Decline sit-up bench"]]],
+  ["Cardio", [["treadmill","Treadmill"],["curvedtm","Curved / self-powered treadmill"],["rower","Rowing machine"],["skierg","SkiErg"],["bikeerg","BikeErg"],["airbike","Assault / air bike"],["uprightbike","Upright bike"],["recumbent","Recumbent bike"],["spinbike","Spin bike"],["elliptical","Cross-trainer"],["stairs","Stair climber"],["stepper","Stepper"],["versaclimber","VersaClimber"],["jacobs","Jacob's ladder"]]],
+  ["Strongman and conditioning", [["sled","Sled / prowler"],["sandbag","Sandbag"],["yoke","Yoke"],["farmerhandles","Farmer's handles"],["stones","Atlas stones"],["tyre","Tyre"],["log","Log"],["turf","Turf track"]]]
 ];
 const EQUIP = EQG.flatMap(g => g[1]);
 const ALLKIT = EQUIP.map(e => e[0]);
-const PRESETS = {
-  home:["Home", "A few dumbbells, a bench, bands", ["db","bench","bands","anchor"]],
-  garage:["Garage gym", "Barbell, rack, plates, pull-up bar", ["bb","rack","bench","db","kb","ez","landmine","pullup","dip","anchor","bands","box"]],
-  hotel:["Hotel or small gym", "Dumbbells, a cable, cardio kit", ["db","bench","cable_hi","cable_mid","cable_low","treadmill","airbike","rower","bands"]],
-  commercial:["Commercial gym", "The usual big-chain gym", ["bb","rack","bench","db","kb","ez","pullup","dip","anchor","bands","box","cable_hi","cable_mid","cable_low","cable_dual","smith","legpress","legext","lyingcurl","seatedcurl","hipext","adductor","abductor","calfm","pecdeck","chestpress","shoulderpress","rowm","latpd","preacher","rower","airbike","treadmill"]],
-  bodybuilding:["Bodybuilding gym", "Everything, plus specialist machines", ALLKIT.filter(k => !["sandbag","wallball","sled","skierg","rings"].includes(k))],
-  box:["CrossFit or HYROX box", "Barbells, rigs, rowers, sleds", ["bb","rack","bench","db","kb","pullup","dip","rings","anchor","bands","box","rower","skierg","airbike","sled","wallball","sandbag","treadmill"]]
+// equipment that also satisfies an older or simpler requirement
+const KIT_ALIAS = {adjdb:["db"], functional:["cable_hi","cable_mid","cable_low","cable_dual"], halfrack:["rack"], benchrack:["bench"], flatbench:[], latpdplate:["latpd"], seatedrowm:["cable_low"], hlegpress:["legpress"], vsquat:["hack"], dipm:["dip","pullup"], tridipm:[], trx:["rings"], backext:["hipext"], preacherm:["preacher"], spinbike:["airbike"], bikeerg:["airbike"], uprightbike:["airbike"]};
+function kitHas(kit, r){ return kit.includes(r) || kit.some(k => (KIT_ALIAS[k] || []).includes(r)); }
+const GYMTYPES = {
+  home:["Home", "A few dumbbells, a bench, bands", ["db","bench","flatbench","bands","anchor","swissball","abwheel"]],
+  garage:["Garage gym", "Rack, barbell, plates, pull-up bar", ["bb","ez","landmine","rack","jhooks","bench","flatbench","db","kb","pullup","dip","anchor","bands","box","abwheel","medball"]],
+  hotel:["Hotel or small gym", "Dumbbells, a cable, cardio machines", ["db","bench","flatbench","cable_hi","cable_mid","cable_low","latpd","treadmill","uprightbike","elliptical","rower","bands","swissball"]],
+  commercial:["Commercial gym", "The usual big-chain gym", ["bb","ez","fixedbb","trapbar","landmine","rack","halfrack","jhooks","bench","flatbench","declinebench","benchrack","preacher","db","kb","pullup","dip","anchor","bands","box","abwheel","swissball","medball","cable_hi","cable_mid","cable_low","cable_dual","functional","latpd","chestpress","incchestpress","pecdeck","revdelt","shoulderpress","smith","dipm","rowm","seatedrowm","backext","curlm","triextm","legpress","hack","legext","lyingcurl","seatedcurl","hipext","glutedrive","adductor","abductor","calfm","seatedcalf","abcrunchm","captain","declinesitup","treadmill","rower","uprightbike","spinbike","recumbent","elliptical","stairs","airbike"]],
+  bodybuilding:["Bodybuilding gym", "Every machine, plate-loaded and selectorised", null],
+  box:["CrossFit or HYROX box", "Barbells, rigs, rowers, sleds, wall balls", ["bb","trapbar","rack","halfrack","platform","jhooks","bench","db","kb","pullup","dip","rings","anchor","bands","box","abwheel","parallettes","medball","slamball","wallball","battleropes","climbrope","pegboard","rower","skierg","bikeerg","airbike","treadmill","sled","sandbag","farmerhandles","turf"]],
+  outdoor:["Outdoor or calisthenics park", "Bars, rings and your bodyweight", ["pullup","dip","rings","parallettes","anchor","bands"]],
+  uni:["University or sports centre", "Mix of free weights and machines", ["bb","ez","rack","jhooks","bench","flatbench","db","kb","pullup","dip","anchor","bands","box","medball","cable_hi","cable_mid","cable_low","cable_dual","latpd","chestpress","pecdeck","shoulderpress","smith","rowm","seatedrowm","legpress","legext","lyingcurl","seatedcurl","hipext","adductor","abductor","calfm","treadmill","rower","uprightbike","spinbike","elliptical","airbike"]]
 };
+GYMTYPES.bodybuilding[2] = ALLKIT.filter(k => !["sandbag","wallball","slamball","yoke","stones","tyre","log","climbrope","pegboard","rings","battleropes","axle","turf"].includes(k));
+const PRESETS = GYMTYPES;
 const KIT_DEFAULT = {home:PRESETS.garage[2].slice(), shwc:PRESETS.commercial[2].concat(["hack"])};
 
 /* ---------- Exercise library ----------
@@ -150,6 +166,26 @@ X("lpcalf","Leg press calf raise","calf",{calves:1},["legpress"],{len:2,rest:75,
 X("abwheel","Ab wheel rollout","abs",{abs:1},[],{lo:6,hi:12,rest:60,eq:"bw",inj:["lowback"]});
 X("plank","Plank (timed)","abs",{abs:1},[],{lo:30,hi:60,rest:60,eq:"bw",note:"Reps are seconds"});
 X("woodchop","Cable woodchop","abs",{abs:1},["cable_mid"],{rest:60,eq:"cable"});
+X("beltsq","Belt squat","squat",{quads:1,glutes:.5,adductors:.5},["beltsquat"],{c:true,len:2,lo:8,hi:12,rest:150,eq:"machine"});
+X("ssbsq","Safety bar squat","squat",{quads:1,glutes:.5,adductors:.5,upback:.5},["ssb","rack"],{c:true,len:2,lo:5,hi:8,rest:180,eq:"bb",inj:["knee"]});
+X("ghr","Glute-ham raise","kneeflex",{hams:1,glutes:.5},["ghd"],{len:2,lo:6,hi:10,rest:120,eq:"bw"});
+X("revhyp","Reverse hyper","glute",{glutes:1,hams:.5},["revhyper"],{lo:10,hi:15,rest:90,eq:"machine"});
+X("standcurlm","Standing leg curl","kneeflex",{hams:1},["standcurl"],{len:1,lo:8,hi:12,eq:"machine"});
+X("kickbackmach","Glute kickback machine","glute",{glutes:1},["kickbackm"],{len:1,lo:10,hi:15,eq:"machine"});
+X("donkey","Donkey calf raise","calf",{calves:1},["donkeycalf"],{len:2,rest:75,eq:"machine"});
+X("incmachine","Incline chest press machine","ipress",{chest:1,fdelt:.5,triceps:.5},["incchestpress"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
+X("latraisemach","Lateral raise machine","lat",{sdelt:1},["latraisem"],{len:1,eq:"machine"});
+X("revdeltm","Rear delt machine","rear",{rdelt:1},["revdelt"],{eq:"machine"});
+X("seatedrowmach","Seated row machine","row",{upback:1,lats:.5,rdelt:.5,biceps:.5},["seatedrowm"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
+X("highrowm","High row machine","vpull",{lats:1,upback:.5,biceps:.5},["highrow"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
+X("pullovermach","Pullover machine","latiso",{lats:1},["pulloverm"],{len:2,eq:"machine"});
+X("curlmach","Biceps curl machine","curl",{biceps:1},["curlm"],{len:1,eq:"machine"});
+X("triextmach","Triceps extension machine","triext",{triceps:1},["triextm"],{len:1,eq:"machine"});
+X("dipmach","Seated dip machine","tripress",{triceps:1,chest:.5},["tridipm"],{c:true,lo:8,hi:12,rest:90,eq:"machine"});
+X("abcrunchmach","Ab crunch machine","abs",{abs:1},["abcrunchm"],{rest:60,eq:"machine"});
+X("captainraise","Captain's chair leg raise","abs",{abs:1},["captain"],{rest:60,eq:"bw"});
+X("trxrow","Suspension row","row",{upback:1,lats:.5,biceps:.5},["trx"],{c:true,lo:8,hi:15,rest:90,eq:"bw"});
+X("trapshrug","Trap bar shrug","row",{upback:1},["trapbar"],{lo:8,hi:12,rest:90,eq:"bb"});
 // conditioning (HYROX, CrossFit-style). mu kept small: these count little toward hypertrophy volume.
 X("kbswing","Kettlebell swing","cond",{glutes:.5,hams:.5},["kb"],{lo:12,hi:20,rest:60,eq:"other",inj:["lowback"]});
 X("wallballs","Wall balls","cond",{quads:.5,fdelt:.5},["wallball"],{lo:15,hi:25,rest:60,eq:"other"});
@@ -245,13 +281,16 @@ function splitWarnings(seq, ans){
 const WD = [["mon",1,"Mon"],["tue",2,"Tue"],["wed",3,"Wed"],["thu",4,"Thu"],["fri",5,"Fri"],["sat",6,"Sat"],["sun",0,"Sun"]];
 const INJ = [["shoulder","Shoulder"],["elbow","Elbow"],["wrist","Wrist"],["lowback","Lower back"],["hip","Hip"],["knee","Knee"],["ankle","Ankle"]];
 // Looks for the aesthetics goal: the user chooses; these only suggest which muscles to prioritise.
+// Looks: priorities from attractiveness research where it exists (shoulder/chest-to-waist ratio and strength cues in men,
+// Swami & Tovée 2005, Sell 2017; waist-to-hip ratio and a lean-and-muscular ideal in women, Singh 1993, Bozsik 2018), otherwise coaching convention.
+// "ev" = research-backed, "conv" = convention. Overall size and Strong have no priorities: even volume grows the most muscle in total.
 const LOOKS = {
-  male:[["vtaper","V-taper","Broad shoulders and back, narrow waist",["sdelt","lats","chest"]],["athletic","Athletic","Balanced, strong legs, defined arms",["quads","sdelt","upback"]],["mass","Overall size","Big everywhere, bodybuilding style",["chest","lats","quads"]],["arms","Arms and shoulders","Fuller arms and capped delts",["biceps","triceps","sdelt"]]],
-  female:[["toned","Toned and athletic","Defined shoulders, back and legs",["glutes","sdelt","upback"]],["hourglass","Hourglass","Rounder glutes and shoulders, wider back",["glutes","sdelt","lats"]],["lower","Lower-body focus","Glutes, hamstrings and quads",["glutes","hams","quads"]],["strong","Strong and defined","Balanced strength with visible muscle",["upback","glutes","triceps"]]]
+  male:[["vtaper","V-taper","Wide shoulders and back, narrow waist",["sdelt","lats"],"ev"],["athletic","Athletic","Strong, balanced, sporty",["sdelt","chest","quads"],"ev"],["beach","Lean and defined","Chest, arms and shoulders that show",["chest","sdelt","biceps"],"conv"],["mass","Overall size","Bigger everywhere, evenly",[],"ev"]],
+  female:[["hourglass","Hourglass","Fuller glutes, shapely shoulders, smaller-looking waist",["glutes","sdelt"],"ev"],["toned","Toned and athletic","Defined shoulders, back and legs",["glutes","sdelt","upback"],"conv"],["lean","Lean and slim","Lighter, defined; driven mainly by diet",[],"ev"],["strong","Strong overall","Even, all-round muscle and strength",[],"ev"]]
 };
 
 /* ---------- Generator ---------- */
-function has(kit, ex){ return ex.q.every(r => kit.includes(r)); }
+function has(kit, ex){ return ex.q.every(r => kitHas(kit, r)); }
 function exScore(ex, ctx){
   let s = ex.len * 2;                                   // lengthened bias
   if (ctx.gym === "shwc" && ex.eq === "machine" && !ex.c) s += 1;   // stable machines for isolation work
@@ -676,8 +715,8 @@ function generateEndu(ans, seed){
 
 /* ---------- Nutrition math ---------- */
 const GOALS = {
-  bulk:{label:"Build muscle", sub:"Lean bulk: gain slowly to keep fat gain low", phase:"bulk", min:0.1, max:0.75, rec:[0.25, 0.5], def:0.35, src:"rate-gain"},
-  cut:{label:"Lose fat", sub:"Cut: lose fat while keeping muscle", phase:"cut", min:0.25, max:1.25, rec:[0.5, 1.0], def:0.6, src:"rate-loss"},
+  bulk:{label:"Build muscle", sub:"Lean bulk: gain slowly to keep fat gain low", phase:"bulk", min:0.1, max:0.75, rec:[0.25, 0.5], def:0.25, src:"rate-gain"},
+  cut:{label:"Lose fat", sub:"Cut: lose fat while keeping muscle", phase:"cut", min:0.25, max:1.25, rec:[0.5, 1.0], def:0.7, src:"rate-loss"},
   recomp:{label:"Recomp", sub:"Hold weight, build muscle and lose fat slowly", phase:"recomp", min:0, max:0, rec:[0, 0], def:0, src:"recomp"},
   maintain:{label:"Maintain", sub:"Hold your weight and keep training hard", phase:"maintain", min:0, max:0, rec:[0, 0], def:0, src:"energy"}
 };
@@ -727,12 +766,12 @@ function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.
 function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
 // during the plan builder, generators use the gyms being edited; they're only saved with the plan
 const flowGyms = () => (F && F.kind === "prog" && F.ans && F.ans.gyms && F.ans.gyms.length) ? F.ans.gyms : null;
-function gymsDraft(){ return gymList().map(g => ({id:g.id, name:g.name, kit:(g.kit || KIT_FULL).slice(), dbMax:g.dbMax || 40, dbStep:g.dbStep || 2, plate:g.plate || 1.25})); }
+function gymsDraft(){ return gymList().map(g => ({id:g.id, name:g.name, type:g.type || "", kit:(g.kit || KIT_FULL).slice(), dbMax:g.dbMax || 40, dbStep:g.dbStep || 2, dbMode:g.dbMode || "step2", dbs:(g.dbs || []).slice(), plate:g.plate || 1.25})); }
 function progDefaults(){
   const p = S.prog || {}, prev = p.setup, gyms = gymsDraft();
   const kit = Object.fromEntries(gyms.map(g => [g.id, g.kit.slice()]));
   const base = {gtype:null, kind:"gym", goal:"size", level:"inter", days:DAYPICK[4].slice(), mins:70, gymOf:{}, gyms, kit, sports:[], split:null, customSeq:null, pri:[], inj:[], injText:"", injAI:null, love:[], ban:[],
-    block:6, ramp:"rec", rest:"std", breaks:[], start:nextMonday(), phase:S.profile.phase || "maintain", name:"Block 1",
+    block:6, ramp:"rec", rest:"std", nTrain:null, blocked:[], gfam:null, breaks:[], start:nextMonday(), phase:S.profile.phase || "maintain", name:"Block 1",
     event:"general", goalKm:15, hasDate:false, raceDate:addWeeks(16), runLevel:2, weeklyKm:22, longest:10, runs:3, longDay:"sat", runDays:null, strengthN:2, liftDays:[], nDays:4, tri:"olympic", triLevel:1, division:"Open"};
   if (prev && prev.gtype) return Object.assign(base, clone(prev), {gyms, kit, start:nextMonday(), breaks:[], customAI:null, customDone:false, hasDate:prev.hasDate && prev.raceDate > ymd(new Date())});
   return base;
@@ -818,10 +857,17 @@ const PSTEPS = {
 };
 function psteps(){
   const a = F.ans; if (!a.gtype) return ["intro","goal","level","days","build","review"];
+  const sub = a.gfam === "strength" ? ["strengthType"] : a.gfam === "race" ? ["raceType"] : [];
+  const base = psteps0(); const gi = base.indexOf("goal"); return gi < 0 ? base : base.slice(0, gi + 1).concat(sub, base.slice(gi + 1));
+}
+function psteps0(){
+  const a = F.ans;
   if (a.gtype === "custom" && !a.customDone) return ["intro","goal","custom","build","review"];
   return PSTEPS[a.kind].filter(x => !(x === "look" && a.gtype !== "aesthetic") && !(x === "split" && a.goal === "crossfit") && !(x === "racedate" && a.event === "general")
     && !(x === "gyms" && ["endurance","tri"].includes(a.kind) && !(+a.strengthN > 0)) && !(x === "lifts" && a.goal === "crossfit")).concat(a.gtype === "custom" ? [] : []).filter((x, i, arr) => arr.indexOf(x) === i);
 }
+const GFAM = [["muscle","Build muscle","More size, most productive volume"],["strength","Get stronger","Lift heavier, with or without the size work"],["aesthetic","Change how I look","Pick the look; the plan puts the work where it shows"],
+  ["run","Running","First 5k to ultra, or just fitter"],["hybrid","Hybrid","Lifting and running together"],["race","Fitness race","HYROX, CrossFit-style or triathlon"]];
 function setGtype(a, g){
   const [kind, goal] = GTYPES[g]; a.gtype = g; a.kind = kind; if (goal) a.goal = goal; a.cardioPlus = g === "gymcardio";
   if (g === "aesthetic" && !a.look) a.pri = [];
@@ -838,22 +884,48 @@ function numSeg(name, from, to, cur, rec){ return `<div class="obnums">${Array.f
 function dayToggles(name, sel, disabled){ return `<div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="${name}" data-val="${k}" aria-pressed="${(sel || []).includes(k)}" ${disabled && disabled(k) ? "disabled" : ""}>${sh}</button>`).join("")}</div>`; }
 function dateToggle(a){ return `<div class="obfld"><span class="obl">Do you have a date?</span>${seg2("hasDate", [["no","No, just get me ready"],["yes","Yes, a race or event"]], a.hasDate ? "yes" : "no")}
   ${a.hasDate ? `<input class="field" type="date" data-input="raceDate" value="${esc(a.raceDate)}">` : ""}</div>`; }
+// Days: frequency barely matters once weekly volume is equal (Schoenfeld 2019); 2+ sessions per muscle beats 1 (Schoenfeld 2016).
+// So: beginners 3, intermediates 4, advanced 5, strength/powerbuilding 4. Never recommend 7.
+function recDays(a){ return a.level === "new" ? 3 : a.level === "adv" && !["strength","power"].includes(a.goal) ? 5 : 4; }
+function chooseDays(n, blocked){
+  const allow = WD.filter(([k]) => !(blocked || []).includes(k)).map(x => x[0]), idx = k => WD.findIndex(x => x[0] === k);
+  if (n >= allow.length) return allow.slice();
+  let best = null;
+  const combos = (arr, k, start = 0, cur = []) => { if (cur.length === k){ const ii = cur.map(idx).sort((x, y) => x - y), gaps = ii.map((v, j) => ((ii[(j + 1) % ii.length] - v + 7) % 7) || 7), sc = Math.min(...gaps) * 10 - (Math.max(...gaps) - Math.min(...gaps)) - (cur.includes("sun") ? 0.5 : 0) - (cur.includes("sat") ? 0.3 : 0); if (!best || sc > best.sc) best = {sc, cur:cur.slice()}; return; } for (let j = start; j < arr.length; j++){ cur.push(arr[j]); combos(arr, k, j + 1, cur); cur.pop(); } };
+  combos(allow, n);
+  return best ? WD.filter(([k]) => best.cur.includes(k)).map(x => x[0]) : allow.slice(0, n);
+}
 function sweetSpot(a){
   const tg = targetsFor(a), sets = Object.values(tg).reduce((x, y) => x + y, 0) / 1.6, need = Math.round(sets * 2.4 / Math.max(1, a.days.length) + 6);
   const m = +a.mins, zone = m < 40 ? ["short", "Short sessions work, but the plan may not fit all the volume you need."] : m <= 75 ? ["ok", "In the sweet spot: enough time for your volume without the last exercises suffering."] : m <= 90 ? ["ok", "Long but fine, especially with priorities or heavier lifts."] : ["long", "Very long sessions: effort tends to drop late on. Another day usually works better."];
   return {need, zone};
 }
+const DBW = [1,2,2.5,3,4,5,6,7,7.5,8,9,10,11,12,12.5,13,14,15,16,17.5,18,20,22,22.5,24,25,26,27.5,28,30,32,32.5,34,35,36,37.5,38,40,42,42.5,44,45,46,47.5,48,50,52,52.5,55,57.5,60,62.5,65,70,75,80];
 function gymEditor(a){
-  return `${a.gyms.map((g, gi) => `<div class="card obgymc">
+  const q = (F.eqq || "").toLowerCase().trim();
+  return `${a.gyms.map((g, gi) => { const t = g.type || "";
+    const row = ([k, n]) => `<button class="eqrow" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}"><span class="ph ic sm"></span><span>${n}</span><i class="eqtick"></i></button>`;
+    return `<div class="card obgymc">
     <div class="spread"><input class="field obgname" data-gname="${g.id}" value="${esc(g.name)}" aria-label="Gym name">${a.gyms.length > 1 ? `<button class="link muted" data-gdel="${g.id}">Remove</button>` : ""}</div>
-    <span class="obl">Start from a preset</span>
-    <div class="chips">${Object.entries(PRESETS).map(([k, [n, d]]) => `<button class="chip" data-gpreset="${k}" data-g="${g.id}" title="${esc(d)}">${n}</button>`).join("")}</div>
-    ${EQG.map(([gn, items], qi) => { const on2 = items.filter(([k]) => g.kit.includes(k)).length;
-      return `<details class="obeqg" ${F.openEq === g.id + qi ? "open" : ""}><summary><b>${gn}</b><span class="muted small">${on2} of ${items.length}</span><button class="link" data-gall="${qi}" data-g="${g.id}">${on2 === items.length ? "None" : "All"}</button></summary>
-      <div class="chips">${items.map(([k, n]) => `<button class="chip" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}">${n}</button>`).join("")}</div></details>`; }).join("")}
-    ${g.kit.includes("db") ? `<div class="obfld"><span class="obl">Dumbbells</span><div class="obunitrow">up to ${nf("gyms." + gi + ".dbMax", "num", g.dbMax, "Heaviest dumbbell", 84)}<span>kg, in steps of</span></div>${seg2("gyms." + gi + ".dbStep", [["1","1 kg"],["2","2 kg"],["2.5","2.5 kg"],["5","5 kg"]], String(g.dbStep))}</div>` : ""}
-    ${g.kit.includes("bb") ? `<div class="obfld"><span class="obl">Smallest plates</span>${seg2("gyms." + gi + ".plate", [["0.5","0.5 kg"],["1.25","1.25 kg"],["2.5","2.5 kg"]], String(g.plate))}<span class="obhint">Sets the smallest jump the plan suggests on barbell lifts.</span></div>` : ""}
-  </div>`).join("")}<button class="btn ghost" data-gadd="1">+ Add another gym</button>`;
+    <span class="obl">What kind of gym is it?</span>
+    <div class="gtypes">${Object.entries(GYMTYPES).map(([k, [n, d]]) => `<button class="gtype" data-gpreset="${k}" data-g="${g.id}" aria-pressed="${t === k}"><span class="ph ic"></span><b>${n}</b><span>${d}</span></button>`).join("")}</div>
+    <div class="spread"><span class="obl">Equipment</span><span class="small muted">${g.kit.length} items ticked</span></div>
+    <span class="obhint">${t ? "Filled in for a typical " + GYMTYPES[t][0].toLowerCase() + ". Untick anything yours doesn't have, or add what it does." : "Pick the kind of gym above to fill this in, then adjust."}</span>
+    <label class="sb card eqsearch"><span>${ICON.search}</span><input data-eqq="1" placeholder="Search ${ALLKIT.length} pieces of equipment" value="${esc(F.eqq || "")}" autocomplete="off"></label>
+    ${q ? `<div class="eqlist">${EQUIP.filter(([, n]) => n.toLowerCase().includes(q)).map(row).join("") || `<p class="small muted">Nothing matches. Tell us what's missing in the AI chat and we'll add it.</p>`}</div>`
+    : EQG.map(([gn, items], qi) => { const on2 = items.filter(([k]) => g.kit.includes(k)).length;
+      return `<details class="eqgrp" ${(F.openEq || []).includes(g.id + qi) ? "open" : ""}><summary><span class="ph ic sm"></span><b>${gn}</b><span class="muted small">${on2}/${items.length}</span><button class="link" data-gall="${qi}" data-g="${g.id}">${on2 === items.length ? "None" : "All"}</button></summary>
+      <div class="eqlist">${items.map(row).join("")}</div></details>`; }).join("")}
+    ${g.kit.includes("db") ? dbPicker(g, gi) : ""}
+    ${g.kit.includes("bb") ? `<div class="obfld"><span class="obl">Smallest weight plates</span><span class="obhint">The lightest plates you have, used one on each side of the bar. So the smallest jump on the bar is ${2 * (+g.plate || 1.25)} kg.</span>${seg2("gyms." + gi + ".plate", [["0.5","0.5 kg"],["1.25","1.25 kg"],["2.5","2.5 kg"],["5","5 kg"]], String(g.plate || 1.25))}</div>` : ""}
+  </div>`; }).join("")}<button class="btn ghost" data-gadd="1">+ Add another gym</button>`;
+}
+function dbPicker(g, gi){
+  const m = g.dbMode || "step2", list = g.dbs || [];
+  return `<div class="obfld"><span class="obl">Which dumbbells?</span>
+    <div class="obgrid">${[["step2","Every 2 kg","e.g. 2, 4, 6 … up to the max"],["step25","Every 2.5 kg","e.g. 2.5, 5, 7.5 …"],["adj","Adjustable set","PowerBlock, Bowflex and similar"],["exact","Pick exact pairs","Gaps or odd jumps between pairs"]].map(([k, t, d]) => `<button class="obcard" data-set="gyms.${gi}.dbMode" data-val="${k}" aria-pressed="${m === k}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+    ${m === "exact" ? `<span class="obhint">Tap every pair you have. ${list.length ? list.length + " pairs, " + Math.min(...list) + "-" + Math.max(...list) + " kg." : ""}</span><div class="dbgrid">${DBW.map(w => `<button data-dbw="${w}" data-g="${g.id}" aria-pressed="${list.includes(w)}">${w}</button>`).join("")}</div>`
+      : `<div class="obunitrow">Heaviest pair ${nf("gyms." + gi + ".dbMax", "num", g.dbMax || 40, "Heaviest dumbbell", 84)}<span>kg</span></div>`}</div>`;
 }
 function pStep(s, a){
   const G = GTYPES[a.gtype] || [];
@@ -866,18 +938,26 @@ function pStep(s, a){
       <div><i>3</i><span><b>Any goal</b><em>Muscle, strength, running, HYROX, CrossFit-style or triathlon, or describe your own.</em></span></div>
     </div>`, cta:"Start"};
   case "goal": return {title:"What are you training for?", body:`
-    <h3 class="obh" style="margin-top:0">In the gym</h3><div class="obopts">${["muscle","strength","power","aesthetic","gymcardio","crossfit"].map(k => opt("gtype", k, GTYPES[k][2], GTYPES[k][3], a.gtype)).join("")}</div>
-    <h3 class="obh">Endurance and hybrid</h3><div class="obopts">${["run","hybrid","hyrox","tri"].map(k => opt("gtype", k, GTYPES[k][2], GTYPES[k][3], a.gtype)).join("")}</div>
-    <div class="obopts" style="margin-top:6px">${opt("gtype", "custom", GTYPES.custom[2], GTYPES.custom[3], a.gtype)}</div>`};
+    <div class="obgrid g3">${GFAM.map(([k, t, d]) => `<button class="obcard" data-gfam="${k}" aria-pressed="${a.gfam === k}"><span class="ph ic"></span><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+    <button class="obcard aicard" data-gfam="custom" aria-pressed="${a.gfam === "custom"}"><span class="ph ic"></span><b>Anything else? Tell the AI.</b><span>Describe any goal in your own words, a sport, an event, a look or a deadline, and AJ Training AI builds the plan around it.</span></button>`};
+  case "strengthType": return {title:"What kind of strong?", body:`<div class="obopts">
+    ${opt("gtype","strength","Strength","Heavy main lifts (squat, bench, deadlift, overhead press) at 3-6 reps, plus enough accessory work to stay balanced.",a.gtype)}
+    ${opt("gtype","power","Powerbuilding","Strength and size together: squat twice, bench two or three times and deadlift once a week at 1-6 reps, then bodybuilding work at 6-15 reps.",a.gtype)}</div>
+    <p class="obnote">Strength gains level off at around 4-5 hard sets per lift per week; size keeps rising with more sets. Powerbuilding has no formal definition in the research, so this follows common coaching practice built on that evidence. ${src("load")}</p>`};
+  case "raceType": return {title:"Which race or style?", body:`<div class="obopts">
+    ${opt("gtype","hyrox","HYROX","8 × 1 km runs, each followed by a workout station. Running-led plan with station strength.",a.gtype)}
+    ${opt("gtype","crossfit","CrossFit-style","Strength plus short, hard conditioning pieces several days a week.",a.gtype)}
+    ${opt("gtype","tri","Triathlon","Swim, bike and run, from sprint to Ironman.",a.gtype)}</div>`};
   case "custom": return {title:"Describe your goal", body:`
     <p class="obnote" style="margin-top:0">In your own words: the event, sport or look, how many days you have, anything that matters. For example "Hike Kilimanjaro next August", "Get strong enough for my first pull-up" or "Rugby pre-season".</p>
     <textarea class="field" rows="4" data-input="customText" placeholder="My goal is…">${esc(a.customText || "")}</textarea>
     <button class="btn orange" data-aicustom="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Analysing…" : "Analyse with AJ Training AI"}</button>
     ${a.customAI ? `<div class="card obai"><b>${esc(a.customAI.title || "Your plan")}</b><span>${esc(a.customAI.summary || "")}</span>${a.customAI.notes ? `<span class="small muted">${esc(a.customAI.notes)}</span>` : ""}</div>` : ""}`, cta:a.customAI ? "Use this" : "Continue"};
   case "look": { const sx = S.profile.sex === "female" ? "female" : "male", other = sx === "male" ? "female" : "male";
-    const row = l => `<button class="obopt" data-look="${l[0]}" aria-pressed="${a.look === l[0]}"><b>${l[1]}</b><span>${l[2]} · prioritises ${l[3].map(m => MUS[m].toLowerCase()).join(", ")}</span></button>`;
-    return {title:"Which look are you after?", body:`<p class="obnote" style="margin-top:0">Pick what you think will look best on you. It only sets your starting priorities, which you can change on a later step.</p>
-      <div class="obopts">${LOOKS[sx].map(row).join("")}</div><h3 class="obh">More looks</h3><div class="obopts">${LOOKS[other].map(row).join("")}</div>`}; }
+    const row = l => `<button class="obcard" data-look="${l[0]}" aria-pressed="${a.look === l[0]}"><span class="ph pic sm">Photo</span><b>${l[1]}</b><span>${l[2]}</span><em class="lookpri">${l[3].length ? "Extra work: " + l[3].map(m => MUS[m].toLowerCase()).join(", ") : "No single focus: even work everywhere"}</em><em class="lookev ${l[4]}">${l[4] === "ev" ? "Based on research" : "Coaching convention"}</em></button>`;
+    return {title:"Which look are you after?", body:`<p class="oblead">Pick what you think would look best on you.</p>
+      <div class="obgrid">${LOOKS[sx].map(row).join("")}</div><details class="obmore"><summary>More looks</summary><div class="obgrid">${LOOKS[other].map(row).join("")}</div></details>
+      <p class="obnote">You can change the focus muscles on a later step.</p>`}; }
   case "level": return {title:"Training experience", body:`<div class="obopts">
     ${opt("level","new","Under 1 year","Fewer sets, 8-15 reps and 2-3 reps in reserve while you learn the lifts. Stable machines are favoured.",a.level)}
     ${opt("level","inter","1-4 years","Intermediate: the most productive volume, sets close to failure.",a.level)}
@@ -888,25 +968,28 @@ function pStep(s, a){
       return {title:"How many days a week?", body:`${numSeg("nDays", r[0], r[1], a.nDays, r[2])}
         <div class="obfld"><span class="obl">Long ${a.kind === "tri" ? "ride" : "session"} day</span>${seg2("longDay", [["sat","Saturday"],["sun","Sunday"]], a.longDay)}</div>
         <p class="obnote">${a.kind === "tri" ? "About three-quarters of the time is easy. One long ride with a short brick run off the bike each week." : "Most of a HYROX race is running, so runs lead the week, with station strength and a weekly race simulation."} Move any session in the Train tab when the week changes.</p>`}; }
-    const sp = sweetSpot(a);
-    return {title:"When can you train?", body:`
-    <p class="obnote" style="margin-top:0">Tap your usual days. Weeks change: in the Train tab you can move any session to another day, and the week adjusts around it.</p>
-    ${dayToggles("days", a.days)}
-    <p class="obnote">${a.days.length} day${a.days.length === 1 ? "" : "s"} a week. ${a.days.length < 2 ? "One day works, but two or more lets every muscle be trained twice a week." : a.days.length >= 5 ? "Plenty: every muscle twice a week with room for priorities." : "Enough to train every muscle twice a week."} ${src("frequency")}</p>
+    const sp = sweetSpot(a), rec = recDays(a), n = a.nTrain || a.days.length;
+    return {title:"How often do you want to train?", body:`
+    <div class="obfld"><span class="obl">Days a week</span>${numSeg("nTrain", 1, 7, n, rec)}
+      <span class="obhint ${n >= 6 ? "bad" : ""}">★ ${rec} days is what we'd recommend for you. ${n >= 7 ? "Seven days rarely adds muscle or strength over 4-5, and a rest day helps you recover: we'd suggest fewer." : n === 6 ? "Six works for experienced lifters with good recovery; most people grow just as well on 4-5." : n <= 2 ? "Fine for a start; three or more lets every muscle be trained twice a week." : "Enough to train every muscle twice a week."} ${src("frequency")}</span></div>
+    <div class="obfld"><span class="obl">Any days you definitely can't train?</span>
+      <span class="obhint">Optional. This doesn't lock your week: the plan spreads your sessions out, and you can move any of them in the Train tab whenever your week changes.</span>
+      ${dayToggles("blocked", a.blocked || [])}
+      <span class="obhint">Your usual days: <b>${WD.filter(([k]) => a.days.includes(k)).map(x => x[2]).join(", ") || "–"}</b></span></div>
     <div class="obfld"><span class="obl">Time per session</span><div class="obunitrow">${nf("mins", "num", a.mins, "Minutes per session", 90)}<span>min, including rest</span></div>
-      <div class="obslider mins"><div class="obsweet" style="left:${(45 - 30) / 90 * 100}%;width:${30 / 90 * 100}%"></div><input type="range" min="30" max="120" step="5" value="${a.mins}" data-range="mins" aria-label="Minutes per session"></div>
-      <span class="obhint ${sp.zone[0] === "ok" ? "" : "bad"}">${sp.zone[1]} Sweet spot 45-75 min. Your weekly volume needs about ${sp.need} min a session.</span></div>`}; }
+      <div class="obslider"><input type="range" min="30" max="120" step="5" value="${a.mins}" data-range="mins" aria-label="Minutes per session"></div>
+      <div class="obzones"><span>Short</span><span class="ok">Sweet spot 45-75</span><span>Long</span></div>
+      <span class="obhint ${sp.zone[0] === "ok" ? "" : "bad"}">${sp.zone[1]}</span></div>`}; }
   case "gyms": return {title:a.gyms.length > 1 ? "Your gyms" : "Your gym", wide:true, body:`
-    <p class="obnote" style="margin-top:0">Pick a preset, then tick or untick whole groups or single items. Exercises are only chosen if the gym has the kit, and every session is written for every gym you add.</p>
+    <p class="obnote" style="margin-top:0">Exercises are only picked if your gym has the kit. Add a second gym if you train in more than one place.</p>
     ${gymEditor(a)}
     ${a.gyms.length > 1 && (a.kind === "gym" || a.kind === "hybrid") ? `<div class="obgym"><b>Usual gym each day</b>${WD.filter(([k]) => (a.days || []).includes(k)).map(([k,, sh]) => `<div class="spread"><b>${sh}</b>${seg2("gymOf." + k, a.gyms.map(g => [g.id, g.name.length > 12 ? g.name.split(/\s+/).map(w => w[0]).join("").toUpperCase() : g.name]), (a.gymOf || {})[k] || a.gyms[0].id)}</div>`).join("")}<span class="small muted">You can switch gym on the day; progress on each machine is kept per gym.</span></div>` : ""}`};
-  case "sport": { const sel = a.sports || [], q = (F.sq || "").toLowerCase(), ids = window.AJSports ? AJSports.search(q).slice(0, q ? 12 : 0) : [];
+  case "sport": { const sel = a.sports || [], q = (F.sq || "").toLowerCase();
     return {title:"Any sport or regular cardio?", body:`
     <p class="obnote" style="margin-top:0">Add anything you do most weeks. No need to say which days: log it when you do it and the plan and your calories account for it.</p>
-    <label class="sb card"><span>${ICON.search}</span><input data-sq="1" placeholder="Search any sport" value="${esc(F.sq || "")}" autocomplete="off"></label>
-    <div id="obsq" class="chips">${ids.filter(k => !sel.some(x => x.id === k)).map(k => `<button class="chip" data-sport="${k}">+ ${esc(AJSports.SP[k][0])}</button>`).join("")}</div>
-    ${!q ? `<div class="chips">${["football","tennis","padel","run","cycle","swim","basketball","climb","martial","yoga"].filter(k => !sel.some(x => x.id === k) && (window.AJSports && AJSports.SP[k])).map(k => `<button class="chip" data-sport="${k}">+ ${esc(AJSports.SP[k][0])}</button>`).join("")}</div>` : ""}
-    ${sel.length ? `<div class="card oblist">${sel.map(x => `<div><span><b>${esc((AJSports.SP[x.id] || [x.id])[0])}</b></span><span class="obstepper"><button data-sportn="${x.id}" data-d="-1">−</button><b class="num">${x.n}× a week</b><button data-sportn="${x.id}" data-d="1">+</button></span></div>`).join("")}</div>` : ""}
+    <label class="sb card"><span>${ICON.search}</span><input data-sq="1" placeholder="Search ${window.AJSports ? Object.keys(AJSports.SP).length : ""} sports and activities" value="${esc(F.sq || "")}" autocomplete="off"></label>
+    <div id="obsq" class="sprows">${sportRows(q, sel)}</div>
+    ${sel.length ? `<div class="card oblist">${sel.map(x => `<div><span class="obsp"><span class="ph ic sm"></span><b>${esc((AJSports.SP[x.id] || [x.id])[0])}</b></span><span class="obstepper"><button data-sportn="${x.id}" data-d="-1">−</button><b class="num">${x.n}× a week</b><button data-sportn="${x.id}" data-d="1">+</button></span></div>`).join("")}</div>` : ""}
     <p class="obnote">On average, cardio doesn't blunt muscle growth. Hard sport sessions can tire your legs, so if one falls the day before leg day, move a session in the Train tab. ${src("interference")}</p>`, cta:sel.length ? "Continue" : "Skip"}; }
   case "split": {
     const n = a.days.length, opts = SPLITS[n] || [], rec = recommendSplit(a), cur = a.split || (rec && rec.id);
@@ -921,31 +1004,30 @@ function pStep(s, a){
       <p class="obnote">With the same weekly sets, how you split them matters little; training each muscle at least twice a week keeps sessions shorter and quality high. ${src("frequency")}</p>`};
   }
   case "pri": return {title:"What do you want to bring up?", body:`
-    ${a.look ? `<p class="obnote" style="margin-top:0">Pre-filled from your look. Change them freely.</p>` : `<p class="obnote" style="margin-top:0">Pick up to 3, or skip. They get about ${PRIORITY_SETS} sets a week (others ~10-12) and go first in the session while you're fresh.</p>`}
-    <div class="chips obbig">${PRIORITY_CHOICES.map(m => chip("pri", m, MUS[m], (a.pri || []).includes(m))).join("")}</div>
-    <p class="obnote">Extra weekly sets are what drive the extra growth; going first keeps those sets high quality. ${src("volume")} ${src("order","Order evidence")}</p>`, cta:(a.pri || []).length ? "Continue" : "Skip"};
+    <p class="oblead">${a.look ? "Pre-filled from your look. Change them freely." : "Optional. Pick up to 3 muscles to grow faster."}</p>
+    <div class="obgrid g3">${PRIORITY_CHOICES.map(m => `<button class="obcard mus" data-tog="pri" data-val="${m}" aria-pressed="${(a.pri || []).includes(m)}"><span class="ph ic"></span><b>${MUS[m]}</b></button>`).join("")}</div>
+    <p class="obnote">Priorities get about ${PRIORITY_SETS} sets a week instead of ~12 and go first in the session. ${src("volume")}</p>`, cta:(a.pri || []).length ? "Continue" : "Skip"};
   case "inj": return {title:"Anything to work around?", body:`
-    <p class="obnote" style="margin-top:0">Tap any joint that needs care, and describe it if you like. "Sprained ankle last month" is different from "tight ankles, my heels lift when I squat": the AI reads it and adjusts exercise choices.</p>
-    <div class="chips obbig">${INJ.map(([k, n]) => chip("inj", k, n, (a.inj || []).includes(k))).join("")}</div>
-    <textarea class="field" rows="3" data-input="injText" placeholder="Optional: what's going on?">${esc(a.injText || "")}</textarea>
-    ${(a.injText || "").trim().length > 3 ? `<button class="btn ghost" data-aiinj="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Analysing…" : "Analyse with AJ Training AI"}</button>` : ""}
-    ${a.injAI ? `<div class="card obai"><b>What the plan will do</b><span>${esc(a.injAI.summary || "")}</span>${(a.injAI.avoid || []).length ? `<span class="small muted">Avoiding: ${a.injAI.avoid.map(k => L[k] ? L[k].n : k).join(", ")}</span>` : ""}<span class="small muted">This isn't medical advice. Pain that's sharp, worsening or lasting needs a physio or doctor.</span></div>` : ""}`, cta:(a.inj || []).length || a.injText ? "Continue" : "Nothing, skip"};
+    <p class="oblead">Tap anything that needs care. Add a line if it helps, and the plan swaps exercises to suit.</p>
+    <div class="obgrid g3">${INJ.map(([k, n]) => `<button class="obcard mus" data-tog="inj" data-val="${k}" aria-pressed="${(a.inj || []).includes(k)}"><span class="ph ic"></span><b>${n}</b></button>`).join("")}</div>
+    <textarea class="field bigtext" rows="3" data-input="injText" placeholder="e.g. tight ankles, heels lift when I squat">${esc(a.injText || "")}</textarea>
+    ${(a.injText || "").trim().length > 3 ? `<button class="btn ghost" data-aiinj="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Analysing…" : "Check it with AJ Training AI"}</button>` : ""}
+    ${a.injAI ? `<div class="card obai"><b>What the plan will do</b><span>${esc(a.injAI.summary || "")}</span>${(a.injAI.avoid || []).length ? `<span class="small muted">Avoiding: ${a.injAI.avoid.map(k => L[k] ? L[k].n : k).join(", ")}</span>` : ""}<span class="small muted">Not medical advice. Sharp, worsening or lasting pain needs a physio or doctor.</span></div>` : ""}`, cta:(a.inj || []).length || a.injText ? "Continue" : "Nothing, skip"};
   case "lifts": { const q = (F.lq || "").toLowerCase(), mf = F.lm || "";
     const list = Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1));
-    const kit = new Set(a.gyms.flatMap(g => g.kit));
+    const kitArr = a.gyms.flatMap(g => g.kit), kit = {has:r => kitHas(kitArr, r)};
     return {title:"Lifts you love or hate", body:`
       <p class="obnote" style="margin-top:0">Optional. Tap once to <b>star</b> (used whenever the kit allows), twice to <b>ban</b>, three times to reset.</p>
       <label class="sb card"><span>${ICON.search}</span><input data-lq="1" placeholder="Search ${Object.keys(L).length} exercises" value="${esc(F.lq || "")}" autocomplete="off"></label>
       <div class="chips obmf">${["", ...PRIORITY_CHOICES].map(m => `<button class="chip" data-lm="${m}" aria-pressed="${mf === m}">${m ? MUS[m] : "All"}</button>`).join("")}</div>
-      <div class="card oblifts" id="oblifts">${liftRows(list, a, kit)}</div>
+      <div class="oblifts" id="oblifts">${liftRows(list, a, kit)}</div>
       <p class="obnote">Lifts marked <em class="tagin">stretch</em> load the muscle hardest when it's lengthened; they're favoured because they tend to grow muscle as well or better. ${src("lengthened")}</p>`, cta:a.love.length || a.ban.length ? "Continue" : "Skip"}; }
   case "block": { const rp = rirPlan(+a.block, a.level, a.ramp);
     return {title:"Block, effort and rest", body:`
     <div class="obfld"><span class="obl">Block length</span>${numSeg("block", 4, 8, a.block, 6)}<span class="obhint">${a.block} weeks: ${a.block - 1} training weeks, then a lighter deload week. Planned deloads every 4-8 weeks are standard practice. ${src("deload")}</span></div>
-    <div class="obfld"><span class="obl">Effort</span>
-      <div class="obopts">${opt("ramp", "rec", "Recommended for your level", a.level === "new" ? "Start ~3 reps in reserve, settle at 2" : "Start at 1-2 reps in reserve, finish at 0-1", a.ramp)}${a.level !== "new" ? opt("ramp", "close", "Close from day one", "1 rep in reserve from week 1, 0-1 at the end", a.ramp) : ""}${opt("ramp", "steady", "Steady", "2 reps in reserve every week", a.ramp)}</div>
+    <div class="obfld"><span class="obl">How hard each week</span>
       <div class="obrir">${rp.map((r, i) => `<div class="${r === "DL" ? "dl" : ""}"><span>W${i + 1}</span><b>${r === "DL" ? "Deload" : r + " RIR"}</b></div>`).join("")}</div>
-      <span class="obhint">In trained lifters, stopping 1-2 reps short grew muscle as well as going to failure, and growth improves the closer you get. No study has compared ways of ramping effort, so the ramp itself is coaching practice. ${src("rir")}</span></div>
+      <span class="obhint">RIR is reps in reserve: how many more you could have done. Set for your experience: stopping 1-2 reps short grows as much muscle as failure in trained lifters. ${src("rir")}</span></div>
     <div class="obfld"><span class="obl">Rest between sets</span>${seg2("rest", [["short","Shorter"],["std","Standard"],["long","Longer"]], a.rest)}
       <span class="obhint">Standard: big barbell lifts 2.5 min, other compounds 2 min, isolation 90 s${a.goal === "strength" ? ", heavy sets 3.5 min" : ""}. More than 60 s helps growth a little; past ~90 s the difference is small. You can adjust any rest during a workout. ${src("rest")}</span></div>
     <div class="spread"><div class="stack" style="gap:2px"><span class="obl">Supersets to save time</span><span class="obhint">Pairs isolation lifts so they share rest</span></div><button class="switch" data-supers="1" role="switch" aria-checked="${a.supersets !== false}" aria-label="Supersets"><i></i></button></div>
@@ -991,13 +1073,19 @@ function pStep(s, a){
     <div class="obfld"><span class="obl">Experience</span>${seg2("triLevel", [["0","New"],["1","Some"],["2","Regular"],["3","Racing"]], String(a.triLevel))}</div>
     ${dateToggle(a)}
     <p class="obnote">Ironman athletes spend roughly 70% of their training easy, and more easy volume went with faster times. The weekly brick (a short run straight off the bike) practises the heavy-legs feeling; it's standard practice rather than proven by trials.</p>`};
-  case "build": return {title:"", body:`<div class="obbuild"><div class="obspin">${LOGO(72)}</div><h2>Building your plan</h2><div class="obticks" id="obticks"></div></div>`, nofoot:true};
+  case "build": return {title:"", body:`<div class="obbuild"><div class="obspin">${LOGO(72)}</div><h2>Building your plan</h2><div class="obbuildbar"><i id="obbar"></i></div><div class="obticks" id="obticks"></div></div>`, nofoot:true};
   case "review": return ["gym"].includes(a.kind) ? review(a) : reviewEndu(a);
   }
 }
 function liftRows(list, a, kit){
-  return list.length ? list.slice(0, 60).map(e => { const ok = e.q.every(r => kit.has(r));
-    return `<button class="obliftr ${a.love.includes(e.k) ? "love" : a.ban.includes(e.k) ? "ban" : ""}" data-lift="${e.k}"><span><b>${a.love.includes(e.k) ? "★ " : a.ban.includes(e.k) ? "✕ " : ""}${esc(e.n)}</b><em>${MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)] || ""}${e.len === 2 ? " · stretch" : ""}${ok ? "" : " · not in your gym"}</em></span></button>`; }).join("") : `<p class="small muted">No match.</p>`;
+  return list.length ? `<div class="obgrid">${list.slice(0, 60).map(e => { const ok = e.q.every(r => kit.has(r)), st = a.love.includes(e.k) ? "love" : a.ban.includes(e.k) ? "ban" : "";
+    return `<button class="obcard lift ${st} ${ok ? "" : "na"}" data-lift="${e.k}"><span class="ph pic wide">Exercise</span>${st ? `<i class="lbadge">${st === "love" ? "★ Loved" : "✕ Banned"}</i>` : ""}<b>${esc(e.n)}</b><span>${MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)] || ""}${e.len === 2 ? " · stretch" : ""}${ok ? "" : " · not in your gym"}</span></button>`; }).join("")}</div>` : `<p class="small muted">No match.</p>`;
+}
+function sportRows(q, sel){
+  q = (q || "").trim(); if (!q || !window.AJSports) return "";
+  const ids = AJSports.search(q).filter(k => !sel.some(x => x.id === k)).slice(0, 10);
+  return ids.length ? ids.map(k => `<button class="sprow" data-sport="${k}"><span class="ph ic sm"></span><span><b>${esc(AJSports.SP[k][0])}</b><span>${esc(AJSports.SP[k][1])}</span></span><i>+</i></button>`).join("")
+    : `<p class="small muted">No match. Try another word, or pick the closest (for example "Circuit training" for a fitness class).</p>`;
 }
 function seg2(name, opts, cur){ return `<div class="seg obseg" style="grid-template-columns:repeat(${opts.length},1fr)">${opts.map(([k, v]) => `<button data-set="${name}" data-val="${k}" aria-pressed="${k === cur}">${v}</button>`).join("")}</div>`; }
 
@@ -1053,14 +1141,13 @@ function review(a){
     ${(() => { const v = prog.vol[g] || {}, tg = prog.targets, tot = Object.keys(tg).reduce((x, m) => x + Math.min(v[m] || 0, tg[m]), 0), all = Object.values(tg).reduce((x, y) => x + y, 0), pct = Math.round(tot / all * 100);
       return pct < 85 ? `<div class="banner info"><b>${pct}% of the recommended weekly sets fit.</b> ${a.mins} min sessions on ${train.length} days can't hold it all. Every set still counts, and growth keeps coming from less; for the full dose add about ${Math.round((1 - tot / all) * all * 2.4 / train.length / 5) * 5 + 5} min a session or another day. <button class="obsrc" data-bumpmins="15">Add 15 min and rebuild</button></div>` : ""; })()}
     ${su.split === "custom" && splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).length ? `<div class="banner"><b>Your custom split.</b> ${splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).map(esc).join(" ")}</div>` : ""}
-    <div class="card"><div class="spread"><h2>Weekly sets</h2>${gl.length > 1 ? seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g) : ""}</div>${volChart(prog, g)}
-      <p class="small muted">${gl.length > 1 ? `Shown for a week done entirely at ${esc(gn(g))}.` : ""} ${src("volume")}</p></div>
+    ${gl.length > 1 ? `<div class="spread"><span class="small muted">Sessions shown for</span>${seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g)}</div>` : ""}
     ${train.map(d => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
       return `<details class="card obdayc"><summary><div class="stack" style="gap:2px"><b>${WD.find(x => x[0] === d.k)[2]} · ${esc(d.label)}</b><span class="small muted">${esc(d.focus)}</span></div><span class="small muted num">${list.reduce((s2, x) => s2 + x[1], 0)} sets · ~${Math.round(mins)} min</span></summary>
         <div class="oblist">${list.map(([k, n, ss]) => { const e = prog.exercises[k]; return `<div><span><b>${ss ? `<i class="obss">${ss}</i>` : ""}${esc(e.n)}</b><em>${esc(e.m)}${e.len === 2 ? " · stretch" : ""}</em></span><span class="num">${n} × ${e.lo}–${e.hi}<em>${e.rest >= 60 ? Math.round(e.rest / 60 * 10) / 10 + " min" : e.rest + " s"} rest</em></span></div>`; }).join("")}</div>
         <p class="small muted">${esc(d.cardio)}.</p></details>`; }).join("")}
     <div class="card obwhy"><h2>Why it's built this way</h2>
-      <div><b>Volume</b><span>${su.level === "new" ? "Fewer sets while you're new: you grow from less." : `~10-12 sets a week per muscle, ~${PRIORITY_SETS} for priorities.`} Gains rise with sets but flatten off. ${src("volume")}</span></div>
+      <div><b>Volume</b><span>${su.level === "new" ? "Fewer sets while you're new: you grow from less." : `About 10-14 hard sets a week for each muscle, ~${PRIORITY_SETS} for priorities. Presses and rows count towards the muscles they help, so shoulders and arms need less direct work.`} More sets keep adding muscle, but each extra set adds less. ${src("volume")}</span></div>
       <div><b>Frequency</b><span>Most muscles twice a week, so no session gets bloated. ${src("frequency")}</span></div>
       <div><b>Effort</b><span>RIR ${prog.rir.filter(r => r !== "DL").join(" → ")}, then deload. Trained lifters grow as much stopping 1-2 reps short as at failure; growth improves closer to failure. ${src("rir")}</span></div>
       <div><b>Reps</b><span>${reps} ${src("load")}</span></div>
@@ -1070,7 +1157,7 @@ function review(a){
       <div><b>Progression</b><span>Double progression: add reps across the range, then add load. ${src("progression")}</span></div>
       <div><b>Deload</b><span>Every ${prog.deloadEvery}th week, half the sets at ~3 RIR${(prog.breaks || []).length ? `. Breaks: ${prog.breaks.map(fmtD).join(", ")} (the block pauses)` : ""}. ${src("deload")}</span></div>
       ${su.goal === "crossfit" ? `<div><b>Conditioning</b><span>Each day ends with a short conditioning piece. Reviews of CrossFit-style training find too few good studies to promise specific results, and most injuries are shoulder, spine and knee: warm up well and keep technique first.</span></div>` : ""}
-    </div>`, cta:"Save programme", alt:"Shuffle exercises"};
+    </div>`, cta:"Save programme"};
 }
 
 /* ---------- Welcome (first run) ---------- */
@@ -1123,10 +1210,13 @@ function acceptWelcome(then){
 }
 
 /* ---------- Nutrition steps ---------- */
-const JOBEG = {desk:"Office work, driving, studying, working from home", mixed:"Teaching, retail, lab work: some walking about", active:"Trades, nursing, hospitality, warehouse, labouring"};
+const JOBEG = {desk:"Office, driving, studying", mixed:"Teaching, retail, some walking about", active:"Nursing, hospitality, warehouse", heavy:"Building, labouring, farming"};
 // Tudor-Locke & Bassett 2004 / Tudor-Locke 2011 step-defined activity bands
 const STEPBANDS = [[5000, "Sedentary"], [7500, "Low active"], [10000, "Somewhat active"], [12500, "Active"], [Infinity, "Highly active"]];
-const STEPGUESS = [["Mostly sitting", "Drive most places, little walking", 4000], ["Some walking", "Errands, the odd short walk", 6500], ["Walk most days", "Walk to work or the station, dog walks", 9000], ["On the move a lot", "Long daily walks or an on-your-feet job", 12500]];
+const STEPGUESS = [["Barely", "Drive most places", 3500], ["A little", "Short walks, errands", 6000], ["Most days", "Walk to work or the station", 8500], ["A lot", "Long daily walks or a dog", 11500], ["Loads", "On the go all day", 14500]];
+const CYCLE = [["No", "Never or rarely", 0], ["A bit", "A few short rides a week", 60], ["Commute", "Most weekdays", 150], ["Lots", "An hour or more most days", 360]];
+// body-fat picture choices (placeholders until the photo set exists)
+const BFPICS = {male:[8, 12, 15, 20, 25, 30, 35], female:[15, 20, 25, 30, 35, 40, 45]};
 // ACE body-fat categories (percent)
 const BFBANDS = {male:[[5, 13, "Athletic"], [14, 17, "Fit"], [18, 24, "Average"], [25, 35, "Higher"]],
   female:[[12, 20, "Athletic"], [21, 24, "Fit"], [25, 31, "Average"], [32, 42, "Higher"]]};
@@ -1141,7 +1231,7 @@ function bfGuide(sex, v){
     <div class="bflook"><b>~${look[0]}%</b><span>${look[1]}</span></div></div>`;
 }
 function nStep(s, a){
-  const kg = currentKg(), ex = expenditure(), G = GOALS[a.type];
+  const kg = currentKg(), ex = expenditure(); let G = GOALS[a.type];
   switch (s){
   case "intro": return {title:"Set your nutrition goal", body:`
     <p class="oblead">Tell me where you're heading and how fast. I'll set calories and macros, then adjust them every week from your real weight trend and food logs.</p>
@@ -1153,35 +1243,33 @@ function nStep(s, a){
   case "goal": return {title:"What's the goal?", body:`<div class="obopts">${Object.entries(GOALS).map(([k, g]) => opt("type", k, g.label, g.sub, a.type)).join("")}</div>
     <p class="obnote">${currentBf().v <= 15 ? `At ~${Math.round(currentBf().v)}% body fat (${esc(currentBf().src)}), a lean bulk is a good default.` : `At ~${Math.round(currentBf().v)}% body fat, a cut or recomp first is worth considering.`}</p>`};
   case "activity": {
-    const A = a.activity, pm = priorModel(kg), logged = loggedSteps(), band = STEPBANDS.find(b => A.steps < b[0]) || STEPBANDS[STEPBANDS.length - 1];
+    const A = a.activity, pm = priorModel(kg), logged = loggedSteps(), sg = STEPGUESS.reduce((b, x) => Math.abs(x[2] - A.steps) < Math.abs(b[2] - A.steps) ? x : b), cy = CYCLE.reduce((b, x) => Math.abs(x[2] - A.commute) < Math.abs(b[2] - A.commute) ? x : b);
+    const card = (attr, on, ic, t, d) => `<button class="obcard" ${attr} aria-pressed="${on}"><span class="ph ic">${ic}</span><b>${t}</b><span>${d}</span></button>`;
     return {title:"How active are you?", cls:"obform", body:`
-      <p class="obnote" style="margin-top:0">This sets your starting estimate. From there your food logs and weigh-ins take over and correct it every day.</p>
-      <div class="obfld"><span class="obl">Outside training, your day is mostly…</span>
-      <div class="obopts">${Object.entries(JOB).map(([k, v]) => `<button class="obopt" data-set="activity.job" data-val="${k}" aria-pressed="${A.job === k}"><b>${v[0]}</b><span>${JOBEG[k]}</span></button>`).join("")}</div></div>
-      <div class="obfld"><span class="obl">Steps a day, on a typical day</span>
-        <div class="obunitrow">${nf("activity.steps", "steps", A.steps, "Steps a day", 120)}<span>steps</span><em class="obconv">${band[1]}</em></div>
-        <div class="obslider"><input type="range" min="1000" max="30000" step="250" value="${Math.min(30000, A.steps)}" data-range="activity.steps" aria-label="Steps a day"></div>
-        <span class="obhint">${logged ? `Your logged average is ${fmtN(logged.avg)} over ${logged.n} days. <button class="obsrc" data-setsteps="${logged.avg}">Use it</button>` : "Used on days you don't log steps. Linking Apple Health in Settings replaces it with your real count."}</span></div>
-      <details class="obkit obguess" ${A.guess ? "open" : ""}><summary><b>Not sure of your steps?</b><span class="muted small">pick the closest</span></summary>
-        <div class="obopts" style="margin-top:12px">${STEPGUESS.map(([n, d, v]) => `<button class="obopt" data-setsteps="${v}" aria-pressed="${A.steps === v}"><b>${n}</b><span>${d} · about ${fmtN(v)} steps</span></button>`).join("")}</div>
-        <p class="obnote">Bands from step-count research: under 5,000 a day is sedentary, 7,500-10,000 somewhat active, 12,500+ highly active. ${src("steps")}</p></details>
-      <details class="obkit" ${A.commute ? "open" : ""}><summary><b>Cycle to get around?</b><span class="muted small">${A.commute ? A.commute + " min a week" : "optional"}</span></summary>
-        <p class="obnote">Cycling doesn't show up as steps, so add your usual weekly minutes (commuting, errands). Log one-off rides and sport as cardio instead.</p>
-        <div class="obunitrow">${nf("activity.commute", "mins", A.commute, "Cycling minutes a week", 104)}<span>min a week</span></div>
-        <div class="obslider"><input type="range" min="0" max="600" step="10" value="${A.commute}" data-range="activity.commute" aria-label="Cycling minutes a week"></div></details>
-      <div class="card"><div class="spread"><h3>Starting estimate</h3><b class="num">${fmtN(pm.total)} kcal</b></div>
-        <span class="small muted">Lifting comes from your programme (${(S.prog.days || []).filter(d => !d.rest && !d.optional).length} sessions a week) and sport or cardio from what you log, so you don't count them here.</span></div>`, cta:F.single ? "Save" : undefined};
+      <p class="oblead">Three quick taps. This only sets your starting point: your food logs and weigh-ins correct it from there.</p>
+      <div class="obfld"><span class="obl">1. A normal weekday, outside the gym</span>
+        <div class="obgrid">${Object.entries(JOB).map(([k, v]) => card(`data-set="activity.job" data-val="${k}"`, A.job === k, "", v[0], JOBEG[k])).join("")}</div></div>
+      <div class="obfld"><span class="obl">2. How much do you walk?</span>
+        <div class="obgrid">${STEPGUESS.map(([t, d, v]) => card(`data-setsteps="${v}"`, !A.exact && sg[2] === v, "", t, d)).join("")}</div>
+        <button class="link" data-exact="1">${A.exact ? "Use the options above instead" : logged ? `Use my logged average (${fmtN(logged.avg)} steps)` : "I know my daily steps"}</button>
+        ${A.exact ? `<div class="obunitrow">${nf("activity.steps", "steps", A.steps, "Steps a day", 120)}<span>steps a day</span></div>` : ""}
+        <span class="obhint">Link Apple Health in Settings and your real step count replaces this every day.</span></div>
+      <div class="obfld"><span class="obl">3. Do you cycle to get around?</span>
+        <div class="obgrid">${CYCLE.map(([t, d, v]) => card(`data-setcycle="${v}"`, cy[2] === v, "", t, d)).join("")}</div>
+        <span class="obhint">Only cycling for transport: it doesn't show up in your steps. Rides for sport are logged as cardio.</span></div>
+      <div class="card"><div class="spread"><h3>Starting estimate</h3><b class="num">${fmtN(pm.total)} kcal a day</b></div>
+        <span class="small muted">Your training and logged cardio are added on top automatically.</span></div>`, cta:F.single ? "Save" : undefined};
   }
-  case "stats": { const bf = currentBf(), today = (S.weights.find(w => w.d === ymd(new Date())) || S.weights[S.weights.length - 1] || {}).kg || kg;
+  case "stats": { const bf = currentBf(), today = (S.weights.find(w => w.d === ymd(new Date())) || S.weights[S.weights.length - 1] || {}).kg || kg, sx = S.profile.sex === "female" ? "female" : "male", cur = a.bf != null ? +a.bf : null;
     return {title:"Check your numbers", cls:"obform", body:`
     <div class="obfld"><div class="spread"><span class="obl">Weight today</span>${unitSeg("w")}</div>${weightRow("kgNow", a.kgNow != null ? a.kgNow : today)}
-      <span class="obhint">Saved as today's weigh-in. Targets use your 7-day average, now ${fmtW(kg)}.</span></div>
-    <div class="obfld"><span class="obl">Body fat</span>
-      <div class="obunitrow">${nf("bf", "bf", Math.round(a.bf != null ? a.bf : bf.v), "Body fat percent", 90)}<span>%</span><em class="obconv">${a.bf != null ? "set by you" : esc(bf.src)}</em></div>
-      ${bfGuide(S.profile.sex, a.bf != null ? +a.bf : bf.v)}
-      <span class="obhint">Tap the band that looks most like you, or type a number. A guess within ~5% is fine: it only fine-tunes the energy maths, and photo check-ins can estimate it later.</span></div>
-    <div class="card"><div class="spread"><h3>Expenditure</h3><b class="num">${fmtN(ex.kcal)} kcal</b></div>
-      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs, blended with the starting estimate.` : `Starting estimate from your activity answers. Formulas can be off by a few hundred calories, so after 5 fully logged days it starts measuring your real burn, leaning on your data more each day.`} ${src("energy")}</span></div>`}; }
+      <span class="obhint">Saved as today's weigh-in.</span></div>
+    <div class="obfld"><span class="obl">Which looks most like you?</span>
+      <span class="obhint">Pick the closest. It only fine-tunes the energy maths, so close is good enough.</span>
+      <div class="bfpics">${BFPICS[sx].map(v => `<button class="bfpic" data-bf="${v}" aria-pressed="${cur === v}"><span class="ph pic">Photo</span><b>~${v}%</b></button>`).join("")}</div>
+      <button class="link" data-bf="skip">Not sure: use an estimate${cur == null ? " (selected)" : ""}</button></div>
+    <div class="card"><div class="spread"><h3>Starting burn</h3><b class="num">${fmtN(ex.kcal)} kcal</b></div>
+      <span class="small muted">${ex.adaptive ? `Measured from ${ex.n} days of food and weight logs.` : `An estimate for now. After 5 fully logged days the app starts measuring your real burn from your food and weight, and relies on it more each day.`} ${src("energy")}</span></div>`}; }
   case "target": {
     const step = 0.5, [lo, hi] = targetBounds(a.type, kg);
     if (+a.targetKg < lo || +a.targetKg > hi) a.targetKg = Math.min(hi, Math.max(lo, +a.targetKg));
@@ -1191,6 +1279,7 @@ function nStep(s, a){
       <p class="obnote">${(+a.targetKg - kg >= 0 ? "+" : "") + (a.targetKg - kg).toFixed(1)} kg from your current trend weight. You can change this any time.</p>`};
   }
   case "rate": {
+    const G0 = G; { const rec = recRange(a); G = Object.assign({}, G0, {rec}); }
     const rk = a.rate / 100 * kg * (a.type === "cut" ? -1 : 1), weeks = Math.abs((a.targetKg - kg) / rk), eta = new Date(Date.now() + weeks * 7 * 864e5);
     const tg = goalTargets(a, ex.kcal, kg, null), inRec = a.rate >= G.rec[0] && a.rate <= G.rec[1];
     const pct = x => (x - G.min) / (G.max - G.min) * 100;
@@ -1202,7 +1291,7 @@ function nStep(s, a){
       <div class="obtag ${inRec ? "ok" : "warn"}">${inRec ? "In the recommended range" : a.rate < G.rec[0] ? "Slower than the recommended range" : a.type === "bulk" ? "Faster than recommended: more of the gain will be fat" : "Faster than recommended: higher risk of losing muscle"}</div>
       ${projChart(kg, +a.targetKg, rk, weeks, G)}
       <div class="obsum"><div><span>Daily calories</span><b class="num">${fmtN(tg.kcal)}</b></div><div><span>${a.type === "bulk" ? "Surplus" : "Deficit"}</span><b class="num">${fmtN(Math.abs(tg.kcal - ex.kcal))}</b></div><div><span>Reach goal</span><b>${isFinite(weeks) && weeks < 300 ? eta.toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"}) : "–"}</b></div></div>
-      <p class="obnote">${a.type === "bulk" ? "For trained lifters, about 0.25-0.5% of body weight a week (a 5-10% surplus) builds muscle with little extra fat; bigger surpluses mostly add fat." : "About 0.5-1% of body weight a week. Slower (~0.7%) kept more muscle than faster loss in elite athletes."} ${src(G.src)}</p>`};
+      <p class="obnote">${a.type === "bulk" ? `For trained lifters, about 0.25% of body weight a week (a 5-10% surplus) builds muscle with little extra fat; beginners can go up to ~0.5%. A bigger surplus mostly added fat in a 2023 trial.` : `Reviews recommend 0.5-1% of body weight a week; leaner people should go slower (about 0.5% or less), and in elite athletes ~0.7% a week kept more muscle than ~1.4%. ${G.rec[1] <= 0.5 ? "At your body fat, the slower range is recommended." : ""}`} ${src(G.src)}</p>`};
   }
   case "macros": {
     const P = protOpts(a.type); if (!P.some(o => o[0] === +a.prot)) a.prot = P.reduce((b, o) => Math.abs(o[0] - a.prot) < Math.abs(b[0] - a.prot) ? o : b)[0];
@@ -1232,6 +1321,14 @@ function nStep(s, a){
       </div>`, cta:"Use these targets"};
   }
   }
+}
+// Recommended pace (Helms 2014; Garthe 2011; Ruiz-Castellano 2021; Iraki 2019; Helms 2023): cuts 0.5-1.0% a week, no more than ~0.5% once lean;
+// bulks ~0.25% a week for trained lifters, up to 0.5% for beginners. Lean cut-offs (men ~12%, women ~22% body fat) are convention.
+function recRange(a){
+  const bf = currentBf().v, lean = S.profile.sex === "female" ? bf < 22 : bf < 12, lvl = (S.prog && S.prog.setup && S.prog.setup.level) || "inter";
+  if (a.type === "cut") return lean ? [0.25, 0.5] : [0.5, 1.0];
+  if (a.type === "bulk") return lvl === "new" ? [0.25, 0.5] : [0.15, 0.35];
+  return [0, 0];
 }
 // Protein presets (g per kg of body weight). Morton 2018: gains plateau ~1.6 g/kg (upper CI ~2.2). Helms 2014: 2.3-3.1 g/kg of lean mass when cutting.
 function protOpts(type){ return type === "cut"
@@ -1281,7 +1378,7 @@ function draw(){
   // Same screen: update in place, element by element, so nothing flashes or jumps. New screen: render fresh.
   if (o.dataset.step === F.kind + ":" + F.step && !F.dir && o.children.length){
     const tmp = document.createElement("div"); tmp.innerHTML = markup;
-    if (tmp.children.length === o.children.length){ [...o.children].forEach((c, k) => patchDeep(c, tmp.children[k], null)); fillRanges(o); fitCheck(); F.keepScroll = false; if (F.step === "build") runBuild(); return; }
+    if (tmp.children.length === o.children.length){ const nk = [...tmp.children]; [...o.children].forEach((c, k) => patchDeep(c, nk[k], null)); fillRanges(o); fitCheck(); F.keepScroll = false; if (F.step === "build") runBuild(); return; }
   }
   o.innerHTML = markup; o.dataset.step = F.kind + ":" + F.step;
   o.querySelectorAll("details summary b").forEach(x => { if (openD.includes(x.textContent)) x.closest("details").open = true; });
@@ -1306,10 +1403,10 @@ function next(){
   if (F.kind === "nut" && F.single && F.step === "activity"){ F.accepted = true; S.profile.activity = clone(F.ans.activity); saveProfile(); toast("Activity saved: starting estimate " + fmtN(priorModel(currentKg()).total) + " kcal"); return close(); }
   if (F.kind === "prog"){
     const a = F.ans;
-    if (F.step === "goal" && !a.gtype){ toast("Pick one"); return; }
+    if (F.step === "goal" && !a.gfam){ toast("Pick one"); return; }
     if (F.step === "custom"){ if (!a.customAI) customFallback(a); a.customDone = true; const st = stepsOf(); return go2(st[st.indexOf("goal") + 1] || "build"); }
     if (F.step === "look" && !a.look){ toast("Pick a look, or go back and choose another goal"); return; }
-    if (F.step === "days" && a.kind === "gym" && !a.days.length){ toast("Pick at least one day"); return; }
+    if (F.step === "days" && a.kind === "gym"){ a.days = chooseDays(a.nTrain || a.days.length || recDays(a), a.blocked || []); if (!a.days.length){ toast("Leave at least one day open"); return; } }
     if (F.step === "event" && a.event === "ultra" && !(+a.goalKm > 42.2)){ toast("An ultra is anything longer than 42.2 km"); return; }
     if (F.step === "rundays"){ a.runDays = spreadDays(+a.runs, a.longDay); }
     if (F.step === "gyms"){ a.kit = Object.fromEntries(a.gyms.map(g => [g.id, g.kit.slice()])); }
@@ -1324,14 +1421,18 @@ function runBuild(){
     : k === "hyrox" ? ["Mapping the weeks to " + (a.hasDate ? "race day" : "a 12-week build"), "Setting run intervals at race pace", "Building race simulations", "Writing station strength", "Planning recovery weeks"]
     : k === "tri" ? ["Mapping the weeks to " + (a.hasDate ? "race day" : "your distance"), "Balancing swim, bike and run", "Keeping most of it easy", "Adding the weekly brick", ...(+a.strengthN ? ["Writing strength sessions"] : []), "Planning the taper"]
     : ["Mapping the weeks to " + (a.event === "general" ? "your goal" : a.hasDate ? "race day" : "being ready"), ...(+a.runLevel === 0 ? ["Starting with a run/walk build"] : []), "Splitting base, build, peak" + (a.event === "general" ? "" : " and taper"), "Setting the long-run progression", "Balancing easy and hard runs", ...(+a.strengthN ? ["Writing strength sessions"] : []), ...((EVENTS[a.event] || {}).heat ? ["Adding pack and heat training"] : [])];
-  const box = document.getElementById("obticks"); let n = 0;
+  const box = document.getElementById("obticks"), bar = document.getElementById("obbar"); let n = 0;
   if (k === "gym"){ if (a.split !== "custom" && (!a.split || !(SPLITS[a.days.length] || []).some(s => s.id === a.split))){ const r = recommendSplit(a); a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; } F.out = generate(a, F.seed); }
   else F.out = generateEndu(F.ans, F.seed);
+  box.innerHTML = lines.map(l => `<div><i></i><span>${l}</span></div>`).join("");
+  const rows = [...box.children];
   const t = setInterval(() => {
     if (!box.isConnected){ clearInterval(t); return; }
-    box.innerHTML = lines.slice(0, n + 1).map((l, j) => `<div class="${j < n ? "done" : ""}"><i>${j < n ? "✓" : ""}</i>${l}</div>`).join("");
-    if (++n > lines.length){ clearInterval(t); F.gym = null; go2("review"); }
-  }, 260);
+    if (rows[n - 1]) rows[n - 1].classList.add("done");
+    if (rows[n]) rows[n].classList.add("on");
+    if (bar) bar.style.width = Math.min(100, (n / lines.length) * 100) + "%";
+    if (++n > lines.length){ clearInterval(t); setTimeout(() => { if (F && F.step === "build"){ F.gym = null; go2("review"); } }, 450); }
+  }, 420);
 }
 function acceptProg(){
   const p = F.out; delete p.vol; const keep = clone(p);
@@ -1399,6 +1500,7 @@ Reply with only JSON: {"verdict": up to 3 short sentences: what works, what limi
 function setPath(obj, path, val){ const ps = path.split("."); let o = obj; while (ps.length > 1){ const k = ps.shift(); o[k] = o[k] || {}; o = o[k]; } o[ps[0]] = val; }
 function getPath(obj, path){ return path.split(".").reduce((o, k) => o ? o[k] : undefined, obj); }
 function bind(o){
+  o.addEventListener("toggle", e => { const d = e.target; if (!d.classList || !d.classList.contains("eqgrp")) return; const sm = d.querySelector("[data-gall]"); if (!sm) return; const key = sm.dataset.g + sm.dataset.gall, cur = F.openEq || []; F.openEq = d.open ? [...new Set(cur.concat(key))] : cur.filter(x => x !== key); }, true);
   o.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     if (b.dataset.ob === "next") return next();
@@ -1409,15 +1511,16 @@ function bind(o){
     if (b.dataset.wnext) return acceptWelcome(b.dataset.wnext);
     if (b.dataset.set){
       if (b.dataset.set === "_gym"){ F.gym = b.dataset.val; F.keepScroll = true; return draw(); }
-      let v = b.dataset.val; if (["block","prot","nDays","runs","strengthN","triLevel"].includes(b.dataset.set) || /^gyms\.\d+\.(dbStep|plate)$/.test(b.dataset.set)) v = +v;
+      let v = b.dataset.val; if (["block","prot","nDays","runs","strengthN","triLevel","nTrain"].includes(b.dataset.set) || /^gyms\.\d+\.(dbStep|plate)$/.test(b.dataset.set)) v = +v;
       if (b.dataset.set === "hasDate") v = v === "yes";
       if (b.dataset.set === "gtype"){ setGtype(F.ans, v); F.ans.customDone = false; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 220); return; }
+      if (b.dataset.set === "nTrain"){ F.ans.nTrain = +v; F.ans.days = chooseDays(+v, F.ans.blocked || []); saveDraft(); F.keepScroll = true; return draw(); }
       setPath(F.ans, b.dataset.set, v);
       if (b.dataset.set === "runs" || b.dataset.set === "longDay") F.ans.runDays = null;
       if (b.dataset.set === "split" && v !== "custom") F.splitAI = null;
       if (b.dataset.set.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
       if (b.dataset.set.startsWith("units.")){ S.profile = {...S.profile, units:Object.assign({}, S.profile.units, F.ans.units)}; saveProfile(); }
-      if (b.dataset.set === "type"){ const kg = currentKg(); F.ans.rate = GOALS[v].def; F.ans.prot = v === "cut" ? 2.2 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
+      if (b.dataset.set === "type"){ const kg = currentKg(), rr = recRange({type:v}); F.ans.rate = v === "cut" || v === "bulk" ? Math.round((rr[0] + rr[1]) / 2 * 20) / 20 : 0; F.ans.prot = v === "cut" ? 2.2 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
       saveDraft(); F.keepScroll = true; draw();
       if (b.classList.contains("obopt") && (["level","type"].includes(b.dataset.set) || (b.dataset.set === "event" && !["custom","ultra"].includes(v)))) setTimeout(() => { if (F) next(); }, 220);
       return;
@@ -1427,7 +1530,8 @@ function bind(o){
       let nv = cur.includes(v) ? cur.filter(x => x !== v) : cur.concat(v);
       if (path === "pri" && nv.length > 3) nv = nv.slice(1);
       setPath(F.ans, path, nv);
-      if (path === "days"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!(flowGyms() || gymList()).some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = (flowGyms() || gymList())[0].id; }); F.ans.split = null; }
+      if (path === "blocked"){ F.ans.days = chooseDays(F.ans.nTrain || F.ans.days.length, nv); if (F.ans.days.length < (F.ans.nTrain || 0)) toast(`Only ${F.ans.days.length} days left open`); }
+      if (path === "days" || path === "blocked"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!(flowGyms() || gymList()).some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = (flowGyms() || gymList())[0].id; }); F.ans.split = null; }
       saveDraft(); F.keepScroll = true; draw(); return;
     }
     if (b.dataset.lift){
@@ -1442,11 +1546,13 @@ function bind(o){
     if (b.dataset.aiinj) return aiInjury();
     if (b.dataset.aisplit) return aiSplit();
     if (b.dataset.look){ const sx = [...LOOKS.male, ...LOOKS.female].find(l => l[0] === b.dataset.look); a.look = sx[0]; a.pri = sx[3].slice(); redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
+    if (b.dataset.gfam){ const g = b.dataset.gfam; a.gfam = g; setGtype(a, g === "race" ? (["hyrox","crossfit","tri"].includes(a.gtype) ? a.gtype : "hyrox") : g === "strength" ? (["strength","power"].includes(a.gtype) ? a.gtype : "strength") : g); a.customDone = false; redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
     if (b.dataset.runlevel != null){ const lv = RUNLEVELS[+b.dataset.runlevel]; a.runLevel = +b.dataset.runlevel; a.weeklyKm = lv[2]; a.longest = lv[3]; a.runs = lv[4]; return redraw(); }
-    if (b.dataset.gpreset){ const g = a.gyms.find(x => x.id === b.dataset.g); g.kit = PRESETS[b.dataset.gpreset][2].slice(); if (g.name === "New gym" || /^Gym \d/.test(g.name)) g.name = PRESETS[b.dataset.gpreset][0]; toast(PRESETS[b.dataset.gpreset][0] + " preset: now untick anything it doesn't have"); return redraw(); }
-    if (b.dataset.gkit){ const g = a.gyms.find(x => x.id === b.dataset.g), k = b.dataset.gkit; g.kit = g.kit.includes(k) ? g.kit.filter(x => x !== k) : g.kit.concat(k); F.openEq = g.id + EQG.findIndex(q => q[1].some(x => x[0] === k)); return redraw(); }
-    if (b.dataset.gall != null){ e.preventDefault(); const g = a.gyms.find(x => x.id === b.dataset.g), items = EQG[+b.dataset.gall][1].map(x => x[0]), all = items.every(k => g.kit.includes(k)); g.kit = all ? g.kit.filter(k => !items.includes(k)) : [...new Set(g.kit.concat(items))]; F.openEq = g.id + b.dataset.gall; return redraw(); }
-    if (b.dataset.gadd){ a.gyms.push({id:uid("g"), name:"Gym " + (a.gyms.length + 1), kit:PRESETS.commercial[2].slice(), dbMax:40, dbStep:2, plate:1.25}); return redraw(); }
+    if (b.dataset.gpreset){ const g = a.gyms.find(x => x.id === b.dataset.g), t = GYMTYPES[b.dataset.gpreset]; g.type = b.dataset.gpreset; g.kit = t[2].slice(); if (g.name === "New gym" || g.name === "My gym" || /^Gym \d/.test(g.name) || Object.values(GYMTYPES).some(x => x[0] === g.name)) g.name = t[0]; return redraw(); }
+    if (b.dataset.dbw){ const g = a.gyms.find(x => x.id === b.dataset.g), w = +b.dataset.dbw; g.dbs = (g.dbs || []).includes(w) ? g.dbs.filter(x => x !== w) : [...(g.dbs || []), w].sort((x, y) => x - y); return redraw(); }
+    if (b.dataset.gkit){ const g = a.gyms.find(x => x.id === b.dataset.g), k = b.dataset.gkit; g.kit = g.kit.includes(k) ? g.kit.filter(x => x !== k) : g.kit.concat(k); return redraw(); }
+    if (b.dataset.gall != null){ e.preventDefault(); const g = a.gyms.find(x => x.id === b.dataset.g), items = EQG[+b.dataset.gall][1].map(x => x[0]), all = items.every(k => g.kit.includes(k)); g.kit = all ? g.kit.filter(k => !items.includes(k)) : [...new Set(g.kit.concat(items))]; return redraw(); }
+    if (b.dataset.gadd){ a.gyms.push({id:uid("g"), name:"Gym " + (a.gyms.length + 1), type:"", kit:[], dbMax:40, dbStep:2, dbMode:"step2", dbs:[], plate:1.25}); return redraw(); }
     if (b.dataset.gdel){ a.gyms = a.gyms.filter(g => g.id !== b.dataset.gdel); return redraw(); }
     if (b.dataset.sport){ a.sports = (a.sports || []).concat({id:b.dataset.sport, n:1}); F.sq = ""; return redraw(); }
     if (b.dataset.sportn){ a.sports = a.sports.map(x => x.id === b.dataset.sportn ? {...x, n:x.n + (+b.dataset.d)} : x).filter(x => x.n > 0); return redraw(); }
@@ -1455,16 +1561,19 @@ function bind(o){
     if (b.dataset.bumpmins){ a.mins = Math.min(120, +a.mins + 15); F.out = a.kind === "gym" ? generate(a, F.seed) : generateEndu(a, F.seed); toast("Sessions now " + a.mins + " min"); return redraw(); }
     if (b.dataset.addbreak){ const d = a.breakAdd; if (!d){ toast("Pick a date in that week"); return; } const ws = ymd(weekStart(parseD(d))); a.breaks = [...new Set([...(a.breaks || []), ws])].sort(); a.breakAdd = ""; return redraw(); }
     if (b.dataset.delbreak){ a.breaks = (a.breaks || []).filter(x => x !== b.dataset.delbreak); return redraw(); }
-    if (b.dataset.setsteps){ F.ans.activity.steps = +b.dataset.setsteps; F.ans.activity.guess = !!b.closest(".obguess"); S.profile.activity = clone(F.ans.activity); saveDraft(); F.keepScroll = true; draw(); return; }
-    if (b.dataset.bf){ F.ans.bf = +b.dataset.bf; commitBf(); F.keepScroll = true; draw(); return; }
+    if (b.dataset.setsteps){ F.ans.activity.steps = +b.dataset.setsteps; F.ans.activity.exact = false; S.profile.activity = clone(F.ans.activity); saveDraft(); F.keepScroll = true; draw(); return; }
+    if (b.dataset.bf){ if (b.dataset.bf === "skip"){ F.ans.bf = null; S.profile = {...S.profile, bfManual:null}; saveProfile(); } else { F.ans.bf = +b.dataset.bf; commitBf(); } F.keepScroll = true; draw(); return; }
+    if (b.dataset.exact){ const ls = loggedSteps(); F.ans.activity.exact = !F.ans.activity.exact; if (F.ans.activity.exact && ls) F.ans.activity.steps = ls.avg; S.profile.activity = clone(F.ans.activity); saveDraft(); F.keepScroll = true; draw(); return; }
+    if (b.dataset.setcycle != null){ F.ans.activity.commute = +b.dataset.setcycle; S.profile.activity = clone(F.ans.activity); saveDraft(); F.keepScroll = true; draw(); return; }
     if (b.dataset.bump){ const k = b.dataset.bump; let v = r1((+F.ans[k]) + (+b.dataset.d)); if (k === "targetKg"){ const [lo, hi] = targetBounds(F.ans.type, currentKg()); v = Math.min(hi, Math.max(lo, v)); } F.ans[k] = v; saveDraft(); F.keepScroll = true; draw(); return; }
   });
   o.addEventListener("input", e => {
     const t = e.target;
     if (t.dataset.range){ setPath(F.ans, t.dataset.range, +t.value); if (t.dataset.range.startsWith("activity.")) S.profile.activity = clone(F.ans.activity); saveDraft(); liveRange(t); }
     if (t.dataset.input){ F.ans[t.dataset.input] = t.value; saveDraft(); }
-    if (t.dataset.sq){ F.sq = t.value; const q = t.value.toLowerCase(), box = document.getElementById("obsq"); if (box && window.AJSports) box.innerHTML = AJSports.search(q).slice(0, q ? 12 : 0).filter(k => !(F.ans.sports || []).some(x => x.id === k)).map(k => `<button class="chip" data-sport="${k}">+ ${esc(AJSports.SP[k][0])}</button>`).join(""); return; }
-    if (t.dataset.lq){ F.lq = t.value; const box = document.getElementById("oblifts"); const q = t.value.toLowerCase(), mf = F.lm || ""; if (box) box.innerHTML = liftRows(Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1)), F.ans, new Set(F.ans.gyms.flatMap(g => g.kit))); return; }
+    if (t.dataset.sq){ F.sq = t.value; const box = document.getElementById("obsq"); if (box) box.innerHTML = sportRows(t.value.toLowerCase(), F.ans.sports || []); return; }
+    if (t.dataset.lq){ F.lq = t.value; const box = document.getElementById("oblifts"); const q = t.value.toLowerCase(), mf = F.lm || ""; if (box) box.innerHTML = liftRows(Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1)), F.ans, {has:r => kitHas(F.ans.gyms.flatMap(g => g.kit), r)}); return; }
+    if (t.dataset.eqq){ F.eqq = t.value; saveDraft(); F.keepScroll = true; draw(); const x = document.querySelector("[data-eqq]"); if (x){ x.focus(); try{ x.setSelectionRange(x.value.length, x.value.length); }catch(e){} } return; }
     if (t.dataset.gname){ const g = F.ans.gyms.find(x => x.id === t.dataset.gname); if (g) g.name = t.value; saveDraft(); return; }
     if (t.dataset.dob){ const v = fmtDob(t.value); if (v !== t.value) t.value = v; F.ans.dob = v; saveDraft(); liveRange(t); }
     if (t.dataset.conv){ const v = readConv(t.closest(".obunitrow"), t.dataset.key); if (v != null){ setConv(t.dataset.key, v, false); liveRange(t); } }
@@ -1520,7 +1629,7 @@ function liveRange(t){
   const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = document.querySelector("#ob .obbody");
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
   if (body.children.length !== tmp.children.length){ F.keepScroll = true; return draw(); }
-  [...body.children].forEach((c, k) => patchDeep(c, tmp.children[k], t));
+  const nk = [...tmp.children]; [...body.children].forEach((c, k) => patchDeep(c, nk[k], t));
   fillRanges(body); if (t.type === "range") t.style.setProperty("--p", pctOf(t) + "%");
 }
 window.AJOnboard = {
@@ -1544,6 +1653,6 @@ window.AJOnboard = {
     S.profile.activity = clone(F.ans.activity);
     document.body.style.overflow = "hidden"; draw();
   },
-  lib:L, MUS, fmtH, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
+  lib:L, MUS, fmtH, kitHas, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
 };
 })();

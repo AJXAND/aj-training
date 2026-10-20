@@ -112,6 +112,8 @@ const LIB = [
   {kind:"meta", t:"Compatibility of concurrent aerobic and strength training for skeletal muscle size and function", c:"Schumann, Feuerbacher, Sünkeler, Freitag, Rønnestad, Doma & Lundberg. Sports Medicine, 2022", u:"https://doi.org/10.1007/s40279-021-01587-7",
    f:"Adding cardio didn't reduce muscle growth or max strength. Only explosive strength suffered, more so when both were done in the same session.", a:"Leg days are placed away from the day before tennis or padel, for performance in both rather than to protect growth."}]},
  {id:"rate-gain", title:"Rate of weight gain", items:[
+  {kind:"rct", t:"Effect of small and large energy surpluses on strength, muscle, and skinfold thickness in resistance-trained individuals", c:"Helms et al. Sports Medicine - Open, 2023", u:"https://doi.org/10.1186/s40798-023-00651-y",
+   f:"Trained lifters on a ~5% or ~15% surplus gained similar muscle thickness; the larger surplus mainly added skinfold thickness (fat).", a:"For trained lifters the bulk default is ~0.25% of body weight a week; beginners are offered up to ~0.5%."},
   {kind:"review", t:"Nutrition recommendations for bodybuilders in the off-season: a narrative review", c:"Iraki, Fitschen, Espinar & Helms. Sports, 2019", u:"https://doi.org/10.3390/sports7070154",
    f:"A 10-20% surplus and ~0.25-0.5% of body weight gained per week; faster gain mostly adds fat in trained lifters.", a:"The bulk slider highlights 0.25-0.5% a week; your pace sets the daily surplus."},
   {kind:"rct", t:"Effect of small and large energy surpluses on strength, muscle and skinfold thickness in resistance-trained individuals", c:"Helms, Spence, Sousa, Kreiger, Taylor, Oranchuk, Dieter & Watkins. Sports Medicine - Open, 2023", u:"https://doi.org/10.1186/s40798-023-00651-y",
@@ -119,6 +121,8 @@ const LIB = [
   {kind:"rct", t:"Effect of nutritional intervention on body composition and performance in elite athletes", c:"Garthe, Raastad, Refsnes & Sundgot-Borgen. European Journal of Sport Science, 2013", u:"https://doi.org/10.1080/17461391.2011.643923",
    f:"Eating ~600 kcal a day more gained more weight and much more fat, with no significant extra lean mass.", a:"The slider warns when you pick a faster-than-recommended bulk."}]},
  {id:"rate-loss", title:"Rate of fat loss", items:[
+  {kind:"review", t:"Achieving an optimal fat loss phase in resistance-trained athletes: a narrative review", c:"Ruiz-Castellano, Espinar, Contreras, Mata, Aragon & Martínez-Sanz. Nutrients, 2021", u:"https://doi.org/10.3390/nu13093255",
+   f:"Recommends losing 0.5-1.0% of body weight a week, and the leaner you are the more conservative the deficit should be.", a:"The pace slider recommends 0.5-1.0% a week, narrowing to 0.25-0.5% once you're lean (men under ~12%, women under ~22% body fat; those cut-offs are convention)."},
   {kind:"review", t:"Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation", c:"Helms, Aragon & Fitschen. Journal of the International Society of Sports Nutrition, 2014", u:"https://doi.org/10.1186/1550-2783-11-20",
    f:"Lose 0.5-1% of body weight a week; fat 15-30% of calories, carbs the rest.", a:"The cut slider highlights 0.5-1% a week."},
   {kind:"rct", t:"Effect of two different weight-loss rates on body composition and strength in elite athletes", c:"Garthe et al. International Journal of Sport Nutrition and Exercise Metabolism, 2011", u:"https://lida.sport-iat.de/ta/Record/4020442?lng=en",
