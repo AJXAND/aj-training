@@ -1371,7 +1371,7 @@ function draw(){
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
   const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
   const markup = `<div class="obtop"><button class="iconbtn" data-ob="back" aria-label="Back" ${F.kind === "welcome" && i === 0 ? 'style="visibility:hidden" tabindex="-1" aria-hidden="true"' : ""}>${ICON.back}</button>
-      <div class="obprog"><i style="width:${(i + 1) / steps.length * 100}%"></i></div><button class="iconbtn" data-ob="close" aria-label="Close">✕</button></div>
+      <div class="obprog"><i style="width:${(i + 1) / steps.length * 100}%"></i></div>${F.kind === "welcome" ? `<button class="iconbtn obthemebtn" data-obtheme="1" aria-label="${isDark() ? "Switch to light mode" : "Switch to dark mode"}">${isDark() ? ICON.sun : HICON.moon}</button>` : ""}<button class="iconbtn" data-ob="close" aria-label="Close">✕</button></div>
     ${fitFlow() ? `<div class="obbody obfit ${s.cls || ""}"><div class="obfitin">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div></div>`
       : `<div class="obbody ${s.wide ? "wide" : ""} ${s.cls || ""}">${s.title ? `<h1 class="obtitle">${s.title}</h1>` : ""}${s.body}</div>`}
     ${s.nofoot ? "" : `<div class="obfoot">${s.alt ? `<button class="btn ghost" data-ob="alt">${s.alt}</button>` : ""}<button class="btn orange" data-ob="next" ${blocked ? "disabled" : ""}>${s.cta || "Continue"}</button></div>`}`;
@@ -1390,6 +1390,7 @@ function draw(){
 }
 // First-run screens: no scrolling. Scale the whole screen to the phone (by width, then down until it fits the height),
 // then spread any spare height into the gaps so it fills the screen.
+const isDark = () => { const t = document.documentElement.getAttribute("data-theme"); return t ? t === "dark" : !!(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches); };
 const fitFlow = () => F && F.kind === "welcome";
 const bodyBox = b => (b && b.querySelector(".obfitin")) || b;
 function fitScreen(){
@@ -1530,6 +1531,7 @@ function setPath(obj, path, val){ const ps = path.split("."); let o = obj; while
 function getPath(obj, path){ return path.split(".").reduce((o, k) => o ? o[k] : undefined, obj); }
 function bind(o){
   o.addEventListener("toggle", e => { const d = e.target; if (!d.classList || !d.classList.contains("eqgrp")) return; const sm = d.querySelector("[data-gall]"); if (!sm) return; const key = sm.dataset.g + sm.dataset.gall, cur = F.openEq || []; F.openEq = d.open ? [...new Set(cur.concat(key))] : cur.filter(x => x !== key); }, true);
+  o.addEventListener("click", e => { const tb = e.target.closest("[data-obtheme]"); if (tb){ setTheme(isDark() ? "light" : "dark"); draw(); return; } });
   o.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     if (b.dataset.ob === "next") return next();
