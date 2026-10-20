@@ -790,7 +790,7 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .obgrid.g3{grid-template-columns:repeat(3,1fr)}.obgrid.g3 .obcard{padding:12px 10px}.obgrid.g3 .obcard b{font-size:14px}.obgrid.g3 .obcard>span:last-child{font-size:12px}
 .obcard.mus{justify-items:center;text-align:center}.obcard.mus .ph.ic{width:52px;height:52px}
 .aicard{width:100%;margin-top:4px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 12%,var(--card)),var(--card) 70%)}
-.ph.pic.sm{aspect-ratio:4/3}.ph.ic.sm{width:32px;height:32px;border-radius:10px;font-size:0}.cpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}.cpick{display:grid;justify-items:center;gap:6px;border:0;border-radius:14px;background:var(--sunk);padding:10px 6px;font:inherit;font-size:12px;line-height:1.25;color:inherit;text-align:center;cursor:pointer}.ph.pic.wide{aspect-ratio:16/10}
+.ph.pic.sm{aspect-ratio:4/3}.loadwait{display:grid;gap:12px;padding-top:24px}.loadwait .sk{height:120px;border-radius:20px;background:var(--card);animation:skp 1.2s ease-in-out infinite alternate}.loadwait .sk.short{height:64px}@keyframes skp{from{opacity:.55}to{opacity:1}}.ph.ic.sm{width:32px;height:32px;border-radius:10px;font-size:0}.cpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}.cpick{display:grid;justify-items:center;gap:6px;border:0;border-radius:14px;background:var(--sunk);padding:10px 6px;font:inherit;font-size:12px;line-height:1.25;color:inherit;text-align:center;cursor:pointer}.ph.pic.wide{aspect-ratio:16/10}
 .lookpri{font-style:normal;font-size:12.5px;font-weight:600;color:var(--ink)}.lookev{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}.lookev.ev{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
 .obmore{margin-top:4px}.obmore summary{cursor:pointer;font-weight:700;color:var(--orange);padding:6px 0;list-style:none}.obmore summary::-webkit-details-marker{display:none}.obmore .obgrid{margin-top:8px}
 .bigtext{font-size:16px!important}
@@ -1562,6 +1562,7 @@ function render(){
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
   plus.innerHTML = S.active ? ICON.lift : '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   plus.setAttribute("aria-label", S.active ? "Resume workout" : "Add or start");
+  if (!S.ready){ $("#main").innerHTML=`<div class="loadwait"><div class="sk"></div><div class="sk"></div><div class="sk short"></div><p class="small muted">Loading your data…</p></div>`; return; }
   const f={energy:renderEnergy, home:renderHome, food:renderFood, foodadd:renderFoodAdd, plan:renderPlan, train:S.active?renderLive:renderTrain, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
   $("#main").innerHTML=f();
   renderFoodSheet();
@@ -3283,6 +3284,10 @@ async function boot(){
     S.chat=chat.exists?clone(chat.data().messages||[]):[];
   } catch(e){ console.warn(e); S.active=lsGet("active"); }
   derive();
+  // profile and weigh-ins changed on another device: apply them, unless a setup flow is open (it previews changes on the profile)
+  const quiet=()=>!document.getElementById("ob") && !(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) && $("#chat").hidden && !S.foodAdd;
+  db.doc("meta/profile").onSnapshot(s=>{ if (!s.exists || document.getElementById("ob")) return; const d={...DEFAULT_PROFILE,...clone(s.data())}; if (JSON.stringify(d)===JSON.stringify(S.profile)) return; S.profile=d; derive(); if (quiet()) render(); }, ()=>{});
+  db.doc("state/bodyweight").onSnapshot(s=>{ const e=s.exists?clone(s.data().entries||[]):[]; if (JSON.stringify(e)===JSON.stringify(S.all.weights)) return; S.all.weights=e; derive(); if (quiet()) render(); }, ()=>{});
   db.doc("programme/current").onSnapshot(s=>{ if(s.exists&&s.data().days){ S.prog=clone(s.data()); if(!S.active&&$("#chat").hidden) render(); } }, ()=>{});
   watch("sessions", l=>S.all.sessions=l, "ts");
   watch("cardio", l=>S.all.cardio=l, "ts");
