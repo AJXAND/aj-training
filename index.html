@@ -2913,7 +2913,7 @@ function settingsPage(pg){
     <div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Sample data</h2><span class="small muted">Five weeks of example workouts, food, weigh-ins, cardio and habits, so you can see the app in use. Turning it off deletes all of it, including any sample plan and goal it added.</span></div>
       <button class="switch" data-act="sampleToggle" role="switch" aria-checked="${hasSample()}" aria-label="Sample data"><i></i></button></div></div>
     <div class="card"><h2>Data sources</h2><span class="small muted">Food search: USDA FoodData Central (public domain) via the TempoLife dataset (CC-BY-4.0). Barcodes: Open Food Facts (ODbL). Anything else is estimated by AJ Training AI and marked as an estimate. Activity energy: 2024 Adult Compendium of Physical Activities.</span></div>`;
-  if (pg==="help") return `<div class="card"><h2>Science library</h2><span class="small muted">Every rule your plan, progression and targets follow, the study behind it, and exactly how the app uses it.</span><button class="btn orange" data-act="science">Open the library</button></div>`;
+  if (pg==="help") return `<div class="card"><h2>Science library</h2><span class="small muted">Every rule your plan, progression and targets follow, the study behind it, and exactly how the app uses it.</span><button class="btn orange" data-act="science">Open the library</button></div><div class="card"><h2>Credits</h2><span class="small muted">Sport and line icons drawn for AJ Training, some based on Tabler Icons (MIT licence).</span></div>`;
   if (pg==="account") return window.AJP?AJP.settingsCards("account"):"";
   return "";
 }
