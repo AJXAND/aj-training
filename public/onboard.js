@@ -1092,14 +1092,6 @@ function sportRows(q, sel){
 }
 function seg2(name, opts, cur){ return `<div class="seg obseg" style="grid-template-columns:repeat(${opts.length},1fr)">${opts.map(([k, v]) => `<button data-set="${name}" data-val="${k}" aria-pressed="${k === cur}">${v}</button>`).join("")}</div>`; }
 
-function volChart(prog, gym){
-  const v = prog.vol[gym], tg = prog.targets, pri = new Set(prog.setup.pri || []);
-  const rows = Object.keys(MUS).filter(m => (tg[m] || 0) > 0 || (v[m] || 0) > 0);
-  const mx = Math.max(22, ...rows.map(m => Math.max(v[m] || 0, tg[m] || 0)));
-  return `<div class="obvlegend"><span><i class="k1"></i>Planned sets</span><span><i class="k2"></i>Recommended for you</span></div>
-    <div class="obvol">${rows.map(m => `<div class="obvr"><span>${MUS[m]}${pri.has(m) ? ' <i class="obpri">★</i>' : ""}</span><span class="obtrack"><b style="width:${Math.min(100, (v[m] || 0) / mx * 100)}%" class="${(v[m] || 0) >= (tg[m] || 0) - 1 ? "ok" : ""}"></b><i style="left:${(tg[m] || 0) / mx * 100}%"></i></span><span class="num small">${r1(v[m] || 0)}<em>/${tg[m] || 0}</em></span></div>`).join("")}</div>
-    <span class="small muted">A set counts 1 for the muscle it trains directly and ½ for muscles it helps. The line on each bar is your recommended weekly sets; a solid orange bar has reached it.</span>`;
-}
 function sessLabel(s2){ return s2.km ? s2.km + " km" : s2.mins ? s2.mins + " min" : ""; }
 function reviewEndu(a){
   const prog = F.out, P = prog.endurance, gl = (flowGyms() || gymList()), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, byMins = P.unit === "mins" || P.weeks.some(w => w.phase === "Run/walk");
