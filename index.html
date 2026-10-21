@@ -2601,7 +2601,7 @@ function renderFoodAdd(){
       ${FOODDB===null?`<div class="li"><span class="row small muted"><span class="spinner"></span>Loading food database…</span></div>`:""}
       ${!saved.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches. Try the AI lookup below.</p>`:""}
       ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
-      ${(S.aiFoods||[]).map((f,i)=>row(f,"pickAi",`data-i="${i}"`,`<span class="tag rep">AI estimate</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}</div></div>`:""}
+      ${(S.aiFoods||[]).map((f,i)=>row(f,"pickAi",`data-i="${i}"`,`<span class="tag rep">AI estimate</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}<button class="li btnli" data-act="addTab" data-tab="quick"><span><b>Can't find it? Type it in</b> <span class="muted small">manual entry: calories and macros</span></span><span class="muted">›</span></button></div></div>`:""}
 `+trayBar(date);
 }
 /* AI: type what you ate, photograph it, or both. Items land in your plate to check. */
