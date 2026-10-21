@@ -340,6 +340,7 @@ h1{margin-top:2px}
 .field.auto{color:var(--orange);font-weight:700}
 .selacts{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
 .actions{touch-action:pan-y}
+.srow2{display:flex;gap:8px}.srow2 .chip{background:var(--card)}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2427,7 +2428,7 @@ function renderFoodAdd(){
       <input type="file" id="aiCam" accept="image/*" capture="environment" hidden><input type="file" id="aiLib" accept="image/*" multiple hidden></div>`+trayBar(date);
   }
   if (tab==="quick"){
-    return head("Quick add",{back:"foodadd"})+forMeal+`<div class="card"><label class="lab">Name<input class="field" id="qaName" placeholder="e.g. Office cake"></label>
+    return head("Manual entry",{back:"foodadd"})+forMeal+`<div class="card"><label class="lab">Name<input class="field" id="qaName" placeholder="e.g. Office cake"></label>
       <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal"></label></div>
       <span class="small muted" id="qaNote">Put in the macros and the calories fill in, or the calories and two macros and the third fills in.</span>
       <button class="btn orange" data-act="quickToTray">Add to basket</button></div>`+trayBar(date);
@@ -2443,6 +2444,7 @@ function renderFoodAdd(){
   const amt=f=>{ const d=defaultAmt(f); return `<span class="num">${fmtN(foodMacros(f,d.amount,d.unit).kcal)} kcal · ${d.unit==="serving"?esc((f.serving||{}).label||"serving"):d.amount+" "+d.unit}</span>`; };
   const row=(f,act,attr,sub)=>`<div class="li addli"><button class="btnli grow" data-act="${act}" ${attr}><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub">${sub}</span></button><button class="plusb" data-act="${act}" ${attr} data-quick="1" aria-label="Add to basket">+</button></div>`;
   return head("Search",{back:"food"})+forMeal+`<div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search foods, brands and your meals" value="${esc(S.foodQuery||"")}" autocomplete="off" aria-label="Search foods"></span></div>
+    ${q?"":`<div class="srow2"><button class="chip" data-act="addTab" data-tab="quick">✎ Manual entry</button><button class="chip" data-act="addTab" data-tab="mine">My foods</button></div>`}
     ${mHits.length?`<div class="card"><h3>${q?"Your meals":"Your meals"}</h3><div class="smeals">${mHits.slice(0,q?4:8).map(mealCard).join("")}</div></div>`:""}
     ${!q&&favs.length?`<div class="card"><h3>Favourites</h3><div class="list">${favs.slice(0,8).map(f=>row(f,"pickFood",`data-id="${f.id}"`,amt(f))).join("")}</div></div>`:""}
     ${!q&&recent.length?`<div class="card"><h3>Recent</h3><div class="list">${recent.filter(f=>!f.fav).map(f=>row(f,"pickFood",`data-id="${f.id}"`,amt(f))).join("")}</div></div>`:""}
@@ -2455,7 +2457,7 @@ function renderFoodAdd(){
       ${!saved.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches. Try the AI lookup below.</p>`:""}
       ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
       ${(S.aiFoods||[]).map((f,i)=>row(f,"pickAi",`data-i="${i}"`,`<span class="tag rep">AI estimate</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}</div></div>`:""}
-    <div class="slinks"><button class="link" data-act="addTab" data-tab="quick">Quick add calories</button><button class="link" data-act="addTab" data-tab="mine">My foods</button></div>`+trayBar(date);
+    <div class="slinks"><button class="link" data-act="addTab" data-tab="quick">Manual entry</button><button class="link" data-act="addTab" data-tab="mine">My foods</button></div>`+trayBar(date);
 }
 /* AI: type what you ate, photograph it, or both. Items land in the basket to check. */
 async function aiFood(){
