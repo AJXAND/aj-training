@@ -1830,15 +1830,19 @@ function homeParts(){
     const btn=todayW?`<span class="tag up">${todayW.kg.toFixed(1)} today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`;
     const span=S.weights.length?(t0-pts[0].t)/864e5:0;
     if (S.weights.length<7||span<6){
-      // early days: a two-week window (last week and the week ahead), real weigh-ins joined up, a short goal-pace line
+      // Early days: your real weigh-ins, then a faded preview of the next 4 weeks at your goal pace: daily ups and downs
+      // (about ±0.5 kg, like real water swings) with the 7-day trend running through them. Real data replaces it day by day.
       const raw=S.weights.map(e=>({t:parseD(e.d).getTime(), v:e.kg})), now=new Date(); now.setHours(12,0,0,0);
-      const start=now.getTime()-6*864e5, end=now.getTime()+7*864e5, lastW=raw.length?raw[raw.length-1]:{t:now.getTime(), v:+nowKg};
-      const proj=rateKgDay&&lastW.v?[lastW,{t:end, v:lastW.v+rateKgDay*(end-lastW.t)/864e5}]:[];
+      const lastW=raw.length?raw[raw.length-1]:{t:now.getTime(), v:+nowKg}, rd=rateKgDay||0, jig=k=>0.45*Math.sin(k*2.39+1.1)+0.2*Math.sin(k*5.1);
+      const ghost=[], all=raw.slice(); for (let k=1;k<=28;k++){ const p={t:lastW.t+k*864e5, v:+(lastW.v+rd*k+jig(k)).toFixed(2)}; ghost.push(p); all.push(p); }
+      const avg=t=>{ const w=all.filter(p=>p.t<=t&&p.t>t-7*864e5); return w.reduce((a,p)=>a+p.v,0)/w.length; };
+      const gtrend=[lastW,...ghost.filter((p,k)=>k%2===1||k===ghost.length-1).map(p=>({t:p.t, v:avg(p.t)}))];
       const need=Math.max(0,7-S.weights.length);
-      const sub=`${raw.length?`Latest ${lastW.v.toFixed(1)} kg`:`Starting at ${(+nowKg).toFixed(1)} kg`}${pace}. Your 7-day trend line takes over after ${need?`${need} more weigh-in${need>1?"s":""}`:"a week"}.`;
+      const sub=`${raw.length?`Latest ${lastW.v.toFixed(1)} kg`:`Starting at ${(+nowKg).toFixed(1)} kg`}${pace}`;
       weight=`<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Weight</h2><span class="small muted">${sub}</span></div>${btn}</div>
-        ${raw.length||proj.length?multiChart([{color:"var(--weight)",pts:raw.length?raw:[lastW]},...(proj.length?[{color:"var(--weight)",pts:proj,dash:true}]:[])],{minSpan:1.5,t0:start,t1:end,fmt:v=>(Math.round(v*10)/10).toString(),label:"Weight: your weigh-ins and your goal pace for the week ahead"}):""}
-        <div class="legend"><span><i class="ln" style="background:var(--weight)"></i>Weigh-ins</span>${proj.length?`<span style="color:var(--weight)"><i class="ln dash"></i><b style="color:var(--muted);font-weight:500">Goal pace</b></span>`:""}</div></div>`;
+        ${multiChart([{color:"var(--weight)",pts:raw.length?raw.map(p=>{ const w=raw.filter(q=>q.t<=p.t&&q.t>p.t-7*864e5); return {t:p.t, v:w.reduce((a,q)=>a+q.v,0)/w.length}; }):[lastW],dots:raw,bigDots:true},{color:"var(--weight)",pts:[{t:lastW.t,v:raw.length?raw.filter(q=>q.t>lastW.t-7*864e5).reduce((a,q)=>a+q.v,0)/raw.filter(q=>q.t>lastW.t-7*864e5).length:lastW.v},...gtrend.slice(1)],dots:ghost,ghost:true}],{minSpan:1.5,t0:Math.min(lastW.t,now.getTime())-2*864e5,fmt:v=>(Math.round(v*10)/10).toString(),label:"Weight: your weigh-ins and a preview of the next four weeks"})}
+        <div class="legend"><span><i style="background:var(--weight)"></i>Weigh-ins</span><span><i class="ln" style="background:var(--weight)"></i>Trend</span><span><i class="ln" style="background:var(--weight);opacity:.35"></i>Preview at ${rd?"goal pace":"steady weight"}</span></div>
+        <span class="small muted">Day to day, weight swings 1 to 2 kg with water, salt and food, which is why the app follows a 7-day average. ${need?`${need} more weigh-in${need>1?"s":""} and the preview becomes your real trend.`:"The preview becomes your real trend over the next few days."}</span></div>`;
     } else {
       // the goal line runs no further ahead than the history behind it (2 to 8 weeks), so your data fills the chart
       const ahead=Math.round(Math.max(14,Math.min(56,span))); let proj=[];
@@ -2582,9 +2586,10 @@ function multiChart(series, opts){
   const paths=series.map((s,si)=>{ if (!s.pts.length) return ""; const P=s.pts.map(p=>[x(p.t),y(p.v)]), last=P[P.length-1];
     if (s.dash) return P.length>1?`<path d="M${P.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join("L")}" fill="none" stroke="${s.color}" stroke-opacity=".5" stroke-width="2" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="3.5" fill="var(--card)" stroke="${s.color}" stroke-opacity=".6" stroke-width="2"/>`:"";
     const d=smoothPath(P);
+    if (s.ghost) return `${(s.dots||[]).map(p=>`<circle cx="${x(p.t).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="2" fill="${s.color}" fill-opacity=".16"/>`).join("")}${P.length>1?`<path d="${d}" fill="none" stroke="${s.color}" stroke-opacity=".32" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${s.dashed?"1 6":"0"}"/>`:""}`;
     if (!area && P.length>1 && last[0]-P[0][0]>SW*0.25) area=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s.color}" stop-opacity=".18"/><stop offset="1" stop-color="${s.color}" stop-opacity="0"/></linearGradient></defs><path d="${d}L${last[0].toFixed(1)} ${H-B}L${P[0][0].toFixed(1)} ${H-B}Z" fill="url(#${id})"/>`;
     const gap=Math.min(...P.slice(1).map((p,i)=>p[0]-P[i][0])), marks=P.length<=12&&P.length>1&&gap>=18?P.slice(0,-1).map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.6" fill="var(--card)" stroke="${s.color}" stroke-width="1.8"/>`).join(""):"";
-    return `${(s.dots||[]).map(p=>`<circle cx="${x(p.t).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="2" fill="${s.color}" fill-opacity=".28"/>`).join("")}${P.length>1?`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`:""}${marks}
+    return `${(s.dots||[]).map(p=>`<circle cx="${x(p.t).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="${s.bigDots?3.2:2}" fill="${s.color}" fill-opacity="${s.bigDots?.85:.28}"/>`).join("")}${P.length>1?`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`:""}${marks}
       <circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="9" fill="${s.color}" fill-opacity=".16"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="4.5" fill="${s.color}" stroke="var(--card)" stroke-width="2"/>`; }).join("");
   const axis=nt.ticks.map(v=>`<span style="top:${y(v).toFixed(1)}px">${opts.fmt(v)}</span>`).join("")+(goal?`<span class="g" style="top:${y(opts.goal).toFixed(1)}px">${opts.fmt(opts.goal)}</span>`:"");
   return `<div class="chart" role="img" aria-label="${esc(opts.label)}"><div class="chsc"><svg width="${SW}" height="${H}" viewBox="0 0 ${SW} ${H}">${grid}${goal}${area}${paths}${xlab}</svg></div><div class="chax" style="height:${H}px">${axis}</div></div>`;
