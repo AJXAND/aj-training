@@ -728,7 +728,8 @@ function goalTargets(g, ex, kg, dateIsTraining){
   const base = Math.round((ex + rateKg * 7700 / 7) / 10) * 10;
   let kcal = base;
   if (g.dist === "training" && dateIsTraining != null){
-    const nT = Math.max(1, (S.prog.days || []).filter(d => !d.rest && !d.optional).length), nR = Math.max(1, 7 - nT), shift = Math.round(base * 0.08 / 10) * 10;
+    // ~8% more on training days, the same weekly total taken back on rest days; rest days never drop more than 15%
+    const nT = Math.max(1, (S.prog.days || []).filter(d => !d.rest && !d.optional).length), nR = Math.max(1, 7 - nT), shift = Math.round(base * Math.min(0.08, 0.15 * nR / nT) / 10) * 10;
     kcal = dateIsTraining ? base + shift : base - Math.round(shift * nT / nR / 10) * 10;
   }
   const p = Math.round(kg * (+g.prot || 2)), f = Math.round(Math.max(kg * 0.6, base * FATPREF[g.fat || "balanced"][1] / 9));

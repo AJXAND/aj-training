@@ -1345,18 +1345,18 @@ function head(title, opts={}){
    Six weeks of a believable user, built from the app's current pieces: a 4-day plan (if there's no plan yet),
    a steady fat-loss goal (if none), logged workouts with double progression, food days near target,
    weigh-ins trending down, a weekly run, steps and sleep. Everything is flagged sample and is deleted when switched off. */
-function loadSample(){
+function loadSample(o={}){   // o: {days, plan:false, goal:false, habits:false} for testing set-ups
   let seed=7; const rnd=()=>{ seed=(seed*16807)%2147483647; return (seed-1)/2147483646; }, jit=(a)=>(rnd()*2-1)*a;
-  const today=new Date(); today.setHours(12,0,0,0); const DAYS=34, dayAt=i=>{ const d=new Date(today); d.setDate(d.getDate()-i); return d; };
+  const today=new Date(); today.setHours(12,0,0,0); const DAYS=o.days||34, dayAt=i=>{ const d=new Date(today); d.setDate(d.getDate()-i); return d; };
   const start=weekStart(dayAt(DAYS));
-  if (S.prog.placeholder && window.AJOnboard){
+  if (o.plan!==false && S.prog.placeholder && window.AJOnboard){
     const ans={kind:"gym",goal:"size",level:"inter",days:["mon","tue","thu","fri"],mins:60,gymOf:{},sports:[],split:null,pri:[],inj:[],love:[],ban:[],block:6,ramp:"rec",rest:"std",start:ymd(start),name:"Sample plan"};
     S.prog={...AJOnboard.generate(ans,""), sample:true}; saveProg();
   }
-  if (!S.profile.goal){
+  if (o.goal!==false && !S.profile.goal && (S.profile.nutrition||{}).mode!=="manual"){
     S.profile={...S.profile, goal:{type:"cut",rate:0.5,prot:2.2,fat:"balanced",dist:"even",startKg:82,targetKg:77,startDate:ymd(dayAt(DAYS)),set:Date.now(),sample:true,prevPhase:S.profile.phase||"maintain"}, phase:"cut"};
   }
-  if (!habitList().length){
+  if (o.habits!==false && !habitList().length){
     const mk=t=>{ const h={...clone(HABIT_TEMPLATES.find(x=>x.tpl===t)), id:uid("h"), since:ymd(dayAt(DAYS)), sample:true}; delete h.why; return h; };
     S.profile={...S.profile, habitList:[mk("steps"), mk("sleep")]};
   }
@@ -1701,7 +1701,7 @@ function render(){
 function setupSteps(){
   const st=[];
   if (on("training")||on("endurance")) st.push({done:!S.prog.placeholder, act:"buildProg", ic:ICON.lift, col:"var(--orange)", t:"Build your training plan", s:"Sessions, sets and progression from the research. About 2 minutes."});
-  if (on("nutrition")) st.push({done:!!S.profile.goal, act:"nutGoal", ic:ICON.food, col:"var(--prot)", t:"Set your food goal", s:"Calories and macros that adapt to your real data."});
+  if (on("nutrition")) st.push({done:!!S.profile.goal||(S.profile.nutrition||{}).mode==="manual", act:"nutGoal", ic:ICON.food, col:"var(--prot)", t:"Set your food goal", s:"Calories and macros that adapt to your real data."});
   if (on("habits")) st.push({done:habitList().length>0, act:"hAdd", ic:ICON.steps, col:"var(--carb)", t:"Add your first habit", s:"Steps, sleep, water, quitting something, or your own."});
   return st;
 }
@@ -1710,7 +1710,7 @@ function setupCard(){
   if (!st.length || done===st.length) return "";
   return `<div class="card setupc"><div class="spread"><h2>Finish setting up</h2><span class="small muted num">${done} of ${st.length} done</span></div>
     <div class="progress"><i style="width:${done/st.length*100}%"></i></div>
-    ${st.map(x=>`<button class="suprow ${x.done?"done":""}" ${x.done?"disabled":`data-act="${x.act}"`}><span class="ctaic food" style="background:${x.done?"var(--good)":x.col}">${x.done?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':x.ic}</span><span><b>${x.t}</b><span>${x.done?"Done":x.s}</span></span>${x.done?"":"<i>›</i>"}</button>`).join("")}</div>`;
+    ${st.filter(x=>!x.done).map(x=>`<button class="suprow ${x.done?"done":""}" ${x.done?"disabled":`data-act="${x.act}"`}><span class="ctaic food" style="background:${x.done?"var(--good)":x.col}">${x.done?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':x.ic}</span><span><b>${x.t}</b><span>${x.done?"Done":x.s}</span></span>${x.done?"":"<i>›</i>"}</button>`).join("")}</div>`;
 }
 function nsCard(ic, t, d, act, label){ return `<div class="card nscard"><span class="nsic">${ic}</span><span><b>${t}</b><span>${d}</span></span>${act?`<button class="btn small ghost" data-act="${act}">${label||"Set up"}</button>`:""}</div>`; }
 function quickActions(){
@@ -1760,7 +1760,7 @@ function homeParts(){
   // today's training
   let today="";
   if (lift){
-    if (S.prog.placeholder) today=nsCard(ICON.lift,"Today's training shows here","Your session for the day, ready to start in one tap.","buildProg","Build plan");
+    if (S.prog.placeholder) today="";
     else {
       const t=todayDay(), run=runFor(todayStr), g=t&&!t.rest?dayGym(t):null, list=g?(t.variants[g]||[]):[], done=sessionsOn(todayStr).length;
       if (S.active){ const a=S.active, dn=a.ex.reduce((x,e)=>x+e.sets.filter(q=>q.done).length,0), tt=a.ex.reduce((x,e)=>x+e.sets.length,0);
@@ -1779,7 +1779,7 @@ function homeParts(){
   // food
   let food="";
   if (on("nutrition")){
-    if (!S.profile.goal && (S.profile.nutrition||{}).mode!=="manual") food=nsCard(ICON.food,"Your food targets show here","Calories, protein, fat and carbs for today, adjusting to your real burn.","nutGoal","Set goal");
+    if (!S.profile.goal && (S.profile.nutrition||{}).mode!=="manual") food="";
     else { const ft=dayTotals(todayStr);
       const pc=Math.min(1,ft.kcal/Math.max(1,tg.kcal)), C=2*Math.PI*44, mb=(n,v,t,c)=>`<div class="dmac"><div class="spread"><span>${n}</span><b class="num">${Math.round(v)}<em>/${Math.round(t)}g</em></b></div><div class="dbar"><i style="width:${Math.min(100,v/Math.max(1,t)*100)}%;background:${c}"></i></div></div>`;
       food=`<div class="card dfood"><div class="spread"><h2>Food today</h2><button class="link" data-goto="food">Open</button></div>
@@ -1793,7 +1793,7 @@ function homeParts(){
     weight=`<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Weight</h2><span class="small muted">${a7?`7-day average ${a7.toFixed(1)} kg${rate!=null?` · ${(rate>=0?"+":"")+rate.toFixed(2)}% a week`:""}`:"Weigh in each morning to see your trend"}</span></div>${todayW?`<span class="tag up">${todayW.kg.toFixed(1)} today</span>`:`<button class="btn small orange nowrap" data-act="goWeigh">Weigh in</button>`}</div>
       ${pts.length>=3?multiChart([{color:"var(--weight)",pts}],{minSpan:1,h:96,fmt:v=>v.toFixed(1),label:"7-day average weight, last 6 weeks"}):""}</div>`;
   }
-  const habits=on("habits")?(habitList().length?habitsSummaryCard():nsCard(ICON.steps,"Your daily habits show here","Tick them off in one tap and watch the streaks build.","hAdd","Add habit")):"";
+  const habits=on("habits")&&habitList().length?habitsSummaryCard():"";
   const wkLegend=[lift?'<span><i style="background:var(--orange)"></i>Sets</span>':"", on("nutrition")?'<span><i style="background:var(--kcal)"></i>Calories</span>':"", '<span><i style="background:var(--cardio)"></i>Cardio</span>', on("nutrition")?'<span><i style="background:var(--weight)"></i>Weight</span>':""].join("");
   const tiles=[
     on("nutrition")?`<button class="tile" data-goto="energy"><h3>Expenditure</h3><span class="small muted">${ex.adaptive?`From ${ex.n} days of data`:"Starting estimate"}</span><span class="v num">${fmtN(ex.kcal)}</span><span class="small muted">kcal a day</span></button>`:"",
