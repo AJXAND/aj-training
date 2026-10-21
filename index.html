@@ -281,7 +281,10 @@ h1{margin-top:2px}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .wsd.plan i{box-shadow:inset 0 0 0 2px var(--orange);background:none;color:var(--orange)}.wsd.did i{background:var(--orange);color:#fff}.wsd.miss i{box-shadow:inset 0 0 0 2px var(--line);background:none}.wsd.rest i{background:var(--sunk);opacity:.6}
 .wsd.today>span{color:var(--ink)}.wsd.today i{outline:2px solid var(--ink);outline-offset:2px}.wsd em{font-style:normal;font-size:10.5px;color:var(--muted);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lastw{display:grid;gap:8px}
+.lastw{display:grid;gap:8px}.tdtgt b{color:var(--ink);font-weight:700}.tdup{font-style:normal;color:var(--good);font-size:10px;margin-right:4px}.tdupl{color:var(--good);font-weight:600}
+.shero{display:grid;gap:14px}.shero .ph.pic.sm{aspect-ratio:16/9;border-radius:16px}.shlist{margin:0;padding:0;list-style:none;display:grid;gap:8px}.shlist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:15px}.shlist li::before{content:"✓";color:var(--orange);font-weight:800}
+.shacts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.shact{display:grid;justify-items:start;gap:6px;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer}.shact b{font-size:16px}
+.tdpills .warn{color:var(--warn)}
 .trk{display:grid;gap:16px}.trkbig{display:grid;justify-items:center;gap:2px;padding:8px 0}.trkbig b{font-family:var(--display);font-size:64px;font-weight:800;line-height:1}.trkbig span,.trkstats span{font-size:13px;color:var(--muted)}
 .trkstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.trkstats div{background:var(--card);border-radius:16px;padding:12px;display:grid;gap:2px;justify-items:center}.trkstats b{font-family:var(--display);font-size:26px;font-weight:800}
 .trkmap{display:block;width:100%;height:auto;aspect-ratio:17/10;background:var(--card);border-radius:18px}.trkmap.empty{display:grid;place-items:center}.trkpick{display:grid;gap:8px}.lastw>b{font-size:17px}.tdmore{justify-self:start;margin-top:-6px}.tdtop{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}
@@ -1712,8 +1715,9 @@ function render(){
    A section that's on but not set up shows a placeholder that says what it will show and how to set it up. */
 function setupSteps(){
   const st=[];
-  if (on("training")||on("endurance")) st.push({done:!S.prog.placeholder, act:"buildProg", ic:ICON.lift, col:"var(--orange)", t:"Build your training plan", s:"Sessions, sets and progression from the research. About 2 minutes."});
-  if (on("nutrition")) st.push({done:!!S.profile.goal||(S.profile.nutrition||{}).mode==="manual", act:"nutGoal", ic:ICON.food, col:"var(--prot)", t:"Set your food goal", s:"Calories and macros that adapt to your real data."});
+  const heroPlan=(on("training")||on("endurance"))&&S.prog.placeholder, heroGoal=on("nutrition")&&!(on("training")||on("endurance"));
+  if ((on("training")||on("endurance")) && !heroPlan) st.push({done:!S.prog.placeholder, act:"buildProg", ic:ICON.lift, col:"var(--orange)", t:"Build your training plan", s:"Sessions, sets and progression from the research. About 2 minutes."});
+  if (on("nutrition")) if (!(heroGoal&&!S.profile.goal&&(S.profile.nutrition||{}).mode!=="manual")) st.push({done:!!S.profile.goal||(S.profile.nutrition||{}).mode==="manual", act:"nutGoal", ic:ICON.food, col:"var(--prot)", t:"Set your food goal", s:"Calories and macros that adapt to your real data."});
   if (on("habits") && !S.profile.skipHabits) st.push({skip:"skipHabits", done:habitList().length>0, act:"hAdd", ic:ICON.steps, col:"var(--carb)", t:"Add your first habit", s:"Steps, sleep, water, quitting something, or your own."});
   return st;
 }
@@ -1779,9 +1783,10 @@ function homeParts(){
         today=`<div class="card hero"><div class="spread"><h2>${esc((dayBy(a.dayKey)||{}).label||"Workout")} in progress</h2><span class="tag rep">${gymName(a.gym)}</span></div><div class="progress"><i style="width:${tt?dn/tt*100:0}%"></i></div><span class="small muted num">${dn} of ${tt} sets · ${fmtT((Date.now()-a.startedAt)/1000)}</span><button class="btn orange" data-goto="train">Resume workout</button></div>`; }
       else if (S.prog.startDate && todayStr<S.prog.startDate) today=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Your plan</span><h2>${esc(S.prog.name)}</h2></div><span class="small muted">Starts ${fmtD(S.prog.startDate)}.</span><button class="btn ghost" data-goto="plan">See the plan</button></div>`;
       else if (list.length){
-        const nSets=list.reduce((a,x)=>a+x[1],0), mus=[...new Set(list.map(([k])=>exDef(k).m).filter(Boolean))], show=list.slice(0,2);
-        today=`<div class="card hero tdcard"><div class="tdtop"><span class="tdic">${ICON.lift}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(t.label)}</h2><span class="small muted num">${list.length} exercises · ${nSets} sets · ~${sessionMins(t,g)} min${gymList().length>1?" · "+esc(gymName(g)):""}</span></div>${done?'<span class="tag up">Done</span>':""}</div>
-          <div class="tdlist">${show.map(([k,n])=>{ const x=exDef(k); return `<div><span class="ph ic sm"></span><b>${esc(x.n)}</b><span class="num">${n} × ${x.lo}–${x.hi}</span></div>`; }).join("")}</div>${list.length>show.length?`<button class="link muted tdmore" data-goto="plan">+ ${list.length-show.length} more</button>`:""}
+        const nSets=list.reduce((a,x)=>a+x[1],0), mus=[...new Set(list.map(([k])=>exDef(k).m).filter(Boolean))], show=list.slice(0,3), ups=list.filter(([k])=>advice(k,null,g).status==="up").length;
+        today=`<div class="card hero tdcard"><div class="tdtop"><span class="tdic">${ICON.lift}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(t.label)}</h2><span class="small muted num">${list.length} exercises · ${nSets} sets · ~${sessionMins(t,g)} min${gymList().length>1?" · "+esc(gymName(g)):""}</span>${ups?`<span class="small tdupl">▲ ${ups} lift${ups>1?"s":""} ready for more weight today</span>`:""}</div>${done?'<span class="tag up">Done</span>':""}</div>
+          <div class="tdlist">${show.map(([k,n])=>{ const x=exDef(k), ad=advice(k,null,g); const tgt=ad.tw!=null&&ad.tw!==""&&!ad.cross?`${n} sets · <b>${ad.tw} kg × ${ad.tr}</b>`:`${n} sets · ${x.lo}–${x.hi} reps`;
+            return `<div><span class="ph ic sm"></span><b>${esc(x.n)}</b><span class="num tdtgt">${ad.status==="up"?'<i class="tdup">▲</i>':""}${tgt}</span></div>`; }).join("")}</div>${list.length>show.length?`<button class="link muted tdmore" data-goto="plan">+ ${list.length-show.length} more</button>`:""}
           ${run?`<span class="small muted">Plus ${esc(run.n.toLowerCase())} ${runAmt(run)}</span>`:""}
           <div class="grid2"><button class="btn ghost" data-goto="plan">Details</button><button class="btn ${done?"ghost":"orange"}" data-act="startDay" data-k="${t.k}" data-g="${g}">${done?"Train again":"Start"}</button></div></div>`; }
       else if (run) today=runCard(run,todayStr);
@@ -1838,34 +1843,46 @@ function weekStrip(){
     return `<div class="wsd ${cls} ${ds===td?"today":""}"><span>${dt.toLocaleDateString("en-GB",{weekday:"narrow"})}</span><i>${did?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':isPlan?(lift?ICON.lift:ICON.cardio):""}</i><em>${isPlan?esc(((lift?d.label:run.n)||"").split(/[ +]/)[0]):""}</em></div>`; }).join("");
   return `<div class="card wstrip"><div class="spread"><h2>This week</h2><span class="small muted num">${done} of ${planned} sessions</span></div><div class="wsrow">${cells}</div></div>`;
 }
-// before there's any history: what the plan is and where you are in it
-function planCard(){
-  const p=S.prog, st=p.startDate?parseD(p.startDate):null, wk=st?Math.max(1,Math.floor((parseD(ymd(new Date()))-st)/(7*864e5))+1):1;
-  const total=(p.endurance&&p.endurance.weeks&&p.endurance.weeks.length)||p.weeks||p.deloadEvery||null;
-  const days=(p.days||[]).filter(d=>!d.rest).length;
-  return `<div class="card lastw"><div class="spread"><h2>Your plan</h2><button class="link" data-goto="plan">Open</button></div><b>${esc(p.name||"Training plan")}</b>
-    <div class="tdpills"><span>Week <b class="num">${total?Math.min(wk,total):wk}</b>${total?` of ${total}`:""}</span><span><b class="num">${days}</b> days a week</span>${p.endurance&&p.endurance.eventName?`<span>${esc(p.endurance.eventName)}</span>`:""}</div>
-    <span class="small muted">Log each session as you go and the app suggests your weights and paces for next time.</span></div>`;
+// Strength: estimated max of the lift you've done most, session by session, plus how many lifts are going up
+function strengthCard(){
+  const counts={}; S.sessions.forEach(x=>(x.ex||[]).forEach(e=>{ if (e.sets.length&&+e.sets[0].w>0) counts[e.k]=(counts[e.k]||0)+1; }));
+  const LB=(window.AJOnboard&&AJOnboard.lib)||{}, big=x=>{ const l=LB[String(x).replace(/-hvy$/,"")]; return l&&l.c&&["bb","db","machine"].includes(l.eq)?1:0; };
+  const k=Object.keys(counts).filter(x=>counts[x]>=2).sort((a,b)=>big(b)-big(a)||counts[b]-counts[a])[0]; if (!k||counts[k]<2) return "";
+  const h=liftHistory(k).slice(0,12).reverse(), pts=h.map(x=>({t:parseD(x.date).getTime(), v:Math.max(...x.sets.map(q=>e1(q.w,q.r)))}));
+  const ch=(pts[pts.length-1].v-pts[0].v)/pts[0].v*100;
+  const lifts=Object.keys(counts).filter(x=>counts[x]>=2), trend=lifts.map(x=>{ const hh=liftHistory(x).slice(0,4); if (hh.length<2) return 0; const a=e1(hh[hh.length-1].sets[0].w,hh[hh.length-1].sets[0].r), b=e1(hh[0].sets[0].w,hh[0].sets[0].r); return b>a*1.005?1:b<a*0.98?-1:0; });
+  const up=trend.filter(x=>x>0).length, down=trend.filter(x=>x<0).length;
+  return `<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Strength</h2><span class="small muted">${esc(exDef(k).n)} · estimated max ${(ch>=0?"+":"")+ch.toFixed(0)}% since ${new Date(pts[0].t).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span></div><button class="link" data-goto="progress" data-seg="lifts">All lifts</button></div>
+    ${multiChart([{color:"var(--orange)",pts}],{minSpan:5,h:96,fmt:v=>Math.round(v)+"",label:"Estimated max over time"})}
+    <div class="tdpills"><span><b class="num">${up}</b> lifts going up</span><span><b class="num">${lifts.length-up-down}</b> holding</span>${down?`<span class="warn"><b class="num">${down}</b> dipping</span>`:""}</div></div>`;
 }
-function lastWorkout(){
-  const s=S.sessions[0], c=S.cardio.find(x=>["run","cycle","swim","walk","hyrox"].includes(x.type));
-  const useRun=c&&(!s||c.ts>s.ts); if (!s&&!c) return planCard();
-  const when=ts=>{ const d=Math.round((parseD(ymd(new Date()))-parseD(ymd(new Date(ts))))/864e5); return d===0?"Today":d===1?"Yesterday":new Date(ts).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"}); };
-  if (useRun){ const pace=c.km&&c.mins?c.mins/c.km:null;
-    return `<div class="card lastw"><div class="spread"><h2>Last workout</h2><span class="small muted">${when(c.ts)}</span></div><b>${esc((CARDIO[c.type]||{n:c.type}).n)}</b>
-      <div class="tdpills"><span><b class="num">${c.km?c.km:"–"}</b> km</span><span><b class="num">${c.mins}</b> min</span>${pace?`<span><b class="num">${Math.floor(pace)}:${String(Math.round(pace%1*60)).padStart(2,"0")}</b> /km</span>`:""}<span><b class="num">${fmtN(c.net)}</b> kcal</span></div></div>`; }
-  const sets=(s.ex||[]).reduce((a,e)=>a+e.sets.length,0), vol=(s.ex||[]).reduce((a,e)=>a+e.sets.reduce((b,x)=>b+(+x.w||0)*(+x.r||0),0),0);
-  const best=(s.ex||[]).map(e=>{ const h=liftHistory(e.k).filter(x=>x.ts<s.ts); const t=e.sets[0]; if(!t||!h.length) return null; const prev=h[0].sets[0]; const a=e1(+t.w,+t.r), b=e1(+prev.w,+prev.r); return a&&b&&a>b&&(a-b)/b<0.5?{n:(exDef(e.k,e.custom)||{}).n||e.n, d:(a-b)/b*100}:null; }).filter(Boolean).sort((x,y)=>y.d-x.d)[0];
-  return `<div class="card lastw"><div class="spread"><h2>Last workout</h2><span class="small muted">${when(s.ts)}</span></div><b>${esc((dayBy(s.dayKey)||{label:"Workout"}).label)}</b>
-    <div class="tdpills"><span><b class="num">${sets}</b> sets</span><span><b class="num">${s.mins||"–"}</b> min</span><span><b class="num">${fmtN(Math.round(vol))}</b> kg moved</span></div>
-    ${best?`<span class="small"><span class="tag up">Up ${best.d.toFixed(0)}%</span> ${esc(best.n)}, estimated 1RM vs last time</span>`:""}</div>`;
+// Running: kilometres each of the last 8 weeks, this week against the plan
+function runningCard(){
+  const ws=weekStart(new Date()), weeks=[...Array(8)].map((_,i)=>{ const a=new Date(ws); a.setDate(a.getDate()-7*(7-i)); const b=new Date(a); b.setDate(b.getDate()+7); return {a, km:S.cardio.filter(c=>c.type==="run"&&parseD(c.date)>=a&&parseD(c.date)<b).reduce((t,c)=>t+(+c.km||0),0)}; });
+  const plan=weekDates(new Date()).reduce((t,dt)=>{ const r=runFor(ymd(dt)); return t+(r&&r.km?+r.km:0); },0), done=weeks[7].km;
+  if (!plan && !weeks.some(w=>w.km)) return "";
+  const mx=Math.max(plan,...weeks.map(w=>w.km),1), W=320, H=110, bw=26, gap=(W-8*bw)/9;
+  const bars=weeks.map((w,i)=>{ const x=gap+i*(bw+gap), h=Math.max(2,w.km/mx*(H-28)); return `<rect x="${x.toFixed(1)}" y="${(H-18-h).toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" rx="5" fill="${i===7?"var(--orange)":"var(--cardio)"}" fill-opacity="${i===7?1:.55}"/><text x="${(x+bw/2).toFixed(1)}" y="${H-4}" text-anchor="middle">${w.a.toLocaleDateString("en-GB",{day:"numeric",month:"numeric"})}</text>`; }).join("");
+  const py=H-18-plan/mx*(H-28);
+  return `<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Running</h2><span class="small muted num">${plan?`${done.toFixed(1)} of ${plan.toFixed(0)} km planned this week`:`${done.toFixed(1)} km this week`}</span></div><button class="link" data-goto="progress" data-seg="cardio">History</button></div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Kilometres run each week">${plan?`<line x1="4" x2="${W-4}" y1="${py.toFixed(1)}" y2="${py.toFixed(1)}" stroke="var(--good)" stroke-dasharray="3 4"/><text x="${W-4}" y="${(py<16?py+13:py-5).toFixed(1)}" text-anchor="end" fill="var(--good)">Plan ${plan.toFixed(0)} km</text>`:""}${bars}</svg></div>`;
+}
+// No plan yet (training) or no goal yet (food): one clear way in, plus things they can do right now
+function startHero(kind){
+  const tr=kind==="train";
+  return `<div class="card hero shero"><span class="ph pic sm"></span><div class="stack" style="gap:4px"><h2>${tr?"Build your training plan":"Set your food goal"}</h2><span class="small muted">${tr?"Two minutes. Sessions, sets and weights from the research, fitted to your days, gym and goal.":"Two minutes. Calories and protein that adjust each week to your real weight and food."}</span></div>
+    <ul class="shlist">${(tr?["Every session written for your gym's kit","Weights go up as you get stronger","Gym, running, HYROX or a mix"]:["A pace that keeps your muscle","Targets that learn your true burn","Log by search, barcode, label or photo"]).map(x=>`<li>${x}</li>`).join("")}</ul>
+    <button class="btn orange" data-act="${tr?"buildProg":"nutGoal"}">${tr?"Build my plan":"Set my goal"}</button></div>
+    <div class="shacts">${(tr?[["track","Track a run or walk","Live GPS",ICON.cardio],["cardioLog","Log a sport","Any sport or class",ICON.lift]]:[["foodAddOpen","Log food","Search or scan",ICON.food],["goWeigh","Weigh in","Start your trend",ICON.scale]]).map(([a,t,d,ic])=>`<button class="card shact" data-act="${a}"><span class="tdic">${ic}</span><b>${t}</b><span class="small muted">${d}</span></button>`).join("")}</div>`;
 }
 const GOALLABEL={cut:"Lose fat", bulk:"Build muscle", recomp:"Recomp", maintain:"Maintain"};
 // Today: what you need now (food, training, weight, habits). The week grid and insights live in Progress.
 function renderHome(){
   const p=homeParts();
-  const lift=(on("training")||on("endurance"))&&!S.prog.placeholder;
-  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")+setupCard()+p.food+p.today+(lift?weekStrip():"")+p.weight+p.habits+(lift?lastWorkout():"");
+  const train=on("training")||on("endurance"), lift=train&&!S.prog.placeholder, endu=lift&&!!S.prog.endurance, food=on("nutrition");
+  const noPlan=train&&S.prog.placeholder, noGoal=food&&!train&&!S.profile.goal&&(S.profile.nutrition||{}).mode!=="manual";
+  return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")
+    +(noPlan?startHero("train"):"")+(noGoal?startHero("food"):"")+setupCard()+p.food+p.today+(lift?weekStrip():"")+(endu?runningCard():"")+(lift&&(!endu||S.prog.kind==="hybrid"||S.prog.kind==="hyrox")?strengthCard():"")+p.weight+p.habits;
 }
 // small trend line with a soft fill and an end dot
 function miniTrend(vals){
@@ -3184,6 +3201,8 @@ $("#main").addEventListener("click", async e=>{
     case "coach": openChat(b.dataset.ctx); return;
     case "buildProg": window.AJOnboard&&AJOnboard.programme(); return;
     case "trackStart": trkStart(b.dataset.t||"run"); return;
+    case "track": go("trackpick"); return;
+    case "cardioLog": S.cardioForm={type:null, level:"", mins:"", km:"", date:null}; S.cSearch=""; go("cardio"); return;
     case "trkPause": { const tr=S.track; if(!tr) return; if (tr.paused){ tr.pausedMs+=Date.now()-tr.paused; tr.paused=null; } else tr.paused=Date.now(); trkSave(); render(); trkPaint(); return; }
     case "trkFinish": if (S.confirm!=="trkFinish"){ S.confirm="trkFinish"; render(); trkPaint(); setTimeout(()=>{ if(S.confirm==="trkFinish"){ S.confirm=null; if(S.tab==="track"){ render(); trkPaint(); } } },4000); return; } S.confirm=null; trkFinish(); return;
     case "trkDiscard": if (S.confirm!=="trkDiscard"){ S.confirm="trkDiscard"; render(); trkPaint(); setTimeout(()=>{ if(S.confirm==="trkDiscard"){ S.confirm=null; if(S.tab==="track"){ render(); trkPaint(); } } },4000); return; } S.confirm=null; trkStop(); S.track=null; trkSave(); go("home"); toast("Discarded"); return;
