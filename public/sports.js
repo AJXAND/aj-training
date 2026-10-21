@@ -42,7 +42,7 @@ const SP = {
   floorball:["Floorball","Team sports",{"General":[10.5,"15205"]},"General",""],
   waterpolo:["Water polo","Team sports",{"General":[10.0,"18360"]},"General",""],
   tennis:["Tennis","Racket sports",{"Singles match":[8.0,"15690"],"Singles casual":[6.8,"15675"],"Doubles match":[6.0,"15680"],"Doubles casual":[4.5,"15685"],"Hitting / drills":[5.0,"15695"]},"Singles casual",""],
-  padel:["Padel","Racket sports",{"Social (nearest: paddleball)":[6.0,"15500"],"Competitive (nearest: paddleball)":[10.0,"15490"]},"Social (nearest: paddleball)",""],
+  padel:["Padel","Racket sports",{"Social (nearest: paddleball)":[6.0,"15500"],"Competitive (nearest: paddleball)":[10.0,"15490"]},"Social (nearest: paddleball)","paddle tennis paddel"],
   squash:["Squash","Racket sports",{"General":[7.3,"15652"],"Match":[12.0,"15650"]},"General",""],
   badminton:["Badminton","Racket sports",{"Social":[5.5,"15030"],"Competitive":[7.0,"15020"],"Match play":[9.0,"15025"]},"Social",""],
   tabletennis:["Table tennis","Racket sports",{"General":[4.0,"15660"]},"General","ping pong"],
@@ -148,8 +148,7 @@ const NEAR = [
   ["kettlebell","Kettlebell class","Classes","circuit","Vigorous, minimal rest",""],
   ["discgolf","Disc golf","Outdoor","golf","Walking, carrying","frisbee"],
   ["polo","Polo","Outdoor","horse","Walking","equestrian"],
-  ["frisbee","Frisbee (casual)","Outdoor","ultimate","Ultimate",""],
-  ["tennisdbl","Paddle tennis","Racket sports","tennis","Doubles casual","platform"]
+  ["frisbee","Frisbee (casual)","Outdoor","ultimate","Ultimate",""]
 ];
 for (const [id, n, g, from, lvl, w] of NEAR){ const src = SP[from]; if (!src || !src[2][lvl] || SP[id]) continue; const nm = /nearest/.test(lvl) ? lvl : "Typical session (nearest: " + src[0].toLowerCase() + ")"; SP[id] = [n, g, {[nm]:src[2][lvl]}, nm, w]; }
 const GROUPS = ["Everyday","Endurance","Gym cardio","Classes","Team sports","Racket sports","Combat sports","Outdoor","Water sports","Snow and ice","Mind and body"];
