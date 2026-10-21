@@ -379,6 +379,7 @@ h1{margin-top:2px}
 .aibar{width:70%;height:4px;border-radius:2px;background:var(--sunk);overflow:hidden}.aibar i{display:block;height:100%;width:35%;border-radius:2px;background:linear-gradient(90deg,#FF9A3D,#FF6B1A);animation:aibar 1.3s ease-in-out infinite}
 @keyframes airing{0%{transform:scale(.4);opacity:.7}100%{transform:scale(1.25);opacity:0}} @keyframes aispin{50%{transform:scale(1.15) rotate(20deg)}} @keyframes aibar{0%{transform:translateX(-100%)}100%{transform:translateX(290%)}}
 .aitips{display:grid;gap:8px;background:var(--sunk);border-radius:16px;padding:12px 14px}.aitips>b{font-size:13px;color:var(--muted)}.aitips>div{display:flex;flex-wrap:wrap;gap:6px}.aitips>div span{background:var(--card);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:600}
+.gic[data-gripg]{touch-action:none;cursor:grab}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2333,8 +2334,9 @@ function mealMap(entries, opt={}){
     const pv=cl[i-1], nx=cl[i+1], dp=pv?c.first-pv.last:Infinity, dn=nx?nx.first-c.last:Infinity, to=dp<=dn?pv:nx;
     if (to&&Math.min(dp,dn)<=90*60e3){ to.es.push(...c.es); to.es.sort((a,b)=>a.t-b.t); to.first=to.es[0].t; to.last=to.es[to.es.length-1].t; cl.splice(i,1); } }
   // logged right next to food you placed yourself: it's the same meal
-  cl.forEach(c=>{ const near=fixed.find(x=>x.meal!=="shake"&&x.meal!=="treats"&&c.es.some(e=>Math.abs(x.t-e.t)<=GAP)); if (near) c.fix=near.meal; });
-  const fixedT={}; fixed.forEach(e=>{ if (ORD[e.meal]!=null) fixedT[e.meal]=Math.min(fixedT[e.meal]??Infinity, e.t); });
+  const placed=fixed.filter(e=>e.placed);
+  cl.forEach(c=>{ const near=placed.find(x=>x.meal!=="shake"&&x.meal!=="treats"&&c.es.some(e=>Math.abs(x.t-e.t)<=GAP)); if (near) c.fix=near.meal; });
+  const fixedT={}; placed.forEach(e=>{ if (ORD[e.meal]!=null) fixedT[e.meal]=Math.min(fixedT[e.meal]??Infinity, e.t); });
   cl.forEach(c=>{ c.kcal=sumOf(c.es).kcal; c.h=hrOf(c.first); c.sc={};
     const v={}; let nv=0; c.es.forEach(e=>{ const o=ctx.idx[foodKey(e.name)]; if (!o) return; const tot=Object.values(o).reduce((a,b)=>a+b,0); if (tot<2) return; nv++; Object.entries(o).forEach(([m,n])=>v[m]=(v[m]||0)+n/tot); });
     const snacky=c.es.filter(e=>SNACK_RE.test(e.name||"")||TREAT_RE.test(e.name||"")).length/c.es.length, bfast=c.es.some(e=>BFAST_RE.test(e.name||""));
@@ -2386,7 +2388,7 @@ function mealMenuRow(k){
 function sectionRows(es, sel){
   const done=new Set(); return es.map(e=>{ if (!e.grp) return entryRow(e,sel); if (done.has(e.grp)) return ""; done.add(e.grp);
     const g=es.filter(x=>x.grp===e.grp), s=sumOf(g), open=sel||S.openGrp===e.grp, allOn=sel&&g.every(x=>sel.includes(x.id));
-    return `<div class="fgrp ${open?"open":""}"><div class="fgh">${sel?`<button class="fchkb" data-act="selGrp" data-g="${e.grp}" aria-label="Select ${esc(e.grpName||"meal")}"><span class="fchk ${allOn?"on":""}">${allOn?HICON.check:""}</span></button>`:`<span class="gic" aria-hidden="true">${g.length}</span>`}<button class="fbody" data-act="grpTog" data-g="${e.grp}" aria-expanded="${!!open}">
+    return `<div class="fgrp ${open?"open":""}"><div class="fgh">${sel?`<button class="fchkb" data-act="selGrp" data-g="${e.grp}" aria-label="Select ${esc(e.grpName||"meal")}"><span class="fchk ${allOn?"on":""}">${allOn?HICON.check:""}</span></button>`:`<span class="gic" data-gripg="${e.grp}" aria-label="Drag this meal to another section">${g.length}</span>`}<button class="fbody" data-act="grpTog" data-g="${e.grp}" aria-expanded="${!!open}">
       <span class="fn"><b>${esc(e.grpName||"Meal")}</b><span class="muted small">${g.length} foods · tap to ${open?"close":"see them"}</span></span><span class="fk num"><b>${fmtN(s.kcal)}</b>${macroMini(s)}</span></button></div>
       ${open?`<div class="fgi">${g.map(x=>entryRow(x,sel)).join("")}${sel?"":`<div class="grpacts"><button class="link small" data-act="grpRename" data-g="${e.grp}">Rename</button><button class="link small" data-act="grpSave" data-g="${e.grp}">Save to my meals</button><button class="link small muted" data-act="grpSplit" data-g="${e.grp}">Split up</button></div>`}</div>`:""}</div>`; }).join("");
 }
@@ -2438,7 +2440,7 @@ function logTray(){
   let join=null; if (S.joinTo&&S.joinTo.date===date){ const doc=S.all.foodlog[date], tgt=doc&&doc.entries.find(e=>e.id===S.joinTo.id);
     if (tgt){ const m=(S._mm||{})[tgt.id]||tgt.meal||meal; if (!tgt.grp){ tgt.grp=uid("g"); tgt.grpName=tgt.name; } tgt.meal=m; join={grp:tgt.grp, grpName:tgt.grpName, meal:m}; S.openGrp=tgt.grp; } }
   S.joinTo=null;
-  tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, ...(fix?{meal:fix}:{}), ...(grp?{grp, grpName}:{}), ...(join||{}), ...(x.base?{base:x.base}:{}), name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"};
+  tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, ...(fix?{meal:fix, placed:true}:{}), ...(grp?{grp, grpName}:{}), ...(join||{}), ...(x.base?{base:x.base}:{}), name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"};
     if (!en.foodId) delete en.foodId; addFoodEntry(date,en); ids.push(en.id);
     if (x.food){ const f=S.foods.find(y=>y.id===x.food.id)||x.food; saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:x.amount, lastUnit:x.unit}); } });
   const tk=tray.reduce((a,x)=>a+x.kcal,0); S.tray=[]; S.trayOpen=false; S.aiNotes=""; S.foodQuery=""; S.addMeal=null; S.trayGroup=null;
@@ -2653,14 +2655,15 @@ function edClick(k, b){
   if (k==="meal"){ ed.meal=b.dataset.m; renderFoodSheet(); return true; }
   if (k==="fav"){ const f=S.foods.find(x=>x.id===ed.food.id); if (f){ saveFood({...f, fav:!f.fav}); ed.food={...ed.food, fav:!f.fav}; renderFoodSheet(); } return true; }
   if (k==="edDel"){ if (S.confirm!=="fdel"){ S.confirm="fdel"; renderFoodSheet(); return true; }
-    const en=((S.foodlog[date]||{}).entries||[]).find(x=>x.id===ed.id); removeFoodEntry(date, ed.id); S.foodAdd=null; S.confirm=null; renderFoodSheet(); render();
-    toast({title:"Deleted", detail:en?en.name:"", kind:"del"}, en?()=>{ addFoodEntry(date,en); render(); }:null); return true; }
+    const en=((S.foodlog[date]||{}).entries||[]).find(x=>x.id===ed.id), undo=daySnap(date); removeFoodEntry(date, ed.id); S.foodAdd=null; S.confirm=null; renderFoodSheet(); render();
+    toast({title:"Deleted", detail:en?en.name:"", kind:"del"}, undo); return true; }
   if (k==="edJoin"){ const name=ed.name; S.joinTo={id:ed.id, date, name}; S.foodAdd=null; renderFoodSheet(); S.addTab="search"; S.addMeal=null; go("foodadd"); setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); return true; }
   if (k==="edSave"){ const r=edResult(ed); if (!(r.amount>0)){ toast("Enter an amount"); return true; }
-    if (ed.mode==="entry"){ const doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===ed.id); if (!en) return true; const before={...en};
-      Object.assign(en, r); Object.keys(en).forEach(x=>en[x]===undefined&&delete en[x]); if (ed.meal&&ed.meal!==ed.autoMeal) en.meal=ed.meal; else if (ed.meal) en.meal=ed.meal;
+    if (ed.mode==="entry"){ const doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===ed.id); if (!en) return true; const before={...en}, undoAll=daySnap(date);
+      Object.assign(en, r); Object.keys(en).forEach(x=>en[x]===undefined&&delete en[x]);
+      if (ed.meal&&ed.meal!==ed.autoMeal){ saveFoodDay(date); moveEntries(date,[en.id],ed.meal); }
       if (en.grp&&before.name===en.grpName&&r.name!==before.name) doc.entries.forEach(x=>{ if (x.grp===en.grp) x.grpName=r.name; });
-      saveFoodDay(date); S.foodAdd=null; renderFoodSheet(); render(); toast({title:"Saved", detail:`${en.name} · ${fmtN(en.kcal)} kcal`}, ()=>{ Object.keys(en).forEach(x=>delete en[x]); Object.assign(en,before); saveFoodDay(date); render(); }); }
+      saveFoodDay(date); S.foodAdd=null; renderFoodSheet(); render(); toast({title:"Saved", detail:`${en.name} · ${fmtN(en.kcal)} kcal`}, undoAll); }
     else { const old=S.tray[ed.trayK]; if (!old) return true; const nx={...old, ...r, g:r.grams||0, food:ed.kind==="food"&&!ed.ovr?ed.food:old.food, quick:!(ed.kind==="food"&&!ed.ovr)}; if (nx.base===undefined) delete nx.base; if (ed.kind==="food"&&!ed.ovr) nx.unit=ed.unit; S.tray[ed.trayK]=nx; S.foodAdd=null; renderFoodSheet(); render(); }
     return true; }
   if (k==="save"||k==="tray"){ const r=edResult(ed); if (!(r.amount>0)){ toast("Enter an amount"); return true; }
@@ -3543,7 +3546,18 @@ function addFoodEntry(date, entry){
   doc.entries=[...doc.entries.filter(x=>x.id!==entry.id), entry];
   saveFoodDay(date);
 }
-function removeFoodEntry(date, id){ const doc=S.all.foodlog[date]; if(!doc) return; doc.entries=doc.entries.filter(x=>x.id!==id); saveFoodDay(date); }
+function removeFoodEntry(date, id){ const doc=S.all.foodlog[date]; if(!doc) return; doc.entries=doc.entries.filter(x=>x.id!==id); normGroups(doc); saveFoodDay(date); }
+// A meal you made needs at least two foods; anything left on its own goes back to being a single food
+function normGroups(doc){ const n={}; doc.entries.forEach(e=>{ if (e.grp) n[e.grp]=(n[e.grp]||0)+1; }); doc.entries.forEach(e=>{ if (e.grp&&n[e.grp]<2){ delete e.grp; delete e.grpName; } }); }
+// Snapshot a day so any change can be undone exactly
+function daySnap(date){ const doc=S.all.foodlog[date], copy=doc?clone(doc.entries):[]; return ()=>{ const d=S.all.foodlog[date]||(S.all.foodlog[date]={date,entries:[]}); d.entries=clone(copy); saveFoodDay(date); render(); }; }
+// Move foods to a section. Only those foods move. Taking some foods out of a meal you made leaves the rest of it where it was.
+function moveEntries(date, ids, meal){
+  const doc=S.all.foodlog[date]; if (!doc) return null; const undo=daySnap(date), set=new Set(ids);
+  doc.entries.forEach(e=>{ if (!set.has(e.id)) return; e.meal=meal; e.moved=true; delete e.placed;
+    if (e.grp&&doc.entries.some(x=>x.grp===e.grp&&!set.has(x.id))){ delete e.grp; delete e.grpName; } });
+  normGroups(doc); saveFoodDay(date); return undo;
+}
 function entryTime(date){ return date===ymd(new Date()) ? Date.now() : parseD(date).getTime(); }
 function openFood(food, extra){ extra=extra||{}; edOpen(food,"new",{...extra, numOpen:!(+food.per100.kcal)||extra.src==="label"}); }
 function foodSheetSave(mode){
@@ -3595,8 +3609,10 @@ $("#foodSheet").addEventListener("click",e=>{
   if (k==="cpTo"){ a.to=b.dataset.d; renderFoodSheet(); }
   if (k==="cpMeal"){ a.toMeal=b.dataset.m; renderFoodSheet(); }
   if (k==="copyGo"){ const src=a.copy.src, es=selEntries(src,a.copy.ids), mm=mealMap((S.foodlog[src]||{}).entries||[]), ids=[], base=parseD(a.to).getTime()-parseD(src).getTime();
-    const gmap={}; es.forEach(e=>{ const n={...clone(e), id:uid("f"), t:e.t+base, meal:a.toMeal==="same"?mm[e.id]:a.toMeal}; delete n.sample; if (n.grp) n.grp=gmap[n.grp]||(gmap[n.grp]=uid("g")); addFoodEntry(a.to,n); ids.push(n.id); });
-    const to=a.to; S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); toast(`Copied ${es.length} food${es.length>1?"s":""} to ${to===ymd(new Date())?"today":fmtD(to)}`, ()=>{ ids.forEach(id=>removeFoodEntry(to,id)); render(); }); }
+    const gmap={}, all=(S.foodlog[src]||{}).entries||[]; es.forEach(e=>{ const n={...clone(e), id:uid("f"), t:e.t+base, meal:a.toMeal==="same"?mm[e.id]:a.toMeal}; delete n.sample; delete n.placed; delete n.moved;
+      if (n.grp&&all.filter(x=>x.grp===e.grp).every(x=>a.copy.ids.includes(x.id))) n.grp=gmap[n.grp]||(gmap[n.grp]=uid("g")); else { delete n.grp; delete n.grpName; }
+      addFoodEntry(a.to,n); ids.push(n.id); });
+    const to=a.to; S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); toast({title:`Copied to ${to===ymd(new Date())?"today":to===ymd(new Date(Date.now()-864e5))?"yesterday":fmtD(to)}`, detail:`${es.length} food${es.length>1?"s":""}`}, ()=>{ const d=S.all.foodlog[to]; if (d){ d.entries=d.entries.filter(x=>!ids.includes(x.id)); saveFoodDay(to); } render(); }); }
   if (k==="saveGo"){ const name=($("#smName").value||"").trim(); if (!name){ toast("Give the meal a name"); $("#smName").focus(); return; }
     const items=selEntries(a.saveMeal.src,a.saveMeal.ids).map(e=>({name:e.name, foodId:e.foodId, amount:e.amount, unit:e.unit, grams:e.grams, kcal:e.kcal, p:e.p, f:e.f, c:e.c, src:e.src}));
     S.profile={...S.profile, savedMeals:[{id:uid("meal"), name:name.slice(0,60), items, created:Date.now()}, ...savedMeals()]}; saveProfile();
@@ -3606,13 +3622,13 @@ $("#foodSheet").addEventListener("click",e=>{
     const doc=S.all.foodlog[date]; if (!doc) return;
     if (k==="makeGo"){ const g=uid("g"), es=doc.entries.filter(e=>a.makeMeal.ids.includes(e.id)), mm=S._mm||{}, cnt={};
       es.forEach(e=>cnt[mm[e.id]]=(cnt[mm[e.id]]||0)+1); const into=Object.keys(cnt).sort((x,y)=>cnt[y]-cnt[x])[0];
-      es.forEach(e=>{ e.grp=g; e.grpName=name; if (e.meal||mm[e.id]!==into) e.meal=into; });
+      const undo=daySnap(date); es.forEach(e=>{ e.grp=g; e.grpName=name; if (e.meal||mm[e.id]!==into){ e.meal=into; e.moved=true; delete e.placed; } }); a.undo=undo;
       if (a.keep) saveMealFrom(name, es.sort((x,y)=>x.t-y.t).map(e=>({name:e.name, foodId:e.foodId, amount:e.amount, unit:e.unit, grams:e.grams, kcal:e.kcal, p:e.p, f:e.f, c:e.c, src:e.src})));
-      S.openGrp=null; toast(`Made "${name}"${a.keep?" and saved it to your meals":""}`); }
+      S.openGrp=null; normGroups(doc); toast({title:`Made "${name}"`, detail:a.keep?"Also saved to your meals":`${es.length} foods as one meal`}, a.undo); }
     else { doc.entries.forEach(e=>{ if (e.grp===a.rename.g) e.grpName=name; }); toast("Renamed"); }
     saveFoodDay(date); S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); }
-  if (k==="moveTo"){ const doc=S.all.foodlog[date]; if (doc){ doc.entries.forEach(e=>{ if (a.move.ids.includes(e.id)) e.meal=b.dataset.m; }); saveFoodDay(date); }
-    S.foodAdd=null; S.fsel=null; renderFoodSheet(); render(); toast(`Moved to ${mealName(b.dataset.m)}`); }
+  if (k==="moveTo"){ const undo=moveEntries(date, a.move.ids, b.dataset.m);
+    S.foodAdd=null; S.fsel=null; renderFoodSheet(); render(); toast({title:`Moved to ${mealName(b.dataset.m)}`, detail:`${a.move.ids.length} food${a.move.ids.length>1?"s":""}`}, undo); }
   if (k==="mealTray"||k==="mealLog"){ const m=savedMeals().find(x=>x.id===a.mealView); if (!m) return; mealToTray(m); S.foodAdd=null; renderFoodSheet(); if (k==="mealLog") logTray(); else { render(); toast(`${m.name} added to your basket`); } }
   if (k==="mealDel"){ if (S.confirm!=="mdel"){ S.confirm="mdel"; renderFoodSheet(); return; } S.profile={...S.profile, savedMeals:savedMeals().filter(x=>x.id!==a.mealView)}; saveProfile(); S.confirm=null; S.foodAdd=null; renderFoodSheet(); render(); toast("Meal deleted"); }
   if (k==="meal"){ S.foodAdd.meal=b.dataset.m; renderFoodSheet(); }
@@ -3820,13 +3836,22 @@ $("#main").addEventListener("input", e=>{
 });
 /* drag a food entry to another meal */
 let fdrag=null;
-$("#main").addEventListener("pointerdown", e=>{ const g=e.target.closest("[data-grip]"); if(!g) return; e.preventDefault(); const row=g.closest(".fe"); fdrag={id:g.dataset.grip,row,y0:e.clientY,over:null}; row.classList.add("dragging"); try{ g.setPointerCapture(e.pointerId); }catch(err){} });
-$("#main").addEventListener("pointermove", e=>{ if(!fdrag) return; fdrag.row.style.transform=`translateY(${e.clientY-fdrag.y0}px)`;
+$("#main").addEventListener("pointerdown", e=>{ const g=e.target.closest("[data-grip],[data-gripg]"); if(!g) return; e.preventDefault(); const row=g.dataset.gripg?g.closest(".fgrp"):g.closest(".fe"); fdrag={id:g.dataset.grip,grp:g.dataset.gripg,row,y0:e.clientY,s0:scrollY,y:e.clientY,x:e.clientX,over:null}; fdragScroll(); row.classList.add("dragging"); try{ g.setPointerCapture(e.pointerId); }catch(err){} });
+// While dragging near the top or bottom of the screen, the page scrolls so you can reach any section
+function fdragScroll(){ if (!fdrag) return; const y=fdrag.y, edge=110, nav=(document.querySelector(".nav")||{}).offsetHeight||80; let v=0;
+  if (y<edge) v=-Math.ceil((edge-y)/8); else if (y>innerHeight-nav-edge) v=Math.ceil((y-(innerHeight-nav-edge))/8);
+  if (v){ window.scrollBy(0,v); fdragAt(fdrag.x,fdrag.y); } requestAnimationFrame(fdragScroll); }
+function fdragAt(x,y){ if (!fdrag) return; fdrag.row.style.transform=`translateY(${y-fdrag.y0+scrollY-fdrag.s0}px)`;
+  fdrag.row.style.pointerEvents="none"; const el=document.elementFromPoint(x,y), grp=el&&el.closest(".mealgrp"); fdrag.row.style.pointerEvents="";
+  document.querySelectorAll(".mealgrp.over").forEach(z=>z.classList.remove("over")); if (grp){ grp.classList.add("over"); fdrag.over=grp.dataset.meal; } }
+$("#main").addEventListener("pointermove", e=>{ if(!fdrag) return; fdrag.x=e.clientX; fdrag.y=e.clientY; fdragAt(e.clientX,e.clientY); });
+$("#main").addEventListener("pointermove", e=>{ if(!fdrag||true) return;
   const el=document.elementFromPoint(e.clientX,e.clientY), grp=el&&el.closest(".mealgrp"); document.querySelectorAll(".mealgrp.over").forEach(x=>x.classList.remove("over")); if (grp){ grp.classList.add("over"); fdrag.over=grp.dataset.meal; } });
 const fdragEnd=()=>{ if(!fdrag) return; const d=fdrag; fdrag=null; d.row.classList.remove("dragging"); d.row.style.transform="";
   document.querySelectorAll(".mealgrp.over").forEach(x=>x.classList.remove("over"));
   const date=foodDate(), doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===d.id);
-  if (en && d.over && d.over!==((S._mm||{})[en.id]||mealOf(en))){ if (en.grp) doc.entries.forEach(x=>{ if (x.grp===en.grp) x.meal=d.over; }); en.meal=d.over; saveFoodDay(date); render(); toast(`Moved to ${MEALS.find(m=>m[0]===d.over)[1]}`); } };
+  const ids=d.grp?doc.entries.filter(x=>x.grp===d.grp).map(x=>x.id):en?[en.id]:[], cur=ids.length?((S._mm||{})[ids[0]]||mealOf(doc.entries.find(x=>x.id===ids[0]))):null;
+  if (ids.length && d.over && d.over!==cur){ const undo=moveEntries(date, ids, d.over); render(); toast({title:`Moved to ${mealName(d.over)}`, detail:d.grp?(doc.entries.find(x=>x.grp===d.grp)||{}).grpName||"":(en?en.name:"")}, undo); } };
 $("#main").addEventListener("pointerup", fdragEnd); $("#main").addEventListener("pointercancel", fdragEnd);
 $("#main").addEventListener("keydown", e=>{
   const i=e.target;
@@ -3998,8 +4023,8 @@ $("#main").addEventListener("click", async e=>{
       else if (act.endsWith("Save")) S.foodAdd={saveMeal:{ids,src:date}, name:es.length===1?es[0].name:act==="mealSave"?`${es[0].name} ${mealName(b.dataset.meal).toLowerCase()}`:`${es[0].name} and ${es.length-1} more`};
       else S.foodAdd={move:{ids}};
       renderFoodSheet(); return; }
-    case "selDel": { const date=foodDate(), es=selEntries(date,S.fsel||[]); if (!es.length) return; es.forEach(e=>removeFoodEntry(date,e.id)); S.fsel=null; render();
-      toast(`Deleted ${es.length} food${es.length>1?"s":""}`, ()=>{ es.forEach(e=>addFoodEntry(date,e)); render(); }); return; }
+    case "selDel": { const date=foodDate(), es=selEntries(date,S.fsel||[]); if (!es.length) return; const undo=daySnap(date); es.forEach(e=>removeFoodEntry(date,e.id)); S.fsel=null; render();
+      toast({title:`Deleted ${es.length} food${es.length>1?"s":""}`, detail:es.map(e=>e.name).join(", "), kind:"del"}, undo); return; }
     case "trayOpen": S.trayOpen=!S.trayOpen; render(); return;
     case "trayMeal": S.addMeal=b.dataset.meal||null; render(); return;
     case "trayEdit": { const i=+b.dataset.i, x=S.tray[i]; if (!x) return; edOpen(x,"tray",{trayK:i}); return; }
