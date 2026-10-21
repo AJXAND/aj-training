@@ -2255,11 +2255,11 @@ function runFor(date){ const w=enduWeek(date); if (!w) return null; const dt=par
   let wd=dt.getDay();
   if (here && here.movedFrom!=null) wd=here.movedFrom;
   else if (here && here.rest && String(here.k).startsWith("_r")) return null;
-  const s=w.sessions[wd]; return s?{...s, ...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), week:w}:null; }
+  const s=w.sessions[wd]; return s?{...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), ...s, week:w}:null; }
 function runAmt(r){ return r.type==="hysim"?r.km+" rounds":r.km?r.km+" km":r.mins?r.mins+" min":""; }
 function runCard(r, date){
   const sp={run:"run",swim:"swim",cycle:"cycle",hyrox:"hyrox"}[r.sport||"run"]||"run", done=S.cardio.filter(c=>c.date===date && c.type===sp);
-  return `<div class="card runcard"><div class="spread"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${ICON.cardio}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(r.n)}</h2><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery":""}</span></div></div><b class="num rkm">${r.type==="hysim"?r.km+"<em> rounds</em>":r.km?r.km+"<em> km</em>":r.mins+"<em> min</em>"}</b></div>
+  return `<div class="card runcard"><div class="spread"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${ICON.cardio}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(r.n)}</h2><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery week":""}</span></div></div><b class="num rkm">${r.type==="hysim"?r.km+"<em> rounds</em>":r.km?r.km+"<em> km</em>":r.mins+"<em> min</em>"}</b></div>
     <span class="small muted">${esc(r.desc||r.rpe)}</span>${r.week.notes.length?`<div class="hcue"><em>This week</em>${r.week.notes.map(esc).join(". ")}</div>`:""}
     ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>`:(sp==="run"||sp==="cycle"?`<div class="grid2"><button class="btn ghost" data-act="logRun" data-t="${sp}" data-km="${sp==="run"&&r.type!=="runwalk"?r.km||"":""}" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log it</button><button class="btn orange" data-act="trackStart" data-t="${sp}">Start ${sp==="cycle"?"ride":"run"}</button></div>`:`<button class="btn orange" data-act="logRun" data-t="${sp}" data-km="" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log this ${sp==="swim"?"swim":sp==="hyrox"?"session":"session"}</button>`)}</div>`;
 }
@@ -2799,7 +2799,7 @@ function renderWeekView(){
     else if (S.prog.startDate && ymd(dt)<S.prog.startDate) st=`<span class="status">Before block</span>`;
     else st=`<span class="status">${dt<new Date()?"Missed":"Planned"}</span>`;
     return `<button class="wday ${isToday?"is-today":""} ${d.movedFrom!=null?"moved":""}" data-act="dayview" data-k="${d.k}"><span class="d">${dt.toLocaleDateString("en-GB",{weekday:"short"})}<b class="num">${dt.getDate()}</b></span>
-      <span class="f"><b>${(()=>{ const r=runFor(ymd(dt)); return r?esc(r.n)+" · "+runAmt(r)+(d.variants&&Object.keys(d.variants).length&&(d.variants[dayGym(d)]||[]).length?" + strength":""):esc(d.label); })()}${d.optional?" (optional)":""}${d.movedFrom!=null?' <span class="tag">moved</span>':""}</b><span>${esc(d.focus)}${!d.rest&&cardio.length?" · "+cardio.map(c=>CARDIO[c.type].n).join(", "):""}</span></span>${st}</button>${S.dayView===d.k?dayDetail(d,ymd(dt)):""}`;
+      <span class="f"><b>${(()=>{ const r=runFor(ymd(dt)); return r?esc(r.n)+" · "+runAmt(r)+(d.variants&&Object.keys(d.variants).length&&(d.variants[dayGym(d)]||[]).length?" + strength":""):esc(d.label); })()}${d.optional?" (optional)":""}${d.movedFrom!=null?' <span class="tag">moved</span>':""}</b><span>${(()=>{ const r=runFor(ymd(dt)); return esc(r&&r.desc?r.desc:d.focus); })()}${!d.rest&&cardio.length?" · "+cardio.map(c=>CARDIO[c.type].n).join(", "):""}</span></span>${st}</button>${S.dayView===d.k?dayDetail(d,ymd(dt)):""}`;
   }).join("");
   const sess=S.sessions.filter(s=>{ const x=parseD(s.date); return x>=dates[0]&&x<=dates[6]; });
   const planned={}, got={};
@@ -2810,8 +2810,9 @@ function renderWeekView(){
   Object.keys(planned).forEach(m=>planned[m]=r1(planned[m])); Object.keys(got).forEach(m=>got[m]=r1(got[m]));
   const bars=Object.keys(planned).sort((a,b)=>planned[b]-planned[a]).map(m=>`<div class="bar-row"><span>${m}</span><span class="track"><b style="width:${Math.min(100,(got[m]||0)/planned[m]*100)}%"></b></span><span class="num small">${got[m]||0}/${planned[m]}</span></div>`).join("");
   const ew0=enduWeek(ymd(new Date())), ew=ew0&&(ew0.km||ew0.mins)?ew0:null, byMins=ew&&!ew.km, wkMins=S.cardio.filter(c=>parseD(c.date)>=dates[0]&&parseD(c.date)<=dates[6]).reduce((a,c)=>a+(+c.mins||0),0), runKm=S.cardio.filter(c=>c.type==="run"&&parseD(c.date)>=dates[0]&&parseD(c.date)<=dates[6]).reduce((a,c)=>a+(+c.km||0),0);
-  const runSum=ew?`<div class="card"><div class="spread"><h2>${byMins?"Training this week":"Running this week"}</h2><span class="small muted">${esc(ew.phase)}${ew.recovery?" · recovery":""}</span></div>
+  const runSum=ew?`<div class="card"><div class="spread"><h2>${byMins?"Training this week":"Running this week"}</h2><span class="small muted">${esc(ew.phase)}${ew.recovery?" · Recovery week":""}</span></div>
     ${byMins?`<div class="bar-row"><span>Time</span><span class="track"><b style="width:${Math.min(100,wkMins/ew.mins*100)}%"></b></span><span class="num small">${wkMins}/${ew.mins} min</span></div>`:`<div class="bar-row"><span>Distance</span><span class="track"><b style="width:${Math.min(100,runKm/ew.km*100)}%"></b></span><span class="num small">${r1(runKm)}/${ew.km} km</span></div>`}
+    ${ew.recovery?`<span class="small muted">A lighter week, about 20% less, so your body absorbs the last three. Fitness keeps building; fatigue drops.</span>`:""}
     <span class="small muted">${ew.long?`Long run ${ew.long} km${ew.b2b?`, then ${ew.b2b} km the next day`:""}.`:""} ${S.prog.endurance.raceDate?`${Math.max(0,Math.ceil((parseD(S.prog.endurance.raceDate)-new Date())/864e5))} days to ${esc(S.prog.endurance.eventName)}.`:""}</span></div>`:"";
   const hasLift=Object.keys(planned).length;
   const anyMoves=Object.keys(movesFor(new Date())).length;
@@ -3366,7 +3367,7 @@ function settingsPage(pg){
     let theme="system"; try{ theme=localStorage.getItem("ajtheme")||"system"; }catch(e){}
     return `<div class="card"><h2>What you use the app for</h2><span class="small muted">Habits are always included. Everything you've logged is kept if you change this.</span>
       ${useCards(useOf(),'data-act="setUse" data-use')}</div>
-    <div class="card"><h2>Appearance</h2>${seg("theme",[["system","Match system"],["light","Light"],["dark","Dark"]],theme)}</div>
+    <div class="card"><h2>Appearance</h2>${seg("theme",[["system","Match system"],["light","Light"],["dark","Dark"]],theme)}${theme!=="system"&&/iPhone|iPad/.test(navigator.userAgent)&&(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")!==theme?`<span class="small muted">On iPhone the strip with the time and battery follows your phone's own light or dark setting, so it won't match the app while they differ. Match system keeps them the same.</span>`:""}</div>
     <div class="card"><h2>Units</h2><div class="lab">Height${seg("unitH",[["cm","cm"],["ftin","ft/in"]],U.h)}</div><div class="lab">Body weight${seg("unitW",[["kg","kg"],["lb","lb"],["st","st/lb"]],U.w)}</div><span class="small muted">Used when you enter height and weight. Lifting weights stay in kg.</span></div>
     <div class="card"><h2>Rest timer</h2>${seg("restPref",[["short","Shorter"],["std","Standard"],["long","Longer"]],p.restPref||"std")}<span class="small muted">Scales every rest in live workouts. Standard follows the evidence: big lifts ~2.5 min, other compounds ~2 min, isolation ~90 s. You can also tap any exercise's rest during a workout.</span></div>
     <div class="card"><h2>Reminders</h2><div class="spread"><div class="stack" style="gap:1px"><b>"Log honestly" note</b><span class="small muted">Shown on time habits you log after the fact</span></div><button class="switch" data-act="honestTog" role="switch" aria-checked="${p.honestyNote!==false}" aria-label="Log honestly note"><i></i></button></div></div>

@@ -538,7 +538,9 @@ function generate(ans, seed){
   });
   if (spP){ let n2 = 0; const tr = days.filter(d => !d.rest); if (tr.length > 1) tr.forEach(d => { d.label = T.sp1.label + " " + "ABCD"[n2++]; }); }
   const weeks = +ans.block || 6;
-  return {schema:2, name:(spP && (!ans.name || ans.name === "Block 1") ? spP.name + " plan" : ans.name || "Block 1"), placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:rirPlan(weeks, ans.level, ans.ramp), breaks:(ans.breaks || []).slice(),
+  const ownName = ans.name && ans.name !== "Block 1" ? ans.name : null;
+  const autoName = ans.customAI && ans.customAI.title ? ans.customAI.title : spP ? spP.name + " plan" : `${GTYPES[ans.gtype] && ans.gtype !== "custom" ? GTYPES[ans.gtype][2] : {size:"Build muscle", strength:"Build strength", power:"Powerbuilding", crossfit:"CrossFit-style", athletic:"Athletic"}[ans.goal] || "Training"}: ${split.name}`;
+  return {schema:2, name:ownName || autoName, placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:rirPlan(weeks, ans.level, ans.ramp), breaks:(ans.breaks || []).slice(),
     kind:"gym", split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:first.tg, vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id].vol])), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id].mins])), exercises, days};
 }
 
@@ -840,7 +842,7 @@ function generateEndu(ans, seed){
     } else if (run) d.variants = {};
     return d;
   });
-  return {schema:2, kind:ans.kind, name:plan.eventName + " plan", placeholder:false, startDate:ans.start, deloadEvery:4, endurance:plan, setup:ans, built:Date.now(),
+  return {schema:2, kind:ans.kind, name:(ans.name && ans.name !== "Block 1" ? ans.name : ans.customAI && ans.customAI.title ? ans.customAI.title : plan.eventName + " plan"), placeholder:false, startDate:ans.start, deloadEvery:4, endurance:plan, setup:ans, built:Date.now(),
     exercises, days, splitName:plan.eventName + (hybrid ? " + lifting" : ""), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id] ? vs[g.id].mins : []])), vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id] ? vs[g.id].vol : {}])), targets:vs[gl[0].id] ? vs[gl[0].id].tg : {}};
 }
 
