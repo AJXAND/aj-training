@@ -615,7 +615,7 @@ function sportBlocked(a){
 // Search-first: the most common sports as a small grid; typing shows a handful of matches; no match offers the AI
 const SP_POPULAR = ["football","tennis","padel","rugbyunion","golf","swimming","climbing","mma","boxing","basketball","cycling","netball"];
 function sportRowsPick(q){
-  const all = SPP().sports, chip = s => `<button class="spchip" data-spid="${s.id}" aria-pressed="${F.ans.sportId === s.id && !F.ans.sportCustom}">${esc(s.name.replace(/ \(.*\)$/, "").replace(" & bouldering", ""))}</button>`;
+  const all = SPP().sports, chip = s => `<button class="spchip" data-spid="${s.id}" aria-pressed="${F.ans.sportId === s.id && !F.ans.sportCustom}"><span class="spic">${window.AJSportIcon ? AJSportIcon(s.id) : ""}</span><span>${esc(s.name.replace(/ \(.*\)$/, "").replace(" & bouldering", ""))}</span></button>`;
   if (!q) return `<div class="spgrid">${SP_POPULAR.map(id => all.find(s => s.id === id)).filter(Boolean).map(chip).join("")}</div><p class="small muted">Not here? Search above: ${all.length} sports, or type any other.</p>`;
   const hit = all.filter(s => (s.name + " " + (s.aliases || []).join(" ")).toLowerCase().includes(q)).slice(0, 6);
   return (hit.length ? `<div class="spgrid">${hit.map(chip).join("")}</div>` : "")
@@ -1235,7 +1235,7 @@ function liftRows(list, a, kit){
 function sportRows(q, sel){
   q = (q || "").trim(); if (!q || !window.AJSports) return "";
   const ids = AJSports.search(q).filter(k => !sel.some(x => x.id === k)).slice(0, 10);
-  return ids.length ? ids.map(k => `<button class="sprow" data-sport="${k}"><span><b>${esc(AJSports.SP[k][0])}</b><span>${esc(AJSports.SP[k][1])}</span></span><i>+</i></button>`).join("")
+  return ids.length ? ids.map(k => `<button class="sprow" data-sport="${k}"><span class="spic">${window.AJSportIcon ? AJSportIcon(k) : ""}</span><span><b>${esc(AJSports.SP[k][0])}</b><span>${esc(AJSports.SP[k][1])}</span></span><i>+</i></button>`).join("")
     : `<p class="small muted">No match. Try another word, or pick the closest (for example "Circuit training" for a fitness class).</p>`;
 }
 function seg2(name, opts, cur){ return `<div class="seg obseg" style="grid-template-columns:repeat(${opts.length},1fr)">${opts.map(([k, v]) => `<button data-set="${name}" data-val="${k}" aria-pressed="${k === cur}">${v}</button>`).join("")}</div>`; }

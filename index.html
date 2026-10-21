@@ -840,7 +840,7 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .sprows{display:grid;gap:6px}.sprow{display:grid;grid-template-columns:32px 1fr 24px;gap:10px;align-items:center;text-align:left;border:0;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:9px 12px;font:inherit;color:inherit;cursor:pointer}.sprow span span{display:block;font-size:12px;color:var(--muted)}.sprow i{font-style:normal;font-size:22px;color:var(--orange);text-align:center}.obsp{display:flex;gap:10px;align-items:center}
 .obgrid.g3{grid-template-columns:repeat(3,1fr)}.obgrid.g3 .obcard{padding:12px 10px}.obgrid.g3 .obcard b{font-size:14px}.obgrid.g3 .obcard>span:last-child{font-size:12px}
 .obcard.mus{justify-items:center;text-align:center}.obcard.mus .ph.ic{width:52px;height:52px}
-#obspq{gap:12px}.spgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.spchip{border:0;border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-weight:600;font-size:14px;padding:14px 8px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}.spchip[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange);background:color-mix(in srgb,var(--orange) 10%,var(--card))}.sprow[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange)}.obgh{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:10px 2px 2px}.obwhy em a{color:inherit}.aicard{width:100%;margin-top:4px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 12%,var(--card)),var(--card) 70%)}
+#obspq{gap:12px}.spic{display:inline-grid;place-items:center;flex:none}.spic .spi{width:22px;height:22px}.spl{display:inline-flex;align-items:center;gap:10px}.spl .spic{width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--cardio) 14%,var(--card));color:var(--cardio)}.spl .spic .spi{width:19px;height:19px}.spchip{display:grid;justify-items:center;gap:6px}.spchip .spic{color:var(--orange)}.spchip .spic .spi{width:26px;height:26px}.wsd.sportd i .spi{width:17px;height:17px;color:var(--cardio)}.spgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.spchip{border:0;border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-weight:600;font-size:14px;padding:14px 8px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}.spchip[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange);background:color-mix(in srgb,var(--orange) 10%,var(--card))}.sprow[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--orange)}.obgh{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:10px 2px 2px}.obwhy em a{color:inherit}.aicard{width:100%;margin-top:4px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 12%,var(--card)),var(--card) 70%)}
 .ph.pic.sm{aspect-ratio:4/3}.loadwait{display:grid;gap:12px;padding-top:24px}.loadwait .sk{height:120px;border-radius:20px;background:var(--card);animation:skp 1.2s ease-in-out infinite alternate}.loadwait .sk.short{height:64px}@keyframes skp{from{opacity:.55}to{opacity:1}}.ph.ic.sm{width:32px;height:32px;border-radius:10px;font-size:0}.cpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}.cpick{display:grid;justify-items:center;gap:6px;border:0;border-radius:14px;background:var(--sunk);padding:10px 6px;font:inherit;font-size:12px;line-height:1.25;color:inherit;text-align:center;cursor:pointer}.ph.pic.wide{aspect-ratio:16/10}
 .lookpri{font-style:normal;font-size:12.5px;font-weight:600;color:var(--ink)}.lookev{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}.lookev.ev{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
 .obmore{margin-top:4px}.obmore summary{cursor:pointer;font-weight:700;color:var(--orange);padding:6px 0;list-style:none}.obmore summary::-webkit-details-marker{display:none}.obmore .obgrid{margin-top:8px}
@@ -1858,7 +1858,7 @@ function weekStrip(){
     const did=sessionsOn(ds).length>0||S.cardio.some(c=>c.date===ds&&["run","cycle","swim","hyrox"].includes(c.type));
     if (isPlan) planned++; if (did&&isPlan) done++;
     const sportDay=d&&d.rest&&d.label&&d.label!=="Rest"; const cls=did?"did":isPlan?(ds<td?"miss":"plan"):sportDay?"sportd":"rest";
-    return `<div class="wsd ${cls} ${ds===td?"today":""}"><span>${dt.toLocaleDateString("en-GB",{weekday:"narrow"})}</span><i>${did?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':isPlan?(lift?ICON.lift:ICON.cardio):""}</i><em>${isPlan?esc(((lift?d.label:run.n)||"").split(/[ +]/)[0]):sportDay?esc(d.label==="Match day"?"Match":d.label.split(/[ (]/)[0]):""}</em></div>`; }).join("");
+    return `<div class="wsd ${cls} ${ds===td?"today":""}"><span>${dt.toLocaleDateString("en-GB",{weekday:"narrow"})}</span><i>${did?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':isPlan?(lift?ICON.lift:ICON.cardio):sportDay&&window.AJSportIcon?AJSportIcon((S.prog.sport||{}).id):""}</i><em>${isPlan?esc(((lift?d.label:run.n)||"").split(/[ +]/)[0]):sportDay?esc(d.label==="Match day"?"Match":d.label.split(/[ (]/)[0]):""}</em></div>`; }).join("");
   return `<div class="card wstrip"><div class="spread"><h2>This week</h2><span class="small muted num">${done} of ${planned} sessions</span></div><div class="wsrow">${cells}</div></div>`;
 }
 // Strength: estimated max of the lift you've done most, session by session, plus how many lifts are going up
@@ -1949,6 +1949,7 @@ function consistencyCard(){
 function trackCard(more){
   return `<div class="shacts">${[["track","Track a run or walk","GPS distance and pace",ICON.cardio],["cardioLog","Log a sport","Counts towards your weekly energy burn",ICON.lift],...(more?[["goto:progress:body","Progress photos","Body fat estimated from standard poses",ICON.camera],["coach","Ask the coach","Training, nutrition or recovery",ICON.spark]]:[])].map(([a,t,d,ic])=>`<button class="card shact" ${a.startsWith("goto:")?`data-goto="${a.split(":")[1]}" data-seg="${a.split(":")[2]}"`:`data-act="${a}"`}><span class="tdic">${ic}</span><b>${t}</b><span class="small muted">${d}</span></button>`).join("")}</div>`;
 }
+const spIc=t=>`<span class="spic">${window.AJSportIcon?AJSportIcon(t):""}</span>`;
 const GOALLABEL={cut:"Lose fat", bulk:"Build muscle", recomp:"Recomp", maintain:"Maintain"};
 // Today: what you need now (food, training, weight, habits). The week grid and insights live in Progress.
 // Every card Today can show, in the smart default order. extra: only added when there's room (unless the person has arranged the page).
@@ -2317,7 +2318,7 @@ function recentSports(){ const seen=[]; for (const c of S.cardio){ if (CARDIO[c.
 function cardioCard(ds){
   const today=S.cardio.filter(c=>c.date===ds), rec=recentSports();
   return `<div class="card"><div class="spread"><h2>Cardio and sport</h2>${today.length?`<span class="small muted num">${today.reduce((a,c)=>a+c.mins,0)} min · ${fmtN(today.reduce((a,c)=>a+(+c.net||0),0))} kcal</span>`:""}</div>
-    ${today.map(c=>`<div class="spread cline"><span><b>${esc(CARDIO[c.type]?CARDIO[c.type].n:c.type)}</b> <span class="small muted">${esc(c.level)} · ${c.mins} min${c.km?" · "+c.km+" km":""}</span></span><button class="link muted" data-act="cardioDel" data-id="${c.id}">Delete</button></div>`).join("")}
+    ${today.map(c=>`<div class="spread cline"><span class="spl">${spIc(c.type)}<b>${esc(CARDIO[c.type]?CARDIO[c.type].n:c.type)}</b> <span class="small muted">${esc(c.level)} · ${c.mins} min${c.km?" · "+c.km+" km":""}</span></span><button class="link muted" data-act="cardioDel" data-id="${c.id}">Delete</button></div>`).join("")}
     ${rec.length?`<div class="chips">${rec.map(k=>`<button class="chip" data-act="cardioPick" data-t="${k}">${esc(CARDIO[k].n)}</button>`).join("")}</div>`:""}
     <div class="grid2"><button class="btn orange" data-act="cardioNew">Log cardio or sport</button><button class="btn ghost" data-act="coach" data-ctx="cardio">${ICON.spark} Describe it</button></div></div>`;
 }
@@ -2405,7 +2406,7 @@ function renderMonthView(){
     <div class="card"><span>Weight</span><b class="num">${startW&&endW?(endW-startW>=0?"+":"")+(endW-startW).toFixed(1)+" kg":"–"}</b><span class="muted small">${endW?endW.toFixed(1)+" kg now":"No weigh-ins"}</span></div></div>
   <h2 class="sect">${selD.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h2>
   ${selDay?`<div class="card"><div class="spread"><b>${esc(selDay.label)}</b><span class="small muted">${esc(selDay.focus)}</span></div></div>${dayDetail(selDay,sel)}`:""}
-  ${S.cardio.filter(c=>c.date===sel).map(c=>`<div class="card"><div class="spread"><b>${CARDIO[c.type].n} · ${esc(c.level)}</b><span class="num">${c.mins} min · ${c.net} kcal</span></div><button class="link muted" data-act="cardioDel" data-id="${c.id}">Delete</button></div>`).join("")}`;
+  ${S.cardio.filter(c=>c.date===sel).map(c=>`<div class="card"><div class="spread"><b class="spl">${spIc(c.type)}${CARDIO[c.type].n} · ${esc(c.level)}</b><span class="num">${c.mins} min · ${c.net} kcal</span></div><button class="link muted" data-act="cardioDel" data-id="${c.id}">Delete</button></div>`).join("")}`;
 }
 
 /* ---------- Train ---------- */
@@ -2677,7 +2678,7 @@ function renderCardioHistory(){
   return `<div class="card"><div class="spread"><h2>This week</h2><button class="link" data-act="cardioNew">Log in Train</button></div>
       <div class="stat"><div><span>Sessions</span><b>${week.length}</b></div><div><span>Minutes</span><b>${week.reduce((a,c)=>a+c.mins,0)}</b></div><div><span>Extra kcal</span><b>${fmtN(week.reduce((a,c)=>a+c.net,0))}</b></div></div>
 </div>
-    <div class="card"><h2>History</h2>${S.cardio.length?`<div class="list">${S.cardio.slice(0,40).map(x=>`<div class="li"><span><b>${CARDIO[x.type]?CARDIO[x.type].n:esc(x.type)}</b> <span class="muted small">${esc(x.level)}</span>${x.sample?' <span class="tag">Sample</span>':""}</span><span class="num"><b>${x.net}</b> <span class="muted small">kcal</span></span>
+    <div class="card"><h2>History</h2>${S.cardio.length?`<div class="list">${S.cardio.slice(0,40).map(x=>`<div class="li"><span class="spl">${spIc(x.type)}<b>${CARDIO[x.type]?CARDIO[x.type].n:esc(x.type)}</b> <span class="muted small">${esc(x.level)}</span>${x.sample?' <span class="tag">Sample</span>':""}</span><span class="num"><b>${x.net}</b> <span class="muted small">kcal</span></span>
       <div class="sub num"><span>${fmtD(x.date)}</span><span>${x.mins} min${x.km?" · "+x.km+" km":""}</span><span>${x.kcal} gross</span><button class="link muted" data-act="cardioDel" data-id="${x.id}">Delete</button></div></div>`).join("")}</div>`:`<p class="small muted">Nothing logged yet.</p>`}</div>`;
 }
 function renderSessions(){
@@ -2697,7 +2698,7 @@ function calcExplain(m,kg){
 // Search-first: what you log most, then common activities; typing shows the best few matches. No long lists.
 function cardioList(q){
   q=(q||"").trim();
-  const chip=k=>`<button class="spchip" data-act="cardioPick" data-t="${k}">${esc(CARDIO[k].n)}</button>`;
+  const chip=k=>`<button class="spchip" data-act="cardioPick" data-t="${k}">${spIc(k)}<span>${esc(CARDIO[k].n)}</span></button>`;
   if (q){ const ids=[...new Set((window.AJSports?AJSports.search(q):[]).filter(k=>CARDIO[k]).concat(["walk","run","cycle"].filter(k=>CARDIO[k].n.toLowerCase().includes(q.toLowerCase()))))].slice(0,9);
     return ids.length?`<div class="spgrid">${ids.map(chip).join("")}</div>`:`<p class="small muted">No match. Try another word, or describe it to the AI coach.</p>`; }
   const cnt={}; S.cardio.forEach(c=>{ if (CARDIO[c.type]) cnt[c.type]=(cnt[c.type]||0)+1; });
@@ -3791,6 +3792,7 @@ if (location.hash) setTimeout(()=>routeHash(location.hash),400);
 if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",e=>{ if(e.data&&e.data.type==="open") routeHash(new URL(e.data.url,location.href).hash); });
 </script>
 <script src="/sportprofiles.js"></script>
+<script src="/sporticons.js"></script>
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>
 </body>
