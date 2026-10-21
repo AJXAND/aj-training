@@ -21,6 +21,8 @@ function setMode(m, msg){
   if (!ov) return;
   mode = m; steady = 0; best = 0; minMotion = 99; keptScore = 0; sharpHist = []; stillN = 0; labelN = 0; aimedMs = 0; labelStart = Date.now() + (msg ? 1500 : 0); prev = null; busy = false;
   if (m === "barcode") setTimeout(pump, 30);
+  const card = ov.querySelector(".sc-card"); if (card){ card.hidden = true; card.innerHTML = ""; } ov.classList.remove("carded");
+  const ty = ov.querySelector(".sc-type"); if (ty) ty.hidden = true;
   ov.querySelectorAll("[data-smode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.smode === m));
   ov.querySelector(".sc-frame").className = "sc-frame " + m;
   ov.querySelector(".sc-shutter").hidden = m !== "label";
@@ -34,15 +36,18 @@ async function open(m, msg){
   ov = el(`<div class="scanner" role="dialog" aria-label="Scanner">
     <video playsinline muted autoplay></video><canvas hidden></canvas>
     <div class="sc-top"><button class="sc-x" aria-label="Close">✕</button>
-      <div class="seg sc-seg"><button data-smode="barcode">Barcode</button><button data-smode="label">Label</button></div><button class="sc-torch" aria-label="Torch" hidden>💡</button></div>
+      <div class="seg sc-seg"><button data-smode="barcode">Barcode</button><button data-smode="label">Label</button></div><button class="sc-bag" hidden></button><button class="sc-torch" aria-label="Torch" hidden>💡</button></div>
     <div class="sc-frame"></div>
-    <div class="sc-bottom"><div class="sc-ring"><i></i></div><p class="sc-hint"></p><button class="sc-shutter" aria-label="Capture now" hidden><span>Capture</span></button></div>
+    <div class="sc-bottom"><div class="sc-ring"><i></i></div><p class="sc-hint"></p><button class="sc-type" hidden>Type the numbers in instead</button><button class="sc-shutter" aria-label="Capture now" hidden><span>Capture</span></button></div>
+    <div class="sc-card" hidden></div>
   </div>`);
   document.body.appendChild(ov); document.body.style.overflow = "hidden";
   ov.querySelector(".sc-x").onclick = stop;
   ov.querySelectorAll("[data-smode]").forEach(b => b.onclick = () => setMode(b.dataset.smode));
   ov.querySelector(".sc-shutter").onclick = () => captureLabel();
-  setMode(m, msg);
+  ov.querySelector(".sc-bag").onclick = () => { stop(); S.trayOpen = true; if (S.tab !== "food" && S.tab !== "foodadd") go("food"); else render(); };
+  ov.querySelector(".sc-type").onclick = () => { const code = S.pendingBarcode; stop(); openFood({schema:SCHEMA, id:uid("food"), name:"", brand:"", barcode:code || null, per100:{kcal:0, p:0, c:0, f:0}, serving:null, uses:0, last:Date.now()}, {isNew:true, src:"label"}); };
+  setMode(m, msg); updateBag();
   clearTimeout(idle);
   try{
     if (!live()) stream = await navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:"environment"}, width:{ideal:1920}, height:{ideal:1080}}});
@@ -197,14 +202,15 @@ async function captureLabel(){
   keep(v);   // the frame you're looking at when you tap, or the sharp still frame that triggered auto-capture
   try{ navigator.vibrate && navigator.vibrate(40); }catch(e){}
   ov.classList.add("reading"); hint("Reading the label…"); setProgress(1); try{ v.pause(); }catch(e){}
-  const colour = await new Promise(r => scaled(keepCan, 1600).toBlob(r, "image/jpeg", 0.85));
+  const colour = await new Promise(r => scaled(cropKept(), 2000).toBlob(r, "image/jpeg", 0.9));
   const sharp = await new Promise(r => enhance(cropKept()).toBlob(r, "image/jpeg", 0.85));
   let res = null;
   try{ res = await window.readLabel([sharp, colour].filter(Boolean)); }catch(e){ res = {error:e && e.msg ? e.msg : e && e.code === "not_granted" ? "AI image access isn't allowed" : "couldn't read it"}; }
   if (!ov) return;
-  if (res && res.food){ stop(); busy = false; window.labelDone(res.food); return; }
+  if (res && res.food){ saveFood(res.food); S.pendingBarcode = null; ov.classList.remove("reading"); try{ v.play(); }catch(e){} showCard(res.food, "label"); return; }
   ov.classList.remove("reading"); try{ v.play(); }catch(e){} busy = false; keptScore = 0; stillN = 0; sharpHist = []; labelStart = Date.now() + 1200; setProgress(0);
-  hint("Couldn't read that" + (res && res.error ? ": " + String(res.error).toLowerCase().slice(0, 50) : "") + ". Move closer, avoid glare, and try again.");
+  ov.querySelector(".sc-type").hidden = false;
+  hint("Couldn't read that" + (res && res.error ? ": " + String(res.error).toLowerCase().slice(0, 50) : "") + ". Get closer so the table fills the box, tilt away from glare, then tap Capture.");
 }
 
 async function offLookup(code){
@@ -228,13 +234,47 @@ async function offLookup(code){
 async function gotBarcode(code){
   hint("Found " + code + ". Looking it up…");
   const known = S.foods.find(f => f.barcode === code) || S.all.foods.find(f => f.barcode === code);
-  if (known){ stop(); openFood(known); return; }
+  if (known){ showCard(known, known.src || "food"); return; }
   const f = navigator.onLine ? await offLookup(code) : null;
-  if (f){ stop(); openFood(f, {src:"off"}); return; }
+  if (f){ showCard(f, "off"); return; }
   S.pendingBarcode = code;
   if (!ov) return;
   setMode("label", navigator.onLine ? "Not in the food database. Point at the nutrition label." : "Offline. Point at the nutrition label.");
 }
+/* Rapid scanning: the product appears over the camera with its amount. Add it and keep scanning, or log everything now. */
+function updateBag(){
+  if (!ov) return; const b = ov.querySelector(".sc-bag"), n = (S.tray || []).length;
+  b.hidden = !n; if (n) b.textContent = `${n} · ${fmtN(trayTotal().kcal)} kcal ✓`;
+}
+function showCard(food, src){
+  if (!ov) return;
+  const card = ov.querySelector(".sc-card"), d = defaultAmt(food);
+  let amt = +d.amount || (food.serving && food.serving.g ? 1 : 100), unit = d.unit === "serving" && !(food.serving && food.serving.g) ? "g" : d.unit;
+  ov.classList.add("carded"); ov.querySelector(".sc-frame").classList.remove("hit");
+  const unitLbl = () => unit === "serving" ? "× " + esc((food.serving || {}).label || "serving") + (food.serving && food.serving.g ? ` (${food.serving.g} g)` : "") : (unit === "ml" || food.liquid ? "ml" : "grams");
+  const mac = () => { const m = foodMacros(food, amt, unit === "ml" ? "g" : unit); return `<b class="num">${fmtN(m.kcal)} kcal</b><span class="num"><i style="color:var(--prot)">${r1(m.p)}P</i> <i style="color:var(--carb)">${r1(m.c)}C</i> <i style="color:var(--fat)">${r1(m.f)}F</i></span>`; };
+  const commit = () => { const u = unit === "ml" ? "g" : unit; trayAdd(food, amt, u, src === "label" ? "label" : src === "off" ? "off" : food.src || "food"); saveFood({...food, lastAmt:amt, lastUnit:u}); };
+  const draw = () => {
+    const bad = window.macroCheck ? macroCheck(food.per100) : null, n = (S.tray || []).length;
+    card.innerHTML = `<div class="sc-cn"><b>${esc(food.name || "Scanned food")}</b><span>${food.brand ? esc(food.brand) + " · " : ""}${fmtN(food.per100.kcal)} kcal per 100 ${food.liquid ? "ml" : "g"}${src === "label" ? " · read from the label" : src === "off" ? " · Open Food Facts" : ""}</span></div>
+      ${bad != null ? `<div class="sc-warn">These numbers don't add up. Tap Edit details to check them against the pack.</div>` : ""}
+      <div class="sc-amt"><button data-sa="-1" aria-label="Less">−</button><label><input inputmode="decimal" value="${amt}" aria-label="Amount"><em>${unitLbl()}</em></label><button data-sa="1" aria-label="More">+</button></div>
+      ${food.serving && food.serving.g ? `<div class="sc-units"><button data-su="serving" aria-pressed="${unit === "serving"}">Servings</button><button data-su="g" aria-pressed="${unit !== "serving"}">${food.liquid ? "Millilitres" : "Grams"}</button></div>` : ""}
+      <div class="sc-mac">${mac()}</div>
+      <div class="sc-btns"><button class="sc-next">Add, scan next</button><button class="sc-log">${n ? "Log all " + (n + 1) : "Log now"}</button></div>
+      <div class="sc-links"><button class="sc-edit">Edit details</button><button class="sc-skip">Not this one</button></div>`;
+    const inp = card.querySelector("input");
+    inp.oninput = () => { const v = parseFloat(String(inp.value).replace(",", ".")); if (v > 0){ amt = v; card.querySelector(".sc-mac").innerHTML = mac(); } };
+    card.querySelectorAll("[data-sa]").forEach(b => b.onclick = () => { const st = unit === "serving" ? 0.5 : amt >= 100 ? 25 : 10; amt = Math.max(st, Math.round((amt + st * +b.dataset.sa) / st) * st); draw(); });
+    card.querySelectorAll("[data-su]").forEach(b => b.onclick = () => { const g = food.serving.g; if (b.dataset.su === unit) return; if (b.dataset.su === "serving"){ amt = Math.max(0.5, Math.round(amt / g * 2) / 2); unit = "serving"; } else { amt = Math.round(amt * g); unit = "g"; } draw(); });
+    card.querySelector(".sc-next").onclick = () => { commit(); updateBag(); try{ navigator.vibrate && navigator.vibrate(30); }catch(e){} setMode("barcode", `Added ${food.name}. Scan the next one`); };
+    card.querySelector(".sc-log").onclick = () => { commit(); stop(); logTray(); };
+    card.querySelector(".sc-edit").onclick = () => { stop(); openFood(food, {src, isNew:src === "label", amount:amt, unit:unit === "ml" ? "g" : unit}); };
+    card.querySelector(".sc-skip").onclick = () => setMode("barcode");
+  };
+  card.hidden = false; draw();
+}
+window.scannerTest = {showCard: (f, src) => showCard(f, src), found: c => found(c)};
 function fallback(m){ const id = m === "label" ? "labelCam" : "barcodeCam", inp = document.getElementById(id); if (inp) inp.click(); }
 
 window.openScanner = open;
