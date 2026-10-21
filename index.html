@@ -337,6 +337,9 @@ h1{margin-top:2px}
 .grpacts{display:flex;gap:18px;padding:6px 0 2px 24px}.fchkb{border:0;background:none;padding:0;display:grid;place-items:center;cursor:pointer}.fchk.on{background:var(--orange);border-color:var(--orange)}
 .tgrp{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}.tgrp>span{display:grid}
 .sw{width:46px;height:28px;border-radius:999px;border:0;background:var(--line);position:relative;cursor:pointer;padding:0;flex:none;transition:background .2s}.sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}.sw.on{background:var(--orange)}.sw.on i{transform:translateX(18px)}
+.field.auto{color:var(--orange);font-weight:700}
+.selacts{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
+.actions{touch-action:pan-y}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2249,6 +2252,10 @@ const macroMini=s=>`<span class="mm"><i class="p">${Math.round(s.p)}P</i><i clas
    4. The best overall fit wins, with breakfast before lunch before dinner and each once a day. Everything else is a snack. */
 const SNACK_RE=/\b(bar|banana|apple|pear|orange|grapes|fruit|crisps|nuts|almonds|cashews|yoghurt|yogurt|skyr|biscuit|cookie|chocolate|popcorn|rice cake|flapjack|kitkat|snickers|twix|haribo|jerky|cheese string|protein ball|muffin|cake)\b/i;
 const BFAST_RE=/\b(porridge|oats|oatmeal|cereal|granola|muesli|weetabix|cornflakes|toast|bagel|croissant|pancakes?|waffles?|eggs?|omelette|bacon|sausage sandwich|hash brown|crumpet|english muffin|overnight oats|acai)\b/i;
+// A shake is protein powder (or a ready-made shake) plus what you mixed it with, logged within 10 minutes of it.
+const SHAKE_MIX_RE=/\b(milk|water|banana|ice|oat drink|almond drink|soya drink|creatine|oat milk|almond milk|soy milk)\b/i;
+// Drinks and little extras go with the food you had them with, not on their own
+const SIDE_RE=/\b(espresso|coffee|americano|latte|cappuccino|flat white|macchiato|cortado|tea|milk|juice|water|cola|coke|squash|kombucha|sugar|sweetener|honey|butter|sauce|ketchup|mayo|dressing)\b/i;
 // "Porridge with whey" is breakfast, not a shake
 const NOT_SHAKE_RE=/\b(porridge|oats|oatmeal|overnight|yoghurt|yogurt|pancakes?|waffles?|bar|cereal|granola|muffin|cookie|bowl|with)\b/i;
 const MAIN3=["breakfast","lunch","dinner"], ORD={breakfast:0,lunch:1,dinner:2};
@@ -2271,15 +2278,21 @@ function mealCtx(){
 function mealMap(entries, opt={}){
   const ctx=opt.base?{idx:{}, anc:{breakfast:8,lunch:13,dinner:19}}:mealCtx();
   const out={}, fixed=entries.filter(e=>e.meal); fixed.forEach(e=>out[e.id]=e.meal);
-  const isShake=e=>!e.grp&&((SHAKE_RE.test(e.name||"")&&!NOT_SHAKE_RE.test(e.name||""))||topOf(ctx.idx[foodKey(e.name)])==="shake");
-  const GAP=25*60e3, loose=[];
-  entries.filter(e=>!e.meal).sort((a,b)=>a.t-b.t).forEach(e=>{
+  const isBase=e=>!e.grp&&SHAKE_RE.test(e.name||"")&&!NOT_SHAKE_RE.test(e.name||"");
+  const autoEs=entries.filter(e=>!e.meal), bases=autoEs.filter(isBase), shakeT=[...bases, ...fixed.filter(e=>e.meal==="shake")].map(e=>e.t);
+  const isShake=e=>isBase(e)||(!e.grp&&SHAKE_MIX_RE.test(e.name||"")&&(+e.kcal||0)<300&&shakeT.some(t=>Math.abs(t-e.t)<=10*60e3));
+  const GAP=30*60e3, loose=[];
+  autoEs.sort((a,b)=>a.t-b.t).forEach(e=>{
     if (isShake(e)){ out[e.id]="shake"; return; }
     const g=e.grp&&fixed.find(x=>x.grp===e.grp); if (g){ out[e.id]=g.meal; return; }
     loose.push(e); });
   const cl=[];
   loose.forEach(e=>{ const same=e.grp&&cl.find(c=>c.es.some(x=>x.grp===e.grp)); if (same){ same.es.push(e); same.last=Math.max(same.last,e.t); return; }
     const c=cl[cl.length-1]; if (c&&e.t-c.last<=GAP){ c.es.push(e); c.last=e.t; } else cl.push({es:[e], first:e.t, last:e.t}); });
+  // a coffee, a splash of milk, some butter: on their own they join the nearest sitting within 90 minutes
+  for (let i=cl.length-1;i>=0;i--){ const c=cl[i]; if (cl.length<2||sumOf(c.es).kcal>=180||!c.es.every(e=>SIDE_RE.test(e.name||"")&&!SHAKE_RE.test(e.name||""))||c.es.some(e=>e.grp)) continue;
+    const pv=cl[i-1], nx=cl[i+1], dp=pv?c.first-pv.last:Infinity, dn=nx?nx.first-c.last:Infinity, to=dp<=dn?pv:nx;
+    if (to&&Math.min(dp,dn)<=90*60e3){ to.es.push(...c.es); to.es.sort((a,b)=>a.t-b.t); to.first=to.es[0].t; to.last=to.es[to.es.length-1].t; cl.splice(i,1); } }
   // logged right next to food you placed yourself: it's the same meal
   cl.forEach(c=>{ const near=fixed.find(x=>x.meal!=="shake"&&x.meal!=="treats"&&c.es.some(e=>Math.abs(x.t-e.t)<=GAP)); if (near) c.fix=near.meal; });
   const fixedT={}; fixed.forEach(e=>{ if (ORD[e.meal]!=null) fixedT[e.meal]=Math.min(fixedT[e.meal]??Infinity, e.t); });
@@ -2316,7 +2329,7 @@ function guessMeal(items, date){
 }
 function entryRow(e, sel){
   const on=sel&&sel.includes(e.id), meta=[e.amount?esc(amtText(e.amount,e.unit)):"", e.src==="coach"?"AI":e.src==="photo"?"photo estimate":e.src==="label"?"label scan":"", e.sample?"sample":""].filter(Boolean).join(" · ");
-  return `<div class="fe ${on?"on":""}" data-id="${e.id}">${sel?`<span class="fchk" aria-hidden="true">${on?HICON.check:""}</span>`:`<span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span>`}<button class="fbody" data-act="${sel?"selTog":"editEntry"}" data-id="${e.id}">
+  return `<div class="fe ${on?"on":""}" data-id="${e.id}">${sel?`<span class="fchk" aria-hidden="true">${on?HICON.check:""}</span>`:`<span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span>`}<button class="fbody" data-act="selTog" data-id="${e.id}">
       <span class="fn"><b>${esc(e.name)}</b>${meta?`<span class="muted small num">${meta}</span>`:""}</span>
       <span class="fk num"><b>${fmtN(e.kcal)}</b>${macroMini(e)}</span></button></div>`;
 }
@@ -2357,10 +2370,10 @@ function renderFood(){
     <button class="lact ai" data-act="foodAddOpen" data-tab="ai"><span class="li-ic">${ICON.spark}</span><b>AI</b><span>Type or snap it</span></button></div>
   ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
   ${S.busy==="label"||S.busy==="barcode"?`<div class="card"><div class="row"><span class="spinner"></span><span>${S.busy==="label"?"Reading the label…":"Reading the barcode…"}</span></div></div>`:""}
-  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":fmtD(date)}</h2>${entries.length?`<button class="link" data-act="selMode">${sel?"Done":"Select"}</button>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
+  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":fmtD(date)}</h2>${sel?`<button class="link" data-act="selMode">Clear</button>`:entries.length?`<span class="small muted">Tap foods to select</span>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
     ${groups}</div>
-  ${sel?`<div class="selbar"><span class="num"><b>${sel.length} selected</b><em>${sel.length?fmtN(ss.kcal)+" kcal":"Tap foods to pick them"}</em></span><div class="selacts">
-    <button data-act="selCopy" ${sel.length?"":"disabled"}>Copy</button><button data-act="selMake" ${sel.length>1?"":"disabled"}>Make meal</button><button data-act="selMove" ${sel.length?"":"disabled"}>Move</button><button class="del" data-act="selDel" ${sel.length?"":"disabled"}>Delete</button></div></div>`:trayBar(date)}
+  ${sel?`<div class="selbar"><span class="num"><b>${sel.length} selected</b><em>${fmtN(ss.kcal)} kcal · ${Math.round(ss.p)}P ${Math.round(ss.c)}C ${Math.round(ss.f)}F</em></span><div class="selacts">
+    ${sel.length===1?`<button data-act="selEdit">Edit</button>`:`<button data-act="selMake">Make meal</button>`}<button data-act="selCopy">Copy</button><button data-act="selMove">Move</button><button class="del" data-act="selDel">Delete</button></div></div>`:trayBar(date)}
   <input type="file" id="labelCam" accept="image/*" capture="environment" hidden><input type="file" id="barcodeCam" accept="image/*" capture="environment" hidden>`;
 }
 /* The basket: every way of adding puts food here, so several things log in one go. Tap a food to log just that one. */
@@ -2415,7 +2428,8 @@ function renderFoodAdd(){
   }
   if (tab==="quick"){
     return head("Quick add",{back:"foodadd"})+forMeal+`<div class="card"><label class="lab">Name<input class="field" id="qaName" placeholder="e.g. Office cake"></label>
-      <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal"></label></div>
+      <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal"></label></div>
+      <span class="small muted" id="qaNote">Put in the macros and the calories fill in, or the calories and two macros and the third fills in.</span>
       <button class="btn orange" data-act="quickToTray">Add to basket</button></div>`+trayBar(date);
   }
   if (tab==="mine"){
@@ -2481,8 +2495,9 @@ function renderFoodSheet(){
   if (a.quick){
     body=`<h2>${a.entryId?"Edit entry":"Quick add"}</h2>
       <label class="lab">Name<input class="field" id="qaName" value="${esc(a.name||"")}" placeholder="e.g. Protein bar"></label>
-      <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal" value="${esc(a.kcal??"")}"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal" value="${esc(a.p??"")}"></label>
-      <label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal" value="${esc(a.f??"")}"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal" value="${esc(a.c??"")}"></label></div>
+      <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal" value="${esc(a.kcal??"")}" data-user="${a.kcal!=null&&a.kcal!==""?1:""}"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal" value="${esc(a.p??"")}" data-user="${a.p!=null&&a.p!==""?1:""}"></label>
+      <label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal" value="${esc(a.c??"")}" data-user="${a.c!=null&&a.c!==""?1:""}"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal" value="${esc(a.f??"")}" data-user="${a.f!=null&&a.f!==""?1:""}"></label></div>
+      <span class="small muted" id="qaNote">Put in the macros and the calories fill in, or the calories and two macros and the third fills in.</span>
       ${a.trayK!=null&&a.g?`<label class="lab">Amount in grams (changing it scales the numbers)<input class="field" id="qaG" inputmode="decimal" value="${esc(a.g)}"></label>`:""}`;
   } else {
     const f=a.food, m=foodMacros(f,a.amount,a.unit), units=[["g","grams"]].concat(f.liquid?[["ml","ml"]]:[]).concat(f.serving&&f.serving.g?[["serving",`${f.serving.label||"serving"} (${f.serving.g} g)`]]:[]);
@@ -2497,6 +2512,27 @@ function renderFoodSheet(){
     ${fresh?`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to basket</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} in your basket`:""}</span>`:`<button class="btn orange" data-fs="save">Update</button>`}
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
     <button class="btn ghost" data-fs="close">Cancel</button>`;
+}
+function editEntryOpen(id){
+  const en=((S.foodlog[foodDate()]||{}).entries||[]).find(x=>x.id===id); if(!en) return;
+  const f=en.foodId&&S.foods.find(x=>x.id===en.foodId), am=(S._mm||{})[en.id]||mealOf(en);
+  S.foodAdd=f?{food:f, entryId:en.id, t:en.t, amount:en.amount, unit:(en.unit==="g"||en.unit==="ml")?en.unit:"serving", meal:en.meal, autoMeal:am}
+    :{quick:true, entryId:en.id, t:en.t, name:en.name, kcal:en.kcal, p:en.p, f:en.f, c:en.c, meal:en.meal, autoMeal:am};
+  renderFoodSheet();
+}
+// Calories and macros fill each other in (4 kcal per gram of protein or carbs, 9 per gram of fat):
+// macros only gives the calories; calories plus two macros gives the third.
+function qaAuto(t){
+  const ids=["qaK","qaP","qaC","qaF"], el={}; for (const i of ids){ el[i]=$("#"+i); if (!el[i]) return; }
+  t.dataset.user=t.value.trim()?"1":""; t.classList.remove("auto");
+  const v=i=>parseFloat(String(el[i].value).replace(",","."))||0, u=i=>el[i].dataset.user==="1", F={qaP:4,qaC:4,qaF:9}, M=["qaP","qaC","qaF"];
+  const set=(i,x)=>{ el[i].value=String(Math.max(0,Math.round(x*10)/10)); el[i].classList.add("auto"); el[i].dataset.user=""; };
+  const clr=i=>{ if (el[i].classList.contains("auto")){ el[i].value=""; el[i].classList.remove("auto"); } };
+  const um=M.filter(u);
+  if (!u("qaK")){ M.filter(i=>!u(i)).forEach(clr); if (um.length) set("qaK", Math.round(um.reduce((a,i)=>a+v(i)*F[i],0))); else clr("qaK"); }
+  else if (um.length===2){ const miss=M.find(i=>!u(i)); set(miss, (v("qaK")-um.reduce((a,i)=>a+v(i)*F[i],0))/F[miss]); }
+  else M.filter(i=>!u(i)).forEach(clr);
+  const n=$("#qaNote"); if (n){ const est=4*v("qaP")+4*v("qaC")+9*v("qaF"), k=v("qaK"); n.textContent=k&&um.length===3&&Math.abs(est-k)>Math.max(20,k*0.15)?`Those macros add up to about ${Math.round(est)} kcal, not ${Math.round(k)}. Check one of them.`:"Put in the macros and the calories fill in, or the calories and two macros and the third fills in."; }
 }
 function selEntries(date, ids){ return ((S.foodlog[date]||{}).entries||[]).filter(e=>ids.includes(e.id)).sort((a,b)=>a.t-b.t); }
 function foodSheetSpecial(a){
@@ -3268,6 +3304,14 @@ function openActions(){
 }
 function closeActions(){ hideAnim($("#actions"),240); $("#plusBtn").classList.remove("open"); if (!S.foodAdd) hideAnim($("#scrim")); }
 $("#plusBtn").onclick=()=>{ S.active ? go("train") : openActions(); };
+// Swipe a bottom sheet down to close it (from the top of the sheet, or anywhere once it's scrolled to the top)
+(function(){ let sh=null, y0=0, t0=0, dy=0;
+  document.addEventListener("touchstart",e=>{ const top=e.target.closest("#chat .top"); const el=top?$("#chat"):e.target.closest(".actions"); if (!el||el.hidden||e.touches.length>1) return; if (top&&e.target.closest("button")) return; if (e.target.closest("input,textarea,select,.chips,.traylist,.hscroll")&&!e.target.closest(".grab")) return;
+    if (el.scrollTop>0&&!e.target.closest(".grab")) return; sh=el; y0=e.touches[0].clientY; t0=Date.now(); dy=0; sh.style.transition="none"; },{passive:true});
+  document.addEventListener("touchmove",e=>{ if (!sh) return; dy=Math.max(0,e.touches[0].clientY-y0); if (dy>4) sh.style.transform=`translateY(${dy}px)`; },{passive:true});
+  document.addEventListener("touchend",()=>{ if (!sh) return; const el=sh, fast=dy>40&&dy/(Date.now()-t0)>0.5; sh=null; el.style.transition="transform .22s ease";
+    if (dy>110||fast){ el.style.transform="translateY(100%)"; setTimeout(()=>{ el.style.transition=""; el.style.transform=""; if (el.id==="chat") $("#chatClose").click(); else $("#scrim").onclick(); },200); } else { el.style.transform=""; setTimeout(()=>el.style.transition="",230); } });
+})();
 $("#scrim").onclick=()=>{ if (S.swap){ S.swap=null; renderSwap(); } if (S.hDraft!==undefined){ S.hDraft=undefined; renderHabitSheet(); } closeActions(); if (S.foodAdd){ S.foodAdd=null; renderFoodSheet(); } };
 $("#actionsIn").addEventListener("click",e=>{
   const b=e.target.closest("[data-sheet]"); if(!b) return;
@@ -3409,7 +3453,7 @@ function updateFaLive(){
   const m=foodMacros(a.food,a.amount,a.unit);
   $("#faK").textContent=fmtN(m.kcal); $("#faP").textContent=r1(m.p); $("#faF").textContent=r1(m.f); $("#faC").textContent=r1(m.c);
 }
-$("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFaLive();
+$("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFaLive(); if (/^qa[KPCF]$/.test(e.target.id)) qaAuto(e.target);
   const m=/^fe100(kcal|p|f|c)$/.exec(e.target.id); if (m&&S.foodAdd&&S.foodAdd.food){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ S.foodAdd.food.per100={...S.foodAdd.food.per100,[m[1]]:v}; S.foodAdd.food.edited=true; updateFaLive(); } } });
 $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="cpDate"&&S.foodAdd&&e.target.value){ S.foodAdd.to=e.target.value>ymd(new Date())?ymd(new Date()):e.target.value; renderFoodSheet(); return; } if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
 
@@ -3589,6 +3633,7 @@ $("#main").addEventListener("input", e=>{
   }
   if (i.id==="cDate") S.cardioForm.date=i.value;
   if (i.id==="aiText"){ S.aiText=i.value; return; }
+  if (/^qa[KPCF]$/.test(i.id)){ qaAuto(i); return; }
   if (i.id==="trayGrpName"){ S.trayGroup={on:true, name:i.value}; const t=document.querySelector(".trayt b"); if (t) t.textContent=(i.value||"Meal")+" → "+mealName(trayMeal(foodDate())); return; }
   if (i.id==="foodQ"){ S.moreHits=false; if (S.aiFoods&&S.aiFoods.length) S.aiFoods=[]; S.foodQuery=i.value; const pos=i.selectionStart; render(); const n=$("#foodQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } }
 });
@@ -3751,7 +3796,8 @@ $("#main").addEventListener("click", async e=>{
       render(); return; }
     case "fset": { if (b.dataset.date>ymd(new Date())) return; S.foodDate=b.dataset.date; S.fsel=null; S.mealMenu=null; render(); return; }
     case "selMode": S.fsel=S.fsel&&S.fselDate===foodDate()?null:[]; S.fselDate=foodDate(); S.mealMenu=null; render(); return;
-    case "selTog": { const id=b.dataset.id; S.fsel=S.fsel.includes(id)?S.fsel.filter(x=>x!==id):[...S.fsel,id]; render(); return; }
+    case "selTog": { const id=b.dataset.id, cur=S.fsel&&S.fselDate===foodDate()?S.fsel:[]; S.fselDate=foodDate(); S.mealMenu=null; S.fsel=cur.includes(id)?cur.filter(x=>x!==id):[...cur,id]; if (!S.fsel.length) S.fsel=null; render(); return; }
+    case "selEdit": { const id=(S.fsel||[])[0]; if (!id) return; S.fsel=null; render(); return editEntryOpen(id); }
     case "selMeal": { const ids=Object.keys(S._mm||{}).filter(id=>S._mm[id]===b.dataset.meal), all=ids.every(id=>S.fsel.includes(id)); S.fsel=all?S.fsel.filter(x=>!ids.includes(x)):[...new Set([...S.fsel,...ids])]; render(); return; }
     case "mealMenu": S.mealMenu=S.mealMenu===b.dataset.meal?null:b.dataset.meal; render(); return;
     case "mealSelect": S.fsel=Object.keys(S._mm||{}).filter(id=>S._mm[id]===b.dataset.meal); S.fselDate=foodDate(); S.mealMenu=null; render(); return;
@@ -3813,7 +3859,8 @@ $("#main").addEventListener("click", async e=>{
     case "photoFoodPick": $("#photoFoodLib").click(); return;
     case "photoFoodGo": photoFood(); return;
     case "quickAdd": S.foodAdd={quick:true, name:S.foodQuery}; renderFoodSheet(); return;
-    case "editEntry": {
+    case "editEntry": return editEntryOpen(b.dataset.id);
+    case "editEntryOld": {
       const en=((S.foodlog[foodDate()]||{}).entries||[]).find(x=>x.id===b.dataset.id); if(!en) return;
       const f=en.foodId&&S.foods.find(x=>x.id===en.foodId);
       if (f) S.foodAdd={food:f, entryId:en.id, t:en.t, amount:en.amount, unit:(en.unit==="g"||en.unit==="ml")?en.unit:"serving", meal:en.meal, autoMeal:mealOf(en)};
