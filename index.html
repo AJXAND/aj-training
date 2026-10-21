@@ -1189,10 +1189,11 @@ function dayCounted(date, priorKcal){
 }
 function priorModel(kg){
   const a=act(), r=rmr(), life=r*JOB[a.job][1], commute=a.commute/7*6.8*kg/60*0.85;   // cycling commute ~6.8 MET, net
-  const progDays=(S.prog.days||[]).filter(d=>!d.rest&&!d.optional).length;
+  const pdays=S.prog.placeholder?[]:(S.prog.days||[]), progDays=pdays.filter(d=>!d.rest&&!d.optional&&d.variants&&Object.values(d.variants).some(v=>v&&v.length)).length;
+  const runDays=pdays.filter(d=>d.run).length, planRun=runDays*8*kg*40/60/7;          // ~40 min easy running (~9 MET, net 8) per planned run day
   const lift=liftKcal(70,kg)*progDays/7, steps=stepKcal(a.steps,kg);
   const cardioWk=S.cardio.filter(c=>(Date.now()-parseD(c.date))/864e5<28 && !(a.commute>0 && c.type==="cycle" && c.level==="Commute")).reduce((t,c)=>t+(+c.net||0),0)/4;
-  const cardio=cardioWk/7, active=steps+lift+cardio;
+  const cardio=Math.max(cardioWk/7, planRun), active=steps+lift+cardio;
   const total=(r+life+commute+active)/0.9;
   return {total, base:(r+life+commute)/0.9, rmr:r, life, commute, steps, lift, cardio, tef:total*0.1, activeAvg:active};
 }
@@ -1363,7 +1364,8 @@ function loadSample(o={}){   // o: {days, plan:false, goal:false, habits:false} 
   S.profile={...S.profile, showSample:true}; saveProfile();
   const sleepH=habitList().find(h=>h.tpl==="sleep");
   // weigh-ins: ~0.35 kg a week down, day-to-day water noise, a few missed mornings
-  const w=[]; for (let i=DAYS;i>=1;i--){ if (rnd()<0.18) continue; w.push({d:ymd(dayAt(i)), kg:r1(82-(DAYS-i)*0.05+jit(0.45)), s:true}); }
+  const gt=(S.profile.goal||{}).type, slope=gt==="bulk"?0.025:gt==="maintain"||gt==="recomp"?0:-0.05;     // kg a day
+  const w=[]; for (let i=DAYS;i>=1;i--){ if (rnd()<0.18) continue; w.push({d:ymd(dayAt(i)), kg:r1(82+(DAYS-i)*slope+jit(0.45)), s:true}); }
   S.all.weights=[...S.all.weights.filter(x=>!x.s), ...w].sort((a,b)=>a.d<b.d?-1:1); saveWeights();
   // workouts: follow the plan's days, double progression (add reps to the top of the range, then add load)
   const g=gymList()[0].id, prog={};
@@ -1561,7 +1563,7 @@ const HICON = {
   pill:'<svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="M9.5 8.5l5 7.5"/></svg>'
 };
 function hicon(h){ return ICON[h.icon]||HICON[h.icon]||HICON.check; }
-function hfmt(h, v){ if (v==null) return "–"; if (h.unit==="steps") return fmtN(v); return (Math.round(v*100)/100)+(h.unit?" "+h.unit:""); }
+function hfmt(h, v){ if (v==null) return "Log"; if (h.unit==="steps") return fmtN(v); return (Math.round(v*100)/100)+(h.unit?" "+h.unit:""); }
 function habitControl(h, date, compact){
   const v=hval(h,date), st=hstatus(h,date), isToday=date===ymd(new Date());
   if (h.type==="check") return `<button class="hcheck ${v===true?"on":""}" data-act="hTog" data-h="${h.id}" data-d="${date}" aria-label="${v===true?"Done":"Mark done"}">${HICON.check}</button>`;
@@ -1576,7 +1578,7 @@ function habitControl(h, date, compact){
 function habitSub(h, date){
   const v=hval(h,date), s=hstreak(h);
   if (h.type==="quit"){ const q=quitStats(h); return q?`${s.n} day${s.n===1?"":"s"} clean${h.cost?` · ${S.profile.currency||"£"}${q.saved.toFixed(0)} saved`:""} · ${fmtN(q.avoided)} ${esc(h.unit||"")} avoided`:"Set your start day to begin the count"; }
-  const tgt=h.type==="count"?`${hfmt(h,v)} of ${hfmt(h,+h.target)}`:h.type==="time"?(v?`Done at ${v}`:"Not logged yet"):(v===true?"Done today":"Not done yet");
+  const tgt=h.type==="count"?(v==null?`Goal ${hfmt(h,+h.target)}`:`${hfmt(h,v)} of ${hfmt(h,+h.target)}`):h.type==="time"?(v?`Done at ${v}`:"Not logged yet"):(v===true?"Done today":"Not done yet");
   return `${tgt} · ${s.n} day streak${s.forgiven?` (${s.forgiven} miss forgiven)`:""}`;
 }
 function habitsSummaryCard(){
@@ -1680,12 +1682,13 @@ function habitAct(act, b){
 
 /* ---------- Render root ---------- */
 function render(){
-  const navShow={food:on("nutrition"), habits:!on("nutrition")&&on("habits")};
+  const train=on("training")||on("endurance"), navShow={food:on("nutrition"), habits:!on("nutrition")&&on("habits")};
+  { const tb=$('.nav button[data-tab="plan"],.nav button[data-tab="habits2"]'); if (tb){ const want=train?"plan":"habits2"; if (tb.dataset.tab!==want){ tb.dataset.tab=want; tb.innerHTML=train?'<svg viewBox="0 0 24 24"><path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/></svg>Train':'<svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 6.5"/></svg>Habits'; } } }
   document.querySelectorAll(".nav button[data-tab]").forEach(b=>{ if (b.dataset.tab in navShow) b.hidden=!navShow[b.dataset.tab]; });
   { const hb=$('.nav button[data-tab="habits"]'), spacer=!navShow.food&&!navShow.habits; if (spacer){ hb.hidden=false; } hb.style.visibility=spacer?"hidden":""; hb.tabIndex=spacer?-1:0; }
   const navIn=$(".nav .in"); if (navIn) navIn.style.gridTemplateColumns=`repeat(${[...navIn.children].filter(b=>!b.hidden).length},1fr)`;
   const navTab = {train:"plan", cardio:"plan", habits:on("nutrition")?"home":"habits", energy:"food", foodadd:"food", settings:{train:"plan",cardio:"plan",habits:"home",energy:"food"}[S.prevTab]||S.prevTab||"home"}[S.tab] || S.tab;
-  document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab));
+  document.querySelectorAll(".nav button[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===navTab || (b.dataset.tab==="habits2" && S.tab==="habits")));
   const plus=$("#plusBtn"); plus.classList.toggle("live", !!S.active);
   plus.innerHTML = S.active ? ICON.lift : '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   plus.setAttribute("aria-label", S.active ? "Resume workout" : "Add or start");
@@ -1951,7 +1954,7 @@ function runFor(date){ const w=enduWeek(date); if (!w) return null; const dt=par
 function runAmt(r){ return r.type==="hysim"?r.km+" rounds":r.km?r.km+" km":r.mins?r.mins+" min":""; }
 function runCard(r, date){
   const sp={run:"run",swim:"swim",cycle:"cycle",hyrox:"hyrox"}[r.sport||"run"]||"run", done=S.cardio.filter(c=>c.date===date && c.type===sp);
-  return `<div class="card runcard"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery":""}</span><h2>${esc(r.n)}</h2></div><b class="num rkm">${r.type==="hysim"?r.km+"<em> rounds</em>":r.km?r.km+"<em> km</em>":r.mins+"<em> min</em>"}</b></div>
+  return `<div class="card runcard"><div class="spread"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${ICON.cardio}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(r.n)}</h2><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery":""}</span></div></div><b class="num rkm">${r.type==="hysim"?r.km+"<em> rounds</em>":r.km?r.km+"<em> km</em>":r.mins+"<em> min</em>"}</b></div>
     <span class="small muted">${esc(r.desc||r.rpe)}</span>${r.week.notes.length?`<div class="hcue"><em>This week</em>${r.week.notes.map(esc).join(". ")}</div>`:""}
     ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>`:`<button class="btn orange" data-act="logRun" data-t="${sp}" data-km="${sp==="run"&&r.type!=="runwalk"?r.km||"":""}" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log this ${sp==="swim"?"swim":sp==="cycle"?"ride":sp==="hyrox"?"session":"run"}</button>`}</div>`;
 }
@@ -2720,7 +2723,7 @@ $("#actionsIn").addEventListener("click",e=>{
   if (k==="weigh"||k==="photo"){ go("progress","body"); setTimeout(()=>{ const el=document.getElementById(k==="weigh"?"weighin":"photocard"); el&&el.scrollIntoView({block:"start"}); },60); return; }
   go(k);
 });
-document.querySelector(".nav").addEventListener("click", e=>{ const b=e.target.closest("button[data-tab]"); if(b) go(b.dataset.tab); });
+document.querySelector(".nav").addEventListener("click", e=>{ const b=e.target.closest("button[data-tab]"); if(b) go(b.dataset.tab==="habits2"?"habits":b.dataset.tab); });
 
 /* ---------- Workout actions ---------- */
 function logSet(ei, si){
