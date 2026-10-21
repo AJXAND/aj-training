@@ -612,14 +612,17 @@ function sportBlocked(a){
   if (md){ out.add(md); if (p.avoidBefore){ const i = WD.findIndex(x => x[0] === md); out.add(WD[(i + 6) % 7][0]); } }
   return [...out];
 }
+// Search-first: the most common sports as a small grid; typing shows a handful of matches; no match offers the AI
+const SP_POPULAR = ["football","tennis","padel","rugbyunion","golf","swimming","climbing","mma","boxing","basketball","cycling","netball"];
 function sportRowsPick(q){
-  const list = SPP().sports.filter(s => !q || (s.name + " " + (s.aliases || []).join(" ") + " " + (s.group || "")).toLowerCase().includes(q));
-  const groups = [...new Set(list.map(s => s.group || "Other"))];
-  return list.length ? groups.map(g => `<h3 class="obgh">${esc(g)}</h3>${list.filter(s => (s.group || "Other") === g).map(s => `<button class="sprow" data-spid="${s.id}" aria-pressed="${F.ans.sportId === s.id && !F.ans.sportCustom}"><span><b>${esc(s.name)}</b></span><i>›</i></button>`).join("")}`).join("")
-    : `<p class="small muted">Not in the list. Type it below and AJ Training AI will work out what it demands.</p>`;
+  const all = SPP().sports, chip = s => `<button class="spchip" data-spid="${s.id}" aria-pressed="${F.ans.sportId === s.id && !F.ans.sportCustom}">${esc(s.name.replace(/ \(.*\)$/, "").replace(" & bouldering", ""))}</button>`;
+  if (!q) return `<div class="spgrid">${SP_POPULAR.map(id => all.find(s => s.id === id)).filter(Boolean).map(chip).join("")}</div><p class="small muted">Not here? Search above: ${all.length} sports, or type any other.</p>`;
+  const hit = all.filter(s => (s.name + " " + (s.aliases || []).join(" ")).toLowerCase().includes(q)).slice(0, 6);
+  return (hit.length ? `<div class="spgrid">${hit.map(chip).join("")}</div>` : "")
+    + `<button class="btn ghost" data-aisport="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Working it out…" : `${hit.length ? "Something else? " : ""}Build a plan for “${esc(F.spq.trim().slice(0, 30))}” with AI`}</button>`;
 }
 async function aiSport(){
-  const a = F.ans, name = (a.sportOther || "").trim(); if (!name){ toast("Type your sport first"); return; }
+  const a = F.ans; if ((F.spq || "").trim()) a.sportOther = F.spq.trim(); const name = (a.sportOther || "").trim(); if (!name){ toast("Type your sport first"); return; }
   F.busy = true; F.keepScroll = true; draw();
   try{
     const r = await aiJson(`You are a strength and conditioning coach. Profile the physical demands of this sport for gym training: """${name.slice(0, 120)}""".
@@ -1074,10 +1077,8 @@ function pStep(s, a){
     <button class="obcard aicard" data-gfam="custom" aria-pressed="${a.gfam === "custom"}"><b>Anything else? Tell the AI.</b><span>Describe any goal in your own words, a sport, an event, a look or a deadline, and AJ Training AI builds the plan around it.</span></button>`};
   case "sportpick": { const p = a.sportCustom;
     return {title:"Which sport?", body:`
-    <label class="sb card"><span>${ICON.search}</span><input data-spq="1" placeholder="Search ${SPP().sports.length} sports" value="${esc(F.spq || "")}" autocomplete="off"></label>
+    <label class="sb card"><span>${ICON.search}</span><input data-spq="1" placeholder="Search any sport" value="${esc(F.spq || "")}" autocomplete="off"></label>
     <div id="obspq" class="sprows">${sportRowsPick((F.spq || "").toLowerCase())}</div>
-    <div class="obfld"><span class="obl">Not listed?</span><input class="field" data-input="sportOther" placeholder="e.g. Kabaddi, fencing, polo" value="${esc(a.sportOther || "")}">
-      <button class="btn ghost" data-aisport="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Working it out…" : "Build it with AJ Training AI"}</button></div>
     ${p ? `<div class="card obai"><b>${esc(p.name)}</b><span>${esc(p.summary || "")}</span><span class="small muted">There's little research on training for this sport specifically, so the plan uses what the sport demands plus general athletic-training evidence. It's a sound plan, but less tailored than the sports in the list.</span></div>` : ""}`, cta:p ? "Use this" : "Continue"}; }
   case "season": { const p = sportProfile(a) || SPORT_GENERIC, se = p.season || SPORT_GENERIC.season;
     return {title:"Where are you in your season?", body:`<div class="obopts">
