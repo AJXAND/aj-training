@@ -1778,7 +1778,9 @@ function homeParts(){
   // today's training
   let today="";
   if (lift){
-    if (S.prog.placeholder) today="";
+    if (S.prog.placeholder) today=`<div class="card hero tdcard"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${ICON.lift}</span><div class="stack" style="gap:1px;min-width:0"><h2>Today's training</h2><span class="small muted">No plan yet. Building one takes about two minutes.</span></div></div>
+      <ul class="shlist"><li>Around 10 to 14 hard sets per muscle a week, where most growth happens</li><li>Progressive overload built in: hit the top of your rep range and the load goes up</li><li>Lifting, running, HYROX or hybrid, in blocks with planned deloads</li></ul>
+      <button class="btn orange" data-act="buildProg">Build my plan</button></div>`;
     else {
       const t=todayDay(), run=runFor(todayStr), g=t&&!t.rest?dayGym(t):null, list=g?(t.variants[g]||[]):[], done=sessionsOn(todayStr).length;
       if (S.active){ const a=S.active, dn=a.ex.reduce((x,e)=>x+e.sets.filter(q=>q.done).length,0), tt=a.ex.reduce((x,e)=>x+e.sets.length,0);
@@ -1801,7 +1803,12 @@ function homeParts(){
   // food
   let food="";
   if (on("nutrition")){
-    if (!S.profile.goal && (S.profile.nutrition||{}).mode!=="manual") food="";
+    if (!S.profile.goal && (S.profile.nutrition||{}).mode!=="manual"){ const mb0=n=>`<div class="dmac"><div class="spread"><span>${n}</span><b class="num muted">–</b></div><div class="dbar"></div></div>`;
+      food=`<div class="card dfood"><div class="spread"><h2>Food today</h2><span class="small muted">No goal yet</span></div>
+        <div class="dfrow"><button class="ring" data-act="nutGoal" aria-label="Set your food goal"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" stroke="var(--sunk)" stroke-width="10" fill="none"/></svg><span><b class="num">–</b><em>kcal left</em></span></button>
+          <div class="dmacs">${mb0("Protein")}${mb0("Carbs")}${mb0("Fat")}</div></div>
+        <span class="small muted">Calories and protein worked out from your size and activity, then recalibrated each week against what you actually eat and weigh.</span>
+        <button class="btn orange" data-act="nutGoal">Set my food goal</button></div>`; }
     else { const ft=dayTotals(todayStr);
       const pc=Math.min(1,ft.kcal/Math.max(1,tg.kcal)), C=2*Math.PI*44, mb=(n,v,t,c)=>`<div class="dmac"><div class="spread"><span>${n}</span><b class="num">${Math.round(v)}<em>/${Math.round(t)}g</em></b></div><div class="dbar"><i style="width:${Math.min(100,v/Math.max(1,t)*100)}%;background:${c}"></i></div></div>`;
       food=`<div class="card dfood"><div class="spread"><h2>Food today</h2><button class="link" data-goto="food">Open</button></div>
@@ -1822,7 +1829,9 @@ function homeParts(){
       ${actual.length?multiChart([{color:"var(--weight)",pts:actual},...(proj.length?[{color:"var(--weight)",pts:proj,dash:true}]:[])],{minSpan:1,h:96,goal:tKg,fmt:v=>v.toFixed(1),label:"Weight: your trend and where your goal pace takes you"}):""}
       ${proj.length>1?`<div class="legend"><span><i style="background:var(--weight)"></i>Your trend</span><span><i style="background:var(--weight);opacity:.5"></i>${rateKgDay?"On pace":"Starting weight"}</span>${tKg!=null?'<span><i style="background:var(--good)"></i>Goal</span>':""}</div>`:""}</div>`;
   }
-  const habits=on("habits")&&habitList().length?habitsSummaryCard():"";
+  const habits=!on("habits")?"":habitList().length?habitsSummaryCard():S.profile.skipHabits?"":`<div class="card"><div class="spread"><h2>Habits</h2><button class="link muted" data-act="skipHabits">Not for me</button></div>
+    <span class="small muted">Small daily actions compound. Start from an evidence-based template, like a daily step goal or a regular sleep time, or write your own.</span>
+    <button class="btn ghost" data-act="hAdd">Add a habit</button></div>`;
   const wkLegend=[lift?'<span><i style="background:var(--orange)"></i>Sets</span>':"", on("nutrition")?'<span><i style="background:var(--kcal)"></i>Calories</span>':"", '<span><i style="background:var(--cardio)"></i>Cardio</span>', on("nutrition")?'<span><i style="background:var(--weight)"></i>Weight</span>':""].join("");
   const tiles=[
     on("nutrition")?`<button class="tile" data-goto="energy"><h3>Expenditure</h3><span class="small muted">${ex.adaptive?`From ${ex.n} days of data`:"Starting estimate"}</span><span class="v num">${fmtN(ex.kcal)}</span><span class="small muted">kcal a day</span></button>`:"",
@@ -1880,14 +1889,14 @@ function runningCard(){
 function startHero(kind){
   const tr=kind==="train";
   return `<div class="card hero shero"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${tr?ICON.lift:ICON.food}</span><h2>${tr?"Build your training plan":"Set your food goal"}</h2></div><div class="stack" style="gap:4px"><span class="small muted">${tr?"About two minutes. Built around your days, the kit in your gym and what you're training for.":"About two minutes. Targets start from your size and activity, then recalibrate each week against what you actually eat and weigh."}</span></div>
-    <ul class="shlist">${(tr?["Around 10 to 14 hard sets per muscle a week, where most growth happens","Double progression: reach the top of the rep range, then add load","Lifting, running, HYROX or hybrid, in blocks with planned deloads"]:["Rate of loss or gain set to protect muscle","Protein at 1.6 g per kg or more, higher in a deficit to protect muscle","Maintenance calories learned from your own logs, not a formula"]).map(x=>`<li>${x}</li>`).join("")}</ul>
+    <ul class="shlist">${(tr?["Around 10 to 14 hard sets per muscle a week, where most growth happens","Progressive overload built in: hit the top of your rep range and the load goes up","Lifting, running, HYROX or hybrid, in blocks with planned deloads"]:["Rate of loss or gain set to protect muscle","Protein at 1.6 g per kg or more, higher in a deficit to protect muscle","Maintenance calories learned from your own logs, not a formula"]).map(x=>`<li>${x}</li>`).join("")}</ul>
     <button class="btn orange" data-act="${tr?"buildProg":"nutGoal"}">${tr?"Build my plan":"Set my goal"}</button></div>
     <div class="shacts">${(tr?[["track","Track a run or walk","GPS distance and pace",ICON.cardio],["cardioLog","Log a sport","Counts towards your weekly energy burn",ICON.lift],["goto:progress:body","Progress photos","Body fat estimated from standard poses",ICON.camera],["coach","Ask the coach","Training, nutrition or recovery",ICON.spark]]:[["foodAddOpen","Log food","Search, scan or photograph",ICON.food],["goWeigh","Weigh in","Smoothed into a 7-day trend",ICON.scale]]).map(([a,t,d,ic])=>`<button class="card shact" ${a.startsWith("goto:")?`data-goto="${a.split(":")[1]}" data-seg="${a.split(":")[2]}"`:`data-act="${a}"`}><span class="tdic">${ic}</span><b>${t}</b><span class="small muted">${d}</span></button>`).join("")}</div>`;
 }
 /* Today should always fill the screen. After drawing, if the page is shorter than the screen, add the next most
    useful card for what this person uses, one at a time, until it fills (or we run out). */
 function fillHome(){
-  const m=$("#main"), nav=$(".nav"), fill=()=>{ const last=m.lastElementChild; return !last || last.getBoundingClientRect().bottom+window.scrollY >= window.innerHeight-(nav?nav.offsetHeight:64)-12; };
+  const m=$("#main"), nav=$(".nav"), fill=()=>{ const last=m.lastElementChild; return !last || last.getBoundingClientRect().bottom+window.scrollY >= window.innerHeight-(nav?nav.offsetHeight:64)+24; };
   if (!homeLayout()) for (const [id] of HOMECARDS.filter(c=>c[2])){ if (fill()) break; const h=homeCardHtml(id); if (h) m.insertAdjacentHTML("beforeend",hcWrap(id,h)); }
   S.homeShown=[...m.querySelectorAll("[data-hc]")].map(e=>e.dataset.hc);
   m.insertAdjacentHTML("beforeend",`<button class="link muted hedit" data-goto="homeedit">Edit this page</button>`);
@@ -1923,8 +1932,8 @@ function muscleWeekCard(){
   return `<div class="card"><div class="spread"><div class="stack" style="gap:2px"><h2>Sets per muscle</h2><span class="small muted num">This week · ${td} of ${tp} sets done</span></div><button class="link" data-goto="plan">Plan</button></div>
     <div class="mwk">${ms.map(m=>{ const d=Math.min(plan[m],done[m]||0); return `<div><span>${esc(m)}</span><div class="mwb"><i style="width:${d/plan[m]*100}%"></i></div><b class="num">${d}<em>/${plan[m]}</em></b></div>`; }).join("")}</div></div>`;
 }
-function trackCard(){
-  return `<div class="shacts">${[["track","Track a run or walk","GPS distance and pace",ICON.cardio],["cardioLog","Log a sport","Counts towards your weekly energy burn",ICON.lift]].map(([a,t,d,ic])=>`<button class="card shact" data-act="${a}"><span class="tdic">${ic}</span><b>${t}</b><span class="small muted">${d}</span></button>`).join("")}</div>`;
+function trackCard(more){
+  return `<div class="shacts">${[["track","Track a run or walk","GPS distance and pace",ICON.cardio],["cardioLog","Log a sport","Counts towards your weekly energy burn",ICON.lift],...(more?[["goto:progress:body","Progress photos","Body fat estimated from standard poses",ICON.camera],["coach","Ask the coach","Training, nutrition or recovery",ICON.spark]]:[])].map(([a,t,d,ic])=>`<button class="card shact" ${a.startsWith("goto:")?`data-goto="${a.split(":")[1]}" data-seg="${a.split(":")[2]}"`:`data-act="${a}"`}><span class="tdic">${ic}</span><b>${t}</b><span class="small muted">${d}</span></button>`).join("")}</div>`;
 }
 const GOALLABEL={cut:"Lose fat", bulk:"Build muscle", recomp:"Recomp", maintain:"Maintain"};
 // Today: what you need now (food, training, weight, habits). The week grid and insights live in Progress.
@@ -1941,7 +1950,7 @@ function homeCardHtml(id, p){
     case "strength": return lift&&(!endu||S.prog.kind==="hybrid"||S.prog.kind==="hyrox")?strengthCard():"";
     case "foodweek": return foodOn?foodWeekCard():""; case "logagain": return foodOn?logAgainCard():"";
     case "burn": return on("nutrition")?burnCard():""; case "muscles": return lift?muscleWeekCard():"";
-    case "track": return train&&S.prog.placeholder?"":trackCard();
+    case "track": return trackCard(train&&S.prog.placeholder);
   }
   return "";
 }
@@ -1951,11 +1960,10 @@ function homeLayout(){ const l=S.profile.homeLayout; return l&&Array.isArray(l.o
 function renderHome(){
   const p=homeParts(), L=homeLayout();
   const train=on("training")||on("endurance"), food=on("nutrition");
-  const noPlan=train&&S.prog.placeholder, noGoal=food&&!train&&!S.profile.goal&&(S.profile.nutrition||{}).mode!=="manual";
   let ids=HOMECARDS.filter(c=>!c[2]).map(c=>c[0]);
   if (L){ const all=HOMECARDS.map(c=>c[0]); ids=[...L.order.filter(x=>all.includes(x)), ...all.filter(x=>!L.order.includes(x)&&!HOMECARDS.find(c=>c[0]===x)[2])].filter(x=>!(L.hidden||[]).includes(x)); }
   return head(S.profile.name?`Hi, ${esc(S.profile.name.split(" ")[0])}`:"Today")+sampleBanner()+(window.AJP?AJP.dashBanner():"")
-    +(noPlan?startHero("train"):"")+(noGoal?startHero("food"):"")+setupCard()+ids.map(id=>hcWrap(id,homeCardHtml(id,p))).join("");
+    +ids.map(id=>hcWrap(id,homeCardHtml(id,p))).join("");
 }
 // Arrange Today: show or hide each card and move it up or down
 function renderHomeEdit(){
