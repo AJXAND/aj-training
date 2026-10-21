@@ -382,6 +382,33 @@ h1{margin-top:2px}
 .gic[data-gripg]{touch-action:none;cursor:grab}
 .minisw{display:flex;background:var(--sunk);border-radius:999px;padding:2px}.minisw button{border:0;background:none;font:700 12px var(--body);color:var(--muted);padding:5px 11px;border-radius:999px;cursor:pointer}.minisw button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
 .dmac em.over{color:var(--warn)}
+/* search shortcuts, My foods, My meals */
+.sbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sbtns button{display:grid;justify-items:center;gap:6px;border:0;background:var(--card);border-radius:18px;padding:14px 6px 12px;color:var(--ink);font:inherit;cursor:pointer}
+.sbtns i{width:40px;height:40px;border-radius:13px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}.sbtns svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sbtns b{font:700 13.5px var(--body)}.sbtns button:active{transform:scale(.97)}
+.fchips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.fchips .chip{flex:none;background:var(--card);padding:8px 13px;font-size:13.5px}.fchips .chip[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ftile{position:relative;background:var(--card);border-radius:18px;min-width:0}
+.ftb{display:grid;gap:3px;align-content:start;width:100%;min-height:118px;border:0;background:none;text-align:left;padding:13px 13px 12px;color:var(--ink);font:inherit;cursor:pointer}
+.ftb b{font-size:14.5px;line-height:1.25;padding-right:22px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.ftb .small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ftk{font-size:13px;font-weight:700;margin-top:auto;padding-right:36px}.ftk em{font-style:normal;color:var(--muted);font-weight:600}
+.fstar{position:absolute;top:8px;right:8px;border:0;background:none;color:var(--line);font-size:17px;cursor:pointer;padding:2px}.fstar.on{color:#F2B230}
+.ftp{position:absolute;right:10px;bottom:10px;width:32px;height:32px;font-size:18px}.ftb .mbar{margin-right:40px}.ftb{padding-bottom:18px}
+.mbar{display:flex;height:4px;border-radius:2px;overflow:hidden;background:var(--sunk);margin-top:6px}.mbar i{display:block;height:100%}
+.mcards{display:grid;gap:10px}.mcard{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:6px;align-items:center;background:var(--card);border-radius:20px;padding:6px 10px 6px 6px}
+.card .mcard{background:var(--sunk)}
+.mcb{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;border:0;background:none;text-align:left;padding:10px 4px 10px 8px;color:var(--ink);font:inherit;cursor:pointer;min-width:0}
+.mcic{width:44px;height:44px;border-radius:14px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}.mcic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.mcic.big{width:56px;height:56px;border-radius:18px}
+.mct{display:grid;gap:2px;min-width:0}.mct b{font:800 16px var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mct .fav{font-style:normal;color:#F2B230}.mck{font-size:13px;font-weight:700;display:flex;gap:8px;align-items:center;margin-top:2px}
+.mempty{justify-items:center;text-align:center;gap:8px;padding:24px 18px}.mways{display:grid;gap:8px;width:100%;margin-top:6px;text-align:left}.mways span{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:center;background:var(--sunk);border-radius:14px;padding:10px 12px;font-size:14px}
+.mways em{font-style:normal}.mways i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font:800 13px var(--body)}
+.mvlist{display:grid;gap:8px}.mvi{display:grid;grid-template-columns:minmax(0,1fr) auto 30px;gap:10px;align-items:center;background:var(--sunk);border-radius:14px;padding:10px 10px 10px 14px}
+.mvn{display:grid;min-width:0}.mvn b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14.5px}.mvn em{font-style:normal;font-size:12.5px;color:var(--muted);font-weight:600}
+.mvst{display:flex;align-items:center;gap:2px;background:var(--card);border-radius:12px;padding:2px}.mvst button{width:30px;height:30px;border:0;background:none;color:var(--ink);font-size:18px;font-weight:700;cursor:pointer;border-radius:10px}.mvst b{min-width:34px;text-align:center;font-size:13.5px}
+.eddel.fav{color:#F2B230}
+.msug{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:center;background:var(--orange-soft);border-radius:16px;padding:10px 12px}.msug>span:nth-child(2){display:grid}.msug em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.msb{grid-column:1/-1;display:flex;gap:14px;align-items:center}.msb .btn{width:auto;padding:9px 18px}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2138,7 +2165,8 @@ async function loadFoodDb(){
   FOODDB=null;
   try{ const r=await fetch("foods-db.json"); FOODDB=await r.json(); FOODIDX=FOODDB.map(x=>x[0].toLowerCase()); }
   catch(e){ FOODDB=[]; FOODIDX=[]; console.warn("food db",e); }
-  if (S.tab==="food"){ const el=$("#foodQ"), pos=el?el.selectionStart:0; render(); const n=$("#foodQ"); if(n&&el===document.activeElement||n){ n.focus(); try{n.setSelectionRange(pos,pos);}catch(e){} } }
+  // the database finishes loading after you've started typing: show the results straight away, keeping your place in the box
+  if (S.tab==="food"||S.tab==="foodadd"){ const el=$("#foodQ"), had=el&&el===document.activeElement, pos=el?el.selectionStart:0; render(); const n=$("#foodQ"); if (n&&had){ n.focus(); try{n.setSelectionRange(pos,pos);}catch(e){} } }
 }
 const FOOD_SYN={espresso:"espresso",coffee:"coffee",chips:"potatoes, french fried",crisps:"potato chips",mince:"ground",courgette:"zucchini",aubergine:"eggplant",prawns:"shrimp",porridge:"oats",biscuit:"cookies",coriander:"cilantro",rocket:"arugula",jam:"jams",yoghurt:"yogurt",skimmed:"nonfat",semi:"2%"};
 function prettyName(n){ return n.replace(/^(Beverages|Cereals ready-to-eat|Snacks|Fast foods|Restaurant|Candies|Spices|Soup|Sauce|Fish|Beef|Pork|Lamb|Chicken|Veal|Game meat),\s*/i,(m,g)=>/^(Fish|Beef|Pork|Lamb|Chicken|Veal)$/i.test(g)?g+", ":"").replace(/\b([A-Z]{3,})\b/g,w=>w[0]+w.slice(1).toLowerCase()); }
@@ -2426,13 +2454,16 @@ function trayAdd(f, amount, unit, src){ if (S.trayGroup&&S.trayGroup.auto) S.tra
 function trayMeal(date){ return S.addMeal||guessMeal(S.tray||[], date); }
 function trayGrouped(){ return (S.tray||[]).length>1&&S.trayGroup&&S.trayGroup.on; }
 function trayBar(date){
-  const tray=S.tray||[]; if (!tray.length) return "";
+  const tray=S.tray||[];
+  if (S.joinMeal) return `<div class="traybar"><button class="btn orange" data-act="joinMealDone">${tray.length?`Add ${tray.length} food${tray.length>1?"s":""} to ${esc(S.joinMeal.name)}`:`Done adding to ${esc(S.joinMeal.name)}`}</button></div>`;
+  if (!tray.length) return "";
   const tt=trayTotal(), meal=trayMeal(date), open=S.trayOpen;
   return `<div class="traybar ${open?"open":""}"><button class="trayhd" data-act="trayOpen" aria-expanded="${!!open}"><span class="trayn num">${tray.length}</span><span class="trayt"><b>${tray.length===1?esc(tray[0].name):trayGrouped()?esc(S.trayGroup.name||"Meal"):tray.length+" foods"} → ${mealName(meal)}</b><em class="num">${fmtN(tt.kcal)} kcal · ${Math.round(tt.p)}P ${Math.round(tt.c)}C ${Math.round(tt.f)}F</em></span><i class="chev">${ICON.back}</i></button>
     ${open?`<div class="traybody"><div class="chips"><button class="chip" data-act="trayMeal" data-meal="" aria-pressed="${!S.addMeal}">Auto${S.addMeal?"":": "+mealName(meal)}</button>${MEALS.map(([k,n])=>`<button class="chip" data-act="trayMeal" data-meal="${k}" aria-pressed="${S.addMeal===k}">${n}</button>`).join("")}</div>
-      ${tray.length>1?`<div class="tgrp"><button class="sw ${trayGrouped()?"on":""}" data-act="trayGrp" role="switch" aria-checked="${!!trayGrouped()}"><i></i></button><span><b>Log as one meal</b><span class="small muted">Shows as one row you can open, and saves to your meals</span></span></div>${trayGrouped()?`<input class="field" id="trayGrpName" value="${esc(S.trayGroup.name||"")}" placeholder="Name it, e.g. Chicken stir-fry">`:""}`:""}
+      ${tray.length>1?`<div class="tgrp"><button class="sw ${trayGrouped()?"on":""}" data-act="trayGrp" role="switch" aria-checked="${!!trayGrouped()}"><i></i></button><span><b>Log as one meal</b><span class="small muted">Shows as one row you can open, and saves to My meals</span></span></div>${trayGrouped()?`<input class="field" id="trayGrpName" value="${esc(S.trayGroup.name||"")}" placeholder="Name it, e.g. Chicken stir-fry">`:""}`:""}
       <div class="traylist">${tray.map((x,i)=>`<div class="tli"><button class="tlb" data-act="trayEdit" data-i="${i}"><b>${esc(x.name)}</b><span class="muted small num">${esc(amtText(x.amount, x.unit==="serving"&&x.food&&x.food.serving?x.food.serving.label||"serving":x.unit))}</span></button><span class="num">${fmtN(x.kcal)}</span><button class="tdel" data-act="trayDel" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></div>`).join("")}</div>
       ${S.aiNotes?`<p class="small muted">${esc(S.aiNotes)}</p>`:""}</div>`:""}
+    ${S.mealSuggest?`<div class="msug"><span class="mcic">${ICON.bowl}</span><span><b>Save "${esc(S.mealSuggest.name)}" to My meals?</b><em>Next time it's one tap</em></span><span class="msb"><button class="btn small orange" data-act="sugSave">Save</button><button class="link muted small" data-act="sugNo">Not now</button></span></div>`:""}
     <button class="btn orange" data-act="trayLog">Log ${trayGrouped()?"meal":tray.length>1?tray.length+" foods":"it"} to ${mealName(meal)}</button></div>`;
 }
 function logTray(){
@@ -2446,7 +2477,8 @@ function logTray(){
   tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, ...(fix?{meal:fix, placed:true}:{}), ...(grp?{grp, grpName}:{}), ...(join||{}), ...(x.base?{base:x.base}:{}), name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"};
     if (!en.foodId) delete en.foodId; addFoodEntry(date,en); ids.push(en.id);
     if (x.food){ const f=S.foods.find(y=>y.id===x.food.id)||x.food; saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:x.amount, lastUnit:x.unit}); } });
-  const tk=tray.reduce((a,x)=>a+x.kcal,0); S.tray=[]; S.trayOpen=false; S.aiNotes=""; S.foodQuery=""; S.addMeal=null; S.trayGroup=null;
+  const used=[...new Set(tray.map(x=>x.fromMeal).filter(Boolean))]; if (used.length){ S.profile={...S.profile, savedMeals:savedMeals().map(m=>used.includes(m.id)?{...m, uses:(m.uses||0)+1, last:Date.now()}:m)}; saveProfile(); }
+  const tk=tray.reduce((a,x)=>a+x.kcal,0); S.tray=[]; S.trayOpen=false; S.aiNotes=""; S.foodQuery=""; S.addMeal=null; S.trayGroup=null; S.mealSuggest=null;
   if (S.tab!=="food") go("food"); else render();
   toast({title:join?`Added to ${join.grpName}`:`Logged to ${mealName(join?join.meal:meal)}`, detail:`${grp?grpName:tray.length>1?tray.length+" foods":tray[0].name} · ${fmtN(tk)} kcal`}, ()=>{ ids.forEach(id=>removeFoodEntry(date,id)); render(); });
 }
@@ -2457,11 +2489,80 @@ function saveMealFrom(name, items){
   const m={id:prev?prev.id:uid("meal"), name:name.slice(0,60), items:items.map(x=>{ const o={...x}; Object.keys(o).forEach(k=>o[k]===undefined&&delete o[k]); return o; }), created:prev?prev.created:Date.now(), updated:Date.now()};
   S.profile={...S.profile, savedMeals:[m, ...savedMeals().filter(x=>x.id!==m.id)]}; saveProfile(); return m;
 }
-function mealToTray(m){ if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null; if (!(S.tray||[]).length&&m.items.length>1) S.trayGroup={on:true, name:m.name, auto:true, saved:m.id}; m.items.forEach(x=>{ const f=x.foodId&&S.foods.find(y=>y.id===x.foodId); S.tray=[...(S.tray||[]), {k:uid("t"), food:f||undefined, amount:x.amount, unit:x.unit, name:x.name, kcal:x.kcal, p:x.p, f:x.f, c:x.c, g:x.grams, src:"meal"}]; }); }
-function mealCard(m){ const s=sumOf(m.items); return `<div class="smeal"><button class="smb" data-act="mealView" data-id="${m.id}"><b>${esc(m.name)}</b><span class="muted small num">${m.items.length} food${m.items.length>1?"s":""} · ${fmtN(s.kcal)} kcal</span>${macroMini(s)}</button><button class="plusb" data-act="mealAdd" data-id="${m.id}" aria-label="Add ${esc(m.name)} to the basket">+</button></div>`; }
+function mealToTray(m){ m={...m, items:m.items.map(x=>({...x, fromMeal:m.id}))}; if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null; if (!(S.tray||[]).length&&m.items.length>1) S.trayGroup={on:true, name:m.name, auto:true, saved:m.id}; m.items.forEach(x=>{ const f=x.foodId&&S.foods.find(y=>y.id===x.foodId); S.tray=[...(S.tray||[]), {k:uid("t"), food:f||undefined, amount:x.amount, unit:x.unit, name:x.name, kcal:x.kcal, p:x.p, f:x.f, c:x.c, g:x.grams, src:"meal", fromMeal:x.fromMeal}]; }); }
+function mealCard(m){ const s=sumOf(m.items); return `<div class="smeal"><button class="smb" data-act="mealView" data-id="${m.id}"><b>${esc(m.name)}</b><span class="muted small num">${m.items.length} food${m.items.length>1?"s":""} · ${fmtN(s.kcal)} kcal</span>${macroMini(s)}</button><button class="plusb" data-act="mealAdd" data-id="${m.id}" aria-label="Add ${esc(m.name)} to your plate">+</button></div>`; }
+/* ---------- My foods and My meals ---------- */
+Object.assign(ICON,{
+  pencil:'<svg viewBox="0 0 24 24"><path d="M4 20l4.2-1L19 8.2 15.8 5 5 15.8 4 20z"/><path d="M13.8 7l3.2 3.2"/></svg>',
+  apple:'<svg viewBox="0 0 24 24"><path d="M12 7.2c-1.6-1.5-5.2-1.6-6.6 1.3-1.6 3.1.4 8.4 2.9 10.4 1.2 1 2.4.6 3.7.1 1.3.5 2.5.9 3.7-.1 2.5-2 4.5-7.3 2.9-10.4C17.2 5.6 13.6 5.7 12 7.2z"/><path d="M12 7.2c0-2 1-3.6 3-4.2"/></svg>',
+  bowl:'<svg viewBox="0 0 24 24"><path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0z"/><path d="M8.5 20.5h7"/><path d="M9 8.5c0-1.6 1.2-2 1.2-3.6M13.4 8.5c0-1.6 1.2-2 1.2-3.6"/></svg>'
+});
+const agoText=t=>{ if (!t) return ""; const d=Math.floor((Date.now()-t)/864e5); return d<=0?"today":d===1?"yesterday":d<7?new Date(t).toLocaleDateString("en-GB",{weekday:"short"}):d<60?`${Math.round(d/7)} wk ago`:new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"short"}); };
+function macroBar(s){ const p=s.p*4, c=s.c*4, f=s.f*9, t=Math.max(1,p+c+f); return `<span class="mbar"><i style="width:${p/t*100}%;background:var(--prot)"></i><i style="width:${c/t*100}%;background:var(--carb)"></i><i style="width:${f/t*100}%;background:var(--fat)"></i></span>`; }
+function foodTile(f){ const d=defaultAmt(f), m=foodMacros(f,d.amount,d.unit);
+  return `<div class="ftile"><button class="ftb" data-act="pickFood" data-id="${f.id}"><b>${esc(f.name)}</b>${f.brand?`<span class="muted small">${esc(f.brand)}</span>`:""}<span class="num ftk">${fmtN(m.kcal)} kcal <em>· ${d.unit==="serving"?esc((f.serving||{}).label||"serving"):d.amount+" "+d.unit}</em></span>${macroBar(m)}</button>
+    <button class="fstar ${f.fav?"on":""}" data-act="favTog" data-id="${f.id}" aria-label="${f.fav?"Remove from":"Add to"} favourites">★</button><button class="plusb ftp" data-act="pickFood" data-id="${f.id}" data-quick="1" aria-label="Put ${esc(f.name)} on your plate">+</button></div>`; }
+function mealCard2(m){ const s=sumOf(m.items);
+  return `<div class="mcard"><button class="mcb" data-act="mealView" data-id="${m.id}"><span class="mcic">${ICON.bowl}</span><span class="mct"><b>${esc(m.name)}${m.fav?' <i class="fav">★</i>':""}</b><span class="muted small">${m.items.length} food${m.items.length>1?"s":""}${m.uses?` · had ${m.uses} time${m.uses>1?"s":""} · last ${agoText(m.last)}`:" · not had yet"}</span><span class="num mck">${fmtN(s.kcal)} kcal ${macroMini(s)}</span>${macroBar(s)}</span></button>
+    <button class="plusb" data-act="mealAdd" data-id="${m.id}" aria-label="Put ${esc(m.name)} on your plate">+</button></div>`; }
+function mineTab(date){
+  const mq=(S.mineQ||"").trim().toLowerCase(), fl=S.mineF||"used";
+  let list=S.foods.filter(f=>!mq||(f.name+" "+(f.brand||"")).toLowerCase().includes(mq));
+  if (fl==="fav") list=list.filter(f=>f.fav); if (fl==="scan") list=list.filter(f=>f.barcode||f.src==="off"||f.src==="label");
+  list.sort(fl==="new"?(a,b)=>(b.created||b.last||0)-(a.created||a.last||0):(a,b)=>(b.uses||0)-(a.uses||0)||(b.last||0)-(a.last||0));
+  const n=S.mineN||8, shown=list.slice(0,n);
+  return head("My foods",{back:"foodadd"})+`<div class="searchbar"><span class="sb">${ICON.search}<input id="mineQ" placeholder="Search your ${S.foods.length} saved foods" value="${esc(S.mineQ||"")}" autocomplete="off" aria-label="Search your foods"></span></div>
+    <div class="fchips">${[["used","Most used"],["fav","★ Favourites"],["scan","Scanned"],["new","Newest"]].map(([k,l])=>`<button class="chip" data-act="mineF" data-f="${k}" aria-pressed="${fl===k}">${l}</button>`).join("")}</div>
+    ${shown.length?`<div class="fgrid">${shown.map(foodTile).join("")}</div>${list.length>n?`<button class="btn ghost" data-act="mineMore">Show ${Math.min(8,list.length-n)} more of ${list.length}</button>`:""}`
+      :`<div class="card shint"><b>${S.foods.length?(fl==="fav"?"No favourites yet":"Nothing matches"):"Your foods collect here"}</b><span class="small muted">${S.foods.length?(fl==="fav"?"Tap the star on any food to keep it at the top.":"Try another word, or search the full database from Search."):"Every food you scan, search or add is saved here, most used first."}</span></div>`}`+trayBar(date);
+}
+function mealsTab(date){
+  const mq=(S.mealQ||"").trim().toLowerCase(), all=savedMeals();
+  const list=all.filter(m=>!mq||m.name.toLowerCase().includes(mq)||m.items.some(x=>(x.name||"").toLowerCase().includes(mq))).sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||(b.uses||0)-(a.uses||0)||(b.updated||b.created||0)-(a.updated||a.created||0));
+  const n=S.mealN||6;
+  return head("My meals",{back:"foodadd"})+(all.length>4?`<div class="searchbar"><span class="sb">${ICON.search}<input id="mealQ" placeholder="Search your ${all.length} meals" value="${esc(S.mealQ||"")}" autocomplete="off" aria-label="Search your meals"></span></div>`:"")+
+    (list.length?`<div class="mcards">${list.slice(0,n).map(mealCard2).join("")}</div>${list.length>n?`<button class="btn ghost" data-act="mealMore">Show ${Math.min(6,list.length-n)} more</button>`:""}`
+      :`<div class="card mempty"><span class="mcic big">${ICON.bowl}</span><b>${all.length?"No meals match":"Your meals live here"}</b><span class="small muted">Meals you have often, ready in one tap. Make one any of these ways:</span>
+        <div class="mways"><span><i>1</i><em>In your log, tap the foods you had together, then <b>Make meal</b></em></span><span><i>2</i><em>On your plate, switch on <b>Log as one meal</b></em></span><span><i>3</i><em>Photograph a recipe card with <b>AI</b> and save it when it asks</em></span></div></div>`)+trayBar(date);
+}
+// Opening a meal: change any food's amount, remove one, add one, rename, favourite, and pick how much you're having this time
+function mealOpen(id){ const m=savedMeals().find(x=>x.id===id); if (!m) return; S.foodAdd={mv:{id, name:m.name, fav:!!m.fav, items:m.items.map(x=>({...x, k:1})), mult:1, dirty:false}}; S.confirm=null; renderFoodSheet(); }
+function mvItems(mv){ return mv.items.map(x=>{ const k=x.k; const am=+x.amount; return {...x, amount:am?Math.round(am*k*100)/100:x.amount, grams:x.grams?Math.round(x.grams*k):x.grams, kcal:Math.round(x.kcal*k), p:r1(x.p*k), c:r1(x.c*k), f:r1(x.f*k)}; }).map(x=>{ delete x.k; return x; }); }
+function mvHtml(mv){
+  const items=mvItems(mv), s=sumOf(items), t={kcal:s.kcal*mv.mult, p:s.p*mv.mult, c:s.c*mv.mult, f:s.f*mv.mult}, n=(S.tray||[]).length;
+  return `<div class="ed">
+    <div class="edhd"><div class="edt">${mv.editName?`<input class="field" id="mvName" value="${esc(mv.name)}" aria-label="Meal name">`:`<button class="edname" data-fs="mvName"><b>${esc(mv.name)}</b><i aria-hidden="true">✎</i></button>`}<span class="small muted">${items.length} food${items.length>1?"s":""} · saved meal</span></div>
+      <div class="row" style="gap:6px"><button class="eddel ${mv.fav?"fav":""}" data-fs="mvFav" aria-label="Favourite">★</button><button class="eddel ${S.confirm==="mdel"?"on":""}" data-fs="mvDel" aria-label="Delete meal">${S.confirm==="mdel"?"Delete?":`<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg>`}</button></div></div>
+    <div class="edsum"><div class="edk"><b class="num">${fmtN(t.kcal)}</b><span>kcal${mv.mult!==1?` · ${mv.mult}×`:""}</span></div><div class="edm">${edMacHtml(t)}</div></div>
+    <div class="mvlist">${mv.items.map((x,i)=>{ const it=items[i]; return `<div class="mvi"><span class="mvn"><b>${esc(x.name)}</b><em class="num">${esc(amtText(it.amount,it.unit))} · ${fmtN(it.kcal)} kcal</em></span><span class="mvst"><button data-fs="mvK" data-i="${i}" data-d="-1" aria-label="Less">−</button><b class="num">${x.k===1?"1×":r1(x.k)+"×"}</b><button data-fs="mvK" data-i="${i}" data-d="1" aria-label="More">+</button></span><button class="tdel" data-fs="mvRm" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></div>`; }).join("")}
+      <button class="edadd" data-fs="mvAdd"><span class="plusb" aria-hidden="true">+</span><span><b>Add a food to this meal</b><em>Search, scan or type it in</em></span></button></div>
+    ${mv.dirty?`<button class="btn ghost" data-fs="mvSave">Save changes to this meal</button>`:""}
+    <div class="lab">How much this time<div class="edmult">${[[0.5,"½"],[0.75,"¾"],[1,"1"],[1.25,"1¼"],[1.5,"1½"],[2,"2"]].map(([k,l])=>`<button data-fs="mvMult" data-k="${k}" aria-pressed="${mv.mult===k}">${l}×</button>`).join("")}</div></div>
+    <div class="grid2"><button class="btn ghost" data-fs="mvTray">Add to plate</button><button class="btn orange" data-fs="mvLog">${n?"Log all":"Log it"}</button></div>
+  </div>`;
+}
+function mvClick(k,b){
+  const a=S.foodAdd, mv=a&&a.mv; if (!mv) return false;
+  if (k==="mvName"){ mv.editName=true; renderFoodSheet(); const i=$("#mvName"); if (i){ i.focus(); i.select(); } return true; }
+  if (k==="mvK"){ const x=mv.items[+b.dataset.i]; x.k=Math.max(0.25, Math.round((x.k+0.25*(+b.dataset.d))*100)/100); mv.dirty=true; renderFoodSheet(); return true; }
+  if (k==="mvRm"){ if (mv.items.length<=1){ toast("A meal needs at least one food. Delete the meal instead"); return true; } mv.items.splice(+b.dataset.i,1); mv.dirty=true; renderFoodSheet(); return true; }
+  if (k==="mvMult"){ mv.mult=+b.dataset.k; renderFoodSheet(); return true; }
+  if (k==="mvFav"){ mv.fav=!mv.fav; mealPatch(mv.id,{fav:mv.fav}); renderFoodSheet(); render(); return true; }
+  if (k==="mvSave"){ mealPatch(mv.id,{name:(mv.name||"Meal").trim().slice(0,60), items:mvItems(mv), updated:Date.now()}); mv.items=mvItems(mv).map(x=>({...x,k:1})); mv.dirty=false; renderFoodSheet(); render(); toast({title:"Meal saved", detail:mv.name}); return true; }
+  if (k==="mvDel"){ if (S.confirm!=="mdel"){ S.confirm="mdel"; renderFoodSheet(); return true; } const before=savedMeals(); S.profile={...S.profile, savedMeals:before.filter(x=>x.id!==mv.id)}; saveProfile(); S.confirm=null; S.foodAdd=null; renderFoodSheet(); render();
+    toast({title:"Meal deleted", detail:mv.name, kind:"del"}, ()=>{ S.profile={...S.profile, savedMeals:before}; saveProfile(); render(); }); return true; }
+  if (k==="mvAdd"){ if (mv.dirty) mealPatch(mv.id,{items:mvItems(mv), name:mv.name}); S.joinMeal={id:mv.id, name:mv.name, keep:S.tray||[]}; S.tray=[]; S.foodAdd=null; renderFoodSheet(); S.addTab="search"; go("foodadd"); setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); return true; }
+  if (k==="mvTray"||k==="mvLog"){ const m={id:mv.id, name:mv.name, items:mvItems(mv).map(x=>({...x, kcal:Math.round(x.kcal*mv.mult), p:r1(x.p*mv.mult), c:r1(x.c*mv.mult), f:r1(x.f*mv.mult), grams:x.grams?Math.round(x.grams*mv.mult):x.grams, amount:+x.amount?Math.round(x.amount*mv.mult*100)/100:x.amount}))};
+    mealToTray(m); S.foodAdd=null; renderFoodSheet(); if (k==="mvLog") logTray(); else { render(); toast({title:"On your plate", detail:mv.name}); } return true; }
+  return false;
+}
+function mealPatch(id, patch){ S.profile={...S.profile, savedMeals:savedMeals().map(m=>m.id===id?{...m,...patch}:m)}; saveProfile(); }
+// Foods picked while adding to a saved meal go into the meal, then the meal opens again
+function joinMealDone(){ const j=S.joinMeal; if (!j) return; const m=savedMeals().find(x=>x.id===j.id), add=(S.tray||[]).map(x=>({name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src})).map(o=>{ Object.keys(o).forEach(k=>o[k]===undefined&&delete o[k]); return o; });
+  if (m&&add.length) mealPatch(m.id,{items:[...m.items,...add], updated:Date.now()}); S.tray=j.keep||[]; S.joinMeal=null; go("foodadd"); S.addTab="meals"; render(); mealOpen(j.id); if (add.length) toast({title:`Added to ${j.name}`, detail:add.map(x=>x.name).join(", ")}); }
 function renderFoodAdd(){
   const tab=S.addTab||"search", q=(S.foodQuery||"").trim().toLowerCase(), date=foodDate();
-  const forMeal=S.joinTo?`<div class="formeal">Adding to <b>${esc(S.joinTo.name)}</b><button class="link muted" data-act="joinCancel">Cancel</button></div>`:S.addMeal?`<div class="formeal">Adding to <b>${mealName(S.addMeal)}</b><button class="link muted" data-act="trayMeal" data-meal="">Change</button></div>`:"";
+  const forMeal=S.joinMeal?`<div class="formeal">Adding to <b>${esc(S.joinMeal.name)}</b><button class="link muted" data-act="joinMealCancel">Cancel</button></div>`:S.joinTo?`<div class="formeal">Adding to <b>${esc(S.joinTo.name)}</b><button class="link muted" data-act="joinCancel">Cancel</button></div>`:S.addMeal?`<div class="formeal">Adding to <b>${mealName(S.addMeal)}</b><button class="link muted" data-act="trayMeal" data-meal="">Change</button></div>`:"";
   if (tab==="ai"){
     const pics=S.aiPics||[];
     return head("Describe it",{back:"food"})+forMeal+`<div class="card aicard">
@@ -2469,7 +2570,7 @@ function renderFoodAdd(){
       ${pics.length?`<div class="aipics">${pics.map((p,i)=>`<figure><img src="${p.url}" alt="Photo ${i+1}"><button data-act="aiPicDel" data-i="${i}" aria-label="Remove photo">✕</button></figure>`).join("")}</div>`:""}
       <div class="grid2"><button class="btn ghost" data-act="aiPicTake">${ICON.camera} Take photo</button><button class="btn ghost" data-act="aiPicPick">${ICON.image} Choose photo</button></div>
       ${S.busy==="aiFood"?`<div class="aiwork"><div class="aiorb"><i></i><i></i><i></i>${ICON.spark}</div><b id="aiStep">${pics.length?"Looking at your photo":"Reading what you ate"}</b><div class="aibar"><i></i></div></div>`:`<button class="btn orange" data-act="aiFoodGo">Work it out</button>`}
-      <div class="aitips"><b>It can read</b><div><span>🍽️ A plate of food</span><span>🏷️ A nutrition label</span><span>📖 A recipe card (Mindful Chef, Gousto, HelloFresh)</span><span>📱 A menu or app screenshot</span></div><span class="small muted">Printed numbers are copied exactly. Say how much you had ("1.2 portions, extra chicken") and it adjusts. Everything lands in your basket to check first.</span></div>
+      <div class="aitips"><b>It can read</b><div><span>🍽️ A plate of food</span><span>🏷️ A nutrition label</span><span>📖 A recipe card (Mindful Chef, Gousto, HelloFresh)</span><span>📱 A menu or app screenshot</span></div><span class="small muted">Printed numbers are copied exactly. Say how much you had ("1.2 portions, extra chicken") and it adjusts. Everything lands on your plate to check first.</span></div>
       ${!sampler?`<span class="small warn">AI isn't available here.</span>`:""}
       <input type="file" id="aiCam" accept="image/*" capture="environment" hidden><input type="file" id="aiLib" accept="image/*" multiple hidden></div>`+trayBar(date);
   }
@@ -2477,24 +2578,22 @@ function renderFoodAdd(){
     return head("Manual entry",{back:"foodadd"})+forMeal+`<div class="card"><label class="lab">Name<input class="field" id="qaName" placeholder="e.g. Office cake"></label>
       <div class="grid2"><label class="lab">Calories<input class="field" id="qaK" inputmode="decimal"></label><label class="lab">Protein g<input class="field" id="qaP" inputmode="decimal"></label><label class="lab">Carbs g<input class="field" id="qaC" inputmode="decimal"></label><label class="lab">Fat g<input class="field" id="qaF" inputmode="decimal"></label></div>
       <span class="small muted" id="qaNote">Put in the macros and the calories fill in, or the calories and two macros and the third fills in.</span>
-      <button class="btn orange" data-act="quickToTray">Add to basket</button></div>`+trayBar(date);
+      <button class="btn orange" data-act="quickToTray">Add to plate</button></div>`+trayBar(date);
   }
-  if (tab==="mine"){
-    const all=[...S.foods].sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||a.name.localeCompare(b.name));
-    return head("My foods",{back:"foodadd"})+(all.length?`<div class="card"><div class="list">${all.map(f=>`<div class="li addli"><button class="starb ${f.fav?"on":""}" data-act="favTog" data-id="${f.id}" aria-label="Favourite">★</button><button class="btnli grow" data-act="pickFood" data-id="${f.id}"><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub num">${fmtN(f.per100.kcal)} kcal/100g · ${f.uses||0} logs</span></button><button class="plusb" data-act="pickFood" data-id="${f.id}" data-quick="1" aria-label="Add to basket">+</button></div>`).join("")}</div></div>`:`<p class="small muted">Foods you log are saved here. Star the ones you have most.</p>`)+trayBar(date);
-  }
+  if (tab==="mine") return mineTab(date);
+  if (tab==="meals") return mealsTab(date);
   const meals=savedMeals(), mHits=q?meals.filter(m=>m.name.toLowerCase().includes(q)||m.items.some(x=>(x.name||"").toLowerCase().includes(q))):meals;
   const saved=q?S.foods.filter(f=>(f.name+" "+(f.brand||"")).toLowerCase().includes(q)).slice(0,6):[], dbAll=q?searchDb(q,40).filter(([i])=>!S.foods.some(f=>f.id==="usda-"+i)):[], dbHits=dbAll.slice(0,S.moreHits?40:8);
   if (q && FOODDB===undefined) loadFoodDb();
   const recent=[...S.foods].sort((a,b)=>(b.last||0)-(a.last||0)).filter(f=>f.last).slice(0,8), favs=S.foods.filter(f=>f.fav);
   const amt=f=>{ const d=defaultAmt(f); return `<span class="num">${fmtN(foodMacros(f,d.amount,d.unit).kcal)} kcal · ${d.unit==="serving"?esc((f.serving||{}).label||"serving"):d.amount+" "+d.unit}</span>`; };
-  const row=(f,act,attr,sub)=>`<div class="li addli"><button class="btnli grow" data-act="${act}" ${attr}><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub">${sub}</span></button><button class="plusb" data-act="${act}" ${attr} data-quick="1" aria-label="Add to basket">+</button></div>`;
+  const row=(f,act,attr,sub)=>`<div class="li addli"><button class="btnli grow" data-act="${act}" ${attr}><span><b>${esc(f.name)}</b>${f.brand?` <span class="muted small">${esc(f.brand)}</span>`:""}</span><span class="sub">${sub}</span></button><button class="plusb" data-act="${act}" ${attr} data-quick="1" aria-label="Add to plate">+</button></div>`;
   return head("Search",{back:"food"})+forMeal+`<div class="searchbar"><span class="sb">${ICON.search}<input id="foodQ" placeholder="Search foods, brands and your meals" value="${esc(S.foodQuery||"")}" autocomplete="off" aria-label="Search foods"></span></div>
-    ${q?"":`<div class="srow2"><button class="chip" data-act="addTab" data-tab="quick">✎ Manual entry</button><button class="chip" data-act="addTab" data-tab="mine">My foods</button></div>`}
-    ${mHits.length?`<div class="card"><h3>${q?"Your meals":"Your meals"}</h3><div class="smeals">${mHits.slice(0,q?4:8).map(mealCard).join("")}</div></div>`:""}
+    ${q?"":`<div class="sbtns"><button data-act="addTab" data-tab="quick"><i>${ICON.pencil}</i><b>Manual entry</b></button><button data-act="addTab" data-tab="mine"><i>${ICON.apple}</i><b>My foods</b></button><button data-act="addTab" data-tab="meals"><i>${ICON.bowl}</i><b>My meals</b></button></div>`}
+    ${q&&mHits.length&&!S.joinMeal?`<div class="card"><h3>Your meals</h3><div class="mcards">${mHits.slice(0,3).map(mealCard2).join("")}</div></div>`:""}
     ${!q&&favs.length?`<div class="card"><h3>Favourites</h3><div class="list">${favs.slice(0,8).map(f=>row(f,"pickFood",`data-id="${f.id}"`,amt(f))).join("")}</div></div>`:""}
     ${!q&&recent.length?`<div class="card"><h3>Recent</h3><div class="list">${recent.filter(f=>!f.fav).map(f=>row(f,"pickFood",`data-id="${f.id}"`,amt(f))).join("")}</div></div>`:""}
-    ${!q&&!recent.length&&!meals.length?`<div class="card shint"><b>Tap a food to log it now, or + to add it to your basket</b><span class="small muted">The basket lets you build a whole meal and log it in one go. Select foods in your log to save them as a meal you can add with one tap.</span></div>`:""}
+    ${!q&&!recent.length?`<div class="card shint"><b>Tap a food to log it now, or + to put it on your plate</b><span class="small muted">Your plate collects several foods so a whole meal logs in one go.</span></div>`:""}
     ${q?`<div class="card"><div class="list">
       ${saved.map(f=>row(f,"pickFood",`data-id="${f.id}"`,`<span class="tag">Saved</span>${amt(f)}`)).join("")}
       ${dbHits.map(([i,x])=>row({name:prettyName(x[0])},"pickDb",`data-i="${i}"`,`<span class="num">${fmtN(x[1])} kcal/100g · ${x[2]}P ${x[3]}C ${x[4]}F</span>`)).join("")}
@@ -2503,9 +2602,9 @@ function renderFoodAdd(){
       ${!saved.length&&!dbHits.length&&FOODDB?`<p class="small muted">Nothing in the database matches. Try the AI lookup below.</p>`:""}
       ${sampler?`<button class="li btnli" data-act="askFood"><span><b>${S.busy==="askFood"?"Looking it up…":`Look up "${esc(S.foodQuery.trim())}" with AI`}</b> <span class="muted small">brands, restaurants, anything</span></span><span>${S.busy==="askFood"?'<span class="spinner"></span>':""}</span></button>`:""}
       ${(S.aiFoods||[]).map((f,i)=>row(f,"pickAi",`data-i="${i}"`,`<span class="tag rep">AI estimate</span><span class="num">${fmtN(f.per100.kcal)} kcal/100g</span>`)).join("")}</div></div>`:""}
-    <div class="slinks"><button class="link" data-act="addTab" data-tab="quick">Manual entry</button><button class="link" data-act="addTab" data-tab="mine">My foods</button></div>`+trayBar(date);
+`+trayBar(date);
 }
-/* AI: type what you ate, photograph it, or both. Items land in the basket to check. */
+/* AI: type what you ate, photograph it, or both. Items land in your plate to check. */
 async function aiFood(){
   const txt=(($("#aiText")||{}).value||"").trim(); S.aiText=txt; const pics=S.aiPics||[];
   if (!txt&&!pics.length){ toast("Type what you ate, add a photo, or both"); return; }
@@ -2526,7 +2625,8 @@ Reply with only JSON: {"meal_name": a short natural name for the whole thing suc
     items.forEach(x=>{ S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:String(x.name).slice(0,60), amount:+x.amount||+x.grams||"", unit:String(x.unit||(+x.grams?"g":"")).slice(0,12), g:Math.round(+x.grams||0), kcal:Math.round(+x.kcal||0), p:r1(+x.p||0), f:r1(+x.f||0), c:r1(+x.c||0), src:x.source==="printed"?"printed":imgs.length?"photo":"coach", base:{amount:+x.amount||1, unit:String(x.unit||"portion").slice(0,12), kcal:+x.kcal||0, p:+x.p||0, c:+x.c||0, f:+x.f||0, grams:+x.grams||0}}]; });
     S.aiNotes=res.notes?String(res.notes).slice(0,200):""; S.aiText=""; S.aiPics=[]; S.trayOpen=true;
     if (items.length>1&&!(S.tray||[]).slice(0,-items.length).length) S.trayGroup={on:true, name:String(res.meal_name||"").slice(0,60), auto:true};
-    toast({title:`${items.length} food${items.length>1?"s":""} in your basket`, detail:items.some(x=>x.source==="printed")?"Read from your photo. Tap one to change the amount.":"Tap any to change the amount, then log"});
+    if (!S.joinMeal&&(items.some(x=>x.source==="printed")||items.length>1)) S.mealSuggest={name:String(res.meal_name||items[0].name||"Meal").slice(0,60)};
+    toast({title:`${items.length} food${items.length>1?"s":""} on your plate`, detail:items.some(x=>x.source==="printed")?"Read from your photo. Tap one to change the amount.":"Tap any to change the amount, then log"});
   }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to use this":e&&e.code==="empty"?"Couldn't work that out. Add a bit more detail.":"That didn't work. Try again."); }
   clearInterval(tick); S.busy=null; render();
 }
@@ -2542,6 +2642,7 @@ function renderFoodSheet(){
   if (!a){ hideAnim(el,240); if ($("#chat").hidden && ($("#actions").hidden||$("#actions").classList.contains("out"))) hideAnim($("#scrim")); return; }
   el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
   if (a.ed){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+edHtml(a.ed); return; }
+  if (a.mv){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+mvHtml(a.mv); return; }
   const special=foodSheetSpecial(a); if (special){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+special; return; }
   let body;
   if (a.quick){
@@ -2561,7 +2662,7 @@ function renderFoodSheet(){
   const mealSel=a.entryId?`<div class="lab">Meal<div class="chips">${MEALS.map(([k,n])=>`<button class="chip" data-fs="meal" data-m="${k}" aria-pressed="${(a.meal||a.autoMeal||"")===k}">${n}</button>`).join("")}</div></div>`:"";
   $("#foodSheetIn").innerHTML=`<div class="grab"></div>${body}${mealSel}
     ${!a.quick&&a.food&&a.food.id&&S.foods.some(x=>x.id===a.food.id)?`<button class="link" data-fs="fav">${a.food.fav?"★ Favourite":"☆ Add to favourites"}</button>`:""}
-    ${fresh?`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to basket</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} in your basket`:""}</span>`:`<button class="btn orange" data-fs="save">Update</button>`}
+    ${fresh?`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to plate</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} on your plate`:""}</span>`:`<button class="btn orange" data-fs="save">Update</button>`}
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
     <button class="btn ghost" data-fs="close">Cancel</button>`;
 }
@@ -2610,8 +2711,9 @@ function edHtml(ed){
     <details class="ednum"${ed.numOpen?" open":""}><summary>${f&&!ed.ovr?"Check the per 100 g numbers":"Edit the numbers yourself"}</summary>
       ${f&&!ed.ovr?per100Editor(f,{src:ed.src}):`<div class="grid4"><label class="lab">kcal<input class="field" id="qaK" inputmode="decimal" value="${Math.round(v.kcal)}" data-user="1"></label><label class="lab">Protein<input class="field" id="qaP" inputmode="decimal" value="${r1(v.p)}" data-user="1"></label><label class="lab">Carbs<input class="field" id="qaC" inputmode="decimal" value="${r1(v.c)}" data-user="1"></label><label class="lab">Fat<input class="field" id="qaF" inputmode="decimal" value="${r1(v.f)}" data-user="1"></label></div><span class="small muted" id="qaNote">Clear a box and it fills itself in from the others.</span>`}</details>
     ${ed.mode==="entry"?`<button class="btn orange" data-fs="edSave">Save</button>`
-      :ed.mode==="tray"?`<button class="btn orange" data-fs="edSave">Update basket</button>`
-      :`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to basket</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} in your basket`:""}</span>`}
+      :ed.mode==="tray"?`<button class="btn orange" data-fs="edSave">Update plate</button>`
+      :S.joinMeal?`<button class="btn orange" data-fs="tray">Add to ${esc(S.joinMeal.name)}</button>`
+      :`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to plate</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} on your plate`:""}</span>`}
     ${ed.mode==="new"&&f&&f.id&&S.foods.some(x=>x.id===f.id)?`<button class="link center" data-fs="fav">${f.fav?"★ In your favourites":"☆ Add to favourites"}</button>`:""}
   </div>`;
 }
@@ -2674,7 +2776,8 @@ function edClick(k, b){
     if (ed.kind==="food"&&!ed.ovr){ const f={...ed.food, name:r.name}; saveFood({...f, lastAmt:+ed.amount, lastUnit:ed.unit==="ml"?"g":ed.unit}); trayAdd(f, +ed.amount, ed.unit==="ml"?"g":ed.unit, ed.src); }
     else S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:r.name, amount:r.amount, unit:r.unit, g:r.grams||0, kcal:r.kcal, p:r.p, f:r.f, c:r.c, base:r.base, src:ed.src||"food"}];
     S.foodAdd=null; S.pendingBarcode=null; renderFoodSheet();
-    if (k==="tray"){ render(); toast({title:"Added to basket", detail:r.name}); } else logTray(); return true; }
+    if (S.joinMeal){ joinMealDone(); return true; }
+    if (k==="tray"){ render(); toast({title:"On your plate", detail:r.name}); } else logTray(); return true; }
   return false;
 }
 function editEntryOpen(id){
@@ -2720,7 +2823,7 @@ function foodSheetSpecial(a){
   if (a.move){ return `<h2>Move ${a.move.ids.length} food${a.move.ids.length>1?"s":""} to</h2><div class="chips obbig">${MEALS.map(([k,n])=>`<button class="chip" data-fs="moveTo" data-m="${k}">${n}</button>`).join("")}</div><button class="btn ghost" data-fs="close">Cancel</button>`; }
   if (a.mealView){ const m=savedMeals().find(x=>x.id===a.mealView); if (!m) return `<h2>Meal not found</h2><button class="btn ghost" data-fs="close">Close</button>`; const s=sumOf(m.items), n=(S.tray||[]).length;
     return `<h2>${esc(m.name)}</h2><div class="smlist">${m.items.map(e=>`<div><span>${esc(e.name)}${e.amount?` <em class="muted">${esc(amtText(e.amount,e.unit))}</em>`:""}</span><span class="num">${fmtN(e.kcal)}</span></div>`).join("")}<div class="tot"><b>Total</b><b class="num">${fmtN(s.kcal)} kcal · ${Math.round(s.p)}P ${Math.round(s.c)}C ${Math.round(s.f)}F</b></div></div>
-      <div class="grid2"><button class="btn ghost" data-fs="mealTray">Add to basket</button><button class="btn orange" data-fs="mealLog">${n?"Log all":"Log it"}</button></div>
+      <div class="grid2"><button class="btn ghost" data-fs="mealTray">Add to plate</button><button class="btn orange" data-fs="mealLog">${n?"Log all":"Log it"}</button></div>
       <button class="link muted center" data-fs="mealDel">${S.confirm==="mdel"?"Tap again to delete this meal":"Delete this saved meal"}</button>`; }
   return "";
 }
@@ -3582,7 +3685,7 @@ function foodSheetSave(mode){
     }
     const name=(S.tray[a.trayK!=null?a.trayK:S.tray.length-1]||{}).name;
     S.foodAdd=null; S.pendingBarcode=null; S.confirm=null; renderFoodSheet();
-    if (a.trayK!=null||mode==="tray"){ render(); if (a.trayK==null) toast(`${name} added to your basket`); return; }
+    if (a.trayK!=null||mode==="tray"){ render(); if (a.trayK==null) toast(`${name} added on your plate`); return; }
     logTray(); return;
   }
   if (a.quick){
@@ -3607,6 +3710,7 @@ $("#foodSheet").addEventListener("click",e=>{
   const k=b.dataset.fs;
   if (k==="close"){ S.foodAdd=null; S.confirm=null; renderFoodSheet(); }
   if (S.foodAdd&&S.foodAdd.ed&&edClick(k,b)) return;
+  if (S.foodAdd&&S.foodAdd.mv&&mvClick(k,b)) return;
   if (k==="save") foodSheetSave("log");
   if (k==="tray") foodSheetSave("tray");
   const date=foodDate(), a=S.foodAdd;
@@ -3633,7 +3737,7 @@ $("#foodSheet").addEventListener("click",e=>{
     saveFoodDay(date); S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); }
   if (k==="moveTo"){ const undo=moveEntries(date, a.move.ids, b.dataset.m);
     S.foodAdd=null; S.fsel=null; renderFoodSheet(); render(); toast({title:`Moved to ${mealName(b.dataset.m)}`, detail:`${a.move.ids.length} food${a.move.ids.length>1?"s":""}`}, undo); }
-  if (k==="mealTray"||k==="mealLog"){ const m=savedMeals().find(x=>x.id===a.mealView); if (!m) return; mealToTray(m); S.foodAdd=null; renderFoodSheet(); if (k==="mealLog") logTray(); else { render(); toast(`${m.name} added to your basket`); } }
+  if (k==="mealTray"||k==="mealLog"){ const m=savedMeals().find(x=>x.id===a.mealView); if (!m) return; mealToTray(m); S.foodAdd=null; renderFoodSheet(); if (k==="mealLog") logTray(); else { render(); toast(`${m.name} added on your plate`); } }
   if (k==="mealDel"){ if (S.confirm!=="mdel"){ S.confirm="mdel"; renderFoodSheet(); return; } S.profile={...S.profile, savedMeals:savedMeals().filter(x=>x.id!==a.mealView)}; saveProfile(); S.confirm=null; S.foodAdd=null; renderFoodSheet(); render(); toast("Meal deleted"); }
   if (k==="meal"){ S.foodAdd.meal=b.dataset.m; renderFoodSheet(); }
   if (k==="fav"){ const f=S.foods.find(x=>x.id===S.foodAdd.food.id); if (f){ saveFood({...f, fav:!f.fav}); S.foodAdd.food={...S.foodAdd.food, fav:!f.fav}; renderFoodSheet(); } }
@@ -3646,6 +3750,7 @@ function updateFaLive(){
   $("#faK").textContent=fmtN(m.kcal); $("#faP").textContent=r1(m.p); $("#faF").textContent=r1(m.f); $("#faC").textContent=r1(m.c);
 }
 $("#foodSheet").addEventListener("input",e=>{ const ed=S.foodAdd&&S.foodAdd.ed, id=e.target.id;
+  if (id==="mvName"&&S.foodAdd&&S.foodAdd.mv){ S.foodAdd.mv.name=e.target.value; if (!S.foodAdd.mv.dirty){ S.foodAdd.mv.dirty=true; const v=e.target.value, pos=e.target.selectionStart; renderFoodSheet(); const i=$("#mvName"); if (i){ i.value=v; i.focus(); try{ i.setSelectionRange(pos,pos); }catch(err){} } } return; }
   if (ed){
     if (id==="edAmt"){ const v=parseFloat(String(e.target.value).replace(",",".")); if (v>0){ ed.amount=v; ed.typing=false; edLive(); } return; }
     if (id==="edName"){ ed.name=e.target.value; return; }
@@ -3836,6 +3941,7 @@ $("#main").addEventListener("input", e=>{
   if (i.id==="aiText"){ S.aiText=i.value; return; }
   if (/^qa[KPCF]$/.test(i.id)){ qaAuto(i); return; }
   if (i.id==="trayGrpName"){ S.trayGroup={on:true, name:i.value}; const t=document.querySelector(".trayt b"); if (t) t.textContent=(i.value||"Meal")+" → "+mealName(trayMeal(foodDate())); return; }
+  if (i.id==="mineQ"||i.id==="mealQ"){ S[i.id]=i.value; if (i.id==="mineQ") S.mineN=8; const pos=i.selectionStart, id=i.id; render(); const n=$("#"+id); if (n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } return; }
   if (i.id==="foodQ"){ S.moreHits=false; if (S.aiFoods&&S.aiFoods.length) S.aiFoods=[]; S.foodQuery=i.value; const pos=i.selectionStart; render(); const n=$("#foodQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } }
 });
 /* drag a food entry to another meal */
@@ -4033,26 +4139,35 @@ $("#main").addEventListener("click", async e=>{
     case "trayOpen": S.trayOpen=!S.trayOpen; render(); return;
     case "trayMeal": S.addMeal=b.dataset.meal||null; render(); return;
     case "trayEdit": { const i=+b.dataset.i, x=S.tray[i]; if (!x) return; edOpen(x,"tray",{trayK:i}); return; }
-    case "mealView": S.foodAdd={mealView:b.dataset.id}; S.confirm=null; renderFoodSheet(); return;
-    case "mealAdd": { const m=savedMeals().find(x=>x.id===b.dataset.id); if (!m) return; mealToTray(m); render(); toast(`${m.name} added to your basket`); return; }
+    case "mealView": mealOpen(b.dataset.id); return;
+    case "mealAdd": { const m=savedMeals().find(x=>x.id===b.dataset.id); if (!m) return; mealToTray(m); render(); toast({title:"On your plate", detail:m.name}); return; }
     case "aiPicTake": S.aiText=($("#aiText")||{}).value||S.aiText; $("#aiCam").click(); return;
     case "aiPicPick": S.aiText=($("#aiText")||{}).value||S.aiText; $("#aiLib").click(); return;
     case "aiPicDel": S.aiText=($("#aiText")||{}).value||S.aiText; S.aiPics.splice(+b.dataset.i,1); render(); return;
     case "aiFoodGo": aiFood(); return;
     case "moreHits": S.moreHits=true; render(); return;
     case "joinCancel": S.joinTo=null; render(); return;
+    case "joinMealDone": joinMealDone(); return;
+    case "joinMealCancel": { const j=S.joinMeal; S.tray=(j&&j.keep)||[]; S.joinMeal=null; S.addTab="meals"; render(); if (j) mealOpen(j.id); return; }
+    case "mineF": S.mineF=b.dataset.f; S.mineN=8; render(); return;
+    case "mineMore": S.mineN=(S.mineN||8)+8; render(); return;
+    case "mealMore": S.mealN=(S.mealN||6)+6; render(); return;
+    case "sugNo": S.mealSuggest=null; render(); return;
+    case "sugSave": { const sg=S.mealSuggest, tray=S.tray||[]; if (!sg||!tray.length) return;
+      const m=saveMealFrom(sg.name, tray.map(x=>({name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src})));
+      tray.forEach(x=>x.fromMeal=m.id); if (tray.length>1) S.trayGroup={on:true, name:m.name, saved:m.id}; S.mealSuggest=null; render(); toast({title:"Saved to My meals", detail:m.name}); return; }
     case "ftoggle": { S.foodMode=S.foodMode==="remaining"?"consumed":"remaining"; try{ localStorage.setItem("ajfoodmode",S.foodMode); }catch(e){} render(); return; }
     case "fday": { const d=parseD(foodDate()); d.setDate(d.getDate()+(+b.dataset.d)); const s=ymd(d); if (s>ymd(new Date())) return; S.foodDate=s; render(); return; }
-    case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f); return; }
-    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f); return; }
+    case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"On your plate", detail:f.name}); return; } openFood(f); return; }
+    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"On your plate", detail:f.name}); return; } openFood(f); return; }
     case "askFood": askFood(S.foodQuery.trim()); return;
-    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f, defaultAmt(f)); return; }
+    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); trayAdd(f,d.amount,d.unit); render(); toast({title:"On your plate", detail:f.name}); return; } openFood(f, defaultAmt(f)); return; }
     case "foodAddOpen": S.addTab=b.dataset.tab||"search"; if (!(S.tray||[]).length) S.addMeal=null; S.aiFoods=[]; go("foodadd"); if (S.addTab==="search") setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); if (S.addTab==="ai") setTimeout(()=>{ const x=$("#aiText"); x&&!x.value&&x.focus(); },80); return;
     case "addTo": { S.addMeal=b.dataset.meal||null; if (S.tab!=="foodadd"){ S.addTab="search"; go("foodadd"); } else render(); return; }
-    case "addTab": S.addTab=b.dataset.tab; render(); return;
+    case "addTab": S.addTab=b.dataset.tab; if (b.dataset.tab==="mine") S.mineN=8; if (b.dataset.tab==="meals") S.mealN=6; render(); window.scrollTo(0,0); return;
     case "favTog": { const f=S.foods.find(x=>x.id===b.dataset.id); if (f){ saveFood({...f, fav:!f.fav}); render(); } return; }
     case "trayDel": S.tray.splice(+b.dataset.i,1); render(); return;
-    case "quickToTray": { const k=+$("#qaK").value||0; if (!k){ toast("Enter the calories"); return; } if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null; S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:$("#qaName").value.trim()||"Quick add", amount:"", unit:"", kcal:k, p:+$("#qaP").value||0, f:+$("#qaF").value||0, c:+$("#qaC").value||0, src:"quick"}]; render(); toast("Added to your basket"); return; }
+    case "quickToTray": { const k=+$("#qaK").value||0; if (!k){ toast("Enter the calories"); return; } if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null; S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:$("#qaName").value.trim()||"Quick add", amount:"", unit:"", kcal:k, p:+$("#qaP").value||0, f:+$("#qaF").value||0, c:+$("#qaC").value||0, src:"quick"}]; render(); toast("Added on your plate"); return; }
     case "trayLog": logTray(); return;
     case "trayLogOld": { const date=foodDate(), tray=S.tray||[]; if (!tray.length) return; let t0=entryTime(date);
       tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"}; if (S.addMeal) en.meal=S.addMeal; addFoodEntry(date,en);
