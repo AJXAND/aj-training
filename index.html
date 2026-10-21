@@ -270,7 +270,14 @@ svg text{fill:var(--muted);font-family:var(--body);font-size:11px}
 .sheet .bottom{display:flex;gap:8px;padding-block:10px}
 .sheet .bottom input{flex:1;padding:13px 16px;border-radius:999px;border:0;background:var(--card)}
 .sheet .bottom .btn{width:auto}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--navh) + 96px + env(safe-area-inset-bottom,0px));background:var(--pill);color:var(--pill-ink);padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;z-index:30;max-width:90vw;text-align:center}
+.toast{position:fixed;left:12px;right:12px;margin:0 auto;max-width:520px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:80;display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 12px;border-radius:20px;background:color-mix(in srgb,var(--card) 92%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);color:var(--ink);box-shadow:0 14px 40px rgba(0,0,0,.18),0 0 0 1px color-mix(in srgb,var(--ink) 8%,transparent);overflow:hidden;text-align:left}
+.toast .tic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--orange);color:#fff}.toast .tic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.toast.warn .tic{background:var(--warn)}.toast.del .tic{background:var(--ink);color:var(--card)}
+.toast .ttx{display:grid;min-width:0;gap:1px}.toast .ttx b{font:700 15px var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toast .ttx em{font-style:normal;font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toast .tundo{margin:0;border:0;background:var(--sunk);color:var(--ink);font:700 14px var(--body);padding:9px 14px;border-radius:999px;cursor:pointer}
+.toast .tbar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--orange);opacity:.55;transform-origin:left;animation:tbar var(--tdur,3s) linear both}
+.toast.out{animation:toastOut .22s ease-in both}
+@keyframes tbar{to{transform:scaleX(0)}} @keyframes toastOut{to{opacity:0;transform:translateY(-16px) scale(.96)}}
 
 /* v3 additions */
 h1{margin-top:2px}
@@ -342,6 +349,36 @@ h1{margin-top:2px}
 .actions{touch-action:pan-y}
 .srow2{display:flex;gap:8px}.srow2 .chip{background:var(--card)}
 .fhtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.fhtop .fdate{grid-template-columns:32px auto 32px;margin:0}.fhtop .seg{flex:none;width:auto}.fhtop .seg button{padding:7px 14px}
+/* food editor */
+.ed{display:grid;gap:16px}
+.edhd{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start}.edt{display:grid;gap:4px;min-width:0}
+.edname{display:flex;gap:8px;align-items:flex-start;border:0;background:none;padding:0;text-align:left;color:var(--ink);font:inherit;cursor:pointer}.edname b{font:800 21px/1.2 var(--display);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.edname i{font-style:normal;color:var(--muted);font-size:15px;margin-top:3px}
+.eddel{height:38px;min-width:38px;border-radius:12px;border:0;background:var(--sunk);color:var(--muted);display:grid;place-items:center;cursor:pointer;font:700 13px var(--body);padding:0 10px}.eddel svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.eddel.on{background:var(--warn);color:#fff}
+.edsum{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--sunk);border-radius:20px;padding:16px 18px}
+.edk{display:grid;justify-items:start}.edk b{font:800 34px/1 var(--display);letter-spacing:-.5px}.edk span{font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+.edm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.edm span{display:grid;justify-items:center;background:var(--card);border-radius:14px;padding:8px 4px}.edm b{font:800 18px var(--display)}.edm em{font-style:normal;font-size:11px;font-weight:700;color:var(--muted)}
+.edm span:nth-child(1) b{color:var(--prot)}.edm span:nth-child(2) b{color:var(--carb)}.edm span:nth-child(3) b{color:var(--fat)}
+.edamt{display:grid;grid-template-columns:56px minmax(0,1fr) 56px;gap:10px;align-items:center}.edamt>button{height:56px;border-radius:18px;border:0;background:var(--sunk);color:var(--ink);font-size:28px;font-weight:700;cursor:pointer}
+.edamt label{display:grid;justify-items:center}.edamt input{width:120px;text-align:center;font:800 32px var(--display);border:0;background:none;color:var(--ink);padding:0}.edamt input:focus{outline:none}.edamt em{font-style:normal;color:var(--muted);font-size:13px;font-weight:600;text-align:center}
+.edmult{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.edmult button{border:0;border-radius:12px;background:var(--sunk);color:var(--ink);font:700 14px var(--body);padding:9px 0;cursor:pointer}.edmult button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.edai{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;border-radius:16px;padding:6px 6px 6px 12px;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(120deg,#FF9A3D,#FF6B1A,#C2410C) border-box;border:1.5px solid transparent}
+.edaic svg{width:18px;height:18px;fill:var(--orange)}.edai input{border:0;background:none;font:500 15px var(--body);color:var(--ink);min-width:0;padding:8px 0}.edai input:focus{outline:none}
+.edai button{border:0;border-radius:12px;background:var(--orange);color:#fff;font:700 14px var(--body);padding:10px 14px;cursor:pointer;min-width:74px;display:grid;place-items:center}.edai.busy{animation:aipulse 1.2s ease-in-out infinite}
+.edai .spinner{border-color:rgba(255,255,255,.4);border-top-color:#fff}
+.edainote{margin-top:-8px}
+.edadd{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;border:1.5px dashed var(--line);background:none;border-radius:16px;padding:10px 12px;text-align:left;color:var(--ink);font:inherit;cursor:pointer}.edadd>span:last-child{display:grid}.edadd em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.edmeal{display:flex;gap:6px;overflow-x:auto;margin:0 -2px;padding:0 2px 2px}.edmeal .chip{flex:none;padding:8px 13px;font-size:13.5px}
+.ednum summary{font:700 14px var(--body);color:var(--muted);cursor:pointer;list-style:none;padding:2px 0}.ednum summary::-webkit-details-marker{display:none}.ednum summary::after{content:" ›"}.ednum[open] summary{margin-bottom:10px}
+.ednum .fedit{background:none;padding:0}.edunits{margin-top:-6px}
+@keyframes aipulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--orange) 18%,transparent)}}
+/* AI working */
+.aiwork{display:grid;justify-items:center;gap:12px;padding:18px 0 8px}
+.aiorb{position:relative;width:64px;height:64px;display:grid;place-items:center}.aiorb svg{width:26px;height:26px;fill:var(--orange);position:relative;animation:aispin 2.4s ease-in-out infinite}
+.aiorb i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--orange);opacity:0;animation:airing 1.8s ease-out infinite}.aiorb i:nth-child(2){animation-delay:.6s}.aiorb i:nth-child(3){animation-delay:1.2s}
+#aiStep{font:700 15px var(--body)}#aiStep.in{animation:pgUp .35s var(--ease) both}
+.aibar{width:70%;height:4px;border-radius:2px;background:var(--sunk);overflow:hidden}.aibar i{display:block;height:100%;width:35%;border-radius:2px;background:linear-gradient(90deg,#FF9A3D,#FF6B1A);animation:aibar 1.3s ease-in-out infinite}
+@keyframes airing{0%{transform:scale(.4);opacity:.7}100%{transform:scale(1.25);opacity:0}} @keyframes aispin{50%{transform:scale(1.15) rotate(20deg)}} @keyframes aibar{0%{transform:translateX(-100%)}100%{transform:translateX(290%)}}
+.aitips{display:grid;gap:8px;background:var(--sunk);border-radius:16px;padding:12px 14px}.aitips>b{font-size:13px;color:var(--muted)}.aitips>div{display:flex;flex-wrap:wrap;gap:6px}.aitips>div span{background:var(--card);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:600}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -755,7 +792,7 @@ main.pg .tile svg path{stroke-dasharray:600;stroke-dashoffset:600;animation:draw
 .ob.out{animation:fadeOut .25s ease both}
 @keyframes fadeIn{from{opacity:0}} @keyframes fadeOut{to{opacity:0}}
 @keyframes sheetUp{from{transform:translateY(100%)}} @keyframes sheetDown{to{transform:translateY(100%)}}
-@keyframes toastIn{from{opacity:0;transform:translate(-50%,14px) scale(.92)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(-24px) scale(.94)}}
 @keyframes slideIn{from{transform:translateX(100%)}} @keyframes slideOut{to{transform:translateX(100%)}}
 /* onboarding steps slide with direction */
 .ob{--sz:1;--sp:1}
@@ -2330,7 +2367,7 @@ function guessMeal(items, date){
   return Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0];
 }
 function entryRow(e, sel){
-  const on=sel&&sel.includes(e.id), meta=[e.amount?esc(amtText(e.amount,e.unit)):"", e.src==="coach"?"AI":e.src==="photo"?"photo estimate":e.src==="label"?"label scan":"", e.sample?"sample":""].filter(Boolean).join(" · ");
+  const on=sel&&sel.includes(e.id), meta=[e.amount?esc(amtText(e.amount,e.unit)):"", e.src==="coach"?"AI":e.src==="photo"?"photo estimate":e.src==="printed"?"read from photo":e.src==="label"?"label scan":"", e.sample?"sample":""].filter(Boolean).join(" · ");
   return `<div class="fe ${on?"on":""}" data-id="${e.id}">${sel?`<span class="fchk" aria-hidden="true">${on?HICON.check:""}</span>`:`<span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span>`}<button class="fbody" data-act="selTog" data-id="${e.id}">
       <span class="fn"><b>${esc(e.name)}</b>${meta?`<span class="muted small num">${meta}</span>`:""}</span>
       <span class="fk num"><b>${fmtN(e.kcal)}</b>${macroMini(e)}</span></button></div>`;
@@ -2398,12 +2435,15 @@ function logTray(){
   // today the sort decides (and keeps deciding as you log more); a meal you picked, or a past day, is fixed
   const fix=S.addMeal||(date!==ymd(new Date())?meal:null), grp=trayGrouped()?uid("g"):null, grpName=grp?((S.trayGroup.name||"").trim()||"Meal"):null;
   if (grp&&!S.trayGroup.saved) saveMealFrom(grpName, tray.map(x=>({name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src})));
-  tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, ...(fix?{meal:fix}:{}), ...(grp?{grp, grpName}:{}), name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"};
+  let join=null; if (S.joinTo&&S.joinTo.date===date){ const doc=S.all.foodlog[date], tgt=doc&&doc.entries.find(e=>e.id===S.joinTo.id);
+    if (tgt){ const m=(S._mm||{})[tgt.id]||tgt.meal||meal; if (!tgt.grp){ tgt.grp=uid("g"); tgt.grpName=tgt.name; } tgt.meal=m; join={grp:tgt.grp, grpName:tgt.grpName, meal:m}; S.openGrp=tgt.grp; } }
+  S.joinTo=null;
+  tray.forEach((x,i)=>{ const en={id:uid("f"), t:t0+i, ...(fix?{meal:fix}:{}), ...(grp?{grp, grpName}:{}), ...(join||{}), ...(x.base?{base:x.base}:{}), name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src||"food"};
     if (!en.foodId) delete en.foodId; addFoodEntry(date,en); ids.push(en.id);
     if (x.food){ const f=S.foods.find(y=>y.id===x.food.id)||x.food; saveFood({...f, uses:(f.uses||0)+1, last:Date.now(), lastAmt:x.amount, lastUnit:x.unit}); } });
   const tk=tray.reduce((a,x)=>a+x.kcal,0); S.tray=[]; S.trayOpen=false; S.aiNotes=""; S.foodQuery=""; S.addMeal=null; S.trayGroup=null;
   if (S.tab!=="food") go("food"); else render();
-  toast(`${grp?grpName:tray.length>1?tray.length+" foods":tray[0].name} logged to ${mealName(meal)}: ${fmtN(tk)} kcal`, ()=>{ ids.forEach(id=>removeFoodEntry(date,id)); render(); });
+  toast({title:join?`Added to ${join.grpName}`:`Logged to ${mealName(join?join.meal:meal)}`, detail:`${grp?grpName:tray.length>1?tray.length+" foods":tray[0].name} · ${fmtN(tk)} kcal`}, ()=>{ ids.forEach(id=>removeFoodEntry(date,id)); render(); });
 }
 function savedMeals(){ return S.profile.savedMeals||[]; }
 // Save (or update, by name) a meal to My meals
@@ -2416,15 +2456,15 @@ function mealToTray(m){ if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null; if 
 function mealCard(m){ const s=sumOf(m.items); return `<div class="smeal"><button class="smb" data-act="mealView" data-id="${m.id}"><b>${esc(m.name)}</b><span class="muted small num">${m.items.length} food${m.items.length>1?"s":""} · ${fmtN(s.kcal)} kcal</span>${macroMini(s)}</button><button class="plusb" data-act="mealAdd" data-id="${m.id}" aria-label="Add ${esc(m.name)} to the basket">+</button></div>`; }
 function renderFoodAdd(){
   const tab=S.addTab||"search", q=(S.foodQuery||"").trim().toLowerCase(), date=foodDate();
-  const forMeal=S.addMeal?`<div class="formeal">Adding to <b>${mealName(S.addMeal)}</b><button class="link muted" data-act="trayMeal" data-meal="">Change</button></div>`:"";
+  const forMeal=S.joinTo?`<div class="formeal">Adding to <b>${esc(S.joinTo.name)}</b><button class="link muted" data-act="joinCancel">Cancel</button></div>`:S.addMeal?`<div class="formeal">Adding to <b>${mealName(S.addMeal)}</b><button class="link muted" data-act="trayMeal" data-meal="">Change</button></div>`:"";
   if (tab==="ai"){
     const pics=S.aiPics||[];
     return head("Describe it",{back:"food"})+forMeal+`<div class="card aicard">
       <textarea class="field" id="aiText" rows="3" placeholder="e.g. Two slices of sourdough with butter, two fried eggs and a flat white">${esc(S.aiText||"")}</textarea>
       ${pics.length?`<div class="aipics">${pics.map((p,i)=>`<figure><img src="${p.url}" alt="Photo ${i+1}"><button data-act="aiPicDel" data-i="${i}" aria-label="Remove photo">✕</button></figure>`).join("")}</div>`:""}
       <div class="grid2"><button class="btn ghost" data-act="aiPicTake">${ICON.camera} Take photo</button><button class="btn ghost" data-act="aiPicPick">${ICON.image} Choose photo</button></div>
-      <button class="btn orange" data-act="aiFoodGo" ${S.busy==="aiFood"?"disabled":""}>${S.busy==="aiFood"?'<span class="spinner"></span> Working it out…':"Work it out"}</button>
-      <span class="small muted">Type it, photograph it, or both. Brands, portion sizes and cooking oil make the estimate far more accurate. Everything lands in your basket to check before it's logged.</span>
+      ${S.busy==="aiFood"?`<div class="aiwork"><div class="aiorb"><i></i><i></i><i></i>${ICON.spark}</div><b id="aiStep">${pics.length?"Looking at your photo":"Reading what you ate"}</b><div class="aibar"><i></i></div></div>`:`<button class="btn orange" data-act="aiFoodGo">Work it out</button>`}
+      <div class="aitips"><b>It can read</b><div><span>🍽️ A plate of food</span><span>🏷️ A nutrition label</span><span>📖 A recipe card (Mindful Chef, Gousto, HelloFresh)</span><span>📱 A menu or app screenshot</span></div><span class="small muted">Printed numbers are copied exactly. Say how much you had ("1.2 portions, extra chicken") and it adjusts. Everything lands in your basket to check first.</span></div>
       ${!sampler?`<span class="small warn">AI isn't available here.</span>`:""}
       <input type="file" id="aiCam" accept="image/*" capture="environment" hidden><input type="file" id="aiLib" accept="image/*" multiple hidden></div>`+trayBar(date);
   }
@@ -2467,20 +2507,23 @@ async function aiFood(){
   if (!sampler){ toast("AI isn't available here"); return; }
   if (pics.length&&!S.canImages){ toast("Allow AI to see images to use photos"); return; }
   S.busy="aiFood"; render();
+  const steps=pics.length?["Looking at your photo","Checking for printed nutrition","Spotting each food","Working out portions","Adding up the macros"]:["Reading what you ate","Matching each food","Working out portions","Adding up the macros"]; let si=0;
+  const tick=setInterval(()=>{ const el=$("#aiStep"); if (!el){ return; } si=Math.min(si+1,steps.length-1); el.classList.remove("in"); void el.offsetWidth; el.textContent=steps[si]; el.classList.add("in"); }, 1600);
   try{
-    const imgs=[]; for (const p of pics) imgs.push(await toJpeg(p.blob,1400));
+    const imgs=[]; for (const p of pics) imgs.push(await toJpeg(p.blob,1600));
     const opts={modelTier:"default", cache:false}; if (imgs.length) opts.images=imgs;
     const res=await sampler.json(`You turn what someone ate into food log entries for a UK nutrition tracking app.${txt?`\nWhat they said: """${txt.slice(0,800)}"""`:""}${imgs.length?`\n${imgs.length>1?"The photos show":"The photo shows"} the food: use it to identify each item and judge portion sizes.`:""}
-List each distinct food or drink as its own item. If they gave amounts or counts, use them exactly; otherwise estimate a realistic portion. Use published UK nutrition for named brands and chains where you know it, otherwise standard composition data. Include cooking oil, butter or sauces only if mentioned or clearly visible.
-Reply with only JSON: {"meal_name": a short natural name for the whole thing such as "Chicken stir-fry" or "Eggs on toast", "items":[{"name": short name, "amount": number, "unit": "g" or "ml" or a count word such as "slice" or "egg", "grams": number, "kcal": number, "p": number, "c": number, "f": number}], "notes": one short sentence on what you had to guess, or ""}`,opts);
+If a photo shows printed nutrition information (a pack label, a recipe card such as Mindful Chef, Gousto or HelloFresh, a menu, or an app screenshot), read those numbers exactly for one portion instead of estimating: use the dish or product name, amount 1, unit "portion" (or the serving the label states), and "source": "printed". Prefer the per-portion or per-serving column; if only per 100 g is shown and the pack weight or portion is visible, work it out. If they say they had more or less than one portion, scale it, weighting the parts they mention.
+Otherwise list each distinct food or drink as its own item with "source": "estimate". If they gave amounts or counts, use them exactly; otherwise estimate a realistic portion. Use published UK nutrition for named brands and chains where you know it, otherwise standard composition data. Include cooking oil, butter or sauces only if mentioned or clearly visible.
+Reply with only JSON: {"meal_name": a short natural name for the whole thing such as "Chicken stir-fry" or "Eggs on toast", "items":[{"name": short name, "amount": number, "unit": "g" or "ml" or a count word such as "slice" or "egg", "grams": number, "kcal": number, "p": number, "c": number, "f": number, "source": "printed" or "estimate"}], "notes": one short sentence on what you read or had to guess, or ""}`,opts);
     const items=(res&&Array.isArray(res.items)?res.items:[]).filter(x=>x&&x.name&&+x.kcal>=0).slice(0,15);
     if (!items.length) throw {code:"empty"};
-    items.forEach(x=>{ S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:String(x.name).slice(0,60), amount:+x.amount||+x.grams||"", unit:String(x.unit||(+x.grams?"g":"")).slice(0,12), g:Math.round(+x.grams||0), kcal:Math.round(+x.kcal||0), p:r1(+x.p||0), f:r1(+x.f||0), c:r1(+x.c||0), src:imgs.length?"photo":"coach"}]; });
+    items.forEach(x=>{ S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:String(x.name).slice(0,60), amount:+x.amount||+x.grams||"", unit:String(x.unit||(+x.grams?"g":"")).slice(0,12), g:Math.round(+x.grams||0), kcal:Math.round(+x.kcal||0), p:r1(+x.p||0), f:r1(+x.f||0), c:r1(+x.c||0), src:x.source==="printed"?"printed":imgs.length?"photo":"coach", base:{amount:+x.amount||1, unit:String(x.unit||"portion").slice(0,12), kcal:+x.kcal||0, p:+x.p||0, c:+x.c||0, f:+x.f||0, grams:+x.grams||0}}]; });
     S.aiNotes=res.notes?String(res.notes).slice(0,200):""; S.aiText=""; S.aiPics=[]; S.trayOpen=true;
     if (items.length>1&&!(S.tray||[]).slice(0,-items.length).length) S.trayGroup={on:true, name:String(res.meal_name||"").slice(0,60), auto:true};
-    toast(`${items.length} food${items.length>1?"s":""} in your basket: check them, then log`);
+    toast({title:`${items.length} food${items.length>1?"s":""} in your basket`, detail:items.some(x=>x.source==="printed")?"Read from your photo. Tap one to change the amount.":"Tap any to change the amount, then log"});
   }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to use this":e&&e.code==="empty"?"Couldn't work that out. Add a bit more detail.":"That didn't work. Try again."); }
-  S.busy=null; render();
+  clearInterval(tick); S.busy=null; render();
 }
 function weighCard(){
   const today=ymd(new Date()), w=S.weights.find(x=>x.d===today), a7=avgWindow(today,7);
@@ -2493,6 +2536,7 @@ function renderFoodSheet(){
   const el=$("#foodSheet"), a=S.foodAdd;
   if (!a){ hideAnim(el,240); if ($("#chat").hidden && ($("#actions").hidden||$("#actions").classList.contains("out"))) hideAnim($("#scrim")); return; }
   el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
+  if (a.ed){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+edHtml(a.ed); return; }
   const special=foodSheetSpecial(a); if (special){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+special; return; }
   let body;
   if (a.quick){
@@ -2516,8 +2560,120 @@ function renderFoodSheet(){
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
     <button class="btn ghost" data-fs="close">Cancel</button>`;
 }
+/* ---------- Food editor: one sheet for editing a logged food, a basket item, or a food you're about to add ----------
+   You change the amount (stepper, or ½× to 2× of what it was), tell AI what was different ("extra chicken, less noodles"),
+   add something to it, or, if you really want, edit the numbers. Calories and macros follow along live. */
+const unitWord=(u,a)=>{ if (!u||u==="g") return "g"; if (u==="ml") return "ml"; if (/^\d/.test(u)) return "× "+u; return +a===1?u:u.replace(/(s|sh|ch|x)$/,"$1e")+"s"; };
+function edOpen(src, mode, extra){
+  const ed={mode, ovr:null, editName:false, ...extra};
+  if (mode==="entry"){ const en=src, f=en.foodId&&S.foods.find(x=>x.id===en.foodId);
+    Object.assign(ed,{id:en.id, t:en.t, name:en.name, meal:en.meal, autoMeal:(S._mm||{})[en.id]||mealOf(en), src:en.src, grp:en.grp});
+    if (f&&!en.base){ const u=(en.unit==="g"||en.unit==="ml")?en.unit:"serving"; Object.assign(ed,{kind:"food", food:f, unit:u==="serving"&&!(f.serving&&f.serving.g)?"g":u, amount:+en.amount||(u==="serving"?1:100)}); }
+    else { const b=en.base||{amount:+en.amount||1, unit:(en.amount!==""&&en.amount!=null&&en.unit)?en.unit:"portion", kcal:+en.kcal||0, p:+en.p||0, c:+en.c||0, f:+en.f||0, grams:en.grams||0};
+      Object.assign(ed,{kind:"fixed", base:b, unit:b.unit, amount:+en.amount||b.amount}); } }
+  else if (mode==="tray"){ const x=src; Object.assign(ed,{trayK:extra.trayK, name:x.name, src:x.src});
+    if (x.food&&!x.base) Object.assign(ed,{kind:"food", food:x.food, unit:x.unit==="serving"&&!(x.food.serving&&x.food.serving.g)?"g":x.unit, amount:+x.amount||100});
+    else { const b=x.base||{amount:+x.amount||1, unit:x.amount&&x.unit?x.unit:"portion", kcal:x.kcal, p:x.p, c:x.c, f:x.f, grams:x.g||0}; Object.assign(ed,{kind:"fixed", base:b, unit:b.unit, amount:+x.amount||b.amount}); } }
+  else { const f=src, d=extra.amount!=null?{amount:extra.amount, unit:extra.unit}:defaultAmt(f);
+    Object.assign(ed,{kind:"food", food:f, name:f.name, unit:d.unit==="serving"&&!(f.serving&&f.serving.g)?"g":d.unit, amount:+d.amount||100, src:extra.src||f.src}); }
+  ed.baseAmt=ed.amount; S.foodAdd={ed}; S.confirm=null; renderFoodSheet();
+}
+function edVals(ed){
+  if (ed.ovr){ const r=(+ed.amount||0)/(ed.ovr.amount||1); return {kcal:ed.ovr.kcal*r, p:ed.ovr.p*r, c:ed.ovr.c*r, f:ed.ovr.f*r, g:(ed.ovr.g||0)*r}; }
+  if (ed.kind==="food"){ const m=foodMacros(ed.food, ed.amount, ed.unit==="ml"?"g":ed.unit); return {kcal:m.kcal, p:m.p, c:m.c, f:m.f, g:m.g}; }
+  const r=(+ed.amount||0)/(ed.base.amount||1); return {kcal:ed.base.kcal*r, p:ed.base.p*r, c:ed.base.c*r, f:ed.base.f*r, g:(ed.base.grams||0)*r};
+}
+function edUnitLabel(ed){ if (ed.kind==="food"&&ed.unit==="serving") return "× "+((ed.food.serving||{}).label||"serving")+(ed.food.serving&&ed.food.serving.g?` (${ed.food.serving.g} g)`:""); return unitWord(ed.unit, ed.amount); }
+function edStep(ed){ return ed.unit==="g"||ed.unit==="ml"?(+ed.amount>=200?25:10):(ed.kind==="food"&&ed.unit==="serving")||/portion|serving|^\d/.test(ed.unit)?0.1:0.5; }
+const edMacHtml=v=>`<span><b class="num">${Math.round(v.p)}</b><em>g protein</em></span><span><b class="num">${Math.round(v.c)}</b><em>g carbs</em></span><span><b class="num">${Math.round(v.f)}</b><em>g fat</em></span>`;
+function edHtml(ed){
+  const v=edVals(ed), date=foodDate(), n=(S.tray||[]).length, f=ed.food;
+  const sub=ed.mode==="entry"?[mealName(ed.meal||ed.autoMeal), new Date(ed.t).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}), ed.src==="photo"?"photo estimate":ed.src==="printed"?"read from your photo":ed.src==="coach"?"AI estimate":ed.src==="label"?"label scan":f&&f.brand?f.brand:""].filter(Boolean).join(" · ")
+    :f?[f.brand, `${fmtN(f.per100.kcal)} kcal per 100 ${f.liquid?"ml":"g"}`, f.src==="usda"?"USDA":f.src==="off"?"Open Food Facts":f.src==="claude"?"AI estimate":""].filter(Boolean).join(" · "):"";
+  const mults=[[0.5,"½"],[0.75,"¾"],[1,"1"],[1.25,"1¼"],[1.5,"1½"],[2,"2"]], cur=(+ed.amount||0)/(ed.baseAmt||1);
+  const gm=ed.mode==="new"?(S.addMeal||guessMeal([...(S.tray||[]),{name:ed.name}],date)):null;
+  return `<div class="ed">
+    <div class="edhd"><div class="edt">${ed.editName?`<input class="field" id="edName" value="${esc(ed.name)}" aria-label="Name">`:`<button class="edname" data-fs="edName"><b>${esc(ed.name||"Food")}</b><i aria-hidden="true">✎</i></button>`}${sub?`<span class="small muted">${esc(sub)}</span>`:""}</div>
+      ${ed.mode==="entry"?`<button class="eddel ${S.confirm==="fdel"?"on":""}" data-fs="edDel" aria-label="Delete">${S.confirm==="fdel"?"Delete?":`<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg>`}</button>`:""}</div>
+    <div class="edsum"><div class="edk"><b class="num" id="edKcal">${fmtN(v.kcal)}</b><span>kcal</span></div><div class="edm" id="edMac">${edMacHtml(v)}</div></div>
+    <div class="edamt"><button data-fs="edStep" data-d="-1" aria-label="Less">−</button><label><input id="edAmt" inputmode="decimal" value="${r1(+ed.amount||0)}" aria-label="Amount"><em>${esc(edUnitLabel(ed))}</em></label><button data-fs="edStep" data-d="1" aria-label="More">+</button></div>
+    ${f&&f.serving&&f.serving.g&&!ed.ovr?`<div class="sc-units edunits"><button data-fs="edUnit" data-u="serving" aria-pressed="${ed.unit==="serving"}">Servings</button><button data-fs="edUnit" data-u="g" aria-pressed="${ed.unit!=="serving"}">${f.liquid?"Millilitres":"Grams"}</button></div>`:""}
+    <div class="edmult">${mults.map(([k,l])=>`<button data-fs="edMult" data-k="${k}" aria-pressed="${Math.abs(cur-k)<0.01}">${l}×</button>`).join("")}</div>
+    ${sampler?`<div class="edai ${S.busy==="edAi"?"busy":""}"><span class="edaic">${ICON.spark}</span><input id="edAi" placeholder="What was different? e.g. extra chicken, less noodles" value="${esc(ed.aiText||"")}" ${S.busy==="edAi"?"disabled":""}><button data-fs="edAiGo" ${S.busy==="edAi"?"disabled":""}>${S.busy==="edAi"?'<span class="spinner"></span>':"Adjust"}</button></div>${ed.aiNote?`<span class="small muted edainote">${esc(ed.aiNote)}${ed.ovr?` <button class="link small" data-fs="edAiUndo">Undo</button>`:""}</span>`:""}`:""}
+    ${ed.mode==="entry"?`<button class="edadd" data-fs="edJoin"><span class="plusb" aria-hidden="true">+</span><span><b>Add something to it</b><em>Extra chicken, a sauce, a side: it stays together as one meal</em></span></button>
+      <div class="edmeal">${MEALS.map(([k,nn])=>`<button class="chip" data-fs="meal" data-m="${k}" aria-pressed="${(ed.meal||ed.autoMeal)===k}">${nn}</button>`).join("")}</div>`:""}
+    <details class="ednum"${ed.numOpen?" open":""}><summary>${f&&!ed.ovr?"Check the per 100 g numbers":"Edit the numbers yourself"}</summary>
+      ${f&&!ed.ovr?per100Editor(f,{src:ed.src}):`<div class="grid4"><label class="lab">kcal<input class="field" id="qaK" inputmode="decimal" value="${Math.round(v.kcal)}" data-user="1"></label><label class="lab">Protein<input class="field" id="qaP" inputmode="decimal" value="${r1(v.p)}" data-user="1"></label><label class="lab">Carbs<input class="field" id="qaC" inputmode="decimal" value="${r1(v.c)}" data-user="1"></label><label class="lab">Fat<input class="field" id="qaF" inputmode="decimal" value="${r1(v.f)}" data-user="1"></label></div><span class="small muted" id="qaNote">Clear a box and it fills itself in from the others.</span>`}</details>
+    ${ed.mode==="entry"?`<button class="btn orange" data-fs="edSave">Save</button>`
+      :ed.mode==="tray"?`<button class="btn orange" data-fs="edSave">Update basket</button>`
+      :`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to basket</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} in your basket`:""}</span>`}
+    ${ed.mode==="new"&&f&&f.id&&S.foods.some(x=>x.id===f.id)?`<button class="link center" data-fs="fav">${f.fav?"★ In your favourites":"☆ Add to favourites"}</button>`:""}
+  </div>`;
+}
+function edLive(){
+  const a=S.foodAdd, ed=a&&a.ed; if (!ed) return; const v=edVals(ed);
+  const k=$("#edKcal"); if (k) k.textContent=fmtN(v.kcal); const m=$("#edMac"); if (m) m.innerHTML=edMacHtml(v);
+  const cur=(+ed.amount||0)/(ed.baseAmt||1); document.querySelectorAll("[data-fs=edMult]").forEach(b=>b.setAttribute("aria-pressed", Math.abs(cur-(+b.dataset.k))<0.01));
+  const u=document.querySelector(".edamt em"); if (u) u.textContent=edUnitLabel(ed);
+  ["qaK","qaP","qaC","qaF"].forEach((id,i)=>{ const x=$("#"+id); if (x&&document.activeElement!==x&&!ed.typing) x.value=i?r1([v.p,v.c,v.f][i-1]):Math.round(v.kcal); });
+}
+// What gets stored: the amount, the numbers for that amount, and (for anything not tied to a per-100 g food) the base it scales from
+function edResult(ed){
+  const v=edVals(ed), name=(($("#edName")||{}).value||ed.name||"Food").trim();
+  if (ed.kind==="food"&&!ed.ovr){ const f=ed.food; return {name, foodId:f.id, amount:+ed.amount, unit:ed.unit==="serving"?((f.serving||{}).label||"serving"):ed.unit, grams:Math.round(v.g), kcal:Math.round(v.kcal), p:r1(v.p), f:r1(v.f), c:r1(v.c), base:undefined}; }
+  const unit=ed.kind==="food"?(ed.unit==="serving"?((ed.food.serving||{}).label||"serving"):ed.unit):ed.unit;
+  return {name, foodId:ed.food?ed.food.id:undefined, amount:+ed.amount, unit, grams:Math.round(v.g)||undefined, kcal:Math.round(v.kcal), p:r1(v.p), f:r1(v.f), c:r1(v.c), base:{amount:+ed.amount, unit, kcal:v.kcal, p:v.p, c:v.c, f:v.f, grams:v.g||0}};
+}
+async function edAi(){
+  const a=S.foodAdd, ed=a&&a.ed; if (!ed||!sampler) return; const txt=(($("#edAi")||{}).value||"").trim(); ed.aiText=txt;
+  if (!txt){ $("#edAi")&&$("#edAi").focus(); return; }
+  const v=edVals(ed); S.busy="edAi"; renderFoodSheet();
+  try{
+    const res=await sampler.json(`A user of a UK nutrition tracker is correcting a food they logged.
+Food: "${ed.name}". Logged as ${r1(+ed.amount)} ${edUnitLabel(ed)}: ${Math.round(v.kcal)} kcal, ${r1(v.p)} g protein, ${r1(v.c)} g carbs, ${r1(v.f)} g fat.
+What they say was different: """${txt.slice(0,300)}"""
+Work out what they actually ate. Scale the parts they mention (e.g. "about 1.2 portions but mostly extra chicken" means more protein than carbs, not a flat 1.2×). Use realistic composition for the ingredients involved.
+Reply with only JSON: {"kcal": number, "p": number, "c": number, "f": number, "amount": the new amount in the same unit as a number, "note": one short sentence saying what you changed}`,{modelTier:"default", cache:false});
+    if (!res||isNaN(+res.kcal)) throw {code:"bad"};
+    const amt=+res.amount>0?+res.amount:+ed.amount;
+    ed.prev={ovr:ed.ovr, amount:ed.amount}; ed.amount=amt; ed.ovr={kcal:+res.kcal, p:+res.p||0, c:+res.c||0, f:+res.f||0, amount:amt}; ed.aiNote=String(res.note||"Adjusted").slice(0,160); ed.aiText="";
+  }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to use this":"Couldn't adjust that. Try saying it another way."); }
+  S.busy=null; if (S.foodAdd&&S.foodAdd.ed===ed) renderFoodSheet();
+}
+function edClick(k, b){
+  const a=S.foodAdd, ed=a&&a.ed; if (!ed) return false;
+  const date=foodDate();
+  if (k==="edStep"||k==="edMult") ed.typing=false;
+  if (k==="edStep"){ const st=edStep(ed); const q=(+ed.amount||0)/st, n=+b.dataset.d>0?Math.floor(q+1e-6)+1:Math.ceil(q-1e-6)-1; ed.amount=Math.max(st, n*st); ed.amount=Math.round(ed.amount*100)/100; const i=$("#edAmt"); if (i) i.value=r1(ed.amount); edLive(); return true; }
+  if (k==="edMult"){ ed.amount=Math.round(ed.baseAmt*(+b.dataset.k)*100)/100; if (ed.unit==="g"||ed.unit==="ml") ed.amount=Math.round(ed.amount); const i=$("#edAmt"); if (i) i.value=r1(ed.amount); edLive(); return true; }
+  if (k==="edUnit"){ const g=ed.food.serving.g; if (b.dataset.u===ed.unit) return true; if (b.dataset.u==="serving"){ ed.amount=Math.max(0.1,Math.round(ed.amount/g*10)/10); ed.baseAmt=Math.max(0.1,Math.round(ed.baseAmt/g*10)/10); ed.unit="serving"; } else { ed.amount=Math.round(ed.amount*g); ed.baseAmt=Math.round(ed.baseAmt*g); ed.unit="g"; } renderFoodSheet(); return true; }
+  if (k==="edName"){ ed.editName=true; renderFoodSheet(); const i=$("#edName"); if (i){ i.focus(); i.select(); } return true; }
+  if (k==="edAiGo"){ edAi(); return true; }
+  if (k==="edAiUndo"){ if (ed.prev){ ed.ovr=ed.prev.ovr; ed.amount=ed.prev.amount; } else ed.ovr=null; ed.aiNote=""; renderFoodSheet(); return true; }
+  if (k==="meal"){ ed.meal=b.dataset.m; renderFoodSheet(); return true; }
+  if (k==="fav"){ const f=S.foods.find(x=>x.id===ed.food.id); if (f){ saveFood({...f, fav:!f.fav}); ed.food={...ed.food, fav:!f.fav}; renderFoodSheet(); } return true; }
+  if (k==="edDel"){ if (S.confirm!=="fdel"){ S.confirm="fdel"; renderFoodSheet(); return true; }
+    const en=((S.foodlog[date]||{}).entries||[]).find(x=>x.id===ed.id); removeFoodEntry(date, ed.id); S.foodAdd=null; S.confirm=null; renderFoodSheet(); render();
+    toast({title:"Deleted", detail:en?en.name:"", kind:"del"}, en?()=>{ addFoodEntry(date,en); render(); }:null); return true; }
+  if (k==="edJoin"){ const name=ed.name; S.joinTo={id:ed.id, date, name}; S.foodAdd=null; renderFoodSheet(); S.addTab="search"; S.addMeal=null; go("foodadd"); setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); return true; }
+  if (k==="edSave"){ const r=edResult(ed); if (!(r.amount>0)){ toast("Enter an amount"); return true; }
+    if (ed.mode==="entry"){ const doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===ed.id); if (!en) return true; const before={...en};
+      Object.assign(en, r); Object.keys(en).forEach(x=>en[x]===undefined&&delete en[x]); if (ed.meal&&ed.meal!==ed.autoMeal) en.meal=ed.meal; else if (ed.meal) en.meal=ed.meal;
+      if (en.grp&&before.name===en.grpName&&r.name!==before.name) doc.entries.forEach(x=>{ if (x.grp===en.grp) x.grpName=r.name; });
+      saveFoodDay(date); S.foodAdd=null; renderFoodSheet(); render(); toast({title:"Saved", detail:`${en.name} · ${fmtN(en.kcal)} kcal`}, ()=>{ Object.keys(en).forEach(x=>delete en[x]); Object.assign(en,before); saveFoodDay(date); render(); }); }
+    else { const old=S.tray[ed.trayK]; if (!old) return true; const nx={...old, ...r, g:r.grams||0, food:ed.kind==="food"&&!ed.ovr?ed.food:old.food, quick:!(ed.kind==="food"&&!ed.ovr)}; if (nx.base===undefined) delete nx.base; if (ed.kind==="food"&&!ed.ovr) nx.unit=ed.unit; S.tray[ed.trayK]=nx; S.foodAdd=null; renderFoodSheet(); render(); }
+    return true; }
+  if (k==="save"||k==="tray"){ const r=edResult(ed); if (!(r.amount>0)){ toast("Enter an amount"); return true; }
+    if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null;
+    if (ed.kind==="food"&&!ed.ovr){ const f={...ed.food, name:r.name}; saveFood({...f, lastAmt:+ed.amount, lastUnit:ed.unit==="ml"?"g":ed.unit}); trayAdd(f, +ed.amount, ed.unit==="ml"?"g":ed.unit, ed.src); }
+    else S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:r.name, amount:r.amount, unit:r.unit, g:r.grams||0, kcal:r.kcal, p:r.p, f:r.f, c:r.c, base:r.base, src:ed.src||"food"}];
+    S.foodAdd=null; S.pendingBarcode=null; renderFoodSheet();
+    if (k==="tray"){ render(); toast({title:"Added to basket", detail:r.name}); } else logTray(); return true; }
+  return false;
+}
 function editEntryOpen(id){
   const en=((S.foodlog[foodDate()]||{}).entries||[]).find(x=>x.id===id); if(!en) return;
+  return edOpen(en,"entry");
   const f=en.foodId&&S.foods.find(x=>x.id===en.foodId), am=(S._mm||{})[en.id]||mealOf(en);
   S.foodAdd=f?{food:f, entryId:en.id, t:en.t, amount:en.amount, unit:(en.unit==="g"||en.unit==="ml")?en.unit:"serving", meal:en.meal, autoMeal:am}
     :{quick:true, entryId:en.id, t:en.t, name:en.name, kcal:en.kcal, p:en.p, f:en.f, c:en.c, meal:en.meal, autoMeal:am};
@@ -3244,9 +3400,21 @@ document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==
 
 /* ---------- Navigation ---------- */
 let toastT;
-function toast(msg, undo){ const t=$("#toast"); t.innerHTML=esc(msg)+(undo?' <button class="tundo">Undo</button>':""); t.hidden=false; clearTimeout(toastT);
-  if (undo) t.querySelector(".tundo").onclick=()=>{ undo(); t.hidden=true; render(); };
-  toastT=setTimeout(()=>t.hidden=true, undo?6000:2600); }
+// Notifications: an icon, what happened, the detail underneath, and Undo when it can be undone. Swipe or tap to dismiss.
+function toast(msg, undo){
+  const t=$("#toast"); let title=msg, detail="", kind="ok";
+  if (msg&&typeof msg==="object"){ title=msg.title; detail=msg.detail||""; kind=msg.kind||"ok"; }
+  else { const i=String(msg).lastIndexOf(": "); if (i>0&&i<msg.length-2){ title=msg.slice(0,i); detail=msg.slice(i+2); }
+    if (/^(Couldn't|Enter|Give|Pick|That didn't|Allow|Nothing|Lookup failed|Camera|AI isn't|Label scanning|Type what|Reader error)/i.test(title)) kind="warn"; else if (/^(Deleted|Entry deleted|Meal deleted)/.test(title)) kind="del"; }
+  const ic={ok:'<path d="M5 12.5l4.5 4.5L19 7.5"/>', warn:'<path d="M12 6.5v7M12 17.5h.01"/>', del:'<path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/>'}[kind]||"";
+  const dur=undo?6000:2800; clearTimeout(toastT);
+  t.className="toast "+kind; t.style.setProperty("--tdur",dur+"ms");
+  t.innerHTML=`<span class="tic"><svg viewBox="0 0 24 24">${ic}</svg></span><span class="ttx"><b>${esc(title)}</b>${detail?`<em>${esc(detail)}</em>`:""}</span>${undo?'<button class="tundo">Undo</button>':"<span></span>"}<i class="tbar"></i>`;
+  t.hidden=true; void t.offsetWidth; t.hidden=false;
+  const hide=()=>{ clearTimeout(toastT); t.classList.add("out"); setTimeout(()=>{ t.hidden=true; t.classList.remove("out"); },220); };
+  if (undo) t.querySelector(".tundo").onclick=e=>{ e.stopPropagation(); undo(); hide(); render(); };
+  t.onclick=hide; let y0=null; t.ontouchstart=e=>{ y0=e.touches[0].clientY; }; t.ontouchend=e=>{ if (y0!=null&&y0-e.changedTouches[0].clientY>20) hide(); y0=null; };
+  toastT=setTimeout(hide, dur); }
 const NAV_ORDER=["home","food","habits","plan","progress"], SUB={settings:1,habits:1,cardio:1,train:1,energy:1,foodadd:1};
 let pgT=null;
 // Animate the page that was just rendered: children rise in with a short stagger, direction follows the nav.
@@ -3377,7 +3545,7 @@ function addFoodEntry(date, entry){
 }
 function removeFoodEntry(date, id){ const doc=S.all.foodlog[date]; if(!doc) return; doc.entries=doc.entries.filter(x=>x.id!==id); saveFoodDay(date); }
 function entryTime(date){ return date===ymd(new Date()) ? Date.now() : parseD(date).getTime(); }
-function openFood(food, extra){ const unit=food.serving&&food.serving.g?"serving":"g"; S.foodAdd={food, amount:unit==="serving"?1:100, unit, ...extra}; renderFoodSheet(); }
+function openFood(food, extra){ extra=extra||{}; edOpen(food,"new",{...extra, numOpen:!(+food.per100.kcal)||extra.src==="label"}); }
 function foodSheetSave(mode){
   const a=S.foodAdd, date=foodDate(); if(!a) return;
   let entry;
@@ -3420,6 +3588,7 @@ $("#foodSheet").addEventListener("click",e=>{
   const b=e.target.closest("[data-fs]"); if(!b) return;
   const k=b.dataset.fs;
   if (k==="close"){ S.foodAdd=null; S.confirm=null; renderFoodSheet(); }
+  if (S.foodAdd&&S.foodAdd.ed&&edClick(k,b)) return;
   if (k==="save") foodSheetSave("log");
   if (k==="tray") foodSheetSave("tray");
   const date=foodDate(), a=S.foodAdd;
@@ -3456,8 +3625,17 @@ function updateFaLive(){
   const m=foodMacros(a.food,a.amount,a.unit);
   $("#faK").textContent=fmtN(m.kcal); $("#faP").textContent=r1(m.p); $("#faF").textContent=r1(m.f); $("#faC").textContent=r1(m.c);
 }
-$("#foodSheet").addEventListener("input",e=>{ if(e.target.id==="faAmt") updateFaLive(); if (/^qa[KPCF]$/.test(e.target.id)) qaAuto(e.target);
-  const m=/^fe100(kcal|p|f|c)$/.exec(e.target.id); if (m&&S.foodAdd&&S.foodAdd.food){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ S.foodAdd.food.per100={...S.foodAdd.food.per100,[m[1]]:v}; S.foodAdd.food.edited=true; updateFaLive(); } } });
+$("#foodSheet").addEventListener("input",e=>{ const ed=S.foodAdd&&S.foodAdd.ed, id=e.target.id;
+  if (ed){
+    if (id==="edAmt"){ const v=parseFloat(String(e.target.value).replace(",",".")); if (v>0){ ed.amount=v; ed.typing=false; edLive(); } return; }
+    if (id==="edName"){ ed.name=e.target.value; return; }
+    if (id==="edAi"){ ed.aiText=e.target.value; return; }
+    if (/^qa[KPCF]$/.test(id)){ qaAuto(e.target); const g=x=>parseFloat(String(($("#"+x)||{}).value||"").replace(",","."))||0; ed.ovr={kcal:g("qaK"), p:g("qaP"), c:g("qaC"), f:g("qaF"), amount:+ed.amount||1}; ed.typing=true; edLive(); return; }
+    const m=/^fe100(kcal|p|f|c)$/.exec(id); if (m){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ ed.food={...ed.food, per100:{...ed.food.per100,[m[1]]:v}, edited:true}; edLive(); } return; }
+  }
+  if(id==="faAmt") updateFaLive(); if (/^qa[KPCF]$/.test(id)) qaAuto(e.target);
+  const m=/^fe100(kcal|p|f|c)$/.exec(id); if (m&&S.foodAdd&&S.foodAdd.food){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ S.foodAdd.food.per100={...S.foodAdd.food.per100,[m[1]]:v}; S.foodAdd.food.edited=true; updateFaLive(); } } });
+$("#foodSheet").addEventListener("keydown",e=>{ if (e.key==="Enter"&&e.target.id==="edAi"){ e.preventDefault(); edAi(); } if (e.key==="Enter"&&e.target.id==="edName"){ e.preventDefault(); e.target.blur(); } });
 $("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="cpDate"&&S.foodAdd&&e.target.value){ S.foodAdd.to=e.target.value>ymd(new Date())?ymd(new Date()):e.target.value; renderFoodSheet(); return; } if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
 
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
@@ -3824,8 +4002,7 @@ $("#main").addEventListener("click", async e=>{
       toast(`Deleted ${es.length} food${es.length>1?"s":""}`, ()=>{ es.forEach(e=>addFoodEntry(date,e)); render(); }); return; }
     case "trayOpen": S.trayOpen=!S.trayOpen; render(); return;
     case "trayMeal": S.addMeal=b.dataset.meal||null; render(); return;
-    case "trayEdit": { const i=+b.dataset.i, x=S.tray[i]; if (!x) return;
-      S.foodAdd=x.food?{food:x.food, amount:x.amount, unit:x.unit, trayK:i, src:x.src}:{quick:true, trayK:i, name:x.name, kcal:x.kcal, p:x.p, f:x.f, c:x.c, g:x.g}; renderFoodSheet(); return; }
+    case "trayEdit": { const i=+b.dataset.i, x=S.tray[i]; if (!x) return; edOpen(x,"tray",{trayK:i}); return; }
     case "mealView": S.foodAdd={mealView:b.dataset.id}; S.confirm=null; renderFoodSheet(); return;
     case "mealAdd": { const m=savedMeals().find(x=>x.id===b.dataset.id); if (!m) return; mealToTray(m); render(); toast(`${m.name} added to your basket`); return; }
     case "aiPicTake": S.aiText=($("#aiText")||{}).value||S.aiText; $("#aiCam").click(); return;
@@ -3833,12 +4010,13 @@ $("#main").addEventListener("click", async e=>{
     case "aiPicDel": S.aiText=($("#aiText")||{}).value||S.aiText; S.aiPics.splice(+b.dataset.i,1); render(); return;
     case "aiFoodGo": aiFood(); return;
     case "moreHits": S.moreHits=true; render(); return;
+    case "joinCancel": S.joinTo=null; render(); return;
     case "ftoggle": { S.foodMode=S.foodMode==="remaining"?"consumed":"remaining"; render(); return; }
     case "fday": { const d=parseD(foodDate()); d.setDate(d.getDate()+(+b.dataset.d)); const s=ymd(d); if (s>ymd(new Date())) return; S.foodDate=s; render(); return; }
-    case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast(`${f.name} added to your basket`); return; } openFood(f); return; }
-    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast(`${f.name} added to your basket`); return; } openFood(f); return; }
+    case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f); return; }
+    case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f); return; }
     case "askFood": askFood(S.foodQuery.trim()); return;
-    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); trayAdd(f,d.amount,d.unit); render(); toast(`${f.name} added to your basket`); return; } openFood(f, defaultAmt(f)); return; }
+    case "pickFood": { const f=S.foods.find(x=>x.id===b.dataset.id); if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); trayAdd(f,d.amount,d.unit); render(); toast({title:"Added to basket", detail:f.name}); return; } openFood(f, defaultAmt(f)); return; }
     case "foodAddOpen": S.addTab=b.dataset.tab||"search"; if (!(S.tray||[]).length) S.addMeal=null; S.aiFoods=[]; go("foodadd"); if (S.addTab==="search") setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); if (S.addTab==="ai") setTimeout(()=>{ const x=$("#aiText"); x&&!x.value&&x.focus(); },80); return;
     case "addTo": { S.addMeal=b.dataset.meal||null; if (S.tab!=="foodadd"){ S.addTab="search"; go("foodadd"); } else render(); return; }
     case "addTab": S.addTab=b.dataset.tab; render(); return;
