@@ -409,6 +409,8 @@ h1{margin-top:2px}
 .eddel.fav{color:#F2B230}
 .msug{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:center;background:var(--orange-soft);border-radius:16px;padding:10px 12px}.msug>span:nth-child(2){display:grid}.msug em{font-style:normal;font-size:12.5px;color:var(--muted)}
 .msb{grid-column:1/-1;display:flex;gap:14px;align-items:center}.msb .btn{width:auto;padding:9px 18px}
+.edadd2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1.5px solid var(--line);background:none;border-radius:16px;padding:13px;color:var(--ink);font:700 14.5px var(--body);cursor:pointer}.edadd2 svg{width:18px;height:18px;fill:none;stroke:var(--orange);stroke-width:2.4;stroke-linecap:round}
+.edx{display:grid;gap:6px;margin-top:-6px}.edxi{display:grid;grid-template-columns:minmax(0,1fr) auto 28px;gap:8px;align-items:center;background:var(--orange-soft);border-radius:12px;padding:8px 8px 8px 12px}.edxi b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.edxi em{font-style:normal;font-size:12.5px;color:var(--muted);font-weight:600}.edxi button{border:0;background:none;color:var(--muted);cursor:pointer}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2535,7 +2537,7 @@ function mvHtml(mv){
       <div class="row" style="gap:6px"><button class="eddel ${mv.fav?"fav":""}" data-fs="mvFav" aria-label="Favourite">★</button><button class="eddel ${S.confirm==="mdel"?"on":""}" data-fs="mvDel" aria-label="Delete meal">${S.confirm==="mdel"?"Delete?":`<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg>`}</button></div></div>
     <div class="edsum"><div class="edk"><b class="num">${fmtN(t.kcal)}</b><span>kcal${mv.mult!==1?` · ${mv.mult}×`:""}</span></div><div class="edm">${edMacHtml(t)}</div></div>
     <div class="mvlist">${mv.items.map((x,i)=>{ const it=items[i]; return `<div class="mvi"><span class="mvn"><b>${esc(x.name)}</b><em class="num">${esc(amtText(it.amount,it.unit))} · ${fmtN(it.kcal)} kcal</em></span><span class="mvst"><button data-fs="mvK" data-i="${i}" data-d="-1" aria-label="Less">−</button><b class="num">${x.k===1?"1×":r1(x.k)+"×"}</b><button data-fs="mvK" data-i="${i}" data-d="1" aria-label="More">+</button></span><button class="tdel" data-fs="mvRm" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></div>`; }).join("")}
-      <button class="edadd" data-fs="mvAdd"><span class="plusb" aria-hidden="true">+</span><span><b>Add a food to this meal</b><em>Search, scan or type it in</em></span></button></div>
+      <button class="edadd2" data-fs="mvAdd"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Add a food to this meal</span></button></div>
     ${mv.dirty?`<button class="btn ghost" data-fs="mvSave">Save changes to this meal</button>`:""}
     <div class="lab">How much this time<div class="edmult">${[[0.5,"½"],[0.75,"¾"],[1,"1"],[1.25,"1¼"],[1.5,"1½"],[2,"2"]].map(([k,l])=>`<button data-fs="mvMult" data-k="${k}" aria-pressed="${mv.mult===k}">${l}×</button>`).join("")}</div></div>
     <div class="grid2"><button class="btn ghost" data-fs="mvTray">Add to plate</button><button class="btn orange" data-fs="mvLog">${n?"Log all":"Log it"}</button></div>
@@ -2706,8 +2708,9 @@ function edHtml(ed){
     <div class="edamt"><button data-fs="edStep" data-d="-1" aria-label="Less">−</button><label><input id="edAmt" inputmode="decimal" value="${r1(+ed.amount||0)}" aria-label="Amount"><em>${esc(edUnitLabel(ed))}</em></label><button data-fs="edStep" data-d="1" aria-label="More">+</button></div>
     ${f&&f.serving&&f.serving.g&&!ed.ovr?`<div class="sc-units edunits"><button data-fs="edUnit" data-u="serving" aria-pressed="${ed.unit==="serving"}">Servings</button><button data-fs="edUnit" data-u="g" aria-pressed="${ed.unit!=="serving"}">${f.liquid?"Millilitres":"Grams"}</button></div>`:""}
     <div class="edmult">${mults.map(([k,l])=>`<button data-fs="edMult" data-k="${k}" aria-pressed="${Math.abs(cur-k)<0.01}">${l}×</button>`).join("")}</div>
-    ${sampler?`<div class="edai ${S.busy==="edAi"?"busy":""}"><span class="edaic">${ICON.spark}</span><input id="edAi" placeholder="What was different? e.g. extra chicken, less noodles" value="${esc(ed.aiText||"")}" ${S.busy==="edAi"?"disabled":""}><button data-fs="edAiGo" ${S.busy==="edAi"?"disabled":""}>${S.busy==="edAi"?'<span class="spinner"></span>':"Adjust"}</button></div>${ed.aiNote?`<span class="small muted edainote">${esc(ed.aiNote)}${ed.ovr?` <button class="link small" data-fs="edAiUndo">Undo</button>`:""}</span>`:""}`:""}
-    ${ed.mode==="entry"?`<button class="edadd" data-fs="edJoin"><span class="plusb" aria-hidden="true">+</span><span><b>Add something to it</b><em>Extra chicken, a sauce, a side: it stays together as one meal</em></span></button>
+    ${sampler?`<div class="edai ${S.busy==="edAi"?"busy":""}"><span class="edaic">${ICON.spark}</span><input id="edAi" placeholder="What was different? e.g. extra chicken, less noodles" value="${esc(ed.aiText||"")}" ${S.busy==="edAi"?"disabled":""}><button data-fs="edAiGo" ${S.busy==="edAi"?"disabled":""}>${S.busy==="edAi"?'<span class="spinner"></span>':"Adjust"}</button></div>${ed.aiNote?`<span class="small muted edainote">${esc(ed.aiNote)}${ed.ovr||(ed.extras||[]).length?` <button class="link small" data-fs="edAiUndo">Undo</button>`:""}</span>`:""}`:""}
+    ${(ed.extras||[]).length?`<div class="edx">${ed.extras.map((x,i)=>`<span class="edxi"><b>+ ${esc(x.name)}</b><em class="num">${x.grams?x.grams+" g · ":""}${fmtN(x.kcal)} kcal</em><button data-fs="edXrm" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></span>`).join("")}<span class="small muted">Logged as separate foods, kept together with this one as a meal.</span></div>`:""}
+    ${ed.mode==="entry"?`<button class="edadd2" data-fs="edJoin"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Add a side or extra from search</span></button>
       <div class="edmeal">${MEALS.map(([k,nn])=>`<button class="chip" data-fs="meal" data-m="${k}" aria-pressed="${(ed.meal||ed.autoMeal)===k}">${nn}</button>`).join("")}</div>`:""}
     <details class="ednum"${ed.numOpen?" open":""}><summary>${f&&!ed.ovr?"Check the per 100 g numbers":"Edit the numbers yourself"}</summary>
       ${f&&!ed.ovr?per100Editor(f,{src:ed.src}):`<div class="grid4"><label class="lab">kcal<input class="field" id="qaK" inputmode="decimal" value="${Math.round(v.kcal)}" data-user="1"></label><label class="lab">Protein<input class="field" id="qaP" inputmode="decimal" value="${r1(v.p)}" data-user="1"></label><label class="lab">Carbs<input class="field" id="qaC" inputmode="decimal" value="${r1(v.c)}" data-user="1"></label><label class="lab">Fat<input class="field" id="qaF" inputmode="decimal" value="${r1(v.f)}" data-user="1"></label></div><span class="small muted" id="qaNote">Clear a box and it fills itself in from the others.</span>`}</details>
@@ -2740,11 +2743,16 @@ async function edAi(){
     const res=await sampler.json(`A user of a UK nutrition tracker is correcting a food they logged.
 Food: "${ed.name}". Logged as ${r1(+ed.amount)} ${edUnitLabel(ed)}: ${Math.round(v.kcal)} kcal, ${r1(v.p)} g protein, ${r1(v.c)} g carbs, ${r1(v.f)} g fat.
 What they say was different: """${txt.slice(0,300)}"""
-Work out what they actually ate. Scale the parts they mention (e.g. "about 1.2 portions but mostly extra chicken" means more protein than carbs, not a flat 1.2×). Use realistic composition for the ingredients involved.
-Reply with only JSON: {"kcal": number, "p": number, "c": number, "f": number, "amount": the new amount in the same unit as a number, "note": one short sentence saying what you changed}`,{modelTier:"default", cache:false});
+Work out what they actually ate.
+- More or less of this food, or of an ingredient already in it (e.g. "about 1.2 portions but mostly extra chicken" on a chicken dish): change this food's numbers, weighting the parts they mention rather than a flat multiple.
+- A different food that isn't part of this one (e.g. "with 30 g chicken" on cheese slices, "plus a coffee"): leave this food's numbers as they are and put the new food in "extras" with realistic amounts and composition.
+Reply with only JSON: {"kcal": number, "p": number, "c": number, "f": number, "amount": this food's new amount in the same unit as a number, "extras": [{"name": string, "grams": number, "kcal": number, "p": number, "c": number, "f": number}], "note": one short sentence saying what you changed}`,{modelTier:"default", cache:false});
     if (!res||isNaN(+res.kcal)) throw {code:"bad"};
     const amt=+res.amount>0?+res.amount:+ed.amount;
-    ed.prev={ovr:ed.ovr, amount:ed.amount}; ed.amount=amt; ed.ovr={kcal:+res.kcal, p:+res.p||0, c:+res.c||0, f:+res.f||0, amount:amt}; ed.aiNote=String(res.note||"Adjusted").slice(0,160); ed.aiText="";
+    ed.prev={ovr:ed.ovr, amount:ed.amount, extras:ed.extras};
+    const same=Math.abs(+res.kcal-v.kcal)<1&&Math.abs(amt-(+ed.amount))<0.001; if (!same){ ed.amount=amt; ed.ovr={kcal:+res.kcal, p:+res.p||0, c:+res.c||0, f:+res.f||0, amount:amt}; }
+    ed.extras=[...(ed.extras||[]), ...(Array.isArray(res.extras)?res.extras:[]).filter(x=>x&&x.name&&+x.kcal>=0).slice(0,4).map(x=>({name:String(x.name).slice(0,60), grams:Math.round(+x.grams||0), kcal:Math.round(+x.kcal||0), p:r1(+x.p||0), c:r1(+x.c||0), f:r1(+x.f||0)}))];
+    ed.aiNote=String(res.note||"Adjusted").slice(0,160); ed.aiText="";
   }catch(e){ toast(e&&e.code==="not_granted"?"Allow AI for this app to use this":"Couldn't adjust that. Try saying it another way."); }
   S.busy=null; if (S.foodAdd&&S.foodAdd.ed===ed) renderFoodSheet();
 }
@@ -2757,7 +2765,8 @@ function edClick(k, b){
   if (k==="edUnit"){ const g=ed.food.serving.g; if (b.dataset.u===ed.unit) return true; if (b.dataset.u==="serving"){ ed.amount=Math.max(0.1,Math.round(ed.amount/g*10)/10); ed.baseAmt=Math.max(0.1,Math.round(ed.baseAmt/g*10)/10); ed.unit="serving"; } else { ed.amount=Math.round(ed.amount*g); ed.baseAmt=Math.round(ed.baseAmt*g); ed.unit="g"; } renderFoodSheet(); return true; }
   if (k==="edName"){ ed.editName=true; renderFoodSheet(); const i=$("#edName"); if (i){ i.focus(); i.select(); } return true; }
   if (k==="edAiGo"){ edAi(); return true; }
-  if (k==="edAiUndo"){ if (ed.prev){ ed.ovr=ed.prev.ovr; ed.amount=ed.prev.amount; } else ed.ovr=null; ed.aiNote=""; renderFoodSheet(); return true; }
+  if (k==="edAiUndo"){ if (ed.prev){ ed.ovr=ed.prev.ovr; ed.amount=ed.prev.amount; ed.extras=ed.prev.extras; } else ed.ovr=null; ed.aiNote=""; renderFoodSheet(); return true; }
+  if (k==="edXrm"){ ed.extras.splice(+b.dataset.i,1); renderFoodSheet(); return true; }
   if (k==="meal"){ ed.meal=b.dataset.m; renderFoodSheet(); return true; }
   if (k==="fav"){ const f=S.foods.find(x=>x.id===ed.food.id); if (f){ saveFood({...f, fav:!f.fav}); ed.food={...ed.food, fav:!f.fav}; renderFoodSheet(); } return true; }
   if (k==="edDel"){ if (S.confirm!=="fdel"){ S.confirm="fdel"; renderFoodSheet(); return true; }
@@ -2768,6 +2777,9 @@ function edClick(k, b){
     if (ed.mode==="entry"){ const doc=S.all.foodlog[date], en=doc&&doc.entries.find(x=>x.id===ed.id); if (!en) return true; const before={...en}, undoAll=daySnap(date);
       Object.assign(en, r); Object.keys(en).forEach(x=>en[x]===undefined&&delete en[x]);
       if (ed.meal&&ed.meal!==ed.autoMeal){ saveFoodDay(date); moveEntries(date,[en.id],ed.meal); }
+      if ((ed.extras||[]).length){ const m=(S._mm||{})[en.id]||en.meal; if (!en.grp){ en.grp=uid("g"); en.grpName=en.name; } en.meal=en.meal||m;
+        ed.extras.forEach((x,i)=>doc.entries.push({id:uid("f"), t:en.t+1+i, meal:en.meal, grp:en.grp, grpName:en.grpName, name:x.name, amount:x.grams||"", unit:x.grams?"g":"", grams:x.grams||undefined, kcal:x.kcal, p:x.p, c:x.c, f:x.f, src:"coach"}));
+        Object.values(doc.entries).forEach(e=>Object.keys(e).forEach(k2=>e[k2]===undefined&&delete e[k2])); S.openGrp=en.grp; }
       if (en.grp&&before.name===en.grpName&&r.name!==before.name) doc.entries.forEach(x=>{ if (x.grp===en.grp) x.grpName=r.name; });
       saveFoodDay(date); S.foodAdd=null; renderFoodSheet(); render(); toast({title:"Saved", detail:`${en.name} · ${fmtN(en.kcal)} kcal`}, undoAll); }
     else { const old=S.tray[ed.trayK]; if (!old) return true; const nx={...old, ...r, g:r.grams||0, food:ed.kind==="food"&&!ed.ovr?ed.food:old.food, quick:!(ed.kind==="food"&&!ed.ovr)}; if (nx.base===undefined) delete nx.base; if (ed.kind==="food"&&!ed.ovr) nx.unit=ed.unit; S.tray[ed.trayK]=nx; S.foodAdd=null; renderFoodSheet(); render(); }
@@ -2776,6 +2788,7 @@ function edClick(k, b){
     if (S.trayGroup&&S.trayGroup.auto) S.trayGroup=null;
     if (ed.kind==="food"&&!ed.ovr){ const f={...ed.food, name:r.name}; saveFood({...f, lastAmt:+ed.amount, lastUnit:ed.unit==="ml"?"g":ed.unit}); trayAdd(f, +ed.amount, ed.unit==="ml"?"g":ed.unit, ed.src); }
     else S.tray=[...(S.tray||[]), {k:uid("t"), quick:true, name:r.name, amount:r.amount, unit:r.unit, g:r.grams||0, kcal:r.kcal, p:r.p, f:r.f, c:r.c, base:r.base, src:ed.src||"food"}];
+    (ed.extras||[]).forEach(x=>S.tray.push({k:uid("t"), quick:true, name:x.name, amount:x.grams||"", unit:x.grams?"g":"", g:x.grams||0, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:"coach"}));
     S.foodAdd=null; S.pendingBarcode=null; renderFoodSheet();
     if (S.joinMeal){ joinMealDone(); return true; }
     if (k==="tray"){ render(); toast({title:"On your plate", detail:r.name}); } else logTray(); return true; }
