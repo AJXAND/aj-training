@@ -1,0 +1,5210 @@
+{
+ "groups": [
+  {
+   "name": "Bars and plates",
+   "count": 15
+  },
+  {
+   "name": "Racks and benches",
+   "count": 22
+  },
+  {
+   "name": "Dumbbells and kettlebells",
+   "count": 7
+  },
+  {
+   "name": "Cables and attachments",
+   "count": 18
+  },
+  {
+   "name": "Chest machines",
+   "count": 10
+  },
+  {
+   "name": "Back machines",
+   "count": 16
+  },
+  {
+   "name": "Shoulder machines",
+   "count": 6
+  },
+  {
+   "name": "Arm machines",
+   "count": 5
+  },
+  {
+   "name": "Leg machines: quads",
+   "count": 19
+  },
+  {
+   "name": "Leg machines: hamstrings and glutes",
+   "count": 19
+  },
+  {
+   "name": "Leg machines: calves and other",
+   "count": 7
+  },
+  {
+   "name": "Core machines",
+   "count": 6
+  },
+  {
+   "name": "Cardio",
+   "count": 21
+  },
+  {
+   "name": "Conditioning and HYROX",
+   "count": 20
+  },
+  {
+   "name": "Strongman",
+   "count": 14
+  },
+  {
+   "name": "Bodyweight and accessories",
+   "count": 23
+  },
+  {
+   "name": "Mobility and rehab",
+   "count": 20
+  }
+ ],
+ "items": [
+  {
+   "id": "bb",
+   "name": "Olympic barbell and plates",
+   "group": "Bars and plates",
+   "aliases": [
+    "barbell",
+    "Olympic bar",
+    "20 kg bar",
+    "power bar",
+    "deadlift bar",
+    "women's 15 kg bar",
+    "bar and plates"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "box",
+    "uni"
+   ],
+   "image_prompt": "An Olympic barbell and plates, a 2.2 m steel bar with knurled grip sections and rotating 50 mm sleeves at each end, loaded with a stack of black iron and rubber-coated weight plates of decreasing diameter held by spring collars, resting on the floor."
+  },
+  {
+   "id": "bumpers",
+   "name": "Bumper plates",
+   "group": "Bars and plates",
+   "aliases": [
+    "rubber bumpers",
+    "Olympic bumpers",
+    "competition plates",
+    "drop plates"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "box",
+    "uni",
+    "commercial"
+   ],
+   "image_prompt": "A set of bumper plates, a set of thick solid rubber weight plates of equal 450 mm diameter but different widths, with steel centre hubs, stacked upright on a simple plate rack, coloured red, blue, yellow, green and black."
+  },
+  {
+   "id": "ez",
+   "name": "EZ curl bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "EZ bar",
+    "cambered curl bar",
+    "W bar"
+   ],
+   "muscles": [
+    "biceps",
+    "triceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "uni",
+    "hotel"
+   ],
+   "image_prompt": "An EZ curl bar, a short 1.2 m chrome bar with a zig-zag W-shaped centre section offering angled grips, with short plain sleeves at each end loaded with a small plate on each side and spring collars."
+  },
+  {
+   "id": "tricepbar",
+   "name": "Triceps / hammer curl bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "tricep bar",
+    "hammer curl bar",
+    "neutral grip curl bar",
+    "rectangle bar"
+   ],
+   "muscles": [
+    "triceps",
+    "biceps",
+    "forearms"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A triceps / hammer curl bar, a short bar formed into an open rectangular frame with two parallel neutral grip handles running across the inside, with short loading sleeves at each end."
+  },
+  {
+   "id": "trapbar",
+   "name": "Trap / hex bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "hex bar",
+    "trap bar",
+    "shrug bar",
+    "open trap bar"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "hams",
+    "traps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "box",
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A trap / hex bar, a hexagonal steel frame bar that the lifter stands inside, with two parallel knurled handles on opposite sides of the hexagon, raised high handles as an option, and long loading sleeves protruding from each end."
+  },
+  {
+   "id": "ssb",
+   "name": "Safety squat bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "SSB",
+    "yoke bar",
+    "Hatfield bar"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A safety squat bar, a thick padded barbell with a cambered centre that sits on the shoulders, a padded yoke wrapped around the neck section and two handles projecting forwards and down from the pad, with the sleeves angled slightly downwards."
+  },
+  {
+   "id": "swissbar",
+   "name": "Swiss / football bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "football bar",
+    "multi-grip bar",
+    "neutral grip bar"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "fdelt",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A swiss / football bar, a barbell built as a long open ladder frame, with several pairs of neutral grip handles running crossways between two parallel rails, some angled, and standard loading sleeves at each end."
+  },
+  {
+   "id": "cambered",
+   "name": "Cambered bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "cambered squat bar",
+    "buffalo bar",
+    "bow bar",
+    "duffalo bar"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "chest"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A cambered bar, a long Olympic-length barbell whose centre section bends downwards in a pronounced drop on each side so the loaded sleeves hang below shoulder height, or a gently curved bow bar version."
+  },
+  {
+   "id": "axle",
+   "name": "Axle / fat bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "axle",
+    "fat bar",
+    "thick bar",
+    "Apollon axle"
+   ],
+   "muscles": [
+    "forearms",
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "bodybuilding"
+   ],
+   "image_prompt": "An axle / fat bar, a thick un-knurled steel bar about 50 mm in diameter with no rotating sleeves, the whole bar the same thickness end to end, loaded with plates near each end."
+  },
+  {
+   "id": "earthquake",
+   "name": "Bamboo / earthquake bar",
+   "group": "Bars and plates",
+   "aliases": [
+    "earthquake bar",
+    "bamboo bar",
+    "oscillating bar",
+    "kettlebell hanging bar"
+   ],
+   "muscles": [
+    "upback",
+    "rdelt",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "rehab",
+    "box"
+   ],
+   "image_prompt": "A bamboo / earthquake bar, a flexible bamboo or fibreglass bar about 2 m long, with kettlebells hanging from elastic bands looped around each end so the load swings and oscillates."
+  },
+  {
+   "id": "fixedbb",
+   "name": "Fixed-weight barbells",
+   "group": "Bars and plates",
+   "aliases": [
+    "pre-loaded barbells",
+    "fixed barbells",
+    "studio barbells"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A set of fixed-weight barbells, a row of short barbells with plates permanently welded at each end, each one with a numbered weight on the end cap, resting horizontally on a tiered upright rack."
+  },
+  {
+   "id": "landmine",
+   "name": "Landmine",
+   "group": "Bars and plates",
+   "aliases": [
+    "landmine attachment",
+    "barbell pivot",
+    "corner barbell"
+   ],
+   "muscles": [
+    "fullbody",
+    "fdelt",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "box",
+    "uni"
+   ],
+   "image_prompt": "A landmine, a heavy steel floor base or rack-mounted post with a rotating sleeve that pivots in all directions, holding one end of a barbell that rises at an angle with a single plate loaded on the far end."
+  },
+  {
+   "id": "landminehandle",
+   "name": "Landmine handles",
+   "group": "Bars and plates",
+   "aliases": [
+    "V-bar landmine handle",
+    "landmine row handle",
+    "T-bar handle",
+    "Viking press handles",
+    "Meadows handle"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "box"
+   ],
+   "image_prompt": "A set of landmine handles, a steel sleeve that slides onto the end of a barbell, fitted with a choice of grips: a pair of neutral handles in a V shape, a wide T handle or two parallel overhead press handles."
+  },
+  {
+   "id": "chains",
+   "name": "Chains",
+   "group": "Bars and plates",
+   "aliases": [
+    "lifting chains",
+    "accommodating resistance chains"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "bodybuilding"
+   ],
+   "image_prompt": "A set of chains, a pair of heavy steel link chains, each draped over a thinner loading chain, hanging from both sleeves of a barbell so the links pile on the floor."
+  },
+  {
+   "id": "fatgrips",
+   "name": "Thick grips",
+   "group": "Bars and plates",
+   "aliases": [
+    "Fat Gripz",
+    "grip thickeners",
+    "Alpha Grips"
+   ],
+   "muscles": [
+    "forearms",
+    "biceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A set of thick grips, a pair of thick rubber tubular sleeves with a slit along their length, made to clip around a bar or dumbbell handle to widen it."
+  },
+  {
+   "id": "rack",
+   "name": "Power rack / squat rack",
+   "group": "Racks and benches",
+   "aliases": [
+    "power cage",
+    "squat cage",
+    "full rack"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "box",
+    "uni"
+   ],
+   "image_prompt": "A power rack / squat rack, a tall four-post steel cage with holes punched up each upright, J-hooks holding a barbell at shoulder height, horizontal safety bars running front to back at waist height inside the cage and a pull-up bar across the top."
+  },
+  {
+   "id": "halfrack",
+   "name": "Half rack / squat stands",
+   "group": "Racks and benches",
+   "aliases": [
+    "half rack",
+    "squat stands",
+    "wall-mounted rack",
+    "folding rack"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "hotel"
+   ],
+   "image_prompt": "A half rack / squat stands, a pair of tall upright steel posts on a rectangular base with J-hooks holding a barbell, short spotter arms projecting forwards and a pull-up bar connecting the tops, open at the front."
+  },
+  {
+   "id": "monolift",
+   "name": "Monolift",
+   "group": "Racks and benches",
+   "aliases": [
+    "mono lift",
+    "powerlifting monolift"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A monolift, a heavy two-post squat stand with hooks on swinging arms that hold the bar then pivot out of the way, a foot-operated lever cam at the base and long safety arms projecting forward."
+  },
+  {
+   "id": "rig",
+   "name": "Functional training rig",
+   "group": "Racks and benches",
+   "aliases": [
+    "crossfit rig",
+    "pull-up rig",
+    "free-standing rig",
+    "wall rig"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A functional training rig, a long run of connected steel uprights and crossbeams forming several squat bays, with multiple pull-up bars at different heights, monkey bar rungs across the top, J-hooks on the uprights and hanging gymnastic rings."
+  },
+  {
+   "id": "multigym",
+   "name": "Home multi-gym",
+   "group": "Racks and benches",
+   "aliases": [
+    "multi gym",
+    "all-in-one gym",
+    "multi-station",
+    "home gym station"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "home",
+    "hotel"
+   ],
+   "image_prompt": "A home multi-gym, a single-stack steel home gym with a central weight stack, a padded seat with a chest press arm, a high pulley with lat bar, a low pulley at the front and a leg extension and curl roller pad at the base of the seat."
+  },
+  {
+   "id": "smith",
+   "name": "Smith machine",
+   "group": "Racks and benches",
+   "aliases": [
+    "Smith",
+    "guided barbell"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A Smith machine, a tall steel frame with a barbell fixed to vertical guide rods so it runs straight up and down, with hooks on the bar that rotate into slots on the uprights, plate pegs on the bar and adjustable safety stops at the base."
+  },
+  {
+   "id": "smithangled",
+   "name": "Angled Smith machine",
+   "group": "Racks and benches",
+   "aliases": [
+    "incline Smith",
+    "angled Smith",
+    "7 degree Smith",
+    "counterbalanced Smith"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "An angled Smith machine, a Smith machine whose twin guide rods lean backwards at a slight angle of about 7 degrees, with a counterweighted barbell on the rails, rotating hooks and plate pegs, and safety stops at the base."
+  },
+  {
+   "id": "smith3d",
+   "name": "3D Smith machine",
+   "group": "Racks and benches",
+   "aliases": [
+    "3D Smith",
+    "multi-plane Smith",
+    "free-motion Smith"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A 3D Smith machine, a large Smith machine whose barbell rides on a carriage that slides both up and down and forwards and backwards on horizontal rails across the top of the frame, allowing movement in two planes."
+  },
+  {
+   "id": "bench",
+   "name": "Adjustable bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "FID bench",
+    "incline bench",
+    "utility bench",
+    "flat incline decline bench"
+   ],
+   "muscles": [
+    "chest",
+    "fdelt",
+    "triceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "An adjustable bench, a padded weight bench with a long back pad that ratchets from flat to fully upright on a steel ladder, a separate adjustable seat pad, a wheeled front leg and a handle at the rear."
+  },
+  {
+   "id": "flatbench",
+   "name": "Flat bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "flat utility bench",
+    "bench"
+   ],
+   "muscles": [
+    "chest",
+    "triceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A flat bench, a long narrow padded flat bench on a sturdy three-point steel frame at knee height, with no uprights."
+  },
+  {
+   "id": "declinebench",
+   "name": "Decline bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "decline sit-up bench",
+    "Olympic decline bench",
+    "decline press bench"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "abs"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A decline bench, a padded bench angled head-down at about 20 degrees with a padded leg hook roller at the raised end to lock the legs in and a small pair of bar uprights at the low end."
+  },
+  {
+   "id": "benchrack",
+   "name": "Bench press station",
+   "group": "Racks and benches",
+   "aliases": [
+    "Olympic flat bench",
+    "flat bench press",
+    "bench with uprights",
+    "combo rack"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni",
+    "hotel"
+   ],
+   "image_prompt": "A bench press station, a flat padded bench joined to a pair of steel uprights at the head end with bar catches at two heights, a barbell resting in the catches and plate storage horns on the uprights."
+  },
+  {
+   "id": "inclinestation",
+   "name": "Incline bench station",
+   "group": "Racks and benches",
+   "aliases": [
+    "Olympic incline bench",
+    "incline bench press"
+   ],
+   "muscles": [
+    "chest",
+    "fdelt",
+    "triceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An incline bench station, a fixed incline back pad at about 30 to 45 degrees with a small seat, tall steel uprights behind the head holding a barbell, and a raised spotter platform at the rear."
+  },
+  {
+   "id": "shoulderbench",
+   "name": "Shoulder press bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "military press bench",
+    "Olympic shoulder bench",
+    "seated press bench"
+   ],
+   "muscles": [
+    "fdelt",
+    "sdelt",
+    "triceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A shoulder press bench, a near-upright padded backrest with a small seat, tall steel uprights behind the head holding a barbell overhead and a footrest platform for a spotter at the back."
+  },
+  {
+   "id": "preacher",
+   "name": "Preacher bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "Scott bench",
+    "preacher curl bench",
+    "standing preacher bench"
+   ],
+   "muscles": [
+    "biceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A preacher bench, a seat in front of an angled padded arm rest sloping down and away from the user, with a pair of bar catches at the base of the pad to rest an EZ bar."
+  },
+  {
+   "id": "sealrow",
+   "name": "Seal row bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "seal row",
+    "high prone bench",
+    "chest-supported row bench"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "rdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A seal row bench, a long flat padded bench raised on tall legs to about waist height, with a step and a pair of bar catches underneath so the user can lie face down and row a barbell or dumbbells up to the pad."
+  },
+  {
+   "id": "hipthrustbench",
+   "name": "Hip thrust bench",
+   "group": "Racks and benches",
+   "aliases": [
+    "hip thruster",
+    "glute bench",
+    "hip thrust station",
+    "Bret Contreras hip thruster"
+   ],
+   "muscles": [
+    "glutes",
+    "hams"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "home"
+   ],
+   "image_prompt": "A hip thrust bench, a low padded back support bench at knee height, with a curved pad for the upper back, a floor base the user sits on, and band pegs or a barbell resting across the hips area."
+  },
+  {
+   "id": "platform",
+   "name": "Deadlift platform",
+   "group": "Racks and benches",
+   "aliases": [
+    "lifting platform",
+    "Olympic platform",
+    "drop pad"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "box",
+    "uni"
+   ],
+   "image_prompt": "A deadlift platform, a large square wooden centre panel flanked on both sides by thick black rubber mats, raised slightly above the floor, with a loaded barbell resting on the rubber sections."
+  },
+  {
+   "id": "blocks",
+   "name": "Pulling / jerk blocks",
+   "group": "Racks and benches",
+   "aliases": [
+    "jerk blocks",
+    "pulling blocks",
+    "plyo blocks",
+    "deadlift blocks"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "box",
+    "bodybuilding"
+   ],
+   "image_prompt": "A set of pulling / jerk blocks, a pair of stacked wooden or foam cubes of adjustable height, placed under each end of a loaded barbell so the bar sits off the floor at knee height."
+  },
+  {
+   "id": "jhooks",
+   "name": "Spotter / safety arms",
+   "group": "Racks and benches",
+   "aliases": [
+    "safety arms",
+    "safeties",
+    "spotter arms",
+    "J-hooks",
+    "straps"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A set of spotter / safety arms, a pair of long steel safety arms with a rubber-lined top surface pinned to the uprights of a rack, alongside a pair of J-shaped bar hooks."
+  },
+  {
+   "id": "legattach",
+   "name": "Bench leg extension / curl attachment",
+   "group": "Racks and benches",
+   "aliases": [
+    "leg developer",
+    "leg roller attachment",
+    "bench leg attachment"
+   ],
+   "muscles": [
+    "quads",
+    "hams"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A bench leg extension / curl attachment, a pivoting steel arm attached to the front of a weight bench, with two pairs of foam rollers for the shins and a loading horn for plates at the end of the arm."
+  },
+  {
+   "id": "racklevers",
+   "name": "Rack lever arms",
+   "group": "Racks and benches",
+   "aliases": [
+    "lever arms",
+    "jammer arms",
+    "rack jammer arms"
+   ],
+   "muscles": [
+    "fullbody",
+    "fdelt",
+    "chest"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A set of rack lever arms, a pair of long steel lever arms that pin into the lower holes of a power rack upright at each side and pivot upwards, each with a handle near the free end and a short loading sleeve for plates."
+  },
+  {
+   "id": "db",
+   "name": "Dumbbells",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "fixed dumbbells",
+    "hex dumbbells",
+    "pro-style dumbbells",
+    "dumbbell rack"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "box"
+   ],
+   "image_prompt": "A set of dumbbells, a two-tier rack holding a row of pairs of fixed round rubber-ended dumbbells with knurled chrome handles, increasing in size along the row."
+  },
+  {
+   "id": "adjdb",
+   "name": "Adjustable dumbbells",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "selector dumbbells",
+    "spin-lock dumbbells",
+    "PowerBlock",
+    "Bowflex dumbbells"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A set of adjustable dumbbells, a pair of adjustable dumbbells sitting in their moulded cradles, each with a handle inside a stack of nested weight plates and a selector dial or pin to choose the load."
+  },
+  {
+   "id": "heavydb",
+   "name": "Heavy dumbbells (50 kg+)",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "heavy dumbbells",
+    "bodybuilding dumbbells"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A set of heavy dumbbells (50 kg+), a rack of very large round dumbbells with thick plates welded to chunky knurled handles, the heaviest pairs at the end being much bigger than the others."
+  },
+  {
+   "id": "kb",
+   "name": "Kettlebells",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "kettlebell",
+    "competition kettlebells",
+    "cast iron kettlebells"
+   ],
+   "muscles": [
+    "fullbody",
+    "glutes",
+    "hams"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A set of kettlebells, a row of cast iron ball-shaped weights with flat bottoms and thick looped handles on top, coloured by weight, from small to large."
+  },
+  {
+   "id": "adjkb",
+   "name": "Adjustable kettlebell",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "adjustable kettlebell",
+    "plate-loaded kettlebell"
+   ],
+   "muscles": [
+    "fullbody",
+    "glutes"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "An adjustable kettlebell, a kettlebell made of a handle and core that accepts stacked weight plates locked into its base, with a selector dial or locking pin."
+  },
+  {
+   "id": "clubs",
+   "name": "Clubbells / Indian clubs",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "Indian clubs",
+    "clubbells",
+    "steel clubs"
+   ],
+   "muscles": [
+    "fdelt",
+    "forearms",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "box",
+    "rehab"
+   ],
+   "image_prompt": "A set of clubbells / Indian clubs, a pair of bowling-pin-shaped steel or wooden clubs, narrow at the knurled handle and widening to a heavy rounded end."
+  },
+  {
+   "id": "mace",
+   "name": "Steel mace",
+   "group": "Dumbbells and kettlebells",
+   "aliases": [
+    "mace bell",
+    "gada"
+   ],
+   "muscles": [
+    "fdelt",
+    "forearms",
+    "abs"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "box"
+   ],
+   "image_prompt": "A steel mace, a long steel bar about 1 m long with a heavy steel ball welded to one end and a knurled shaft, standing upright on the ball end."
+  },
+  {
+   "id": "cable_hi",
+   "name": "High pulley",
+   "group": "Cables and attachments",
+   "aliases": [
+    "high cable",
+    "pushdown station",
+    "triceps tower"
+   ],
+   "muscles": [
+    "triceps",
+    "lats"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A high pulley, a single upright steel tower with a weight stack in a guarded frame and one pulley mounted at the top, the cable hanging down with a straight bar attached."
+  },
+  {
+   "id": "cable_mid",
+   "name": "Adjustable pulley (any height)",
+   "group": "Cables and attachments",
+   "aliases": [
+    "cable column",
+    "adjustable cable",
+    "cable tower",
+    "single cable station"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "An adjustable pulley (any height), a single tall steel tower with a weight stack and a pulley carriage that slides up and down a vertical rail with a pop-pin to set any height, a D-handle clipped to the cable."
+  },
+  {
+   "id": "cable_low",
+   "name": "Low pulley",
+   "group": "Cables and attachments",
+   "aliases": [
+    "low cable",
+    "floor pulley"
+   ],
+   "muscles": [
+    "biceps",
+    "glutes",
+    "upback"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A low pulley, a cable station with a pulley fixed just above floor level at the base of a weight stack tower, with the cable running out horizontally to a handle on the floor."
+  },
+  {
+   "id": "seatedcablerow",
+   "name": "Seated cable row",
+   "group": "Cables and attachments",
+   "aliases": [
+    "cable row",
+    "low row station",
+    "seated row station"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "biceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A seated cable row, a long low padded bench running away from a weight stack, with an angled footplate at the stack end and a cable emerging from a pulley at foot height with a close-grip V handle."
+  },
+  {
+   "id": "cable_dual",
+   "name": "Cable crossover (two stacks)",
+   "group": "Cables and attachments",
+   "aliases": [
+    "cable crossover",
+    "crossover machine",
+    "double cable",
+    "dual cable"
+   ],
+   "muscles": [
+    "chest",
+    "fullbody"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A cable crossover (two stacks), a wide steel frame with two separate weight stack towers on either side joined by a crossbar with a pull-up bar, each tower with a pulley that slides up and down a vertical rail."
+  },
+  {
+   "id": "functional",
+   "name": "Functional trainer",
+   "group": "Cables and attachments",
+   "aliases": [
+    "dual adjustable pulley",
+    "FTS",
+    "cable motion",
+    "Freemotion",
+    "Keiser functional trainer"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A functional trainer, a compact steel frame with two weight stacks side by side and a pair of swinging pulley arms that slide up and down vertical columns on each side, with multi-grip pull-up handles on the top crossbar."
+  },
+  {
+   "id": "latpd",
+   "name": "Lat pulldown",
+   "group": "Cables and attachments",
+   "aliases": [
+    "pulldown",
+    "lat machine",
+    "cable pulldown"
+   ],
+   "muscles": [
+    "lats",
+    "upback",
+    "biceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A lat pulldown, an upright frame with a seat and padded thigh roller pads in front of a weight stack, a high pulley above the seat holding a long wide bar with angled ends."
+  },
+  {
+   "id": "latrow",
+   "name": "Lat pulldown / low row combo",
+   "group": "Cables and attachments",
+   "aliases": [
+    "combo lat row",
+    "dual pulley pulldown row"
+   ],
+   "muscles": [
+    "lats",
+    "upback",
+    "biceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A lat pulldown / low row combo, a single weight stack machine with a seat and thigh pads under a high pulley holding a lat bar, plus a low pulley and footplate at the front for seated rows."
+  },
+  {
+   "id": "cablerope",
+   "name": "Triceps rope",
+   "group": "Cables and attachments",
+   "aliases": [
+    "rope",
+    "rope attachment",
+    "pushdown rope"
+   ],
+   "muscles": [
+    "triceps",
+    "rdelt",
+    "abs"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A triceps rope, a thick braided nylon rope folded in two with a steel snap-link ring at the centre and a rubber stopper ball at each end."
+  },
+  {
+   "id": "straightbar",
+   "name": "Straight cable bar",
+   "group": "Cables and attachments",
+   "aliases": [
+    "straight bar",
+    "short bar",
+    "pushdown bar"
+   ],
+   "muscles": [
+    "triceps",
+    "biceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A straight cable bar, a short knurled chrome bar about 50 cm long with a swivel mount and a clip ring in the centre for connecting to a cable."
+  },
+  {
+   "id": "ezcable",
+   "name": "EZ cable bar",
+   "group": "Cables and attachments",
+   "aliases": [
+    "EZ attachment",
+    "cambered pushdown bar"
+   ],
+   "muscles": [
+    "biceps",
+    "triceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "An EZ cable bar, a short chrome bar about 50 cm long with a zig-zag W-shaped bend, knurled grips and a central swivel clip ring for connecting to a cable."
+  },
+  {
+   "id": "vbar",
+   "name": "V-bar",
+   "group": "Cables and attachments",
+   "aliases": [
+    "V handle",
+    "close-grip handle",
+    "double D handle",
+    "row handle"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "triceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A V-bar, a small triangular steel handle with two parallel neutral rubber-gripped handles side by side and a clip ring at the point of the V."
+  },
+  {
+   "id": "dhandle",
+   "name": "D-handle",
+   "group": "Cables and attachments",
+   "aliases": [
+    "single handle",
+    "stirrup handle",
+    "D handle"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A d-handle, a single D-shaped steel stirrup with a rotating rubber or knurled grip and a ring at the top for clipping to a cable."
+  },
+  {
+   "id": "latbar",
+   "name": "Lat bar",
+   "group": "Cables and attachments",
+   "aliases": [
+    "long bar",
+    "wide pulldown bar",
+    "lat pulldown bar"
+   ],
+   "muscles": [
+    "lats",
+    "upback"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A lat bar, a long chrome bar about 120 cm wide with ends bent downwards and outwards and rubber grips, with a central swivel clip ring."
+  },
+  {
+   "id": "maggrip",
+   "name": "MAG grip / multi-grip handles",
+   "group": "Cables and attachments",
+   "aliases": [
+    "MAG grip",
+    "Mag bar",
+    "neutral wide bar",
+    "multi-grip lat bar",
+    "row bar"
+   ],
+   "muscles": [
+    "lats",
+    "upback"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A MAG grip / multi-grip handles, a set of row and pulldown handles with a cast aluminium frame in a long U shape, with parallel neutral or pronated grips set at different widths and a clip ring in the centre."
+  },
+  {
+   "id": "anklestrap",
+   "name": "Ankle strap",
+   "group": "Cables and attachments",
+   "aliases": [
+    "ankle cuff",
+    "cable ankle strap"
+   ],
+   "muscles": [
+    "glutes",
+    "hams",
+    "abductors"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "An ankle strap, a padded neoprene cuff with a hook-and-loop fastening and a metal D ring sewn on, designed to wrap around the ankle and clip to a low cable."
+  },
+  {
+   "id": "diypulley",
+   "name": "Plate-loaded pulley (DIY)",
+   "group": "Cables and attachments",
+   "aliases": [
+    "loading pin pulley",
+    "rack pulley",
+    "LAT pulley system"
+   ],
+   "muscles": [
+    "lats",
+    "triceps",
+    "biceps"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A plate-loaded pulley (DIY), a single steel pulley clamped to the top crossmember of a rack, with a steel cable running over it down to a vertical loading pin with plates at the bottom and a handle at the other end."
+  },
+  {
+   "id": "jungle",
+   "name": "Multi-station cable jungle",
+   "group": "Cables and attachments",
+   "aliases": [
+    "4-stack multi-station",
+    "jungle gym",
+    "multi-station"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A multi-station cable jungle, a large central steel frame with four weight stacks arranged around it, each feeding a different station: a lat pulldown seat, a low row bench, a high and low adjustable pulley and a crossover arm."
+  },
+  {
+   "id": "chestpress",
+   "name": "Seated chest press (selectorised)",
+   "group": "Chest machines",
+   "aliases": [
+    "chest press",
+    "converging chest press",
+    "seated press machine"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "fdelt"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A seated chest press (selectorised), a pin-loaded machine with an upright padded seat and backrest, a weight stack behind the seat, and two handle arms that swing forwards from beside the shoulders with vertical and horizontal grips."
+  },
+  {
+   "id": "isochestpress",
+   "name": "Iso-lateral chest press (plate-loaded)",
+   "group": "Chest machines",
+   "aliases": [
+    "Hammer chest press",
+    "iso-lateral bench press",
+    "iso-lateral wide chest",
+    "plate-loaded chest press",
+    "horizontal chest press"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "fdelt"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral chest press (plate-loaded), a plate-loaded machine with an upright padded seat and back pad, two independent pivoting lever arms coming over the shoulders from behind to handles in front of the chest, and a loading horn for plates at the rear of each arm."
+  },
+  {
+   "id": "lyingchestpress",
+   "name": "Lying chest press machine",
+   "group": "Chest machines",
+   "aliases": [
+    "iso-lateral bench press",
+    "lying press",
+    "decline/flat bench machine",
+    "horizontal bench press machine"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "fdelt"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A lying chest press machine, a flat padded bench with two independent lever arms arching over the top, each ending in handles above the chest, with plate loading horns at the head end and a footrest at the foot."
+  },
+  {
+   "id": "incchestpress",
+   "name": "Incline chest press (selectorised)",
+   "group": "Chest machines",
+   "aliases": [
+    "incline press machine",
+    "incline chest press"
+   ],
+   "muscles": [
+    "chest",
+    "fdelt",
+    "triceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "An incline chest press (selectorised), a pin-loaded machine with a seat and a backrest reclined at about 30 degrees, a weight stack behind, and two handle arms that move upwards and forwards at an incline."
+  },
+  {
+   "id": "isoincpress",
+   "name": "Iso-lateral incline press (plate-loaded)",
+   "group": "Chest machines",
+   "aliases": [
+    "Hammer incline press",
+    "iso-lateral incline",
+    "super incline press",
+    "plate-loaded incline"
+   ],
+   "muscles": [
+    "chest",
+    "fdelt",
+    "triceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral incline press (plate-loaded), a plate-loaded machine with a seat and reclined back pad, two independent lever arms that pivot from behind and above to handles that drive up and forward at an incline, each with a loading horn."
+  },
+  {
+   "id": "declinepress",
+   "name": "Decline chest press machine",
+   "group": "Chest machines",
+   "aliases": [
+    "iso-lateral decline press",
+    "decline press"
+   ],
+   "muscles": [
+    "chest",
+    "triceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A decline chest press machine, a plate-loaded machine with a seat and upright back pad, thigh pads holding the legs, and two independent lever arms whose handles push forward and downwards from chest height, each with a loading horn."
+  },
+  {
+   "id": "pecdeck",
+   "name": "Pec deck",
+   "group": "Chest machines",
+   "aliases": [
+    "pec fly",
+    "chest fly machine",
+    "butterfly machine",
+    "pec deck / rear delt"
+   ],
+   "muscles": [
+    "chest",
+    "fdelt"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A pec deck, a pin-loaded machine with an upright seat and backrest, a weight stack behind, and two long swinging arms on either side ending in vertical handles or elbow pads that close together in front of the chest."
+  },
+  {
+   "id": "platefly",
+   "name": "Plate-loaded chest fly",
+   "group": "Chest machines",
+   "aliases": [
+    "iso-lateral fly",
+    "plate-loaded pec fly",
+    "standing fly"
+   ],
+   "muscles": [
+    "chest"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A plate-loaded chest fly, a plate-loaded machine with a seat and back pad and two long lever arms pivoting from above each shoulder, ending in vertical handles out to the sides, with loading horns on each arm."
+  },
+  {
+   "id": "chestback",
+   "name": "Iso-lateral chest / back combo",
+   "group": "Chest machines",
+   "aliases": [
+    "chest/back",
+    "iso-lateral chest back",
+    "combo press row"
+   ],
+   "muscles": [
+    "chest",
+    "upback",
+    "lats"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral chest / back combo, a plate-loaded machine with a seat that faces either way, and two lever arms that can be pushed forwards as a chest press or pulled back as a row, with a chest pad and loading horns."
+  },
+  {
+   "id": "pushupm",
+   "name": "Plate-loaded push-up / dip combo",
+   "group": "Chest machines",
+   "aliases": [
+    "dip press",
+    "dip machine"
+   ],
+   "muscles": [
+    "chest",
+    "triceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding"
+   ],
+   "image_prompt": "A plate-loaded push-up / dip combo, a plate-loaded machine with a seat and back pad and two lever arms with low handles beside the hips that press straight downwards, with loading horns at the rear."
+  },
+  {
+   "id": "latpdplate",
+   "name": "Iso-lateral pulldown (plate-loaded)",
+   "group": "Back machines",
+   "aliases": [
+    "Hammer pulldown",
+    "plate-loaded pulldown",
+    "wide pulldown",
+    "iso-lateral wide pulldown"
+   ],
+   "muscles": [
+    "lats",
+    "upback",
+    "biceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral pulldown (plate-loaded), a plate-loaded machine with a seat and thigh roller pads, two independent lever arms reaching up and over the head to angled high handles, with loading horns on the rear of each arm."
+  },
+  {
+   "id": "frontpulldown",
+   "name": "Iso-lateral front pulldown",
+   "group": "Back machines",
+   "aliases": [
+    "front lat pulldown",
+    "iso-lateral front lat"
+   ],
+   "muscles": [
+    "lats",
+    "biceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "An iso-lateral front pulldown, a plate-loaded machine with a seat and thigh pads, two lever arms that come down from in front of the face with neutral handles, each arm with a loading horn at the back."
+  },
+  {
+   "id": "rowm",
+   "name": "Iso-lateral row (plate-loaded)",
+   "group": "Back machines",
+   "aliases": [
+    "chest-supported row machine",
+    "Hammer row",
+    "iso-lateral row",
+    "plate-loaded row"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "rdelt",
+    "biceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral row (plate-loaded), a plate-loaded machine with a seat and a vertical chest pad, two independent lever arms in front with neutral and pronated handles, and loading horns on each arm."
+  },
+  {
+   "id": "seatedrowm",
+   "name": "Seated row machine (selectorised)",
+   "group": "Back machines",
+   "aliases": [
+    "chest-supported row",
+    "pin-loaded row",
+    "seated row machine",
+    "mid row"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "rdelt",
+    "biceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A seated row machine (selectorised), a pin-loaded machine with a seat and an adjustable vertical chest pad, a weight stack at the side or rear, and two handles on arms in front that are pulled towards the torso."
+  },
+  {
+   "id": "highrow",
+   "name": "High row machine",
+   "group": "Back machines",
+   "aliases": [
+    "iso-lateral high row",
+    "high row"
+   ],
+   "muscles": [
+    "lats",
+    "upback"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A high row machine, a plate-loaded machine with a seat, a thigh pad and two independent lever arms coming down from above and in front at an angle, ending in handles, with loading horns on each arm."
+  },
+  {
+   "id": "lowrow",
+   "name": "Low row machine",
+   "group": "Back machines",
+   "aliases": [
+    "iso-lateral low row",
+    "low row"
+   ],
+   "muscles": [
+    "upback",
+    "lats"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A low row machine, a plate-loaded machine with a low seat and a chest pad, two independent lever arms with low handles near the floor that are pulled back towards the hips, with loading horns on each arm."
+  },
+  {
+   "id": "dyrow",
+   "name": "DY row",
+   "group": "Back machines",
+   "aliases": [
+    "Dorian Yates row",
+    "iso-lateral D.Y. row"
+   ],
+   "muscles": [
+    "lats",
+    "upback"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A DY row, a plate-loaded machine with a seat and chest pad, two lever arms with handles that pull back and up in an arc towards the lower ribs, with loading horns on each arm."
+  },
+  {
+   "id": "tbar",
+   "name": "T-bar row",
+   "group": "Back machines",
+   "aliases": [
+    "T-bar",
+    "lever T-bar",
+    "standing T-bar row"
+   ],
+   "muscles": [
+    "upback",
+    "lats"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A T-bar row, a long steel lever arm pivoting at floor level from a base, with a footplate the user stands on astride the bar, a handle crossbar with neutral and wide grips at the near end and a loading horn for plates."
+  },
+  {
+   "id": "cstbar",
+   "name": "Chest-supported T-bar row",
+   "group": "Back machines",
+   "aliases": [
+    "incline lever row",
+    "lying T-bar row",
+    "prone T-bar row"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "rdelt"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A chest-supported T-bar row, a plate-loaded machine with an inclined chest pad on a frame, a footplate behind, and a pivoting lever arm beneath the pad with a handle crossbar offering wide and neutral grips and a loading horn at the far end."
+  },
+  {
+   "id": "pulloverm",
+   "name": "Pullover machine",
+   "group": "Back machines",
+   "aliases": [
+    "Nautilus pullover",
+    "pullover"
+   ],
+   "muscles": [
+    "lats"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A pullover machine, a pin-loaded machine with an upright seat and lap belt, elbow pads on a large rotating cam arm that sweeps from overhead down to the stomach, and a weight stack behind."
+  },
+  {
+   "id": "dipm",
+   "name": "Assisted pull-up / dip machine",
+   "group": "Back machines",
+   "aliases": [
+    "Gravitron",
+    "assisted chin dip",
+    "chin dip assist"
+   ],
+   "muscles": [
+    "lats",
+    "biceps",
+    "chest",
+    "triceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "An assisted pull-up / dip machine, a tall pin-loaded machine with a kneeling pad that pushes up from below, pull-up handles across the top and parallel dip handles at mid height, and a weight stack behind."
+  },
+  {
+   "id": "pullupplate",
+   "name": "Plate-loaded pull-up / chin assist",
+   "group": "Back machines",
+   "aliases": [
+    "kneeling pulldown",
+    "assisted chin plate"
+   ],
+   "muscles": [
+    "lats"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding"
+   ],
+   "image_prompt": "A plate-loaded pull-up / chin assist, a tall plate-loaded frame with high pull-up handles and a kneeling pad on a lever arm that gives counterbalance, with a loading horn on the lever."
+  },
+  {
+   "id": "backext",
+   "name": "Back extension machine",
+   "group": "Back machines",
+   "aliases": [
+    "lumbar extension",
+    "lower back machine"
+   ],
+   "muscles": [
+    "lowback",
+    "glutes"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A back extension machine, a pin-loaded machine with a seat, a footrest, a lap pad and a high padded backrest roller on a rotating arm that pushes backwards, with a weight stack to the side."
+  },
+  {
+   "id": "shrugm",
+   "name": "Shrug machine",
+   "group": "Back machines",
+   "aliases": [
+    "plate-loaded shrug",
+    "standing shrug",
+    "seated shrug",
+    "ground base shrug"
+   ],
+   "muscles": [
+    "traps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A shrug machine, a plate-loaded machine with two lever arms either side of the user, handles at hip height and loading horns at the front, standing on a platform between them."
+  },
+  {
+   "id": "deadliftm",
+   "name": "Deadlift / ground base machine",
+   "group": "Back machines",
+   "aliases": [
+    "ground base deadlift",
+    "deadlift machine",
+    "RDL machine",
+    "combo deadlift shrug"
+   ],
+   "muscles": [
+    "glutes",
+    "hams",
+    "upback",
+    "traps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A deadlift / ground base machine, a plate-loaded lever machine with a long floor platform, two pivoting arms on either side ending in handles at knee height, and loading horns for plates on each arm."
+  },
+  {
+   "id": "neckm",
+   "name": "Neck machine",
+   "group": "Back machines",
+   "aliases": [
+    "4-way neck",
+    "neck flexion extension"
+   ],
+   "muscles": [
+    "neck"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A neck machine, a pin-loaded machine with a seat and a padded head ring on a rotating arm, set so the user presses the head forward, back or to either side against the pad, with a weight stack behind."
+  },
+  {
+   "id": "shoulderpress",
+   "name": "Shoulder press machine (selectorised)",
+   "group": "Shoulder machines",
+   "aliases": [
+    "seated shoulder press",
+    "overhead press machine",
+    "military press machine"
+   ],
+   "muscles": [
+    "fdelt",
+    "sdelt",
+    "triceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A shoulder press machine (selectorised), a pin-loaded machine with an upright seat and back pad, a weight stack behind, and two handle arms beside the head that press straight up overhead."
+  },
+  {
+   "id": "isoshoulderpress",
+   "name": "Iso-lateral shoulder press (plate-loaded)",
+   "group": "Shoulder machines",
+   "aliases": [
+    "Hammer shoulder press",
+    "plate-loaded shoulder press"
+   ],
+   "muscles": [
+    "fdelt",
+    "sdelt",
+    "triceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "An iso-lateral shoulder press (plate-loaded), a plate-loaded machine with an upright seat and back pad, two independent lever arms coming forward from behind with handles at shoulder height that drive upwards, with loading horns on each arm."
+  },
+  {
+   "id": "latraisem",
+   "name": "Lateral raise machine",
+   "group": "Shoulder machines",
+   "aliases": [
+    "side raise machine",
+    "delt raise",
+    "standing lateral raise",
+    "plate-loaded lateral raise"
+   ],
+   "muscles": [
+    "sdelt"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A lateral raise machine, a pin-loaded machine with a seat and chest pad, two arms with elbow pads or handles out to the sides that rotate upwards away from the body, and a weight stack behind."
+  },
+  {
+   "id": "revdelt",
+   "name": "Rear delt machine",
+   "group": "Shoulder machines",
+   "aliases": [
+    "reverse pec deck",
+    "rear delt fly",
+    "reverse fly"
+   ],
+   "muscles": [
+    "rdelt",
+    "upback"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A rear delt machine, a pin-loaded machine with a seat facing a vertical chest pad, two swinging arms with handles in front of the chest that open out to the sides, and a weight stack behind."
+  },
+  {
+   "id": "jammer",
+   "name": "Jammer",
+   "group": "Shoulder machines",
+   "aliases": [
+    "ground base jammer",
+    "standing press jammer"
+   ],
+   "muscles": [
+    "fdelt",
+    "triceps",
+    "quads",
+    "chest"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "box"
+   ],
+   "image_prompt": "A jammer, a standing plate-loaded machine with two long lever arms pivoting near the floor at the rear, rising in front of the user to handles at shoulder height, with loading horns at the ends."
+  },
+  {
+   "id": "vikingm",
+   "name": "Viking press machine",
+   "group": "Shoulder machines",
+   "aliases": [
+    "Viking press",
+    "landmine Viking press"
+   ],
+   "muscles": [
+    "fdelt",
+    "triceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A Viking press machine, a standing frame with a lever pivoting at floor level, rising to a pair of parallel overhead handles at shoulder height, and a loading horn for plates on the end of the lever."
+  },
+  {
+   "id": "curlm",
+   "name": "Biceps curl machine",
+   "group": "Arm machines",
+   "aliases": [
+    "arm curl",
+    "seated curl",
+    "bicep machine"
+   ],
+   "muscles": [
+    "biceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A biceps curl machine, a pin-loaded machine with a seat in front of an angled padded arm rest, a rotating cam arm with handles that curls towards the face, and a weight stack beside."
+  },
+  {
+   "id": "preacherm",
+   "name": "Preacher curl machine",
+   "group": "Arm machines",
+   "aliases": [
+    "plate-loaded preacher curl",
+    "Hammer biceps curl",
+    "preacher machine"
+   ],
+   "muscles": [
+    "biceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A preacher curl machine, a seat in front of an angled padded arm rest, with two independent lever arms with handles that curl upwards and a loading horn for plates on each arm."
+  },
+  {
+   "id": "triextm",
+   "name": "Triceps extension machine",
+   "group": "Arm machines",
+   "aliases": [
+    "triceps machine",
+    "overhead triceps machine",
+    "arm extension"
+   ],
+   "muscles": [
+    "triceps"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A triceps extension machine, a pin-loaded machine with a seat in front of an angled padded arm rest, a rotating arm with handles that extends forwards and down, and a weight stack beside."
+  },
+  {
+   "id": "tridipm",
+   "name": "Seated dip machine",
+   "group": "Arm machines",
+   "aliases": [
+    "triceps dip machine",
+    "seated dip",
+    "dip press"
+   ],
+   "muscles": [
+    "triceps",
+    "chest"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A seated dip machine, a pin-loaded machine with a seat and back pad, two handles beside the hips on arms that push straight down, and a weight stack behind."
+  },
+  {
+   "id": "standcurlm",
+   "name": "Standing curl machine",
+   "group": "Arm machines",
+   "aliases": [
+    "standing biceps curl",
+    "standing preacher"
+   ],
+   "muscles": [
+    "biceps"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding"
+   ],
+   "image_prompt": "A standing curl machine, a standing frame with an upright angled arm pad at chest height and a lever arm with a curl handle that rotates upward, with a loading horn for plates."
+  },
+  {
+   "id": "legpress",
+   "name": "45-degree leg press",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "leg press",
+    "linear leg press",
+    "sled leg press",
+    "plate-loaded leg press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "adductors"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni",
+    "hotel",
+    "garage"
+   ],
+   "image_prompt": "A 45-degree leg press, a large plate-loaded machine with a reclined padded seat near the floor and a heavy carriage with a wide footplate that slides up and down rails angled at 45 degrees, with loading horns on the carriage and safety catch handles."
+  },
+  {
+   "id": "hlegpress",
+   "name": "Horizontal leg press",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "seated leg press",
+    "selectorised leg press",
+    "cable leg press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A horizontal leg press, a pin-loaded machine with an adjustable sliding seat and backrest, a vertical footplate in front, handles at the sides of the seat and a weight stack along the side."
+  },
+  {
+   "id": "vertlegpress",
+   "name": "Vertical leg press",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "vertical press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A vertical leg press, a plate-loaded machine with a padded backrest flat on the floor, a sled with a footplate running straight up and down vertical rails directly overhead, and loading horns on the sled."
+  },
+  {
+   "id": "isolegpress",
+   "name": "Iso-lateral leg press (plate-loaded)",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "Hammer leg press",
+    "iso-lateral horizontal leg press",
+    "seated lever leg press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "An iso-lateral leg press (plate-loaded), a plate-loaded machine with an inclined seat and two independent footplates on lever arms in front, each lever with a loading horn so the legs can push separately."
+  },
+  {
+   "id": "legpresshack",
+   "name": "Leg press / hack squat combo",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "leg press hack combo"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A leg press / hack squat combo, a compact plate-loaded machine with a sled on 45-degree rails, whose padded seat and shoulder pads flip between leg press and hack squat positions, with a footplate at the bottom and loading horns."
+  },
+  {
+   "id": "hack",
+   "name": "Hack squat",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "hack squat machine",
+    "plate-loaded hack squat"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A hack squat, a plate-loaded machine with a back pad and shoulder pads on a sled that rides up and down rails angled at about 45 degrees, a large angled footplate at the base and loading horns on the sled."
+  },
+  {
+   "id": "revhack",
+   "name": "Reverse hack / hack squat combo",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "reverse hack",
+    "hack squat reverse",
+    "front-facing hack"
+   ],
+   "muscles": [
+    "glutes",
+    "hams",
+    "quads"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A reverse hack / hack squat combo, a hack squat machine whose sled has a chest pad as well as a back pad so the user can face into it, with shoulder pads, angled rails, a large footplate and loading horns."
+  },
+  {
+   "id": "pendulum",
+   "name": "Pendulum squat",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "pendulum",
+    "pendulum squat"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A pendulum squat, a plate-loaded machine with a padded back and shoulder pads on a long swinging arm that pivots from the top of a rear frame, an angled footplate at the base and a loading horn on the arm."
+  },
+  {
+   "id": "vsquat",
+   "name": "V-squat",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "V squat",
+    "squat press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A V-squat, a plate-loaded machine with shoulder pads on a lever arm that moves up and slightly forward in an arc from a pivot behind the user, an angled footplate and loading horns at the rear."
+  },
+  {
+   "id": "supersquat",
+   "name": "Super squat / power squat",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "power squat",
+    "lever squat",
+    "leverage squat",
+    "super squat"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A super squat / power squat, a plate-loaded lever machine with two shoulder pads on a long arm pivoting at the front, a large inclined footplate, side handles and a loading horn on the end of the arm."
+  },
+  {
+   "id": "squatlunge",
+   "name": "Squat lunge machine",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "squat lunge",
+    "lunge machine"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A squat lunge machine, a plate-loaded machine with shoulder pads and handles on a long lever pivoting from the front at floor level, with a long flat platform to stand on in a squat or lunge stance and a loading horn."
+  },
+  {
+   "id": "beltsquat",
+   "name": "Belt squat machine",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "lever belt squat",
+    "belt squat"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "garage"
+   ],
+   "image_prompt": "A belt squat machine, a raised platform with a pivoting lever arm running underneath, a hip belt on a chain hanging from the lever between the feet, handrails at waist height and a loading horn at the end of the lever."
+  },
+  {
+   "id": "pitshark",
+   "name": "Pit Shark / hip belt squat machine",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "Pit Shark",
+    "hip belt squat",
+    "belt squat machine"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A Pit Shark / hip belt squat machine, a wide square platform with a swing arm beneath it on a central post, a hip belt hanging from the swing arm, waist-high handrails all round and plate loading posts on the arm."
+  },
+  {
+   "id": "beltsquatplat",
+   "name": "Portable belt squat platform",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "DIY belt squat",
+    "belt squat stand",
+    "dip belt squat boxes"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A portable belt squat platform, a pair of sturdy boxes or a low steel platform with a gap in the middle, used with a dip belt and chain holding plates hanging between the feet."
+  },
+  {
+   "id": "legext",
+   "name": "Leg extension",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "leg extension machine",
+    "quad extension"
+   ],
+   "muscles": [
+    "quads"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A leg extension, a pin-loaded machine with a seat and reclined backrest, a padded shin roller on a lever arm in front of the ankles that rotates upwards, handles by the seat and a weight stack at the side."
+  },
+  {
+   "id": "isolegext",
+   "name": "Iso-lateral leg extension (plate-loaded)",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "plate-loaded leg extension",
+    "Hammer leg extension"
+   ],
+   "muscles": [
+    "quads"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "An iso-lateral leg extension (plate-loaded), a plate-loaded machine with a seat and backrest and two independent lever arms with shin roller pads in front of each ankle, each with a loading horn."
+  },
+  {
+   "id": "legextcurl",
+   "name": "Leg extension / curl combo",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "dual leg extension curl",
+    "leg ext curl"
+   ],
+   "muscles": [
+    "quads",
+    "hams"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "home",
+    "hotel",
+    "commercial"
+   ],
+   "image_prompt": "A leg extension / curl combo, a pin-loaded machine with a seat and backrest, a shin roller in front of the ankles and a second roller above the knees so the same arm can extend the knees or curl them, with a weight stack at the side."
+  },
+  {
+   "id": "sissy",
+   "name": "Sissy squat bench",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "sissy squat machine",
+    "sissy squat stand"
+   ],
+   "muscles": [
+    "quads"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "garage",
+    "bodybuilding",
+    "commercial"
+   ],
+   "image_prompt": "A sissy squat bench, a small steel frame with a footplate, a padded ankle lock and a tall padded calf brace on an upright, so the user leans back while kneeling forward."
+  },
+  {
+   "id": "stepupm",
+   "name": "Step-up machine",
+   "group": "Leg machines: quads",
+   "aliases": [
+    "selectorised step up",
+    "step-up station"
+   ],
+   "muscles": [
+    "glutes",
+    "quads"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A step-up machine, a pin-loaded machine with a raised step box at knee height, handles in front and a hip belt or shoulder pads connected by cable to a weight stack."
+  },
+  {
+   "id": "lyingcurl",
+   "name": "Lying leg curl",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "prone leg curl",
+    "plate-loaded lying curl"
+   ],
+   "muscles": [
+    "hams"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A lying leg curl, a pin-loaded machine with a face-down padded bench angled at the hips, front handles, a padded roller resting on the back of the ankles on a lever arm that curls upwards, and a weight stack at the side."
+  },
+  {
+   "id": "seatedcurl",
+   "name": "Seated leg curl",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "seated hamstring curl"
+   ],
+   "muscles": [
+    "hams"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "bodybuilding"
+   ],
+   "image_prompt": "A seated leg curl, a pin-loaded machine with an upright seat and backrest, a padded thigh hold-down bar above the knees and a roller behind the ankles on a lever arm that pushes downwards, with a weight stack at the side."
+  },
+  {
+   "id": "standcurl",
+   "name": "Standing leg curl",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "single-leg standing curl"
+   ],
+   "muscles": [
+    "hams"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A standing leg curl, a pin-loaded machine where the user stands leaning on a vertical chest pad, with a thigh pad in front of one knee and a roller behind the ankle on a lever that curls up behind, plus a weight stack."
+  },
+  {
+   "id": "kneelcurl",
+   "name": "Kneeling leg curl",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "kneeling hamstring curl",
+    "iso-lateral kneeling curl"
+   ],
+   "muscles": [
+    "hams"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A kneeling leg curl, a plate-loaded machine with a knee pad and forearm pad, a roller behind one ankle on a lever arm that curls upwards and a loading horn at the end of the lever."
+  },
+  {
+   "id": "hipext",
+   "name": "45-degree back extension",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "45-degree hyperextension",
+    "Roman chair",
+    "back extension bench",
+    "hyper bench"
+   ],
+   "muscles": [
+    "glutes",
+    "hams",
+    "lowback"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "hotel",
+    "uni",
+    "garage"
+   ],
+   "image_prompt": "A 45-degree back extension, a steel frame inclined at 45 degrees with a large angled footplate, a pair of padded ankle rollers and an adjustable padded hip pad near the top."
+  },
+  {
+   "id": "hyper90",
+   "name": "90-degree hyperextension",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "horizontal back extension",
+    "flat Roman chair"
+   ],
+   "muscles": [
+    "lowback",
+    "glutes",
+    "hams"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A 90-degree hyperextension, a horizontal steel frame with a padded hip pad at the front and ankle rollers at the rear so the user lies face down and bends at the hips over the front."
+  },
+  {
+   "id": "ghd",
+   "name": "Glute-ham developer",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "GHD",
+    "glute ham raise",
+    "GHR bench"
+   ],
+   "muscles": [
+    "hams",
+    "glutes",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "garage",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A glute-ham developer, a long steel frame with a large rounded thigh pad, a footplate with padded ankle rollers behind it adjustable on a rail, and handles at the front."
+  },
+  {
+   "id": "revhyper",
+   "name": "Reverse hyper",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "reverse hyperextension",
+    "Westside reverse hyper"
+   ],
+   "muscles": [
+    "glutes",
+    "hams",
+    "lowback"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "garage",
+    "bodybuilding",
+    "box"
+   ],
+   "image_prompt": "A reverse hyper, a tall steel frame with a flat face-down pad at hip height, two front handles, and a swinging arm hanging beneath the back of the pad with an ankle strap and a loading horn for plates."
+  },
+  {
+   "id": "nordicbench",
+   "name": "Nordic curl bench",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "Nordic bench",
+    "Nordic hamstring curl",
+    "Nordic station"
+   ],
+   "muscles": [
+    "hams"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "garage",
+    "uni",
+    "bodybuilding",
+    "commercial",
+    "rehab"
+   ],
+   "image_prompt": "A Nordic curl bench, a long padded kneeling bench with a low steel frame, padded ankle hooks behind the knees and a slightly inclined board in front, so the user kneels and leans forward."
+  },
+  {
+   "id": "glutedrive",
+   "name": "Hip thrust machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "Glute Drive",
+    "hip thrust machine",
+    "glute bridge machine",
+    "plate-loaded hip thrust",
+    "pendulum hip press"
+   ],
+   "muscles": [
+    "glutes",
+    "hams"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A hip thrust machine, a low plate-loaded machine with a reclined back pad, a padded belt or lever pad that sits across the hips, a footplate in front, and loading horns on each side of the hip lever."
+  },
+  {
+   "id": "standhipthrust",
+   "name": "Standing hip thrust machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "Booty Builder standing hip thrust",
+    "standing glute thrust"
+   ],
+   "muscles": [
+    "glutes"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A standing hip thrust machine, a standing machine with a footplate, a vertical chest pad, and a padded belt behind the hips connected to a weight stack or plate lever that the user drives forwards."
+  },
+  {
+   "id": "kickbackm",
+   "name": "Glute kickback machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "rear kick machine",
+    "glute machine",
+    "donkey kick machine",
+    "glute press"
+   ],
+   "muscles": [
+    "glutes"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A glute kickback machine, a pin-loaded machine with a chest or forearm pad, a knee pad and a footplate on a lever arm behind that pushes backwards and up, with a weight stack at the side."
+  },
+  {
+   "id": "abductor",
+   "name": "Hip abductor",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "outer thigh machine",
+    "abduction machine",
+    "inner/outer thigh combo"
+   ],
+   "muscles": [
+    "glutes",
+    "abductors"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A hip abductor, a pin-loaded machine with a reclined seat and two padded leg arms on the outside of the knees that push outwards, with a weight stack at the rear."
+  },
+  {
+   "id": "standabductor",
+   "name": "Standing hip abduction machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "standing abductor",
+    "3D abductor"
+   ],
+   "muscles": [
+    "glutes",
+    "abductors"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A standing hip abduction machine, a pin-loaded machine where the user stands holding front handles, with a padded lever against the outside of one thigh that swings outwards and a weight stack at the side."
+  },
+  {
+   "id": "adductor",
+   "name": "Hip adductor",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "inner thigh machine",
+    "adduction machine"
+   ],
+   "muscles": [
+    "adductors"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A hip adductor, a pin-loaded machine with a reclined seat and two padded leg arms on the inside of the knees that squeeze inwards, with a weight stack at the rear."
+  },
+  {
+   "id": "multihip",
+   "name": "Multi-hip machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "4-way hip",
+    "multi hip"
+   ],
+   "muscles": [
+    "glutes",
+    "adductors",
+    "abductors",
+    "hipflex"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "uni",
+    "rehab"
+   ],
+   "image_prompt": "A multi-hip machine, a pin-loaded machine with a standing platform that raises and lowers, front handles and a rotating padded lever at hip height that can be set for kicks forwards, backwards, inwards and outwards."
+  },
+  {
+   "id": "revlunge",
+   "name": "Reverse lunge machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "lunge machine",
+    "Booty Builder lunge"
+   ],
+   "muscles": [
+    "glutes",
+    "quads"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A reverse lunge machine, a standing machine with a footplate at the front and a lever with shoulder pads or handles that the user steps back away from into a lunge, loaded with plates."
+  },
+  {
+   "id": "splitsquatm",
+   "name": "Split squat machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "split squat",
+    "Bulgarian split squat stand",
+    "split squat stand"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "commercial",
+    "garage"
+   ],
+   "image_prompt": "A split squat machine, a frame with a forward footplate and a padded roller behind on an adjustable post to rest the rear foot on, sometimes with a lever and loading horn above for shoulder loading."
+  },
+  {
+   "id": "standadductor",
+   "name": "Standing hip adduction machine",
+   "group": "Leg machines: hamstrings and glutes",
+   "aliases": [
+    "standing adductor",
+    "Booty Builder standing adductor"
+   ],
+   "muscles": [
+    "adductors"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A standing hip adduction machine, a pin-loaded machine where the user stands on a platform holding front handles, with a padded lever against the inside of one thigh that sweeps inwards across the body, and a weight stack at the side."
+  },
+  {
+   "id": "calfm",
+   "name": "Standing calf raise",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "standing calf machine",
+    "calf raise machine",
+    "plate-loaded calf raise"
+   ],
+   "muscles": [
+    "calves"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A standing calf raise, a pin-loaded machine with two padded shoulder pads on a lever above, a raised calf block underfoot and a weight stack behind."
+  },
+  {
+   "id": "seatedcalf",
+   "name": "Seated calf raise",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "seated calf machine"
+   ],
+   "muscles": [
+    "calves"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "commercial",
+    "bodybuilding",
+    "uni"
+   ],
+   "image_prompt": "A seated calf raise, a plate-loaded machine with a low seat, a padded bar resting across the top of the thighs, a raised foot block under the balls of the feet and a loading horn above the knees."
+  },
+  {
+   "id": "donkeycalf",
+   "name": "Donkey calf raise",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "donkey calf machine"
+   ],
+   "muscles": [
+    "calves"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding"
+   ],
+   "image_prompt": "A donkey calf raise, a plate-loaded machine with a foot block, a forearm rest in front and a padded lever resting across the lower back and hips, with plate loading horns."
+  },
+  {
+   "id": "calfpress",
+   "name": "Calf press machine",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "seated calf press",
+    "calf extension",
+    "calf press"
+   ],
+   "muscles": [
+    "calves"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A calf press machine, a pin-loaded machine with a reclined seat and a short footplate in front on which only the balls of the feet rest, pressing forwards, with a weight stack at the side."
+  },
+  {
+   "id": "tibm",
+   "name": "Tibialis machine",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "tib raise machine",
+    "tib bar machine",
+    "dorsiflexion machine"
+   ],
+   "muscles": [
+    "tibialis"
+   ],
+   "loading": "plate-loaded",
+   "common_in": [
+    "bodybuilding",
+    "garage",
+    "rehab"
+   ],
+   "image_prompt": "A tibialis machine, a low seat with a padded roller across the top of the feet on a lever arm in front, with a heel cup and a loading horn for plates at the end of the lever."
+  },
+  {
+   "id": "tibbar",
+   "name": "Tibialis bar",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "tib bar",
+    "tib dorsi bar"
+   ],
+   "muscles": [
+    "tibialis"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "home",
+    "rehab"
+   ],
+   "image_prompt": "A tibialis bar, a short steel bar with a padded roller across the top of the foot, a short plate loading post and a strap to hold the foot."
+  },
+  {
+   "id": "calfblock",
+   "name": "Calf raise block",
+   "group": "Leg machines: calves and other",
+   "aliases": [
+    "calf block",
+    "calf step",
+    "slant block"
+   ],
+   "muscles": [
+    "calves"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A calf raise block, a solid wooden or steel block with a sloped top surface covered in grip tape, designed to stand on with the heels hanging off."
+  },
+  {
+   "id": "abcrunchm",
+   "name": "Ab crunch machine",
+   "group": "Core machines",
+   "aliases": [
+    "abdominal machine",
+    "crunch machine"
+   ],
+   "muscles": [
+    "abs"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "An ab crunch machine, a pin-loaded machine with a seat, padded foot rollers and padded handles or chest pads on an arm above, which curl down towards the knees, and a weight stack at the side."
+  },
+  {
+   "id": "torso",
+   "name": "Rotary torso",
+   "group": "Core machines",
+   "aliases": [
+    "torso rotation machine",
+    "oblique machine"
+   ],
+   "muscles": [
+    "obliques",
+    "abs"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A rotary torso, a pin-loaded machine with a rotating seat, padded knee and chest pads and handles, which twists from side to side, with a weight stack at the rear."
+  },
+  {
+   "id": "captain",
+   "name": "Captain's chair",
+   "group": "Core machines",
+   "aliases": [
+    "vertical knee raise",
+    "VKR",
+    "power tower",
+    "dip station"
+   ],
+   "muscles": [
+    "abs",
+    "hipflex"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A captain's chair, a tall steel station with a padded back rest, two padded forearm rests with handles at elbow height so the legs hang free, and often a pull-up bar on top."
+  },
+  {
+   "id": "declinesitup",
+   "name": "Decline sit-up bench",
+   "group": "Core machines",
+   "aliases": [
+    "sit-up bench",
+    "decline ab bench"
+   ],
+   "muscles": [
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A decline sit-up bench, a padded bench angled head-down with an adjustable height and foot rollers at the raised end to lock the feet."
+  },
+  {
+   "id": "abbench",
+   "name": "Ab crunch bench",
+   "group": "Core machines",
+   "aliases": [
+    "ab board",
+    "ab bench",
+    "crunch board"
+   ],
+   "muscles": [
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "home"
+   ],
+   "image_prompt": "An ab crunch bench, a short low padded bench with a curved back pad and front foot rollers, used for crunches lying flat."
+  },
+  {
+   "id": "abcoaster",
+   "name": "Ab coaster",
+   "group": "Core machines",
+   "aliases": [
+    "ab coaster",
+    "knee-up glider"
+   ],
+   "muscles": [
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "An ab coaster, a steel frame with a curved rail on which a padded knee carriage slides up and down, with arm rests and handles at the top."
+  },
+  {
+   "id": "treadmill",
+   "name": "Treadmill",
+   "group": "Cardio",
+   "aliases": [
+    "running machine",
+    "motorised treadmill"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "uni",
+    "rehab"
+   ],
+   "image_prompt": "A treadmill, a motorised running machine with a long flat rubber belt deck, side rails, front handlebars and an upright console with a screen."
+  },
+  {
+   "id": "inclinetm",
+   "name": "Incline trainer",
+   "group": "Cardio",
+   "aliases": [
+    "high-incline treadmill",
+    "incline walker"
+   ],
+   "muscles": [
+    "cardio",
+    "glutes",
+    "calves"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "home"
+   ],
+   "image_prompt": "An incline trainer, a motorised treadmill that tilts steeply upwards to a 30 to 40 percent incline, with a long belt, front handles and a large touchscreen console."
+  },
+  {
+   "id": "curvedtm",
+   "name": "Curved / self-powered treadmill",
+   "group": "Cardio",
+   "aliases": [
+    "curved treadmill",
+    "AirRunner",
+    "manual treadmill",
+    "Woodway",
+    "Skillmill"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A curved / self-powered treadmill, a non-motorised treadmill with a concave curved slatted running surface that dips in the middle, and handles at the front."
+  },
+  {
+   "id": "rower",
+   "name": "Rowing machine",
+   "group": "Cardio",
+   "aliases": [
+    "rower",
+    "indoor rower",
+    "Concept2",
+    "water rower",
+    "erg"
+   ],
+   "muscles": [
+    "cardio",
+    "upback",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A rowing machine, a long horizontal rail with a sliding seat, angled footplates with straps, a handle on a chain at the front and a flywheel inside a fan housing or water tank."
+  },
+  {
+   "id": "skierg",
+   "name": "SkiErg",
+   "group": "Cardio",
+   "aliases": [
+    "ski erg",
+    "ski machine"
+   ],
+   "muscles": [
+    "cardio",
+    "lats",
+    "triceps"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial",
+    "uni",
+    "garage"
+   ],
+   "image_prompt": "A SkiErg, a tall narrow upright frame with a flywheel housing at the top, two handles on cords dropping from pulleys, and an optional floor platform."
+  },
+  {
+   "id": "bikeerg",
+   "name": "BikeErg",
+   "group": "Cardio",
+   "aliases": [
+    "bike erg"
+   ],
+   "muscles": [
+    "cardio",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial"
+   ],
+   "image_prompt": "A BikeErg, an upright bike with an air-resistance flywheel enclosed in a fan cage at the front, a saddle, pedals and adjustable handlebars."
+  },
+  {
+   "id": "airbike",
+   "name": "Assault / air bike",
+   "group": "Cardio",
+   "aliases": [
+    "fan bike",
+    "Assault bike",
+    "Echo bike",
+    "Airdyne"
+   ],
+   "muscles": [
+    "cardio",
+    "fullbody"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage",
+    "uni"
+   ],
+   "image_prompt": "An Assault / air bike, an upright bike with a large fan wheel at the front, moving handlebars linked to the pedals, a saddle and a small console."
+  },
+  {
+   "id": "uprightbike",
+   "name": "Upright bike",
+   "group": "Cardio",
+   "aliases": [
+    "exercise bike",
+    "stationary bike"
+   ],
+   "muscles": [
+    "cardio",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "An upright bike, an upright stationary bike with a saddle, pedals, handlebars and console on a sleek frame with an enclosed flywheel."
+  },
+  {
+   "id": "recumbent",
+   "name": "Recumbent bike",
+   "group": "Cardio",
+   "aliases": [
+    "reclined bike"
+   ],
+   "muscles": [
+    "cardio",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni",
+    "rehab"
+   ],
+   "image_prompt": "A recumbent bike, a stationary bike with a low wide seat with a padded backrest, pedals in front of the user at hip height, side handles and a console on an upright."
+  },
+  {
+   "id": "spinbike",
+   "name": "Spin bike",
+   "group": "Cardio",
+   "aliases": [
+    "indoor cycle",
+    "studio bike",
+    "Peloton bike",
+    "Wattbike"
+   ],
+   "muscles": [
+    "cardio",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A spin bike, an indoor cycling bike with a heavy exposed flywheel at the front, a narrow saddle, drop handlebars and a resistance knob."
+  },
+  {
+   "id": "turbo",
+   "name": "Smart turbo trainer",
+   "group": "Cardio",
+   "aliases": [
+    "turbo trainer",
+    "smart trainer",
+    "Wahoo Kickr"
+   ],
+   "muscles": [
+    "cardio",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "home"
+   ],
+   "image_prompt": "A smart turbo trainer, a compact folding stand that a road bike's rear axle locks into, with the rear wheel removed and the bike chain running on a cassette mounted on a resistance unit with a heavy flywheel."
+  },
+  {
+   "id": "elliptical",
+   "name": "Cross-trainer",
+   "group": "Cardio",
+   "aliases": [
+    "elliptical",
+    "cross trainer"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A cross-trainer, a machine with two long foot pedals tracking an oval path, moving handles linked to the pedals, and a console on a front upright."
+  },
+  {
+   "id": "amt",
+   "name": "Adaptive motion trainer",
+   "group": "Cardio",
+   "aliases": [
+    "AMT",
+    "Precor AMT",
+    "open stride trainer"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "An adaptive motion trainer, a large cardio machine with two foot pedals hanging from swinging arms, moving handles, and a curved upright frame, allowing the stride length to change freely."
+  },
+  {
+   "id": "arctrainer",
+   "name": "Arc trainer",
+   "group": "Cardio",
+   "aliases": [
+    "Cybex arc trainer"
+   ],
+   "muscles": [
+    "cardio",
+    "glutes",
+    "quads"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "An arc trainer, a cardio machine with two long foot pedals on arms that travel along a curved arc track from a low rear pivot, moving handles in front linked to the pedals and a raised console on a central upright."
+  },
+  {
+   "id": "lateraltrainer",
+   "name": "Lateral trainer",
+   "group": "Cardio",
+   "aliases": [
+    "side-to-side trainer",
+    "Octane lateral X"
+   ],
+   "muscles": [
+    "cardio",
+    "glutes",
+    "abductors"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "commercial"
+   ],
+   "image_prompt": "A lateral trainer, a cardio machine with foot pedals that swing outwards and inwards as well as forwards, and a central upright console."
+  },
+  {
+   "id": "stairs",
+   "name": "Stair climber",
+   "group": "Cardio",
+   "aliases": [
+    "StairMaster",
+    "stairmill",
+    "revolving stairs"
+   ],
+   "muscles": [
+    "cardio",
+    "glutes",
+    "quads"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "uni"
+   ],
+   "image_prompt": "A stair climber, a tall motorised machine with a revolving staircase of steps that rotate downwards like an escalator, side handrails and a console at chest height."
+  },
+  {
+   "id": "stepper",
+   "name": "Stepper",
+   "group": "Cardio",
+   "aliases": [
+    "step machine",
+    "mini stepper"
+   ],
+   "muscles": [
+    "cardio",
+    "glutes"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "commercial",
+    "home"
+   ],
+   "image_prompt": "A stepper, a compact machine with two independent pedals that move up and down on hydraulic arms, side handrails and a small console."
+  },
+  {
+   "id": "versaclimber",
+   "name": "VersaClimber",
+   "group": "Cardio",
+   "aliases": [
+    "vertical climber",
+    "climber machine"
+   ],
+   "muscles": [
+    "cardio",
+    "fullbody"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial"
+   ],
+   "image_prompt": "A VersaClimber, a tall vertical mast about 2.5 m high angled slightly forwards, with two foot pedals at the base and two hand grips higher up that slide up and down alternately, and a small display."
+  },
+  {
+   "id": "jacobs",
+   "name": "Jacob's ladder",
+   "group": "Cardio",
+   "aliases": [
+    "ladder mill",
+    "climbing ladder"
+   ],
+   "muscles": [
+    "cardio",
+    "fullbody"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "box",
+    "commercial"
+   ],
+   "image_prompt": "A Jacob's ladder, an inclined frame with a continuous ladder of horizontal rungs running in a loop at about 40 degrees, with a hip belt on a tether."
+  },
+  {
+   "id": "ube",
+   "name": "Upper body ergometer",
+   "group": "Cardio",
+   "aliases": [
+    "arm bike",
+    "hand bike",
+    "arm ergometer",
+    "UBE"
+   ],
+   "muscles": [
+    "cardio",
+    "fdelt"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "rehab",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "An upper body ergometer, a table-height pedestal with two crank handles that rotate around a central axle connected to a flywheel, and a display console, with a chair placed in front."
+  },
+  {
+   "id": "nustep",
+   "name": "Recumbent cross-trainer",
+   "group": "Cardio",
+   "aliases": [
+    "NuStep",
+    "seated stepper"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "A recumbent cross-trainer, a seated machine with a large swivelling padded chair with armrests, two pedals in front and two long moving handles linked to the pedals, with a small console."
+  },
+  {
+   "id": "sled",
+   "name": "Sled / prowler",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "prowler",
+    "push sled",
+    "drag sled",
+    "HYROX sled"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "cardio"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage",
+    "uni"
+   ],
+   "image_prompt": "A sled / prowler, a steel sled with flat runners, two vertical push poles of different heights, a central loading post for plates and a tow ring for a rope."
+  },
+  {
+   "id": "sledrope",
+   "name": "Sled pull rope",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "sled rope",
+    "tow rope",
+    "harness"
+   ],
+   "muscles": [
+    "upback",
+    "lats",
+    "biceps"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "commercial"
+   ],
+   "image_prompt": "A sled pull rope, a long thick braided rope about 15 m long, clipped to the tow ring at the front of a loaded steel sled, coiled loosely on the floor in front of it."
+  },
+  {
+   "id": "turf",
+   "name": "Turf track",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "astro track",
+    "sled track"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A turf track, a long strip of green artificial turf about 2 m wide and 20 m long laid flat on a gym floor, edged with white lane lines and distance markers."
+  },
+  {
+   "id": "battleropes",
+   "name": "Battle ropes",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "battle rope",
+    "conditioning rope"
+   ],
+   "muscles": [
+    "cardio",
+    "fdelt",
+    "forearms"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage"
+   ],
+   "image_prompt": "A set of battle ropes, a long heavy braided rope about 4 cm thick looped around a steel anchor point fixed to the floor, with both ends lying parallel on the floor with grip sleeves."
+  },
+  {
+   "id": "ropetrainer",
+   "name": "Rope pull machine",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "rope trainer",
+    "Marpo",
+    "endless rope trainer"
+   ],
+   "muscles": [
+    "lats",
+    "biceps",
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial"
+   ],
+   "image_prompt": "A rope pull machine, a tall vertical steel frame with an endless thick rope that loops around a pulley at the top and runs through a resistance unit at the bottom, with a seat or standing platform in front."
+  },
+  {
+   "id": "flywheel",
+   "name": "Flywheel trainer",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "kBox",
+    "Exxentric",
+    "flywheel squat platform",
+    "kPulley"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "fullbody"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "uni",
+    "rehab",
+    "commercial"
+   ],
+   "image_prompt": "A flywheel trainer, a low square aluminium platform with a flywheel disc mounted inside a frame at one end, a strap running up from the centre of the platform to a padded harness or handle above."
+  },
+  {
+   "id": "wallball",
+   "name": "Wall ball and target",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "wall ball",
+    "medicine ball target"
+   ],
+   "muscles": [
+    "quads",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage"
+   ],
+   "image_prompt": "A wall ball and target, a soft stitched vinyl medicine ball about 35 cm across, in front of a flat wall with a round target painted or mounted at 3 m height."
+  },
+  {
+   "id": "sandbag",
+   "name": "Sandbag",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "HYROX sandbag",
+    "strongman sandbag",
+    "Bulgarian bag"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A sandbag, a heavy cylindrical bag made of thick black cordura nylon with several side and end grab handles, stuffed tight and resting on the floor."
+  },
+  {
+   "id": "medball",
+   "name": "Medicine ball",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "med ball",
+    "soft medicine ball"
+   ],
+   "muscles": [
+    "abs",
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "hotel",
+    "uni",
+    "rehab"
+   ],
+   "image_prompt": "A medicine ball, a round rubber ball about the size of a football with a grippy textured dimpled surface, resting on a gym floor beside two smaller ones."
+  },
+  {
+   "id": "slamball",
+   "name": "Slam ball",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "dead ball",
+    "no-bounce ball"
+   ],
+   "muscles": [
+    "fullbody",
+    "abs"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage"
+   ],
+   "image_prompt": "A slam ball, a heavy thick-walled black rubber ball with a ribbed, textured surface and a visible fill valve, slightly squashed where it rests on the floor."
+  },
+  {
+   "id": "box",
+   "name": "Plyo box",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "jump box",
+    "soft plyo box",
+    "box jump"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "calves"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "commercial",
+    "garage",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A plyo box, a three-height box with rectangular faces of different dimensions, made of plywood with a hand-hold cut-out on each side, or covered in thick foam with vinyl."
+  },
+  {
+   "id": "agility",
+   "name": "Agility ladder / hurdles",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "speed ladder",
+    "mini hurdles",
+    "agility cones"
+   ],
+   "muscles": [
+    "cardio",
+    "calves"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "uni",
+    "outdoor"
+   ],
+   "image_prompt": "An agility ladder / hurdles, a flat strap ladder with yellow plastic rungs laid on artificial turf, next to a row of small plastic step-over hurdles and some marker cones."
+  },
+  {
+   "id": "sledgehammer",
+   "name": "Sledgehammer",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "sledge",
+    "hammer and tyre"
+   ],
+   "muscles": [
+    "obliques",
+    "abs",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "box",
+    "garage"
+   ],
+   "image_prompt": "A sledgehammer, a long wooden or steel-shafted hammer about 90 cm long with a heavy flat-faced steel head, leaning against a large tractor tyre lying flat on the floor."
+  },
+  {
+   "id": "jumprope",
+   "name": "Jump rope",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "skipping rope",
+    "speed rope"
+   ],
+   "muscles": [
+    "cardio",
+    "calves"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "hotel"
+   ],
+   "image_prompt": "A jump rope, a thin coated steel cable rope with two slim aluminium handles containing bearings, laid out in a loop on the floor."
+  },
+  {
+   "id": "weightvest",
+   "name": "Weighted vest",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "weight vest",
+    "plate carrier",
+    "Murph vest"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "garage",
+    "box"
+   ],
+   "image_prompt": "A weighted vest, a short tactical-style vest with front and back pockets holding flat steel weight plates, held on by wide hook-and-loop side straps."
+  },
+  {
+   "id": "torquetank",
+   "name": "Resisted push sled (wheeled)",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "Torque Tank",
+    "wheeled sled",
+    "magnetic push sled"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "cardio"
+   ],
+   "loading": "air/flywheel",
+   "common_in": [
+    "box",
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A resisted push sled (wheeled), a compact wheeled push sled with a central resistance unit and dial, two vertical push handles and a low frame on four wheels that can be used on any floor."
+  },
+  {
+   "id": "sprintharness",
+   "name": "Resisted sprint harness",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "sprint parachute",
+    "partner harness",
+    "speed chute"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "cardio"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "uni",
+    "outdoor",
+    "box"
+   ],
+   "image_prompt": "A resisted sprint harness, a padded waist belt with a long nylon tether running behind to a trailing fabric parachute or to a partner's hand loop, laid out on a running track."
+  },
+  {
+   "id": "treadwall",
+   "name": "Climbing wall / treadwall",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "bouldering wall",
+    "Treadwall",
+    "rotating climbing wall"
+   ],
+   "muscles": [
+    "lats",
+    "forearms",
+    "fullbody"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "uni",
+    "commercial"
+   ],
+   "image_prompt": "A climbing wall / treadwall, a tall panelled wall covered in coloured resin climbing holds, either a fixed bouldering wall with crash mats beneath or a motorised rotating wall panel loop."
+  },
+  {
+   "id": "punchbag",
+   "name": "Punch bag",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "heavy bag",
+    "boxing bag",
+    "speed bag"
+   ],
+   "muscles": [
+    "cardio",
+    "fdelt",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "box",
+    "garage",
+    "home",
+    "hotel"
+   ],
+   "image_prompt": "A punch bag, a long cylindrical black leather heavy bag about 1.2 m tall hanging from a ceiling bracket by four chains joined to a swivel, with a pair of boxing gloves on the floor beneath."
+  },
+  {
+   "id": "rebounder",
+   "name": "Mini trampoline / rebounder",
+   "group": "Conditioning and HYROX",
+   "aliases": [
+    "rebounder",
+    "mini trampoline"
+   ],
+   "muscles": [
+    "cardio",
+    "calves"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "commercial",
+    "rehab"
+   ],
+   "image_prompt": "A mini trampoline / rebounder, a small round trampoline about 1 m across on six short legs, with a black jumping mat and a padded cover over the springs, and an optional T-shaped handle bar."
+  },
+  {
+   "id": "yoke",
+   "name": "Yoke",
+   "group": "Strongman",
+   "aliases": [
+    "super yoke",
+    "yoke carry"
+   ],
+   "muscles": [
+    "fullbody",
+    "traps",
+    "quads"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "garage",
+    "bodybuilding"
+   ],
+   "image_prompt": "A yoke, a tall rectangular steel frame with two vertical uprights and a padded crossbar at shoulder height, loading horns on the lower legs and a flat base, so the user stands under the crossbar and lifts it."
+  },
+  {
+   "id": "farmerhandles",
+   "name": "Farmer's handles",
+   "group": "Strongman",
+   "aliases": [
+    "farmer's walk handles",
+    "farmers carry handles"
+   ],
+   "muscles": [
+    "forearms",
+    "traps",
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "garage",
+    "box",
+    "bodybuilding"
+   ],
+   "image_prompt": "A set of farmer's handles, a pair of long steel bars, each with a central knurled handle raised on a frame and loading horns at each end, sitting parallel on the floor loaded with plates."
+  },
+  {
+   "id": "framecarry",
+   "name": "Frame carry",
+   "group": "Strongman",
+   "aliases": [
+    "frame",
+    "deadlift frame",
+    "carry frame"
+   ],
+   "muscles": [
+    "forearms",
+    "traps",
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A frame carry, a large rectangular steel frame with two long parallel side rails with handles, loading posts on each end and connecting cross members, sitting on the floor."
+  },
+  {
+   "id": "stones",
+   "name": "Atlas stones",
+   "group": "Strongman",
+   "aliases": [
+    "Atlas stone",
+    "stone of strength",
+    "stone trainer",
+    "loading platform"
+   ],
+   "muscles": [
+    "fullbody",
+    "glutes",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "garage",
+    "box"
+   ],
+   "image_prompt": "A set of atlas stones, a set of round grey concrete spheres of increasing size resting on the floor, next to a square steel loading platform at chest height."
+  },
+  {
+   "id": "husafell",
+   "name": "Husafell stone",
+   "group": "Strongman",
+   "aliases": [
+    "Husafell",
+    "flat stone carry"
+   ],
+   "muscles": [
+    "fullbody",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A Husafell stone, a large flat triangular slab of stone or a cast steel equivalent shaped like a thick arrowhead, about 60 cm tall, lying flat on rubber flooring."
+  },
+  {
+   "id": "tyre",
+   "name": "Tyre",
+   "group": "Strongman",
+   "aliases": [
+    "tractor tyre",
+    "tyre flip"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "box",
+    "garage"
+   ],
+   "image_prompt": "A tyre, a huge black tractor tyre about 1.5 m across with deep treads, lying flat on its side on the ground."
+  },
+  {
+   "id": "log",
+   "name": "Log",
+   "group": "Strongman",
+   "aliases": [
+    "log press",
+    "strongman log"
+   ],
+   "muscles": [
+    "fdelt",
+    "triceps",
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "garage"
+   ],
+   "image_prompt": "A log, a thick hollow steel cylinder about 30 cm across with two neutral handles cut into a recess in its middle and standard loading sleeves at each end."
+  },
+  {
+   "id": "circusdb",
+   "name": "Circus dumbbell",
+   "group": "Strongman",
+   "aliases": [
+    "thick-handled dumbbell",
+    "strongman dumbbell"
+   ],
+   "muscles": [
+    "fdelt",
+    "triceps",
+    "forearms"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A circus dumbbell, a large single dumbbell with a very thick rotating handle about 6 cm across and two big hollow spherical heads, one with a loading port, standing on its end."
+  },
+  {
+   "id": "keg",
+   "name": "Keg",
+   "group": "Strongman",
+   "aliases": [
+    "strongman keg",
+    "keg toss"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman",
+    "box"
+   ],
+   "image_prompt": "A keg, a steel beer keg with two built-in side handles, weighted with sand or water, standing upright on the floor."
+  },
+  {
+   "id": "conanwheel",
+   "name": "Conan's wheel",
+   "group": "Strongman",
+   "aliases": [
+    "Conan wheel",
+    "wheel walk"
+   ],
+   "muscles": [
+    "fullbody",
+    "abs"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A Conan's wheel, a long steel lever arm attached to a central pivot post, with a crook handle at the end that the user carries in the crook of the arms as they walk in a circle, and loading horns near the end."
+  },
+  {
+   "id": "armover",
+   "name": "Arm-over-arm pull",
+   "group": "Strongman",
+   "aliases": [
+    "truck pull rope",
+    "hand-over-hand sled",
+    "arm over arm"
+   ],
+   "muscles": [
+    "lats",
+    "biceps",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "An arm-over-arm pull, a loaded sled at the end of a long thick rope that passes over a low bench or seated platform, so the user pulls the rope hand over hand."
+  },
+  {
+   "id": "fingal",
+   "name": "Fingal's fingers",
+   "group": "Strongman",
+   "aliases": [
+    "Fingal's fingers"
+   ],
+   "muscles": [
+    "fullbody",
+    "fdelt"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A set of Fingal's fingers, a set of three long steel poles of increasing length, each hinged at its base on a ground bracket and lying flat on the floor, ready to be flipped upright."
+  },
+  {
+   "id": "carDL",
+   "name": "Car deadlift frame",
+   "group": "Strongman",
+   "aliases": [
+    "deadlift jack",
+    "car deadlift"
+   ],
+   "muscles": [
+    "fullbody",
+    "glutes",
+    "hams"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A car deadlift frame, a long steel lever frame with two parallel handles at one end at knee height and plate loading horns at the other end, pivoting on a raised fulcrum near the middle."
+  },
+  {
+   "id": "hercules",
+   "name": "Hercules hold",
+   "group": "Strongman",
+   "aliases": [
+    "Hercules pillars",
+    "pillar hold"
+   ],
+   "muscles": [
+    "forearms",
+    "upback"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "strongman"
+   ],
+   "image_prompt": "A Hercules hold, two tall upright steel pillars set apart on hinged bases, each with a handle on a short chain, so the user stands between them holding both handles to stop the pillars falling."
+  },
+  {
+   "id": "pullup",
+   "name": "Pull-up bar",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "chin-up bar",
+    "doorway pull-up bar"
+   ],
+   "muscles": [
+    "lats",
+    "biceps"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "uni",
+    "outdoor"
+   ],
+   "image_prompt": "A pull-up bar, a straight knurled steel bar mounted horizontally above head height between two wall brackets or across the top of a rack, with angled neutral grip handles at each end."
+  },
+  {
+   "id": "dip",
+   "name": "Dip bars",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "dip station",
+    "dip attachment",
+    "parallel bars"
+   ],
+   "muscles": [
+    "chest",
+    "triceps"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "uni",
+    "outdoor"
+   ],
+   "image_prompt": "A set of dip bars, a pair of parallel steel bars about 50 cm apart and 1.2 m high on a sturdy free-standing frame, with knurled or rubber grips."
+  },
+  {
+   "id": "rings",
+   "name": "Gymnastic rings",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "Olympic rings",
+    "wooden rings"
+   ],
+   "muscles": [
+    "lats",
+    "chest",
+    "triceps"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "garage",
+    "box",
+    "uni",
+    "home"
+   ],
+   "image_prompt": "A set of gymnastic rings, a pair of smooth wooden rings about 23 cm across, hanging side by side from long black webbing straps with cam buckles from an overhead beam."
+  },
+  {
+   "id": "trx",
+   "name": "Suspension trainer (TRX)",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "TRX",
+    "suspension straps"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "hotel",
+    "commercial",
+    "box"
+   ],
+   "image_prompt": "A suspension trainer (TRX), a single anchor strap at the top splitting into two adjustable yellow and black nylon webbing straps with rubber handles and foot cradles at the bottom, hanging from a door or bar."
+  },
+  {
+   "id": "anchor",
+   "name": "Foot anchor / Nordic strap",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "somewhere to anchor feet",
+    "foot anchor",
+    "door anchor",
+    "sofa"
+   ],
+   "muscles": [
+    "hams",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A foot anchor / Nordic strap, a padded nylon strap with a foam ankle loop and a flat anchor tab that closes inside a door, alongside a low padded bar for hooking the feet under."
+  },
+  {
+   "id": "wallbars",
+   "name": "Wall bars",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "stall bars",
+    "Swedish ladder"
+   ],
+   "muscles": [
+    "fullbody",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "garage",
+    "rehab",
+    "uni"
+   ],
+   "image_prompt": "A set of wall bars, a tall wooden frame about 2.4 m high fixed flat to a wall, with evenly spaced round wooden rungs running from floor to near the ceiling."
+  },
+  {
+   "id": "bands",
+   "name": "Resistance bands",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "power bands",
+    "loop bands",
+    "band pegs"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "box",
+    "hotel",
+    "rehab"
+   ],
+   "image_prompt": "A set of resistance bands, a set of long flat looped latex bands of different colours and widths, coiled on the floor and one hooked over a steel peg at the base of a rack."
+  },
+  {
+   "id": "minibands",
+   "name": "Mini bands / hip circle",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "hip circle",
+    "booty band",
+    "glute band"
+   ],
+   "muscles": [
+    "glutes",
+    "abductors"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "rehab"
+   ],
+   "image_prompt": "A set of mini bands / hip circle, a set of short wide loop bands made of woven fabric with rubber grip strips, in three colours of increasing thickness, laid flat."
+  },
+  {
+   "id": "hangboard",
+   "name": "Fingerboard / hangboard",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "hangboard",
+    "fingerboard"
+   ],
+   "muscles": [
+    "forearms",
+    "lats"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A fingerboard / hangboard, a wooden or resin board mounted on a wall above a doorway, with a row of edges, pockets and slopers of various depths along its face and a jug hold at each end."
+  },
+  {
+   "id": "abwheel",
+   "name": "Ab wheel",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "ab roller",
+    "ab wheel"
+   ],
+   "muscles": [
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "hotel"
+   ],
+   "image_prompt": "An ab wheel, a small rubber-tyred wheel about 18 cm across with a central axle and two short foam-covered handles sticking out either side."
+  },
+  {
+   "id": "swissball",
+   "name": "Stability ball",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "Swiss ball",
+    "exercise ball",
+    "gym ball"
+   ],
+   "muscles": [
+    "abs",
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "rehab"
+   ],
+   "image_prompt": "A stability ball, a large smooth inflated PVC ball about 65 cm across, resting on a gym floor."
+  },
+  {
+   "id": "parallettes",
+   "name": "Parallettes",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "parallette bars",
+    "push-up handles"
+   ],
+   "muscles": [
+    "chest",
+    "triceps",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "box"
+   ],
+   "image_prompt": "A set of parallettes, a pair of low parallel steel or wooden bars about 60 cm long on short splayed legs, set side by side on the floor."
+  },
+  {
+   "id": "dipbelt",
+   "name": "Dip / weight belt",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "dip belt",
+    "chin belt"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A dip / weight belt, a curved padded leather or nylon belt with a heavy steel chain running from one end ring to the other with a carabiner, with a weight plate hanging on the chain."
+  },
+  {
+   "id": "climbrope",
+   "name": "Climbing rope",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "rope climb"
+   ],
+   "muscles": [
+    "lats",
+    "biceps",
+    "forearms"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "garage",
+    "uni"
+   ],
+   "image_prompt": "A climbing rope, a thick braided natural fibre rope about 4 cm across hanging vertically from a steel beam high above, reaching down to the gym floor."
+  },
+  {
+   "id": "pegboard",
+   "name": "Pegboard",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "peg board"
+   ],
+   "muscles": [
+    "lats",
+    "biceps",
+    "forearms"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "box",
+    "garage"
+   ],
+   "image_prompt": "A pegboard, a tall rectangular wooden board fixed vertically to a wall, with two columns of round holes running up its length and two wooden pegs sitting in holes near the bottom."
+  },
+  {
+   "id": "slidder",
+   "name": "Sliders",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "gliding discs",
+    "core sliders"
+   ],
+   "muscles": [
+    "abs",
+    "hams"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "hotel"
+   ],
+   "image_prompt": "A set of sliders, a pair of round flat plastic gliding discs about 18 cm across, with a smooth underside and a soft foam top, resting on a wooden floor."
+  },
+  {
+   "id": "wristroller",
+   "name": "Wrist roller",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "forearm roller"
+   ],
+   "muscles": [
+    "forearms"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A wrist roller, a short knurled steel bar with a length of rope wound around its middle and a carabiner at the end of the rope holding a weight plate."
+  },
+  {
+   "id": "grippers",
+   "name": "Grip trainers",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "hand grippers",
+    "Captains of Crush",
+    "pinch block"
+   ],
+   "muscles": [
+    "forearms"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage"
+   ],
+   "image_prompt": "A set of grip trainers, a pair of steel torsion spring hand grippers with knurled aluminium handles, beside a small steel pinch block with a loading pin."
+  },
+  {
+   "id": "neckharness",
+   "name": "Neck harness",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "head harness",
+    "neck strap"
+   ],
+   "muscles": [
+    "neck"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "garage",
+    "bodybuilding"
+   ],
+   "image_prompt": "A neck harness, a leather or nylon head harness with straps that go over the top and around the back of the head, joined by a short chain with a carabiner for hanging weight plates."
+  },
+  {
+   "id": "hangstraps",
+   "name": "Hanging ab straps",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "ab slings",
+    "hanging ab slings"
+   ],
+   "muscles": [
+    "abs",
+    "hipflex"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A set of hanging ab straps, a pair of padded nylon loops with steel carabiners at the top, clipped to an overhead pull-up bar so the upper arms rest in the loops and the body hangs below."
+  },
+  {
+   "id": "stepplat",
+   "name": "Aerobic step",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "step platform",
+    "Reebok step"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "cardio"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "hotel",
+    "home"
+   ],
+   "image_prompt": "An aerobic step, a low rectangular moulded plastic step about 1 m long with a ridged non-slip rubber top and stackable riser blocks under each end."
+  },
+  {
+   "id": "ankleweights",
+   "name": "Ankle weights",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "cuff weights",
+    "ankle cuffs with weight"
+   ],
+   "muscles": [
+    "glutes",
+    "hipflex",
+    "abductors"
+   ],
+   "loading": "free weight",
+   "common_in": [
+    "home",
+    "commercial",
+    "rehab"
+   ],
+   "image_prompt": "A set of ankle weights, a pair of padded fabric cuffs filled with sand or iron pellets, with hook-and-loop straps that wrap around the ankle."
+  },
+  {
+   "id": "monkeybars",
+   "name": "Monkey bars",
+   "group": "Bodyweight and accessories",
+   "aliases": [
+    "overhead ladder",
+    "outdoor bars"
+   ],
+   "muscles": [
+    "lats",
+    "forearms",
+    "biceps"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "outdoor",
+    "box",
+    "garage"
+   ],
+   "image_prompt": "A set of monkey bars, a horizontal steel ladder raised about 2.2 m off the ground on two A-frame supports at each end, with evenly spaced round rungs."
+  },
+  {
+   "id": "foamroller",
+   "name": "Foam roller",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "foam roller",
+    "grid roller",
+    "massage roller"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "hotel",
+    "uni",
+    "box",
+    "rehab"
+   ],
+   "image_prompt": "A foam roller, a firm foam cylinder about 15 cm across and 45 cm long with a textured grid surface over a hollow plastic core, lying on a gym floor."
+  },
+  {
+   "id": "massageball",
+   "name": "Massage ball",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "lacrosse ball",
+    "peanut ball",
+    "trigger point ball"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial",
+    "rehab"
+   ],
+   "image_prompt": "A massage ball, a small hard rubber ball the size of a tennis ball beside a double peanut-shaped ball made of two joined spheres."
+  },
+  {
+   "id": "massagegun",
+   "name": "Massage gun",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "percussion gun",
+    "Theragun"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "home",
+    "garage",
+    "commercial"
+   ],
+   "image_prompt": "A massage gun, a handheld percussive massage device shaped like a hairdryer, with a rubber grip handle, a motor body and a round foam head on a short shaft."
+  },
+  {
+   "id": "yogamat",
+   "name": "Exercise / yoga mat",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "yoga mat",
+    "stretching mat",
+    "gym mat"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "commercial",
+    "hotel",
+    "uni",
+    "rehab"
+   ],
+   "image_prompt": "An exercise / yoga mat, a thin rectangular rubber exercise mat about 180 cm long, partly rolled up at one end, lying flat on a wooden floor."
+  },
+  {
+   "id": "dowel",
+   "name": "PVC pipe / dowel",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "mobility stick",
+    "broomstick",
+    "PVC pipe"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "garage",
+    "box",
+    "rehab"
+   ],
+   "image_prompt": "A PVC pipe / dowel, a straight lightweight white PVC pipe or wooden dowel about 1.5 m long and 3 cm thick, lying on a gym floor."
+  },
+  {
+   "id": "stretchstrap",
+   "name": "Stretch strap",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "yoga strap",
+    "stretch out strap"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "rehab",
+    "commercial"
+   ],
+   "image_prompt": "A set of stretch strap, a long flat nylon webbing strap with a series of sewn loops along its length for the hands and feet."
+  },
+  {
+   "id": "stretchm",
+   "name": "Stretching machine",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "stretch trainer",
+    "Precor stretch trainer",
+    "Life Fitness stretch"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "uni"
+   ],
+   "image_prompt": "A stretching machine, a compact steel frame with a padded seat at the front, padded knee pads below and two curved handlebars above on a ladder of grip positions, used to sit and pull into assisted stretches."
+  },
+  {
+   "id": "slantboard",
+   "name": "Slant board",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "incline board",
+    "knees-over-toes board"
+   ],
+   "muscles": [
+    "quads",
+    "calves",
+    "tibialis"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "garage",
+    "rehab"
+   ],
+   "image_prompt": "A slant board, a flat wooden board about 40 cm wide raised at the back to a steep incline of 20 to 30 degrees on fixed legs, with grip tape covering the top surface."
+  },
+  {
+   "id": "balanceboard",
+   "name": "Balance / wobble board",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "wobble board",
+    "rocker board"
+   ],
+   "muscles": [
+    "calves",
+    "abs"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "rehab",
+    "home"
+   ],
+   "image_prompt": "A balance / wobble board, a round flat wooden disc about 40 cm across with a half-sphere pivot underneath it so it tilts in all directions, with a grip surface on top."
+  },
+  {
+   "id": "bosu",
+   "name": "BOSU ball",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "half ball",
+    "balance trainer"
+   ],
+   "muscles": [
+    "abs",
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "commercial",
+    "rehab",
+    "home"
+   ],
+   "image_prompt": "A BOSU ball, a large inflated half-sphere of blue rubber about 60 cm across fixed to a flat rigid black plastic base with two handles cut into its rim."
+  },
+  {
+   "id": "reformer",
+   "name": "Pilates reformer",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "reformer"
+   ],
+   "muscles": [
+    "fullbody",
+    "abs"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "rehab",
+    "commercial",
+    "home"
+   ],
+   "image_prompt": "A Pilates reformer, a long low wooden or aluminium bed frame with a padded sliding carriage on rails, shoulder blocks, an adjustable footbar at one end, springs underneath and two ropes with hand loops on pulleys."
+  },
+  {
+   "id": "inversion",
+   "name": "Inversion table",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "inversion board"
+   ],
+   "muscles": [
+    "lowback"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "rehab"
+   ],
+   "image_prompt": "An inversion table, a tall A-shaped steel frame with a padded backrest on a central pivot, ankle locking rollers at the bottom and handles at the sides, tilted head-down."
+  },
+  {
+   "id": "plinth",
+   "name": "Treatment plinth",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "physio couch",
+    "treatment table"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "A treatment plinth, a long padded medical treatment couch on a height-adjustable electric steel base, with an adjustable backrest section and a face hole at one end."
+  },
+  {
+   "id": "parallelbars",
+   "name": "Rehab parallel bars",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "walking bars",
+    "gait bars"
+   ],
+   "muscles": [
+    "quads",
+    "glutes"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "A set of rehab parallel bars, two long parallel handrails about 3 m long on adjustable height posts, set about 60 cm apart on a flat base platform."
+  },
+  {
+   "id": "totalgym",
+   "name": "Incline bodyweight trainer",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "Total Gym",
+    "incline sled trainer"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "home",
+    "rehab"
+   ],
+   "image_prompt": "An incline bodyweight trainer, a long padded glide board running on rails along an inclined steel column that adjusts in height, with a squat footplate at the base and two cable handles over pulleys at the top."
+  },
+  {
+   "id": "rehablegpress",
+   "name": "Rehab leg press / jump trainer",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "Shuttle MVP",
+    "shuttle leg press"
+   ],
+   "muscles": [
+    "quads",
+    "glutes",
+    "calves"
+   ],
+   "loading": "cable",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "A rehab leg press / jump trainer, a long low frame on which the user lies on their back on a sliding padded carriage, pushing against a large flat footplate in front, with resistance cords underneath."
+  },
+  {
+   "id": "antigravity",
+   "name": "Anti-gravity treadmill",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "AlterG",
+    "unweighted treadmill"
+   ],
+   "muscles": [
+    "cardio"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "An anti-gravity treadmill, a treadmill enclosed in a sealed inflatable fabric chamber at waist height, with a zip-in waist opening, side handles and a front console."
+  },
+  {
+   "id": "isokinetic",
+   "name": "Isokinetic dynamometer",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "Biodex",
+    "isokinetic machine"
+   ],
+   "muscles": [
+    "quads",
+    "hams"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "rehab"
+   ],
+   "image_prompt": "An isokinetic dynamometer, a large clinical machine with a padded adjustable chair with straps, a motorised dynamometer head on a column beside it and a lever arm with a shin pad, linked to a computer screen."
+  },
+  {
+   "id": "vibration",
+   "name": "Vibration plate",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "Power Plate",
+    "whole body vibration"
+   ],
+   "muscles": [
+    "fullbody"
+   ],
+   "loading": "motorised",
+   "common_in": [
+    "commercial",
+    "home",
+    "rehab"
+   ],
+   "image_prompt": "A vibration plate, a low flat platform with a rubber-covered top, a central upright column with handles and a small display console at waist height."
+  },
+  {
+   "id": "shoulderpulley",
+   "name": "Shoulder pulley / wheel",
+   "group": "Mobility and rehab",
+   "aliases": [
+    "over-door shoulder pulley",
+    "shoulder wheel",
+    "overhead pulley"
+   ],
+   "muscles": [
+    "fdelt",
+    "sdelt"
+   ],
+   "loading": "bodyweight",
+   "common_in": [
+    "rehab",
+    "home"
+   ],
+   "image_prompt": "A shoulder pulley / wheel, a wall-mounted wheel with a rotating handle on its rim and an adjustable arm, beside an over-door pulley with a rope running through and two handles on its ends."
+  }
+ ]
+}
