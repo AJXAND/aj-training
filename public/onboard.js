@@ -13,6 +13,7 @@ const MUS = {chest:"Chest", lats:"Lats", upback:"Upper back", fdelt:"Front delts
 // Front delts, rear delts and arms already get a lot from presses and rows at ½ a set each, so their direct work stays small.
 const BASE_SETS = {chest:12, lats:12, upback:12, fdelt:8, sdelt:10, rdelt:6, biceps:10, triceps:10, quads:12, hams:11, glutes:10, adductors:6, calves:10, abs:8};
 const PRIORITY_SETS = 20;
+const FAIL_SETS = {chest:10, lats:9, upback:8, fdelt:0, sdelt:10, rdelt:6, biceps:8, triceps:8, quads:10, hams:9, glutes:4, adductors:3, calves:8, abs:4};
 /* Muscle-building coach (size goals). Week 1 starts near the smallest dose that clearly grows each muscle and the app adds sets
    only while you're recovering well (RP-style autoregulation; adding volume blindly isn't better: Barsuhn 2024). Weekly fractional
    sets [start new, inter, adv, cap new, inter, adv]. Growth keeps rising with sets but flattens and data thin out past ~25 (Pelland 2026). */
@@ -55,6 +56,7 @@ const EQG = [
   ["Strongman and conditioning", [["sled","Sled / prowler"],["sandbag","Sandbag"],["yoke","Yoke"],["farmerhandles","Farmer's handles"],["stones","Atlas stones"],["tyre","Tyre"],["log","Log"],["turf","Turf track"]]]
 ];
 const EQUIP = EQG.flatMap(g => g[1]);
+const EQG_IC = ["bb","rack","db","pullup","cable_dual","pecdeck","rowm","curlm","legpress","captain","treadmill","sled"];
 const ALLKIT = EQUIP.map(e => e[0]);
 // equipment that also satisfies an older or simpler requirement
 const KIT_ALIAS = {adjdb:["db"], functional:["cable_hi","cable_mid","cable_low","cable_dual"], halfrack:["rack"], benchrack:["bench"], flatbench:[], latpdplate:["latpd"], seatedrowm:["cable_low"], hlegpress:["legpress"], vsquat:["hack"], dipm:["dip","pullup"], tridipm:[], trx:["rings"], backext:["hipext"], preacherm:["preacher"], spinbike:["airbike"], bikeerg:["airbike"], uprightbike:["airbike"]};
@@ -173,6 +175,12 @@ X("tridip","Dips, upright","tripress",{triceps:1,chest:.5,fdelt:.5},["dip"],{c:t
 X("kickback","Cable triceps kickback","pushdown",{triceps:1},["cable_mid"],{len:0,eq:"cable"});
 X("frontsq","Front squat","squat",{quads:1,glutes:.5,adductors:.5},["bb","rack"],{c:true,len:2,lo:5,hi:8,rest:180,eq:"bb",inj:["knee"],note:"Safety arms set"});
 X("goblet","Goblet squat","squat",{quads:1,glutes:.5,adductors:.5},["db"],{c:true,len:2,lo:8,hi:15,rest:120,eq:"db"});
+X("lmhack","Landmine hack squat","squat",{quads:1,glutes:.5,adductors:.5},["landmine","bb"],{c:true,len:2,lo:8,hi:12,rest:150,eq:"bb",inj:["knee"],note:"Heels together under the bar, sit deep"});
+X("sissy","Sissy squat","kneeext",{quads:1},[],{len:2,lo:8,hi:15,eq:"bw",inj:["knee"],note:"Hold something for balance; knees travel forward, hips stay extended"});
+X("bbcalf","Barbell calf raise","calf",{calves:1},["bb","rack"],{len:2,lo:8,hi:15,rest:75,eq:"bb",note:"Balls of the feet on a plate, full stretch with a pause"});
+X("cablecurlleg","Standing cable leg curl","kneeflex",{hams:1},["cable_low"],{len:1,lo:10,hi:15,eq:"cable",note:"Ankle strap; lean forward slightly to stretch the hamstring"});
+X("dbpreacher","DB preacher curl","curl",{biceps:1},["db","bench"],{len:2,lo:8,hi:12,eq:"db",note:"Chest on an incline bench, upper arm on the pad"});
+X("lmpress","Landmine press","ipress",{chest:1,fdelt:.5,triceps:.5},["landmine","bb"],{c:true,len:1,lo:8,hi:12,rest:120,eq:"bb"});
 X("pendulum","Pendulum squat","squat",{quads:1,glutes:.5,adductors:.5},["pendulum"],{c:true,len:2,lo:6,hi:10,rest:150,eq:"machine",inj:["knee"]});
 X("walklunge","Walking lunge","lunge",{quads:1,glutes:1,adductors:.5},["db"],{c:true,len:2,lo:8,hi:12,rest:120,eq:"db",inj:["knee"]});
 X("stepup","DB step-up","lunge",{quads:1,glutes:1},["db","bench"],{c:true,lo:8,hi:12,rest:90,eq:"db"});
@@ -278,19 +286,29 @@ for (const e of Object.values(L)) e.rest = restFor(e);
 
 /* ---------- Day templates (slots are movement patterns, in training order) ---------- */
 const T = {
-  upA:{label:"Upper A", slots:["ipress","vpull","row","lat","triext","curl","rear"]},
-  upB:{label:"Upper B", slots:["row","fpress","vpull","fly","lat","pushdown","curl"]},
-  loA:{label:"Lower A", slots:["squat","hinge","kneeext","kneeflex","calf","abs"]},
-  loB:{label:"Lower B", slots:["glute","lunge","kneeflex","kneeext","add","calf"]},
+  upA:{label:"Upper", slots:["ipress","vpull","row","lat","triext","curl","rear"]},
+  upB:{label:"Upper", slots:["row","fpress","vpull","fly","lat","pushdown","curl"]},
+  loA:{label:"Lower", slots:["squat","hinge","kneeext","kneeflex","calf","abs"]},
+  loB:{label:"Lower", slots:["glute","lunge","kneeflex","kneeext","add","calf"]},
   push:{label:"Push", slots:["ipress","fpress","fly","lat","triext","pushdown"]},
   pull:{label:"Pull", slots:["vpull","row","latiso","rear","curl","curl"]},
   legs:{label:"Legs", slots:["squat","hinge","kneeext","kneeflex","add","calf"]},
   upper:{label:"Upper", slots:["ipress","row","vpull","lat","rear","pushdown","curl"]},
   lower:{label:"Lower", slots:["kneeflex","squat","kneeext","hinge","glute","calf"]},
-  fbA:{label:"Full body A", slots:["squat","ipress","vpull","kneeflex","lat","curl","calf"]},
-  fbB:{label:"Full body B", slots:["hinge","row","fpress","kneeext","rear","triext","abs"]},
-  fbC:{label:"Full body C", slots:["lunge","ohp","vpull","kneeflex","lat","pushdown","calf"]},
+  fbA:{label:"Full body", slots:["squat","ipress","vpull","kneeflex","lat","curl","calf"]},
+  fbB:{label:"Full body", slots:["hinge","row","fpress","kneeext","rear","triext","abs"]},
+  fbC:{label:"Full body", slots:["lunge","ohp","vpull","kneeflex","lat","pushdown","calf"]},
   arms:{label:"Arms & delts", slots:["lat","curl","triext","rear","curl","pushdown","lat"]},
+  pushB:{label:"Push", slots:["ohp","fpress","lat","fly","pushdown","triext"]},
+  pullB:{label:"Pull", slots:["row","vpull","rear","latiso","curl","curl"]},
+  legsB:{label:"Legs", slots:["hinge","kneeflex","squat","kneeext","calf","abs"]},
+  cbA:{label:"Chest & back", slots:["ipress","vpull","fpress","row","fly","latiso"]},
+  saA:{label:"Shoulders & arms", slots:["ohp","lat","curl","triext","rear","curl","pushdown"]},
+  quadA:{label:"Quads & calves", slots:["squat","kneeext","lunge","calf","add"]},
+  chestD:{label:"Chest", slots:["ipress","fpress","fly","fly"]},
+  backD:{label:"Back", slots:["vpull","row","row","latiso","rear"]},
+  shD:{label:"Shoulders", slots:["ohp","lat","rear","lat","rear"]},
+  armD:{label:"Arms", slots:["curl","triext","curl","pushdown","curl","triext"]},
   // runners: heavy lifts plus jumps improve running economy; moderate loads alone didn't (Llanos-Lagos 2024)
   runA:{label:"Strength A", slots:["squat","plow","calf","vpull","abs"]},
   runB:{label:"Strength B", slots:["hinge","lunge","plat","kneeflex","core"]},
@@ -311,7 +329,33 @@ const T = {
   spC:{label:"Strength & power C", slots:["lunge","vpull","ohp"]}, spD:{label:"Strength & power D", slots:["ohp","vpull","row"]}
 };
 const TEMPLATE_PICK = ["fbA","fbB","fbC","upper","lower","upA","upB","loA","loB","push","pull","legs","arms","glutes"];
-const LOWER = new Set(["loA","loB","legs","lower","spA","spC","sp1","stA","stB","stC"]);
+const LOWER = new Set(["loA","loB","legs","legsB","lower","quadA","glutes","spA","spC","sp1","stA","stB","stC"]);
+// "Build your own": every day of the week gets a type. Repeats use a second version so the week isn't the same session twice.
+const DTYPES = [["Common", [["push","Push"],["pull","Pull"],["legs","Legs"],["upper","Upper"],["lower","Lower"],["full","Full body"]]],
+  ["Body parts", [["chestback","Chest & back"],["shoulderarms","Shoulders & arms"],["armsdelts","Arms & delts"],["chest","Chest"],["back","Back"],["shoulders","Shoulders"],["arms","Arms"],["glutes","Glutes & hamstrings"],["quads","Quads & calves"]]],
+  ["Your own", [["priority","Priority day"],["custom","Pick the muscles"]]]];
+const DT_TPL = {push:["push","pushB"], pull:["pull","pullB"], legs:["legs","legsB"], upper:["upA","upB"], lower:["loA","loB"], full:["fbA","fbB","fbC"], chestback:["cbA"], shoulderarms:["saA"], armsdelts:["arms"], chest:["chestD"], back:["backD"], shoulders:["shD"], arms:["armD"], glutes:["glutes"], quads:["quadA"]};
+const DT_N = Object.fromEntries(DTYPES.flatMap(g => g[1]));
+const MUS_PICK = ["chest","upback","lats","sdelt","rdelt","fdelt","biceps","triceps","quads","hams","glutes","adductors","calves","abs"];
+const M2S = {chest:["ipress","fly"], lats:["vpull","latiso"], upback:["row","row"], sdelt:["lat","lat"], rdelt:["rear"], fdelt:["ohp"], biceps:["curl","curl"], triceps:["triext","pushdown"], quads:["squat","kneeext"], hams:["hinge","kneeflex"], glutes:["glute","lunge"], adductors:["add"], calves:["calf"], abs:["abs"]};
+const MUS_SHORT = {sdelt:"Side delts", rdelt:"Rear delts", fdelt:"Front delts", upback:"Upper back"};
+// a day built from chosen muscles: two exercises each when there are only a few, compounds first
+function musDay(ms){
+  const first = ms.map(m => M2S[m][0]), second = ms.map(m => M2S[m][1]).filter(Boolean), slots = first.concat(second.slice(0, Math.max(0, 7 - first.length)));
+  const order = ["squat","hinge","ipress","fpress","ohp","vpull","row","lunge","glute","latiso","fly","kneeext","kneeflex","lat","rear","curl","triext","pushdown","add","calf","abs"];
+  return slots.sort((x, y) => order.indexOf(x) - order.indexOf(y));
+}
+// turn the week of day types into templates (registering any muscle-built days)
+function customWeekSeq(a){
+  const cw = a.customWeek || {}, seen = {}, out = [];
+  WD.forEach(([k]) => { const t = cw[k]; if (!t || t === "rest") return;
+    if (t === "priority" || t === "custom"){ const ms = ((a.customMus || {})[k] || []).filter(m => M2S[m]); const key = "cx_" + k;
+      T[key] = {label:t === "priority" ? "Priority" + (ms.length ? ": " + ms.map(m => MUS_SHORT[m] || MUS[m]).join(", ") : "") : ms.length ? ms.map(m => MUS_SHORT[m] || MUS[m]).join(", ") : "Your day", slots:ms.length ? musDay(ms) : ["ipress","row","lat","curl","pushdown"]};
+      if (ms.some(m => ["quads","hams","glutes"].includes(m))) LOWER.add(key); else LOWER.delete(key);
+      out.push({k, tk:key}); return; }
+    const opts = DT_TPL[t] || ["fbA"], i = seen[t] = (seen[t] == null ? 0 : seen[t] + 1); out.push({k, tk:opts[i % opts.length]}); });
+  return out;
+}
 const STRENGTH_SPLITS = {1:["stA"], 2:["stA","stB"], 3:["stA","stB","stC"], 4:["stA","stB","stC","stD"], 5:["stA","stB","stC","stD","arms"], 6:["stA","upA","stB","stC","stD","loB"], 7:["stA","upA","stB","stC","stD","loB","arms"]};
 const SPLITS = {
   1:[{id:"fb1", name:"Full body", days:["fbA"], why:"One session a week still builds muscle and strength in beginners; two or more works better when you can."}],
@@ -322,12 +366,12 @@ const SPLITS = {
   4:[{id:"ul4", name:"Upper / Lower ×2", days:["upA","loA","upB","loB"], why:"The classic: each muscle twice a week, alternating stress so joints recover."},
      {id:"ulg4", name:"Upper / Lower / Upper / Glutes & legs", days:["upA","loA","upB","glutes"], why:"Legs twice with a glute-focused second day: suits a lower-body or glute priority."},
      {id:"ppl4", name:"Push / Pull / Legs / Upper", days:["push","pull","legs","upper"], why:"More per-session focus; legs only once, so best if legs aren't a priority."}],
-  5:[{id:"pplul", name:"Push / Pull / Legs + Upper / Lower", days:["legs","push","pull","lower","upper"], why:"Your current structure. Everything twice a week with room for extra upper-body volume."},
+  5:[{id:"pplul", name:"Push / Pull / Legs + Upper / Lower", days:["legs","push","pull","lower","upper"], why:"Everything twice a week, with focused push and pull days and a full upper day."},
      {id:"ul5", name:"Upper / Lower ×2 + Arms & delts", days:["upA","loA","upB","loB","arms"], why:"Best when arms and side delts are the priority: a fifth day just for them."},
      {id:"ulg5", name:"Upper / Lower ×2 + Glutes & legs", days:["upA","loA","upB","loB","glutes"], why:"Three lower-body days: best when glutes or legs are the priority."}],
   7:[{id:"ppl7", name:"Push / Pull / Legs ×2 + Arms & delts", days:["push","pull","legs","push","pull","legs","arms"], why:"Seven sessions: the seventh is a lighter arms and delts day. Most people progress as well on 5-6 days with a rest day; keep the 7th easy."}],
   6:[{id:"ppl6", name:"Push / Pull / Legs ×2", days:["push","pull","legs","push","pull","legs"], why:"Highest frequency and volume. Needs good recovery and 6 days."},
-     {id:"pplul6", name:"PPL + Upper / Lower + Arms & delts", days:["legs","push","pull","lower","upper","arms"], why:"Your current week plus the priority day as a full session."}]
+     {id:"pplul6", name:"PPL + Upper / Lower + Arms & delts", days:["legs","push","pull","lower","upper","arms"], why:"Everything twice a week plus a sixth day just for arms and side delts."}]
 };
 // Which split fits: frequency (each muscle ~2× a week), priorities, experience and session length
 function splitOpts(ans){
@@ -355,19 +399,21 @@ function recommendSplit(ans){
   return {id:best.o.id, why:best.why.length ? "Recommended because " + best.why.join(", and ") + "." : "Recommended: every muscle trained at least twice a week."};
 }
 // muscles trained directly on each template (for honest warnings on custom splits)
+const P2M = {ipress:["chest"], fpress:["chest"], fly:["chest"], vpull:["lats"], latiso:["lats"], row:["upback","lats"], ohp:["fdelt"], lat:["sdelt"], rear:["rdelt"], curl:["biceps"], triext:["triceps"], pushdown:["triceps"], tripress:["triceps"], squat:["quads","glutes"], lunge:["quads","glutes"], kneeext:["quads"], hinge:["hams","glutes"], kneeflex:["hams"], glute:["glutes"], add:["adductors"], calf:["calves"], abs:["abs"]};
 function seqFrequency(seq){
   const f = {};
-  seq.forEach(tk => { const seen = new Set(); T[tk].slots.forEach(p => { const ex = Object.values(L).find(e => e.p === p); if (ex) Object.keys(ex.mu).filter(m => ex.mu[m] >= 1).forEach(m => seen.add(m)); }); seen.forEach(m => f[m] = (f[m] || 0) + 1); });
+  seq.forEach(tk => { const seen = new Set(); (T[tk] ? T[tk].slots : []).forEach(p => (P2M[p] || []).forEach(m => seen.add(m))); seen.forEach(m => f[m] = (f[m] || 0) + 1); });
   return f;
 }
 function splitWarnings(seq, ans){
   const f = seqFrequency(seq), out = [], big = ["chest","lats","upback","quads","hams","sdelt"];
-  const once = big.filter(m => (f[m] || 0) === 1), never = big.concat(["glutes","biceps","triceps"]).filter(m => !(f[m]));
+  const once = big.filter(m => (f[m] || 0) === 1), never = big.concat(["biceps","triceps"]).filter(m => !(f[m]));
   if (never.length) out.push(`${never.map(m => MUS[m]).join(", ")} ${never.length > 1 ? "aren't" : "isn't"} trained directly at all.`);
   if (once.length) out.push(`${once.map(m => MUS[m]).join(", ")} ${once.length > 1 ? "are" : "is"} trained once a week. With the same weekly sets, splitting them over two sessions tends to grow a little more and keeps each session shorter, so you probably won't get the most growth here.`);
   const pri = (ans.pri || []).filter(m => (f[m] || 0) < 2);
   if (pri.length) out.push(`Your priority ${pri.map(m => MUS[m]).join(", ")} ${pri.length > 1 ? "get" : "gets"} fewer than 2 sessions a week.`);
-  for (let i = 0; i < seq.length - 1; i++) if (LOWER.has(seq[i]) && LOWER.has(seq[i + 1]) && (ans.days || []).length >= 6) { out.push("Two lower-body days run back to back; the second may suffer."); break; }
+  const cs = ans.customWeek ? customWeekSeq(ans) : null;
+  if (cs){ const wds = cs.map(x => WD.findIndex(w => w[0] === x.k)); for (let i = 0; i < cs.length; i++){ const j = (i + 1) % cs.length; if (cs.length > 1 && LOWER.has(cs[i].tk) && LOWER.has(cs[j].tk) && (wds[j] - wds[i] + 7) % 7 === 1){ out.push(`${WD[wds[i]][2]} and ${WD[wds[j]][2]} are both leg days back to back; the second usually suffers.`); break; } } }
   return out;
 }
 const WD = [["mon",1,"Mon"],["tue",2,"Tue"],["wed",3,"Wed"],["thu",4,"Thu"],["fri",5,"Fri"],["sat",6,"Sat"],["sun",0,"Sun"]];
@@ -382,14 +428,40 @@ const LOOKS = {
 };
 
 /* ---------- Generator ---------- */
+const RANK = {
+  squat:["pendulum","hack","beltsq","squat","smith","legpress","lmhack","ssbsq","frontsq","goblet","skater"],
+  kneeext:["legext","sissy","nordic"],
+  hinge:["rdl","hipext","dbrdl","singlerdl","trapdl","deadlift","goodmorning","kbrdl","slrdlbw"],
+  kneeflex:["seatedcurl","lyingcurl","standcurlm","cablecurlleg","nordicham","ghr","slidecurl"],
+  glute:["hipthrustm","hipthrust","kickbackmach","pullthrough","revhyp","slthrust","glutebridge"],
+  lunge:["bss","walklunge","stepup","bwss","sandlunge"],
+  calf:["standcalf","lpcalf","smithcalf","bbcalf","donkey","slcalf","seatedcalf","stepcalf"],
+  ipress:["incmachine","incsmith","incdb","incbench","lmpress"],
+  fpress:["chestpress","flatdb","bench","dips","cabpress","scpress","pushup","dbfloor"],
+  fly:["pecdeck","cabfly","incfly","dbfly"],
+  vpull:["latpd","ngpd","sulek","pullup","chinup","highrowm"],
+  latiso:["pullovermach","pullover","floorpo"],
+  row:["csrow","tbarrow","cabrow","seatedrowmach","csdb","dbrow","meadows","vbar","bbrow","dbbor","invrow","trxrow","bandrow"],
+  ohp:["mshoulder","smithohp","ohp","arnold","bbohp"],
+  lat:["cablat","latraisemach","dblat","lyinglat","cabupright","bandlat"],
+  rear:["revpec","revdeltm","revfly","facepull","dbrevfly","bodbrev","bandfp","bandpa"],
+  curl:["incurl","preacher","bayes","ezcurl","dbpreacher","cabcurl","curlmach","bbcurl","hammer","spider","bandcurl","revcurl"],
+  triext:["ohext","ezskull","triextmach","skull","dbohext"],
+  pushdown:["pdbar","pdfixed","pdmove","kickback","bandpd"],
+  add:["adductor","copen"], abs:["cabcrunch","abcrunchmach","hangleg","captainraise","abwheel","legraise","plank"]
+};
 function has(kit, ex){ return ex.q.every(r => kitHas(kit, r)); }
 const SYS = {deadlift:2, goodmorning:2, bbrow:2, squat:2, rdl:2, frontsq:2, ssbsq:2, trapdl:2};
 function exScore(ex, ctx){
-  let s = ex.len * 2;                                   // lengthened bias
+  const rk = RANK[ex.p], ranked = rk && ["size","power",undefined,null,""].includes(ctx.ans.goal) && ctx.ans.level !== "new";
+  let s = ranked ? 0 : ex.len * 2;                      // lengthened bias (built into the ranking for trained lifters)
+  if (ranked){ const i = rk.indexOf(ex.k); s += i < 0 ? -10 : (rk.length - i) * 3; }
+  // a goblet or bodyweight squat is never the main quad lift when a barbell and rack or a quad machine is there
+  if (ex.p === "squat" && ["goblet","skater"].includes(ex.k) && (has(ctx.kit, L.squat) || has(ctx.kit, L.hack) || has(ctx.kit, L.smith) || has(ctx.kit, L.legpress))) s -= 30;
   if (ctx.gym === "shwc" && ex.eq === "machine" && !ex.c) s += 1;   // stable machines for isolation work
   if (ex.eq === "machine" && ex.c) s += 0.5;
   if (["strength","power","crossfit"].includes(ctx.ans.goal) && ex.eq === "bb" && ex.c) s += 3;
-  if (coachMode(ctx.ans)){
+  if (coachMode(ctx.ans) && !ranked){
     // stimulus for the fatigue: stable, easy-to-load lifts first; heavy axial lifts and technical ones cost more recovery
     const stab = ["machine","cable"].includes(ex.eq) ? 2 : ex.eq === "db" ? 1 : 0, sys = SYS[ex.k] || (ex.c && ex.eq === "bb" ? 1 : 0), skill = ex.c && ex.eq === "bb" ? 1 : 0;
     s += 1.5 * stab - 1.5 * sys - skill;
@@ -410,7 +482,7 @@ function exScore(ex, ctx){
   if (ctx.ans.goal === "crossfit" && ex.q.includes("smith")) s -= 10;
   if (ex.cf && ctx.ans.goal !== "crossfit") s -= 20;
   if (ex.pv) s -= 40;
-  if (ctx.used.has(ex.k)) s -= 2.5;                     // vary exercises across the week
+  if (ctx.used.has(ex.k)) s -= !ranked ? 2.5 : ctx.dayUsed.size === 0 ? 2 : 8;   // the day's main lift can repeat; the rest should vary      // two different exercises per muscle across the week
   if (ctx.dayUsed.has(ex.k)) s -= 100;
   return s + (ctx.seed ? (hash(ex.k + ctx.seed) % 100) / 100 : 0);
 }
@@ -419,17 +491,27 @@ function pick(pattern, ctx){
   const cand = Object.values(L).filter(e => e.p === pattern && has(ctx.kit, e) && !(ctx.ans.ban || []).includes(e.k));
   if (!cand.length) return null;
   cand.sort((a, b) => exScore(b, ctx) - exScore(a, ctx));
+  // muscle-building plans skip bodyweight adductor holds; deep squats already train the adductors
+  if (pattern === "add" && cand[0].k === "copen" && ["size",undefined,null,""].includes(ctx.ans.goal) && !(ctx.ans.pri || []).includes("adductors")) return null;
   return exScore(cand[0], ctx) < -50 ? null : cand[0];
 }
 const FALLBACK = {abd:["glute"], sled:["lunge"], carry:["row"], cond:["erg"], erg:["cond"], fpress:["ipress"], ipress:["fpress"], lunge:["squat"], squat:["lunge"], latiso:["vpull","row"], ohp:["ipress"], add:[], kneeflex:["hinge"], kneeext:["squat"], fly:["fpress"], vpull:["row"], rear:["row"], hinge:["kneeflex","glute"], glute:["hinge"]};
 function targetsFor(ans){
-  if (coachMode(ans)) return sizeVolume(ans).start;
+  const fx = ans.effort === "fail" ? 0.72 : 1;
+  const glute = o => { if (!(ans.pri || []).includes("glutes") && ans.gtype !== "aesthetic" && ["size",undefined,null,""].includes(ans.goal) && o.glutes != null) o.glutes = Math.min(o.glutes, 6); return o; };   // squats, hinges and lunges cover glutes
+  // failure every set: fewer, harder sets (about 8-14 a muscle, 14-18 for priorities), following failure-based coaching practice
+  if (fx !== 1){ const lv = ans.level === "adv" ? 1.1 : 1, ph = ans.phase === "cut" ? 0.85 : 1, out = {};
+    for (const [m, v] of Object.entries(FAIL_SETS)) out[m] = Math.round(v * lv * ph);
+    for (const m of ans.pri || []) out[m] = Math.round((ans.level === "adv" ? 18 : 16) * ph);
+    return glute(out); }
+  if (coachMode(ans)) return glute({...sizeVolume(ans).start});
   // beginners grow from less (and learn technique better with fewer sets); strength goals trade some volume for heavier work
   const lvl = {new:0.75, inter:1, adv:1.2}[ans.level || "inter"] * (ans.goal === "strength" ? 0.85 : 1), ph = ans.phase === "cut" ? 0.9 : 1, out = {};
   for (const [m, v] of Object.entries(BASE_SETS)) out[m] = Math.round(v * lvl * ph);
   for (const m of ans.pri || []) out[m] = Math.round(PRIORITY_SETS * (ans.level === "adv" ? 1.1 : 1) * ph);
   if (ans.goal === "crossfit"){ for (const m of Object.keys(out)) out[m] = Math.round(out[m] * 0.7); }
-  return out;
+  if (fx !== 1) for (const m of Object.keys(out)) out[m] = Math.round(out[m] * fx);
+  return glute(out);
 }
 // minutes: ~45 s of work per set plus rest, plus setup. Isolation lifts paired as supersets share their rest (Weakley 2017),
 // so each set costs roughly half its rest.
@@ -527,7 +609,7 @@ function buildVariant(dayKeys, gym, ans, seed){
   }
   // a muscle with no direct work at all gets one isolation exercise if the kit allows, even if it stretches a session a little
   const direct = () => { const o = {}; days.forEach(d => d.list.forEach(x => { for (const [m, f] of Object.entries(x.ex.mu)) if (f >= 1) o[m] = (o[m] || 0) + x.sets; })); return o; };
-  if (ans.goal !== "crossfit" && !["endurance","hyrox","tri"].includes(ans.kind)) for (const m of Object.keys(MUS).filter(m => !["fdelt","adductors"].includes(m) && tg[m] > 0)){
+  if (ans.goal !== "crossfit" && !["endurance","hyrox","tri"].includes(ans.kind)) for (const m of Object.keys(MUS).filter(m => !["fdelt","adductors"].includes(m) && !(m === "glutes" && !pri.has("glutes") && ans.gtype !== "aesthetic") && tg[m] > 0)){
     if (direct()[m]) continue;
     const small = ["sdelt","rdelt","biceps","triceps","calves","abs"].includes(m);
     const ok = days.filter(d => small || (lowerMus.has(m) ? isLowerDay(d) : !isLowerDay(d)) || days.length <= 3).sort((a, b) => dayMins(a) - dayMins(b));
@@ -554,7 +636,7 @@ function buildVariant(dayKeys, gym, ans, seed){
     const isPri = x => Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && pri.has(m));
     const orig = d.list.slice();
     // extras added for other muscles (e.g. laterals on leg day) always go last
-    d.list.sort((a, b) => (!!a.extra - !!b.extra) || (b.ex.c - a.ex.c) || (isPri(b) - isPri(a)) || (orig.indexOf(a) - orig.indexOf(b)));
+    d.list.sort((a, b) => (!!a.extra - !!b.extra) || (isPri(b) && b.ex.c) - (isPri(a) && a.ex.c) || (b.ex.c - a.ex.c) || (isPri(b) - isPri(a)) || (orig.indexOf(a) - orig.indexOf(b)));
     // pair isolation lifts for different muscles into supersets (A1/A2, B1/B2…), keeping order
     let g = 0;
     if (SUPER && SHORT){ const ps = d.list.filter(x => pairable(x.ex) && !x.main && PAIRP.has(x.ex.p)), ls = d.list.filter(x => pairable(x.ex) && !x.main && PAIRL.has(x.ex.p));
@@ -564,6 +646,19 @@ function buildVariant(dayKeys, gym, ans, seed){
   });
   const vf = vol(), under = Object.keys(tg).filter(m => !["fdelt","adductors"].includes(m) && (vf[m] || 0) < Math.min(6, tg[m] - 1));
   return {days, vol:vf, tg, mins:days.map(dayMins), under};
+}
+// Intensity techniques: last set only, 1-3 a session, on exercises where they're safe (never on barbell squats, hinges or rows,
+// except a mechanical drop into an easier bodyweight move). They extend a set past failure; they don't replace sets.
+const MECH = {squat:"Last set: straight into bodyweight squats with your heels raised, to failure", legpress:"Last set: move your feet higher and keep going to failure"};
+function techFor(e, ans){
+  if (e.p === "squat") return e.k === "legpress" ? {k:"mech", t:MECH.legpress} : e.eq === "db" ? null : {k:"mech", t:MECH.squat};
+  if (e.eq === "bb" || e.eq === "bw" || (e.c && !["machine","cable"].includes(e.eq))) return null;
+  if (["lat","rear","calf"].includes(e.p)) return {k:"myo", t:e.p === "calf" ? "Last set: myo-reps, then half reps at the bottom" : "Last set: myo-reps, short rests, sets of 3 to 5"};
+  if (["kneeflex","vpull","curl"].includes(e.p) && e.len >= 2) return {k:"lp", t:"Last set: half reps in the stretched position after failure"};
+  if (["fly"].includes(e.p)) return {k:"hold", t:"Last set: hold the deepest stretch for 20 seconds after failure"};
+  if (["kneeext","pushdown","triext","row","latiso","curl","kneeflex"].includes(e.p)) return {k:"drop", t:"Last set: drop the weight by a quarter and go again to failure"};
+  if (e.eq === "machine" && ["ipress","fpress","ohp"].includes(e.p)) return {k:"rp", t:"Last set: rest 15 seconds, then go to failure again"};
+  return null;
 }
 function placeDays(seq, ans){
   const trainWd = WD.filter(([k]) => (ans.days || []).includes(k)).map(x => x[1]);
@@ -599,6 +694,12 @@ function rirPlan(weeks, level, ramp){
   }
   return out.concat(["DL"]);
 }
+// How hard each working set goes. Same effort every training week, then a deload; no ramp, no reps-in-reserve jargon.
+const EFFORTS = [["fail","Every set to failure","Each working set ends when you can't do another clean rep. Barbell squats, rows and RDLs stop at technical failure: the last rep with good form."],
+  ["last","Last set to failure","Earlier sets stop a rep or two short; the last set of each exercise goes all the way."],
+  ["near","A rep or two short","Every set stops 1-2 reps before failure. Nearly the same growth with less fatigue, and the best way to learn lifts."]];
+function effortOf(a){ return a.effort || (a.level === "new" ? "near" : "last"); }
+function effortPlan(weeks, a){ const r = {fail:"0", last:"L", near:a.level === "new" ? "2" : "1–2"}[effortOf(a)]; return Array.from({length:Math.max(1, weeks - 1)}, () => r).concat(["DL"]); }
 const DAYPICK = {1:["wed"],2:["mon","thu"],3:["mon","wed","fri"],4:["mon","tue","thu","fri"],5:["mon","tue","wed","fri","sat"],6:["mon","tue","wed","thu","fri","sat"],7:["mon","tue","wed","thu","fri","sat","sun"]};
 const RESTSCALE = {short:0.8, std:1, long:1.25};
 // CrossFit-style conditioning pieces, one per day (rotate). Scale reps and loads to finish inside the time.
@@ -725,10 +826,10 @@ function generate(ans, seed){
   if (spP){ const pre = ans.season === "in" ? "In-season strength" : "Strength & power"; T.sp1.label = pre; ["A","B","C","D"].forEach(x => T["sp" + x].label = pre + " " + x); }
   let split = spP ? {id:"sport", name:spP.name + " · " + sportSeason(ans).toLowerCase() + " ×" + n, days:n <= 1 ? ["sp1"] : ["spA","spB","spC","spD"].slice(0, Math.min(4, n))}
     : ans.goal === "crossfit" ? {id:"cf", name:"Strength + conditioning ×" + n, days:Array.from({length:n}, (_, i) => ["cfA","cfB","cfC","cfD"][i % 4])}
-    : ans.split === "custom" && (ans.customSeq || []).length === n ? {id:"custom", name:"Custom: " + ans.customSeq.map(k => T[k].label).join(" / "), days:ans.customSeq.slice()}
+    : ans.split === "custom" && ans.customWeek ? (() => { const cs = customWeekSeq(ans); return {id:"custom", name:"Your split: " + cs.map(x => T[x.tk].label.split(":")[0]).join(" / "), days:cs.map(x => x.tk), fixed:cs}; })()
     : ans.goal === "strength" && (!ans.split || /^str/.test(ans.split)) && STRENGTH_SPLITS[n] ? {id:"str" + n, name:"Strength ×" + n, days:STRENGTH_SPLITS[n].slice()}
     : (SPLITS[n] || []).find(s => s.id === ans.split) || (SPLITS[n] || [])[0];
-  const placed = placeDays(split.days, ans);
+  const placed = split.fixed ? split.fixed.map(x => ({tk:x.tk, wd:WD.find(w => w[0] === x.k)[1]})) : placeDays(split.days, ans);
   const seq = placed.map(p => p.tk);
   const gl = (flowGyms() || gymList()), vs = Object.fromEntries(gl.map(g => [g.id, spP ? buildSportVariant(seq, g.id, ans, seed) : buildVariant(seq, g.id, ans, seed)])), first = vs[gl[0].id];
   const exercises = {};
@@ -753,6 +854,13 @@ function generate(ans, seed){
       // top set + back-offs on heavy compounds (Helms/Nippard practice): one heavy set, the rest 12% lighter for a few more reps
       if (e.c && (e.eq === "bb" || ["squat","hinge"].includes(e.p)) && def.lo <= 8 && x.sets >= 2) def.topSet = true;
     }
+    if (ans.heels && e.p === "squat" && ["bb","machine"].includes(e.eq) && e.k !== "legpress") def.note = "Heels on 1-2 cm plates or a wedge" + (def.note ? ". " + def.note : "");
+    if (!spP && ans.level !== "new" && ["fail","last"].includes(effortOf(ans)) && ans.goal !== "strength" && !key.endsWith("-hvy")){
+      const day = v.days[i].list, prim = Object.keys(e.mu).find(m => e.mu[m] >= 1), cap = ans.level === "adv" ? 3 : 2, have = day.filter(y => y.tech).length;
+      const lastForMuscle = !day.slice(j + 1).some(y => Object.keys(y.ex.mu).find(m => y.ex.mu[m] >= 1) === prim);
+      const tf = (e.p === "squat" ? j === 0 : lastForMuscle) && have < cap ? techFor(e, ans) : null;
+      if (tf && (e.p !== "squat" || j === 0)){ x.tech = tf; def.tech = tf.t; def.techK = tf.k; }
+    }
     exercises[key] = Object.fromEntries(Object.entries(def).filter(([, v]) => v !== undefined));
     return x.ss ? [key, x.sets, x.ss] : [key, x.sets];
   }); };
@@ -770,7 +878,7 @@ function generate(ans, seed){
   const weeks = +ans.block || (coachMode(ans) ? coachA(ans) + 1 : 6);
   const ownName = ans.name && ans.name !== "Block 1" ? ans.name : null;
   const autoName = ans.customAI && ans.customAI.title ? ans.customAI.title : spP ? spP.name + " plan" : `${GTYPES[ans.gtype] && ans.gtype !== "custom" ? GTYPES[ans.gtype][2] : {size:"Build muscle", strength:"Build strength", power:"Powerbuilding", crossfit:"CrossFit-style", athletic:"Athletic"}[ans.goal] || "Training"}: ${split.name}`;
-  return {schema:2, name:ownName || autoName, placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:coachMode(ans) ? weekRIR(weeks - 1, ans.level, ans.phase) : rirPlan(weeks, ans.level, spP && ans.season === "in" ? "steady" : ans.ramp), breaks:(ans.breaks || []).slice(),
+  return {schema:2, name:ownName || autoName, placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:spP ? rirPlan(weeks, ans.level, ans.season === "in" ? "steady" : ans.ramp) : effortPlan(weeks, ans), effort:spP ? null : effortOf(ans), breaks:(ans.breaks || []).slice(),
     kind:"gym", split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:first.tg, under:first.under || [],
     ...(coachMode(ans) ? {coach:{v:1, A:weeks - 1, level:ans.level || "inter", phase:ans.phase || "maintain", block:1, pri:(ans.pri || []).slice(), ...sizeVolume(ans), sessCap:SESS_CAP[ans.level || "inter"] || 8,
       base:Object.fromEntries(days.filter(d => !d.rest && d.variants).map(d => [d.k, JSON.parse(JSON.stringify(d.variants))])), m:{}, ex:{}, wk:{}, log:[]}} : {}), vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id].vol])), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id].mins])), exercises, days};
@@ -1352,7 +1460,7 @@ function nextMonday(){ const d = new Date(); d.setHours(12); const add = (8 - d.
 function addWeeks(n){ const d = new Date(); d.setDate(d.getDate() + n * 7); return ymd(d); }
 // during the plan builder, generators use the gyms being edited; they're only saved with the plan
 const flowGyms = () => (F && F.kind === "prog" && F.ans && F.ans.gyms && F.ans.gyms.length) ? F.ans.gyms : null;
-function gymsDraft(){ return gymList().map(g => ({id:g.id, name:g.name, type:g.type || "", kit:(g.kit || KIT_FULL).slice(), dbMax:g.dbMax || 40, dbStep:g.dbStep || 2, dbMode:g.dbMode || "step2", dbs:(g.dbs || []).slice(), plate:g.plate || 1.25})); }
+function gymsDraft(){ if (!S.profile.gymsSet) return [{id:"gym", name:"", type:"", kit:[], dbMax:40, dbStep:2, dbMode:"step2", dbs:[], plate:1.25}]; return gymList().map(g => ({id:g.id, name:g.name, type:g.type || "", kit:(g.kit || KIT_FULL).slice(), dbMax:g.dbMax || 40, dbStep:g.dbStep || 2, dbMode:g.dbMode || "step2", dbs:(g.dbs || []).slice(), plate:g.plate || 1.25})); }
 function progDefaults(){
   const p = S.prog || {}, prev = p.setup, gyms = gymsDraft();
   const kit = Object.fromEntries(gyms.map(g => [g.id, g.kit.slice()]));
@@ -1469,6 +1577,7 @@ function src(id, txt){ return `<button class="obsrc" data-src="${id}">${txt || "
 function opt(name, val, title, sub, cur){ return `<button class="obopt" data-set="${name}" data-val="${val}" aria-pressed="${cur === val}"><b>${title}</b>${sub ? `<span>${sub}</span>` : ""}</button>`; }
 function chip(name, val, label, on){ return `<button class="chip" data-tog="${name}" data-val="${val}" aria-pressed="${!!on}">${label}</button>`; }
 
+const gIc = k => window.AJGymIcon ? AJGymIcon(k) : "";
 function numSeg(name, from, to, cur, rec){ return `<div class="obnums">${Array.from({length:to - from + 1}, (_, i) => from + i).map(n => `<button data-set="${name}" data-val="${n}" aria-pressed="${+cur === n}">${n}${n === rec ? "<i>★</i>" : ""}</button>`).join("")}</div>`; }
 function dayToggles(name, sel, disabled){ return `<div class="obdays">${WD.map(([k,, sh]) => `<button class="obday" data-tog="${name}" data-val="${k}" aria-pressed="${(sel || []).includes(k)}" ${disabled && disabled(k) ? "disabled" : ""}>${sh}</button>`).join("")}</div>`; }
 function dateToggle(a){ return `<div class="obfld"><span class="obl">Do you have a date?</span>${seg2("hasDate", [["no","No, just get me ready"],["yes","Yes, a race or event"]], a.hasDate ? "yes" : "no")}
@@ -1493,17 +1602,17 @@ const DBW = [1,2,2.5,3,4,5,6,7,7.5,8,9,10,11,12,12.5,13,14,15,16,17.5,18,20,22,2
 function gymEditor(a){
   const q = (F.eqq || "").toLowerCase().trim();
   return `${a.gyms.map((g, gi) => { const t = g.type || "";
-    const row = ([k, n]) => `<button class="eqrow" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}"><span>${n}</span><i class="eqtick"></i></button>`;
+    const row = ([k, n]) => `<button class="eqrow" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}"><span class="eqic">${gIc(k)}</span><span>${n}</span><i class="eqtick"></i></button>`;
     return `<div class="card obgymc">
-    <div class="spread"><input class="field obgname" data-gname="${g.id}" value="${esc(g.name)}" aria-label="Gym name">${a.gyms.length > 1 ? `<button class="link muted" data-gdel="${g.id}">Remove</button>` : ""}</div>
+    <div class="spread"><input class="field obgname" data-gname="${g.id}" value="${esc(g.name)}" placeholder="Name it, e.g. Home or your gym's name" aria-label="Gym name" autocomplete="off">${a.gyms.length > 1 ? `<button class="link muted" data-gdel="${g.id}">Remove</button>` : ""}</div>
     <span class="obl">What kind of gym is it?</span>
-    <div class="gtypes">${Object.entries(GYMTYPES).map(([k, [n, d]]) => `<button class="gtype" data-gpreset="${k}" data-g="${g.id}" aria-pressed="${t === k}"><b>${n}</b><span>${d}</span></button>`).join("")}</div>
+    <div class="gtypes">${Object.entries(GYMTYPES).map(([k, [n, d]]) => `<button class="gtype" data-gpreset="${k}" data-g="${g.id}" aria-pressed="${t === k}"><span class="obic">${gIc("g_" + k)}</span><b>${n}</b><span>${d}</span></button>`).join("")}</div>
     <div class="spread"><span class="obl">Equipment</span><span class="small muted">${g.kit.length} items ticked</span></div>
     <span class="obhint">${t ? "Filled in for a typical " + GYMTYPES[t][0].toLowerCase() + ". Untick anything yours doesn't have, or add what it does." : "Pick the kind of gym above to fill this in, then adjust."}</span>
     <label class="sb card eqsearch"><span>${ICON.search}</span><input data-eqq="1" placeholder="Search ${ALLKIT.length} pieces of equipment" value="${esc(F.eqq || "")}" autocomplete="off"></label>
     ${q ? `<div class="eqlist">${EQUIP.filter(([, n]) => n.toLowerCase().includes(q)).map(row).join("") || `<p class="small muted">Nothing matches. Tell us what's missing in the AI chat and we'll add it.</p>`}</div>`
     : EQG.map(([gn, items], qi) => { const on2 = items.filter(([k]) => g.kit.includes(k)).length;
-      return `<details class="eqgrp" ${(F.openEq || []).includes(g.id + qi) ? "open" : ""}><summary><b>${gn}</b><span class="muted small">${on2}/${items.length}</span><button class="link" data-gall="${qi}" data-g="${g.id}">${on2 === items.length ? "None" : "All"}</button></summary>
+      return `<details class="eqgrp" ${(F.openEq || []).includes(g.id + qi) ? "open" : ""}><summary><span class="eqic">${gIc(EQG_IC[qi])}</span><b>${gn}</b><span class="muted small num">${on2}/${items.length}</span><button class="link" data-gall="${qi}" data-g="${g.id}">${on2 === items.length ? "None" : "All"}</button></summary>
       <div class="eqlist">${items.map(row).join("")}</div></details>`; }).join("")}
     ${g.kit.includes("db") ? dbPicker(g, gi) : ""}
     ${g.kit.includes("bb") ? `<div class="obfld"><span class="obl">Smallest weight plates</span><span class="obhint">The lightest plates you have, used one on each side of the bar. So the smallest jump on the bar is ${2 * (+g.plate || 1.25)} kg.</span>${seg2("gyms." + gi + ".plate", [["0.5","0.5 kg"],["1.25","1.25 kg"],["2.5","2.5 kg"],["5","5 kg"]], String(g.plate || 1.25))}</div>` : ""}
@@ -1527,9 +1636,9 @@ function pStep(s, a){
       <div><i>3</i><span><b>Any goal</b><em>Muscle, strength, running, HYROX, CrossFit-style or triathlon, or describe your own.</em></span></div>
     </div>`, cta:"Start"};
   case "goal": return {title:"What are you training for?", body:`
-    <div class="obgrid g3">${GFAM.map(([k, t, d]) => `<button class="obcard" data-gfam="${k}" aria-pressed="${a.gfam === k}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
-    <button class="obcard aicard spcard" data-gfam="sport" aria-pressed="${a.gfam === "sport"}"><b>Train for my sport</b><span>Tennis, football, climbing, MMA, swimming and 40+ more: strength, power and injury prevention built around how your sport works.</span></button>
-    <button class="obcard aicard" data-gfam="custom" aria-pressed="${a.gfam === "custom"}"><b>Anything else? Tell the AI.</b><span>Describe any goal in your own words, a sport, an event, a look or a deadline, and AJ Training AI builds the plan around it.</span></button>`};
+    <div class="obgrid g3 obgoals">${GFAM.map(([k, t, d]) => `<button class="obcard gcard" data-gfam="${k}" aria-pressed="${a.gfam === k}"><span class="obic">${gIc(k === "aesthetic" ? "look" : k)}</span><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+    <button class="obcard aicard spcard wcard" data-gfam="sport" aria-pressed="${a.gfam === "sport"}"><span class="obic">${gIc("sport")}</span><span class="wct"><b>Train for my sport</b><span>Tennis, football, climbing, MMA, swimming and 40+ more: strength, power and injury prevention built around how your sport works.</span></span></button>
+    <button class="obcard aicard wcard" data-gfam="custom" aria-pressed="${a.gfam === "custom"}"><span class="obic">${gIc("ai")}</span><span class="wct"><b>Anything else? Tell the AI.</b><span>Describe any goal in your own words, a sport, an event, a look or a deadline, and AJ Training AI builds the plan around it.</span></span></button>`};
   case "sportpick": { const p = a.sportCustom;
     return {title:"Which sport?", body:`
     <label class="sb card"><span>${ICON.search}</span><input data-spq="1" placeholder="Search any sport" value="${esc(F.spq || "")}" autocomplete="off"></label>
@@ -1573,23 +1682,26 @@ function pStep(s, a){
       <div class="obgrid">${LOOKS[sx].map(row).join("")}</div><details class="obmore"><summary>More looks</summary><div class="obgrid">${LOOKS[other].map(row).join("")}</div></details>
       <p class="obnote">You can change the focus muscles on a later step.</p>`}; }
   case "level": return {title:"Training experience", body:`<div class="obopts">
-    ${opt("level","new","Under 1 year","Fewer sets, 8-15 reps and 2-3 reps in reserve while you learn the lifts. Stable machines are favoured.",a.level)}
-    ${opt("level","inter","1-4 years","Intermediate: the most productive volume, sets close to failure.",a.level)}
-    ${opt("level","adv","4+ years, close to your limit","More volume and effort to keep progressing.",a.level)}</div>
-    <p class="obnote">Beginners grow from fewer sets and don't need to go to failure, which is also less unpleasant (and people tend to underestimate how many reps they have left, especially above ~12 reps, so the plan keeps a margin). ${src("volume")} ${src("rir","Effort evidence")}</p>`};
+    ${opt("level","new","Under 1 year","Fewer sets and 8-15 reps, stopping a couple of reps short while you learn the lifts. Stable machines are favoured.",a.level)}
+    ${opt("level","inter","1-4 years","The most productive volume, hard sets close to or at failure.",a.level)}
+    ${opt("level","adv","4+ years, close to your limit","More precise volume, harder sets and intensity techniques to keep progressing.",a.level)}</div>
+    <p class="obnote">Beginners grow from fewer sets and don't need to go to failure. You'll choose how hard to train later. ${src("volume")}</p>`};
   case "days": { if (a.kind === "hyrox" || a.kind === "tri"){
       const r = a.kind === "tri" ? [3, 7, 5] : [3, 6, 4];
       return {title:"How many days a week?", body:`${numSeg("nDays", r[0], r[1], a.nDays, r[2])}
         <div class="obfld"><span class="obl">Long ${a.kind === "tri" ? "ride" : "session"} day</span>${seg2("longDay", [["sat","Saturday"],["sun","Sunday"]], a.longDay)}</div>
         <p class="obnote">${a.kind === "tri" ? "About three-quarters of the time is easy. One long ride with a short brick run off the bike each week." : "Most of a HYROX race is running, so runs lead the week, with station strength and a weekly race simulation."} Move any session in the Train tab when the week changes.</p>`}; }
-    const sp = sweetSpot(a), rec = recDays(a), n = a.nTrain || a.days.length;
+    const sp = sweetSpot(a), rec = recDays(a), n = a.days.length;
+    const note = n >= 7 ? "Seven days works if some are short or easy. A full rest day each week helps most people recover, so the plan keeps one session lighter."
+      : n === 6 ? (a.level === "new" ? "Six is a lot while you're new: 3-4 grows you just as well. Fine if you enjoy it." : "Six suits a split like push, pull, legs twice, or a priority day. Plenty of people grow well on it.")
+      : n === 5 ? "Five lets every muscle be trained twice with room for a priority day."
+      : n <= 2 ? "Fine for a start; three or more lets every muscle be trained twice a week." : "Enough to train every muscle twice a week.";
     return {title:"How often do you want to train?", body:`
     <div class="obfld"><span class="obl">Days a week</span>${numSeg("nTrain", 1, 7, n, rec)}
-      <span class="obhint ${n >= 6 ? "bad" : ""}">★ ${rec} days is what we'd recommend for you. ${n >= 7 ? "Seven days rarely adds muscle or strength over 4-5, and a rest day helps you recover: we'd suggest fewer." : n === 6 ? "Six works for experienced lifters with good recovery; most people grow just as well on 4-5." : n <= 2 ? "Fine for a start; three or more lets every muscle be trained twice a week." : "Enough to train every muscle twice a week."} ${src("frequency")}</span></div>
-    <div class="obfld"><span class="obl">Any days you definitely can't train?</span>
-      <span class="obhint">Optional. This doesn't lock your week: the plan spreads your sessions out, and you can move any of them in the Train tab whenever your week changes.</span>
-      ${dayToggles("blocked", a.blocked || [])}
-      <span class="obhint">Your usual days: <b>${WD.filter(([k]) => a.days.includes(k)).map(x => x[2]).join(", ") || "–"}</b></span></div>
+      <span class="obhint">${note} ${src("frequency")}</span></div>
+    <div class="obfld"><span class="obl">Which days?</span>
+      ${dayToggles("days", a.days)}
+      <span class="obhint">Tap to change, weekends included. You can still move any session in the Train tab when a week changes.</span></div>
     <div class="obfld"><span class="obl">Time per session</span><div class="obunitrow">${nf("mins", "num", a.mins, "Minutes per session", 90)}<span>min, including rest</span></div>
       <div class="obslider"><input type="range" min="30" max="120" step="5" value="${a.mins}" data-range="mins" aria-label="Minutes per session"></div>
       <div class="obzones"><span>Short</span><span class="ok">Sweet spot 45-75</span><span>Long</span></div>
@@ -1607,14 +1719,16 @@ function pStep(s, a){
     <p class="obnote">On average, cardio doesn't blunt muscle growth. Hard sport sessions can tire your legs, so if one falls the day before leg day, move a session in the Train tab. ${src("interference")}</p>`, cta:sel.length ? "Continue" : "Skip"}; }
   case "split": {
     const n = a.days.length, opts = splitOpts(a), rec = recommendSplit(a), cur = a.split || (rec && rec.id);
-    const seq = a.customSeq && a.customSeq.length === n ? a.customSeq : (opts.find(o => o.id === cur) || opts[0] || {days:[]}).days.slice();
-    const warn = a.split === "custom" ? splitWarnings(seq, a) : [];
-    return {title:"Pick a split", body:`${rec ? `<div class="banner info"><b>Recommended for you.</b> ${esc(rec.why)}</div>` : ""}
+    const warn = a.split === "custom" ? splitWarnings(customWeekSeq(a).map(x => x.tk), a) : [];
+    const cw = a.customWeek || {}, cm = a.customMus || {};
+    const sel = k => `<span class="dd"><select data-cweek="${k}" aria-label="${WD.find(x => x[0] === k)[2]}"><option value="rest" ${!cw[k] || cw[k] === "rest" ? "selected" : ""}>Rest</option>${DTYPES.map(([g, list]) => `<optgroup label="${g}">${list.map(([v, t]) => `<option value="${v}" ${cw[k] === v ? "selected" : ""}>${t}</option>`).join("")}</optgroup>`).join("")}</select></span>`;
+    const chips = k => `<div class="cmus">${MUS_PICK.map(m => `<button class="chip" data-cmus="${k}" data-val="${m}" aria-pressed="${(cm[k] || []).includes(m)}">${MUS_SHORT[m] || MUS[m]}</button>`).join("")}</div>`;
+    return {title:"Pick a split", body:`${rec && a.split !== "custom" ? `<div class="banner info"><b>Recommended for you.</b> ${esc(rec.why)}</div>` : ""}
       <div class="obopts">${opts.map(o => opt("split", o.id, o.name + (rec && o.id === rec.id ? ' <span class="tag rep">Recommended</span>' : ""), o.why + `<br><span class="obseq">${o.days.map(d => T[d].label).join(" · ")}</span>`, cur)).join("")}
-      ${opt("split", "custom", "Build your own", "Choose each day yourself. The app tells you honestly if it limits your results.", cur)}</div>
-      ${a.split === "custom" ? `<div class="card obcustom">${WD.filter(([k]) => a.days.includes(k)).map(([k,, sh], i) => `<div class="spread"><b>${sh}</b><span class="dd"><select data-cseq="${i}">${TEMPLATE_PICK.map(t => `<option value="${t}" ${seq[i] === t ? "selected" : ""}>${T[t].label}</option>`).join("")}</select></span></div>`).join("")}
-        ${warn.length ? `<div class="banner"><b>Heads up.</b> ${warn.map(esc).join(" ")}</div>` : `<div class="obtag ok">Every main muscle trained at least twice a week</div>`}
-        <button class="btn ghost" data-aisplit="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Checking…" : "Check it with AJ Training AI"}</button>${F.splitAI ? `<p class="small">${esc(F.splitAI)}</p>` : ""}</div>` : ""}
+      ${opt("split", "custom", "Build your own", "Set every day of the week yourself, including a priority day for the muscles you want to bring up.", cur)}</div>
+      ${a.split === "custom" ? `<div class="card obcustom">${WD.map(([k,, sh]) => `<div class="cwrow ${!cw[k] || cw[k] === "rest" ? "rest" : ""}"><div class="spread"><b>${sh}</b>${sel(k)}</div>${["priority","custom"].includes(cw[k]) ? chips(k) : ""}</div>`).join("")}
+        ${warn.length ? `<div class="banner"><b>Worth knowing.</b> ${warn.map(esc).join(" ")}</div>` : `<div class="obtag ok">Every main muscle trained at least twice a week</div>`}
+        <span class="obhint">The full check of your week, with sets and timings, comes when the plan is built.</span></div>` : ""}
       <p class="obnote">With the same weekly sets, how you split them matters little; training each muscle at least twice a week keeps sessions shorter and quality high. ${src("frequency")}</p>`};
   }
   case "pri": return {title:"What do you want to bring up?", body:`
@@ -1625,24 +1739,28 @@ function pStep(s, a){
     <p class="oblead">Tap anything that needs care. Add a line if it helps, and the plan swaps exercises to suit.</p>
     <div class="obgrid g3">${INJ.map(([k, n]) => `<button class="obcard mus" data-tog="inj" data-val="${k}" aria-pressed="${(a.inj || []).includes(k)}"><b>${n}</b></button>`).join("")}</div>
     <textarea class="field bigtext" rows="3" data-input="injText" placeholder="e.g. tight ankles, heels lift when I squat">${esc(a.injText || "")}</textarea>
-    ${(a.injText || "").trim().length > 3 ? `<button class="btn ghost" data-aiinj="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Analysing…" : "Check it with AJ Training AI"}</button>` : ""}
-    ${a.injAI ? `<div class="card obai"><b>What the plan will do</b><span>${esc(a.injAI.summary || "")}</span>${(a.injAI.avoid || []).length ? `<span class="small muted">Avoiding: ${a.injAI.avoid.map(k => L[k] ? L[k].n : k).join(", ")}</span>` : ""}<span class="small muted">Not medical advice. Sharp, worsening or lasting pain needs a physio or doctor.</span></div>` : ""}`, cta:(a.inj || []).length || a.injText ? "Continue" : "Nothing, skip"};
-  case "lifts": { const q = (F.lq || "").toLowerCase(), mf = F.lm || "";
-    const list = Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1));
+    <button class="btn ghost" data-aiinj="1" ${F.busy || (a.injText || "").trim().length < 4 ? "disabled" : ""}>${F.busy ? "Analysing…" : "Check it with AJ Training AI"}</button>
+    ${a.injAI ? `<div class="card obai"><b>What the plan will do</b><span>${esc(a.injAI.summary || "")}</span>${(a.injAI.avoid || []).length ? `<span class="small muted">Avoiding: ${a.injAI.avoid.map(k => L[k] ? L[k].n : k).join(", ")}</span>` : ""}<span class="small muted">Not medical advice. Sharp, worsening or lasting pain needs a physio or doctor.</span></div>` : ""}`, cta:(a.inj || []).length || (a.injText || "").trim() ? "Continue" : "Nothing, skip"};
+  case "lifts": { const q = (F.lq || "").toLowerCase().trim(), mf = F.lm || "";
     const kitArr = a.gyms.flatMap(g => g.kit), kit = {has:r => kitHas(kitArr, r)};
+    const pool = Object.values(L).filter(e => !["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(e.p) && !e.pv && !e.cf);
+    const picked = pool.filter(e => a.love.includes(e.k) || a.ban.includes(e.k));
+    const list = q ? pool.filter(e => e.n.toLowerCase().includes(q)) : mf ? pool.filter(e => e.mu[mf] >= 1) : [];
+    const count = m => pool.filter(e => e.mu[m] >= 1 && (a.love.includes(e.k) || a.ban.includes(e.k))).length;
     return {title:"Lifts you love or hate", body:`
-      <p class="obnote" style="margin-top:0">Optional. Tap once to <b>star</b> (used whenever the kit allows), twice to <b>ban</b>, three times to reset.</p>
-      <label class="sb card"><span>${ICON.search}</span><input data-lq="1" placeholder="Search ${Object.keys(L).length} exercises" value="${esc(F.lq || "")}" autocomplete="off"></label>
-      <div class="chips obmf">${["", ...PRIORITY_CHOICES].map(m => `<button class="chip" data-lm="${m}" aria-pressed="${mf === m}">${m ? MUS[m] : "All"}</button>`).join("")}</div>
-      <div class="oblifts" id="oblifts">${liftRows(list, a, kit)}</div>
-      <p class="obnote">Lifts marked <em class="tagin">stretch</em> load the muscle hardest when it's lengthened; they're favoured because they tend to grow muscle as well or better. ${src("lengthened")}</p>`, cta:a.love.length || a.ban.length ? "Continue" : "Skip"}; }
+      <p class="obnote" style="margin-top:0">Optional. <b>Love</b> a lift and the plan uses it whenever your gym allows. <b>Ban</b> one and it never appears.</p>
+      <label class="sb card"><span>${ICON.search}</span><input data-lq="1" placeholder="Search ${pool.length} exercises" value="${esc(F.lq || "")}" autocomplete="off"></label>
+      <div id="oblifts">${q || mf ? `${!q ? `<div class="spread lhead"><button class="link" data-lm="">← All muscles</button><b>${MUS[mf]}</b></div>` : ""}${liftRows(list, a, kit)}`
+        : `<div class="lmus">${PRIORITY_CHOICES.map(m => { const n = count(m); return `<button data-lm="${m}"><b>${MUS[m]}</b><span>${n ? n + " picked" : pool.filter(e => e.mu[m] >= 1).length + " lifts"}</span></button>`; }).join("")}</div>
+        ${picked.length ? `<span class="obl" style="margin-top:6px">Your picks</span>${liftRows(picked, a, kit)}` : ""}`}</div>
+      <p class="obnote">Lifts marked <em class="tagin">stretch</em> load the muscle hardest when it's lengthened; they tend to grow muscle as well or better. ${src("lengthened")}</p>`, cta:a.love.length || a.ban.length ? "Continue" : "Skip"}; }
   case "block": if (strMode(a)) return strBlockStep(a);
-  { const recB = coachMode(a) ? coachA(a) + 1 : 6; if (!a.blockSet) a.block = recB; const rp = coachMode(a) ? weekRIR(+a.block - 1, a.level, a.phase) : rirPlan(+a.block, a.level, a.ramp);
+  { const recB = coachMode(a) ? coachA(a) + 1 : 6; if (!a.blockSet) a.block = recB; 
     return {title:"Block, effort and rest", body:`
-    <div class="obfld"><span class="obl">Block length</span>${numSeg("block", 4, 8, a.block, recB)}<span class="obhint">${a.block} weeks: ${a.block - 1} training weeks, then a lighter deload week.${coachMode(a) ? ` ★ ${recB} suits your experience${a.phase === "cut" ? " and a cut" : ""}. The app can also call a deload early if your recovery tells it to.` : " Planned deloads every 4-8 weeks are standard practice."} ${src("deload")}</span></div>
-    <div class="obfld"><span class="obl">How hard each week</span>
-      <div class="obrir">${rp.map((r, i) => `<div class="${r === "DL" ? "dl" : ""}"><span>W${i + 1}</span><b>${r === "DL" ? "Deload" : r + " RIR"}</b></div>`).join("")}</div>
-      <span class="obhint">RIR is reps in reserve: how many more you could have done. Set for your experience: stopping 1-2 reps short grows as much muscle as failure in trained lifters. ${src("rir")}</span></div>
+    <div class="obfld"><span class="obl">Block length</span>${numSeg("block", 4, 8, a.block, recB)}<span class="obhint">${a.block} weeks: ${a.block - 1} training weeks, then a deload week with half the sets and easy effort.${coachMode(a) ? ` ★ ${recB} suits your experience${a.phase === "cut" ? " and a cut" : ""}. The app can also call a deload early if your recovery tells it to.` : " Planned deloads every 4-8 weeks are standard practice."} ${src("deload")}</span></div>
+    <div class="obfld"><span class="obl">How hard each set</span>
+      <div class="obopts">${EFFORTS.map(([k, t, d]) => opt("effort", k, t, d, effortOf(a))).join("")}</div>
+      <span class="obhint">Muscle grows about the same anywhere from failure to a couple of reps short; going right to failure adds a little and costs more recovery, so the failure plan uses fewer, harder sets. ${src("rir")}</span></div>
     <div class="obfld"><span class="obl">Rest between sets</span>${seg2("rest", [["short","Shorter"],["std","Standard"],["long","Longer"]], a.rest)}
       <span class="obhint">Standard: big barbell lifts 2.5 min, other compounds 2 min, isolation 90 s${a.goal === "strength" ? ", heavy sets 3.5 min" : ""}. More than 60 s helps growth a little; past ~90 s the difference is small. You can adjust any rest during a workout. ${src("rest")}</span></div>
     <div class="spread"><div class="stack" style="gap:2px"><span class="obl">Supersets to save time</span><span class="obhint">Pairs isolation lifts so they share rest</span></div><button class="switch" data-supers="1" role="switch" aria-checked="${a.supersets !== false}" aria-label="Supersets"><i></i></button></div>
@@ -1695,9 +1813,14 @@ function pStep(s, a){
   case "review": return ["gym"].includes(a.kind) ? review(a) : reviewEndu(a);
   }
 }
+const EQ_IC = {bb:"bb", db:"db", cable:"cable_mid", machine:"stack", bw:"pullup", other:"bands"};
+function exIcon(e){ const q = (e.q || []).find(r => window.AJGymIcon && AJGymIcon.has(r) && !["bench","rack","flatbench"].includes(r)); return gIc(q || EQ_IC[e.eq] || "stack"); }
+const HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12.6 12 20l-7.5-7.4A5 5 0 1 1 12 6a5 5 0 1 1 7.5 6.6z"/></svg>';
+const BAN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></svg>';
 function liftRows(list, a, kit){
-  return list.length ? `<div class="obgrid">${list.slice(0, 60).map(e => { const ok = e.q.every(r => kit.has(r)), st = a.love.includes(e.k) ? "love" : a.ban.includes(e.k) ? "ban" : "";
-    return `<button class="obcard lift ${st} ${ok ? "" : "na"}" data-lift="${e.k}"><span class="ph pic wide">Exercise</span>${st ? `<i class="lbadge">${st === "love" ? "★ Loved" : "✕ Banned"}</i>` : ""}<b>${esc(e.n)}</b><span>${MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)] || ""}${e.len === 2 ? " · stretch" : ""}${ok ? "" : " · not in your gym"}</span></button>`; }).join("")}</div>` : `<p class="small muted">No match.</p>`;
+  return list.length ? `<div class="lrows">${list.slice(0, 40).map(e => { const ok = e.q.every(r => kit.has(r)), lv = a.love.includes(e.k), bn = a.ban.includes(e.k), m = MUS[Object.keys(e.mu).find(x => e.mu[x] >= 1)] || "";
+    return `<div class="lrow ${lv ? "love" : bn ? "ban" : ""} ${ok ? "" : "na"}"><span class="eqic">${exIcon(e)}</span><span class="lt"><b>${esc(e.n)}</b><em>${m}${e.len === 2 ? ' · <i class="tagin">stretch</i>' : ""}${ok ? "" : " · not in your gym"}</em></span>
+      <button class="lbtn lv" data-lift="${e.k}" data-to="love" aria-pressed="${lv}" aria-label="Love ${esc(e.n)}">${HEART}</button><button class="lbtn bn" data-lift="${e.k}" data-to="ban" aria-pressed="${bn}" aria-label="Ban ${esc(e.n)}">${BAN}</button></div>`; }).join("")}</div>` : `<p class="small muted">No match.</p>`;
 }
 function sportRows(q, sel){
   q = (q || "").trim(); if (!q || !window.AJSports) return "";
@@ -1757,33 +1880,93 @@ function sportWhy(prog, su){
     ${srcs.length ? `<div><b>Sources</b><span>${srcs.map(x => `${esc(x.claim)} <em>(${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>` : esc(x.source)})</em>`).join("<br>")}</span></div>` : ""}
   </div>`;
 }
+const restTxt = r => r < 120 ? Math.round(r / 15) * 15 + " s" : Math.round(r / 30) / 2 + " min";
+// one exercise row, with any superset pair wrapped together and the finisher spelled out
+function exListHTML(list, prog){
+  const row = ([k, n]) => { const e = prog.exercises[k]; return `<div class="exr"><span><b>${esc(e.n)}</b><em>${esc(e.m)}${e.len === 2 ? " · stretch" : ""}</em>${e.tech ? `<i class="extech">${esc(e.tech)}</i>` : ""}</span><span class="num">${n} × ${e.lo}–${e.hi}<em>${restTxt(e.rest)} rest</em></span></div>`; };
+  let out = "", i = 0;
+  while (i < list.length){ const x = list[i], y = list[i + 1];
+    if (x[2] && y && y[2] === x[2]){ out += `<div class="exss"><span class="exssl">Superset: one set of each, then rest</span>${row(x)}${row(y)}</div>`; i += 2; }
+    else { out += row(x); i++; } }
+  return `<div class="exlist">${out}</div>`;
+}
+// The coach's check: an honest read of the plan as built, from the real exercises, sets and days
+function planCheck(prog, g, su){
+  const train = prog.days.filter(d => !d.rest && d.variants), dir = {}, days = {}, mins = prog.mins[g] || [];
+  train.forEach(d => (d.variants[g] || []).forEach(([k, n]) => { const e = prog.exercises[k] || {}; for (const [m, f] of Object.entries(e.mu || {})) if (f >= 1){ dir[m] = (dir[m] || 0) + n; (days[m] = days[m] || new Set()).add(d.wd); } }));
+  const pri = su.pri || [], fail = su.effort === "fail", out = [];
+  const add = (ok, t) => out.push(`<div class="ck ${ok ? "ok" : "no"}"><i>${ok ? "✓" : "!"}</i><span>${t}</span></div>`);
+  const big = ["chest","lats","upback","quads","hams","sdelt","biceps","triceps"].filter(m => dir[m] != null || true);
+  const once = big.filter(m => (days[m] || new Set()).size === 1), none = big.filter(m => !dir[m]);
+  if (none.length) add(false, `${none.map(m => MUS[m]).join(", ")} ${none.length > 1 ? "get" : "gets"} no direct work. Fine if that's deliberate; otherwise add it to a day.`);
+  if (once.length) add(false, `${once.map(m => MUS[m]).join(", ")} ${once.length > 1 ? "are" : "is"} trained once a week. Splitting the same sets over two days usually grows a little more.`);
+  if (!none.length && !once.length) add(true, "Every main muscle is trained at least twice a week.");
+  const hi = fail ? 16 : 22, lo = fail ? 6 : 8;
+  const heavy = Object.keys(dir).filter(m => dir[m] > hi && !["abs","calves"].includes(m)), light = big.filter(m => dir[m] && dir[m] < lo && !pri.includes(m));
+  if (heavy.length) add(false, `${heavy.map(m => MUS[m] + " (" + dir[m] + " hard sets)").join(", ")}: more than most people recover from${fail ? " when every set goes to failure" : ""}. Watch for strength dropping and let the deload come early if it does.`);
+  if (light.length) add(false, `${light.map(m => MUS[m]).join(", ")} ${light.length > 1 ? "are" : "is"} on the light side. Enough to grow slowly or hold on to what you have.`);
+  if (pri.length){ const avg = big.filter(m => !pri.includes(m) && dir[m]).reduce((t, m, _, arr) => t + dir[m] / arr.length, 0), behind = pri.filter(m => (dir[m] || 0) < avg * 1.2);
+    add(!behind.length, behind.length ? `Your priority ${behind.map(m => MUS[m].toLowerCase()).join(" and ")} ${behind.length > 1 ? "get" : "gets"} no more work than everything else. More time per session or a priority day fixes it.` : `Your priorities (${pri.map(m => MUS[m].toLowerCase()).join(", ")}) get the most work and come first in their sessions.`); }
+  // recovery: the same big muscle trained hard on back-to-back days
+  const back = ["quads","hams","chest","lats","upback"].filter(m => { const w = [...(days[m] || [])].sort((x, y) => x - y); return w.some((v, i) => w.includes((v + 1) % 7)); });
+  const backL = back.filter(m => ["quads","hams"].includes(m)), backU = back.filter(m => !backL.includes(m));
+  if (backL.length) add(false, `${backL.map(m => MUS[m]).join(" and ")} ${backL.length > 1 ? "are" : "is"} trained on back-to-back days. The second leg day usually suffers; a day between helps.`);
+  if (backU.length) add(true, `${backU.map(m => MUS[m]).join(", ")} ${backU.length > 1 ? "come" : "comes"} round on back-to-back days, which is fine for upper body as long as performance holds.`);
+  if (!back.length) add(true, "Each muscle gets at least 48 hours before it's trained again.");
+  const push = (dir.chest || 0) + (dir.fdelt || 0), pull = (dir.lats || 0) + (dir.upback || 0);
+  if (pull && push / pull > 1.4) add(false, "More pressing than pulling. Shoulders tend to stay happier with at least as much rowing and pulling as pressing.");
+  const long = train.filter((d, i) => (mins[i] || 0) > (+su.mins || 75) + 5);
+  if (long.length) add(false, `${long.map(d => WD.find(x => x[0] === d.k)[2]).join(", ")} ${long.length > 1 ? "run" : "runs"} past your ${su.mins} minutes.`);
+  else add(true, `Every session fits your ${su.mins} minutes, rest included.`);
+  const exs = train.flatMap(d => (d.variants[g] || []).map(([k]) => prog.exercises[k] || {})), str = exs.filter(e => e.len === 2).length;
+  if (exs.length) add(str / exs.length >= 0.35, `${Math.round(str / exs.length * 100)}% of exercises load the muscle hardest when it's stretched${str / exs.length >= 0.35 ? ", which tends to grow it as well or better" : ". More of those would likely help"}.`);
+  return `<div class="card obcheck"><h2>Coach's check</h2>${out.join("")}
+    <button class="btn ghost" data-aireview="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Reading your plan…" : "Get a second opinion from AJ Training AI"}</button>${F.reviewAI ? `<div class="obai2">${F.reviewAI.map(x => `<div class="ck ${x.ok ? "ok" : "no"}"><i>${x.ok ? "✓" : "!"}</i><span>${esc(x.t)}</span></div>`).join("")}</div>` : ""}</div>`;
+}
+async function aiReview(){
+  const prog = F.out, su = prog.setup, gl = (flowGyms() || gymList()), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id;
+  F.busy = true; F.keepScroll = true; draw();
+  const week = prog.days.filter(d => !d.rest && d.variants).map(d => `${WD.find(x => x[0] === d.k)[2]} ${d.label}: ` + (d.variants[g] || []).map(([k, n]) => { const e = prog.exercises[k]; return `${e.n} ${n}x${e.lo}-${e.hi}${e.tech ? " (" + e.tech + ")" : ""}`; }).join("; ")).join("\n");
+  try{
+    const r = await aiJson(`You are an elite bodybuilding coach reviewing a client's weekly plan. Goal: ${GTYPES[su.gtype] ? GTYPES[su.gtype][2] : "build muscle"}. Experience: ${({new:"under 1 year", inter:"1-4 years", adv:"4+ years"})[su.level] || "1-4 years"}. Effort: ${({fail:"every working set to failure", last:"last set of each exercise to failure", near:"1-2 reps short of failure"})[su.effort] || "close to failure"}. Priority muscles: ${(su.pri || []).join(", ") || "none"}. Session time: ${su.mins} min. Equipment: ${(gl.find(x => x.id === g) || {}).kit.join(", ")}.
+The plan:
+${week}
+Judge it as a top coach would: exercise choice for this equipment, order, weekly sets per muscle (count a set fully for the muscle it mainly trains), frequency, recovery between sessions, balance, and anything missing. Be specific to these exercises, honest, and concrete. British English, no hype, no em dashes.
+Reply with only JSON: {"points":[{"ok":true or false,"t":"one or two sentences"}]} with 4 to 6 points, strengths first then the changes you'd make.`, 900);
+    F.reviewAI = (r.points || []).slice(0, 6).map(x => ({ok:!!x.ok, t:String(x.t || "").slice(0, 400)})).filter(x => x.t);
+    if (!F.reviewAI.length) throw 0;
+  }catch(e){ F.reviewAI = [{ok:false, t:"AJ Training AI isn't available right now. The checks above are worked out from your plan itself, so they still apply."}]; }
+  F.busy = false; F.keepScroll = true; draw();
+}
 function review(a){
   const prog = F.out, gl = (flowGyms() || gymList()), g = F.gym && gl.some(x => x.id === F.gym) ? F.gym : gl[0].id, gn = id => { const n = (gl.find(x => x.id === id) || {}).name || ""; return n.length > 12 ? n.split(/\s+/).map(w => w[0]).join("").toUpperCase() : n; };
   const train = prog.days.filter(d => !d.rest), su = prog.setup;
   const reps = su.level === "new" ? "Compounds 8-12 reps, isolation 10-15 while you learn the lifts." : su.goal === "strength" ? "Main barbell lifts 3-6 reps for strength; the rest 6-15 reps for muscle." : su.goal === "power" ? "One heavy lift a day (4-6 reps), the rest 6-15 reps." : "Mostly 6-15 reps. Muscle grows similarly from about 6 to 30 reps when sets end close to failure; heavier loads mainly build more maximal strength.";
   return {title:"Your block", wide:true, body:`
     <div class="obsum"><div class="full"><span>Split</span><b>${esc(prog.splitName)}</b></div><div><span>Block</span><b>${prog.deloadEvery} weeks</b></div><div><span>Starts</span><b>${fmtD(prog.startDate)}</b></div><div><span>Days</span><b>${train.length} a week</b></div></div>
-    <div class="obweek">${prog.days.map(d => `<div class="${d.rest ? "rest" : ""}"><span>${WD.find(x => x[0] === d.k)[2]}</span><b>${d.rest ? (d.label && d.label !== "Rest" ? esc(d.label === "Match day" ? "Match" : d.label.split(/[ (]/)[0]) : "–") : esc(d.label.replace("Upper ","U").replace("Lower ","L").replace("Full body ","FB").replace("Arms & delts","Arms").replace("Glutes & legs","Glutes").replace("Strength + conditioning ","S+C ").replace("HYROX strength ","HY ").replace("Strength & power ","S&P ").replace("In-season strength ","In ").replace("Strength & power","S&P").replace("In-season strength","In-season"))}</b><em>${d.rest || gl.length < 2 ? "" : esc(gn(d.gym))}</em></div>`).join("")}</div>
+    <div class="obweek">${prog.days.map(d => `<div class="${d.rest ? "rest" : ""}"><span>${WD.find(x => x[0] === d.k)[2]}</span><b>${d.rest ? (d.label && d.label !== "Rest" ? esc(d.label === "Match day" ? "Match" : d.label.split(/[ (]/)[0]) : "–") : esc(d.label.replace("Upper ","U").replace("Lower ","L").replace("Full body ","FB").replace(/^Priority:.*/,"Priority").replace(/^(Chest & back|Shoulders & arms|Glutes & hamstrings|Quads & calves)$/,m => m.split(" ")[0]).replace("Arms & delts","Arms").replace("Glutes & legs","Glutes").replace("Strength + conditioning ","S+C ").replace("HYROX strength ","HY ").replace("Strength & power ","S&P ").replace("In-season strength ","In ").replace("Strength & power","S&P").replace("In-season strength","In-season"))}</b><em>${d.rest || gl.length < 2 ? "" : esc(gn(d.gym))}</em></div>`).join("")}</div>
     ${(() => { const v = prog.vol[g] || {}, sh = (su.pri || []).filter(m => (v[m] || 0) < (prog.targets[m] || 0) - 1.5); return sh.length ? `<div class="banner info"><b>Not enough time for full priority volume.</b> ${sh.map(m => MUS[m] + " " + r1(v[m] || 0) + " of " + prog.targets[m]).join(", ")} sets. Add about 15 min per session or another day, or drop a priority.</div>` : ""; })()}
     ${(() => { const v = prog.vol[g] || {}, tg = prog.targets, tot = Object.keys(tg).reduce((x, m) => x + Math.min(v[m] || 0, tg[m]), 0), all = Object.values(tg).reduce((x, y) => x + y, 0), pct = Math.round(tot / all * 100);
       return pct < 85 ? `<div class="banner info"><b>${pct}% of the recommended weekly sets fit.</b> ${a.mins} min sessions on ${train.length} days can't hold it all. Every set still counts, and growth keeps coming from less; for the full dose add about ${Math.round((1 - tot / all) * all * 2.4 / train.length / 5) * 5 + 5} min a session or another day. <button class="obsrc" data-bumpmins="15">Add 15 min and rebuild</button></div>` : ""; })()}
     ${(prog.under || []).length && g === gl[0].id ? `<div class="banner info"><b>Light on ${prog.under.map(m => MUS[m]).join(", ")}.</b> Under 6 sets a week each, which still keeps what you have but grows slowly. Another day, or about 15 more minutes a session, fixes it.</div>` : ""}
     ${su.split === "custom" && splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).length ? `<div class="banner"><b>Your custom split.</b> ${splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).map(esc).join(" ")}</div>` : ""}
     ${gl.length > 1 ? `<div class="spread"><span class="small muted">Sessions shown for</span>${seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g)}</div>` : ""}
-    ${train.map(d => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
-      return `<details class="card obdayc"><summary><div class="stack" style="gap:2px"><b>${WD.find(x => x[0] === d.k)[2]} · ${esc(d.label)}</b><span class="small muted">${esc(d.focus)}</span></div><span class="small muted num">${list.reduce((s2, x) => s2 + x[1], 0)} sets · ~${Math.round(mins)} min</span></summary>
-        <div class="oblist">${list.map(([k, n, ss]) => { const e = prog.exercises[k]; return `<div><span><b>${ss ? `<i class="obss">${ss}</i>` : ""}${esc(e.n)}</b><em>${esc(e.m)}${e.len === 2 ? " · stretch" : ""}</em></span><span class="num">${n} × ${e.lo}–${e.hi}<em>${e.rest >= 60 ? Math.round(e.rest / 60 * 10) / 10 + " min" : e.rest + " s"} rest</em></span></div>`; }).join("")}</div>
+    ${planCheck(prog, g, su)}
+    ${train.map((d, di) => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
+      return `<details class="card obdayc" ${di === 0 ? "open" : ""}><summary><div class="dayh"><em>${WD.find(x => x[0] === d.k)[2]}</em><b>${esc(d.label)}</b><span>${esc(d.focus)}</span></div><span class="dayn num"><b>${list.length}</b> exercises<br>~${Math.round(mins)} min</span></summary>
+        ${exListHTML(list, prog)}
         <p class="small muted">${esc(d.cardio)}.</p></details>`; }).join("")}
     ${prog.strength ? strengthWhy(prog) : su.goal === "athletic" ? sportWhy(prog, su) : `<div class="card obwhy"><h2>Why it's built this way</h2>
       <div><b>Volume</b><span>${su.level === "new" ? "Fewer sets while you're new: you grow from less." : `About 10-14 hard sets a week for each muscle, ~${PRIORITY_SETS} for priorities. Presses and rows count towards the muscles they help, so shoulders and arms need less direct work.`} More sets keep adding muscle, but each extra set adds less. ${src("volume")}</span></div>
       <div><b>Frequency</b><span>Most muscles twice a week, so no session gets bloated. ${src("frequency")}</span></div>
-      <div><b>Effort</b><span>RIR ${prog.rir.filter(r => r !== "DL").join(" → ")}, then deload. Trained lifters grow as much stopping 1-2 reps short as at failure; growth improves closer to failure. Heavy barbell lifts always stop 2-3 reps short: going to failure there adds risk, not strength. ${src("rir")}</span></div>
+      <div><b>Effort</b><span>${({fail:"Every working set to failure, with fewer sets to match: failure costs more recovery, so the plan uses about 70% of the sets a reps-in-hand plan would.", last:"Earlier sets stop a rep or two short and the last set of each exercise goes to failure.", near:"Every set stops a rep or two short of failure."})[prog.effort] || "Hard sets, close to failure."} Barbell squats, hinges and rows stop at technical failure, the last clean rep. Growth is similar anywhere from failure to a couple of reps short. ${src("rir")}</span></div>
+      ${Object.values(prog.exercises).some(e => e.tech) ? `<div><b>Finishers</b><span>A few exercises extend the last set past failure: a drop set, half reps in the stretch, myo-reps, or straight into bodyweight squats after the last squat set. Used sparingly and never in a deload; they let a hard set go further rather than replacing sets.</span></div>` : ""}
       <div><b>Reps</b><span>${reps} ${src("load")}</span></div>
       ${su.supersets !== false ? `<div><b>Supersets</b><span>Isolation lifts for different muscles are paired (A1, A2…)${+su.mins <= 60 ? ", and so are presses with pulls," : ""} and share rest, which fits more sets into the same time without hurting performance much. Turn off on the block step. ${src("superset")}</span></div>` : ""}
       <div><b>Rest</b><span>Big barbell lifts ~2.5 min, other compounds ~2 min, isolation ~75 s${su.rest && su.rest !== "std" ? ` (${su.rest === "short" ? "shortened" : "lengthened"} to your preference)` : ""}. Adjustable during any workout. ${src("rest")}</span></div>
       <div><b>Exercise choice</b><span>Stretch-biased lifts are favoured${su.level === "new" ? ", with stable machines while you learn" : ""}. ${src("lengthened")}</span></div>
       <div><b>Progression</b><span>Progressive overload: add reps across the range, then add load. ${src("progression")}</span></div>
-      <div><b>Deload</b><span>Every ${prog.deloadEvery}th week, half the sets at ~3 RIR${(prog.breaks || []).length ? `. Breaks: ${prog.breaks.map(fmtD).join(", ")} (the block pauses)` : ""}. ${src("deload")}</span></div>
+      <div><b>Deload</b><span>Every ${prog.deloadEvery}th week, half the sets, lighter and well short of failure${(prog.breaks || []).length ? `. Breaks: ${prog.breaks.map(fmtD).join(", ")} (the block pauses)` : ""}. ${src("deload")}</span></div>
       ${su.goal === "crossfit" ? `<div><b>Conditioning</b><span>Each day ends with a short conditioning piece. Reviews of CrossFit-style training find too few good studies to promise specific results, and most injuries are shoulder, spine and knee: warm up well and keep technique first.</span></div>` : ""}
     </div>`}`, cta:"Save programme"};
 }
@@ -2068,11 +2251,12 @@ function next(){
     if (F.step === "season"){ a.nTrain = recDays(a); a.days = chooseDays(a.nTrain, sportBlocked(a)); a.mins = a.mins && a.mins <= 75 ? a.mins : 60; }
     if (F.step === "sportdays"){ a.days = chooseDays(a.nTrain || recDays(a), sportBlocked(a)); if (!(a.sport || []).includes(a.matchDay)) a.matchDay = "none"; }
     if (F.step === "look" && !a.look){ toast("Pick a look, or go back and choose another goal"); return; }
-    if (F.step === "days" && a.kind === "gym"){ a.days = chooseDays(a.nTrain || a.days.length || recDays(a), sportBlocked(a)); if (!a.days.length){ toast("Leave at least one day open"); return; } }
+    if (F.step === "days" && a.kind === "gym"){ if (!a.days.length){ toast("Pick at least one day"); return; } a.nTrain = a.days.length; }
     if (F.step === "event" && a.event === "ultra" && !(+a.goalKm > 42.2)){ toast("An ultra is anything longer than 42.2 km"); return; }
     if (F.step === "rundays"){ a.runDays = spreadDays(+a.runs, a.longDay); }
     if (F.step === "gyms"){ a.kit = Object.fromEntries(a.gyms.map(g => [g.id, g.kit.slice()])); }
-    if (F.step === "split"){ const r = recommendSplit(a); if (!a.split) a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; if (a.split === "custom" && !(a.customSeq && a.customSeq.length === a.days.length)) a.customSeq = ((SPLITS[a.days.length] || [])[0] || {days:[]}).days.slice(); }
+    if (F.step === "inj"){ const t = (a.injText || "").toLowerCase(); a.heels = /ankle|heel|calf|calves/.test(t) && /tight|stiff|mobility|heels? (lift|up|elevat)|can'?t squat/.test(t); if (a.heels && !/pain|hurt|injur|sprain|sore/.test(t)) a.inj = (a.inj || []).filter(x => x !== "ankle"); }
+    if (F.step === "split"){ const r = recommendSplit(a); if (!a.split) a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; if (a.split === "custom"){ const cs = customWeekSeq(a); if (!cs.length){ toast("Give at least one day a session"); return; } const empty = cs.find(x => ["priority","custom"].includes((a.customWeek || {})[x.k]) && !((a.customMus || {})[x.k] || []).length); if (empty){ toast(`Pick the muscles for ${WD.find(w => w[0] === empty.k)[2]}`); return; } a.days = cs.map(x => x.k); a.nTrain = a.days.length; } }
   }
   go2(steps[Math.min(steps.length - 1, i + 1)]);
 }
@@ -2099,7 +2283,7 @@ function runBuild(){
 }
 function acceptProg(){
   const p = F.out; delete p.vol; const keep = clone(p);
-  S.profile = {...S.profile, gyms:clone(F.ans.gyms || gymList()).map(g => ({...g, kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
+  S.profile = {...S.profile, gymsSet:true, gyms:clone(F.ans.gyms || gymList()).map((g, i) => ({...g, name:(g.name || "").trim() || (GYMTYPES[g.type] ? GYMTYPES[g.type][0] : i ? "Gym " + (i + 1) : "My gym"), kit:(F.ans.kit || {})[g.id] || g.kit}))}; saveProfile();
   S.prog = keep; if (db) putDocP(keep); else lsSet("prog", keep);
   clearDraft("prog"); S.planView = "today"; close(); go("plan"); toast("Plan saved. Week 1 starts " + fmtD(keep.startDate));
 }
@@ -2148,7 +2332,7 @@ Reply with only JSON: {"summary": two plain sentences on what the plan will chan
     a.injAI = {summary:String(r.summary || "").slice(0, 500), avoid:(r.avoid || []).filter(k => L[k]).slice(0, 15)};
     a.injAvoid = a.injAI.avoid.slice(); a.inj = [...new Set([...(a.inj || []), ...(r.joints || []).filter(j => INJ.some(x => x[0] === j))])];
   }catch(e){
-    const t = (a.injText || "").toLowerCase(), add = INJ.filter(([k, n]) => t.includes(n.toLowerCase()) || (k === "lowback" && /back/.test(t))).map(x => x[0]);
+    const t = (a.injText || "").toLowerCase(), tight = /tight|stiff|mobility|heels? (lift|up|elevat)/.test(t), add = INJ.filter(([k, n]) => (t.includes(n.toLowerCase()) && !(k === "ankle" && tight)) || (k === "lowback" && /back/.test(t))).map(x => x[0]);
     a.inj = [...new Set([...(a.inj || []), ...add])];
     a.injAI = {summary:(add.length ? "Matched from your words: lifts that load your " + add.map(k => INJ.find(x => x[0] === k)[1].toLowerCase()).join(" and ") + " hardest are swapped for friendlier options." : "Noted.") + " AJ Training AI isn't available right now for a fuller read.", avoid:[]};
   }
@@ -2168,7 +2352,9 @@ Reply with only JSON: {"verdict": up to 3 short sentences: what works, what limi
 function setPath(obj, path, val){ const ps = path.split("."); let o = obj; while (ps.length > 1){ const k = ps.shift(); o[k] = o[k] || {}; o = o[k]; } o[ps[0]] = val; }
 function getPath(obj, path){ return path.split(".").reduce((o, k) => o ? o[k] : undefined, obj); }
 function bind(o){
-  o.addEventListener("toggle", e => { const d = e.target; if (!d.classList || !d.classList.contains("eqgrp")) return; const sm = d.querySelector("[data-gall]"); if (!sm) return; const key = sm.dataset.g + sm.dataset.gall, cur = F.openEq || []; F.openEq = d.open ? [...new Set(cur.concat(key))] : cur.filter(x => x !== key); }, true);
+  o.addEventListener("toggle", e => { const d = e.target; if (!d.classList || !d.classList.contains("eqgrp")) return; const sm = d.querySelector("[data-gall]"); if (!sm) return; const key = sm.dataset.g + sm.dataset.gall, cur = F.openEq || [];
+    if (d.open){ F.openEq = [key]; o.querySelectorAll("details.eqgrp[open]").forEach(x => { if (x !== d) x.open = false; }); d.scrollIntoView({block:"nearest", behavior:"smooth"}); }
+    else F.openEq = cur.filter(x => x !== key); }, true);
   o.addEventListener("click", e => { const tb = e.target.closest("[data-obtheme]"); if (tb){ setTheme(isDark() ? "light" : "dark"); draw(); return; } });
   o.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
@@ -2186,10 +2372,13 @@ function bind(o){
       if (b.dataset.set === "hasDate") v = v === "yes";
       if (b.dataset.set === "block") F.ans.blockSet = true;
       if (b.dataset.set === "gtype"){ setGtype(F.ans, v); F.ans.customDone = false; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 220); return; }
-      if (b.dataset.set === "nTrain"){ F.ans.nTrain = +v; F.ans.days = chooseDays(+v, sportBlocked(F.ans)); saveDraft(); F.keepScroll = true; return draw(); }
+      if (b.dataset.set === "nTrain"){ F.ans.nTrain = +v; F.ans.customWeek = null; F.ans.days = chooseDays(+v, sportBlocked(F.ans)); saveDraft(); F.keepScroll = true; return draw(); }
       setPath(F.ans, b.dataset.set, v);
       if (b.dataset.set === "runs" || b.dataset.set === "longDay") F.ans.runDays = null;
       if (b.dataset.set === "split" && v !== "custom") F.splitAI = null;
+      if (b.dataset.set === "split" && v === "custom" && !F.ans.customWeek){ const base = (splitOpts(F.ans).find(o => o.id === (F.ans._prevSplit || (recommendSplit(F.ans) || {}).id)) || splitOpts(F.ans)[0] || {days:[]}).days, inv = {push:"push", pushB:"push", pull:"pull", pullB:"pull", legs:"legs", legsB:"legs", upA:"upper", upB:"upper", upper:"upper", loA:"lower", loB:"lower", lower:"lower", fbA:"full", fbB:"full", fbC:"full", arms:"armsdelts", glutes:"glutes"};
+        F.ans.customWeek = Object.fromEntries(WD.map(([k]) => [k, "rest"])); F.ans.days.forEach((k, i) => F.ans.customWeek[k] = inv[base[i]] || "full"); }
+      if (b.dataset.set === "split" && v !== "custom") F.ans._prevSplit = v;
       if (b.dataset.set.startsWith("activity.")) S.profile.activity = clone(F.ans.activity);
       if (b.dataset.set.startsWith("units.")){ S.profile = {...S.profile, units:Object.assign({}, S.profile.units, F.ans.units)}; saveProfile(); }
       if (b.dataset.set === "type"){ const kg = currentKg(), rr = recRange({type:v}); F.ans.rate = v === "cut" || v === "bulk" ? Math.round((rr[0] + rr[1]) / 2 * 20) / 20 : 0; F.ans.prot = v === "cut" ? 2.2 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
@@ -2203,32 +2392,34 @@ function bind(o){
       if (path === "pri" && nv.length > 3) nv = nv.slice(1);
       setPath(F.ans, path, nv);
       if (path === "blocked"){ F.ans.days = chooseDays(F.ans.nTrain || F.ans.days.length, nv); if (F.ans.days.length < (F.ans.nTrain || 0)) toast(`Only ${F.ans.days.length} days left open`); }
+      if (path === "days"){ F.ans.days = WD.filter(([k]) => nv.includes(k)).map(x => x[0]); F.ans.nTrain = F.ans.days.length; F.ans.customSeq = null; F.ans.customWeek = null; }
       if (path === "days" || path === "blocked"){ F.ans.gymOf = F.ans.gymOf || {}; nv.forEach(k => { if (!(flowGyms() || gymList()).some(g => g.id === F.ans.gymOf[k])) F.ans.gymOf[k] = (flowGyms() || gymList())[0].id; }); F.ans.split = null; }
       saveDraft(); F.keepScroll = true; draw(); return;
     }
+    if (b.dataset.cmus){ const a = F.ans, k = b.dataset.cmus, m = b.dataset.val; a.customMus = a.customMus || {}; const cur = a.customMus[k] || []; a.customMus[k] = cur.includes(m) ? cur.filter(x => x !== m) : cur.concat(m); saveDraft(); F.keepScroll = true; draw(); return; }
     if (b.dataset.lift){
-      const k = b.dataset.lift, a = F.ans;
-      if (a.love.includes(k)){ a.love = a.love.filter(x => x !== k); a.ban.push(k); }
-      else if (a.ban.includes(k)) a.ban = a.ban.filter(x => x !== k);
-      else a.love.push(k);
+      const k = b.dataset.lift, a = F.ans, to = b.dataset.to, on = (to === "love" ? a.love : a.ban).includes(k);
+      a.love = a.love.filter(x => x !== k); a.ban = a.ban.filter(x => x !== k);
+      if (!on) (to === "love" ? a.love : a.ban).push(k);
       saveDraft(); F.keepScroll = true; draw(); return;
     }
     const a = F.ans, redraw = () => { saveDraft(); F.keepScroll = true; draw(); };
     if (b.dataset.aicustom) return aiCustom();
     if (b.dataset.aiinj) return aiInjury();
     if (b.dataset.aisplit) return aiSplit();
+    if (b.dataset.aireview) return aiReview();
     if (b.dataset.look){ const sx = [...LOOKS.male, ...LOOKS.female].find(l => l[0] === b.dataset.look); a.look = sx[0]; a.pri = sx[3].slice(); redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
     if (b.dataset.gfam){ const g = b.dataset.gfam; a.gfam = g; setGtype(a, g === "race" ? (["hyrox","crossfit","tri"].includes(a.gtype) ? a.gtype : "hyrox") : g === "strength" ? (["strength","power"].includes(a.gtype) ? a.gtype : "strength") : g); a.customDone = false; redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
     if (b.dataset.runlevel != null){ const lv = RUNLEVELS[+b.dataset.runlevel]; a.runLevel = +b.dataset.runlevel; a.weeklyKm = lv[2]; a.longest = lv[3]; a.runs = lv[4]; return redraw(); }
-    if (b.dataset.gpreset){ const g = a.gyms.find(x => x.id === b.dataset.g), t = GYMTYPES[b.dataset.gpreset]; g.type = b.dataset.gpreset; g.kit = t[2].slice(); if (g.name === "New gym" || g.name === "My gym" || /^Gym \d/.test(g.name) || Object.values(GYMTYPES).some(x => x[0] === g.name)) g.name = t[0]; return redraw(); }
+    if (b.dataset.gpreset){ const g = a.gyms.find(x => x.id === b.dataset.g), t = GYMTYPES[b.dataset.gpreset]; g.type = b.dataset.gpreset; g.kit = t[2].slice(); return redraw(); }
     if (b.dataset.dbw){ const g = a.gyms.find(x => x.id === b.dataset.g), w = +b.dataset.dbw; g.dbs = (g.dbs || []).includes(w) ? g.dbs.filter(x => x !== w) : [...(g.dbs || []), w].sort((x, y) => x - y); return redraw(); }
     if (b.dataset.gkit){ const g = a.gyms.find(x => x.id === b.dataset.g), k = b.dataset.gkit; g.kit = g.kit.includes(k) ? g.kit.filter(x => x !== k) : g.kit.concat(k); return redraw(); }
     if (b.dataset.gall != null){ e.preventDefault(); const g = a.gyms.find(x => x.id === b.dataset.g), items = EQG[+b.dataset.gall][1].map(x => x[0]), all = items.every(k => g.kit.includes(k)); g.kit = all ? g.kit.filter(k => !items.includes(k)) : [...new Set(g.kit.concat(items))]; return redraw(); }
-    if (b.dataset.gadd){ a.gyms.push({id:uid("g"), name:"Gym " + (a.gyms.length + 1), type:"", kit:[], dbMax:40, dbStep:2, dbMode:"step2", dbs:[], plate:1.25}); return redraw(); }
+    if (b.dataset.gadd){ a.gyms.push({id:uid("g"), name:"", type:"", kit:[], dbMax:40, dbStep:2, dbMode:"step2", dbs:[], plate:1.25}); return redraw(); }
     if (b.dataset.gdel){ a.gyms = a.gyms.filter(g => g.id !== b.dataset.gdel); return redraw(); }
     if (b.dataset.sport){ a.sports = (a.sports || []).concat({id:b.dataset.sport, n:1}); F.sq = ""; return redraw(); }
     if (b.dataset.sportn){ a.sports = a.sports.map(x => x.id === b.dataset.sportn ? {...x, n:x.n + (+b.dataset.d)} : x).filter(x => x.n > 0); return redraw(); }
-    if (b.dataset.lm != null){ F.lm = b.dataset.lm; F.keepScroll = true; return draw(); }
+    if (b.dataset.lm != null){ F.lm = b.dataset.lm; F.lq = ""; draw(); const bb = document.querySelector("#ob .obbody"); if (bb) bb.scrollTop = 0; return; }
     if (b.dataset.supers){ a.supersets = a.supersets === false; return redraw(); }
     if (b.dataset.bumpmins){ a.mins = Math.min(120, +a.mins + 15); F.out = a.kind === "gym" ? generate(a, F.seed) : generateEndu(a, F.seed); toast("Sessions now " + a.mins + " min"); return redraw(); }
     if (b.dataset.addbreak){ const d = a.breakAdd; if (!d){ toast("Pick a date in that week"); return; } const ws = ymd(weekStart(parseD(d))); a.breaks = [...new Set([...(a.breaks || []), ws])].sort(); a.breakAdd = ""; return redraw(); }
@@ -2242,16 +2433,17 @@ function bind(o){
   o.addEventListener("input", e => {
     const t = e.target;
     if (t.dataset.range){ setPath(F.ans, t.dataset.range, +t.value); if (t.dataset.range.startsWith("activity.")) S.profile.activity = clone(F.ans.activity); saveDraft(); liveRange(t); }
-    if (t.dataset.input){ setPath(F.ans, t.dataset.input, t.value); saveDraft(); }
+    if (t.dataset.input){ setPath(F.ans, t.dataset.input, t.value); saveDraft(); syncCta(); }
     if (t.dataset.spq){ F.spq = t.value; const box = document.getElementById("obspq"); if (box) box.innerHTML = sportRowsPick(t.value.toLowerCase()); return; }
     if (t.dataset.sq){ F.sq = t.value; const box = document.getElementById("obsq"); if (box) box.innerHTML = sportRows(t.value.toLowerCase(), F.ans.sports || []); return; }
-    if (t.dataset.lq){ F.lq = t.value; const box = document.getElementById("oblifts"); const q = t.value.toLowerCase(), mf = F.lm || ""; if (box) box.innerHTML = liftRows(Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1)), F.ans, {has:r => kitHas(F.ans.gyms.flatMap(g => g.kit), r)}); return; }
+    if (t.dataset.lq){ F.lq = t.value; F.keepScroll = true; const st = pStep("lifts", F.ans), tmp = document.createElement("div"); tmp.innerHTML = st.body; const nb = tmp.querySelector("#oblifts"), box = document.getElementById("oblifts"); if (box && nb) box.innerHTML = nb.innerHTML; syncCta(); return; }
     if (t.dataset.eqq){ F.eqq = t.value; saveDraft(); F.keepScroll = true; draw(); const x = document.querySelector("[data-eqq]"); if (x){ x.focus(); try{ x.setSelectionRange(x.value.length, x.value.length); }catch(e){} } return; }
     if (t.dataset.gname){ const g = F.ans.gyms.find(x => x.id === t.dataset.gname); if (g) g.name = t.value; saveDraft(); return; }
     if (t.dataset.dob){ const v = fmtDob(t.value); if (v !== t.value) t.value = v; F.ans.dob = v; saveDraft(); liveRange(t); }
     if (t.dataset.conv){ const v = readConv(t.closest(".obunitrow"), t.dataset.key); if (v != null){ setConv(t.dataset.key, v, false); liveRange(t); } }
   });
   o.addEventListener("change", e => { const t = e.target;
+    if (t.dataset.cweek){ const a = F.ans; a.customWeek = a.customWeek || {}; a.customWeek[t.dataset.cweek] = t.value; if (t.value === "priority" && !((a.customMus || {})[t.dataset.cweek] || []).length && (a.pri || []).length){ a.customMus = a.customMus || {}; a.customMus[t.dataset.cweek] = a.pri.slice(); } saveDraft(); F.keepScroll = true; return draw(); }
     if (t.dataset.cseq != null){ const a = F.ans; a.customSeq = (a.customSeq && a.customSeq.length === a.days.length ? a.customSeq : ((SPLITS[a.days.length] || [])[0] || {days:[]}).days.slice()); a.customSeq[+t.dataset.cseq] = t.value; F.splitAI = null; saveDraft(); F.keepScroll = true; return draw(); }
     if (t.dataset.range){ if (t.dataset.range === "kgNow") commitKg(); F.keepScroll = true; draw(); }
     // no full redraw here: a redraw on blur would swallow the tap that caused the blur
@@ -2298,6 +2490,9 @@ function patchTree(oldEl, newEl, t){
   }
   return true;
 }
+// keep the main button's words in step with what's been typed ("Nothing, skip" becomes "Continue")
+function syncCta(){ try{ const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), b = document.querySelector('#ob [data-ob="next"]'); if (b && st.cta && b.textContent !== st.cta) b.textContent = st.cta;
+  const ai = document.querySelector("#ob [data-aiinj]"); if (ai) ai.disabled = !!F.busy || (F.ans.injText || "").trim().length < 4; }catch(e){} }
 function liveRange(t){
   const st = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans), body = bodyBox(document.querySelector("#ob .obbody"));
   const tmp = document.createElement("div"); tmp.innerHTML = (st.title ? `<h1 class="obtitle">${st.title}</h1>` : "") + st.body;
@@ -2328,6 +2523,7 @@ window.AJOnboard = {
     S.profile.activity = clone(F.ans.activity);
     document.body.style.overflow = "hidden"; draw();
   },
+  _F:() => F, _go:go2, _setG:setGtype,
   lib:L, MUS, fmtH, kitHas, generate, generateEndu, enduPlan, EVENTS, RUNTYPE, KIT_DEFAULT, targetsFor, EQUIP
 };
 })();

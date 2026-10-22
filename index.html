@@ -1020,6 +1020,10 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .ph.ic{width:44px;height:44px}.ph.ic:empty::after{content:"Icon"}
 .ph.pic{width:100%;aspect-ratio:3/4}
 .obgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.obic{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--orange-soft);color:var(--orange);flex:none}.obic svg{width:22px;height:22px}
+.obcard .obic{margin-bottom:4px}.obcard[aria-pressed=true] .obic{background:var(--orange);color:#fff}
+.wcard{grid-template-columns:auto minmax(0,1fr)!important;align-items:center;column-gap:14px}.wcard .wct{display:grid;gap:4px}.wcard .wct>span{font-size:13px;color:var(--muted);line-height:1.35}.wcard .obic{margin:0}
+
 .obcard{display:grid;justify-items:start;gap:6px;text-align:left;border:0;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:14px;font:inherit;color:inherit;cursor:pointer;transition:box-shadow .15s,transform .1s}
 .obcard{grid-template-columns:minmax(0,1fr);align-content:start}.obcard>.ph{justify-self:stretch;width:auto}.obcard>.ph.ic{justify-self:start;width:44px}.obcard.mus>.ph.ic{justify-self:center;width:52px}.obcard>span:not(.ph){font-size:13px;color:var(--muted);line-height:1.35}
 .obcard:active{transform:scale(.98)}.obcard b{font-size:15.5px;color:var(--ink)}.obcard>span:last-child{font-size:13px;color:var(--muted);line-height:1.35}
@@ -1030,7 +1034,17 @@ label.sb.card{display:flex;align-items:center;gap:10px;padding:12px 16px}label.s
 .gtypes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gtype{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;justify-items:start;align-content:start;text-align:left;border:0;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:10px;font:inherit;color:inherit;cursor:pointer}.gtype .ph{margin-bottom:4px}.gtype b{font-size:14px}.gtype>span:last-child{font-size:12px;color:var(--muted);line-height:1.3}.gtype[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--orange)}
 .eqgrp{border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);background:var(--card);overflow:hidden}.eqgrp+.eqgrp{margin-top:8px}.eqgrp summary{display:grid;grid-template-columns:32px 1fr auto auto;gap:10px;align-items:center;padding:12px;cursor:pointer;list-style:none}.eqgrp summary::-webkit-details-marker{display:none}.eqgrp[open] summary{border-bottom:1px solid var(--line)}
 .eqlist{display:grid}.eqrow{display:grid;grid-template-columns:32px 1fr 22px;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:9px 12px;font:inherit;color:inherit;cursor:pointer}.eqrow+.eqrow{border-top:1px solid var(--line)}.eqtick{width:22px;height:22px;border-radius:7px;box-shadow:inset 0 0 0 2px var(--line)}.eqrow[aria-pressed=true] .eqtick{background:var(--orange);box-shadow:none;position:relative}.eqrow[aria-pressed=true] .eqtick::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
-.eqsearch{margin:4px 0 8px}.obgymc{display:grid;gap:10px}
+.lmus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.lmus button{display:grid;gap:2px;text-align:left;border:0;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:12px;font:inherit;color:var(--ink);cursor:pointer}.lmus b{font-size:14.5px}.lmus span{font-size:12px;color:var(--muted)}
+.lhead{margin:2px 2px 8px}.lrows{display:grid;background:var(--card);border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}.lrow{display:grid;grid-template-columns:32px minmax(0,1fr) 40px 40px;gap:10px;align-items:center;padding:9px 8px 9px 12px}.lrow+.lrow{border-top:1px solid var(--line)}.lrow{text-align:left}.lrow .lt{display:grid;gap:1px;justify-items:start;min-width:0}.lrow .lt b{font-size:15px;font-weight:600}.lrow .lt em{font-style:normal;font-size:12.5px;color:var(--muted)}.lrow.na .lt b{color:var(--muted)}
+.lbtn{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:12px;background:none;color:var(--muted);cursor:pointer}.lbtn svg{width:21px;height:21px}.lbtn.lv[aria-pressed=true]{background:var(--orange-soft);color:var(--orange)}.lbtn.lv[aria-pressed=true] svg{fill:currentColor}.lbtn.bn[aria-pressed=true]{background:color-mix(in srgb,var(--warn) 14%,var(--card));color:var(--warn)}.lrow.ban .lt b{text-decoration:line-through;color:var(--muted)}
+.obcustom{display:grid;gap:0}.cwrow{display:grid;gap:8px;padding:8px 0}.cwrow+.cwrow{border-top:1px solid var(--line)}.cwrow.rest>.spread>b{color:var(--muted)}.cwrow .dd select{min-width:170px}.cmus{display:flex;flex-wrap:wrap;gap:6px}.cmus .chip{font-size:13px;padding:7px 11px}.obcustom .banner,.obcustom .obtag{margin-top:10px}
+.dayh{display:grid;gap:1px}.dayh em{font:800 11px var(--display);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}.dayh b{font:800 19px var(--display);color:var(--ink)}.dayh span{font-size:12.5px;color:var(--muted)}.dayn{font-size:12px;color:var(--muted);text-align:right;line-height:1.5}.dayn b{color:var(--ink);font-size:14px}
+.obdayc[open] summary{padding-bottom:12px;margin-bottom:4px;border-bottom:2px solid var(--ink)}
+.exlist{display:grid}.exr{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line)}.exlist>.exr:first-child,.exss+.exr,.exlist>.exss:first-child{border-top:0}.exr>span{display:grid;gap:2px;min-width:0}.exr>span:last-child{text-align:right;white-space:nowrap;font-weight:700;font-size:14.5px}.exr b{font-size:15.5px;font-weight:600}.exr em{font-style:normal;font-size:12.5px;color:var(--muted);font-weight:500}
+.extech{font-style:normal;font-size:12.5px;color:var(--orange);font-weight:600;line-height:1.35}
+.exss{margin:6px 0;padding:2px 12px 0;border-radius:14px;background:var(--sunk)}.exss .exr:first-of-type{border-top:0}.exssl{display:block;padding-top:9px;font:800 10.5px var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.obcheck{display:grid;gap:10px}.ck{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.4}.ck i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font:800 12px var(--body);font-style:normal;background:color-mix(in srgb,var(--good) 16%,var(--card));color:var(--good)}.ck.no i{background:var(--orange-soft);color:var(--orange)}.ck span{color:var(--ink)}.obai2{display:grid;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+.eqsearch{margin:4px 0 8px}.eqic{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--sunk);color:var(--ink)}.eqic svg{width:20px;height:20px}.eqrow[aria-pressed=true] .eqic{background:var(--orange-soft);color:var(--orange)}.eqgrp summary .eqic{background:var(--orange-soft);color:var(--orange)}.eqrow>span:nth-child(2){font-size:15px;line-height:1.3}.gtype .obic{width:34px;height:34px;border-radius:10px;margin-bottom:2px}.gtype .obic svg{width:19px;height:19px}.gtype[aria-pressed=true] .obic{background:var(--orange);color:#fff}.obgymc{display:grid;gap:10px}
 .dbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}.dbgrid button{border:0;border-radius:10px;padding:9px 0;font:inherit;font-size:13px;font-variant-numeric:tabular-nums;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);color:inherit;cursor:pointer}.dbgrid button[aria-pressed=true]{background:var(--orange);color:#fff;box-shadow:none}
 .sprows{display:grid;gap:6px}.sprow{display:grid;grid-template-columns:32px 1fr 24px;gap:10px;align-items:center;text-align:left;border:0;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:9px 12px;font:inherit;color:inherit;cursor:pointer}.sprow span span{display:block;font-size:12px;color:var(--muted)}.sprow i{font-style:normal;font-size:22px;color:var(--orange);text-align:center}.obsp{display:flex;gap:10px;align-items:center}
 .obgrid.g3{grid-template-columns:repeat(3,1fr)}.obgrid.g3 .obcard{padding:12px 10px}.obgrid.g3 .obcard b{font-size:14px}.obgrid.g3 .obcard>span:last-child{font-size:12px}
@@ -2964,7 +2978,7 @@ function renderPlan(){
   if (S.prog.placeholder) return head("Train")+renderTrainToday();
   if (S.planView==="month") return head("Train")+`<button class="link trback" data-segset="planView" data-val="today">${ICON.back}<span>Back to this week</span></button>`+renderMonthView()+planFoot();
   const td=ymd(new Date()), dates=weekDates(), sel=S.trDay&&dates.some(d=>ymd(d)===S.trDay)?S.trDay:td;
-  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+(S.prog.strength?strengthCard():runCoachCard()+coachCard()+weekSetsCard())+planFoot();
+  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+(S.prog.strength?strengthCard():runCoachCard()+coachCard())+planFoot();
 }
 // The week at the top of Train: tap a day to see it. Below it, where you are in the block.
 function trainStrip(dates, sel, bi){
@@ -3031,18 +3045,6 @@ function coachCard(){
   const log=(c.log||[]).filter(x=>Date.now()-x.t<10*864e5).slice(-4).reverse();
   if (!log.length) return `<div class="card coachc"><div class="stack" style="gap:2px"><h2>Your coach</h2><span class="small muted">After each workout, rate how each muscle felt (three taps). Next time it comes up, say how it recovered. The plan then adds, holds or cuts sets muscle by muscle, the way a good coach would.</span></div></div>`;
   return `<div class="card coachc"><h2>Your coach</h2><div class="cclist">${log.map(x=>`<div><span class="ccd ${x.d>0?"up":x.d<0?"dn":""}">${x.swap?"↔":x.d>0?"+"+x.d:x.d<0?x.d:"="}</span><span><b>${esc(AJCoach.name(x.m))} · ${esc((dayBy(x.day)||{}).label||"")}</b><em>${esc(x.why.charAt(0).toUpperCase()+x.why.slice(1))}${x.swap?`: now ${esc(exDef(x.swap).n)}`:""}</em></span></div>`).join("")}</div></div>`;
-}
-// Sets per muscle this week, against the plan (a set counts 1 for the muscle it trains, ½ for helpers)
-function weekSetsCard(){
-  const dates=weekDates(), sess=S.sessions.filter(x=>{ const d=parseD(x.date); return d>=dates[0]&&d<=dates[6]; }), planned={}, got={};
-  const add=(o,k,n)=>{ for (const [m,f] of Object.entries(exMuscles(k))) o[m]=(o[m]||0)+f*n; };
-  S.prog.days.forEach(d=>{ if(d.rest||d.optional||!d.variants) return; (d.variants[dayGym(d)]||[]).forEach(([k,n])=>add(planned,k,n)); });
-  sess.forEach(x=>(x.ex||[]).forEach(e=>add(got,e.k,e.sets.filter(q=>q.done!==false).length)));
-  const ms=Object.keys(planned).sort((a,b)=>planned[b]-planned[a]); if (!ms.length) return "";
-  const showAll=S.wkAll||ms.length<=6, wdone=dates.filter(dt=>sessionsOn(ymd(dt)).length).length, wplan=dates.filter(dt=>{ const d=dayForDate(dt); return d&&!d.rest&&!d.optional&&d.variants&&(d.variants[dayGym(d)]||[]).length; }).length;
-  return `<div class="card"><div class="spread"><h2>Sets this week</h2><span class="small muted num">${wdone} of ${wplan} workouts</span></div>
-    <div class="wkbars">${(showAll?ms:ms.slice(0,6)).map(m=>{ const g=r1(got[m]||0), pl=r1(planned[m]), pc=Math.min(100,g/pl*100); return `<div><span>${esc(m)}</span><span class="track"><b style="width:${pc}%"></b></span><span class="num">${g}<em>/${pl}</em></span></div>`; }).join("")}</div>
-    ${ms.length>6?`<button class="link" data-act="wkAll">${showAll?"Show fewer":"All "+ms.length+" muscles"}</button>`:""}</div>`;
 }
 function planFoot(){ return S.prog.placeholder?"":`<div class="trfoot"><button class="link muted" data-act="science">Why it's built this way</button><button class="link" data-act="buildProg">Rebuild plan</button></div>`; }
 function sessionMins(d, g){ return Math.round((d.variants[g]||[]).reduce((a,[k,n])=>a+n*((+exDef(k).rest||90)+45)/60,4)); }
@@ -3128,11 +3130,7 @@ function renderWeekView(){
   const anyMoves=Object.keys(movesFor(new Date())).length;
   const wdone=dates.filter(dt=>sessionsOn(ymd(dt)).length).length, wplan=dates.filter(dt=>{ const d=dayForDate(dt); return d&&!d.rest&&!d.optional; }).length;
   const ms=Object.keys(planned).sort((a,b)=>planned[b]-planned[a]), showAll=S.wkAll||ms.length<=6;
-  const setCard=hasLift?`<div class="card"><div class="spread"><h2>Sets this week</h2><span class="small muted num">${wdone} of ${wplan} workouts done</span></div>
-    <div class="wkbars">${(showAll?ms:ms.slice(0,6)).map(m=>{ const g=got[m]||0, pc=Math.min(100,g/planned[m]*100); return `<div><span>${esc(m)}</span><span class="track"><b style="width:${pc}%"></b></span><span class="num">${g}<em>/${planned[m]}</em></span></div>`; }).join("")}</div>
-    ${ms.length>6?`<button class="link" data-act="wkAll">${showAll?"Show fewer":"All "+ms.length+" muscles"}</button>`:""}
-    <span class="small muted">A set counts fully for the muscle it mainly trains and half for muscles that help.</span></div>`:"";
-  return `${anyMoves?`<div class="spread"><span class="small muted">You've moved sessions this week.</span><button class="link" data-act="resetMoves">Undo moves</button></div>`:""}<div class="stack" style="gap:8px">${days}</div>${setCard}${runSum}<p class="small muted center">Tap a day to see it, start it or move it.</p>`;
+  return `${anyMoves?`<div class="spread"><span class="small muted">You've moved sessions this week.</span><button class="link" data-act="resetMoves">Undo moves</button></div>`:""}<div class="stack" style="gap:8px">${days}</div>${runSum}<p class="small muted center">Tap a day to see it, start it or move it.</p>`;
 }
 function moveBar(d, dateStr){
   if (!dateStr || dateStr<ymd(new Date()) || !d.variants || !Object.keys(d.variants).length || sessionsOn(dateStr).length) return "";
@@ -3235,7 +3233,9 @@ function buildEx(k, n, custom, gym, o={}){
 function newActive(d, gym){
   const bi=blockInfo(), co=window.AJCoach&&AJCoach.C(), deload=!!(S.deload||(co&&bi&&bi.deload));
   const a={id:uid("s"), dayKey:d.k, gym, phase:S.profile.phase, deload, startedAt:Date.now(), rec:{}, ex:(d.variants[gym]||[]).map(([k,n,ss])=>({...buildEx(k,n,null,gym,{deload, sets:deload&&co?AJCoach.deloadSets(d.k,gym,k,n):undefined}), ss:ss||null}))};
-  if (co) AJCoach.techniques(a);
+  // finishers written into the plan (last set only, never in a deload); the coach adds its own only when the plan has none
+  if (!deload) a.ex.forEach(e=>{ const df=(S.prog.exercises||{})[e.k]; if (df&&df.techK){ e.tech=df.techK; e.techT=df.tech; } });
+  if (co && !a.ex.some(e=>e.tech)) AJCoach.techniques(a);
   if (S.prog.strength&&window.AJStrength) AJStrength.build(a,d);
   return a;
 }
@@ -3254,10 +3254,13 @@ function exEffort(k, r){
   const d=(S.prog.exercises||{})[k]||{};
   if (d.intent) return "Fast and explosive, not to failure";
   const min=d.rirMin!=null?d.rirMin:/-hvy$/.test(k)?2:null, lo=parseFloat(String(r).replace("~",""));
-  if (min!=null && r!=="DL" && !(lo>=min)) return rirWords(min+"–"+(min+1));
+  if (min!=null && r!=="DL" && !(lo>=min||r==="L"&&min<=1)) return rirWords(min+"–"+(min+1));
+  // heavy free-weight compounds go to technical failure: the last rep you can do with good form
+  if ((r==="0"||r==="L") && TECHFAIL.has(String(k).replace(/-.*$/,""))) return r==="0"?"To technical failure: stop when form would break":"Last set to technical failure, the others 1 to 2 reps short";
   return rirWords(r);
 }
-function rirWords(r){ r=String(r==null?"":r); return {"0–1":"To failure, or 1 rep short","0":"To failure","1":"Stop 1 rep short","1–2":"Stop 1 to 2 reps short","2":"Stop 2 reps short","2–3":"Stop 2 to 3 reps short","3":"About 3 reps left","DL":"Easy: 4 or more reps left","~3":"Easy: about 3 reps left"}[r]||(r?r+" reps left":""); }
+const TECHFAIL=new Set(["squat","frontsq","ssbsq","rdl","deadlift","trapdl","goodmorning","bbrow","bbohp","bench","incbench","pausesq","pausedl","deficitdl","singlerdl","dbrdl","meadows","tbarrow","vbar","hipthrust"]);
+function rirWords(r){ r=String(r==null?"":r); return {"L":"Last set to failure, the others 1 to 2 reps short","0–1":"To failure, or 1 rep short","0":"To failure","1":"Stop 1 rep short","1–2":"Stop 1 to 2 reps short","2":"Stop 2 reps short","2–3":"Stop 2 to 3 reps short","3":"About 3 reps left","DL":"Easy: 4 or more reps left","~3":"Easy: about 3 reps left"}[r]||(r?r+" reps left":""); }
 // Barbell plates per side (standard 20 kg bar, 25/20/15/10/5/2.5/1.25 kg plates)
 function platesFor(total, bar=20){ let side=Math.round(((+total||0)-bar)/2*100)/100; if (side<=0) return ""; const out=[]; for (const pl of [25,20,15,10,5,2.5,1.25]) while (side>=pl-1e-9){ out.push(pl); side=Math.round((side-pl)*100)/100; } return out.join(" + ")+(side>0.01?" (+"+side+")":""); }
 function renderLive(){
@@ -3289,7 +3292,7 @@ function renderLive(){
       ${adv.last&&adv.last.note?`<div class="lastnote">Your note last time: ${esc(adv.last.note)}</div>`:""}
       ${e.sets.some(x=>x.role==="top")&&!e.str?`<span class="small muted">T is your top set. The rest are back-off sets about 12% lighter, for a couple more reps.</span>`:""}
       ${CO&&WU[ei]&&!dn&&+e.sets[0].pw>0?`<div class="wuline"><b>Warm up</b><span class="num">${AJCoach.warmup(ex,a.gym,+e.sets[0].pw,WU[ei])}</span></div>`:""}
-      ${e.tech&&AJCoach.TECH[e.tech]?`<div class="techline"><b>${AJCoach.TECH[e.tech][0]}</b><span>${AJCoach.TECH[e.tech][1]}</span></div>`:""}
+      ${e.tech&&AJCoach.TECH[e.tech]?`<div class="techline"><b>${AJCoach.TECH[e.tech][0]}</b><span>${esc(e.techT?e.techT.replace(/^Last set: /,"").replace(/^./,c=>c.toUpperCase())+".":AJCoach.TECH[e.tech][1])}</span></div>`:""}
       <div class="sets"><div class="sethdr"><span>Set</span><span>Last</span><span>kg</span><span>Reps</span><span></span></div>${sets}</div>
       ${rirAsk()}
       ${e.str?(()=>{ const top=e.sets.find(x=>x.role==="top"), tgt=top||((dn===e.sets.length&&e.sets.length)?e.sets[e.sets.length-1]:null); if (!tgt||!tgt.done||tgt.q!=null&&tgt.spd!=null) return "";
@@ -4866,6 +4869,7 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 </script>
 <script src="/sportprofiles.js"></script>
 <script src="/sporticons.js"></script>
+<script src="/gymicons.js"></script>
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>
 <script src="/coach.js"></script>

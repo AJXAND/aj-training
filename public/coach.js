@@ -18,7 +18,7 @@ const libOf = k => LIB()[String(k).replace(/-hvy$/, "")] || null;
 const muOf = k => { const d = S.prog.exercises && S.prog.exercises[k]; if (d && d.mu) return d.mu; const l = libOf(k); return (l && l.mu) || {}; };
 const isComp = k => { const l = libOf(k); return !!(l && l.c); };
 // "0–1" → 0.5, "1–2" → 1.5, "DL" → 4
-const rirNum = r => r == null ? 2 : String(r) === "DL" ? 4 : (parseFloat(String(r).replace("~", "")) || 0) + (String(r).includes("–") ? 0.5 : 0);
+const rirNum = r => r == null ? 2 : String(r) === "DL" ? 4 : String(r) === "L" ? 1 : (parseFloat(String(r).replace("~", "")) || 0) + (String(r).includes("–") ? 0.5 : 0);
 const name = m => MUSN()[m] || m;
 
 function dayVariant(d){ const g = dayGym(d); return (d.variants && d.variants[g]) || []; }
@@ -239,7 +239,10 @@ function techniques(a){
 }
 const TECH = {myo:["Myo-reps on the last set", "Go to failure, rest 5 deep breaths, then mini-sets of about a quarter of the reps. Stop when one falls short, or after 5."],
   drop:["Drop set on the last set", "Go to failure, strip 20-25% of the weight and go to failure again. Log it with + Drop set."],
-  lp:["Lengthened partials on the last set", "At failure, keep going with half reps in the stretched half of the movement until you can't."]};
+  lp:["Lengthened partials on the last set", "At failure, keep going with half reps in the stretched half of the movement until you can't."],
+  mech:["Finisher on the last set", "At failure, switch straight to an easier version and keep going."],
+  hold:["Stretch hold on the last set", "At failure, hold the deepest stretch for about 20 seconds."],
+  rp:["Rest-pause on the last set", "At failure, rest 15 seconds, then go to failure again."]};
 
 window.AJCoach = {C, rirNum, trained, perfFor, decide, pending, settle, onStart, newBlock, advice, deloadSets, warmup, warmups, techniques, TECH, weekVol, name, PERF, muOf};
 })();
