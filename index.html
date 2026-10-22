@@ -698,6 +698,8 @@ img{max-width:100%}
 .lchip em,.tagin{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--good);margin-left:6px}
 .lchip.love{background:var(--orange);color:#fff}.lchip.love em{color:#fff}
 .lchip.ban{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line);text-decoration:line-through}
+.obbest{display:grid;gap:8px;padding:12px 0;border-top:1px solid var(--line)}.obbest>b{font-size:16px}.obbest .obunitrow{display:flex;align-items:center;gap:8px}.obbest .obunitrow .field{flex:1;min-width:0}
+.obmacro{display:grid;gap:6px}.obmacro>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;background:var(--sunk);border-radius:14px;padding:10px 12px}.obmacro b{font-size:15px}.obmacro span{font-size:13px;color:var(--muted);font-weight:600}.obmacro em{grid-column:1/-1;font-style:normal;font-size:13px;color:var(--muted)}.obmacro .dl,.obmacro .easy{background:none;box-shadow:inset 0 0 0 1px var(--line)}.obmacro .peak,.obmacro .meet,.obmacro .test{background:var(--orange-soft)}
 .obrir{display:grid;grid-template-columns:repeat(auto-fit,minmax(48px,1fr));gap:6px}
 .obrir div{background:var(--card);border-radius:14px;padding:10px 6px;display:grid;gap:2px;text-align:center}
 .obrir span{font-size:12px;color:var(--muted);font-weight:600}.obrir b{font-size:14px}
@@ -985,7 +987,9 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .rirq{display:grid;gap:8px;background:var(--sunk);border-radius:14px;padding:10px 12px}.rirq>span{font-size:13px;font-weight:600}.rirch button{background:var(--card);min-width:44px}
 .wuline,.techline{display:grid;gap:2px;font-size:13px;border-radius:12px;padding:9px 12px}.wuline{grid-template-columns:auto 1fr;gap:10px;background:var(--sunk)}.wuline b,.techline b{font-size:12px;text-transform:uppercase;letter-spacing:.04em}
 .techline{background:var(--orange-soft)}.techline b{color:var(--orange)}.techline span{color:var(--ink)}
-.set.top .n{background:var(--ink);color:var(--card)}
+.set.top .n{background:var(--ink);color:var(--card)}.set.test .n{background:var(--orange-soft);color:var(--orange)}.rpech button{min-width:0;padding:8px 9px;flex:1}.strq{gap:10px}
+.strl{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}.strl>div{display:grid;gap:1px;background:var(--sunk);border-radius:14px;padding:10px 12px}.strl span{font-size:12px;color:var(--muted);font-weight:600}.strl b{font:800 20px var(--display)}.strl em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.strmeet{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:12px}.strmeet>div{display:flex;justify-content:space-between;font-size:14px}
 .cclist{display:grid;gap:10px}.cclist>div{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;align-items:center}.cclist em{display:block;font-style:normal;font-size:13px;color:var(--muted)}
 .ccd{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font:800 15px var(--display);background:var(--sunk);color:var(--muted)}.ccd.up{background:var(--orange-soft);color:var(--orange)}.ccd.dn{background:color-mix(in srgb,var(--warn) 14%,var(--card));color:var(--warn)}
 .tdlist2{display:grid}.card>.tdlist2:first-child>div:first-child{border-top:0;padding-top:0}.tdlist2>div{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}.tdnm{display:grid;min-width:0}.tdnm b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tdnm em{font-style:normal;font-size:12.5px;color:var(--muted)}.tdaim{font:700 14px var(--body);font-variant-numeric:tabular-nums;white-space:nowrap}.tdaim.up{color:var(--orange)}
@@ -1454,6 +1458,7 @@ function incFor(eq, gym){ const g=gymList().find(x=>x.id===gym)||{}; return eq==
 // next weight up that this gym actually has (exact dumbbell pairs), otherwise the usual increment
 function nextLoad(eq, gym, w){ const g=gymList().find(x=>x.id===gym)||{}; if (eq==="db" && g.dbMode==="exact" && (g.dbs||[]).length){ const n=g.dbs.find(x=>x>w); return n!=null?n:w; } const inc=incFor(eq,gym); return inc?w+inc:null; }
 function advice(k, custom, gym){
+  if (!custom && S.prog.strength && window.AJStrength && AJStrength.isMain(k)) return AJStrength.advice(k, gym);
   if (!custom && window.AJCoach && AJCoach.C() && !/-hvy$/.test(k)) return AJCoach.advice(k, gym);
   const ex=exDef(k, custom), phase=S.profile.phase;
   let h=liftHistory(k,false,gym), cross=false;
@@ -2358,7 +2363,7 @@ function exMuscles(k){
   return {[exDef(k).m]:1};
 }
 function blockInfo(){
-  const p=S.prog; if (!p.rir) return null;
+  const p=S.prog; if (p.strength&&window.AJStrength) return AJStrength.blockInfo(); if (!p.rir) return null;
   const bw=blockWeek(Date.now()); if (bw===-2) return {pre:false, brk:true, week:0, len:p.deloadEvery||p.rir.length, rir:"–", deload:false}; if (bw<0) return {pre:true, starts:p.startDate};
   const len=p.deloadEvery||p.rir.length, i=bw%len, r=p.rir[i]||"2";
   return {week:i+1, len, block:Math.floor(bw/len)+1, rir:r, deload:r==="DL"};
@@ -2934,19 +2939,20 @@ function renderPlan(){
   if (S.prog.placeholder) return head("Train")+renderTrainToday();
   if (S.planView==="month") return head("Train")+`<button class="link trback" data-segset="planView" data-val="today">${ICON.back}<span>Back to this week</span></button>`+renderMonthView()+planFoot();
   const td=ymd(new Date()), dates=weekDates(), sel=S.trDay&&dates.some(d=>ymd(d)===S.trDay)?S.trDay:td;
-  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+coachCard()+weekSetsCard()+planFoot();
+  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+(S.prog.strength?strengthCard():coachCard()+weekSetsCard())+planFoot();
 }
 // The week at the top of Train: tap a day to see it. Below it, where you are in the block.
 function trainStrip(dates, sel, bi){
   const td=ymd(new Date());
   const cells=dates.map(dt=>{ const ds=ymd(dt), d=dayForDate(dt), run=runFor(ds), lift=d&&!d.rest&&d.variants&&(d.variants[dayGym(d)]||[]).length;
     const did=sessionsOn(ds).length>0||S.cardio.some(c=>c.date===ds&&["run","cycle","swim","hyrox"].includes(c.type)&&(run||lift));
-    const plan=!!(lift||run), lab=plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
+    const sl=d&&d.str?(d.str.find(x=>x.type==="H"&&!x.v)||d.str[0]):null;
+    const plan=!!(lift||run), lab=sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
     const st=did?"did":plan?(ds<td?"miss":"plan"):"rest";
     return `<button class="trd ${st} ${ds===sel?"sel":""} ${ds===td?"now":""}" data-act="trDay" data-d="${ds}" aria-label="${dt.toLocaleDateString("en-GB",{weekday:"long"})}"><span class="w">${dt.toLocaleDateString("en-GB",{weekday:"short"}).slice(0,3)}</span><b class="num">${dt.getDate()}</b><i>${did?HICON.check:""}</i><em>${esc(lab)}</em></button>`; }).join("");
   const len=bi&&bi.len||0, wk=bi&&!bi.pre?bi.week:0;
   const blk=len&&!bi.pre?`<div class="trblk"><div class="segs">${[...Array(len)].map((_,i)=>`<i class="${i+1<wk?"d":i+1===wk?"c":""} ${i===len-1?"dl":""}"></i>`).join("")}</div>
-    <span>${bi.brk?"Break week: the block is paused":`<b>Week ${wk} of ${len}</b> · ${bi.deload?"deload: half the sets, easy effort":wk===len-1?"last hard week, deload next":`deload in week ${len}`}`}</span></div>`:bi&&bi.pre?`<div class="trblk"><span>Your block starts ${fmtD(bi.starts)}</span></div>`:"";
+    <span>${bi.brk?"Break week: the block is paused":bi.strength?`<b>${esc(bi.phaseName)}</b> · week ${wk} of ${len}${bi.early?" · brought forward":""}`:`<b>Week ${wk} of ${len}</b> · ${bi.deload?"deload: half the sets, easy effort":wk===len-1?"last hard week, deload next":`deload in week ${len}`}`}</span></div>`:bi&&bi.pre?`<div class="trblk"><span>Your block starts ${fmtD(bi.starts)}</span></div>`:"";
   return `<div class="card trstrip"><div class="spread"><span class="small muted trname">${esc(S.prog.endurance?S.prog.endurance.eventName:S.prog.splitName||S.prog.name)}</span><button class="link" data-segset="planView" data-val="month">Month</button></div>
     <div class="trdays">${cells}</div>${blk}</div>`;
 }
@@ -2966,7 +2972,7 @@ function trainDayBody(ds){
     const past=ds<td, sets=list.reduce((a,x)=>a+x[1],0), sameWeek=weekKey(dt)===weekKey(new Date());
     out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${when}${d.movedFrom!=null?" · moved":""}${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(d.label)}</h2></div>${past?`<span class="tag flag">Missed</span>`:`<span class="tag">Planned</span>`}</div>
       <div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(d,g)}</b><span>min</span></div></div>
-      <div class="tdlist2">${list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`;
+      <div class="tdlist2">${list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=strAim(d,k,g)||(ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`);
         return `<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(x.n)}</b><em>${n} × ${x.lo}–${x.hi}${ad.last?` · last ${ad.last.sets[0].w}×${ad.last.sets[0].r}`:""}</em></span><span class="tdaim ${ad.status==="up"?"up":""}">${ad.status==="up"?"↑ ":""}${aim}</span></div>`; }).join("")}</div>
       ${past?"":moveBar(d,ds)}
       ${past?(sameWeek&&!sessionsOn(td).length?`<button class="btn orange" data-act="moveHere" data-k="${d.k}" data-from="${ds}">Do it today instead</button>`:`<span class="small muted">Missed sessions don't need making up. The next one simply carries on.</span>`)
@@ -2975,6 +2981,23 @@ function trainDayBody(ds){
   else if (!run) out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${d&&d.label&&d.label!=="Rest"?esc(d.label):"Rest day"}</h2></div><span class="small muted">${esc((d&&d.cardio)||"Walk or easy cardio")}. Rest days are when the work you did turns into muscle.</span></div>`;
   if (cardio.length) out+=`<div class="card"><h2>Cardio and sport</h2>${cardio.map(c=>`<div class="spread cline"><span class="spl">${spIc(c.type)}<b>${esc(CARDIO[c.type]?CARDIO[c.type].n:c.type)}</b> <span class="small muted">${esc(c.level)} · ${c.mins} min${c.km?" · "+c.km+" km":""}</span></span><span class="small muted num">${fmtN(c.net)} kcal</span></div>`).join("")}</div>`;
   return out;
+}
+// strength plans: today's top load for a main lift (or "Find max" before there is one)
+function strAim(d,k,g){
+  if (!(S.prog.strength&&window.AJStrength&&AJStrength.isMain(k))) return "";
+  const sl=(d&&d.str||[]).find(x=>x.k===k); if (!sl) return "";
+  const p=AJStrength.prescribe(k,sl.type,g); if (!p) return "Off this week"; if (p.cal) return "Find max";
+  const t=p.sets[0]; return `${t.pw} × ${t.pr}`;
+}
+// Strength: your maxes, where you are in the year, and meet attempts
+function strengthCard(){
+  if (!(S.prog.strength&&window.AJStrength)) return "";
+  const sm=AJStrength.summary()||[], at=AJStrength.attempts(), bi=blockInfo(), st=S.prog.strength;
+  const log=(st.log||[]).filter(x=>Date.now()-x.t<10*864e5).slice(-3).reverse();
+  return `<div class="card"><div class="spread"><h2>Your lifts</h2><span class="small muted">${bi&&!bi.pre?esc(bi.phaseName):""}</span></div>
+    <div class="strl">${sm.map(x=>`<div><span>${esc(x.n)}</span><b class="num">${x.eT?Math.round(x.eT)+" kg":x.lp?x.lp+" kg":"–"}</b><em>${x.eT?(x.first&&x.eT>x.first?`+${Math.round(x.eT-x.first)} kg`:"estimated max"):x.lp?"working weight":"found in your first session"}</em></div>`).join("")}</div>
+    ${log.length?`<div class="cclist">${log.map(x=>`<div><span class="ccd">•</span><span><em>${esc(x.why)}</em></span></div>`).join("")}</div>`:`<span class="small muted">Rate the top set of each lift (RPE and how it moved). Your max updates from it, and next week's plan adjusts to how each lift is going.</span>`}
+    ${at&&at.lifts.length?`<div class="strmeet"><b>Meet ${fmtD(at.date)}: planned attempts</b>${at.lifts.map(l=>`<div><span>${esc(AJOnboard.LIFT_N[l.lift])}</span><span class="num">${l.op} · ${l.sec} · ${l.third}</span></div>`).join("")}<span class="small muted">Opener about 91% of your max; second and third adjust on the day to how the one before moved.</span></div>`:""}</div>`;
 }
 // What the coach changed lately, and why: so the plan never shifts without you knowing
 function coachCard(){
@@ -3019,12 +3042,12 @@ function renderTrainToday(){
     if (run) out+=runCard(run,todayStr);
     if (!pre && list.length){
       const sets=list.reduce((a,x)=>a+x[1],0);
-      const eff=bi&&!bi.pre&&!bi.brk?rirWords(bi.deload?"DL":bi.rir):"", last=done[0];
+      const eff=bi&&!bi.pre&&!bi.brk&&!bi.strength?rirWords(bi.deload?"DL":bi.rir):"", last=done[0];
       const vol=last?last.ex.reduce((a,e)=>a+e.sets.reduce((x,q)=>x+(+q.w||0)*(+q.r||0),0),0):0, nsets=last?last.ex.reduce((a,e)=>a+e.sets.length,0):0;
       out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today${t.movedFrom!=null?" · moved":""}${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(t.label)}</h2></div>${last?`<span class="tag up">Done</span>`:""}</div>
         ${last?`<div class="tdstats"><div><b class="num">${nsets}</b><span>sets</span></div><div><b class="num">${last.mins||"<1"}</b><span>min</span></div><div><b class="num">${fmtN(Math.round(vol))}</b><span>kg lifted</span></div></div>`
           :`<div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(t,g)}</b><span>min</span></div></div>${eff?(()=>{ const hv=list.some(([k])=>exEffort(k,bi.deload?"DL":bi.rir)!==eff); return `<div class="tdeff"><span><b>Effort this week</b> ${esc(eff)} on ${hv?"most working sets":"every working set"}.${hv?" Heavy and explosive lifts have their own target in the workout.":""}</span></div>`; })():""}`}
-        <div class="tdlist2">${last?last.ex.map((e,i)=>`<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(e.n||exDef(e.k).n)}</b><em>${e.sets.map(q=>q.w+"×"+q.r).join(", ")}</em></span><span class="tdaim muted">${e.sets.length} sets</span></div>`).join(""):list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`;
+        <div class="tdlist2">${last?last.ex.map((e,i)=>`<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(e.n||exDef(e.k).n)}</b><em>${e.sets.map(q=>q.w+"×"+q.r).join(", ")}</em></span><span class="tdaim muted">${e.sets.length} sets</span></div>`).join(""):list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=strAim(t,k,g)||(ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`);
           return `<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(x.n)}</b><em>${n} × ${x.lo}–${x.hi}${ad.last?` · last ${ad.last.sets[0].w}×${ad.last.sets[0].r}`:""}</em></span><span class="tdaim ${ad.status==="up"?"up":""}">${ad.status==="up"?"↑ ":""}${aim}</span></div>`; }).join("")}</div>${last?"":`<span class="small muted">Right-hand numbers are today's aim, from your last session.</span>`}
         <div class="grid2"><button class="btn ghost" data-goto="train">${last?"See the plan":"Change it"}</button>${last?`<button class="btn orange" data-act="sumShow" data-id="${last.id}">How it went</button>`:`<button class="btn orange" data-act="startDay" data-k="${t.k}" data-g="${g}">Start workout</button>`}</div></div>`;
     } else if (!pre && !run){
@@ -3187,6 +3210,7 @@ function newActive(d, gym){
   const bi=blockInfo(), co=window.AJCoach&&AJCoach.C(), deload=!!(S.deload||(co&&bi&&bi.deload));
   const a={id:uid("s"), dayKey:d.k, gym, phase:S.profile.phase, deload, startedAt:Date.now(), rec:{}, ex:(d.variants[gym]||[]).map(([k,n,ss])=>({...buildEx(k,n,null,gym,{deload, sets:deload&&co?AJCoach.deloadSets(d.k,gym,k,n):undefined}), ss:ss||null}))};
   if (co) AJCoach.techniques(a);
+  if (S.prog.strength&&window.AJStrength) AJStrength.build(a,d);
   return a;
 }
 /* ---------- Live workout ----------
@@ -3233,21 +3257,26 @@ function renderLive(){
     return `<section class="excard open ${allDone?"done":""}" id="ex-${ei}">
       <div class="here">${allDone?"Done":"You're here"}${ssl?` · superset ${ssl}`:""}${e.sub?` · swapped from ${esc(exDef(e.sub.from).n)}`:""}</div>
       <div class="exhead"><span class="t">${esc(ex.n)}</span><span class="row" style="gap:6px"><button class="chipbtn" data-act="restCycle" data-e="${ei}" aria-label="Change rest">${fmtT(restOf(e))} rest</button><button class="chipbtn" data-act="swapOpen" data-e="${ei}">Swap</button></span></div>
-      <div class="row"><span class="tag">${esc(ex.m)}</span><span class="tag">${e.sets.some(x=>x.role==="top")?`Top ${ex.lo}–${ex.lo+2}, then ${ex.lo+2}–${ex.hi+2}`:`${ex.lo}–${ex.hi} reps`}</span><span class="tag">${a.deload?rirWords("DL"):LBI&&!LBI.pre&&!LBI.deload&&!LBI.brk?exEffort(e.k,LBI.rir):exEffort(e.k,"1–2")}</span>${adv.pill}</div>
-      ${!adv.last?`<span class="small muted">First time: pick a weight you could lift about ${ex.hi} times, then settle into the range.</span>`:adv.cross?`<span class="small muted">Last time was at another gym, so the numbers may not match these weights.</span>`:""}
+      ${e.str?`<div class="row"><span class="tag">${esc(ex.m)}</span>${e.str.cal?`<span class="tag rep">Find your max</span>`:e.str.top?`<span class="tag">Top ${e.str.reps} @ RPE ${e.str.rpe}</span><span class="tag">Then ${e.sets.filter(x=>x.role==="back").length}×${e.str.boR} at ${Math.round((e.str.boP||.9)*100)}%</span>`:`<span class="tag">${e.sets.length}×${e.str.reps} @ RPE ${e.str.rpe}</span>`}<span class="tag">${AJStrength.rpeWords(e.str.rpe)}</span></div>${e.str.note?`<span class="small muted">${esc(e.str.note)}</span>`:""}
+        ${!dn&&!a.deload&&!e.str.cal?(()=>{ const w=AJStrength.warmup(e,a.gym); return w?`<div class="wuline"><b>Warm up</b><span class="num">${w}</span></div>`:""; })():""}`:`<div class="row"><span class="tag">${esc(ex.m)}</span><span class="tag">${e.sets.some(x=>x.role==="top")?`Top ${ex.lo}–${ex.lo+2}, then ${ex.lo+2}–${ex.hi+2}`:`${ex.lo}–${ex.hi} reps`}</span><span class="tag">${a.deload?rirWords("DL"):LBI&&!LBI.pre&&!LBI.deload&&!LBI.brk?exEffort(e.k,LBI.rir):exEffort(e.k,"1–2")}</span>${adv.pill}</div>`}
+      ${e.str?"":!adv.last?`<span class="small muted">First time: pick a weight you could lift about ${ex.hi} times, then settle into the range.</span>`:adv.cross?`<span class="small muted">Last time was at another gym, so the numbers may not match these weights.</span>`:""}
       ${adv.last&&adv.last.note?`<div class="lastnote">Your note last time: ${esc(adv.last.note)}</div>`:""}
-      ${e.sets.some(x=>x.role==="top")?`<span class="small muted">T is your top set. The rest are back-off sets about 12% lighter, for a couple more reps.</span>`:""}
+      ${e.sets.some(x=>x.role==="top")&&!e.str?`<span class="small muted">T is your top set. The rest are back-off sets about 12% lighter, for a couple more reps.</span>`:""}
       ${CO&&WU[ei]&&!dn&&+e.sets[0].pw>0?`<div class="wuline"><b>Warm up</b><span class="num">${AJCoach.warmup(ex,a.gym,+e.sets[0].pw,WU[ei])}</span></div>`:""}
       ${e.tech&&AJCoach.TECH[e.tech]?`<div class="techline"><b>${AJCoach.TECH[e.tech][0]}</b><span>${AJCoach.TECH[e.tech][1]}</span></div>`:""}
       <div class="sets"><div class="sethdr"><span>Set</span><span>Last</span><span>kg</span><span>Reps</span><span></span></div>${sets}</div>
       ${rirAsk()}
+      ${e.str?(()=>{ const top=e.sets.find(x=>x.role==="top"), tgt=top||((dn===e.sets.length&&e.sets.length)?e.sets[e.sets.length-1]:null); if (!tgt||!tgt.done||tgt.q!=null&&tgt.spd!=null) return "";
+        const rv=tgt.q!=null?10-tgt.q:null; return `<div class="rirq strq"><span>${top?"Top set":"Last set"}: how hard was it?</span><div class="rirch rpech">${[6,6.5,7,7.5,8,8.5,9,9.5,10].map(v=>`<button data-act="strRPE" data-e="${ei}" data-v="${v}" aria-pressed="${rv===v}" class="${rv==null&&v===tgt.trpe?"dflt":""}">${v}</button>`).join("")}</div>
+        <span class="small muted">8 = 2 more reps in you · 10 = nothing left</span>${rv!=null?`<span>How did it move?</span><div class="rirch">${["Fast","Normal","Slow","Grind"].map((l,v)=>`<button data-act="strSpd" data-e="${ei}" data-v="${v}" aria-pressed="${tgt.spd===v}">${l}</button>`).join("")}</div>`:""}</div>`; })():""}
       <div class="exfoot"><span>${esc(ex.note||"")}</span><span class="row" style="gap:16px"><button class="link" data-act="addDrop" data-e="${ei}" data-s="${e.sets.length-1}">+ Drop set</button><button class="link" data-act="addset" data-e="${ei}">+ Set</button></span></div>
       <textarea class="field" id="note-${ei}" data-note="${ei}" rows="1" placeholder="Form notes, shown next time">${esc(e.note)}</textarea></section>`;
   };
   const CO=!!(window.AJCoach&&AJCoach.C()), WU=CO?AJCoach.warmups(a):{};
   const pend=CO?AJCoach.pending(a.ex.map(e=>[e.k,e.sets.length])).filter(x=>!(a.rec||{})[x.m]):[];
   const RECO=[["0","Never sore"],["1","Recovered early"],["2","Just in time"],["3","Still sore"]];
-  let cards=pend.length?`<div class="card reccard"><div class="stack" style="gap:2px"><h3>Since you last trained these</h3><span class="small muted">How did they recover? It sets next week's sets.</span></div>${pend.map(({m})=>`<div class="recrow"><b>${esc(AJCoach.name(m))}</b><div class="rch">${RECO.map(([v,l])=>`<button data-act="recSet" data-m="${m}" data-v="${v}">${l}</button>`).join("")}</div></div>`).join("")}</div>`:"", k=0;
+  const RD=S.prog.strength&&!a.deload&&a.rd==null&&!done?`<div class="card reccard"><div class="stack" style="gap:2px"><h3>How ready do you feel today?</h3><span class="small muted">Flat or beat up takes a little off today's loads. Strength holds; the plan doesn't need you to grind.</span></div><div class="rch">${["Fresh","Normal","Flat","Beat up"].map((l,v)=>`<button data-act="strReady" data-v="${v}">${l}</button>`).join("")}</div></div>`:"";
+  let cards=RD+(pend.length?`<div class="card reccard"><div class="stack" style="gap:2px"><h3>Since you last trained these</h3><span class="small muted">How did they recover? It sets next week's sets.</span></div>${pend.map(({m})=>`<div class="recrow"><b>${esc(AJCoach.name(m))}</b><div class="rch">${RECO.map(([v,l])=>`<button data-act="recSet" data-m="${m}" data-v="${v}">${l}</button>`).join("")}</div></div>`).join("")}</div>`:""), k=0;
   while (k<a.ex.length){
     const e=a.ex[k];
     if (e.ss){ const grp=[]; while (k<a.ex.length && a.ex[k].ss===e.ss){ grp.push(k); k++; } cards+=grp.length>1?`<div class="ssgroup"><span class="sslab">Superset ${e.ss}: alternate, rest after both</span>${grp.map(j=>card(a.ex[j],j)).join("")}</div>`:card(e,grp[0]); }
@@ -3828,13 +3857,14 @@ function logSet(ei, si){
 function finishSession(){
   const a=S.active;
   const ex=a.ex.map(e=>{ const d=exDef(e.k,e.custom); return {k:e.k,n:d.n,m:d.m,custom:e.custom||null,note:e.note||"",
-    sets:e.sets.filter(s=>s.done).map(s=>({w:+s.w,r:+s.r,...(s.q!=null?{q:+s.q}:{}),...(s.role?{role:s.role}:{}),drops:(s.drops||[]).filter(x=>x.done).map(x=>({w:+x.w,r:+x.r}))}))}; }).filter(e=>e.sets.length);
+    sets:e.sets.filter(s=>s.done).map(s=>({w:+s.w,r:+s.r,...(s.q!=null?{q:+s.q}:{}),...(s.role?{role:s.role}:{}),...(s.trpe!=null?{trpe:s.trpe,pr:+s.pr}:{}),...(s.spd!=null?{spd:s.spd}:{}),drops:(s.drops||[]).filter(x=>x.done).map(x=>({w:+x.w,r:+x.r}))}))}; }).filter(e=>e.sets.length);
   if (!ex.length){ toast("No sets logged yet"); return false; }
   const bi=blockInfo();
   if (window.AJCoach&&AJCoach.C()) AJCoach.settle(a);
   const doc={schema:SCHEMA,id:a.id,ts:a.startedAt,date:ymd(new Date(a.startedAt)),dayKey:a.dayKey,gym:a.gym,phase:a.phase,deload:!!a.deload,mins:Math.round((Date.now()-a.startedAt)/60000),ex,
-    ...(bi&&!bi.pre&&!bi.brk?{rir:bi.rir, block:bi.block, wk:bi.week}:{}), ...(a.rec&&Object.keys(a.rec).length?{rec:a.rec}:{})};
+    ...(bi&&!bi.pre&&!bi.brk?{rir:bi.rir, block:bi.block, wk:bi.week}:{}), ...(a.rec&&Object.keys(a.rec).length?{rec:a.rec}:{}), ...(a.rd!=null?{rd:a.rd}:{})};
   upsert("sessions",doc); putDoc("sessions",doc.id,doc);
+  if (S.prog.strength&&window.AJStrength){ const nt=AJStrength.after(doc); if (nt.length) setTimeout(()=>toast({title:"Your lifts", detail:nt.join(". ")}),600); }
   return doc;
 }
 /* After a workout: how long, how much, personal bests, and every exercise against last time */
@@ -3851,11 +3881,17 @@ function renderSummary(){
   return `<div class="top"><div class="brand">${LOGO(30)}<span class="date">${new Date(doc.ts).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</span></div></div>
     <div class="card smhero"><span class="smic">${HICON.check}</span><h1>${esc(d.label)} done</h1><span class="muted">${prs?`${prs} personal best${prs>1?"s":""}. `:""}Muscle is built in the next 24 to 48 hours: eat your protein and sleep.</span>
       <div class="stat four"><div><span>Time</span><b class="num">${doc.mins||"<1"} min</b></div><div><span>Sets</span><b class="num">${sets}</b></div><div><span>Volume</span><b class="num">${fmtN(Math.round(vol))} kg</b></div><div><span>PBs</span><b class="num">${prs}</b></div></div></div>
-    ${fbCard(doc)}
+    ${fbCard(doc)}${strPainCard(doc)}
     <div class="card"><h2>Against last time</h2><div class="smrows">${rows}</div><span class="small muted">Compared on your first working set. PB means your best estimated one-rep max for that lift.</span></div>
     <button class="btn orange" data-goto="home">Done</button><button class="btn ghost" data-act="sumOpen">See it in Progress</button>`;
 }
 // After a workout: three one-tap questions per muscle. They decide next week's sets for each muscle (with how it recovers).
+function strPainCard(doc){
+  if (!S.prog.strength||doc.deload) return ""; const lifts=[...new Set(doc.ex.map(e=>(S.prog.exercises[e.k]||{}).str).filter(Boolean))]; if (!lifts.length) return "";
+  const jp=doc.jp||{}, N=(window.AJOnboard&&AJOnboard.LIFT_N)||{};
+  return `<div class="card fbcard"><div class="stack" style="gap:2px"><h2>Any pain?</h2><span class="small muted">One tap per lift. Pain makes next week lighter for that lift and swaps in a kinder variation.</span></div>
+    ${lifts.map(l=>`<div class="fbq"><span>${esc(N[l]||l)}</span><div class="fbch">${["None","A little","It hurt"].map((t,v)=>`<button data-act="jp" data-l="${l}" data-v="${v}" aria-pressed="${jp[l]===v}">${t}</button>`).join("")}</div></div>`).join("")}</div>`;
+}
 function fbCard(doc){
   if (!(window.AJCoach&&AJCoach.C()) || doc.deload) return "";
   const ms=AJCoach.trained(doc.ex); if (!ms.length) return "";
@@ -3867,7 +3903,7 @@ function fbCard(doc){
 }
 function startSession(d, gym){
   if (S.active){ toast("Finish or discard the current session first"); go("train"); return; }
-  const cmsg=window.AJCoach&&AJCoach.C()?AJCoach.onStart():null;
+  const cmsg=S.prog.strength&&window.AJStrength?AJStrength.weekly():window.AJCoach&&AJCoach.C()?AJCoach.onStart():null;
   S.active=newActive(d,gym); saveActive(true); keepAwake();
   if (cmsg) setTimeout(()=>toast({title:"Your coach", detail:cmsg}),400);
   try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); }catch(err){}
@@ -4306,7 +4342,11 @@ $("#main").addEventListener("click", async e=>{
       const res=p?AJCoach.decide(m,p.sess,v):null; render();
       if (res){ const dl=(dayBy(p.sess.dayKey)||{}).label||"that day"; toast({title:`${AJCoach.name(m)}: ${res.swap?"exercise swapped":res.d>0?`+${res.d} set${res.d>1?"s":""}`:res.d<0?`${res.d} set${res.d<-1?"s":""}`:"no change"} on ${dl}`, detail:`From next week, because ${res.why}. Lifts were ${AJCoach.PERF[res.perf]}.`}); }
       return; }
+    case "strReady": AJStrength.ready(S.active,+b.dataset.v); saveActive(); render(); if (+b.dataset.v>=2) toast({title:"Loads eased a little today", detail:+b.dataset.v===3?"5% lighter and half an RPE easier.":"2.5% lighter."}); return;
+    case "strRPE": { const ei=+b.dataset.e, e=S.active.ex[ei], top=e.sets.find(x=>x.role==="top"); if (top) AJStrength.topDone(S.active,ei,+b.dataset.v); else e.sets[e.sets.length-1].q=10-(+b.dataset.v); saveActive(); render(); return; }
+    case "strSpd": { const e=S.active.ex[+b.dataset.e], t=e.sets.find(x=>x.role==="top")||e.sets[e.sets.length-1]; t.spd=+b.dataset.v; saveActive(); render(); return; }
     case "setQ": { const ex=S.active.ex[+b.dataset.e], ls=ex.sets[ex.sets.length-1]; ls.q=+b.dataset.v; saveActive(); render(); return; }
+    case "jp": { const doc=S.sessions.find(x=>x.id===S.summary); if (!doc) return; doc.jp=doc.jp||{}; doc.jp[b.dataset.l]=+b.dataset.v; upsert("sessions",doc); putDoc("sessions",doc.id,doc); render(); return; }
     case "fb": case "fbx": { const doc=S.sessions.find(x=>x.id===S.summary); if (!doc) return; doc.fb=doc.fb||{}; const m=b.dataset.m, o=doc.fb[m]=doc.fb[m]||{};
       if (act==="fbx") o.jx=b.dataset.k; else { o[b.dataset.f]=+b.dataset.v; if (b.dataset.f==="J"&&+b.dataset.v<2) delete o.jx; }
       upsert("sessions",doc); putDoc("sessions",doc.id,doc); render(); return; }
@@ -4793,5 +4833,6 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>
 <script src="/coach.js"></script>
+<script src="/strength.js"></script>
 </body>
 </html>

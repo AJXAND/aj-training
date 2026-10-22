@@ -211,6 +211,12 @@ X("abcrunchmach","Ab crunch machine","abs",{abs:1},["abcrunchm"],{rest:60,eq:"ma
 X("captainraise","Captain's chair leg raise","abs",{abs:1},["captain"],{rest:60,eq:"bw"});
 X("trxrow","Suspension row","row",{upback:1,lats:.5,biceps:.5},["trx"],{c:true,lo:8,hi:15,rest:90,eq:"bw"});
 X("trapshrug","Trap bar shrug","row",{upback:1},["trapbar"],{lo:8,hi:12,rest:90,eq:"bb"});
+// strength variations (pv): used only in strength plans, each with its usual load as a share of the competition lift
+X("pausesq","Paused squat (2 s)","squat",{quads:1,glutes:.5,adductors:.5},["bb","rack"],{c:true,len:2,lo:3,hi:5,rest:180,eq:"bb",pv:"squat",ratio:.88,inj:["knee","lowback"],note:"Pause 2 s in the hole, stay tight, drive up"});
+X("lpbench","Long-pause bench (3 s)","fpress",{chest:1,triceps:.5,fdelt:.5},["bb","rack","bench"],{c:true,lo:3,hi:5,rest:180,eq:"bb",pv:"bench",ratio:.93,inj:["shoulder"],note:"Bar still on the chest for 3 s, then press"});
+X("larsen","Larsen press","fpress",{chest:1,triceps:.5,fdelt:.5},["bb","rack","bench"],{c:true,lo:4,hi:6,rest:180,eq:"bb",pv:"bench",ratio:.92,note:"Legs straight out, no leg drive"});
+X("pausedl","Paused deadlift (below the knee)","hinge",{glutes:1,hams:.5,upback:.5},["bb"],{c:true,lo:2,hi:4,rest:180,eq:"bb",pv:"deadlift",ratio:.85,inj:["lowback"],note:"Pause 2 s just below the knee, then finish"});
+X("deficitdl","Deficit deadlift (5 cm)","hinge",{glutes:1,hams:.5,upback:.5,quads:.5},["bb","platform"],{c:true,lo:2,hi:4,rest:180,eq:"bb",pv:"deadlift",ratio:.92,inj:["lowback"],note:"Stand on a 5 cm plate or platform"});
 // home and minimal kit: so dumbbells-only or bands-and-a-bar plans still train every muscle
 X("dbbor","DB bent-over row","row",{upback:1,lats:.5,rdelt:.5,biceps:.5},["db"],{c:true,len:1,lo:8,hi:12,rest:120,eq:"db",inj:["lowback"],note:"Hinge to about 45°, brace, pull to your hips"});
 X("dbfloor","DB floor press","fpress",{chest:1,triceps:.5,fdelt:.5},["db"],{c:true,len:0,lo:8,hi:12,rest:120,eq:"db"});
@@ -403,6 +409,7 @@ function exScore(ex, ctx){
   if (ex.k === "nordicham" && ctx.ans.goal !== "athletic") s -= 6;              // Nordics are prehab, not a hypertrophy curl (Maeo 2021: seated curl grows more)
   if (ctx.ans.goal === "crossfit" && ex.q.includes("smith")) s -= 10;
   if (ex.cf && ctx.ans.goal !== "crossfit") s -= 20;
+  if (ex.pv) s -= 40;
   if (ctx.used.has(ex.k)) s -= 2.5;                     // vary exercises across the week
   if (ctx.dayUsed.has(ex.k)) s -= 100;
   return s + (ctx.seed ? (hash(ex.k + ctx.seed) % 100) / 100 : 0);
@@ -603,7 +610,116 @@ function focusOf(list){
   const s = {}; list.forEach(x => { for (const [m, f] of Object.entries(x.ex.mu)) if (f >= 1) s[m] = (s[m] || 0) + x.sets; });
   return Object.entries(s).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([m]) => MUS[m]).join(", ");
 }
+/* ---------- Strength (powerlifting and "get strong") ----------
+   Squat, bench and deadlift (plus overhead press and chin-ups for "get strong") on heavy, volume and light days, loads from a
+   tracked estimated max and effort (RPE), in blocks: accumulation, intensification, realisation, then a test or a meet peak.
+   Strength rises with frequency and flattens early with sets (Pelland 2026); RPE loading matches or beats percentages
+   (Helms 2018); undulating loading helps trained lifters (Moesgaard 2022). Block shapes and tapers are coaching practice. */
+const STR_DAYS = {
+  2:[[["squat","H"],["bench","V"],["deadlift","L",1]], [["deadlift","H"],["bench","H"],["squat","L",1]]],
+  3:[[["squat","V"],["bench","V"],["deadlift","L",1,"io"]], [["deadlift","H"],["bench","L",1],["squat","L",1]], [["squat","H"],["bench","H"]]],
+  4:[[["squat","V"],["bench","V"]], [["deadlift","H"],["bench","L",1]], [["squat","H"],["bench","H"]], [["deadlift","L",1],["bench","V"]]]
+};
+STR_DAYS[5] = STR_DAYS[4].concat([[["squat","L",1],["bench","V"]]]);
+STR_DAYS[6] = STR_DAYS[5].concat([[["bench","L",1],["deadlift","L",1]]]);
+STR_DAYS[1] = [[["squat","H"],["bench","H"],["deadlift","V"]]];
+STR_DAYS[7] = STR_DAYS[6];
+const STR_GEN = {2:[null,[["ohp","V"]]], 3:[null,[["ohp","H"]],[["chin","H"]]], 4:[null,[["ohp","V"]],null,[["ohp","H"],["chin","V"]]]};
+const STR_ACC = {1:[["row","vpull","triext"]], 2:[["row","triext"],["vpull","rear"]], 3:[["row","kneeflex","abs"],["vpull","triext"],["row","lat"]], 4:[["row","kneeflex","abs"],["vpull","triext"],["row","glute"],["vpull","curl","rear"]]};
+STR_ACC[5] = STR_ACC[4].concat([["row","triext"]]); STR_ACC[6] = STR_ACC[5].concat([["row","curl"]]); STR_ACC[7] = STR_ACC[6];
+const LIFT_KEY = {squat:["squat","ssbsq","frontsq"], bench:["bench"], deadlift:["deadlift","trapdl"], ohp:["bbohp"], chin:["chinup","pullup"]};
+const LIFT_VAR = {squat:["pausesq","frontsq","ssbsq"], bench:["lpbench","larsen","cgbench"], deadlift:["pausedl","deficitdl","rdl"], ohp:["pushpress","ohp"], chin:["pullup"]};
+const LIFT_N = {squat:"Squat", bench:"Bench", deadlift:"Deadlift", ohp:"Press", chin:"Chin-up"};
+const strMode = a => a.goal === "strength" && (!a.kind || a.kind === "gym");
+// the training year in blocks. With a meet date, planned backwards from the meet (Pyramid-style peak lengths, step taper)
+function strMacro(level, meetWeeks){
+  if (level === "new") return [{type:"lp", weeks:8}, {type:"dl", weeks:1}];
+  const adv = level === "adv", base = adv ? [{type:"acc",weeks:3},{type:"dl",weeks:1},{type:"int",weeks:3},{type:"dl",weeks:1},{type:"real",weeks:3},{type:"test",weeks:1}]
+    : [{type:"acc",weeks:4},{type:"dl",weeks:1},{type:"int",weeks:3},{type:"dl",weeks:1},{type:"real",weeks:2},{type:"test",weeks:1}];
+  if (meetWeeks == null) return base;
+  const W = meetWeeks, P = adv ? 4 : 3, out = [];
+  if (W <= 2) return [{type:"meet", weeks:Math.max(1, W)}];
+  if (W <= 4) return [{type:"peak", weeks:W - 1}, {type:"meet", weeks:1}];
+  if (W <= 7) return [{type:"int", weeks:W - 3}, {type:"peak", weeks:2}, {type:"meet", weeks:1}];
+  if (W <= 11) return [{type:"int", weeks:W - 5}, {type:"dl", weeks:1}, {type:"peak", weeks:3}, {type:"meet", weeks:1}];
+  let left = W - (P + 1) - 3;   // int 3 + peak + meet week
+  while (left >= 5){ out.push({type:"acc", weeks:4}, {type:"dl", weeks:1}); left -= 5; }
+  if (left > 0) out.unshift({type:"acc", weeks:left});
+  return out.concat([{type:"int", weeks:3}, {type:"peak", weeks:P}, {type:"meet", weeks:1}]);
+}
+function generateStrength(ans, seed){
+  const n = Math.max(1, Math.min(7, ans.days.length)), gl = (flowGyms() || gymList()), mode = ans.strMode === "pl" ? "pl" : "gen", lvl = ans.level || "inter";
+  const exercises = {}, used = new Set();
+  const placed = WD.filter(([k]) => ans.days.includes(k));
+  const kitOf = g => (ans.kit && ans.kit[g.id]) || g.kit || KIT_DEFAULT[g.id] || KIT_FULL;
+  const defOf = (e, extra) => Object.fromEntries(Object.entries(Object.assign({n:e.n, lo:e.lo, hi:e.hi, rest:Math.max(e.rest, e.c ? 180 : e.rest), eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)] || "Other", mu:e.mu, note:e.note, len:e.len}, extra || {})).filter(([, v]) => v !== undefined));
+  const mainKey = (lift, kit, v) => (v ? LIFT_VAR[lift] : LIFT_KEY[lift]).find(k => L[k] && L[k].q.every(r => kitHas(kit, r)));
+  const tpl = STR_DAYS[n].map((d, i) => d.concat(mode === "gen" && (STR_GEN[Math.min(4, n)] || [])[i] ? STR_GEN[Math.min(4, n)][i] : []).filter(x => !(x[3] === "io" && lvl === "new")));
+  const dayList = (g, i) => {
+    const kit = kitOf(g), list = [], dayUsed = new Set(), slots = [];
+    tpl[i].forEach(([lift, type, v]) => {
+      let k = mainKey(lift, kit, v && lvl !== "new"); if (!k) k = mainKey(lift, kit, false); if (!k || dayUsed.has(k)) return;
+      const e = L[k]; dayUsed.add(k);
+      exercises[k] = exercises[k] || defOf(e, {str:lift, ...(e.pv ? {ratio:e.ratio, of:lift} : {}), lo:type === "H" ? 1 : 3, hi:type === "V" ? 6 : 5});
+      list.push([k, type === "H" ? 4 : type === "V" ? 4 : 3]); slots.push({k, lift, type, v:!!e.pv});
+    });
+    (STR_ACC[n][i] || []).forEach(p => { const e = pick(p, {kit, ans:{...ans, goal:"size"}, gym:g.id, used, dayUsed, seed}); if (!e) return; used.add(e.k); dayUsed.add(e.k); exercises[e.k] = exercises[e.k] || defOf(e); list.push([e.k, lvl === "new" ? 2 : 3]); });
+    const cap = +ans.mins || 75; while (list.length > slots.length + 1 && list.reduce((a, [k, s2]) => a + exTime(L[k], s2), 4) > cap) list.pop();
+    return {list, slots};
+  };
+  const built = Object.fromEntries(gl.map(g => [g.id, tpl.map((_, i) => dayList(g, i))]));
+  const first = built[gl[0].id];
+  const lab = sl => { const h = sl.filter(x => x.type === "H").map(x => LIFT_N[x.lift]), rest = [...new Set(sl.filter(x => x.type !== "H").map(x => LIFT_N[x.lift]))].filter(x => !h.includes(x));
+    return h.length ? `Heavy ${h.join(" + ").toLowerCase()}${rest.length ? " · " + rest.join(" + ").toLowerCase() : ""}` : rest.join(" + "); };
+  const labels = first.map(d => lab(d.slots)), seen = {};
+  labels.forEach((l, i) => { seen[l] = (seen[l] || 0) + 1; if (labels.filter(x => x === l).length > 1) labels[i] = l + " " + "ABC"[seen[l] - 1]; });
+  const days = WD.map(([k, wd]) => {
+    const i = placed.findIndex(p => p[0] === k);
+    if (i < 0) return {k, wd, label:"Rest", focus:"Recovery, walk or easy cardio", rest:true, cardio:"Walk or easy cardio"};
+    const sl = first[i].slots;
+    return {k, wd, label:labels[i], focus:sl.map(x => `${LIFT_N[x.lift]} ${x.v ? "variation" : {H:"heavy",V:"volume",L:"light"}[x.type]}`).join(" · "), gym:gl.some(g => g.id === (ans.gymOf || {})[k]) ? ans.gymOf[k] : gl[0].id,
+      cardio:sl.some(x => ["squat","deadlift"].includes(x.lift) && x.type === "H") ? "Keep hard cardio away from today" : "Easy cardio is fine",
+      str:sl.map(x => ({k:x.k, lift:x.lift, type:x.type, v:x.v})), variants:Object.fromEntries(gl.map(g => [g.id, built[g.id][i].list.map(x => x.slice())]))};
+  });
+  const meetW = ans.meetOn && ans.meetDate ? Math.max(1, Math.ceil((parseD(ans.meetDate) - parseD(ans.start)) / (7 * 864e5))) : null;
+  const macro = strMacro(lvl, meetW), lifts = {};
+  // starting estimated max per lift from what you told us (recency discounts: Pyramid-style margins)
+  const RW = {1:0.97, 3:0.93, 6:0.88, 12:0.85};
+  Object.entries(ans.best || {}).forEach(([lift, b]) => { const w = +b.w, r = +b.r || 1; if (!(w > 0)) return; const ks = (LIFT_KEY[lift] || []).filter(k => exercises[k]);
+    const e = w / pctMax(Math.min(10, r + 1)) * (RW[b.when || 1] || 0.9); ks.forEach(k => lifts[k] = {eT:Math.round(e * 2) / 2, hist:[], src:"you"}); });
+  const vol = {}; first.forEach(d => d.list.forEach(([k, s2]) => { for (const [m, f] of Object.entries(L[k].mu)) vol[m] = (vol[m] || 0) + f * s2; }));
+  const totalWeeks = macro.reduce((a, b) => a + b.weeks, 0);
+  return {schema:2, name:ans.name && ans.name !== "Block 1" ? ans.name : (mode === "pl" ? "Powerlifting" : "Build strength") + (meetW ? " · meet " + fmtD(ans.meetDate) : ""), placeholder:false,
+    startDate:ans.start, deloadEvery:totalWeeks, rir:Array.from({length:totalWeeks}, () => "2"), breaks:(ans.breaks || []).slice(), kind:"gym", split:"str", splitName:`${mode === "pl" ? "Powerlifting" : "Strength"} ×${n}`,
+    setup:ans, built:Date.now(), targets:targetsFor({...ans, goal:"strength"}), under:[], vol:Object.fromEntries(gl.map(g => [g.id, vol])),
+    mins:Object.fromEntries(gl.map(g => [g.id, built[g.id].map(d => d.list.reduce((a, [k, s2]) => a + exTime(L[k], s2), 4))])), exercises, days,
+    strength:{v:1, mode, level:lvl, macro, meet:meetW ? {date:ans.meetDate, sex:ans.meetSex || "m"} : null, lifts, wk:{}, log:[]}};
+}
+// share of a one-rep max you can lift for n = reps + reps in reserve (RTS chart; better than Epley for heavy sets)
+const PCT = [[1,100],[1.5,97.8],[2,95.5],[2.5,93.9],[3,92.2],[3.5,90.7],[4,89.2],[4.5,87.8],[5,86.3],[5.5,85],[6,83.7],[6.5,82.4],[7,81.1],[7.5,79.9],[8,78.6],[8.5,77.4],[9,76.2],[9.5,75.1],[10,73.9],[10.5,72.3],[11,70.7],[11.5,69.4],[12,68],[12.5,66.7],[13,65.3],[13.5,64]];
+function pctMax(n){ n = Math.max(1, Math.min(13.5, n)); for (let i = 0; i + 1 < PCT.length; i++){ const [a, pa] = PCT[i], [b, pb] = PCT[i + 1]; if (n >= a && n <= b) return (pa + (pb - pa) * (n - a) / (b - a)) / 100; } return 0.64; }
+const PHASE_N = {lp:"Linear progression", acc:"Accumulation", int:"Intensification", real:"Realisation", test:"Test week", dl:"Deload", peak:"Peak", meet:"Meet week", easy:"Easy week"};
+const PHASE_D = {lp:"Same weight for all sets, add a little every session while you can", acc:"More volume at moderate weights (fives)", int:"Heavier, fewer reps (triples)", real:"Heavy singles with back-off sets", test:"Find your new maxes, or a heavy single day", dl:"Lighter week: same lifts, about a third of the work", peak:"Fewer sets, singles near your attempts", meet:"Short taper: openers early, then rest"};
+function strengthWhy(prog){
+  const st = prog.strength, lifts = Object.entries(st.lifts || {});
+  return `<div class="card obwhy"><h2>Why it's built this way</h2>
+    <div><b>Your maxes</b><span>${lifts.length ? lifts.map(([k, v]) => `${esc(prog.exercises[k] ? prog.exercises[k].n : k)} about ${Math.round(v.eT)} kg`).join(", ") + ". Every heavy set updates them, so loads follow how strong you are that week." : "Your first session of each lift works up to a solid set and sets your starting max from it."}</span></div>
+    <div><b>Frequency</b><span>Each lift 2-4 times a week. With the same weekly sets, more frequent practice built more strength, while extra sets beyond about 5 a week added little (Pelland 2026). ${src("frequency")}</span></div>
+    <div><b>Heavy, volume and light days</b><span>Each lift moves through a volume day, a light or variation day and a heavy day. Undulating like this helped trained lifters more than one fixed weight. ${src("load")}</span></div>
+    <div><b>Effort</b><span>Loads come from your max and a target RPE (how many reps you had left), and adjust to what you actually report. That matched or beat fixed percentages in trials. Going to failure doesn't build more strength, so main lifts stay at RPE 6-9 except on test days. ${src("rir")}</span></div>
+    <div><b>Blocks</b><span>${st.macro.map(m => PHASE_N[m.type] + " " + m.weeks + "w").join(" · ")}. ${st.meet ? "The last weeks peak and taper you for the meet, with openers set from your training." : "Then it repeats from your new maxes."} Block shapes and tapers are coaching practice; there are few trials on them. ${src("deload")}</span></div>
+    <div><b>Accessories</b><span>Upper back, hamstrings, triceps and core work after the main lifts, so the body keeps up with the bar.</span></div></div>`;
+}
+function strBlockStep(a){
+  const meetW = a.meetOn && a.meetDate ? Math.max(1, Math.ceil((parseD(a.meetDate) - parseD(a.start)) / (7 * 864e5))) : null, mac = strMacro(a.level || "inter", meetW);
+  return {title:"How the blocks run", body:`
+    <div class="obmacro">${mac.map(m => `<div class="${m.type}"><b>${PHASE_N[m.type]}</b><span>${m.weeks} week${m.weeks > 1 ? "s" : ""}</span><em>${PHASE_D[m.type] || ""}</em></div>`).join("")}</div>
+    <span class="obhint">${a.level === "new" ? "While you're new, the bar goes up almost every session. When it stops, the plan switches to blocks." : meetW ? "Worked back from your meet. Volume first, then heavier, then a peak and a short taper." : "Then it repeats from your new maxes. Undulating heavy, volume and light days within each week helps trained lifters more than one fixed weight."} ${src("load")}</span>
+    <div class="obfld"><span class="obl">Rest between sets</span>${seg2("rest", [["short","Shorter"],["std","Standard"],["long","Longer"]], a.rest)}<span class="obhint">Heavy sets get 3-5 minutes; you can change any rest during a workout.</span></div>
+    <label class="lab">Start date<input class="field" type="date" data-input="start" value="${esc(a.start)}"></label>`};
+}
 function generate(ans, seed){
+  if (strMode(ans) && (flowGyms() || gymList()).some(g => kitHas((ans.kit && ans.kit[g.id]) || g.kit || [], "bb"))) return generateStrength(ans, seed);
   const n = ans.days.length;
   const spP = ans.goal === "athletic" ? (sportProfile(ans) || SPORT_GENERIC) : null;
   if (spP){ const pre = ans.season === "in" ? "In-season strength" : "Strength & power"; T.sp1.label = pre; ["A","B","C","D"].forEach(x => T["sp" + x].label = pre + " " + x); }
@@ -1113,7 +1229,8 @@ window.AJFillRanges = fillRanges;
 /* ---------- Programme steps ---------- */
 const GTYPES = {
   muscle:["gym","size","Build muscle","Hypertrophy first: the most productive volume, sets close to failure"],
-  strength:["gym","strength","Build strength","Heavier main lifts (3-6 reps) with muscle-building accessories"],
+  strength:["gym","strength","Build strength","Squat, bench, deadlift, press and chin-ups, heavy and light days, tracked maxes"],
+  powerlifting:["gym","strength","Powerlifting","Squat, bench and deadlift, peaked for a meet or a test day"],
   power:["gym","power","Powerbuilding","One heavy lift a day, then bodybuilding work"],
   aesthetic:["gym","size","Aesthetics","Muscle where you want it: pick the look, the plan prioritises it"],
   gymcardio:["gym","size","Gym, plus some cardio","A full lifting plan with easy cardio fitted round it"],
@@ -1126,7 +1243,7 @@ const GTYPES = {
   custom:["gym","size","Something else","Describe it and AJ Training AI turns it into a plan"]
 };
 const PSTEPS = {
-  gym:["intro","goal","look","level","days","gyms","sport","split","pri","inj","lifts","block","build","review"],
+  gym:["intro","goal","look","level","strlifts","days","gyms","sport","split","pri","inj","lifts","block","build","review"],
   endurance:["intro","goal","event","racedate","current","rundays","strength","gyms","inj","build","review"],
   hybrid:["intro","goal","event","racedate","current","rundays","liftdays","gyms","pri","inj","build","review"],
   hyrox:["intro","goal","hyrox","current","days","gyms","inj","build","review"],
@@ -1142,12 +1259,12 @@ function psteps0(){
   if (a.gtype === "custom" && !a.customDone) return ["intro","goal","custom","build","review"];
   if (a.gtype === "sport") return ["intro","goal","sportpick","season","sportdays","level","days","gyms","inj","build","review"];
   return PSTEPS[a.kind].filter(x => !(x === "look" && a.gtype !== "aesthetic") && !(x === "split" && a.goal === "crossfit") && !(x === "racedate" && a.event === "general")
-    && !(x === "gyms" && ["endurance","tri"].includes(a.kind) && !(+a.strengthN > 0)) && !(x === "lifts" && a.goal === "crossfit")).concat(a.gtype === "custom" ? [] : []).filter((x, i, arr) => arr.indexOf(x) === i);
+    && !(x === "gyms" && ["endurance","tri"].includes(a.kind) && !(+a.strengthN > 0)) && !(x === "lifts" && a.goal === "crossfit") && !(x === "strlifts" && a.goal !== "strength") && !(["split","pri"].includes(x) && a.goal === "strength")).concat(a.gtype === "custom" ? [] : []).filter((x, i, arr) => arr.indexOf(x) === i);
 }
 const GFAM = [["muscle","Build muscle","More size, most productive volume"],["strength","Get stronger","Lift heavier, with or without the size work"],["aesthetic","Change how I look","Pick the look; the plan puts the work where it shows"],
   ["run","Running","First 5k to ultra, or just fitter"],["hybrid","Hybrid","Lifting and running together"],["race","Fitness race","HYROX, CrossFit-style or triathlon"]];
 function setGtype(a, g){
-  const [kind, goal] = GTYPES[g]; a.gtype = g; a.kind = kind; if (goal) a.goal = goal; a.cardioPlus = g === "gymcardio";
+  const [kind, goal] = GTYPES[g]; a.gtype = g; a.kind = kind; if (goal) a.goal = goal; a.cardioPlus = g === "gymcardio"; if (goal === "strength") a.strMode = g === "powerlifting" ? "pl" : "gen";
   if (g === "aesthetic" && !a.look) a.pri = [];
   if (kind === "hyrox"){ a.nDays = 4; } if (kind === "tri"){ a.nDays = 5; a.strengthN = 1; }
   if (kind === "endurance"){ a.strengthN = 2; } if (kind === "hybrid"){ a.strengthN = 3; a.mins = 60; }
@@ -1235,10 +1352,18 @@ function pStep(s, a){
     <div class="obfld"><span class="obl">Sport days</span>${dayToggles("sport", sel)}<span class="obhint">Gym sessions are placed around these, and these sessions count towards your calories.</span></div>
     ${sel.length ? `<div class="obfld"><span class="obl">${/Racket|Team|Combat/.test(p.group || "") ? "Main match day" : /Athletics/.test(p.group || "") ? "Main competition day" : "Your most important session"}</span>${seg2("matchDay", [["none","None"], ...WD.filter(([k]) => sel.includes(k)).map(([k,, sh]) => [k, sh])], a.matchDay || "none")}
       <span class="obhint">${p.avoidBefore ? "No hard gym work that day or the day before, so you play fresh." : "No gym session on match day."}</span></div>` : ""}`, cta:sel.length ? "Continue" : "Skip"}; }
+  case "strlifts": { const ls = a.strMode === "pl" ? ["squat","bench","deadlift"] : ["squat","bench","deadlift","ohp"], b = a.best || {};
+    const row = l => { const v = b[l] || {}; return `<div class="obbest"><b>${LIFT_N[l]}</b><div class="obunitrow"><input class="field" inputmode="decimal" placeholder="kg" data-input="best.${l}.w" value="${esc(v.w || "")}"><span>×</span><input class="field" inputmode="numeric" placeholder="reps" data-input="best.${l}.r" value="${esc(v.r || "")}"></div>
+      ${seg2("best." + l + ".when", [["1","This month"],["3","1-3 months"],["6","3-6 months"],["12","Older"]], String(v.when || "1"))}</div>`; };
+    return {title:"Your best recent lifts", body:`<p class="obnote" style="margin-top:0">Optional, but it means week 1 is the right weight. Any recent set works, like 100 × 5: the app works out your max and starts you a little under it. Leave one blank and your first session finds it.</p>
+      ${ls.map(row).join("")}
+      <div class="obfld"><span class="obl">Got a meet or test day?</span>${seg2("meetOn", [["","No"],["1","Yes"]], a.meetOn ? "1" : "")}
+      ${a.meetOn ? `<label class="lab">Date<input class="field" type="date" data-input="meetDate" value="${esc(a.meetDate || "")}"></label>${seg2("meetSex", [["m","Men's"],["f","Women's"]], a.meetSex || "m")}<span class="obhint">The plan works back from the day: blocks, a peak and a taper, plus your attempts. Category only sets safe attempt jumps.</span>` : `<span class="obhint">Without one, every 12 weeks ends with an optional test day.</span>`}</div>`, cta:"Continue"}; }
   case "strengthType": return {title:"What kind of strong?", body:`<div class="obopts">
-    ${opt("gtype","strength","Strength","Heavy main lifts (squat, bench, deadlift, overhead press) at 3-6 reps, plus enough accessory work to stay balanced.",a.gtype)}
+    ${opt("gtype","powerlifting","Powerlifting","Squat, bench and deadlift. Heavy, volume and light days, loads from your tracked max, blocks that peak for a meet or a test day.",a.gtype)}
+    ${opt("gtype","strength","Get strong","The same system, plus overhead press and chin-ups. For being strong rather than competing.",a.gtype)}
     ${opt("gtype","power","Powerbuilding","Strength and size together: squat twice, bench two or three times and deadlift once a week at 1-6 reps, then bodybuilding work at 6-15 reps.",a.gtype)}</div>
-    <p class="obnote">Strength gains level off at around 4-5 hard sets per lift per week; size keeps rising with more sets. Powerbuilding has no formal definition in the research, so this follows common coaching practice built on that evidence. ${src("load")}</p>`};
+    <p class="obnote">Strength gains level off at around 5 hard sets per lift per week but keep rising with how often you practise a lift, so the plan trains each lift 2-4 times a week; size keeps rising with more sets. Powerbuilding has no formal definition in the research, so this follows common coaching practice built on that evidence. ${src("load")}</p>`};
   case "raceType": return {title:"Which race or style?", body:`<div class="obopts">
     ${opt("gtype","hyrox","HYROX","8 × 1 km runs, each followed by a workout station. Running-led plan with station strength.",a.gtype)}
     ${opt("gtype","crossfit","CrossFit-style","Strength plus short, hard conditioning pieces several days a week.",a.gtype)}
@@ -1317,7 +1442,8 @@ function pStep(s, a){
       <div class="chips obmf">${["", ...PRIORITY_CHOICES].map(m => `<button class="chip" data-lm="${m}" aria-pressed="${mf === m}">${m ? MUS[m] : "All"}</button>`).join("")}</div>
       <div class="oblifts" id="oblifts">${liftRows(list, a, kit)}</div>
       <p class="obnote">Lifts marked <em class="tagin">stretch</em> load the muscle hardest when it's lengthened; they're favoured because they tend to grow muscle as well or better. ${src("lengthened")}</p>`, cta:a.love.length || a.ban.length ? "Continue" : "Skip"}; }
-  case "block": { const recB = coachMode(a) ? coachA(a) + 1 : 6; if (!a.blockSet) a.block = recB; const rp = coachMode(a) ? weekRIR(+a.block - 1, a.level, a.phase) : rirPlan(+a.block, a.level, a.ramp);
+  case "block": if (strMode(a)) return strBlockStep(a);
+  { const recB = coachMode(a) ? coachA(a) + 1 : 6; if (!a.blockSet) a.block = recB; const rp = coachMode(a) ? weekRIR(+a.block - 1, a.level, a.phase) : rirPlan(+a.block, a.level, a.ramp);
     return {title:"Block, effort and rest", body:`
     <div class="obfld"><span class="obl">Block length</span>${numSeg("block", 4, 8, a.block, recB)}<span class="obhint">${a.block} weeks: ${a.block - 1} training weeks, then a lighter deload week.${coachMode(a) ? ` ★ ${recB} suits your experience${a.phase === "cut" ? " and a cut" : ""}. The app can also call a deload early if your recovery tells it to.` : " Planned deloads every 4-8 weeks are standard practice."} ${src("deload")}</span></div>
     <div class="obfld"><span class="obl">How hard each week</span>
@@ -1451,7 +1577,7 @@ function review(a){
       return `<details class="card obdayc"><summary><div class="stack" style="gap:2px"><b>${WD.find(x => x[0] === d.k)[2]} · ${esc(d.label)}</b><span class="small muted">${esc(d.focus)}</span></div><span class="small muted num">${list.reduce((s2, x) => s2 + x[1], 0)} sets · ~${Math.round(mins)} min</span></summary>
         <div class="oblist">${list.map(([k, n, ss]) => { const e = prog.exercises[k]; return `<div><span><b>${ss ? `<i class="obss">${ss}</i>` : ""}${esc(e.n)}</b><em>${esc(e.m)}${e.len === 2 ? " · stretch" : ""}</em></span><span class="num">${n} × ${e.lo}–${e.hi}<em>${e.rest >= 60 ? Math.round(e.rest / 60 * 10) / 10 + " min" : e.rest + " s"} rest</em></span></div>`; }).join("")}</div>
         <p class="small muted">${esc(d.cardio)}.</p></details>`; }).join("")}
-    ${su.goal === "athletic" ? sportWhy(prog, su) : `<div class="card obwhy"><h2>Why it's built this way</h2>
+    ${prog.strength ? strengthWhy(prog) : su.goal === "athletic" ? sportWhy(prog, su) : `<div class="card obwhy"><h2>Why it's built this way</h2>
       <div><b>Volume</b><span>${su.level === "new" ? "Fewer sets while you're new: you grow from less." : `About 10-14 hard sets a week for each muscle, ~${PRIORITY_SETS} for priorities. Presses and rows count towards the muscles they help, so shoulders and arms need less direct work.`} More sets keep adding muscle, but each extra set adds less. ${src("volume")}</span></div>
       <div><b>Frequency</b><span>Most muscles twice a week, so no session gets bloated. ${src("frequency")}</span></div>
       <div><b>Effort</b><span>RIR ${prog.rir.filter(r => r !== "DL").join(" → ")}, then deload. Trained lifters grow as much stopping 1-2 reps short as at failure; growth improves closer to failure. Heavy barbell lifts always stop 2-3 reps short: going to failure there adds risk, not strength. ${src("rir")}</span></div>
@@ -1919,7 +2045,7 @@ function bind(o){
   o.addEventListener("input", e => {
     const t = e.target;
     if (t.dataset.range){ setPath(F.ans, t.dataset.range, +t.value); if (t.dataset.range.startsWith("activity.")) S.profile.activity = clone(F.ans.activity); saveDraft(); liveRange(t); }
-    if (t.dataset.input){ F.ans[t.dataset.input] = t.value; saveDraft(); }
+    if (t.dataset.input){ setPath(F.ans, t.dataset.input, t.value); saveDraft(); }
     if (t.dataset.spq){ F.spq = t.value; const box = document.getElementById("obspq"); if (box) box.innerHTML = sportRowsPick(t.value.toLowerCase()); return; }
     if (t.dataset.sq){ F.sq = t.value; const box = document.getElementById("obsq"); if (box) box.innerHTML = sportRows(t.value.toLowerCase(), F.ans.sports || []); return; }
     if (t.dataset.lq){ F.lq = t.value; const box = document.getElementById("oblifts"); const q = t.value.toLowerCase(), mf = F.lm || ""; if (box) box.innerHTML = liftRows(Object.values(L).filter(e => !["cond","sled","carry","erg"].includes(e.p) && (!q || e.n.toLowerCase().includes(q)) && (!mf || e.mu[mf] >= 1)), F.ans, {has:r => kitHas(F.ans.gyms.flatMap(g => g.kit), r)}); return; }
@@ -1983,7 +2109,7 @@ function liveRange(t){
   fillRanges(body); if (t.type === "range") t.style.setProperty("--p", pctOf(t) + "%");
 }
 window.AJOnboard = {
-  coachTables:{VOL, MAINT, SESS_CAP, weekRIR, coachA, sizeVolume},
+  coachTables:{VOL, MAINT, SESS_CAP, weekRIR, coachA, sizeVolume}, pctOf:pctMax, strMacro, LIFT_N,
   welcome(fresh){
     const d = !fresh && loadDraft("welcome");
     F = {kind:"welcome", step:d ? d.step : "hello", ans:d ? Object.assign(welcomeDefaults(), d.ans) : welcomeDefaults(), dir:"fwd"};
