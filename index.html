@@ -418,14 +418,16 @@ h1{margin-top:2px}
 .mealcard .fbody{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .actions .qhero{display:grid;grid-template-columns:48px minmax(0,1fr) 24px;gap:14px;align-items:center;width:100%;border:0;background:var(--sunk);border-radius:20px;padding:14px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;margin-bottom:6px}
 .qhero .ai,.qt .ai{display:grid;place-items:center;color:#fff}.qhero .ai{width:48px;height:48px;border-radius:15px}.qhero .ai svg,.qt .ai svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.qt .ai[style*="gradient"] svg,.qhero .ai[style*="gradient"] svg{fill:currentColor;stroke:none}
+.qt .ai.spark{background:linear-gradient(140deg,#FF9A3D,#FF6B1A 55%,#C2410C);color:#fff}.qt .ai.spark svg{fill:currentColor;stroke:none}
 .qht{display:grid;gap:2px;min-width:0}.qht b{font:800 18px var(--display)}.qht em{font-style:normal;font-size:13px;color:var(--muted);font-weight:600}.qhero .chev{transform:rotate(180deg);color:var(--muted);display:grid;place-items:center}.qhero .chev svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .qsec{display:grid;gap:10px;margin-top:8px}.qsec h4{margin:0;font:700 13px var(--body);color:var(--muted);letter-spacing:.02em}
 .qgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .qt{display:grid;justify-items:center;align-content:start;gap:8px;border:0;background:var(--sunk);border-radius:18px;padding:14px 4px 12px;color:var(--ink);font:inherit;cursor:pointer;min-width:0}
-.qt .ai{width:44px;height:44px;border-radius:14px}.qt b{font:700 12px var(--body);text-align:center;line-height:1.2}
+.qt .ai{width:44px;height:44px;border-radius:14px;background:var(--orange-soft);color:var(--orange)}.qt b{font:700 12px var(--body);text-align:center;line-height:1.2}
 .qt:active,.qhero:active{transform:scale(.96)}
 .actions:not([hidden]) .qt,.actions:not([hidden]) .qhero{animation:pgUp .4s var(--ease) both;animation-delay:calc(var(--i,0) * 25ms + 40ms)}
+.actions.swiped,.actions.swiped.out,.sheet.swiped,.sheet.swiped.out{animation:none!important}
+.wkt{font:800 21px var(--display)}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2855,6 +2857,13 @@ function foodSheetSpecial(a){
     return `<h2>Save as a meal</h2><label class="lab">Name<input class="field" id="smName" value="${esc(a.name||"")}" placeholder="e.g. Usual breakfast"></label>
       <div class="smlist">${es.map(e=>`<div><span>${esc(e.name)}${e.amount?` <em class="muted">${esc(amtText(e.amount,e.unit))}</em>`:""}</span><span class="num">${fmtN(e.kcal)}</span></div>`).join("")}<div class="tot"><b>Total</b><b class="num">${fmtN(s.kcal)} kcal · ${Math.round(s.p)}P ${Math.round(s.c)}C ${Math.round(s.f)}F</b></div></div>
       <button class="btn orange" data-fs="saveGo">Save meal</button><span class="small muted center">It shows at the top of Search, ready to add in one tap.</span><button class="btn ghost" data-fs="close">Cancel</button>`; }
+  if (a.weigh){ const w=a.weigh, last=[...S.weights].filter(x=>x.d!==w.d).sort((x,y)=>x.d<y.d?1:-1)[0], a7=avgWindow(ymd(new Date()),7), td=ymd(new Date()), yd=ymd(new Date(Date.now()-864e5));
+    return `<div class="ed"><div class="edhd"><div class="edt"><b class="wkt">Weigh in</b><span class="small muted">First thing, after the toilet, before food or drink</span></div></div>
+      <div class="edamt"><button data-fs="wStep" data-d="-1" aria-label="Less">−</button><label><input id="wKg" inputmode="decimal" value="${w.kg.toFixed(1)}" aria-label="Weight in kg"><em>kg</em></label><button data-fs="wStep" data-d="1" aria-label="More">+</button></div>
+      <div class="edmult" style="grid-template-columns:repeat(2,1fr)"><button data-fs="wDay" data-d="${td}" aria-pressed="${w.d===td}">Today</button><button data-fs="wDay" data-d="${yd}" aria-pressed="${w.d===yd}">Yesterday</button></div>
+      ${last||a7?`<span class="small muted center">${last?`Last: ${last.kg.toFixed(1)} kg, ${fmtD(last.d)}`:""}${last&&a7?" · ":""}${a7?`7-day average ${a7.toFixed(1)} kg`:""}</span>`:""}
+      <button class="btn orange" data-fs="wSave">Save</button>
+      <span class="small muted center">Your targets use the 7-day average, so one high or low reading barely moves them.</span></div>`; }
   if (a.makeMeal){ const es=selEntries(a.makeMeal.src,a.makeMeal.ids), s=sumOf(es);
     return `<h2>Make a meal</h2><span class="small muted">These ${es.length} foods become one row in your log, and you can add them again in one tap.</span><label class="lab">Name<input class="field" id="smName" value="${esc(a.name||"")}" placeholder="e.g. Chicken stir-fry"></label>
       <div class="smlist">${es.map(e=>`<div><span>${esc(e.name)}${e.amount?` <em class="muted">${esc(amtText(e.amount,e.unit))}</em>`:""}</span><span class="num">${fmtN(e.kcal)}</span></div>`).join("")}<div class="tot"><b>Total</b><b class="num">${fmtN(s.kcal)} kcal · ${Math.round(s.p)}P ${Math.round(s.c)}C ${Math.round(s.f)}F</b></div></div>
@@ -3608,9 +3617,9 @@ function openActions(){
   let hero="";
   if (lift){ const ex=t&&!t.rest?(t.variants&&(t.variants[dayGym(t)]||[]).length)||0:0, nx=!t||t.rest?(()=>{ for (let i=1;i<8;i++){ const d=new Date(); d.setDate(d.getDate()+i); const x=dayForDate(d); if (x&&!x.rest) return [x,d]; } return null; })():null;
     hero=`<button class="qhero" data-sheet="startToday"><span class="ai" style="background:var(--orange)">${ICON.lift}</span><span class="qht"><b>${S.prog.placeholder?"Build your plan":t&&!t.rest?"Start "+esc(t.label):"Rest day"}</b><em>${S.prog.placeholder?"Takes about two minutes":t&&!t.rest?`${ex} exercises · ~${Math.round(ex*7.5)} min`:nx?`Next: ${esc(nx[0].label)}, ${nx[1].toLocaleDateString("en-GB",{weekday:"long"})}`:"See your plan"}</em></span><i class="chev">${ICON.back}</i></button>`; }
-  const tile=(k,c,ic,l)=>`<button class="qt" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><b>${l}</b></button>`;
-  const foodT=food?[tile("barcode","#14A38B",ICON.barcode,"Scan"),tile("search","var(--prot)",ICON.search,"Search"),tile("aifood","linear-gradient(140deg,#FF9A3D,#C2410C)",ICON.spark,"AI"),tile("meals","var(--orange)",ICON.bowl,"My meals")]:[];
-  const bodyT=[tile("track","var(--orange)",ICON.cardio,"Track a run"),tile("cardio","var(--cardio)",ICON.lift,"Log a sport"),food?tile("weigh","var(--weight)",ICON.scale,"Weigh in"):"",tile("photo","var(--fat)",ICON.camera,"Photos"),on("habits")?tile("habits","var(--carb)",ICON.steps,"Habits"):""].filter(Boolean);
+  const tile=(k,c,ic,l)=>`<button class="qt" data-sheet="${k}"><span class="ai ${c}">${ic}</span><b>${l}</b></button>`;
+  const foodT=food?[tile("barcode","",ICON.barcode,"Scan"),tile("search","",ICON.search,"Search"),tile("aifood","spark",ICON.spark,"AI"),tile("meals","",ICON.bowl,"My meals")]:[];
+  const bodyT=[tile("track","",ICON.cardio,"Track a run"),tile("cardio","",ICON.lift,"Log a sport"),tile("weigh","",ICON.scale,"Weigh in"),tile("photo","",ICON.camera,"Photos"),on("habits")?tile("habits","",ICON.steps,"Habits"):""].filter(Boolean);
   $("#actionsIn").innerHTML=`<div class="grab"></div>${hero}
     ${foodT.length?`<div class="qsec"><h4>Log food</h4><div class="qgrid">${foodT.join("")}</div></div>`:""}
     <div class="qsec"><h4>Activity and body</h4><div class="qgrid" style="grid-template-columns:repeat(${bodyT.length},minmax(0,1fr))">${bodyT.join("")}</div></div>`;
@@ -3626,7 +3635,7 @@ $("#plusBtn").onclick=()=>{ S.active ? go("train") : openActions(); };
     if (el.scrollTop>0&&!e.target.closest(".grab")) return; sh=el; y0=e.touches[0].clientY; t0=Date.now(); dy=0; sh.style.transition="none"; },{passive:true});
   document.addEventListener("touchmove",e=>{ if (!sh) return; dy=Math.max(0,e.touches[0].clientY-y0); if (dy>4) sh.style.transform=`translateY(${dy}px)`; },{passive:true});
   document.addEventListener("touchend",()=>{ if (!sh) return; const el=sh, fast=dy>40&&dy/(Date.now()-t0)>0.5; sh=null; el.style.transition="transform .22s ease";
-    if (dy>110||fast){ el.style.transform="translateY(100%)"; setTimeout(()=>{ el.style.transition=""; el.style.transform=""; if (el.id==="chat") $("#chatClose").click(); else $("#scrim").onclick(); },200); } else { el.style.transform=""; setTimeout(()=>el.style.transition="",230); } });
+    if (dy>110||fast){ el.style.transform="translateY(100%)"; setTimeout(()=>{ el.classList.add("swiped"); if (el.id==="chat") $("#chatClose").click(); else $("#scrim").onclick(); setTimeout(()=>{ el.style.transition=""; el.style.transform=""; el.classList.remove("swiped"); },320); },200); } else { el.style.transform=""; setTimeout(()=>el.style.transition="",230); } });
 })();
 $("#scrim").onclick=()=>{ if (S.swap){ S.swap=null; renderSwap(); } if (S.hDraft!==undefined){ S.hDraft=undefined; renderHabitSheet(); } closeActions(); if (S.foodAdd){ S.foodAdd=null; renderFoodSheet(); } };
 $("#actionsIn").addEventListener("click",e=>{
@@ -3638,6 +3647,7 @@ $("#actionsIn").addEventListener("click",e=>{
   if (k==="barcode"||k==="label"){ closeActions(); go("food"); setTimeout(()=>window.openScanner?openScanner(k):$(k==="label"?"#labelCam":"#barcodeCam").click(),60); return; }
   if (k==="cardio"){ S.cardioForm={type:null, level:"", mins:"", km:"", date:null}; S.cSearch=""; go("cardio"); return; }
   if (k==="track"){ closeActions(); S.trkPick=true; go("trackpick"); return; }
+  if (k==="weigh") return openWeigh();
   if (k==="weigh"||k==="photo"){ go("progress","body"); setTimeout(()=>{ const el=document.getElementById(k==="weigh"?"weighin":"photocard"); el&&el.scrollIntoView({block:"start"}); },60); return; }
   go(k);
 });
@@ -3702,6 +3712,7 @@ function moveEntries(date, ids, meal){
   normGroups(doc); saveFoodDay(date); return undo;
 }
 function entryTime(date){ return date===ymd(new Date()) ? Date.now() : parseD(date).getTime(); }
+function openWeigh(){ const td=ymd(new Date()), ex=S.weights.find(x=>x.d===td), last=[...S.weights].sort((x,y)=>x.d<y.d?1:-1)[0]; closeActions(); S.foodAdd={weigh:{d:td, kg:ex?ex.kg:last?last.kg:75}}; renderFoodSheet(); setTimeout(()=>{ const i=$("#wKg"); i&&i.select(); },350); }
 function openFood(food, extra){ extra=extra||{}; edOpen(food,"new",{...extra, numOpen:!(+food.per100.kcal)||extra.src==="label"}); }
 function foodSheetSave(mode){
   const a=S.foodAdd, date=foodDate(); if(!a) return;
@@ -3761,6 +3772,11 @@ $("#foodSheet").addEventListener("click",e=>{
     const items=selEntries(a.saveMeal.src,a.saveMeal.ids).map(e=>({name:e.name, foodId:e.foodId, amount:e.amount, unit:e.unit, grams:e.grams, kcal:e.kcal, p:e.p, f:e.f, c:e.c, src:e.src}));
     S.profile={...S.profile, savedMeals:[{id:uid("meal"), name:name.slice(0,60), items, created:Date.now()}, ...savedMeals()]}; saveProfile();
     S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); toast(`Saved "${name}". Find it at the top of Search`); }
+  if (k==="wStep"){ const i=$("#wKg"), v=parseFloat(String(i.value).replace(",","."))||a.weigh.kg; a.weigh.kg=Math.max(30,Math.round((v+0.1*(+b.dataset.d))*10)/10); i.value=a.weigh.kg.toFixed(1); return; }
+  if (k==="wDay"){ a.weigh.kg=parseFloat(String($("#wKg").value).replace(",","."))||a.weigh.kg; a.weigh.d=b.dataset.d; const ex=S.weights.find(x=>x.d===a.weigh.d); if (ex) a.weigh.kg=ex.kg; renderFoodSheet(); return; }
+  if (k==="wSave"){ const v=parseFloat(String($("#wKg").value).replace(",",".")); if (!(v>30&&v<250)){ toast("Enter a weight in kg"); return; } const d=a.weigh.d, prev=S.weights.find(x=>x.d===d);
+    logWeight(v,d); S.foodAdd=null; renderFoodSheet(); render(); const a7=avgWindow(ymd(new Date()),7);
+    toast({title:`Weigh-in saved: ${v.toFixed(1)} kg`, detail:a7?`7-day average ${a7.toFixed(1)} kg`:""}, ()=>{ S.all.weights=S.all.weights.filter(x=>x.d!==d); if (prev) S.all.weights.push(prev); saveWeights(); render(); }); return; }
   if (k==="keep"){ a.keep=!a.keep; const v=$("#smName").value; renderFoodSheet(); $("#smName").value=v; }
   if (k==="makeGo"||k==="renameGo"){ const name=($("#smName").value||"").trim(); if (!name){ toast("Give the meal a name"); $("#smName").focus(); return; }
     const doc=S.all.foodlog[date]; if (!doc) return;
@@ -4127,7 +4143,8 @@ $("#main").addEventListener("click", async e=>{
       if (!(v>30&&v<250)){ toast("Enter a weight in kg"); return; }
       logWeight(v,d); S.reweigh=false; render(); toast("Weigh-in saved"); return; }
     case "reweigh": S.reweigh=true; render(); setTimeout(()=>{ const x=$("#kg"); x&&x.focus(); },50); return;
-    case "goWeigh": go("progress","body"); setTimeout(()=>{ const el=document.getElementById("weighin"); el&&el.scrollIntoView({block:"center"}); const x=$("#kg"); x&&x.focus(); },80); return;
+    case "goWeigh": return openWeigh();
+    case "goWeighOld": go("progress","body"); setTimeout(()=>{ const el=document.getElementById("weighin"); el&&el.scrollIntoView({block:"center"}); const x=$("#kg"); x&&x.focus(); },80); return;
     case "kgdel": S.all.weights=S.all.weights.filter(x=>x.d!==b.dataset.d); saveWeights(); render(); return;
     case "setPage": S.setPage=b.dataset.p||null; render(); window.scrollTo(0,0); pageAnim(b.dataset.p?"r":"l"); return;
     case "honestTog": S.profile={...S.profile, honestyNote:S.profile.honestyNote===false}; saveProfile(); render(); return;
