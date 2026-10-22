@@ -73,9 +73,9 @@ const LIB = [
    f:"With weekly volume equated, frequency made almost no difference to growth.", a:"Frequency is used to spread sets out so no session gets too long, not as a growth lever by itself."}]},
  {id:"rir", title:"Effort and failure", items:[
   {kind:"meta", t:"Exploring the dose-response relationship between estimated proximity to failure and strength and hypertrophy", c:"Robinson, Pelland, Remmert, Refalo, Jukic, Steele & Zourdos. Sports Medicine, 2024", u:"https://doi.org/10.1007/s40279-024-02069-2",
-   f:"Growth increases as sets finish closer to failure; strength gains are similar across a wide range of reps in reserve.", a:"Hard weeks run from ~3 RIR down to 0-1 RIR. The target RIR shows on every exercise."},
+   f:"Growth increases as sets finish closer to failure; strength gains are similar across a wide range of reps in reserve.", a:"You choose how hard: every set to failure (with fewer sets), the last set to failure, or a rep or two short. The target shows on every exercise in plain words."},
   {kind:"meta", t:"Influence of resistance training proximity-to-failure on skeletal muscle hypertrophy", c:"Refalo, Helms, Trexler, Hamilton & Fyfe. Sports Medicine, 2023", u:"https://doi.org/10.1007/s40279-022-01784-y",
-   f:"Training to outright failure gave at most a trivial extra benefit over stopping just short.", a:"True failure is kept for the last set of isolation lifts late in a block. Barbell rows and RDLs are flagged 'technical failure only'."}]},
+   f:"Training to outright failure gave at most a trivial extra benefit over stopping just short.", a:"Barbell squats, hinges and rows stop at technical failure, the last clean rep, whichever effort you choose."}]},
  {id:"load", title:"Reps and load", items:[
   {kind:"meta", t:"Strength and hypertrophy adaptations between low- vs high-load resistance training", c:"Schoenfeld, Grgic, Ogborn & Krieger. Journal of Strength and Conditioning Research, 2017", u:"https://doi.org/10.1519/JSC.0000000000002200",
    f:"With sets taken to failure, heavy and light loads built similar muscle; heavy loads built more strength.", a:"Rep ranges sit in the productive 6-15 zone; the Size + strength goal makes the first barbell lift each day 4-6 reps.", check:"Percentages from a secondary summary"},
@@ -88,7 +88,7 @@ const LIB = [
    f:"A small benefit for resting more than 60 s; little extra beyond ~90 s for smaller exercises.", a:"Isolation lifts get 75-90 s, never under 60 s."}]},
  {id:"lengthened", title:"Exercise choice: training long", items:[
   {kind:"rct", t:"Greater hamstrings hypertrophy after training at long vs short muscle lengths", c:"Maeo et al. Medicine & Science in Sports & Exercise, 2021", u:"https://doi.org/10.1249/MSS.0000000000002523",
-   f:"Seated leg curls (hamstrings stretched) grew the hamstrings 14.1% vs 9.3% for lying curls.", a:"Seated leg curl is preferred when a gym has one; SHWC doesn't, so lying curl is used there."},
+   f:"Seated leg curls (hamstrings stretched) grew the hamstrings 14.1% vs 9.3% for lying curls.", a:"Seated leg curl is picked first when your gym has one, then lying curl."},
   {kind:"rct", t:"Triceps brachii hypertrophy is substantially greater after elbow extension training performed in the overhead vs neutral arm position", c:"Maeo et al. European Journal of Sport Science, 2023", u:"https://pubmed.ncbi.nlm.nih.gov/35819335/",
    f:"Overhead extensions grew the whole triceps 19.9% vs 13.9% for pushdowns (long head 28.5% vs 19.6%).", a:"Every week includes overhead triceps work alongside pushdowns.", check:"DOI not confirmed; PubMed record linked"},
   {kind:"rct", t:"Partial range of motion training elicits favorable improvements in muscular adaptations when carried out at long muscle lengths", c:"Pedrosa, Lima, Schoenfeld et al. European Journal of Sport Science, 2022", u:"https://doi.org/10.1080/17461391.2021.1927199",
@@ -105,7 +105,7 @@ const LIB = [
    f:"Adding reps at a fixed weight built as much muscle as adding weight.", a:"'What to lift next' uses double progression: beat last time by a rep, then add load once you hit the top of the range. On a cut, matching last time counts as a win."}]},
  {id:"deload", title:"Deloads", items:[
   {kind:"review", t:"Integrating deloading into strength and physique sports training programmes: an international Delphi consensus", c:"Bell, Strafford, Coleman, Androulakis Korakakis & Nolan. Sports Medicine - Open, 2023", u:"https://doi.org/10.1186/s40798-023-00633-0",
-   f:"Experts agree a deload cuts volume and effort while weight on the bar can stay; they set no fixed schedule.", a:"Deload week: half the sets at ~3 RIR, same weights."},
+   f:"Experts agree a deload cuts volume and effort while weight on the bar can stay; they set no fixed schedule.", a:"Deload week: half the sets, a little lighter, well short of failure, and no finishers."},
   {kind:"review", t:"Practical deload recommendations (follow-up to the Delphi consensus)", c:"Bell et al. Strength and Conditioning Journal, 2025", check:"Title paraphrased; DOI linked", u:"https://doi.org/10.1519/SSC.0000000000000910",
    f:"Suggests planned deloads roughly every 4-8 weeks, plus early deloads when performance drops.", a:"Blocks are 5 or 6 weeks with the last as a deload. The app also flags an early deload when first sets fall two sessions running."}]},
  {id:"interference", title:"Cardio and lifting", items:[
@@ -144,6 +144,9 @@ const LIB = [
    f:"Resting energy = 370 + 21.6 × lean body mass (kg). Uses body fat, so it suits lean, muscular people better than weight-only formulas.", a:"Starting expenditure = Katch-McArdle resting burn + daily life (job), steps, cycling, training and logged cardio, plus ~10% for digesting food. Your own food and weight data then takes over."},
   {kind:"review", t:"2024 Adult Compendium of Physical Activities", c:"Herrmann et al. Journal of Sport and Health Science, 2024", u:"https://doi.org/10.1016/j.jshs.2023.10.010",
    f:"Standard energy costs (METs) for hundreds of activities, from tennis singles to walking speed.", a:"Cardio calories use the Compendium MET for the exact activity and intensity, scaled by your weight; resting burn is subtracted so calories aren't double counted."}]},
+ {id:"techniques", title:"Finishers: drop sets and more", items:[
+  {kind:"meta", t:"Effects of Drop Sets on Skeletal Muscle Hypertrophy: A Systematic Review and Meta-analysis", c:"Sødal, Kristiansen, Larsen & van den Tillaar. Sports Medicine - Open, 2023", u:"https://doi.org/10.1186/s40798-023-00620-5",
+   f:"Drop sets and normal sets grew muscle by about the same amount, and some drop-set sessions took a half to a third of the time.", a:"Finishers go on the last set only, mostly on machines, cables and isolation lifts, one to three a session, and never in a deload. They let a set go past failure; they don't replace sets."}]},
  {id:"superset", title:"Supersets", items:[
   {kind:"rct", t:"The effects of traditional, superset, and tri-set resistance training structures on perceived intensity and physiological responses", c:"Weakley, Till, Read, ... Jones. European Journal of Applied Physiology, 2017", u:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5556132/",
    f:"Supersets and tri-sets got the same work done in much less time than traditional sets, with higher perceived effort and a bigger heart-rate and lactate response.", a:"With supersets on, isolation lifts for different muscles are paired and share rest, so more sets fit into your session. Compounds keep full rest."}]},
@@ -160,27 +163,86 @@ const LIB = [
    f:"Yes, in trained lifters with progressive training, high protein and good sleep, though slowly.", a:"Recomp holds calories at maintenance with protein at 2.0-2.4 g/kg; progress is judged on lifts and photos, not the scale."}]}
 ];
 const KIND = {meta:["Meta-analysis","meta"], rct:["Trial",""], review:["Review",""], prac:["Practitioner","prac"], text:["Textbook",""]};
+const G = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const IC = {
+  stack:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 8h14M5 13h14M5 18h14"/>', cal:'<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16M9 15h2M13 15h2"/>',
+  flame:'<path d="M12 12c2-3 0-7-1-8 0 3-1.8 4.7-3 6-1.2 1.3-2 3.2-2 5a6 6 0 1 0 12 0c0-1.5-1-3.9-2-5-1.8 3-2.8 3-4 2z"/>', bar:'<path d="M2 12h20"/><rect x="4" y="6" width="3" height="12" rx="1"/><rect x="17" y="6" width="3" height="12" rx="1"/>',
+  watch:'<path d="M5 13a7 7 0 1 0 14 0 7 7 0 0 0-14 0z"/><path d="M14.5 10.5 12 13M17 8l1-1M14 3h-4"/>', stretch:'<circle cx="16" cy="5" r="1"/><path d="M5 20l5-.5 1-2M18 20v-5h-5.5l2.5-6.5-5.5 1 1.5 2"/>',
+  order:'<path d="M11 6h9M11 12h9M11 18h9M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>', up:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>', battery:'<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 11v2"/>',
+  link:'<path d="M9 15l6-6M11 6l.5-.5a5 5 0 0 1 7 7L18 13M13 18l-.5.5a5 5 0 0 1-7-7L6 11"/>', bolt:'<path d="M13 3v7h6l-8 11v-7H5l8-11"/>', hybrid:'<circle cx="9" cy="4" r="1"/><path d="M2 16l4 1 .6-1.2M10 21v-4l-3-2.5.8-5M4.5 11V9l4-1 2.5 2.5"/><rect x="14" y="12" width="2.5" height="7" rx=".8"/><rect x="20" y="12" width="2.5" height="7" rx=".8"/><path d="M16.5 15.5h3.5"/>',
+  run:'<circle cx="13" cy="4" r="1"/><path d="M4 17l5 1 .75-1.5M15 21v-4l-4-3 1-6M7 12V9l5-1 3 3 3 1"/>', route:'<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12"/>', down:'<path d="M3 7l6 6 4-4 8 8"/><path d="M14 17h7v-7"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/>', cup:'<path d="M5 11h14v3a7 7 0 0 1-14 0zM9 3v4M12 3v4M15 3v4"/>', check:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
+  walk:'<circle cx="13" cy="4" r="1"/><path d="M7 21l3-4M16 21l-2-4-3-3 1-6M6 12l2-3 4-1 3 3 3 1"/>', fire:'<path d="M12 21a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-3 2-5 5-5 8a7 7 0 0 0 7 7z"/>', egg:'<path d="M12 3c4 0 7 7 7 11a7 7 0 0 1-14 0c0-4 3-11 7-11z"/>',
+  drop:'<path d="M12 3l5.7 6.7a7.5 7.5 0 1 1-11.4 0z"/>', swap:'<path d="M7 4L3 8l4 4M3 8h13M17 20l4-4-4-4M21 16H8"/>', body:'<path d="M4 8V6a2 2 0 0 1 2-2h2M4 16v2a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v2M16 20h2a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="8" r="1"/><path d="M10 17v-1a2 2 0 1 1 4 0v1M8 10c.7.7 1.3 1 2 1h4c.7 0 1.3-.3 2-1M12 11v3"/>'};
+const META = {
+  volume:["stack","About 10-20 hard sets for each muscle a week. More grows more, with smaller returns each time."],
+  frequency:["cal","Each muscle about twice a week. It spreads the sets out; it isn't magic on its own."],
+  rir:["flame","Muscle grows about the same from failure to a couple of reps short. Failure costs more recovery."],
+  load:["bar","Anything from about 6 to 30 reps builds muscle if the set is hard. Heavier builds more strength."],
+  rest:["watch","About 2-3 minutes on big lifts and 1-2 on smaller ones. Very short rests cost a little growth."],
+  lengthened:["stretch","Exercises that load a muscle hard while it's stretched tend to grow it as well or better."],
+  order:["order","Whatever you do first improves most, so put what matters most to you first."],
+  progression:["up","Beat last time by a rep; at the top of the range, add weight."],
+  deload:["battery","A lighter week every 4-8 weeks sheds fatigue. It doesn't build muscle by itself."],
+  superset:["link","Pairing exercises for different muscles saves time without costing growth."],
+  techniques:["bolt","Drop sets and similar finishers grow muscle as well as normal sets, in less time."],
+  interference:["hybrid","Cardio doesn't blunt muscle growth on average. Keep hard leg cardio away from leg day."],
+  intensity:["run","About 80% of running easy and 20% hard. More hard running doesn't help."],
+  "progression-run":["route","Keep any single run within 10% of your longest of the last month."],
+  taper:["down","Cut volume 40-60% in the last 1-2 weeks and keep some fast running."],
+  "strength-run":["bar","Two strength sessions a week make running a few percent more economical."],
+  heat:["sun","10-14 heat sessions before a hot race; most of the change comes in the first week."],
+  fuel:["cup","60-90 g of carbs an hour on long runs, practised in training first."],
+  habits:["check","Habits take about two months to stick, and one missed day doesn't undo them."],
+  steps:["walk","Health benefits keep rising up to about 7,000-10,000 steps a day."],
+  energy:["fire","Your weight trend and food log reveal your real burn better than any formula."],
+  protein:["egg","1.6-2.2 g per kg of body weight covers almost everyone, a little more on a cut."],
+  fat:["drop","Keep fat above about 0.6 g per kg. The carb and fat split matters little for body composition."],
+  "rate-gain":["up","Gain about 0.25-0.5% of body weight a week to keep fat gain down."],
+  "rate-loss":["down","Lose about 0.5-1% a week, slower once you're lean."],
+  recomp:["swap","At maintenance, with high protein and hard training, you can build muscle and lose fat together, slowly."],
+  bodyfat:["body","Typical body fat ranges by sex. Used only to fine-tune your resting burn."]};
+const GROUPS = [["Training", ["volume","frequency","rir","load","rest","lengthened","order","progression","deload","superset","techniques","interference"]], ["Running", ["intensity","progression-run","taper","strength-run","heat","fuel"]], ["Food and body", ["energy","protein","fat","rate-gain","rate-loss","recomp","bodyfat"]], ["Everyday", ["habits","steps"]]];
 let q = "", focus = null;
+const topic = id => LIB.find(t => t.id === id);
+const year = c => (String(c).match(/(19|20)\d\d/) || [""])[0];
 function draw(){
   let o = document.getElementById("sci");
   if (!o){ o = document.createElement("div"); o.id = "sci"; o.className = "sci"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Science library"); document.body.appendChild(o);
-    o.addEventListener("click", e => { if (e.target.closest("[data-sciclose]")){ o.classList.add("out"); setTimeout(() => o.remove(), 260); if (!document.getElementById("ob")) document.body.style.overflow = ""; } });
-    o.addEventListener("input", e => { if (e.target.id === "sciq"){ q = e.target.value.toLowerCase(); list(); } });
-    o.innerHTML = `<div class="obtop"><button class="iconbtn" data-sciclose aria-label="Close">${ICON.back}</button><div class="date" style="flex:1">Science library</div></div>
-      <div class="obbody"><h1 class="obtitle">The evidence</h1>
-        <p class="obnote" style="margin-top:0">Every rule your programme, progression and targets follow, the study behind it, and exactly how the app uses it. ${LIB.reduce((a, t) => a + t.items.length, 0)} sources.</p>
-        <label class="scisearch">${ICON.search}<input id="sciq" placeholder="Search studies or topics" autocomplete="off"></label><div id="scil" class="stack" style="gap:14px"></div></div>`;
+    o.addEventListener("click", e => {
+      if (e.target.closest("[data-sciclose]")){ if (focus && !e.target.closest("[data-sciclose]").dataset.sciclose){ focus = null; view(); return; } o.classList.add("out"); setTimeout(() => o.remove(), 260); if (!document.getElementById("ob")) document.body.style.overflow = ""; return; }
+      const t = e.target.closest("[data-scitopic]"); if (t){ focus = t.dataset.scitopic; q = ""; view(); }
+      if (e.target.closest("[data-sciall]")){ focus = null; view(); } });
+    o.addEventListener("input", e => { if (e.target.id === "sciq"){ q = e.target.value.toLowerCase().trim(); list(); } });
   }
-  document.body.style.overflow = "hidden"; list();
-  if (focus){ const t = o.querySelector(`[data-topic="${focus}"]`); if (t){ t.querySelectorAll("details").forEach((d, i) => { d.open = i === 0; d.classList.add("hl"); }); setTimeout(() => t.scrollIntoView({block:"start"}), 30); } }
+  document.body.style.overflow = "hidden"; view();
+}
+function view(){
+  const o = document.getElementById("sci"); if (!o) return;
+  const n = LIB.reduce((a, t) => a + t.items.length, 0);
+  o.innerHTML = `<div class="obtop"><button class="iconbtn" data-sciclose="${focus ? "" : "x"}" aria-label="${focus ? "Back" : "Close"}">${ICON.back}</button><div class="date" style="flex:1">Science library</div>${focus ? `<button class="iconbtn" data-sciclose="x" aria-label="Close">✕</button>` : ""}</div>
+    <div class="obbody">${focus ? topicView(topic(focus)) : `<h1 class="obtitle">The evidence</h1>
+      <p class="obnote" style="margin-top:0">Every rule the app follows, in one line, with the ${n} studies behind them. Tap a topic for the research.</p>
+      <label class="scisearch">${ICON.search}<input id="sciq" placeholder="Search topics or studies" autocomplete="off" value="${esc(q)}"></label><div id="scil"></div>`}</div>`;
+  if (!focus) list(); else o.querySelector(".obbody").scrollTop = 0;
+}
+function tile(t){ const m = META[t.id] || ["check", ""]; return `<button class="scitile" data-scitopic="${t.id}"><span class="sic">${G(IC[m[0]])}</span><b>${esc(t.title.replace(/^Running: /, ""))}</b><span>${esc(m[1])}</span><em>${t.items.length} ${t.items.length > 1 ? "studies" : "study"}</em></button>`; }
+function study(x){ return `<div class="scistudy"><div class="spread"><i class="scikind ${KIND[x.kind][1]}">${KIND[x.kind][0]}</i><span class="small muted num">${year(x.c)}</span></div>
+  <p class="scifind">${esc(x.f)}</p><b class="scit">${esc(x.t)}</b><span class="scic">${esc(x.c)}</span>${x.check ? `<span class="scic"><em>Note:</em> ${esc(x.check)}</span>` : ""}${x.u ? `<a href="${esc(x.u)}" target="_blank" rel="noopener">Read the paper</a>` : ""}</div>`; }
+function topicView(t){
+  if (!t) return "";
+  const m = META[t.id] || ["check", ""], uses = [...new Set(t.items.map(x => x.a))];
+  return `<div class="scihead"><span class="sic big">${G(IC[m[0]])}</span><h1 class="obtitle">${esc(t.title.replace(/^Running: /, ""))}</h1></div>
+    <div class="card scirule"><em>The short version</em><b>${esc(m[1])}</b></div>
+    <div class="card sciuse"><h2>How the app uses it</h2>${uses.map(u => `<p>${esc(u)}</p>`).join("")}</div>
+    <h3 class="scigh">The research</h3><div class="stack" style="gap:10px">${t.items.map(study).join("")}</div>
+    <button class="btn ghost" data-sciall="1">All topics</button>`;
 }
 function list(){
   const box = document.getElementById("scil"); if (!box) return;
-  const m = x => !q || (x.t + " " + x.c + " " + x.f + " " + x.a).toLowerCase().includes(q);
-  box.innerHTML = LIB.map(t => { const items = t.items.filter(x => m(x) || t.title.toLowerCase().includes(q)); if (!items.length) return "";
-    return `<section class="scitopic" data-topic="${t.id}"><h3>${esc(t.title)}</h3>${items.map(x => `<details class="sciitem"><summary><b>${esc(x.t)}</b><span><i class="scikind ${KIND[x.kind][1]}">${KIND[x.kind][0]}</i>${esc(x.c)}</span></summary>
-      <div class="scibody"><div><em>What it found</em>${esc(x.f)}</div><div><em>How the app uses it</em>${esc(x.a)}</div>
-      ${x.check ? `<div><em>Note</em><span class="muted">${esc(x.check)}</span></div>` : ""}${x.u ? `<a href="${esc(x.u)}" target="_blank" rel="noopener">Read the paper</a>` : ""}</div></details>`).join("")}</section>`; }).join("") || `<div class="empty">No matches.</div>`;
+  if (q){ const tops = LIB.filter(t => (t.title + " " + (META[t.id] || [, ""])[1]).toLowerCase().includes(q)), sts = LIB.flatMap(t => t.items.filter(x => (x.t + " " + x.c + " " + x.f + " " + x.a).toLowerCase().includes(q)));
+    box.innerHTML = (tops.length ? `<div class="scigrid">${tops.map(tile).join("")}</div>` : "") + (sts.length ? `<h3 class="scigh">Studies</h3><div class="stack" style="gap:10px">${sts.slice(0, 20).map(study).join("")}</div>` : "") || `<div class="empty">No matches.</div>`; return; }
+  box.innerHTML = GROUPS.map(([g, ids]) => `<h3 class="scigh">${g}</h3><div class="scigrid">${ids.map(topic).filter(Boolean).map(tile).join("")}</div>`).join("");
 }
 window.AJScience = {open(id){ focus = id || null; draw(); }, LIB};
 })();

@@ -767,6 +767,12 @@ img{max-width:100%}
 .scisearch{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:14px;padding:4px 12px}
 .scisearch svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
 .scisearch input{border:0;background:transparent;padding:10px 0;width:100%;outline:none}
+.scigh{font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:18px 2px 8px}
+.scigrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.scitile{display:grid;align-content:start;justify-items:start;gap:5px;text-align:left;border:0;border-radius:18px;background:var(--card);padding:14px 12px;font:inherit;color:var(--ink);cursor:pointer}.scitile b{font-size:15px;line-height:1.2}.scitile>span:not(.sic){font-size:12.5px;line-height:1.35;color:var(--muted)}.scitile em{font-style:normal;font-size:11px;font-weight:700;color:var(--orange);margin-top:2px}
+.sic{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:11px;background:var(--orange-soft);color:var(--orange)}.sic svg{width:20px;height:20px}.sic.big{width:48px;height:48px;border-radius:14px}.sic.big svg{width:26px;height:26px}
+.scihead{display:grid;gap:10px;margin-bottom:6px}.scirule{background:var(--ink);color:var(--card);display:grid;gap:6px}.scirule em{font:800 11px var(--display);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}.scirule b{font-size:18px;line-height:1.35}
+.sciuse{display:grid;gap:8px}.sciuse p{margin:0;font-size:14px;line-height:1.5}.sciuse p+p{padding-top:8px;border-top:1px solid var(--line)}
+.scistudy{display:grid;gap:6px;background:var(--card);border-radius:18px;padding:14px 16px}.scifind{margin:0;font-size:15px;line-height:1.45;font-weight:500}.scit{font-size:13px;line-height:1.35}.scic{font-size:12px;color:var(--muted)}.scistudy a{color:var(--orange);font-weight:600;font-size:13px}
 .scitopic{display:grid;gap:8px}
 .scitopic>h3{font-family:var(--display);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:8px 2px 0}
 .sciitem{background:var(--card);border-radius:18px;padding:14px 16px;scroll-margin-top:12px}
@@ -988,7 +994,7 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .wkc{display:grid;gap:12px}.wktiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.wktiles button{display:grid;justify-items:start;gap:3px;text-align:left;border:0;border-radius:16px;background:var(--sunk);padding:12px 10px;font:inherit;color:var(--ink);cursor:pointer}.wktiles .obic{width:34px;height:34px;border-radius:10px;margin-bottom:4px}.wktiles .obic svg{width:19px;height:19px}.wktiles b{font-size:13.5px;line-height:1.2}.wktiles em{font-style:normal;font-size:11.5px;color:var(--muted)}
 .wkseg{grid-template-columns:repeat(3,1fr);margin-bottom:12px}.wkseg button{font-size:13px}.qtypes{margin-bottom:6px}.wrow{display:grid;gap:10px}
 .wblist{display:grid}.wbrow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}.wbrow:first-child{border-top:0}.wbrow .lt{display:grid;gap:1px;min-width:0;justify-items:start;text-align:left}.wbm .ph0{visibility:hidden}.wbrow .lt b{font-size:15px;font-weight:600}.wbrow .lt em{font-style:normal;font-size:12.5px;color:var(--muted)}.wbm{display:flex;gap:4px}.wbm button{width:32px;height:32px;border:0;border-radius:10px;background:var(--sunk);color:var(--ink);font:700 14px var(--body);cursor:pointer}
-.axm{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.axm .chip{flex:none;font-size:13px;padding:7px 12px}
+.cxnew{display:block;margin:2px 0 8px;font-size:14px}.axm{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.axm .chip{flex:none;font-size:13px;padding:7px 12px}
 .wuline,.techline{display:grid;gap:2px;font-size:13px;border-radius:12px;padding:9px 12px}.wuline{grid-template-columns:auto 1fr;gap:10px;background:var(--sunk)}.wuline b,.techline b{font-size:12px;text-transform:uppercase;letter-spacing:.04em}
 .techline{background:var(--orange-soft)}.techline b{color:var(--orange)}.techline span{color:var(--ink)}
 .set.top .n{background:var(--ink);color:var(--card)}.set.test .n{background:var(--orange-soft);color:var(--orange)}.rpech button{min-width:0;padding:8px 9px;flex:1}.strq{gap:10px}
@@ -3072,12 +3078,40 @@ function renderWBuild(){
   <button class="btn orange" data-act="wbSave">Save workout</button>
   ${w.id&&(S.profile.workouts||[]).some(x=>x.id===w.id)?`<button class="btn danger" data-act="wbDelete">${S.confirm==="wbDelete"?"Tap again to delete":"Delete workout"}</button>`:""}`;
 }
+const CMOVE={chest:[["fpress","Press"],["ipress","Incline press"],["fly","Fly"]], lats:[["vpull","Pulldown or pull-up"],["latiso","Straight-arm pulldown or pullover"],["row","Row"]], upback:[["row","Row"],["shrug","Shrug"]],
+  sdelt:[["lat","Lateral raise"]], rdelt:[["rear","Reverse fly or face pull"]], fdelt:[["ohp","Overhead press"]], biceps:[["curl","Curl"]], triceps:[["triext","Overhead extension"],["pushdown","Pushdown"],["tripress","Close-grip press or dip"]],
+  quads:[["squat","Squat or leg press"],["lunge","Lunge or split squat"],["kneeext","Leg extension"]], hams:[["kneeflex","Leg curl"],["hinge","Hinge (RDL, back extension)"]], glutes:[["glute","Hip thrust, bridge or kickback"],["lunge","Lunge"],["hinge","Hinge"]],
+  adductors:[["add","Adduction"]], calves:[["calf","Calf raise"]], abs:[["abs","Crunch or leg raise"]]};
+const CHELP={fpress:{triceps:.5,fdelt:.5}, ipress:{triceps:.5,fdelt:.5}, vpull:{biceps:.5,upback:.5}, row:{biceps:.5,rdelt:.5}, ohp:{triceps:.5,sdelt:.5}, tripress:{chest:.5}, squat:{glutes:.5,adductors:.5}, lunge:{glutes:.5,adductors:.5}, hinge:{glutes:.5}, glute:{hams:.5}};
+const CEQ=[["machine","Machine"],["cable","Cable"],["bb","Barbell"],["db","Dumbbell"],["bw","Bodyweight"],["other","Other"]];
+const CREPS={squat:[6,12],hinge:[6,12],fpress:[6,12],ipress:[6,12],row:[8,12],vpull:[8,12],ohp:[6,12],lunge:[8,12],tripress:[6,10],lat:[12,20],rear:[12,20],calf:[10,20],abs:[10,20]};
+function customForm(c){
+  return `<h2>Your own exercise</h2>
+    <label class="lab">Name<input class="field" id="cxName" value="${esc(c.n||"")}" placeholder="e.g. Iso-lateral decline press" autocomplete="off"></label>
+    <h3>Main muscle</h3><div class="chips">${Object.keys(CMOVE).map(m=>`<button class="chip" data-ax="cm" data-m="${m}" aria-pressed="${c.m===m}">${musN(m)}</button>`).join("")}</div>
+    ${c.m?`<h3>Movement</h3><div class="chips">${CMOVE[c.m].map(([p,t])=>`<button class="chip" data-ax="cp" data-p="${p}" aria-pressed="${c.p===p}">${t}</button>`).join("")}</div>`:""}
+    <h3>Equipment</h3><div class="chips">${CEQ.map(([k,t])=>`<button class="chip" data-ax="ce" data-e="${k}" aria-pressed="${c.eq===k}">${t}</button>`).join("")}</div>
+    <p class="small muted">The movement tells the coach what it's like, so it's progressed, swapped and counted the same way as similar lifts.</p>
+    <button class="btn orange" data-ax="csave">Save and add</button><button class="btn ghost" data-ax="cback">Back</button>`;
+}
+function saveCustomEx(c){
+  const mu={[c.m]:1, ...Object.fromEntries(Object.entries(CHELP[c.p]||{}).filter(([m])=>m!==c.m))}, compound=["fpress","ipress","vpull","row","ohp","tripress","squat","lunge","hinge"].includes(c.p), r=CREPS[c.p]||[10,15];
+  const d={k:"x-"+uid("c"), n:c.n.trim(), p:c.p, mu, q:[], c:compound, eq:c.eq||"other", lo:r[0], hi:r[1], rest:compound?(c.eq==="bb"?150:120):75, len:1};
+  S.profile={...S.profile, customEx:[...(S.profile.customEx||[]), d]}; saveProfile(); if (window.AJOnboard) AJOnboard.addCustom([d]); return d;
+}
 // pick an exercise to add (to a workout you're building, or to the live session)
 function renderAddEx(){
   let el=$("#addExSheet"); if (!el){ el=document.createElement("div"); el.id="addExSheet"; el.className="actions hsheet"; el.hidden=true; document.body.appendChild(el);
     el.addEventListener("click", ev=>{ const b=ev.target.closest("[data-ax]"); if (!b) return; const ax=S.addEx;
       if (b.dataset.ax==="close"){ S.addEx=null; renderAddEx(); return; }
       if (b.dataset.ax==="mus"){ ax.m=ax.m===b.dataset.m?"":b.dataset.m; renderAddEx(); return; }
+      if (b.dataset.ax==="cnew"){ ax.c={n:ax.q||"", m:ax.m||"", p:"", eq:""}; renderAddEx(); return; }
+      if (b.dataset.ax==="cback"){ ax.c=null; renderAddEx(); return; }
+      if (b.dataset.ax==="cm"){ ax.c.n=($("#cxName")||{}).value||ax.c.n; ax.c.m=b.dataset.m; ax.c.p=(CMOVE[ax.c.m][0]||[])[0]; renderAddEx(); return; }
+      if (b.dataset.ax==="cp"){ ax.c.n=($("#cxName")||{}).value||ax.c.n; ax.c.p=b.dataset.p; renderAddEx(); return; }
+      if (b.dataset.ax==="ce"){ ax.c.n=($("#cxName")||{}).value||ax.c.n; ax.c.eq=b.dataset.e; renderAddEx(); return; }
+      if (b.dataset.ax==="csave"){ const c=ax.c; c.n=(($("#cxName")||{}).value||c.n||"").trim(); if (!c.n){ toast("Give it a name"); return; } if (!c.m||!c.p){ toast("Pick the main muscle and movement"); return; }
+        const d=saveCustomEx(c); ax.c=null; const pick=document.createElement("button"); pick.dataset.ax="pick"; pick.dataset.k=d.k; el.appendChild(pick); pick.click(); pick.remove(); return; }
       if (b.dataset.ax==="pick"){ const k=b.dataset.k, def=wDefsFor([[k]],{})[k];
         if (ax.to==="wb"){ S.wb.list.push([k, def&&AJOnboard.lib[k]&&AJOnboard.lib[k].c?3:2]); S.wb.defs[k]=def; }
         else if (S.active){ const e=buildEx(k,3,def,S.active.gym,{deload:false}); S.active.ex.push({...e, ss:null}); S.active.open=S.active.ex.length-1; saveActive(); }
@@ -3088,9 +3122,11 @@ function renderAddEx(){
   const L=AJOnboard.lib, gid=ax.to==="live"&&S.active?S.active.gym:(S.qw&&S.qw.gym)||(gymList()[0]||{}).id, kit=(gymList().find(g=>g.id===gid)||{kit:[]}).kit||[], q=(ax.q||"").trim().toLowerCase(), have=new Set((ax.to==="wb"?S.wb.list:(S.active?S.active.ex.map(e=>[e.k]):[])).map(x=>x[0]));
   const pool=Object.values(L).filter(x=>!["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(x.p)&&!x.pv&&!x.cf&&!have.has(x.k)&&(!ax.m||x.mu[ax.m]>=1)&&(!q||(x.n+" "+Object.keys(x.mu).map(musN).join(" ")).toLowerCase().includes(q)))
     .map(x=>({...x, ok:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a,b)=>(b.ok-a.ok)||(b.c-a.c)||(b.len-a.len)).slice(0,q||ax.m?30:0);
+  if (ax.c){ el.innerHTML=`<div class="in"><div class="grab"></div>${customForm(ax.c)}</div>`; return; }
   el.innerHTML=`<div class="in"><div class="grab"></div><h2>Add an exercise</h2>
     <div class="searchbar"><span class="sb">${ICON.search}<input id="axQ" placeholder="Search every exercise" value="${esc(ax.q||"")}" autocomplete="off" aria-label="Search exercises"></span></div>
     <div class="chips axm">${MUSP.map(m=>`<button class="chip" data-ax="mus" data-m="${m}" aria-pressed="${ax.m===m}">${musN(m)}</button>`).join("")}</div>
+    <button class="link cxnew" data-ax="cnew">Can't find it? Create your own exercise</button>
     ${pool.length?`<div class="list">${pool.map(x=>`<button class="li btnli" data-ax="pick" data-k="${x.k}"><span><b>${esc(x.n)}</b> <span class="small muted">${esc(Object.keys(x.mu).filter(m=>x.mu[m]>=1).map(musN).join(", "))}</span></span><span class="small muted">${x.ok?`${x.lo}–${x.hi}`:"not at this gym"}</span></button>`).join("")}</div>`:`<p class="small muted">${q||ax.m?"Nothing matches.":"Pick a muscle or search."}</p>`}
     <button class="btn ghost" data-ax="close">Cancel</button></div>`;
 }
@@ -4995,6 +5031,7 @@ function migrateLegacy(){
   saveProfile();
 }
 function afterLoad(){
+  try{ if (window.AJOnboard) AJOnboard.addCustom(S.profile.customEx||[]); }catch(e){}
   migrateLegacy();
   if (!S.profile.setupDone) setTimeout(()=>{ if (window.AJOnboard && !S.profile.setupDone) AJOnboard.welcome(); }, 1700);
 }

@@ -2618,6 +2618,8 @@ window.AJOnboard = {
     document.body.style.overflow = "hidden"; draw();
   },
   _F:() => F, _go:go2, _setG:setGtype,
+  // your own exercises join the library: the plan builder, swaps, search and the coach treat them like any other
+  addCustom(list){ (list || []).forEach(d => { if (d && d.k && d.p && d.mu) L[d.k] = Object.assign({c:false, len:1, lo:8, hi:12, rest:90, inj:[], eq:"other", q:[]}, d, {custom:true}); }); },
   // one session, built now: a day type (or chosen muscles) for this gym and this much time
   quickDay(o){
     const gid = o.gymId || ((gymList()[0] || {}).id) || "gym", kit = o.kit || ((gymList().find(g => g.id === gid) || {}).kit) || KIT_FULL;
