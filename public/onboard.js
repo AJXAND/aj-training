@@ -900,7 +900,20 @@ const RUNLEVELS = [["New to running", "Can't run 10 minutes without stopping yet
   ["Regular runner", "Run most weeks, about 15-30 km", 22, 10, 4], ["Experienced", "30-60 km a week, have raced", 45, 18, 5], ["Competitive", "60+ km a week, training for times", 70, 26, 6]];
 const RUNTYPE = {
   easy:{n:"Easy run", rpe:"RPE 3-4: you could hold a conversation", level:"Easy", sport:"run"},
-  long:{n:"Long run", rpe:"RPE 3-4, steady and relaxed", level:"Steady", sport:"run"},
+  long:{n:"Long run", rpe:"RPE 3-4, steady and relaxed", level:"Easy", sport:"run"},
+  tintro:{n:"Steady threshold", rpe:"RPE 5-6: comfortably hard, short sentences", level:"Tempo", sport:"run"},
+  tcruise:{n:"Threshold intervals", rpe:"RPE 6-7: hard but controlled", level:"Tempo", sport:"run"},
+  ttempo:{n:"Tempo run", rpe:"RPE 6-7: about 1-hour race effort", level:"Tempo", sport:"run"},
+  ilong:{n:"Intervals", rpe:"RPE 8-9: about 3-5k race effort", level:"Hard", sport:"run"},
+  i3015:{n:"30/15 intervals", rpe:"RPE 8.5-9 on the 30 s", level:"Hard", sport:"run"},
+  hlong:{n:"Hill repeats", rpe:"RPE 8 uphill, easy jog down", level:"Hills", sport:"run"},
+  rp5:{n:"5k-pace reps", rpe:"5k race effort", level:"Hard", sport:"run"},
+  rp10:{n:"10k-pace reps", rpe:"10k race effort", level:"Hard", sport:"run"},
+  rph:{n:"Race-pace reps", rpe:"Half-marathon effort", level:"Tempo", sport:"run"},
+  uclimb:{n:"Climbing session", rpe:"RPE 6-7 uphill", level:"Hills", sport:"run"},
+  uhike:{n:"Power-hike intervals", rpe:"RPE 6", level:"Hills", sport:"run"},
+  race:{n:"Race day", rpe:"Race", level:"Race", sport:"run"},
+  tt:{n:"5k time trial", rpe:"Hard, even effort", level:"Race", sport:"run"},
   b2b:{n:"Back-to-back long", rpe:"RPE 3-4 on tired legs: the point is time on feet", level:"Steady", sport:"run"},
   vo2:{n:"Intervals", rpe:"5-6 × 3 min at RPE 8-9 (about 5k effort), 2 min easy jog between", level:"Hard", sport:"run"},
   thr:{n:"Threshold", rpe:"3 × 10 min at RPE 6-7 (comfortably hard), 2 min easy between", level:"Tempo", sport:"run"},
@@ -1002,6 +1015,187 @@ function enduPlan(ans){
   }
   return {event:ans.event, eventName:E.name, raceDate:race ? ans.raceDate : null, estimated:!race && ans.event !== "general", weeks, peakKm, longWd, phases:{runwalk:RW, base:BASE, build:B, peak:P, taper:T}};
 }
+/* ---------- Running coach plan ----------
+   Paces from VDOT (Daniels-Gilbert equations; one race or time trial sets every training pace). Mostly easy with hard work capped
+   (polarised vs pyramidal matters less than that: Oliveira 2024; elites are mostly pyramidal: Casado 2022). The firm injury guard is
+   per run: never more than ~10% beyond the longest run of the last 30 days (Frandsen 2025); weekly growth rules are convention.
+   Tapers ~2 weeks with volume cut 41-60% and intensity kept (Bosquet 2007), strict 3-week marathon tapers (Smyth 2021). */
+const VO2 = v => -4.60 + 0.182258 * v + 0.000104 * v * v;
+const VPCT = t => 0.8 + 0.1894393 * Math.exp(-0.012778 * t) + 0.2989558 * Math.exp(-0.1932605 * t);
+const vdotOf = (m, min) => VO2(m / min) / VPCT(min);
+const vAt = x => (-0.182258 + Math.sqrt(0.182258 * 0.182258 + 4 * 0.000104 * (4.60 + x))) / (2 * 0.000104);   // m/min at a VO2
+function raceTime(vd, m){ let lo = m / 1000 * 2, hi = m / 1000 * 15; for (let i = 0; i < 60; i++){ const mid = (lo + hi) / 2; if (vdotOf(m, mid) > vd) lo = mid; else hi = mid; } return (lo + hi) / 2; }
+const RACE_M = {"5k":5000, "10k":10000, half:21097.5, marathon:42195};
+function pacesFor(vd, weeklyKm){
+  const p = f => 1000 / vAt(f * vd), fM = weeklyKm >= 80 ? 1 : weeklyKm >= 60 ? 1.02 : weeklyKm >= 45 ? 1.04 : weeklyKm >= 30 ? 1.07 : 1.10;
+  return {E:[p(0.70), p(0.62)], T:p(0.88), I:p(0.975), R:p(1.07), k5:raceTime(vd, 5000) / 5, k10:raceTime(vd, 10000) / 10, HM:raceTime(vd, 21097.5) / 21.0975, M:raceTime(vd, 42195) * fM / 42.195};
+}
+const fmtP = m => { const mm = Math.floor(m), ss = Math.round((m - mm) * 60); return ss === 60 ? `${mm + 1}:00` : `${mm}:${String(ss).padStart(2, "0")}`; };
+const LVL_VDOT = [28, 33, 39, 46, 53];
+function parseHMS(t){ const p = String(t || "").trim().split(":").map(Number); if (p.some(isNaN) || !p.length) return null; return p.length === 3 ? p[0] * 60 + p[1] + p[2] / 60 : p.length === 2 ? p[0] + p[1] / 60 : p[0]; }
+function runVdot(ans){
+  if (ans._vdot) return {vdot:+ans._vdot, src:"race"};
+  const r = ans.recent || {}, min = parseHMS(r.t), m = RACE_M[r.d];
+  if (min && m && min > 8){ let v = vdotOf(m, min); if (r.cond === "hot" || r.cond === "hilly") v += 1; if (r.when === "6") v -= 1.5; else if (r.when === "12") v -= 3; return {vdot:Math.round(v * 10) / 10, src:"race"}; }
+  return {vdot:LVL_VDOT[Math.max(0, Math.min(4, +ans.runLevel || 0))], src:"estimate"};
+}
+// event shape: [taper weeks, specific weeks, build share, ready long, long cap km, peak km range by level 1-4]
+const RUNEV = {
+  "5k":{taper:1, spec:3, build:.5, ready:10, cap:13, peak:[[15,25],[25,40],[40,60],[60,90]], rec:10},
+  "10k":{taper:1, spec:4, build:.5, ready:15, cap:18, peak:[[20,30],[30,45],[45,70],[70,100]], rec:12},
+  half:{taper:2, spec:4, build:.55, ready:19, cap:22, peak:[[25,35],[35,55],[55,80],[80,110]], rec:14},
+  marathon:{taper:3, spec:7, build:.6, ready:32, cap:35, peak:[[35,45],[45,65],[65,90],[90,130]], rec:18},
+  ultra:{taper:3, spec:8, build:.6, ready:40, cap:45, peak:[[45,55],[50,70],[65,90],[90,120]], rec:22, b2b:true},
+  stage:{taper:3, spec:9, build:.6, ready:38, cap:42, peak:[[45,55],[55,75],[70,100],[90,130]], rec:28, b2b:true, pack:true, heat:true},
+  general:{taper:0, spec:0, build:.6, ready:12, cap:16, peak:[[10,20],[20,35],[30,50],[50,70]], rec:12}
+};
+// workout ladders: [label, work km (or null), builder(paces) → description]
+const LAD = {
+  tintro:[[3,8],[4,8],[3,10],[4,10],[2,15]], tcruise:[[5,1],[6,1],[4,1.6],[5,1.6],[3,2],[4,2],[3,3]], ttempo:[20,25,30],
+  ilong:[[5,2],[5,3],[6,3],[5,4],[4,5]], i3015:[[2,10],[3,10],[3,12],[3,13]], hlong:[[6,60],[8,60],[10,60],[8,90],[6,120]],
+  rp5:[[5,1],[4,1.2],[3,1.6]], rp10:[[5,1.6],[4,2],[3,3],[2,4]], rph:[[3,3],[3,4],[2,5],[2,6]], mpl:[[8,20],[10,22],[12,24],[14,26],[16,28],[19,30]],
+  uclimb:[25,35,45,60], uhike:[[6,3],[8,4],[10,5]]
+};
+const WUQ = "15 min easy + 4 strides", WUI = "15-20 min easy, drills, 4-6 strides", CD = "10 min easy";
+function workout(fam, step, P, weekKm){
+  // a quality session (with warm-up and cool-down) stays under ~30% of the week: step down the ladder until it fits
+  for (let s2 = Math.max(0, Math.min(LAD[fam].length - 1, step)); s2 >= 0; s2--){ const w = workout1(fam, s2, P, weekKm); if (w.km <= Math.max(6, weekKm * 0.3) || s2 === 0) return w; }
+}
+function workout1(fam, step, P, weekKm){
+  const L = LAD[fam], st = Math.max(0, Math.min(L.length - 1, step)), x = L[st], f = fmtP;
+  const T = P.T, Ep = (P.E[0] + P.E[1]) / 2;
+  const mins2km = m => m / T;
+  let work = 0, d = "", type = fam;
+  if (fam === "tintro"){ work = mins2km(x[0] * x[1]) * 0.97; d = `${WUQ}. ${x[0]} × ${x[1]} min at ${f(T * 1.04)}/km (steady, a short sentence), 2 min jog. ${CD}.`; }
+  else if (fam === "tcruise"){ work = x[0] * x[1]; const cap = Math.min(10, weekKm * 0.1); let i = st; while (i > 0 && LAD.tcruise[i][0] * LAD.tcruise[i][1] > cap) i--; const y = LAD.tcruise[i]; work = y[0] * y[1]; d = `${WUQ}. ${y[0]} × ${y[1]} km at ${f(T)}/km (threshold: hard but controlled, a few words), 1 min jog per 5 min of running. ${CD}.`; }
+  else if (fam === "ttempo"){ work = mins2km(x); d = `${WUQ}. ${x} min continuous at ${f(T)}/km (threshold). ${CD}.`; }
+  else if (fam === "ilong"){ work = x[0] * x[1] / P.I; const cap = Math.min(10, weekKm * 0.08); if (work > cap){ const n = Math.max(3, Math.floor(cap * P.I / x[1])); work = n * x[1] / P.I; d = `${WUI}. ${n} × ${x[1]} min at ${f(P.I)}/km (hard, about 3-5k race pace), ${x[1] >= 4 ? 3 : 2} min jog. ${CD}.`; } else d = `${WUI}. ${x[0]} × ${x[1]} min at ${f(P.I)}/km (hard, about 3-5k race pace), ${x[1] >= 4 ? 3 : 2} min jog. ${CD}.`; }
+  else if (fam === "i3015"){ work = x[0] * x[1] * 0.5 / P.I; d = `${WUI}. ${x[0]} sets of ${x[1]} × (30 s hard at about ${f(P.I * 0.97)}/km, 15 s easy jog), 3 min between sets. On grass or a track. ${CD}.`; }
+  else if (fam === "hlong"){ work = x[0] * x[1] / 60 / (P.I * 1.25); d = `${WUQ}. ${x[0]} × ${x[1] >= 120 ? "2 min" : x[1] + " s"} uphill (4-8% grade) at about 5k effort, RPE 8, jog back down. ${CD}.`; }
+  else if (fam === "rp5"){ work = x[0] * x[1]; d = `${WUI}. ${x[0]} × ${x[1]} km at 5k pace ${f(P.k5)}/km, ${x[1] >= 1.6 ? 3 : 2} min jog. ${CD}.`; }
+  else if (fam === "rp10"){ work = x[0] * x[1]; d = `${WUI}. ${x[0]} × ${x[1]} km at 10k pace ${f(P.k10)}/km, ${x[1] >= 2 ? 2 : 1.5} min jog. ${CD}.`; }
+  else if (fam === "rph"){ work = x[0] * x[1]; d = `${WUQ}. ${x[0]} × ${x[1]} km at half-marathon pace ${f(P.HM)}/km, ${x[1] >= 5 ? 2 : 1.5} min jog. ${CD}.`; }
+  else if (fam === "uclimb"){ work = x / 8; d = `${WUQ}. Climbing: about ${x} min total uphill in 4-8 min efforts at RPE 6-7. Run where you can, power-hike the steepest parts (over ~12%). Walk or jog down.`; }
+  else if (fam === "uhike"){ work = x[0] * x[1] / 11; d = `${x[0]} × ${x[1]} min power-hiking on a steep hill or a 15-20% treadmill at RPE 6, hands on thighs when it's steep. With your pack once you're carrying one.`; }
+  const wc = weekKm < 25 ? 3 : weekKm < 45 ? 4 : 5, km = Math.round((work + wc) * 2) / 2;   // warm-up and cool-down
+  return {type, km, desc:d, step:st};
+}
+const RT2 = {tintro:"Steady threshold", tcruise:"Threshold intervals", ttempo:"Tempo run", ilong:"Intervals", i3015:"30/15 intervals", hlong:"Hill repeats", rp5:"5k-pace reps", rp10:"10k-pace reps", rph:"Half-marathon-pace reps", uclimb:"Climbing session", uhike:"Power-hike intervals"};
+// which quality sessions an event uses in each phase: [Q1, Q2]
+function qPlan(ev, phase, w){
+  const alt = w % 2;
+  const t = {base:["tintro","hsprint"],
+    "5k":{build:["ilong","tcruise"], spec:["rp5","i3015"]}, "10k":{build:["tcruise","ilong"], spec:["rp10","ilong"]},
+    half:{build:["tcruise", alt ? "ilong" : "hlong"], spec:["rph","ttempo"]}, marathon:{build:["tcruise", alt ? "ilong" : "hlong"], spec:[alt ? "rph" : "tcruise","mpl"]},
+    ultra:{build:[alt ? "hlong" : "tcruise", "ilong"], spec:["uclimb","tintro"]}, stage:{build:[alt ? "hlong" : "tcruise", "ilong"], spec:["uhike","tcruise"]}, general:{build:[alt ? "tcruise" : "ilong", null], spec:[alt ? "tcruise" : "ilong", null]}};
+  if (phase === "Base") return t.base;
+  return (t[ev] || t.half)[phase === "Build" ? "build" : "spec"];
+}
+// session slots by runs a week, as days before the long run (Daniels/Pfitzinger-style hard-easy spacing)
+const TPL = {2:[[4,"Q1"],[0,"L"]], 3:[[5,"ES"],[3,"Q1"],[0,"L"]], 4:[[5,"E"],[4,"Q1"],[2,"ES"],[0,"L"]], 5:[[6,"E"],[5,"Q1"],[4,"E"],[2,"Q2"],[0,"L"]],
+  6:[[6,"E"],[5,"Q1"],[4,"E"],[3,"ES"],[2,"Q2"],[0,"L"]], 7:[[6,"R"],[5,"Q1"],[4,"E"],[3,"ES"],[2,"Q2"],[1,"E"],[0,"L"]]};
+const TPLB = {4:[[5,"Q1"],[3,"E"],[1,"L"],[0,"B"]], 5:[[6,"E"],[5,"Q1"],[2,"ES"],[1,"L"],[0,"B"]], 6:[[6,"E"],[5,"Q1"],[4,"E"],[2,"ES"],[1,"L"],[0,"B"]], 7:[[6,"E"],[5,"Q1"],[4,"E"],[3,"Q2"],[2,"ES"],[1,"L"],[0,"B"]]};
+function runPlan(ans){
+  const ev = ans.event === "custom" || ans.event === "ultra" ? (RUNEV[(() => { const d = +ans.goalKm || 15; return d <= 7 ? "5k" : d <= 15 ? "10k" : d <= 30 ? "half" : d <= 42.2 ? "marathon" : "ultra"; })()] ? (() => { const d = +ans.goalKm || 15; return d <= 7 ? "5k" : d <= 15 ? "10k" : d <= 30 ? "half" : d <= 42.2 ? "marathon" : "ultra"; })() : "half") : (RUNEV[ans.event] ? ans.event : "general");
+  const E = RUNEV[ev], Esp = eventSpec(ans), lvl = Math.max(0, Math.min(4, +ans.runLevel || 0)), runs = Math.max(2, Math.min(7, +ans.runs || 3));
+  const start = parseD(ans.start), race = ans.event !== "general" && ans.hasDate && ans.raceDate ? parseD(ans.raceDate) : null;
+  const recN = {"5k":10, "10k":12, half:14, marathon:18, ultra:22, stage:28, general:12}[ev];
+  const N = race ? Math.max(4, Math.min(44, Math.ceil((race - start) / (7 * 864e5)) + 1)) : recN;
+  const {vdot, src} = runVdot(ans);
+  const longKey = E.b2b ? "sun" : ["sat","sun"].includes(ans.longDay) ? ans.longDay : ans.longDay === "wed" ? "wed" : "sun", longWd = WD.find(x => x[0] === longKey)[1];
+  const RW = lvl === 0 ? Math.min(9, Math.max(0, N - (E.taper || 0) - 3)) : 0;
+  const T = race ? Math.min(E.taper || 0, Math.max(1, N - RW - 2)) + 0 : 0, M = N - RW - T;
+  const S2 = race ? Math.min(E.spec, Math.max(0, Math.round(M * 0.35))) : 0, rest = M - S2, B = Math.round(rest * E.build), BASE = Math.max(0, rest - B);
+  const start0 = lvl === 0 ? 8 : Math.max(6, +ans.weeklyKm || 10), daysF = runs <= 3 ? 0.75 : runs === 4 ? 0.9 : 1;
+  const pr = E.peak[Math.max(0, lvl - 1)], peak = Math.round(Math.min(pr[1], Math.max(pr[0], start0 * Math.pow(1.08, B + S2))) * daysF);
+  const recEvery = lvl <= 1 ? 3 : 4;
+  let km = start0, max30 = Math.max(3, +ans.longest || start0 * 0.35), weeks = [], longs = [], steps = {}, lastNon = km, nonCount = 0, packKg = 0;
+  const raceKm = Esp.dist || 21.1;
+  for (let w = 0; w < N; w++){
+    const ws = new Date(start); ws.setDate(ws.getDate() + w * 7);
+    const wi = w - RW, isRace = race && w === N - 1;
+    if (w < RW){ const sessions = {}; [5,3,0].forEach((off, i) => { const wd = (longWd - off + 7) % 7; sessions[wd] = {type:"runwalk", mins:[25,27,28,30,30,32,30,30,30][w] || 30, desc:RUNWALK[w]}; });
+      weeks.push({start:ymd(ws), w:w + 1, phase:"Run/walk", recovery:false, km:0, mins:Object.values(sessions).reduce((a, x) => a + x.mins, 0), long:0, b2b:0, sessions, notes:[], strength:1}); continue; }
+    const phase = wi < BASE ? "Base" : wi < BASE + B ? "Build" : wi < BASE + B + S2 ? (ev === "general" ? "Build" : "Specific") : "Taper";
+    const taperIdx = phase === "Taper" ? wi - (BASE + B + S2) : -1;
+    const preTaper = T && (BASE + B + S2) - wi <= 3 && ev === "marathon";
+    const recovery = phase !== "Taper" && wi > 0 && !preTaper && (nonCount + 1) % recEvery === 0 && (weeks.length && !weeks[weeks.length - 1].recovery);
+    // weekly volume
+    let wk;
+    if (phase === "Taper"){ const avg3 = weeks.filter(x => !x.recovery && x.phase !== "Taper").slice(-3).reduce((a, x) => a + x.km, 0) / Math.max(1, Math.min(3, weeks.filter(x => !x.recovery).length)) || km;
+      const shp = {1:[0.65], 2:[0.7, 0.5], 3:[0.8, 0.65, 0.45]}[T] || [0.6]; wk = Math.round(avg3 * shp[Math.min(taperIdx, shp.length - 1)]); }
+    else if (recovery){ wk = Math.round(lastNon * 0.72); }
+    else { if (wi > 0 && !(weeks.length && weeks[weeks.length - 1].recovery)) km = Math.min(peak, km * 1.08, km + Math.max(3, km * 0.1)); else if (wi === 0) km = Math.min(km, (+ans.weeklyKm || km) * 1.1); wk = Math.round(km); lastNon = wk; nonCount++; }
+    // long run: never more than 8% past the longest of the last 30 days (Frandsen 2025's injury signal is 10%)
+    let long;
+    const share = wk < 30 ? 0.5 : wk < 50 ? 0.4 : wk < 80 ? 0.33 : 0.3, step = lvl <= 2 ? 1.5 : 2;
+    if (phase === "Taper") long = isRace ? 0 : Math.round(Math.max(...longs.slice(-4), 5) * [0.75, 0.6, 0.5][Math.min(taperIdx, 2)]);
+    else if (recovery) long = Math.round((longs.length ? longs[longs.length - 1] : max30) * 0.7);
+    else {
+      long = Math.min(E.cap, 1.1 * max30, max30 + step, Math.max(share, ev === "marathon" ? 0.45 : E.b2b ? 0.4 : share) * wk);
+      // marathon: alternate big and medium long runs in the last 10 weeks before the taper (Pfitzinger)
+      if (ev === "marathon" && phase !== "Base" && (BASE + B + S2) - wi <= 10 && (wi % 2) && max30 >= E.ready * 0.9) long = Math.round(max30 * 0.72);
+      if (E.b2b && max30 >= E.ready) long = Math.min(long, E.ready);
+      long = Math.max(3, Math.floor(long * 2) / 2);
+    }
+    if (long){ longs.push(long); max30 = Math.max(...longs.slice(-4)); }
+    const b2bWeek = E.b2b && !recovery && phase !== "Taper" && (phase === "Specific" || (phase === "Build" && wi - BASE >= 2)) && wi % 2 === 0;
+    const b2b = b2bWeek ? Math.round(long * 0.6) : 0;
+    // quality
+    const qCount = lvl === 0 ? 0 : lvl === 1 ? (phase === "Base" && wi < 2 ? 0 : 1) : lvl === 2 ? (runs >= 5 && phase !== "Base" ? 2 : 1) : runs >= 4 ? 2 : 1;
+    const P = pacesFor(vdot, wk);
+    const qp = qPlan(ev, phase, wi), sessions = {}, notes = [];
+    const useB = E.b2b && runs >= 4 && b2bWeek, tpl = (useB ? TPLB[Math.min(7, runs)] : TPL[runs]) || TPL[3];
+    let rest = wk - long - b2b;
+    const qSess = [];
+    tpl.forEach(([off, kind]) => {
+      const wd = (longWd - off + 7) % 7;
+      if (kind === "L"){ if (long){ const mpl = ev === "marathon" && phase === "Specific" && qp[1] === "mpl" && !recovery && !(wi % 2) && long >= 20;
+          if (mpl){ const st = steps.mpl = (steps.mpl ?? -1) + 1, x = LAD.mpl[Math.min(st, LAD.mpl.length - 1)], mk = Math.min(x[0], Math.round(wk * 0.2), long - 6); sessions[wd] = {type:"long", km:long, desc:`Easy for the first ${Math.round((long - mk) * 0.6)} km, then ${mk} km at marathon pace ${fmtP(P.M)}/km, easy to finish.`, fam:"mpl"}; }
+          else sessions[wd] = {type:"long", km:long, desc:`Easy, ${fmtP(P.E[0])}-${fmtP(P.E[1])}/km. ${long * (P.E[0] + P.E[1]) / 2 > 75 ? "Practise fuelling: 30-60 g carbohydrate an hour." : ""}${ev === "half" && phase === "Specific" && !recovery ? ` Last 3 km at half-marathon pace (${fmtP(P.HM)}).` : ev === "10k" && phase === "Specific" && !recovery ? ` Last 3 km at about ${fmtP(P.HM)}.` : ""}`}; } return; }
+      if (kind === "B"){ if (b2b) sessions[wd] = {type:"b2b", km:b2b, desc:"The day after the long run, easy on tired legs. Time on feet is the point; walk the climbs."}; else if (runs >= 5) sessions[wd] = {type:"easy", km:0}; return; }
+      if (kind === "Q1" || kind === "Q2"){
+        const n = kind === "Q1" ? 0 : 1, fam = qp[n];
+        if (n >= qCount || !fam || fam === "mpl" || (recovery && n > 0)){ sessions[wd] = {type:"easy", km:0, strides:true}; return; }
+        if (fam === "hsprint"){ sessions[wd] = {type:"easy", km:0, hills:true}; return; }
+        const st0 = steps[fam] ?? -1, cap = phase === "Base" ? 1 : phase === "Build" ? 3 : 9, st = recovery ? Math.max(0, st0 - 1) : Math.min(cap, st0 + 1);
+        if (!recovery) steps[fam] = st;
+        const wo = workout(fam, phase === "Taper" ? Math.max(0, st0 - 1) : st, P, wk);
+        sessions[wd] = {type:fam, km:wo.km, desc:wo.desc, ...(n ? {q2:true} : {})}; qSess.push(wd); return; }
+      sessions[wd] = {type:kind === "R" ? "easy" : "easy", km:0, strides:kind === "ES", rec:kind === "R"};
+    });
+    // spread what's left over the easy runs, each no longer than 60-90 min
+    const easyDays = Object.keys(sessions).filter(d => sessions[d].type === "easy" && !sessions[d].km), qKm = qSess.reduce((a, d) => a + sessions[d].km, 0);
+    rest = Math.max(0, rest - qKm);
+    const maxE = [60, 60, 60, 75, 90][lvl] / ((P.E[0] + P.E[1]) / 2);
+    easyDays.forEach(d => { const s = sessions[d]; let k = Math.min(maxE, rest / easyDays.length); if (s.rec) k = Math.min(k, 6); k = Math.max(3, Math.round(k * 2) / 2); s.km = k;
+      s.desc = `${s.rec ? "Recovery run, slower than easy" : "Easy"}: ${fmtP(P.E[0])}-${fmtP(P.E[1])}/km, chatting pace.${s.strides ? " Then 4-6 × 20 s strides: quick and relaxed, walk back between." : ""}${s.hills ? " Then 6-8 × 10 s hill sprints, walk back down." : ""}`; });
+    // no race time yet: a 5k time trial in week 2 sets the paces
+    if (src === "estimate" && lvl >= 1 && wi === 1 && !isRace){ const d0 = Object.keys(sessions).find(d => qSess.includes(+d)) || Object.keys(sessions).find(d => sessions[d].strides);
+      if (d0){ const was = sessions[d0].km || 0; sessions[d0] = {type:"tt", km:Math.min(8, Math.max(was, 6.5)), desc:"Warm up 15 min easy with 4 strides. Then 5 km as fast as you can hold evenly: a parkrun is perfect. Log it as a time trial; it sets your training paces."}; } }
+    // race week, built backwards from race day
+    if (isRace){
+      Object.keys(sessions).forEach(d => delete sessions[d]);
+      const rwd = race.getDay(), tune = ev === "marathon" ? `${WUQ}. 3 × 2 km at marathon pace ${fmtP(P.M)}/km, 2 min jog. ${CD}.` : ev === "half" ? `${WUQ}. 2 × 3 km at half pace ${fmtP(P.HM)}/km. ${CD}.` : ev === "10k" ? `${WUI}. 3 × 1.6 km at 10k pace ${fmtP(P.k10)}/km. ${CD}.` : ev === "5k" ? `${WUI}. 3 × 1 km at 5k pace ${fmtP(P.k5)}/km. ${CD}.` : `Easy 40 min with 4 × 1 min at steady effort.`;
+      const at = off => (rwd - off + 7) % 7;
+      sessions[at(5)] = {type:ev === "marathon" || ev === "half" ? "rph" : ev === "5k" ? "rp5" : ev === "10k" ? "rp10" : "easy", km:ev === "marathon" ? 10 : 7, desc:tune};
+      sessions[at(3)] = {type:"easy", km:Math.max(4, Math.round(wk * 0.15)), desc:`Easy ${fmtP(P.E[1])}/km or slower.`};
+      sessions[at(2)] = {type:"easy", km:4, desc:"20-30 min easy + 4 × 20 s strides."};
+      const rt = RACE_M[ev] ? raceTime(vdot, RACE_M[ev]) * (ev === "marathon" ? (P.M * 42.195) / raceTime(vdot, 42195) : 1) : null;
+      sessions[rwd] = {type:"race", km:Math.round(raceKm * 10) / 10, desc:rt ? `Race day. Aim about ${Math.floor(rt / 60)}:${String(Math.round(rt % 60)).padStart(2, "0")} (${fmtP(rt / raceKm)}/km). First ${ev === "marathon" || ev === "half" ? "5 km" : "km"} a touch slower than that, even through the middle, then race the end.${raceKm >= 21 ? " Carbohydrate 30-90 g an hour from the start." : ""}` : "Race day. Start at an easy effort, walk the climbs, eat and drink from the first hour."};
+      wk = Object.values(sessions).reduce((a, x) => a + (x.km || 0), 0);
+      if (raceKm >= 21) notes.push("Carb-load for the 2 days before: about 10 g carbohydrate per kg of body weight a day, low fibre");
+    }
+    // stage race extras: pack weight builds to race weight, heat block in the last 3 weeks (Zurawlew 2016; Daanen 2018)
+    if (E.pack && (phase === "Build" || phase === "Specific") && !recovery){ packKg = Math.min(+ans.packKg || 9, packKg ? packKg + (wi % 2 ? 0 : 1) : 3); notes.push(`Long run with your pack: ${packKg} kg`); }
+    if (E.heat && race && phase === "Taper") notes.push("Heat block: after an easy run, 30-40 min in a 40 °C bath or a sauna, most days, up to 1-3 days before you travel");
+    const tot = Object.values(sessions).reduce((a, x) => a + (x.km || 0), 0);
+    weeks.push({start:ymd(ws), w:w + 1, phase, recovery, km:Math.round(tot), long, b2b, sessions, notes, strength:phase === "Taper" ? (taperIdx === T - 1 ? 0 : 1) : phase === "Specific" ? 1 : 2});
+  }
+  const P0 = pacesFor(vdot, start0);
+  return {event:ans.event, eventName:Esp.name, raceDate:race ? ans.raceDate : null, estimated:!race && ans.event !== "general", weeks, peakKm:Math.max(...weeks.map(w => w.km)), longWd,
+    phases:{runwalk:RW, base:BASE, build:B, peak:S2, taper:T}, run:{v:1, vdot, src, level:lvl, paces:P0, ev, wk:{}, log:[]}};
+}
 /* HYROX: running-led (finish time tracks VO2max and endurance volume, not grip or muscle mass: Brandt 2025),
    plus station-specific strength and a weekly simulation of compromised running. */
 function hyroxPlan(ans){
@@ -1066,7 +1260,7 @@ function autoLiftDays(plan, n){
   return [1,2,3,4,5,6,0].sort((a, b) => score(a) - score(b)).slice(0, n).filter(d => score(d) < 99).sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7));
 }
 function generateEndu(ans, seed){
-  const plan = ans.kind === "hyrox" ? hyroxPlan(ans) : ans.kind === "tri" ? triPlan(ans) : enduPlan(ans), gl = (flowGyms() || gymList()), hybrid = ans.kind === "hybrid";
+  const plan = ans.kind === "hyrox" ? hyroxPlan(ans) : ans.kind === "tri" ? triPlan(ans) : runPlan(ans), gl = (flowGyms() || gymList()), hybrid = ans.kind === "hybrid";
   let liftDays = ans.kind === "hyrox" ? plan.strengthDays : WD.filter(([k]) => (ans.liftDays || []).includes(k)).map(x => x[1]);
   if (ans.kind !== "hyrox" && !liftDays.length && +ans.strengthN > 0) liftDays = autoLiftDays(plan, +ans.strengthN);
   const exercises = {};
@@ -1470,7 +1664,10 @@ function pStep(s, a){
       <div class="obslider"><input type="range" min="0" max="150" step="1" value="${a.weeklyKm}" data-range="weeklyKm" aria-label="Kilometres a week"></div></div>
     <div class="obfld"><span class="obl">Longest run in the last 30 days</span><div class="obunitrow">${nf("longest", "num", a.longest, "Longest run in km", 90)}<span>km</span></div>
       <div class="obslider"><input type="range" min="0" max="60" step="1" value="${a.longest}" data-range="longest" aria-label="Longest run"></div>
-      <span class="obhint">Long runs never grow more than 10% beyond your longest of the last month: in 5,200 runners, single runs that jumped past that predicted injury. ${src("progression-run")}</span></div>`
+      <span class="obhint">Long runs never grow more than 10% beyond your longest of the last month: in 5,200 runners, single runs that jumped past that predicted injury. ${src("progression-run")}</span></div>
+    <div class="obfld"><span class="obl">A recent race or time trial? (optional)</span>${seg2("recent.d", [["","None"],["5k","5k"],["10k","10k"],["half","Half"],["marathon","Marathon"]], (a.recent || {}).d || "")}
+      ${(a.recent || {}).d ? `<div class="obunitrow"><input class="field" data-input="recent.t" placeholder="Time, e.g. 24:30 or 1:52:00" value="${esc((a.recent || {}).t || "")}"></div>${seg2("recent.when", [["2","Last 2 months"],["6","2-6 months"],["12","Longer ago"]], (a.recent || {}).when || "2")}${seg2("recent.cond", [["flat","Flat, cool"],["hilly","Hilly"],["hot","Hot"]], (a.recent || {}).cond || "flat")}` : ""}
+      <span class="obhint">${(a.recent || {}).d ? "This sets every training pace. Paces then update from your sessions and races." : "Without one, paces start from an estimate and you'll get a 5k time trial in week 2 to set them properly."}</span></div>`
     : a.kind === "hyrox" ? `<p class="obnote">Runs start short and easy, with walk breaks whenever you need them; the race-pace work builds gradually.</p>` : `<p class="obnote">You'll start with a 9-week run/walk build (modelled on the NHS Couch to 5K: three sessions a week), then move on to your goal.</p>`}`};
   case "rundays": return {title:"How often can you run?", body:`
     ${numSeg("runs", 2, 7, a.runs, +a.runLevel <= 1 ? 3 : 4)}
@@ -2109,6 +2306,7 @@ function liveRange(t){
   fillRanges(body); if (t.type === "range") t.style.setProperty("--p", pctOf(t) + "%");
 }
 window.AJOnboard = {
+  runMath:{pacesFor, fmtP, vdotOf, raceTime, RACE_M, parseHMS},
   coachTables:{VOL, MAINT, SESS_CAP, weekRIR, coachA, sizeVolume}, pctOf:pctMax, strMacro, LIFT_N,
   welcome(fresh){
     const d = !fresh && loadDraft("welcome");

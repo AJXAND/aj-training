@@ -989,7 +989,9 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .techline{background:var(--orange-soft)}.techline b{color:var(--orange)}.techline span{color:var(--ink)}
 .set.top .n{background:var(--ink);color:var(--card)}.set.test .n{background:var(--orange-soft);color:var(--orange)}.rpech button{min-width:0;padding:8px 9px;flex:1}.strq{gap:10px}
 .strl{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}.strl>div{display:grid;gap:1px;background:var(--sunk);border-radius:14px;padding:10px 12px}.strl span{font-size:12px;color:var(--muted);font-weight:600}.strl b{font:800 20px var(--display)}.strl em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.strl.pc{grid-template-columns:1fr 1fr}
 .strmeet{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:12px}.strmeet>div{display:flex;justify-content:space-between;font-size:14px}
+.runfb{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:12px}.runfb .fbq{grid-template-columns:84px minmax(0,1fr)}
 .cclist{display:grid;gap:10px}.cclist>div{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;align-items:center}.cclist em{display:block;font-style:normal;font-size:13px;color:var(--muted)}
 .ccd{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font:800 15px var(--display);background:var(--sunk);color:var(--muted)}.ccd.up{background:var(--orange-soft);color:var(--orange)}.ccd.dn{background:color-mix(in srgb,var(--warn) 14%,var(--card));color:var(--warn)}
 .tdlist2{display:grid}.card>.tdlist2:first-child>div:first-child{border-top:0;padding-top:0}.tdlist2>div{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}.tdnm{display:grid;min-width:0}.tdnm b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tdnm em{font-style:normal;font-size:12.5px;color:var(--muted)}.tdaim{font:700 14px var(--body);font-variant-numeric:tabular-nums;white-space:nowrap}.tdaim.up{color:var(--orange)}
@@ -2348,13 +2350,36 @@ function runFor(date){ const w=enduWeek(date); if (!w) return null; const dt=par
   let wd=dt.getDay();
   if (here && here.movedFrom!=null) wd=here.movedFrom;
   else if (here && here.rest && String(here.k).startsWith("_r")) return null;
-  const s=w.sessions[wd]; return s?{...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), ...s, week:w}:null; }
+  let s=w.sessions[wd]; if (s&&window.AJRun&&AJRun.RP()){ AJRun.weekly(); s=AJRun.adjust(s,date); }
+  return s?{...(window.AJOnboard?AJOnboard.RUNTYPE[s.type]:{}), ...s, week:w}:null; }
+// after a run: three one-tap questions, and for a race or time trial, the time (which sets your paces)
+function runFbCard(c, r){
+  const P=["None","Niggle","Pain"], LOC=[["foot","Foot"],["achilles","Heel/Achilles"],["calf","Calf"],["shin","Shin"],["knee","Knee"],["hamstring","Hamstring"],["hip","Hip"],["back","Back"],["other","Other"]];
+  const pn=c.pain||{}, race=r&&(r.type==="race"||r.type==="tt");
+  return `<div class="runfb"><div class="fbq"><span>How hard?</span><div class="fbch">${[2,3,4,5,6,7,8,9,10].map(v=>`<button data-act="rfb" data-id="${c.id}" data-f="rpe" data-v="${v}" aria-pressed="${c.rpe===v}">${v}</button>`).join("")}</div></div>
+    <div class="fbq"><span>Legs</span><div class="fbch">${["Fresh","Normal","Heavy","Dead"].map((l,v)=>`<button data-act="rfb" data-id="${c.id}" data-f="legs" data-v="${v}" aria-pressed="${c.legs===v}">${l}</button>`).join("")}</div></div>
+    <div class="fbq"><span>Any pain?</span><div class="fbch">${P.map((l,v)=>`<button data-act="rfb" data-id="${c.id}" data-f="sev" data-v="${v}" aria-pressed="${(pn.sev||0)===v&&(c.pain!=null||v===0&&c.rpe!=null)}">${l}</button>`).join("")}</div></div>
+    ${pn.sev?`<div class="fbq"><span>Where?</span><div class="fbch">${LOC.map(([k,l])=>`<button data-act="rfb" data-id="${c.id}" data-f="loc" data-v="${k}" aria-pressed="${pn.loc===k}">${l}</button>`).join("")}</div></div>`:""}
+    ${race?`<div class="fbq"><span>${r.type==="tt"?"5 km time":"Race time"}</span><div class="obunitrow" style="display:flex;gap:8px"><input class="field" id="rtime-${c.id}" placeholder="mm:ss or h:mm:ss" style="flex:1"><button class="btn small orange" data-act="rtime" data-id="${c.id}" data-km="${r.type==="tt"?5:r.km}">Set paces</button></div></div>`:""}
+    <span class="small muted">${pn.sev>=2?"Pain changes your plan this week: easy only. Sharp pain, pain that changes how you run or is worse next morning needs a physio before running again.":"This sets next week. Easy runs should sit around 3-4."}</span></div>`;
+}
+// Running: your paces from your last race or time trial, the predicted time, and what the coach changed
+function runCoachCard(){
+  const r=window.AJRun&&AJRun.RP(); if (!r) return "";
+  const P=AJRun.paces(), f=AJRun.fmt, pr=AJRun.predict(), log=(r.log||[]).filter(x=>Date.now()-x.t<14*864e5).slice(-3).reverse();
+  const nm={"5k":"5k","10k":"10k",half:"Half marathon",marathon:"Marathon"}[pr&&pr.ev];
+  const hms=m=>{ const h=Math.floor(m/60), mm=Math.floor(m%60), ss=Math.round((m%1)*60); return (h?h+":"+String(mm).padStart(2,"0"):mm)+":"+String(ss).padStart(2,"0"); };
+  return `<div class="card"><div class="spread"><h2>Your paces</h2><span class="small muted">${r.src==="race"?"From your last race or time trial":"Estimated: a time trial will set them"}</span></div>
+    <div class="strl pc">${[["Easy",`${f(P.E[0])}-${f(P.E[1])}`],["Marathon",f(P.M)],["Threshold",f(P.T)],["Intervals",f(P.I)]].map(([l,v])=>`<div><span>${l}</span><b class="num">${v}</b><em>per km</em></div>`).join("")}</div>
+    ${pr&&nm?`<span class="small muted">${nm} prediction from current fitness: <b>${hms(pr.mins)}</b>.</span>`:""}
+    ${log.length?`<div class="cclist">${log.map(x=>`<div><span class="ccd">•</span><span><em>${esc(x.why)}</em></span></div>`).join("")}</div>`:`<span class="small muted">After each run, tap how hard it was, how your legs felt and any pain. Each week the plan adjusts to it, and a race or time trial resets your paces.</span>`}</div>`;
+}
 function runAmt(r){ return r.type==="hysim"?r.km+" rounds":r.km?r.km+" km":r.mins?r.mins+" min":""; }
 function runCard(r, date){
   const sp={run:"run",swim:"swim",cycle:"cycle",hyrox:"hyrox"}[r.sport||"run"]||"run", done=S.cardio.filter(c=>c.date===date && c.type===sp);
   return `<div class="card runcard"><div class="spread"><div class="tdtop" style="grid-template-columns:44px minmax(0,1fr)"><span class="tdic">${ICON.cardio}</span><div class="stack" style="gap:1px;min-width:0"><h2>${esc(r.n)}</h2><span class="small muted">${esc(r.week.phase)} · week ${r.week.w}${r.week.recovery?" · recovery week":""}</span></div></div><b class="num rkm">${r.type==="hysim"?r.km+"<em> rounds</em>":r.km?r.km+"<em> km</em>":r.mins+"<em> min</em>"}</b></div>
-    <span class="small muted">${esc(r.desc||r.rpe)}</span>${r.week.notes.length?`<div class="hcue"><em>This week</em>${r.week.notes.map(esc).join(". ")}</div>`:""}
-    ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>`:(sp==="run"||sp==="cycle"?`<div class="grid2"><button class="btn ghost" data-act="logRun" data-t="${sp}" data-km="${sp==="run"&&r.type!=="runwalk"?r.km||"":""}" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log it</button><button class="btn orange" data-act="trackStart" data-t="${sp}">Start ${sp==="cycle"?"ride":"run"}</button></div>`:`<button class="btn orange" data-act="logRun" data-t="${sp}" data-km="" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log this ${sp==="swim"?"swim":sp==="hyrox"?"session":"session"}</button>`)}</div>`;
+    <span class="small muted">${esc(r.desc||r.rpe)}</span>${r.adjusted?`<span class="tag hold">Adjusted by your coach${r.capped?": capped at 10% past your longest run":""}</span>`:""}${r.week.notes.length?`<div class="hcue"><em>This week</em>${r.week.notes.map(esc).join(". ")}</div>`:""}
+    ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>${sp==="run"&&window.AJRun&&AJRun.RP()?runFbCard(done[0],r):""}`:(sp==="run"||sp==="cycle"?`<div class="grid2"><button class="btn ghost" data-act="logRun" data-t="${sp}" data-km="${sp==="run"&&r.type!=="runwalk"?r.km||"":""}" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log it</button><button class="btn orange" data-act="trackStart" data-t="${sp}">Start ${sp==="cycle"?"ride":"run"}</button></div>`:`<button class="btn orange" data-act="logRun" data-t="${sp}" data-km="" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log this ${sp==="swim"?"swim":sp==="hyrox"?"session":"session"}</button>`)}</div>`;
 }
 // muscles an exercise trains, by display name: {Chest:1, Triceps:0.5}
 function exMuscles(k){
@@ -2939,7 +2964,7 @@ function renderPlan(){
   if (S.prog.placeholder) return head("Train")+renderTrainToday();
   if (S.planView==="month") return head("Train")+`<button class="link trback" data-segset="planView" data-val="today">${ICON.back}<span>Back to this week</span></button>`+renderMonthView()+planFoot();
   const td=ymd(new Date()), dates=weekDates(), sel=S.trDay&&dates.some(d=>ymd(d)===S.trDay)?S.trDay:td;
-  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+(S.prog.strength?strengthCard():coachCard()+weekSetsCard())+planFoot();
+  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+(S.prog.strength?strengthCard():runCoachCard()+coachCard()+weekSetsCard())+planFoot();
 }
 // The week at the top of Train: tap a day to see it. Below it, where you are in the block.
 function trainStrip(dates, sel, bi){
@@ -2947,7 +2972,8 @@ function trainStrip(dates, sel, bi){
   const cells=dates.map(dt=>{ const ds=ymd(dt), d=dayForDate(dt), run=runFor(ds), lift=d&&!d.rest&&d.variants&&(d.variants[dayGym(d)]||[]).length;
     const did=sessionsOn(ds).length>0||S.cardio.some(c=>c.date===ds&&["run","cycle","swim","hyrox"].includes(c.type)&&(run||lift));
     const sl=d&&d.str?(d.str.find(x=>x.type==="H"&&!x.v)||d.str[0]):null;
-    const plan=!!(lift||run), lab=sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
+    const RSH={easy:"Easy",long:"Long",b2b:"B2B",tt:"Test",race:"Race",tintro:"Steady",tcruise:"Threshold",ttempo:"Tempo",ilong:"Intervals",i3015:"Intervals",hlong:"Hills",rp5:"Race pace",rp10:"Race pace",rph:"Race pace",uclimb:"Climb",uhike:"Hike",runwalk:"Run/walk"};
+    const plan=!!(lift||run), lab=run&&!lift&&RSH[run.type]?RSH[run.type]:sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
     const st=did?"did":plan?(ds<td?"miss":"plan"):"rest";
     return `<button class="trd ${st} ${ds===sel?"sel":""} ${ds===td?"now":""}" data-act="trDay" data-d="${ds}" aria-label="${dt.toLocaleDateString("en-GB",{weekday:"long"})}"><span class="w">${dt.toLocaleDateString("en-GB",{weekday:"short"}).slice(0,3)}</span><b class="num">${dt.getDate()}</b><i>${did?HICON.check:""}</i><em>${esc(lab)}</em></button>`; }).join("");
   const len=bi&&bi.len||0, wk=bi&&!bi.pre?bi.week:0;
@@ -3554,7 +3580,7 @@ function trkWatchOn(){
 function trkStop(){ if (trkWatch!=null) navigator.geolocation.clearWatch(trkWatch); trkWatch=null; clearInterval(trkTick); trkTick=null; }
 function trkPos(p){
   const tr=S.track; if (!tr) return;
-  const c=p.coords, pt=[+c.latitude.toFixed(6), +c.longitude.toFixed(6), p.timestamp||Date.now()];
+  const c=p.coords, pt=[+c.latitude.toFixed(6), +c.longitude.toFixed(6), p.timestamp||Date.now(), c.altitude!=null?Math.round(c.altitude):null];
   tr.acc=Math.round(c.accuracy); tr.gps=c.accuracy<=30?"good":"weak";
   if (tr.paused || c.accuracy>30){ trkPaint(); return; }
   const last=tr.pts[tr.pts.length-1];
@@ -3600,7 +3626,8 @@ function trkFinish(){
   const tr=S.track; if (!tr) return; trkStop();
   const secs=trkMoving(Date.now()), mins=Math.max(1,Math.round(secs/60)), km=tr.dist>=50?Math.round(tr.dist/10)/100:null;
   const type=tr.type==="hike"?"hike":tr.type, lv=type==="walk"?(km&&km/(secs/3600)>=5.5?"Brisk, 6 km/h":"Moderate, 5 km/h"):undefined;
-  const step=Math.max(1,Math.ceil(tr.pts.length/400)), route=tr.pts.filter((_,i)=>i%step===0).map(p=>[p[0],p[1]]);
+  // keep time and altitude (one point every 5 s or so) so splits, rep paces and hill-adjusted pace can be worked out later
+  let lastT=-1e9; const route=tr.pts.filter((p,i)=>{ if (i===tr.pts.length-1||p[2]-lastT>=5000){ lastT=p[2]; return true; } return false; }).map(p=>[p[0],p[1],Math.round((p[2]-tr.start)/1000),p[3]??null]);
   const doc=makeCardio(type, lv||(CARDIO[type]||{}).def, mins, km, ymd(new Date(tr.start)), true);
   const full={...doc, tracked:true, route, started:tr.start}; upsert("cardio",full); putDoc("cardio",full.id,full);
   S.track=null; trkSave(); S.confirm=null; if (wake){ try{ wake.release(); }catch(e){} }
@@ -4346,6 +4373,15 @@ $("#main").addEventListener("click", async e=>{
     case "strRPE": { const ei=+b.dataset.e, e=S.active.ex[ei], top=e.sets.find(x=>x.role==="top"); if (top) AJStrength.topDone(S.active,ei,+b.dataset.v); else e.sets[e.sets.length-1].q=10-(+b.dataset.v); saveActive(); render(); return; }
     case "strSpd": { const e=S.active.ex[+b.dataset.e], t=e.sets.find(x=>x.role==="top")||e.sets[e.sets.length-1]; t.spd=+b.dataset.v; saveActive(); render(); return; }
     case "setQ": { const ex=S.active.ex[+b.dataset.e], ls=ex.sets[ex.sets.length-1]; ls.q=+b.dataset.v; saveActive(); render(); return; }
+    case "rfb": { const c=S.cardio.find(x=>x.id===b.dataset.id); if (!c) return; const f=b.dataset.f, v=b.dataset.v;
+      if (f==="sev"){ c.pain=+v?{...(c.pain||{}),sev:+v}:{sev:0}; } else if (f==="loc"){ c.pain={...(c.pain||{}),loc:v}; } else c[f]=+v;
+      const w=enduWeek(c.date), s=w&&w.sessions[parseD(c.date).getDay()]; if (s) c.plan=s.type;
+      upsert("cardio",c); putDoc("cardio",c.id,c); render(); return; }
+    case "rtime": { const c=S.cardio.find(x=>x.id===b.dataset.id), inp=$("#rtime-"+b.dataset.id), mins=AJOnboard.runMath.parseHMS(inp&&inp.value), km=+b.dataset.km;
+      if (!mins||!km){ toast("Type the time like 24:30 or 1:52:00"); return; }
+      const res=AJRun.result(km,mins,false); if (!res) return; if (c){ c.race={km,mins}; upsert("cardio",c); putDoc("cardio",c.id,c); }
+      if (res.kept) toast({title:"Paces kept", detail:"That's slower than your current fitness. If it was a fair all-out effort in good conditions, run another one; one off day doesn't lower your paces."});
+      else toast({title:"Paces updated", detail:`VDOT ${res.old} → ${res.v}. Every session from here uses them.`}); render(); return; }
     case "jp": { const doc=S.sessions.find(x=>x.id===S.summary); if (!doc) return; doc.jp=doc.jp||{}; doc.jp[b.dataset.l]=+b.dataset.v; upsert("sessions",doc); putDoc("sessions",doc.id,doc); render(); return; }
     case "fb": case "fbx": { const doc=S.sessions.find(x=>x.id===S.summary); if (!doc) return; doc.fb=doc.fb||{}; const m=b.dataset.m, o=doc.fb[m]=doc.fb[m]||{};
       if (act==="fbx") o.jx=b.dataset.k; else { o[b.dataset.f]=+b.dataset.v; if (b.dataset.f==="J"&&+b.dataset.v<2) delete o.jx; }
@@ -4834,5 +4870,6 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 <script src="/onboard.js"></script>
 <script src="/coach.js"></script>
 <script src="/strength.js"></script>
+<script src="/run.js"></script>
 </body>
 </html>
