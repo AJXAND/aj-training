@@ -2331,6 +2331,9 @@ Values per 100 g (or 100 ml for drinks).`,{modelTier:"default"});
   S.busy=null; if (S.tab==="food"||S.tab==="foodadd"){ render(); }
 }
 function foodDate(){ return S.foodDate||ymd(new Date()); }
+// You can plan food up to a week ahead (meal prep); weight and adaptive targets only ever use days that have happened
+const FOOD_AHEAD=7; function foodMaxDate(){ const d=new Date(); d.setDate(d.getDate()+FOOD_AHEAD); return ymd(d); }
+function dayWord(date){ const t=new Date(), td=ymd(t); if (date===td) return "Today"; const a=new Date(t); a.setDate(a.getDate()+1); if (date===ymd(a)) return "Tomorrow"; const b=new Date(t); b.setDate(b.getDate()-1); if (date===ymd(b)) return "Yesterday"; return fmtD(date); }
 /* Meals: grouped automatically by the time you logged, with shakes and treats recognised by name. Drag to fix. */
 const MEALS=[["breakfast","Breakfast"],["lunch","Lunch"],["dinner","Dinner"],["snacks","Snacks"],["shake","Protein shakes"],["treats","Treats"]];
 const SHAKE_RE=/\b(shake|whey|protein powder|casein|isolate|protein drink)\b/i, TREAT_RE=/\b(chocolate|crisps|sweets|candy|cake|biscuit|cookie|ice cream|doughnut|donut|brownie|beer|wine|cider|prosecco|gin|vodka|whisky|cocktail|haribo|pudding)\b/i;
@@ -2576,7 +2579,7 @@ function entryRow(e, sel){
 function foodHero(date,t,tg,rem,isToday){
   const C=2*Math.PI*44, pc=Math.min(1,t.kcal/Math.max(1,tg.kcal)), over=t.kcal>tg.kcal*1.05;
   const mb=(n,v,g,c)=>{ const left=g-v; return `<div class="dmac"><div class="spread"><span>${n}</span><b class="num">${Math.round(rem?Math.abs(left):v)}<em${rem&&left<0?' class="over"':""}>${rem?(left<0?" g over":" g left"):" / "+Math.round(g)+" g"}</em></b></div><div class="dbar"><i style="width:${Math.min(100,v/Math.max(1,g)*100)}%;background:${c}"></i></div></div>`; };
-  return `<div class="card fhero"><div class="fhtop"><div class="fdate"><button class="iconbtn sm" data-act="fday" data-d="-1" aria-label="Previous day">${ICON.back}</button><button class="fdl" data-act="fset" data-date="${ymd(new Date())}">${isToday?"Today":fmtD(date)}</button><button class="iconbtn sm flip" data-act="fday" data-d="1" ${isToday?"disabled":""} aria-label="Next day">${ICON.back}</button></div>${seg("foodMode",[["consumed","Eaten"],["remaining","Left"]],rem?"remaining":"consumed")}</div>
+  return `<div class="card fhero"><div class="fhtop"><div class="fdate"><button class="iconbtn sm" data-act="fday" data-d="-1" aria-label="Previous day">${ICON.back}</button><button class="fdl" data-act="fset" data-date="${ymd(new Date())}">${dayWord(date)}</button><button class="iconbtn sm flip" data-act="fday" data-d="1" ${date>=foodMaxDate()?"disabled":""} aria-label="Next day">${ICON.back}</button></div>${seg("foodMode",[["consumed","Eaten"],["remaining","Left"]],rem?"remaining":"consumed")}</div>
     <div class="dfrow"><button class="ring big" data-act="ftoggle" aria-label="Switch between eaten and left"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" stroke="var(--sunk)" stroke-width="9" fill="none"/><circle cx="50" cy="50" r="44" stroke="${over?"var(--warn)":"var(--orange)"}" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pc)}" transform="rotate(-90 50 50)"/></svg><span><b class="num">${fmtN(rem?Math.abs(tg.kcal-t.kcal):t.kcal)}</b><em>${rem?(t.kcal>tg.kcal?"kcal over":"kcal left"):"of "+fmtN(tg.kcal)+" kcal"}</em></span></button>
       <div class="dmacs">${mb("Protein",t.p,tg.p,"var(--prot)")}${mb("Carbs",t.c,tg.c,"var(--carb)")}${mb("Fat",t.f,tg.f,"var(--fat)")}</div></div></div>`;
 }
@@ -2610,7 +2613,7 @@ function renderFood(){
     <button class="lact ai" data-act="foodAddOpen" data-tab="ai"><span class="li-ic">${ICON.spark}</span><b>AI</b><span>Type or snap it</span></button></div>
   ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
   ${S.busy==="label"||S.busy==="barcode"?`<div class="card"><div class="row"><span class="spinner"></span><span>${S.busy==="label"?"Reading the label…":"Reading the barcode…"}</span></div></div>`:""}
-  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":fmtD(date)}</h2>${sel?`<button class="link" data-act="selMode">Clear</button>`:entries.length?`<span class="small muted">Tap to open · hold to select</span>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
+  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":date>ymd(new Date())?dayWord(date)+"'s plan":dayWord(date)}</h2>${sel?`<button class="link" data-act="selMode">Clear</button>`:entries.length?`<span class="small muted">Tap to open · hold to select</span>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
     ${groups}</div>
   ${sel?`<div class="selbar"><span class="num"><b>${sel.length} selected</b><em>${fmtN(ss.kcal)} kcal · ${Math.round(ss.p)}P ${Math.round(ss.c)}C ${Math.round(ss.f)}F</em></span><div class="selacts">
     ${sel.length===1?`<button data-act="selEdit">Edit</button>`:`<button data-act="selMake">Make meal</button>`}<button data-act="selCopy">Copy</button><button data-act="selMove">Move</button><button class="del" data-act="selDel">Delete</button></div></div>`:trayBar(date)}
@@ -2989,10 +2992,10 @@ function qaAuto(t){
 }
 function selEntries(date, ids){ return ((S.foodlog[date]||{}).entries||[]).filter(e=>ids.includes(e.id)).sort((a,b)=>a.t-b.t); }
 function foodSheetSpecial(a){
-  const td=ymd(new Date()), yd=ymd(new Date(Date.now()-864e5));
+  const td=ymd(new Date()), yd=ymd(new Date(Date.now()-864e5)), tm=ymd(new Date(Date.now()+864e5));
   if (a.copy){ const es=selEntries(a.copy.src,a.copy.ids), s=sumOf(es);
     return `<h2>Copy ${es.length} food${es.length===1?"":"s"}</h2><span class="small muted num">${fmtN(s.kcal)} kcal · ${Math.round(s.p)}P ${Math.round(s.c)}C ${Math.round(s.f)}F</span>
-      <div class="lab">To<div class="chips"><button class="chip" data-fs="cpTo" data-d="${td}" aria-pressed="${a.to===td}">Today</button><button class="chip" data-fs="cpTo" data-d="${yd}" aria-pressed="${a.to===yd}">Yesterday</button><input type="date" class="field cpdate" id="cpDate" max="${td}" value="${a.to}" aria-label="Another day"></div></div>
+      <div class="lab">To<div class="chips"><button class="chip" data-fs="cpTo" data-d="${td}" aria-pressed="${a.to===td}">Today</button><button class="chip" data-fs="cpTo" data-d="${yd}" aria-pressed="${a.to===yd}">Yesterday</button><button class="chip" data-fs="cpTo" data-d="${tm}" aria-pressed="${a.to===tm}">Tomorrow</button><input type="date" class="field cpdate" id="cpDate" max="${foodMaxDate()}" value="${a.to}" aria-label="Another day"></div></div>
       <div class="lab">Into<div class="chips"><button class="chip" data-fs="cpMeal" data-m="same" aria-pressed="${a.toMeal==="same"}">Same meal</button>${MEALS.map(([k,n])=>`<button class="chip" data-fs="cpMeal" data-m="${k}" aria-pressed="${a.toMeal===k}">${n}</button>`).join("")}</div></div>
       <button class="btn orange" data-fs="copyGo">Copy to ${a.to===td?"today":a.to===yd?"yesterday":fmtD(a.to)}</button><button class="btn ghost" data-fs="close">Cancel</button>`; }
   if (a.saveMeal){ const es=selEntries(a.saveMeal.src,a.saveMeal.ids), s=sumOf(es);
@@ -4149,7 +4152,7 @@ function moveEntries(date, ids, meal){
     if (e.grp&&doc.entries.some(x=>x.grp===e.grp&&!set.has(x.id))){ delete e.grp; delete e.grpName; } });
   normGroups(doc); saveFoodDay(date); return undo;
 }
-function entryTime(date){ return date===ymd(new Date()) ? Date.now() : parseD(date).getTime(); }
+function entryTime(date){ return date===ymd(new Date()) ? Date.now() : date>ymd(new Date()) ? parseD(date).getTime()+12*36e5 : parseD(date).getTime(); }
 function openWeigh(){ const td=ymd(new Date()), ex=S.weights.find(x=>x.d===td), last=[...S.weights].sort((x,y)=>x.d<y.d?1:-1)[0]; closeActions(); S.foodAdd={weigh:{d:td, kg:ex?ex.kg:last?last.kg:75}}; renderFoodSheet(); setTimeout(()=>{ const i=$("#wKg"); i&&i.select(); },350); }
 function openFood(food, extra){ extra=extra||{}; edOpen(food,"new",{...extra, numOpen:!(+food.per100.kcal)||extra.src==="label"}); }
 function foodSheetSave(mode){
@@ -4205,7 +4208,7 @@ $("#foodSheet").addEventListener("click",e=>{
     const gmap={}, all=(S.foodlog[src]||{}).entries||[]; es.forEach(e=>{ const n={...clone(e), id:uid("f"), t:e.t+base, meal:a.toMeal==="same"?mm[e.id]:a.toMeal}; delete n.sample; delete n.placed; delete n.moved;
       if (n.grp&&all.filter(x=>x.grp===e.grp).every(x=>a.copy.ids.includes(x.id))) n.grp=gmap[n.grp]||(gmap[n.grp]=uid("g")); else { delete n.grp; delete n.grpName; }
       addFoodEntry(a.to,n); ids.push(n.id); });
-    const to=a.to; S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); toast({title:`Copied to ${to===ymd(new Date())?"today":to===ymd(new Date(Date.now()-864e5))?"yesterday":fmtD(to)}`, detail:`${es.length} food${es.length===1?"":"s"}`}, ()=>{ const d=S.all.foodlog[to]; if (d){ d.entries=d.entries.filter(x=>!ids.includes(x.id)); saveFoodDay(to); } render(); }); }
+    const to=a.to; S.foodAdd=null; S.fsel=null; S.mealMenu=null; renderFoodSheet(); render(); toast({title:`Copied to ${/^(Today|Tomorrow|Yesterday)$/.test(dayWord(to))?dayWord(to).toLowerCase():dayWord(to)}`, detail:`${es.length} food${es.length===1?"":"s"}`}, ()=>{ const d=S.all.foodlog[to]; if (d){ d.entries=d.entries.filter(x=>!ids.includes(x.id)); saveFoodDay(to); } render(); }); }
   if (k==="saveGo"){ const name=($("#smName").value||"").trim(); if (!name){ toast("Give the meal a name"); $("#smName").focus(); return; }
     const items=selEntries(a.saveMeal.src,a.saveMeal.ids).map(e=>({name:e.name, foodId:e.foodId, amount:e.amount, unit:e.unit, grams:e.grams, kcal:e.kcal, p:e.p, f:e.f, c:e.c, src:e.src}));
     S.profile={...S.profile, savedMeals:[{id:uid("meal"), name:name.slice(0,60), items, created:Date.now()}, ...savedMeals()]}; saveProfile();
@@ -4251,7 +4254,7 @@ $("#foodSheet").addEventListener("input",e=>{ const ed=S.foodAdd&&S.foodAdd.ed, 
   if(id==="faAmt") updateFaLive(); if (/^qa[KPCF]$/.test(id)) qaAuto(e.target);
   const m=/^fe100(kcal|p|f|c)$/.exec(id); if (m&&S.foodAdd&&S.foodAdd.food){ const v=parseFloat(String(e.target.value).replace(",",".")); if (!isNaN(v)){ S.foodAdd.food.per100={...S.foodAdd.food.per100,[m[1]]:v}; S.foodAdd.food.edited=true; updateFaLive(); } } });
 $("#foodSheet").addEventListener("keydown",e=>{ if (e.key==="Enter"&&e.target.id==="edAi"){ e.preventDefault(); edAi(); } if (e.key==="Enter"&&e.target.id==="edName"){ e.preventDefault(); e.target.blur(); } });
-$("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="cpDate"&&S.foodAdd&&e.target.value){ S.foodAdd.to=e.target.value>ymd(new Date())?ymd(new Date()):e.target.value; renderFoodSheet(); return; } if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
+$("#foodSheet").addEventListener("change",e=>{ if(e.target.id==="cpDate"&&S.foodAdd&&e.target.value){ S.foodAdd.to=e.target.value>foodMaxDate()?foodMaxDate():e.target.value; renderFoodSheet(); return; } if(e.target.id==="faUnit"){ const a=S.foodAdd; const old=a.unit, amt=+a.amount||0; a.unit=e.target.value; a.amount = old==="g"&&a.unit==="serving" ? r1(amt/(a.food.serving.g||100)) || 1 : old==="serving"&&a.unit==="g" ? Math.round(amt*(a.food.serving.g||100)) : a.amount; renderFoodSheet(); } });
 
 /* Label scan: Claude reads the label photo. Barcode: decoded on the phone, matched to foods you've saved. */
 // Live scanner path: read without leaving the camera. Returns {food} or {error}.
@@ -4675,7 +4678,7 @@ $("#main").addEventListener("click", async e=>{
       const p=S.photosets.find(x=>x.id===b.dataset.id); removeItem("photosets",b.dataset.id);
       if (assets&&p) for (const ph of p.photos){ try{ await assets.delete(ph.id); }catch(err){} }
       render(); return; }
-    case "fset": { if (b.dataset.date>ymd(new Date())) return; S.foodDate=b.dataset.date; S.fsel=null; S.mealMenu=null; render(); return; }
+    case "fset": { if (b.dataset.date>foodMaxDate()) return; S.foodDate=b.dataset.date; S.fsel=null; S.mealMenu=null; render(); return; }
     case "selMode": S.fsel=S.fsel&&S.fselDate===foodDate()?null:[]; S.fselDate=foodDate(); S.mealMenu=null; render(); return;
     case "foodTap": { if (S.fsel&&S.fselDate===foodDate()){ b.dataset.act="selTog"; } else return editEntryOpen(b.dataset.id); }
     // falls through to select when already selecting
@@ -4723,7 +4726,7 @@ $("#main").addEventListener("click", async e=>{
       const m=saveMealFrom(sg.name, tray.map(x=>({name:x.name, foodId:x.food?x.food.id:undefined, amount:x.amount, unit:x.unit==="serving"?((x.food&&x.food.serving||{}).label||"serving"):x.unit, grams:x.g, kcal:x.kcal, p:x.p, f:x.f, c:x.c, src:x.src})));
       tray.forEach(x=>x.fromMeal=m.id); if (tray.length>1) S.trayGroup={on:true, name:m.name, saved:m.id}; S.mealSuggest=null; render(); toast({title:"Saved to My meals", detail:m.name}); return; }
     case "ftoggle": { S.foodMode=S.foodMode==="remaining"?"consumed":"remaining"; try{ localStorage.setItem("ajfoodmode",S.foodMode); }catch(e){} render(); return; }
-    case "fday": { const d=parseD(foodDate()); d.setDate(d.getDate()+(+b.dataset.d)); const s=ymd(d); if (s>ymd(new Date())) return; S.foodDate=s; render(); return; }
+    case "fday": { const d=parseD(foodDate()); d.setDate(d.getDate()+(+b.dataset.d)); const s=ymd(d); if (s>foodMaxDate()) return; S.foodDate=s; render(); return; }
     case "pickDb": { if(!FOODDB) return; const f0=dbFood(+b.dataset.i), f=S.foods.find(x=>x.id===f0.id)||f0; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"On your plate", detail:f.name}); return; } openFood(f); return; }
     case "pickAi": { const f=S.aiFoods&&S.aiFoods[+b.dataset.i]; if(!f) return; if (b.dataset.quick){ const d=defaultAmt(f); saveFood({...f}); trayAdd(f,d.amount,d.unit); render(); toast({title:"On your plate", detail:f.name}); return; } openFood(f); return; }
     case "askFood": askFood(S.foodQuery.trim()); return;
