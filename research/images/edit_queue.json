@@ -1,0 +1,1668 @@
+[
+{
+"id": "cambered",
+"name": "Cambered bar",
+"group": "Bars and plates",
+"q": "Cambered bar product white background",
+"from_grid": false
+},
+{
+"id": "axle",
+"name": "Axle / fat bar",
+"group": "Bars and plates",
+"q": "Axle product white background",
+"from_grid": false
+},
+{
+"id": "fixedbb",
+"name": "Fixed-weight barbells",
+"group": "Bars and plates",
+"q": "Fixed-weight barbells product white background",
+"from_grid": false
+},
+{
+"id": "landmine",
+"name": "Landmine",
+"group": "Bars and plates",
+"q": "Landmine product white background",
+"from_grid": false
+},
+{
+"id": "landminehandle",
+"name": "Landmine handles",
+"group": "Bars and plates",
+"q": "Landmine handles product white background",
+"from_grid": false
+},
+{
+"id": "chains",
+"name": "Chains",
+"group": "Bars and plates",
+"q": "Chains product white background",
+"from_grid": false
+},
+{
+"id": "fatgrips",
+"name": "Thick grips",
+"group": "Bars and plates",
+"q": "Thick grips product white background",
+"from_grid": false
+},
+{
+"id": "rack",
+"name": "Power rack / squat rack",
+"group": "Racks and benches",
+"q": "Power rack product white background",
+"from_grid": false
+},
+{
+"id": "smith",
+"name": "Smith machine",
+"group": "Racks and benches",
+"q": "Smith machine product white background",
+"from_grid": false
+},
+{
+"id": "smithangled",
+"name": "Angled Smith machine",
+"group": "Racks and benches",
+"q": "Angled Smith machine product white background",
+"from_grid": false
+},
+{
+"id": "smith3d",
+"name": "3D Smith machine",
+"group": "Racks and benches",
+"q": "3D Smith machine product white background",
+"from_grid": false
+},
+{
+"id": "declinebench",
+"name": "Decline bench",
+"group": "Racks and benches",
+"q": "Decline bench product white background",
+"from_grid": false
+},
+{
+"id": "benchrack",
+"name": "Bench press station",
+"group": "Racks and benches",
+"q": "Bench press station product white background",
+"from_grid": false
+},
+{
+"id": "inclinestation",
+"name": "Incline bench station",
+"group": "Racks and benches",
+"q": "Incline bench station product white background",
+"from_grid": false
+},
+{
+"id": "shoulderbench",
+"name": "Shoulder press bench",
+"group": "Racks and benches",
+"q": "Shoulder press bench product white background",
+"from_grid": false
+},
+{
+"id": "preacher",
+"name": "Preacher bench",
+"group": "Racks and benches",
+"q": "Preacher bench product white background",
+"from_grid": false
+},
+{
+"id": "jhooks",
+"name": "Spotter / safety arms",
+"group": "Racks and benches",
+"q": "Spotter product white background",
+"from_grid": false
+},
+{
+"id": "legattach",
+"name": "Bench leg extension / curl attachment",
+"group": "Racks and benches",
+"q": "Bench leg extension product white background",
+"from_grid": false
+},
+{
+"id": "racklevers",
+"name": "Rack lever arms",
+"group": "Racks and benches",
+"q": "Rack lever arms product white background",
+"from_grid": false
+},
+{
+"id": "adjdb",
+"name": "Adjustable dumbbells",
+"group": "Dumbbells and kettlebells",
+"q": "Adjustable dumbbells product white background",
+"from_grid": false
+},
+{
+"id": "heavydb",
+"name": "Heavy dumbbells (50 kg+)",
+"group": "Dumbbells and kettlebells",
+"q": "Heavy dumbbells (50 kg+) product white background",
+"from_grid": false
+},
+{
+"id": "adjkb",
+"name": "Adjustable kettlebell",
+"group": "Dumbbells and kettlebells",
+"q": "Adjustable kettlebell product white background",
+"from_grid": false
+},
+{
+"id": "clubs",
+"name": "Clubbells / Indian clubs",
+"group": "Dumbbells and kettlebells",
+"q": "Clubbells product white background",
+"from_grid": false
+},
+{
+"id": "mace",
+"name": "Steel mace",
+"group": "Dumbbells and kettlebells",
+"q": "Steel mace product white background",
+"from_grid": false
+},
+{
+"id": "cable_dual",
+"name": "Cable crossover (two stacks)",
+"group": "Cables and attachments",
+"q": "Cable crossover (two stacks) product white background",
+"from_grid": false
+},
+{
+"id": "functional",
+"name": "Functional trainer",
+"group": "Cables and attachments",
+"q": "Functional trainer product white background",
+"from_grid": false
+},
+{
+"id": "latpd",
+"name": "Lat pulldown",
+"group": "Cables and attachments",
+"q": "Lat pulldown product white background",
+"from_grid": false
+},
+{
+"id": "latrow",
+"name": "Lat pulldown / low row combo",
+"group": "Cables and attachments",
+"q": "Lat pulldown product white background",
+"from_grid": false
+},
+{
+"id": "cablerope",
+"name": "Triceps rope",
+"group": "Cables and attachments",
+"q": "Triceps rope product white background",
+"from_grid": false
+},
+{
+"id": "straightbar",
+"name": "Straight cable bar",
+"group": "Cables and attachments",
+"q": "Straight cable bar product white background",
+"from_grid": false
+},
+{
+"id": "ezcable",
+"name": "EZ cable bar",
+"group": "Cables and attachments",
+"q": "EZ cable bar product white background",
+"from_grid": false
+},
+{
+"id": "vbar",
+"name": "V-bar",
+"group": "Cables and attachments",
+"q": "V-bar product white background",
+"from_grid": false
+},
+{
+"id": "diypulley",
+"name": "Plate-loaded pulley (DIY)",
+"group": "Cables and attachments",
+"q": "Plate-loaded pulley (DIY) product white background",
+"from_grid": false
+},
+{
+"id": "jungle",
+"name": "Multi-station cable jungle",
+"group": "Cables and attachments",
+"q": "Multi-station cable jungle product white background",
+"from_grid": false
+},
+{
+"id": "chestpress",
+"name": "Seated chest press (selectorised)",
+"group": "Chest machines",
+"q": "Seated chest press (selectorised) product white background",
+"from_grid": false
+},
+{
+"id": "isochestpress",
+"name": "Iso-lateral chest press (plate-loaded)",
+"group": "Chest machines",
+"q": "Iso-lateral chest press (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "lyingchestpress",
+"name": "Lying chest press machine",
+"group": "Chest machines",
+"q": "Lying chest press machine product white background",
+"from_grid": false
+},
+{
+"id": "incchestpress",
+"name": "Incline chest press (selectorised)",
+"group": "Chest machines",
+"q": "Incline chest press (selectorised) product white background",
+"from_grid": false
+},
+{
+"id": "isoincpress",
+"name": "Iso-lateral incline press (plate-loaded)",
+"group": "Chest machines",
+"q": "Iso-lateral incline press (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "declinepress",
+"name": "Decline chest press machine",
+"group": "Chest machines",
+"q": "Decline chest press machine product white background",
+"from_grid": false
+},
+{
+"id": "pecdeck",
+"name": "Pec deck",
+"group": "Chest machines",
+"q": "Pec deck product white background",
+"from_grid": false
+},
+{
+"id": "platefly",
+"name": "Plate-loaded chest fly",
+"group": "Chest machines",
+"q": "Plate-loaded chest fly product white background",
+"from_grid": false
+},
+{
+"id": "chestback",
+"name": "Iso-lateral chest / back combo",
+"group": "Chest machines",
+"q": "Iso-lateral chest product white background",
+"from_grid": false
+},
+{
+"id": "pushupm",
+"name": "Plate-loaded push-up / dip combo",
+"group": "Chest machines",
+"q": "Plate-loaded push-up product white background",
+"from_grid": false
+},
+{
+"id": "latpdplate",
+"name": "Iso-lateral pulldown (plate-loaded)",
+"group": "Back machines",
+"q": "Iso-lateral pulldown (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "frontpulldown",
+"name": "Iso-lateral front pulldown",
+"group": "Back machines",
+"q": "Iso-lateral front pulldown product white background",
+"from_grid": false
+},
+{
+"id": "rowm",
+"name": "Iso-lateral row (plate-loaded)",
+"group": "Back machines",
+"q": "Iso-lateral row (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "seatedrowm",
+"name": "Seated row machine (selectorised)",
+"group": "Back machines",
+"q": "Seated row machine (selectorised) product white background",
+"from_grid": false
+},
+{
+"id": "highrow",
+"name": "High row machine",
+"group": "Back machines",
+"q": "High row machine product white background",
+"from_grid": false
+},
+{
+"id": "lowrow",
+"name": "Low row machine",
+"group": "Back machines",
+"q": "Low row machine product white background",
+"from_grid": false
+},
+{
+"id": "dyrow",
+"name": "DY row",
+"group": "Back machines",
+"q": "DY row product white background",
+"from_grid": false
+},
+{
+"id": "tbar",
+"name": "T-bar row",
+"group": "Back machines",
+"q": "T-bar row product white background",
+"from_grid": false
+},
+{
+"id": "cstbar",
+"name": "Chest-supported T-bar row",
+"group": "Back machines",
+"q": "Chest-supported T-bar row product white background",
+"from_grid": false
+},
+{
+"id": "pulloverm",
+"name": "Pullover machine",
+"group": "Back machines",
+"q": "Pullover machine product white background",
+"from_grid": false
+},
+{
+"id": "dipm",
+"name": "Assisted pull-up / dip machine",
+"group": "Back machines",
+"q": "Assisted pull-up product white background",
+"from_grid": false
+},
+{
+"id": "pullupplate",
+"name": "Plate-loaded pull-up / chin assist",
+"group": "Back machines",
+"q": "Plate-loaded pull-up product white background",
+"from_grid": false
+},
+{
+"id": "backext",
+"name": "Back extension machine",
+"group": "Back machines",
+"q": "Back extension machine product white background",
+"from_grid": false
+},
+{
+"id": "shrugm",
+"name": "Shrug machine",
+"group": "Back machines",
+"q": "Shrug machine product white background",
+"from_grid": false
+},
+{
+"id": "deadliftm",
+"name": "Deadlift / ground base machine",
+"group": "Back machines",
+"q": "Deadlift product white background",
+"from_grid": false
+},
+{
+"id": "neckm",
+"name": "Neck machine",
+"group": "Back machines",
+"q": "Neck machine product white background",
+"from_grid": false
+},
+{
+"id": "shoulderpress",
+"name": "Shoulder press machine (selectorised)",
+"group": "Shoulder machines",
+"q": "Shoulder press machine (selectorised) product white background",
+"from_grid": false
+},
+{
+"id": "isoshoulderpress",
+"name": "Iso-lateral shoulder press (plate-loaded)",
+"group": "Shoulder machines",
+"q": "Iso-lateral shoulder press (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "latraisem",
+"name": "Lateral raise machine",
+"group": "Shoulder machines",
+"q": "Lateral raise machine product white background",
+"from_grid": false
+},
+{
+"id": "revdelt",
+"name": "Rear delt machine",
+"group": "Shoulder machines",
+"q": "Rear delt machine product white background",
+"from_grid": false
+},
+{
+"id": "jammer",
+"name": "Jammer",
+"group": "Shoulder machines",
+"q": "Jammer product white background",
+"from_grid": false
+},
+{
+"id": "vikingm",
+"name": "Viking press machine",
+"group": "Shoulder machines",
+"q": "Viking press machine product white background",
+"from_grid": false
+},
+{
+"id": "curlm",
+"name": "Biceps curl machine",
+"group": "Arm machines",
+"q": "Biceps curl machine product white background",
+"from_grid": false
+},
+{
+"id": "preacherm",
+"name": "Preacher curl machine",
+"group": "Arm machines",
+"q": "Preacher curl machine product white background",
+"from_grid": false
+},
+{
+"id": "triextm",
+"name": "Triceps extension machine",
+"group": "Arm machines",
+"q": "Triceps extension machine product white background",
+"from_grid": false
+},
+{
+"id": "tridipm",
+"name": "Seated dip machine",
+"group": "Arm machines",
+"q": "Seated dip machine product white background",
+"from_grid": false
+},
+{
+"id": "standcurlm",
+"name": "Standing curl machine",
+"group": "Arm machines",
+"q": "Standing curl machine product white background",
+"from_grid": false
+},
+{
+"id": "legpress",
+"name": "45-degree leg press",
+"group": "Leg machines: quads",
+"q": "45-degree leg press product white background",
+"from_grid": false
+},
+{
+"id": "hlegpress",
+"name": "Horizontal leg press",
+"group": "Leg machines: quads",
+"q": "Horizontal leg press product white background",
+"from_grid": false
+},
+{
+"id": "vertlegpress",
+"name": "Vertical leg press",
+"group": "Leg machines: quads",
+"q": "Vertical leg press product white background",
+"from_grid": false
+},
+{
+"id": "isolegpress",
+"name": "Iso-lateral leg press (plate-loaded)",
+"group": "Leg machines: quads",
+"q": "Iso-lateral leg press (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "legpresshack",
+"name": "Leg press / hack squat combo",
+"group": "Leg machines: quads",
+"q": "Leg press product white background",
+"from_grid": false
+},
+{
+"id": "revhack",
+"name": "Reverse hack / hack squat combo",
+"group": "Leg machines: quads",
+"q": "Reverse hack product white background",
+"from_grid": false
+},
+{
+"id": "pendulum",
+"name": "Pendulum squat",
+"group": "Leg machines: quads",
+"q": "Pendulum squat product white background",
+"from_grid": false
+},
+{
+"id": "vsquat",
+"name": "V-squat",
+"group": "Leg machines: quads",
+"q": "V-squat product white background",
+"from_grid": false
+},
+{
+"id": "supersquat",
+"name": "Super squat / power squat",
+"group": "Leg machines: quads",
+"q": "Super squat product white background",
+"from_grid": false
+},
+{
+"id": "squatlunge",
+"name": "Squat lunge machine",
+"group": "Leg machines: quads",
+"q": "Squat lunge machine product white background",
+"from_grid": false
+},
+{
+"id": "beltsquat",
+"name": "Belt squat machine",
+"group": "Leg machines: quads",
+"q": "Belt squat machine product white background",
+"from_grid": false
+},
+{
+"id": "pitshark",
+"name": "Pit Shark / hip belt squat machine",
+"group": "Leg machines: quads",
+"q": "Pit Shark product white background",
+"from_grid": false
+},
+{
+"id": "beltsquatplat",
+"name": "Portable belt squat platform",
+"group": "Leg machines: quads",
+"q": "Portable belt squat platform product white background",
+"from_grid": false
+},
+{
+"id": "legext",
+"name": "Leg extension",
+"group": "Leg machines: quads",
+"q": "Leg extension product white background",
+"from_grid": false
+},
+{
+"id": "isolegext",
+"name": "Iso-lateral leg extension (plate-loaded)",
+"group": "Leg machines: quads",
+"q": "Iso-lateral leg extension (plate-loaded) product white background",
+"from_grid": false
+},
+{
+"id": "legextcurl",
+"name": "Leg extension / curl combo",
+"group": "Leg machines: quads",
+"q": "Leg extension product white background",
+"from_grid": false
+},
+{
+"id": "sissy",
+"name": "Sissy squat bench",
+"group": "Leg machines: quads",
+"q": "Sissy squat bench product white background",
+"from_grid": false
+},
+{
+"id": "stepupm",
+"name": "Step-up machine",
+"group": "Leg machines: quads",
+"q": "Step-up machine product white background",
+"from_grid": false
+},
+{
+"id": "lyingcurl",
+"name": "Lying leg curl",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Lying leg curl product white background",
+"from_grid": false
+},
+{
+"id": "seatedcurl",
+"name": "Seated leg curl",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Seated leg curl product white background",
+"from_grid": false
+},
+{
+"id": "standcurl",
+"name": "Standing leg curl",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Standing leg curl product white background",
+"from_grid": false
+},
+{
+"id": "kneelcurl",
+"name": "Kneeling leg curl",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Kneeling leg curl product white background",
+"from_grid": false
+},
+{
+"id": "hipext",
+"name": "45-degree back extension",
+"group": "Leg machines: hamstrings and glutes",
+"q": "45-degree back extension product white background",
+"from_grid": false
+},
+{
+"id": "hyper90",
+"name": "90-degree hyperextension",
+"group": "Leg machines: hamstrings and glutes",
+"q": "90-degree hyperextension product white background",
+"from_grid": false
+},
+{
+"id": "ghd",
+"name": "Glute-ham developer",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Glute-ham developer product white background",
+"from_grid": false
+},
+{
+"id": "revhyper",
+"name": "Reverse hyper",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Reverse hyper product white background",
+"from_grid": false
+},
+{
+"id": "nordicbench",
+"name": "Nordic curl bench",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Nordic curl bench product white background",
+"from_grid": false
+},
+{
+"id": "glutedrive",
+"name": "Hip thrust machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Hip thrust machine product white background",
+"from_grid": false
+},
+{
+"id": "standhipthrust",
+"name": "Standing hip thrust machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Standing hip thrust machine product white background",
+"from_grid": false
+},
+{
+"id": "kickbackm",
+"name": "Glute kickback machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Glute kickback machine product white background",
+"from_grid": false
+},
+{
+"id": "abductor",
+"name": "Hip abductor",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Hip abductor product white background",
+"from_grid": false
+},
+{
+"id": "standabductor",
+"name": "Standing hip abduction machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Standing hip abduction machine product white background",
+"from_grid": false
+},
+{
+"id": "adductor",
+"name": "Hip adductor",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Hip adductor product white background",
+"from_grid": false
+},
+{
+"id": "multihip",
+"name": "Multi-hip machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Multi-hip machine product white background",
+"from_grid": false
+},
+{
+"id": "revlunge",
+"name": "Reverse lunge machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Reverse lunge machine product white background",
+"from_grid": false
+},
+{
+"id": "splitsquatm",
+"name": "Split squat machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Split squat machine product white background",
+"from_grid": false
+},
+{
+"id": "standadductor",
+"name": "Standing hip adduction machine",
+"group": "Leg machines: hamstrings and glutes",
+"q": "Standing hip adduction machine product white background",
+"from_grid": false
+},
+{
+"id": "calfm",
+"name": "Standing calf raise",
+"group": "Leg machines: calves and other",
+"q": "Standing calf raise product white background",
+"from_grid": false
+},
+{
+"id": "seatedcalf",
+"name": "Seated calf raise",
+"group": "Leg machines: calves and other",
+"q": "Seated calf raise product white background",
+"from_grid": false
+},
+{
+"id": "donkeycalf",
+"name": "Donkey calf raise",
+"group": "Leg machines: calves and other",
+"q": "Donkey calf raise product white background",
+"from_grid": false
+},
+{
+"id": "calfpress",
+"name": "Calf press machine",
+"group": "Leg machines: calves and other",
+"q": "Calf press machine product white background",
+"from_grid": false
+},
+{
+"id": "tibm",
+"name": "Tibialis machine",
+"group": "Leg machines: calves and other",
+"q": "Tibialis machine product white background",
+"from_grid": false
+},
+{
+"id": "tibbar",
+"name": "Tibialis bar",
+"group": "Leg machines: calves and other",
+"q": "Tibialis bar product white background",
+"from_grid": false
+},
+{
+"id": "calfblock",
+"name": "Calf raise block",
+"group": "Leg machines: calves and other",
+"q": "Calf raise block product white background",
+"from_grid": false
+},
+{
+"id": "abcrunchm",
+"name": "Ab crunch machine",
+"group": "Core machines",
+"q": "Ab crunch machine product white background",
+"from_grid": false
+},
+{
+"id": "torso",
+"name": "Rotary torso",
+"group": "Core machines",
+"q": "Rotary torso product white background",
+"from_grid": false
+},
+{
+"id": "captain",
+"name": "Captain's chair",
+"group": "Core machines",
+"q": "Captain's chair product white background",
+"from_grid": false
+},
+{
+"id": "declinesitup",
+"name": "Decline sit-up bench",
+"group": "Core machines",
+"q": "Decline sit-up bench product white background",
+"from_grid": false
+},
+{
+"id": "abbench",
+"name": "Ab crunch bench",
+"group": "Core machines",
+"q": "Ab crunch bench product white background",
+"from_grid": false
+},
+{
+"id": "abcoaster",
+"name": "Ab coaster",
+"group": "Core machines",
+"q": "Ab coaster product white background",
+"from_grid": false
+},
+{
+"id": "skierg",
+"name": "SkiErg",
+"group": "Cardio",
+"q": "SkiErg product white background",
+"from_grid": false
+},
+{
+"id": "bikeerg",
+"name": "BikeErg",
+"group": "Cardio",
+"q": "BikeErg product white background",
+"from_grid": false
+},
+{
+"id": "airbike",
+"name": "Assault / air bike",
+"group": "Cardio",
+"q": "Assault product white background",
+"from_grid": false
+},
+{
+"id": "uprightbike",
+"name": "Upright bike",
+"group": "Cardio",
+"q": "Upright bike product white background",
+"from_grid": false
+},
+{
+"id": "recumbent",
+"name": "Recumbent bike",
+"group": "Cardio",
+"q": "Recumbent bike product white background",
+"from_grid": false
+},
+{
+"id": "spinbike",
+"name": "Spin bike",
+"group": "Cardio",
+"q": "Spin bike product white background",
+"from_grid": false
+},
+{
+"id": "turbo",
+"name": "Smart turbo trainer",
+"group": "Cardio",
+"q": "Smart turbo trainer product white background",
+"from_grid": false
+},
+{
+"id": "elliptical",
+"name": "Cross-trainer",
+"group": "Cardio",
+"q": "Cross-trainer product white background",
+"from_grid": false
+},
+{
+"id": "stepper",
+"name": "Stepper",
+"group": "Cardio",
+"q": "Stepper product white background",
+"from_grid": false
+},
+{
+"id": "versaclimber",
+"name": "VersaClimber",
+"group": "Cardio",
+"q": "VersaClimber product white background",
+"from_grid": false
+},
+{
+"id": "jacobs",
+"name": "Jacob's ladder",
+"group": "Cardio",
+"q": "Jacob's ladder product white background",
+"from_grid": false
+},
+{
+"id": "ube",
+"name": "Upper body ergometer",
+"group": "Cardio",
+"q": "Upper body ergometer product white background",
+"from_grid": false
+},
+{
+"id": "nustep",
+"name": "Recumbent cross-trainer",
+"group": "Cardio",
+"q": "Recumbent cross-trainer product white background",
+"from_grid": false
+},
+{
+"id": "sled",
+"name": "Sled / prowler",
+"group": "Conditioning and HYROX",
+"q": "Sled product white background",
+"from_grid": false
+},
+{
+"id": "sledrope",
+"name": "Sled pull rope",
+"group": "Conditioning and HYROX",
+"q": "Sled pull rope product white background",
+"from_grid": false
+},
+{
+"id": "turf",
+"name": "Turf track",
+"group": "Conditioning and HYROX",
+"q": "Turf track product white background",
+"from_grid": false
+},
+{
+"id": "flywheel",
+"name": "Flywheel trainer",
+"group": "Conditioning and HYROX",
+"q": "Flywheel trainer product white background",
+"from_grid": false
+},
+{
+"id": "sandbag",
+"name": "Sandbag",
+"group": "Conditioning and HYROX",
+"q": "Sandbag product white background",
+"from_grid": false
+},
+{
+"id": "medball",
+"name": "Medicine ball",
+"group": "Conditioning and HYROX",
+"q": "Medicine ball product white background",
+"from_grid": false
+},
+{
+"id": "slamball",
+"name": "Slam ball",
+"group": "Conditioning and HYROX",
+"q": "Slam ball product white background",
+"from_grid": false
+},
+{
+"id": "box",
+"name": "Plyo box",
+"group": "Conditioning and HYROX",
+"q": "Plyo box product white background",
+"from_grid": false
+},
+{
+"id": "agility",
+"name": "Agility ladder / hurdles",
+"group": "Conditioning and HYROX",
+"q": "Agility ladder product white background",
+"from_grid": false
+},
+{
+"id": "sledgehammer",
+"name": "Sledgehammer",
+"group": "Conditioning and HYROX",
+"q": "Sledgehammer product white background",
+"from_grid": false
+},
+{
+"id": "jumprope",
+"name": "Jump rope",
+"group": "Conditioning and HYROX",
+"q": "Jump rope product white background",
+"from_grid": false
+},
+{
+"id": "weightvest",
+"name": "Weighted vest",
+"group": "Conditioning and HYROX",
+"q": "Weighted vest product white background",
+"from_grid": false
+},
+{
+"id": "sprintharness",
+"name": "Resisted sprint harness",
+"group": "Conditioning and HYROX",
+"q": "Resisted sprint harness product white background",
+"from_grid": false
+},
+{
+"id": "rebounder",
+"name": "Mini trampoline / rebounder",
+"group": "Conditioning and HYROX",
+"q": "Mini trampoline product white background",
+"from_grid": false
+},
+{
+"id": "yoke",
+"name": "Yoke",
+"group": "Strongman",
+"q": "Yoke product white background",
+"from_grid": false
+},
+{
+"id": "farmerhandles",
+"name": "Farmer's handles",
+"group": "Strongman",
+"q": "Farmer's handles product white background",
+"from_grid": false
+},
+{
+"id": "framecarry",
+"name": "Frame carry",
+"group": "Strongman",
+"q": "Frame carry product white background",
+"from_grid": false
+},
+{
+"id": "stones",
+"name": "Atlas stones",
+"group": "Strongman",
+"q": "Atlas stones product white background",
+"from_grid": false
+},
+{
+"id": "husafell",
+"name": "Husafell stone",
+"group": "Strongman",
+"q": "Husafell stone product white background",
+"from_grid": false
+},
+{
+"id": "tyre",
+"name": "Tyre",
+"group": "Strongman",
+"q": "Tyre product white background",
+"from_grid": false
+},
+{
+"id": "log",
+"name": "Log",
+"group": "Strongman",
+"q": "Log product white background",
+"from_grid": false
+},
+{
+"id": "circusdb",
+"name": "Circus dumbbell",
+"group": "Strongman",
+"q": "Circus dumbbell product white background",
+"from_grid": false
+},
+{
+"id": "keg",
+"name": "Keg",
+"group": "Strongman",
+"q": "Keg product white background",
+"from_grid": false
+},
+{
+"id": "conanwheel",
+"name": "Conan's wheel",
+"group": "Strongman",
+"q": "Conan's wheel product white background",
+"from_grid": false
+},
+{
+"id": "armover",
+"name": "Arm-over-arm pull",
+"group": "Strongman",
+"q": "Arm-over-arm pull product white background",
+"from_grid": false
+},
+{
+"id": "fingal",
+"name": "Fingal's fingers",
+"group": "Strongman",
+"q": "Fingal's fingers product white background",
+"from_grid": false
+},
+{
+"id": "carDL",
+"name": "Car deadlift frame",
+"group": "Strongman",
+"q": "Car deadlift frame product white background",
+"from_grid": false
+},
+{
+"id": "hercules",
+"name": "Hercules hold",
+"group": "Strongman",
+"q": "Hercules hold product white background",
+"from_grid": false
+},
+{
+"id": "pullup",
+"name": "Pull-up bar",
+"group": "Bodyweight and accessories",
+"q": "Pull-up bar product white background",
+"from_grid": false
+},
+{
+"id": "dip",
+"name": "Dip bars",
+"group": "Bodyweight and accessories",
+"q": "Dip bars product white background",
+"from_grid": false
+},
+{
+"id": "rings",
+"name": "Gymnastic rings",
+"group": "Bodyweight and accessories",
+"q": "Gymnastic rings product white background",
+"from_grid": false
+},
+{
+"id": "trx",
+"name": "Suspension trainer (TRX)",
+"group": "Bodyweight and accessories",
+"q": "Suspension trainer (TRX) product white background",
+"from_grid": false
+},
+{
+"id": "anchor",
+"name": "Foot anchor / Nordic strap",
+"group": "Bodyweight and accessories",
+"q": "Foot anchor product white background",
+"from_grid": false
+},
+{
+"id": "wallbars",
+"name": "Wall bars",
+"group": "Bodyweight and accessories",
+"q": "Wall bars product white background",
+"from_grid": false
+},
+{
+"id": "bands",
+"name": "Resistance bands",
+"group": "Bodyweight and accessories",
+"q": "Resistance bands product white background",
+"from_grid": false
+},
+{
+"id": "minibands",
+"name": "Mini bands / hip circle",
+"group": "Bodyweight and accessories",
+"q": "Mini bands product white background",
+"from_grid": false
+},
+{
+"id": "hangboard",
+"name": "Fingerboard / hangboard",
+"group": "Bodyweight and accessories",
+"q": "Fingerboard product white background",
+"from_grid": false
+},
+{
+"id": "abwheel",
+"name": "Ab wheel",
+"group": "Bodyweight and accessories",
+"q": "Ab wheel product white background",
+"from_grid": false
+},
+{
+"id": "swissball",
+"name": "Stability ball",
+"group": "Bodyweight and accessories",
+"q": "Stability ball product white background",
+"from_grid": false
+},
+{
+"id": "parallettes",
+"name": "Parallettes",
+"group": "Bodyweight and accessories",
+"q": "Parallettes product white background",
+"from_grid": false
+},
+{
+"id": "dipbelt",
+"name": "Dip / weight belt",
+"group": "Bodyweight and accessories",
+"q": "Dip product white background",
+"from_grid": false
+},
+{
+"id": "climbrope",
+"name": "Climbing rope",
+"group": "Bodyweight and accessories",
+"q": "Climbing rope product white background",
+"from_grid": false
+},
+{
+"id": "pegboard",
+"name": "Pegboard",
+"group": "Bodyweight and accessories",
+"q": "Pegboard product white background",
+"from_grid": false
+},
+{
+"id": "slidder",
+"name": "Sliders",
+"group": "Bodyweight and accessories",
+"q": "Sliders product white background",
+"from_grid": false
+},
+{
+"id": "wristroller",
+"name": "Wrist roller",
+"group": "Bodyweight and accessories",
+"q": "Wrist roller product white background",
+"from_grid": false
+},
+{
+"id": "grippers",
+"name": "Grip trainers",
+"group": "Bodyweight and accessories",
+"q": "Grip trainers product white background",
+"from_grid": false
+},
+{
+"id": "neckharness",
+"name": "Neck harness",
+"group": "Bodyweight and accessories",
+"q": "Neck harness product white background",
+"from_grid": false
+},
+{
+"id": "hangstraps",
+"name": "Hanging ab straps",
+"group": "Bodyweight and accessories",
+"q": "Hanging ab straps product white background",
+"from_grid": false
+},
+{
+"id": "stepplat",
+"name": "Aerobic step",
+"group": "Bodyweight and accessories",
+"q": "Aerobic step product white background",
+"from_grid": false
+},
+{
+"id": "ankleweights",
+"name": "Ankle weights",
+"group": "Bodyweight and accessories",
+"q": "Ankle weights product white background",
+"from_grid": false
+},
+{
+"id": "monkeybars",
+"name": "Monkey bars",
+"group": "Bodyweight and accessories",
+"q": "Monkey bars product white background",
+"from_grid": false
+},
+{
+"id": "foamroller",
+"name": "Foam roller",
+"group": "Mobility and rehab",
+"q": "Foam roller product white background",
+"from_grid": false
+},
+{
+"id": "massageball",
+"name": "Massage ball",
+"group": "Mobility and rehab",
+"q": "Massage ball product white background",
+"from_grid": false
+},
+{
+"id": "massagegun",
+"name": "Massage gun",
+"group": "Mobility and rehab",
+"q": "Massage gun product white background",
+"from_grid": false
+},
+{
+"id": "yogamat",
+"name": "Exercise / yoga mat",
+"group": "Mobility and rehab",
+"q": "Exercise product white background",
+"from_grid": false
+},
+{
+"id": "dowel",
+"name": "PVC pipe / dowel",
+"group": "Mobility and rehab",
+"q": "PVC pipe product white background",
+"from_grid": false
+},
+{
+"id": "stretchstrap",
+"name": "Stretch strap",
+"group": "Mobility and rehab",
+"q": "Stretch strap product white background",
+"from_grid": false
+},
+{
+"id": "stretchm",
+"name": "Stretching machine",
+"group": "Mobility and rehab",
+"q": "Stretching machine product white background",
+"from_grid": false
+},
+{
+"id": "slantboard",
+"name": "Slant board",
+"group": "Mobility and rehab",
+"q": "Slant board product white background",
+"from_grid": false
+},
+{
+"id": "balanceboard",
+"name": "Balance / wobble board",
+"group": "Mobility and rehab",
+"q": "Balance product white background",
+"from_grid": false
+},
+{
+"id": "bosu",
+"name": "BOSU ball",
+"group": "Mobility and rehab",
+"q": "BOSU ball product white background",
+"from_grid": false
+},
+{
+"id": "reformer",
+"name": "Pilates reformer",
+"group": "Mobility and rehab",
+"q": "Pilates reformer product white background",
+"from_grid": false
+},
+{
+"id": "inversion",
+"name": "Inversion table",
+"group": "Mobility and rehab",
+"q": "Inversion table product white background",
+"from_grid": false
+},
+{
+"id": "plinth",
+"name": "Treatment plinth",
+"group": "Mobility and rehab",
+"q": "Treatment plinth product white background",
+"from_grid": false
+},
+{
+"id": "parallelbars",
+"name": "Rehab parallel bars",
+"group": "Mobility and rehab",
+"q": "Rehab parallel bars product white background",
+"from_grid": false
+},
+{
+"id": "totalgym",
+"name": "Incline bodyweight trainer",
+"group": "Mobility and rehab",
+"q": "Incline bodyweight trainer product white background",
+"from_grid": false
+},
+{
+"id": "rehablegpress",
+"name": "Rehab leg press / jump trainer",
+"group": "Mobility and rehab",
+"q": "Rehab leg press product white background",
+"from_grid": false
+},
+{
+"id": "antigravity",
+"name": "Anti-gravity treadmill",
+"group": "Mobility and rehab",
+"q": "Anti-gravity treadmill product white background",
+"from_grid": false
+},
+{
+"id": "isokinetic",
+"name": "Isokinetic dynamometer",
+"group": "Mobility and rehab",
+"q": "Isokinetic dynamometer product white background",
+"from_grid": false
+},
+{
+"id": "vibration",
+"name": "Vibration plate",
+"group": "Mobility and rehab",
+"q": "Vibration plate product white background",
+"from_grid": false
+},
+{
+"id": "shoulderpulley",
+"name": "Shoulder pulley / wheel",
+"group": "Mobility and rehab",
+"q": "Shoulder pulley product white background",
+"from_grid": false
+},
+{
+"id": "bb",
+"name": "Olympic barbell and plates",
+"group": "Bars and plates",
+"q": "Olympic barbell and plates product white background",
+"from_grid": true
+},
+{
+"id": "bumpers",
+"name": "Bumper plates",
+"group": "Bars and plates",
+"q": "Bumper plates product white background",
+"from_grid": true
+},
+{
+"id": "ez",
+"name": "EZ curl bar",
+"group": "Bars and plates",
+"q": "EZ curl bar product white background",
+"from_grid": true
+},
+{
+"id": "tricepbar",
+"name": "Triceps / hammer curl bar",
+"group": "Bars and plates",
+"q": "Triceps product white background",
+"from_grid": true
+},
+{
+"id": "trapbar",
+"name": "Trap / hex bar",
+"group": "Bars and plates",
+"q": "Trap product white background",
+"from_grid": true
+},
+{
+"id": "swissbar",
+"name": "Swiss / football bar",
+"group": "Bars and plates",
+"q": "Swiss product white background",
+"from_grid": true
+},
+{
+"id": "earthquake",
+"name": "Bamboo / earthquake bar",
+"group": "Bars and plates",
+"q": "Bamboo product white background",
+"from_grid": true
+},
+{
+"id": "halfrack",
+"name": "Half rack / squat stands",
+"group": "Racks and benches",
+"q": "Half rack product white background",
+"from_grid": true
+},
+{
+"id": "rig",
+"name": "Functional training rig",
+"group": "Racks and benches",
+"q": "Functional training rig product white background",
+"from_grid": true
+},
+{
+"id": "multigym",
+"name": "Home multi-gym",
+"group": "Racks and benches",
+"q": "Home multi-gym product white background",
+"from_grid": true
+},
+{
+"id": "bench",
+"name": "Adjustable bench",
+"group": "Racks and benches",
+"q": "Adjustable bench product white background",
+"from_grid": true
+},
+{
+"id": "flatbench",
+"name": "Flat bench",
+"group": "Racks and benches",
+"q": "Flat bench product white background",
+"from_grid": true
+},
+{
+"id": "platform",
+"name": "Deadlift platform",
+"group": "Racks and benches",
+"q": "Deadlift platform product white background",
+"from_grid": true
+},
+{
+"id": "blocks",
+"name": "Pulling / jerk blocks",
+"group": "Racks and benches",
+"q": "Pulling product white background",
+"from_grid": true
+},
+{
+"id": "db",
+"name": "Dumbbells",
+"group": "Dumbbells and kettlebells",
+"q": "Dumbbells product white background",
+"from_grid": true
+},
+{
+"id": "kb",
+"name": "Kettlebells",
+"group": "Dumbbells and kettlebells",
+"q": "Kettlebells product white background",
+"from_grid": true
+},
+{
+"id": "cable_hi",
+"name": "High pulley",
+"group": "Cables and attachments",
+"q": "High pulley product white background",
+"from_grid": true
+},
+{
+"id": "cable_mid",
+"name": "Adjustable pulley (any height)",
+"group": "Cables and attachments",
+"q": "Adjustable pulley (any height) product white background",
+"from_grid": true
+},
+{
+"id": "cable_low",
+"name": "Low pulley",
+"group": "Cables and attachments",
+"q": "Low pulley product white background",
+"from_grid": true
+},
+{
+"id": "dhandle",
+"name": "D-handle",
+"group": "Cables and attachments",
+"q": "D-handle product white background",
+"from_grid": true
+},
+{
+"id": "latbar",
+"name": "Lat bar",
+"group": "Cables and attachments",
+"q": "Lat bar product white background",
+"from_grid": true
+},
+{
+"id": "anklestrap",
+"name": "Ankle strap",
+"group": "Cables and attachments",
+"q": "Ankle strap product white background",
+"from_grid": true
+},
+{
+"id": "treadmill",
+"name": "Treadmill",
+"group": "Cardio",
+"q": "Treadmill product white background",
+"from_grid": true
+},
+{
+"id": "inclinetm",
+"name": "Incline trainer",
+"group": "Cardio",
+"q": "Incline trainer product white background",
+"from_grid": true
+},
+{
+"id": "curvedtm",
+"name": "Curved / self-powered treadmill",
+"group": "Cardio",
+"q": "Curved product white background",
+"from_grid": true
+},
+{
+"id": "rower",
+"name": "Rowing machine",
+"group": "Cardio",
+"q": "Rowing machine product white background",
+"from_grid": true
+},
+{
+"id": "amt",
+"name": "Adaptive motion trainer",
+"group": "Cardio",
+"q": "Adaptive motion trainer product white background",
+"from_grid": true
+},
+{
+"id": "stairs",
+"name": "Stair climber",
+"group": "Cardio",
+"q": "Stair climber product white background",
+"from_grid": true
+},
+{
+"id": "battleropes",
+"name": "Battle ropes",
+"group": "Conditioning and HYROX",
+"q": "Battle ropes product white background",
+"from_grid": true
+},
+{
+"id": "wallball",
+"name": "Wall ball and target",
+"group": "Conditioning and HYROX",
+"q": "Wall ball and target product white background",
+"from_grid": true
+},
+{
+"id": "torquetank",
+"name": "Resisted push sled (wheeled)",
+"group": "Conditioning and HYROX",
+"q": "Resisted push sled (wheeled) product white background",
+"from_grid": true
+},
+{
+"id": "treadwall",
+"name": "Climbing wall / treadwall",
+"group": "Conditioning and HYROX",
+"q": "Climbing wall product white background",
+"from_grid": true
+},
+{
+"id": "punchbag",
+"name": "Punch bag",
+"group": "Conditioning and HYROX",
+"q": "Punch bag product white background",
+"from_grid": true
+}
+]

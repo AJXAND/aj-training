@@ -39,9 +39,14 @@
   "wallball"
  ],
  "redo": [
+  "axle",
   "bb",
+  "box",
+  "cambered",
   "earthquake",
   "flywheel",
+  "heavydb",
+  "mace",
   "sprintharness",
   "wallball"
  ],
@@ -61,11 +66,44 @@
  ],
  "qc_rule": "Every result is compared side by side with its original photo and checked part by part before acceptance. Use a fresh Gemini chat per item. Move mouse off the photo before screenshotting.",
  "accepted": {
-  "hack": "u1 chat 006d7ab299b26a5d (v2; v1 had invented calf pad)",
+  "hack": "u1 chat 99b6ca1b6cf6aea9 (v3 Hammer Strength style, standard design per AJ)",
   "ssb": "u1 chat 9eec04a73e35cb2d (v2; v1 turned sleeves black)",
   "hipthrustbench": "u1 chat efe987acb040aabf (v2; v1 kept copper brackets)",
   "seatedcablerow": "u1 chat d228ad2a298c0078 (v2; v1 distorted handle)",
   "maggrip": "u1 chat 9a9a975068bc4c62 image 4",
-  "monolift": "u1 chat 9a9a975068bc4c62 image 6"
- }
+  "monolift": "u1 chat 9a9a975068bc4c62 image 6",
+  "bb": "u1 chat 210558011afd3ee3 image 3 (2 plates each side, no collars)",
+  "fixedbb": "u1 chat 3f455e16e76a0126",
+  "landminehandle": "u1 chat c3f9a6a528adc616",
+  "chains": "u1 chat e36d58c57c2db0ff",
+  "fatgrips": "u1 chat 603ab23f65e3acb0",
+  "adjkb": "u1 chat 4fef5efdab09edbe",
+  "clubs": "u1 chat 697e3396bb89cf4a",
+  "adjdb": "u1 chat a6bafb25b4acc6d9",
+  "cablerope": "u1 chat dc6ad66d0c2bd97e",
+  "straightbar": "u1 chat 692de3ded2395bbb",
+  "ezcable": "u1 chat b0aa6f6a4d81bf8d",
+  "vbar": "u1 chat 2c713f86d6ebb029",
+  "sledrope": "u1 chat b8eba5f6bbe94a89",
+  "sandbag": "u1 chat c9f26b23cf4e1765",
+  "medball": "u1 chat 1a96ab6d3d0ab9c9",
+  "slamball": "u1 chat 4d3657e680c8a611",
+  "agility": "u1 chat 0f5ef365b33a58f8",
+  "sledgehammer": "u1 chat 53c701f0dbc12164"
+ },
+ "pending_review": {
+  "jumprope": "9bdfe1e85be26b95",
+  "weightvest": "2257a7365dd00683",
+  "sprintharness": "84d8d4e10da13339",
+  "yoke": "19200e53da047b7b",
+  "farmerhandles": "7c16d3183ce50660"
+ },
+ "limits": "2026-10-22: work account (u0) limit after ~45 images; personal (u1) limit after ~45 images. Both reset daily.",
+ "next": [
+  "review pending_review",
+  "redo cambered axle heavydb mace box with sharper prompts (window.TQR in edit notes)",
+  "text queue rows from framecarry onward (images/text_queue.json)",
+  "power rack edit (ref chosen: GIANT style 4-post with monkey bar top)",
+  "machines via photo-edit, list in edit_queue.json"
+ ]
 }
