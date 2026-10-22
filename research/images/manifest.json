@@ -89,21 +89,29 @@
   "medball": "u1 chat 1a96ab6d3d0ab9c9",
   "slamball": "u1 chat 4d3657e680c8a611",
   "agility": "u1 chat 0f5ef365b33a58f8",
-  "sledgehammer": "u1 chat 53c701f0dbc12164"
+  "sledgehammer": "u1 chat 53c701f0dbc12164",
+  "jumprope": "u1 chat 9bdfe1e85be26b95",
+  "weightvest": "u1 chat 2257a7365dd00683",
+  "sprintharness": "u1 chat 84d8d4e10da13339",
+  "yoke": "u1 chat 19200e53da047b7b",
+  "farmerhandles": "u1 chat 7c16d3183ce50660",
+  "multigym": "AI Studio Lite edit, downloaded ajt_eq_multigym.png",
+  "smith": "AI Studio Lite edit, downloaded ajt_eq_smith.png",
+  "rack": "AI Studio Lite edit, downloaded ajt_eq_rack.png",
+  "smithangled": "AI Studio Lite edit, downloaded ajt_eq_smithangled.png",
+  "declinebench": "AI Studio Lite edit, downloaded ajt_eq_declinebench.png",
+  "benchrack": "AI Studio Lite edit, downloaded ajt_eq_benchrack.png",
+  "inclinestation": "AI Studio Lite edit, downloaded ajt_eq_inclinestation.png"
  },
- "pending_review": {
-  "jumprope": "9bdfe1e85be26b95",
-  "weightvest": "2257a7365dd00683",
-  "sprintharness": "84d8d4e10da13339",
-  "yoke": "19200e53da047b7b",
-  "farmerhandles": "7c16d3183ce50660"
- },
- "limits": "2026-10-22: work account (u0) limit after ~45 images; personal (u1) limit after ~45 images. Both reset daily.",
+ "limits": "2026-10-22: work account (u0) limit after ~45 images; personal (u1) limit after ~45 images. Both reset daily. AI Studio Lite (work account) daily quota hit after ~10 edits on 2026-10-22.",
  "next": [
-  "review pending_review",
-  "redo cambered axle heavydb mace box with sharper prompts (window.TQR in edit notes)",
-  "text queue rows from framecarry onward (images/text_queue.json)",
-  "power rack edit (ref chosen: GIANT style 4-post with monkey bar top)",
-  "machines via photo-edit, list in edit_queue.json"
+  "shoulderbench (ref chosen: black Olympic shoulder press bench with loaded bar)",
+  "smith3d via Gemini app",
+  "redo cambered axle heavydb mace box",
+  "text queue rows from framecarry onward",
+  "machines via photo-edit (edit_queue.json)"
+ ],
+ "gemini_tomorrow": [
+  "smith3d"
  ]
 }
