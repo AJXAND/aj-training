@@ -416,6 +416,16 @@ h1{margin-top:2px}
 .mealhd .msic{margin-left:0}
 .edorig{justify-self:center;margin-top:-6px}
 .mealcard .fbody{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.actions .qhero{display:grid;grid-template-columns:48px minmax(0,1fr) 24px;gap:14px;align-items:center;width:100%;border:0;background:var(--sunk);border-radius:20px;padding:14px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;margin-bottom:6px}
+.qhero .ai,.qt .ai{display:grid;place-items:center;color:#fff}.qhero .ai{width:48px;height:48px;border-radius:15px}.qhero .ai svg,.qt .ai svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qt .ai[style*="gradient"] svg,.qhero .ai[style*="gradient"] svg{fill:currentColor;stroke:none}
+.qht{display:grid;gap:2px;min-width:0}.qht b{font:800 18px var(--display)}.qht em{font-style:normal;font-size:13px;color:var(--muted);font-weight:600}.qhero .chev{transform:rotate(180deg);color:var(--muted);display:grid;place-items:center}.qhero .chev svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.qsec{display:grid;gap:10px;margin-top:8px}.qsec h4{margin:0;font:700 13px var(--body);color:var(--muted);letter-spacing:.02em}
+.qgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.qt{display:grid;justify-items:center;align-content:start;gap:8px;border:0;background:var(--sunk);border-radius:18px;padding:14px 4px 12px;color:var(--ink);font:inherit;cursor:pointer;min-width:0}
+.qt .ai{width:44px;height:44px;border-radius:14px}.qt b{font:700 12px var(--body);text-align:center;line-height:1.2}
+.qt:active,.qhero:active{transform:scale(.96)}
+.actions:not([hidden]) .qt,.actions:not([hidden]) .qhero{animation:pgUp .4s var(--ease) both;animation-delay:calc(var(--i,0) * 25ms + 40ms)}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -3594,23 +3604,17 @@ function go(tab, seg){
 }
 function openActions(){
   const t=todayDay(), lift=on("training")||on("endurance"), food=on("nutrition");
-  const big=[
-    lift?["startToday","var(--orange)",ICON.lift,S.prog.placeholder?"Build plan":"Workout",S.prog.placeholder?"2-minute setup":t&&!t.rest?t.label:"Rest day"]:null,
-    food?["food","var(--prot)",ICON.food,"Log food","Search or scan"]:null,
-    ["coach","linear-gradient(140deg,#FF9A3D,#C2410C)",ICON.spark,"Ask AI","Log by describing it"]
-  ].filter(Boolean);
-  const rows=[
-    food?["barcode","var(--ink)",ICON.barcode,"Scan a barcode","Packaged food in a second"]:null,
-    food?["label","var(--ink)",ICON.label,"Scan a nutrition label","For anything without a barcode match"]:null,
-    ["track","var(--orange)",ICON.cardio,"Track a run or walk","Live GPS: time, distance, pace"],
-    ["cardio","var(--cardio)",ICON.cardio,"Log cardio or sport","Any sport, run, walk or class"],
-    food?["weigh","var(--weight)",ICON.scale,"Weigh in","Morning weight for your trend"]:null,
-    on("habits")?["habits","var(--carb)",ICON.steps,"Habits","Tick off today's habits"]:null,
-    ["photo","var(--fat)",ICON.camera,"Progress photos","Same pose, light and time"]
-  ].filter(Boolean);
-  $("#actionsIn").innerHTML=`<div class="grab"></div><div class="actbig">${big.map(([k,c,ic,b,s2])=>`<button class="actb" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><b>${b}</b><span>${esc(s2)}</span></button>`).join("")}</div>`
-    +rows.map(([k,c,ic,b,s2])=>`<button class="act" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><span><b>${b}</b><span>${esc(s2)}</span></span></button>`).join("");
-  [...$("#actionsIn").querySelectorAll(".act,.actb")].forEach((a,i)=>a.style.setProperty("--i",i));
+  // what you're most likely here to do today, first and biggest
+  let hero="";
+  if (lift){ const ex=t&&!t.rest?(t.variants&&(t.variants[dayGym(t)]||[]).length)||0:0, nx=!t||t.rest?(()=>{ for (let i=1;i<8;i++){ const d=new Date(); d.setDate(d.getDate()+i); const x=dayForDate(d); if (x&&!x.rest) return [x,d]; } return null; })():null;
+    hero=`<button class="qhero" data-sheet="startToday"><span class="ai" style="background:var(--orange)">${ICON.lift}</span><span class="qht"><b>${S.prog.placeholder?"Build your plan":t&&!t.rest?"Start "+esc(t.label):"Rest day"}</b><em>${S.prog.placeholder?"Takes about two minutes":t&&!t.rest?`${ex} exercises · ~${Math.round(ex*7.5)} min`:nx?`Next: ${esc(nx[0].label)}, ${nx[1].toLocaleDateString("en-GB",{weekday:"long"})}`:"See your plan"}</em></span><i class="chev">${ICON.back}</i></button>`; }
+  const tile=(k,c,ic,l)=>`<button class="qt" data-sheet="${k}"><span class="ai" style="background:${c}">${ic}</span><b>${l}</b></button>`;
+  const foodT=food?[tile("barcode","#14A38B",ICON.barcode,"Scan"),tile("search","var(--prot)",ICON.search,"Search"),tile("aifood","linear-gradient(140deg,#FF9A3D,#C2410C)",ICON.spark,"AI"),tile("meals","var(--orange)",ICON.bowl,"My meals")]:[];
+  const bodyT=[tile("track","var(--orange)",ICON.cardio,"Track a run"),tile("cardio","var(--cardio)",ICON.lift,"Log a sport"),food?tile("weigh","var(--weight)",ICON.scale,"Weigh in"):"",tile("photo","var(--fat)",ICON.camera,"Photos"),on("habits")?tile("habits","var(--carb)",ICON.steps,"Habits"):""].filter(Boolean);
+  $("#actionsIn").innerHTML=`<div class="grab"></div>${hero}
+    ${foodT.length?`<div class="qsec"><h4>Log food</h4><div class="qgrid">${foodT.join("")}</div></div>`:""}
+    <div class="qsec"><h4>Activity and body</h4><div class="qgrid" style="grid-template-columns:repeat(${bodyT.length},minmax(0,1fr))">${bodyT.join("")}</div></div>`;
+  [...$("#actionsIn").querySelectorAll(".qhero,.qt")].forEach((a,i)=>a.style.setProperty("--i",i));
   $("#actions").classList.remove("out"); $("#scrim").classList.remove("out");
   $("#actions").hidden=false; $("#scrim").hidden=false; $("#plusBtn").classList.add("open");
 }
@@ -3630,6 +3634,7 @@ $("#actionsIn").addEventListener("click",e=>{
   const k=b.dataset.sheet;
   if (k==="coach"){ closeActions(); openChat(); return; }
   if (k==="startToday"){ closeActions(); const t=todayDay(); if (S.prog.placeholder){ window.AJOnboard&&AJOnboard.programme(); return; } if (t&&!t.rest&&(t.variants[dayGym(t)]||[]).length){ startSession(dayBy(t.k), dayGym(t)); return; } go("train"); return; }
+  if (k==="search"||k==="aifood"||k==="meals"){ closeActions(); S.addTab=k==="aifood"?"ai":k; if (!(S.tray||[]).length) S.addMeal=null; go("foodadd"); if (k==="search") setTimeout(()=>{ const x=$("#foodQ"); x&&x.focus(); },80); return; }
   if (k==="barcode"||k==="label"){ closeActions(); go("food"); setTimeout(()=>window.openScanner?openScanner(k):$(k==="label"?"#labelCam":"#barcodeCam").click(),60); return; }
   if (k==="cardio"){ S.cardioForm={type:null, level:"", mins:"", km:"", date:null}; S.cSearch=""; go("cardio"); return; }
   if (k==="track"){ closeActions(); S.trkPick=true; go("trackpick"); return; }
