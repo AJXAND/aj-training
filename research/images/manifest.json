@@ -39,13 +39,24 @@
   "wallball"
  ],
  "redo": [
+  "bb",
+  "earthquake",
   "flywheel",
+  "sprintharness",
+  "wallball"
+ ],
+ "pending_note": "Gemini daily limit hit 2026-10-22 after 9 grids of grid0. Resume grid0 from item 10 (circusdb...), then grid1, grid2.",
+ "method": "Gemini photo EDIT: one real product photo per item, edited to house style (grey backdrop, matte black, no logos). Personal account gemini.google.com/u/1 chat 9a9a975068bc4c62. Also ref-sheet grid results in chat 431d22bcdd5789e3.",
+ "edit_done": [
+  "arctrainer",
+  "hack",
+  "hipthrustbench",
+  "lateraltrainer",
   "maggrip",
   "monolift",
   "ropetrainer",
   "sealrow",
-  "sprintharness",
+  "seatedcablerow",
   "ssb"
- ],
- "pending_note": "Gemini daily limit hit 2026-10-22 after 9 grids of grid0. Resume grid0 from item 10 (circusdb...), then grid1, grid2."
+ ]
 }
