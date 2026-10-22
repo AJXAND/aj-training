@@ -10,9 +10,8 @@ const MUS = {chest:"Chest", lats:"Lats", upback:"Upper back", fdelt:"Front delts
   biceps:"Biceps", triceps:"Triceps", quads:"Quads", hams:"Hamstrings", glutes:"Glutes", adductors:"Adductors", calves:"Calves", abs:"Abs"};
 // Weekly fractional sets for an intermediate (direct set = 1, indirect = 0.5). Pelland 2024: gains keep rising with volume, with
 // diminishing returns; ~10-20 direct sets covers most of the benefit. Front delts and glutes get most of their work from presses and squats.
-// Fractional weekly sets (Pelland 2026: ~10-14 typical, 4 minimum, diminishing returns). Front delts, rear delts and arms already get
-// a lot from presses and rows at ½ a set each, so their direct work stays small.
-const BASE_SETS = {chest:12, lats:12, upback:12, fdelt:8, sdelt:12, rdelt:10, biceps:10, triceps:10, quads:12, hams:11, glutes:10, adductors:6, calves:10, abs:8};
+// Front delts, rear delts and arms already get a lot from presses and rows at ½ a set each, so their direct work stays small.
+const BASE_SETS = {chest:12, lats:12, upback:12, fdelt:8, sdelt:10, rdelt:6, biceps:10, triceps:10, quads:12, hams:11, glutes:10, adductors:6, calves:10, abs:8};
 const PRIORITY_SETS = 20;
 const PRIORITY_CHOICES = ["chest","lats","upback","sdelt","rdelt","biceps","triceps","quads","hams","glutes","calves","abs"];
 
@@ -56,8 +55,8 @@ const KIT_DEFAULT = {home:PRESETS.garage[2].slice(), shwc:PRESETS.commercial[2].
    len = bias toward the lengthened position (0-2; Maeo 2021/2023, Pedrosa 2022, Kassiano 2023), inj = joints it loads hardest. */
 const L = {};
 function X(k, n, p, mu, q, o){ L[k] = Object.assign({k, n, p, mu, q, c:false, len:1, lo:10, hi:15, rest:90, inj:[], eq:"other"}, o||{}); }
-// Rest defaults (Schoenfeld 2016; Senna 2011; Singer 2024): big free-weight lifts 2.5 min, other compounds 2 min, isolation 90 s, abs 60 s.
-function restFor(e){ if (["cond","sled","carry","erg"].includes(e.p)) return e.rest; if (e.p === "abs") return 60; if (!e.c) return 90; return e.eq === "bb" ? 150 : 120; }
+// Rest defaults (Schoenfeld 2016; Senna 2011; Singer 2024): big free-weight lifts 2.5 min, other compounds 2 min, isolation 75 s, abs 60 s.
+function restFor(e){ if (["cond","sled","carry","erg"].includes(e.p)) return e.rest; if (e.p === "abs") return 60; if (!e.c) return 75; return e.eq === "bb" ? 150 : 120; }
 // chest
 X("incbench","Incline bench","ipress",{chest:1,fdelt:.5,triceps:.5},["bb","rack","bench"],{c:true,lo:6,hi:10,rest:180,eq:"bb",inj:["shoulder"],note:"Safety arms set"});
 X("incdb","Incline DB press","ipress",{chest:1,fdelt:.5,triceps:.5},["db","bench"],{c:true,len:2,lo:8,hi:12,rest:150,eq:"db"});
@@ -107,7 +106,7 @@ X("cgbench","Close-grip bench","tripress",{triceps:1,chest:.5,fdelt:.5},["bb","r
 // legs
 X("squat","Back squat","squat",{quads:1,glutes:.5,adductors:.5},["bb","rack"],{c:true,len:2,lo:6,hi:10,rest:180,eq:"bb",inj:["lowback","knee"],note:"Safety arms set"});
 X("hack","Hack squat","squat",{quads:1,glutes:.5,adductors:.5},["hack"],{c:true,len:2,lo:6,hi:10,rest:180,eq:"machine",inj:["knee"]});
-X("smith","Smith squat","squat",{quads:1,glutes:.5,adductors:.5},["smith"],{c:true,len:2,lo:6,hi:10,rest:180,eq:"bb",inj:["knee"]});
+X("smith","Smith squat","squat",{quads:1,glutes:.5,adductors:.5},["smith"],{c:true,len:2,lo:6,hi:10,rest:180,eq:"machine",inj:["knee"]});
 X("legpress","Leg press","squat",{quads:1,glutes:.5,adductors:.5},["legpress"],{c:true,lo:8,hi:12,rest:150,eq:"machine"});
 X("bss","DB Bulgarian split squat","lunge",{quads:1,glutes:1,adductors:.5},["db","bench"],{c:true,len:2,lo:8,hi:12,rest:120,eq:"db",inj:["knee"]});
 X("legext","Leg extension","kneeext",{quads:1},["legext"],{eq:"machine",note:"Lean back to bias the stretched position"});
@@ -188,6 +187,21 @@ X("abcrunchmach","Ab crunch machine","abs",{abs:1},["abcrunchm"],{rest:60,eq:"ma
 X("captainraise","Captain's chair leg raise","abs",{abs:1},["captain"],{rest:60,eq:"bw"});
 X("trxrow","Suspension row","row",{upback:1,lats:.5,biceps:.5},["trx"],{c:true,lo:8,hi:15,rest:90,eq:"bw"});
 X("trapshrug","Trap bar shrug","row",{upback:1},["trapbar"],{lo:8,hi:12,rest:90,eq:"bb"});
+// home and minimal kit: so dumbbells-only or bands-and-a-bar plans still train every muscle
+X("dbbor","DB bent-over row","row",{upback:1,lats:.5,rdelt:.5,biceps:.5},["db"],{c:true,len:1,lo:8,hi:12,rest:120,eq:"db",inj:["lowback"],note:"Hinge to about 45°, brace, pull to your hips"});
+X("dbfloor","DB floor press","fpress",{chest:1,triceps:.5,fdelt:.5},["db"],{c:true,len:0,lo:8,hi:12,rest:120,eq:"db"});
+X("floorpo","DB pullover on the floor","latiso",{lats:1,chest:.5},["db"],{len:2,eq:"db",note:"Lie on the floor, arms slightly bent, reach back"});
+X("bodbrev","Bent-over DB reverse fly","rear",{rdelt:1},["db"],{len:0,eq:"db"});
+X("bandpa","Band pull-apart","rear",{rdelt:1,upback:.5},["bands"],{lo:15,hi:25,eq:"other"});
+X("bandfp","Band face pull","rear",{rdelt:1,upback:.5},["bands"],{lo:12,hi:20,eq:"other",note:"Anchor at head height"});
+X("bandpd","Band pushdown","pushdown",{triceps:1},["bands"],{len:0,lo:12,hi:20,eq:"other",note:"Anchor high"});
+X("bandcurl","Band curl","curl",{biceps:1},["bands"],{len:0,lo:12,hi:20,eq:"other"});
+X("bwss","Bodyweight split squat","lunge",{quads:1,glutes:1,adductors:.5},[],{c:true,len:2,lo:10,hi:20,rest:90,eq:"bw",note:"Back foot on a step or sofa once 20 is easy"});
+X("skater","Skater squat","squat",{quads:1,glutes:.5},[],{c:true,len:1,lo:6,hi:12,rest:90,eq:"bw",inj:["knee"],note:"Each leg. Hold a door frame to start"});
+X("slrdlbw","Single-leg RDL, bodyweight","hinge",{hams:1,glutes:1},[],{c:true,len:2,lo:10,hi:15,rest:75,eq:"bw",note:"Each leg, slow on the way down"});
+X("slthrust","Single-leg hip thrust","glute",{glutes:1,hams:.5},[],{len:0,lo:10,hi:20,rest:60,eq:"bw",note:"Shoulders on a sofa or bench edge"});
+X("slidecurl","Slider leg curl","kneeflex",{hams:1},[],{len:1,lo:8,hi:15,rest:75,eq:"bw",note:"Heels on a towel on a smooth floor, hips up"});
+X("stepcalf","Single-leg calf raise on a step","calf",{calves:1},[],{len:2,lo:10,hi:20,rest:60,eq:"bw",note:"Full stretch, pause at the bottom. Hold a DB once 20 is easy"});
 // conditioning (HYROX, CrossFit-style). mu kept small: these count little toward hypertrophy volume.
 X("kbswing","Kettlebell swing","cond",{glutes:.5,hams:.5},["kb"],{lo:12,hi:20,rest:60,eq:"other",inj:["lowback"]});
 X("wallballs","Wall balls","cond",{quads:.5,fdelt:.5},["wallball"],{lo:15,hi:25,rest:60,eq:"other"});
@@ -197,6 +211,9 @@ X("farmers","Farmers carry","carry",{upback:.5},["db"],{lo:30,hi:50,rest:90,eq:"
 X("sandlunge","Sandbag lunges","lunge",{quads:1,glutes:1},["sandbag"],{c:true,lo:10,hi:20,rest:90,eq:"other",note:"Reps are metres"});
 X("bbj","Burpee broad jumps","cond",{quads:.5},[],{lo:8,hi:15,rest:60,eq:"bw",inj:["knee","shoulder"]});
 X("boxjump","Box jump","cond",{quads:.5},["box"],{lo:5,hi:10,rest:60,eq:"bw",inj:["knee"]});
+X("thruster","Thrusters","cond",{quads:.5,fdelt:.5},["bb"],{lo:8,hi:15,rest:90,eq:"other",note:"Light bar, smooth front squat into a press"});
+X("t2b","Toes-to-bar","abs",{abs:1},["pullup"],{lo:6,hi:12,rest:60,eq:"bw",cf:true,note:"Knees-to-chest until you can reach the bar"});
+X("pushjerk","Push jerk","ohp",{fdelt:1,triceps:.5,quads:.5},["bb","rack"],{c:true,lo:3,hi:5,rest:150,eq:"bb",cf:true,inj:["shoulder"],note:"Dip, drive, punch under"});
 X("rowerg","Row intervals","erg",{upback:.5},["rower"],{lo:250,hi:500,rest:90,eq:"other",note:"Reps are metres"});
 X("skiint","SkiErg intervals","erg",{lats:.5,triceps:.5},["skierg"],{lo:250,hi:500,rest:90,eq:"other",note:"Reps are metres"});
 // Sport plans: power, injury prevention and trunk work. ml = the label shown instead of a muscle.
@@ -204,6 +221,7 @@ X("cmj","Countermovement jump","plow",{quads:.5,glutes:.5,calves:.5},[],{c:true,
 X("boxjp","Box jump","plow",{quads:.5,glutes:.5},["box"],{c:true,lo:3,hi:5,rest:120,eq:"bw",ml:"Power",note:"Step down, don't jump down"});
 X("broadjump","Broad jump","plow",{glutes:.5,quads:.5},[],{c:true,lo:3,hi:5,rest:120,eq:"bw",ml:"Power",note:"Jump as far as you can and stick the landing"});
 X("hangclean","Hang power clean","plow",{glutes:.5,hams:.5,upback:.5,quads:.5},["bb"],{c:true,lo:3,hi:4,rest:150,eq:"bb",ml:"Power",inj:["lowback","wrist"],note:"Fast pull, catch high, reset each rep"});
+X("pogo","Pogo hops","plow",{calves:.5},[],{c:true,lo:15,hi:20,rest:90,eq:"bw",ml:"Power",note:"Quick and springy, stiff ankles, as little ground contact as you can"});
 X("latbound","Lateral bound","plat",{glutes:.5,adductors:.5},[],{c:true,lo:3,hi:5,rest:90,eq:"bw",ml:"Power",note:"Each side. Hold each landing for a second"});
 X("mbrot","Rotational med ball throw","prot",{abs:.5,glutes:.5},["medball"],{c:true,lo:4,hi:6,rest:90,eq:"other",ml:"Rotational power",note:"Each side, into a wall, as fast as you can"});
 X("landrot","Landmine rotation","prot",{abs:1},["bb","landmine"],{lo:6,hi:8,rest:75,eq:"bb",ml:"Rotational power",note:"Each side, turn from the hips"});
@@ -239,23 +257,32 @@ const T = {
   legs:{label:"Legs", slots:["squat","hinge","kneeext","kneeflex","add","calf"]},
   upper:{label:"Upper", slots:["ipress","row","vpull","lat","rear","pushdown","curl"]},
   lower:{label:"Lower", slots:["kneeflex","squat","kneeext","hinge","glute","calf"]},
-  fbA:{label:"Full body A", slots:["squat","ipress","vpull","kneeflex","lat","curl"]},
-  fbB:{label:"Full body B", slots:["hinge","row","fpress","kneeext","rear","triext"]},
+  fbA:{label:"Full body A", slots:["squat","ipress","vpull","kneeflex","lat","curl","calf"]},
+  fbB:{label:"Full body B", slots:["hinge","row","fpress","kneeext","rear","triext","abs"]},
   fbC:{label:"Full body C", slots:["lunge","ohp","vpull","kneeflex","lat","pushdown","calf"]},
   arms:{label:"Arms & delts", slots:["lat","curl","triext","rear","curl","pushdown","lat"]},
-  runA:{label:"Strength A", slots:["squat","hinge","calf","vpull","abs"]},
-  runB:{label:"Strength B", slots:["lunge","kneeflex","calf","row","abs"]},
+  // runners: heavy lifts plus jumps improve running economy; moderate loads alone didn't (Llanos-Lagos 2024)
+  runA:{label:"Strength A", slots:["squat","plow","calf","vpull","abs"]},
+  runB:{label:"Strength B", slots:["hinge","lunge","plat","kneeflex","core"]},
   glutes:{label:"Glutes & legs", slots:["glute","lunge","hinge","abd","kneeext","calf"]},
   cfA:{label:"Strength + conditioning A", slots:["squat","ohp","vpull","cond","erg"]},
   cfB:{label:"Strength + conditioning B", slots:["hinge","fpress","row","cond","carry"]},
   cfC:{label:"Strength + conditioning C", slots:["lunge","ipress","vpull","cond","erg"]},
+  cfD:{label:"Strength + conditioning D", slots:["squat","fpress","row","abs","carry","cond"]},
+  hyF:{label:"HYROX strength", slots:["squat","hinge","fpress","row","sled","cond"]},
   hyA:{label:"HYROX strength A", slots:["squat","sled","row","lunge","cond"]},
   hyB:{label:"HYROX strength B", slots:["hinge","vpull","carry","fpress","cond"]},
+  // strength: squat and bench twice a week, deadlift once, never a heavy squat and heavy deadlift on the same day
+  stA:{label:"Squat + bench", slots:["squat","fpress","row","kneeflex","triext","abs"], main:2},
+  stB:{label:"Deadlift + press", slots:["hinge","ohp","vpull","lunge","curl","rear"], main:2},
+  stC:{label:"Squat + bench B", slots:["squat","fpress","row","glute","lat","calf"], main:2},
+  stD:{label:"Press + upper back", slots:["ohp","vpull","row","triext","curl","rear"], main:1},
   sp1:{label:"Strength & power", slots:["hinge","vpull","fpress"]}, spA:{label:"Strength & power A", slots:["squat","vpull"]}, spB:{label:"Strength & power B", slots:["hinge","fpress","row"]},
   spC:{label:"Strength & power C", slots:["lunge","vpull","ohp"]}, spD:{label:"Strength & power D", slots:["ohp","vpull","row"]}
 };
 const TEMPLATE_PICK = ["fbA","fbB","fbC","upper","lower","upA","upB","loA","loB","push","pull","legs","arms","glutes"];
-const LOWER = new Set(["loA","loB","legs","lower","spA","spC","sp1"]);
+const LOWER = new Set(["loA","loB","legs","lower","spA","spC","sp1","stA","stB","stC"]);
+const STRENGTH_SPLITS = {1:["stA"], 2:["stA","stB"], 3:["stA","stB","stC"], 4:["stA","stB","stC","stD"], 5:["stA","stB","stC","stD","arms"], 6:["stA","upA","stB","stC","stD","loB"], 7:["stA","upA","stB","stC","stD","loB","arms"]};
 const SPLITS = {
   1:[{id:"fb1", name:"Full body", days:["fbA"], why:"One session a week still builds muscle and strength in beginners; two or more works better when you can."}],
   2:[{id:"fb2", name:"Full body ×2", days:["fbA","fbB"], why:"Two sessions can only hit each muscle twice if every session is full body."}],
@@ -273,8 +300,13 @@ const SPLITS = {
      {id:"pplul6", name:"PPL + Upper / Lower + Arms & delts", days:["legs","push","pull","lower","upper","arms"], why:"Your current week plus the priority day as a full session."}]
 };
 // Which split fits: frequency (each muscle ~2× a week), priorities, experience and session length
+function splitOpts(ans){
+  const n = (ans.days || []).length, base = SPLITS[n] || [];
+  return ans.goal === "strength" && STRENGTH_SPLITS[n] ? [{id:"str" + n, name:"Strength ×" + n, days:STRENGTH_SPLITS[n], why:"Squat and bench twice a week, deadlift once, never heavy squats and deadlifts on the same day. Strength rises with how often you practise each lift."}, ...base] : base;
+}
 function recommendSplit(ans){
-  const n = (ans.days || []).length, opts = SPLITS[n] || [], pri = new Set(ans.pri || []);
+  const n = (ans.days || []).length, opts = splitOpts(ans), pri = new Set(ans.pri || []);
+  if (ans.goal === "strength" && STRENGTH_SPLITS[n]) return {id:"str" + n, why:"Recommended because the main lifts come round often, on separate days, which is what builds strength."};
   const legsPri = ["quads","hams","glutes"].some(m => pri.has(m)), glutePri = pri.has("glutes"), armsPri = ["biceps","triceps","sdelt"].filter(m => pri.has(m)).length >= 1;
   let best = null;
   for (const o of opts){
@@ -333,6 +365,13 @@ function exScore(ex, ctx){
   if ((ctx.ans.love || []).includes(ex.k)) s += 6;
   if (ex.inj.some(j => (ctx.ans.inj || []).includes(j))) s -= 8;
   if ((ctx.ans.inj || []).includes("wrist") && ["bb","bw"].includes(ex.eq) && /press|push|dip|skull|curl/i.test(ex.n)) s -= 4;
+  if (!["athletic","crossfit"].includes(ctx.ans.goal) && !ex.c){
+    if (["size",undefined,null,""].includes(ctx.ans.goal) && ["machine","cable","db"].includes(ex.eq)) s += 2;   // loadable isolation progresses in small steps
+    if (ex.eq === "bw" && ["kneeext","kneeflex","abs"].includes(ex.p)) s -= 3;  // hard to load: reverse nordics, nordics, leg raises
+  }
+  if (ex.k === "nordicham" && ctx.ans.goal !== "athletic") s -= 6;              // Nordics are prehab, not a hypertrophy curl (Maeo 2021: seated curl grows more)
+  if (ctx.ans.goal === "crossfit" && ex.q.includes("smith")) s -= 10;
+  if (ex.cf && ctx.ans.goal !== "crossfit") s -= 20;
   if (ctx.used.has(ex.k)) s -= 2.5;                     // vary exercises across the week
   if (ctx.dayUsed.has(ex.k)) s -= 100;
   return s + (ctx.seed ? (hash(ex.k + ctx.seed) % 100) / 100 : 0);
@@ -344,7 +383,7 @@ function pick(pattern, ctx){
   cand.sort((a, b) => exScore(b, ctx) - exScore(a, ctx));
   return exScore(cand[0], ctx) < -50 ? null : cand[0];
 }
-const FALLBACK = {abd:["glute"], sled:["lunge"], carry:["row"], cond:["erg"], erg:["cond"], fpress:["ipress"], ipress:["fpress"], lunge:["squat"], squat:["lunge"], latiso:["vpull","row"], ohp:["ipress"], add:[], kneeflex:["hinge"], kneeext:["squat"], fly:["fpress"], vpull:["row"], rear:["row"], hinge:["kneeflex"], glute:["hinge"]};
+const FALLBACK = {abd:["glute"], sled:["lunge"], carry:["row"], cond:["erg"], erg:["cond"], fpress:["ipress"], ipress:["fpress"], lunge:["squat"], squat:["lunge"], latiso:["vpull","row"], ohp:["ipress"], add:[], kneeflex:["hinge"], kneeext:["squat"], fly:["fpress"], vpull:["row"], rear:["row"], hinge:["kneeflex","glute"], glute:["hinge"]};
 function targetsFor(ans){
   // beginners grow from less (and learn technique better with fewer sets); strength goals trade some volume for heavier work
   const lvl = {new:0.75, inter:1, adv:1.2}[ans.level || "inter"] * (ans.goal === "strength" ? 0.85 : 1), ph = ans.phase === "cut" ? 0.9 : 1, out = {};
@@ -355,11 +394,15 @@ function targetsFor(ans){
 }
 // minutes: ~45 s of work per set plus rest, plus setup. Isolation lifts paired as supersets share their rest (Weakley 2017),
 // so each set costs roughly half its rest.
-let SUPER = true;
+let SUPER = true, SHORT = false;
 const special = p => ["cond","sled","carry","erg"].includes(p);
-function exTime(ex, sets){ const r = SUPER && !ex.c && !special(ex.p) ? ex.rest * 0.55 : ex.rest; return sets * (r + 45) / 60 + 2; }
+// antagonist compounds (a press with a pull) can share rest when sessions are short: similar growth and strength, less time (Zhang 2025)
+const PAIRP = new Set(["fpress","ipress","ohp","tripress"]), PAIRL = new Set(["row","vpull"]);
+const pairable = ex => ex.c && ex.eq !== "bb" && (PAIRP.has(ex.p) || PAIRL.has(ex.p));
+function exTime(ex, sets){ const r = SUPER && !ex.c && !special(ex.p) ? ex.rest * 0.55 : SUPER && SHORT && pairable(ex) ? ex.rest * 0.6 : ex.rest; return sets * (r + 45) / 60 + 2; }
 function buildVariant(dayKeys, gym, ans, seed){
-  SUPER = ans.supersets !== false;
+  SUPER = ans.supersets !== false; SHORT = (+ans.mins || 75) <= 60;
+  const strength = ans.goal === "strength", mainSets = {new:3, inter:4, adv:5}[ans.level || "inter"] || 4;
   const kit = (ans.kit && ans.kit[gym]) || (((flowGyms() || gymList()).find(g => g.id === gym) || {}).kit) || KIT_DEFAULT[gym] || KIT_FULL, used = new Set(), tg = targetsFor(ans), pri = new Set(ans.pri || []);
   const days = dayKeys.map(tk => {
     const dayUsed = new Set(), list = [];
@@ -370,7 +413,9 @@ function buildVariant(dayKeys, gym, ans, seed){
         if (T[tk].slots.includes(alt) || list.some(x => x.ex.p === alt)) continue;   // never two hinges/squats just because a machine is missing
         ex = pick(alt, {kit, ans, gym, used, dayUsed, seed}); if (ex) break; }
       if (!ex) continue;
-      used.add(ex.k); dayUsed.add(ex.k); list.push({ex, sets:2});
+      const main = strength && list.length < (T[tk].main || 0) && ex.c && ["squat","hinge","fpress","ohp"].includes(ex.p);
+      // compounds start at 3 working sets (2 while you're new), isolation at 2: the first lifts of the day shouldn't get the least work
+      used.add(ex.k); dayUsed.add(ex.k); list.push({ex, sets:main ? mainSets : ex.c && !special(ex.p) && ans.level !== "new" ? 3 : 2, main});
     }
     return {tk, list};
   });
@@ -387,9 +432,13 @@ function buildVariant(dayKeys, gym, ans, seed){
     let added = false;
     for (const m of need){
       const opts = [];
-      days.forEach(d => d.list.forEach(x => { if ((x.ex.mu[m] || 0) >= 1 && x.sets < (pri.has(m) ? 5 : 4) && dayMins(d) + exTime(x.ex, 1) - 2 <= cap) opts.push({d, x}); }));
+      days.forEach(d => d.list.forEach(x => {
+        if (x.main || (x.ex.mu[m] || 0) < 1 || x.sets >= (pri.has(m) ? 5 : 4) || dayMins(d) + exTime(x.ex, 1) - 2 > cap) return;
+        // isolation can't pass 3 sets while a compound on the same day still has fewer than 3
+        if (!x.ex.c && x.sets >= 3 && d.list.some(y => y.ex.c && !special(y.ex.p) && !y.main && y.sets < 3)) return;
+        opts.push({d, x}); }));
       if (!opts.length) continue;
-      opts.sort((a, b) => a.x.sets - b.x.sets || dayMins(a.d) - dayMins(b.d));
+      opts.sort((a, b) => a.x.sets - b.x.sets || (b.x.ex.c - a.x.ex.c) || dayMins(a.d) - dayMins(b.d));
       opts[0].x.sets++; added = true; break;
     }
     if (!added) break;
@@ -405,12 +454,12 @@ function buildVariant(dayKeys, gym, ans, seed){
     let moved = false;
     for (const m of short){
       for (const d of days){
-        const take = d.list.find(x => (x.ex.mu[m] || 0) >= 1 && x.sets < 5); if (!take) continue;
-        const donors = d.list.filter(x => x !== take && !primary(x).some(q => pri.has(q)) && primary(x).every(q => (v[q] || 0) - 1 >= Math.min(floor(q), 5)));   // non-priorities can drop to ~5 sets (still above the ~4-set minimum dose, Pelland 2025)
+        const take = d.list.find(x => !x.main && (x.ex.mu[m] || 0) >= 1 && x.sets < 5); if (!take) continue;
+        const donors = d.list.filter(x => x !== take && !x.main && !primary(x).some(q => pri.has(q)) && primary(x).every(q => (v[q] || 0) - 1 >= Math.min(floor(q), 5)));   // non-priorities can drop to ~5 sets (still above the ~4-set minimum dose, Pelland 2025)
         if (!donors.length) continue;
         donors.sort((a, b) => b.sets - a.sets || exTime(b.ex, 1) - exTime(a.ex, 1));
         const dn = donors[0];
-        if (dn.sets > 1) dn.sets--; else d.list.splice(d.list.indexOf(dn), 1);
+        if (dn.sets > 2) dn.sets--; else d.list.splice(d.list.indexOf(dn), 1);   // never leave a 1-set exercise
         if (dayMins(d) + exTime(take.ex, 1) - 2 <= cap){ take.sets++; moved = true; break; }
       }
       if (moved) break;
@@ -435,12 +484,29 @@ function buildVariant(dayKeys, gym, ans, seed){
     if (!did) break;
     fill();
   }
+  // a muscle with no direct work at all gets one isolation exercise if the kit allows, even if it stretches a session a little
+  const direct = () => { const o = {}; days.forEach(d => d.list.forEach(x => { for (const [m, f] of Object.entries(x.ex.mu)) if (f >= 1) o[m] = (o[m] || 0) + x.sets; })); return o; };
+  if (ans.goal !== "crossfit" && !["endurance","hyrox","tri"].includes(ans.kind)) for (const m of Object.keys(MUS).filter(m => !["fdelt","adductors"].includes(m) && tg[m] > 0)){
+    if (direct()[m]) continue;
+    const small = ["sdelt","rdelt","biceps","triceps","calves","abs"].includes(m);
+    const ok = days.filter(d => small || (lowerMus.has(m) ? isLowerDay(d) : !isLowerDay(d)) || days.length <= 3).sort((a, b) => dayMins(a) - dayMins(b));
+    const pats = [...new Set(Object.values(L).filter(e => e.mu[m] === 1 && has(kit, e)).sort((a, b) => a.c - b.c).map(e => e.p))];
+    for (const d of ok){ let ex = null; for (const pat of pats){ ex = pick(pat, {kit, ans, gym, used, dayUsed:new Set(d.list.map(x => x.ex.k)), seed}); if (ex) break; }
+      if (ex){ used.add(ex.k); d.list.push({ex, sets:2, extra:true, keep:true}); break; } }
+  }
   // over budget: trim isolation sets from non-priority muscles, then drop the last non-priority exercise
   days.forEach(d => {
-    for (let g = 0; g < 40 && dayMins(d) > cap; g++){
-      const trim = d.list.filter(x => x.sets > 2 && !Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && pri.has(m))).sort((a, b) => b.sets - a.sets)[0];
+    for (let g = 0; g < 40 && dayMins(d) > cap + (d.list.some(x => x.keep) ? 4 : 0); g++){
+      const isPriX = x => Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && pri.has(m));
+      // cut isolation sets first, then a whole isolation exercise, and only then take compounds below 3 sets
+      const trimIso = d.list.filter(x => x.sets > 2 && !x.ex.c && !isPriX(x)).sort((a, b) => b.sets - a.sets)[0];
+      if (trimIso){ trimIso.sets--; continue; }
+      const dv = direct(), sole = x => Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && !["fdelt","adductors"].includes(m) && (dv[m] || 0) <= x.sets);
+      const dropIso = d.list.length > 5 && [...d.list].reverse().find(x => !x.ex.c && !x.keep && !isPriX(x) && !sole(x));
+      if (dropIso){ d.list.splice(d.list.indexOf(dropIso), 1); continue; }
+      const trim = d.list.filter(x => x.sets > 2 && !x.main && !isPriX(x)).sort((a, b) => b.sets - a.sets || (a.ex.c - b.ex.c))[0];
       if (trim){ trim.sets--; continue; }
-      const drop = [...d.list].reverse().find(x => !Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && pri.has(m)));
+      const drop = [...d.list].reverse().find(x => !x.main && !x.keep && !Object.keys(x.ex.mu).some(m => x.ex.mu[m] >= 1 && pri.has(m)));
       if (drop && d.list.length > 3) d.list.splice(d.list.indexOf(drop), 1); else break;
     }
     // order: compounds first, then the day's priority muscles, then the rest. Order barely changes growth but the first lifts gain most strength (Nunes 2021)
@@ -449,10 +515,14 @@ function buildVariant(dayKeys, gym, ans, seed){
     // extras added for other muscles (e.g. laterals on leg day) always go last
     d.list.sort((a, b) => (!!a.extra - !!b.extra) || (b.ex.c - a.ex.c) || (isPri(b) - isPri(a)) || (orig.indexOf(a) - orig.indexOf(b)));
     // pair isolation lifts for different muscles into supersets (A1/A2, B1/B2…), keeping order
-    if (SUPER){ const iso = d.list.filter(x => !x.ex.c && !special(x.ex.p)), prim = x => Object.keys(x.ex.mu).find(m => x.ex.mu[m] >= 1); let g = 0;
+    let g = 0;
+    if (SUPER && SHORT){ const ps = d.list.filter(x => pairable(x.ex) && !x.main && PAIRP.has(x.ex.p)), ls = d.list.filter(x => pairable(x.ex) && !x.main && PAIRL.has(x.ex.p));
+      for (let k = 0; k < Math.min(ps.length, ls.length); k++){ const tag = "ABCDE"[g++]; ps[k].ss = tag; ls[k].ss = tag; d.list.splice(d.list.indexOf(ls[k]), 1); d.list.splice(d.list.indexOf(ps[k]) + 1, 0, ls[k]); } }
+    if (SUPER){ const iso = d.list.filter(x => !x.ex.c && !special(x.ex.p)), prim = x => Object.keys(x.ex.mu).find(m => x.ex.mu[m] >= 1);
       for (let k = 0; k + 1 < iso.length; ){ if (prim(iso[k]) !== prim(iso[k + 1])){ const tag = "ABCDE"[g++]; iso[k].ss = tag; iso[k + 1].ss = tag; const j1 = d.list.indexOf(iso[k]), j2 = d.list.indexOf(iso[k + 1]); if (j2 !== j1 + 1){ d.list.splice(j2, 1); d.list.splice(j1 + 1, 0, iso[k + 1]); } k += 2; } else k++; } }
   });
-  return {days, vol:vol(), tg, mins:days.map(dayMins)};
+  const vf = vol(), under = Object.keys(tg).filter(m => !["fdelt","adductors"].includes(m) && (vf[m] || 0) < Math.min(6, tg[m] - 1));
+  return {days, vol:vf, tg, mins:days.map(dayMins), under};
 }
 function placeDays(seq, ans){
   const trainWd = WD.filter(([k]) => (ans.days || []).includes(k)).map(x => x[1]);
@@ -504,8 +574,9 @@ function generate(ans, seed){
   const spP = ans.goal === "athletic" ? (sportProfile(ans) || SPORT_GENERIC) : null;
   if (spP){ const pre = ans.season === "in" ? "In-season strength" : "Strength & power"; T.sp1.label = pre; ["A","B","C","D"].forEach(x => T["sp" + x].label = pre + " " + x); }
   let split = spP ? {id:"sport", name:spP.name + " · " + sportSeason(ans).toLowerCase() + " ×" + n, days:n <= 1 ? ["sp1"] : ["spA","spB","spC","spD"].slice(0, Math.min(4, n))}
-    : ans.goal === "crossfit" ? {id:"cf", name:"Strength + conditioning ×" + n, days:Array.from({length:n}, (_, i) => ["cfA","cfB","cfC"][i % 3])}
+    : ans.goal === "crossfit" ? {id:"cf", name:"Strength + conditioning ×" + n, days:Array.from({length:n}, (_, i) => ["cfA","cfB","cfC","cfD"][i % 4])}
     : ans.split === "custom" && (ans.customSeq || []).length === n ? {id:"custom", name:"Custom: " + ans.customSeq.map(k => T[k].label).join(" / "), days:ans.customSeq.slice()}
+    : ans.goal === "strength" && (!ans.split || /^str/.test(ans.split)) && STRENGTH_SPLITS[n] ? {id:"str" + n, name:"Strength ×" + n, days:STRENGTH_SPLITS[n].slice()}
     : (SPLITS[n] || []).find(s => s.id === ans.split) || (SPLITS[n] || [])[0];
   const placed = placeDays(split.days, ans);
   const seq = placed.map(p => p.tk);
@@ -517,12 +588,16 @@ function generate(ans, seed){
     let key = e.k;
     const bigLift = e.c && e.eq === "bb" && ["squat","hinge","fpress","ipress","ohp"].includes(e.p);
     if (spP){
-      if (x.role === "main"){ key = e.k + "-hvy"; const nw = ans.level === "new"; const one = e.p === "lunge"; Object.assign(def, {n:e.n + (nw ? "" : " (heavy)"), lo:nw ? 6 : one ? 5 : 3, hi:nw ? 10 : one ? 8 : ans.season === "in" ? 5 : 6, rest:Math.round((nw ? 120 : 180) * rs / 15) * 15}); }
+      if (x.role === "main" && ["db","kb","other","bw"].includes(e.eq) && e.p !== "lunge"){ Object.assign(def, {lo:6, hi:10, rest:Math.round(120 * rs / 15) * 15}); }   // dumbbells can't load a 3-6 rep squat or hinge
+      else if (x.role === "main"){ key = e.k + "-hvy"; const nw = ans.level === "new"; const one = e.p === "lunge"; Object.assign(def, {n:e.n + (nw ? "" : " (heavy)"), lo:nw ? 6 : one ? 5 : 3, hi:nw ? 10 : one ? 8 : ans.season === "in" ? 5 : 6, rest:Math.round((nw ? 120 : 180) * rs / 15) * 15}); }
       else if (x.role === "acc"){ const big = (spP.q || {}).mass >= 2 && ans.season !== "in"; Object.assign(def, {lo:big ? 8 : 6, hi:big ? 12 : 10, rest:Math.round((e.c ? 120 : 75) * rs / 15) * 15}); }
     }
     else if (ans.level === "new" && !special(e.p) && e.k !== "plank"){ if (e.c){ def.lo = Math.max(def.lo, 8); def.hi = Math.min(12, Math.max(def.hi, 12)); } else { def.lo = Math.max(def.lo, 10); def.hi = 15; } }
-    else if (ans.goal === "strength" && bigLift){ key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:3, hi:6, rest:Math.round(210 * rs / 15) * 15}); }
+    else if (ans.goal === "strength" && x.main){ key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:3, hi:6, rest:Math.round(210 * rs / 15) * 15}); }
     else if ((ans.goal === "power" || ans.goal === "crossfit") && bigLift && !heavyDone){ heavyDone = true; key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:4, hi:6, rest:Math.round(180 * rs / 15) * 15}); }
+    // heavy lifts stay 2+ reps from failure all block (failure adds little for strength, Robinson 2024); power work is about speed
+    if (key.endsWith("-hvy") || (e.c && e.eq === "bb" && ["squat","hinge"].includes(e.p))) def.rirMin = 2;
+    if (["plow","pup","prot","plat"].includes(e.p)) def.intent = true;
     exercises[key] = Object.fromEntries(Object.entries(def).filter(([, v]) => v !== undefined));
     return x.ss ? [key, x.sets, x.ss] : [key, x.sets];
   }); };
@@ -540,8 +615,8 @@ function generate(ans, seed){
   const weeks = +ans.block || 6;
   const ownName = ans.name && ans.name !== "Block 1" ? ans.name : null;
   const autoName = ans.customAI && ans.customAI.title ? ans.customAI.title : spP ? spP.name + " plan" : `${GTYPES[ans.gtype] && ans.gtype !== "custom" ? GTYPES[ans.gtype][2] : {size:"Build muscle", strength:"Build strength", power:"Powerbuilding", crossfit:"CrossFit-style", athletic:"Athletic"}[ans.goal] || "Training"}: ${split.name}`;
-  return {schema:2, name:ownName || autoName, placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:rirPlan(weeks, ans.level, ans.ramp), breaks:(ans.breaks || []).slice(),
-    kind:"gym", split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:first.tg, vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id].vol])), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id].mins])), exercises, days};
+  return {schema:2, name:ownName || autoName, placeholder:false, ...(spP ? {sport:{id:spP.id, name:spP.name, season:ans.season || "off", confidence:spP.confidence || "limited"}} : {}), startDate:ans.start, deloadEvery:weeks, rir:rirPlan(weeks, ans.level, spP && ans.season === "in" ? "steady" : ans.ramp), breaks:(ans.breaks || []).slice(),
+    kind:"gym", split:split.id, splitName:split.name, setup:ans, built:Date.now(), targets:first.tg, under:first.under || [], vol:Object.fromEntries(gl.map(g => [g.id, vs[g.id].vol])), mins:Object.fromEntries(gl.map(g => [g.id, vs[g.id].mins])), exercises, days};
 }
 
 /* ---------- Train for my sport ----------
@@ -603,7 +678,11 @@ function buildSportVariant(seq, gym, ans, seed){
   const dayMins = d => d.list.reduce((a, x) => a + exTime(x.ex, x.sets), 4), cap = +ans.mins || 60;
   days.forEach(d => { for (let g = 0; g < 30 && dayMins(d) > cap; g++){
     const acc = d.list.filter(x => x.role === "acc" && x.sets > 2).sort((a, b) => b.sets - a.sets)[0]; if (acc){ acc.sets--; continue; }
-    const drop = [...d.list].reverse().find(x => x.role === "core" || x.role === "acc"); if (drop && d.list.length > 4) d.list.splice(d.list.indexOf(drop), 1); else break; } });
+    const drop = [...d.list].reverse().find(x => x.role === "core" || x.role === "acc"); if (drop && d.list.length > 4){ d.list.splice(d.list.indexOf(drop), 1); continue; }
+    const pw = d.list.find(x => x.role === "pow" && x.sets > 2); if (pw){ pw.sets--; continue; }
+    const pre = [...d.list].reverse().find(x => x.role === "pre"); if (pre && d.list.length > 3){ d.list.splice(d.list.indexOf(pre), 1); continue; }
+    const mn = d.list.filter(x => x.role === "main" && x.sets > 3).sort((a, b) => b.sets - a.sets)[0]; if (mn){ mn.sets--; continue; }
+    break; } });
   const vol = {}; days.forEach(d => d.list.forEach(x => { for (const [m, f] of Object.entries(x.ex.mu)) vol[m] = (vol[m] || 0) + f * x.sets; }));
   return {days, vol, tg:{}, mins:days.map(dayMins)};
 }
@@ -727,27 +806,35 @@ function enduPlan(ans){
     const recovery = phase !== "Taper" && phase !== "Peak" && wi > 0 && (wi + 1) % 4 === 0;
     if (phase === "Taper"){ const tIdx = w - (N - T); km = Math.round(peakKm * (T === 2 ? (tIdx === 0 ? 0.7 : 0.45) : 0.55)); }
     else if (phase === "Peak") km = peakKm;
-    else km = Math.min(peakKm, Math.round((wi === 0 ? cur0 : km) * (wi === 0 ? 1 : 1.07)));
+    // grow ~7% a week, but not in a recovery week, and the week after one goes back to where you were, not a jump (Nielsen 2014)
+    else { const prevRec = weeks.length && weeks[weeks.length - 1].recovery; km = Math.min(peakKm, Math.round((wi === 0 ? cur0 : km) * (wi === 0 || recovery || prevRec ? 1 : 1.07))); }
     const weekKm = recovery ? Math.round(km * 0.8) : km;
     // long run: never >10% beyond the longest run of the previous 30 days (Frandsen 2025); builds ~8% a week
     let long;
     if (phase === "Taper") long = longest * (w === N - 1 ? 0.45 : 0.7);
     else if (recovery) long = longest * 0.85;
-    else long = Math.min(E.longMax, longest * 1.08, Math.max(5, weekKm * 0.5));
+    else long = Math.min(E.longMax, longest * 1.08, Math.max(5, weekKm * (E.dist >= 42 || days.length <= 3 ? 0.45 : 0.4)));   // long run at most ~40% of the week (coaching convention)
+    // once you've reached race-ready length, alternate a full long run with a shorter one, and cap the 30 km+ runs
+    if (phase !== "Taper" && !recovery && longest >= readyLong(E) - 0.5){ const big = weeks.filter(x => x.long >= 30).length; if ((wi % 2) || (long >= 30 && big >= 5)) long = Math.max(5, long * 0.7); }
     const longRaw = Math.max(3, long); long = Math.round(longRaw);
     if (!recovery && phase !== "Taper") longest = Math.max(longest, longRaw);
-    const b2b = E.b2b && (phase === "Build" || phase === "Peak") && !recovery ? Math.round(long * 0.6) : 0;
+    const after = days.find(d => d === (longWd + 1) % 7);
+    const b2b = E.b2b && after != null && (phase === "Build" || phase === "Peak") && !recovery ? Math.round(long * 0.6) : 0;
     const qType = phase === "Base" ? "general" : (E.q === "mp" && phase !== "Taper" && w % 2 ? "thr" : E.q === "general" ? "general" : E.q);
     const qs = phase === "Base" || phase === "Taper" ? Math.min(1, nQ) : nQ;
     const sessions = {}, rest = weekKm - long - b2b;
     sessions[longWd] = {type:"long", km:long};
-    const after = days.find(d => d === (longWd + 1) % 7);
-    if (b2b && after != null) sessions[after] = {type:"b2b", km:b2b};
+    if (b2b) sessions[after] = {type:"b2b", km:b2b};
     const free = days.filter(d => sessions[d] == null);
     const far = free.slice().sort((a, b) => Math.min(Math.abs(b - longWd), 7 - Math.abs(b - longWd)) - Math.min(Math.abs(a - longWd), 7 - Math.abs(a - longWd)));
     const qDays = []; for (const d of far){ if (qDays.length >= qs) break; if (!qDays.some(q => Math.abs(q - d) === 1 || Math.abs(q - d) === 6)) qDays.push(d); }
-    const easyDays = free.filter(d => !qDays.includes(d)), perQ = Math.max(5, Math.min(Math.round(long * 0.8), Math.round(rest * 0.22 / Math.max(1, qDays.length))));
-    qDays.forEach(d => sessions[d] = {type:qType, km:Math.min(perQ, 14)});
+    // quality sessions sized to the work they describe: 2 km warm-up + the work + 2 km cool-down
+    const mpKm = Math.round(6 + 8 * Math.max(0, Math.min(1, (wi - BASE) / Math.max(1, B + P))));
+    const work = {vo2:5, thr:6, mp:mpKm, hill:5, general:4}[qType] || 5;
+    const easyDays = free.filter(d => !qDays.includes(d));
+    // the main session gets the bigger share; a second quality day is a threshold run for marathoners, otherwise the same type
+    qDays.forEach((d, i) => { const t = i === 0 ? qType : qType === "mp" ? "thr" : qType, km = i === 0 ? Math.max(5, Math.min(4 + work, Math.round(rest * (qDays.length > 1 ? 0.3 : 0.4)))) : Math.max(5, Math.min(10, Math.round(rest * 0.2)));
+      sessions[d] = {type:t, km, desc:t === "mp" ? `2 km easy, ${Math.max(3, km - 4)} km at goal marathon pace (RPE 5-6), 2 km easy` : undefined}; });
     const left = Math.max(0, rest - qDays.reduce((a, d) => a + sessions[d].km, 0));
     easyDays.forEach(d => sessions[d] = {type:"easy", km:Math.max(3, Math.min(Math.round(long * 0.85), Math.round(left / Math.max(1, easyDays.length))))});
     const notes = [];
@@ -765,18 +852,19 @@ function hyroxPlan(ans){
   const N = race ? Math.max(4, Math.min(30, Math.ceil((race - start) / (7 * 864e5)))) : 12, nD = Math.max(3, Math.min(6, +ans.nDays || 4));
   const td = spreadDays(nD, ans.longDay || "sat"), wds = WD.filter(([k]) => td.includes(k)).map(x => x[1]);
   // roles by number of days: S = strength, I = intervals, X = simulation, E = easy run, L = long easy run
-  const roles = {3:["S","I","X"], 4:["S","I","E","X"], 5:["S","I","S","E","X"], 6:["S","I","E","S","X","L"]}[nD];
-  const lvl = +ans.runLevel || 1, easy0 = [4, 5, 6, 8, 10][lvl], weeks = [];
+  // most running easy, as in other endurance sports (Seiler 2010); one hard run a week, simulation and intervals take turns when days are short
+  const roles = {3:["S","E","Q"], 4:["S","Q","E","L"], 5:["S","I","E","S","L"], 6:["S","I","E","S","X","L"]}[nD];
+  const lvl = +ans.runLevel || 1, easy0 = [5, 6, 8, 10, 12][lvl], weeks = [];
   for (let w = 0; w < N; w++){
     const ws = new Date(start); ws.setDate(ws.getDate() + w * 7);
     const taper = race && w === N - 1, recovery = !taper && w > 0 && (w + 1) % 4 === 0, phase = taper ? "Taper" : w < N * 0.4 ? "Base" : "Build";
     const f = taper ? 0.6 : recovery ? 0.8 : Math.min(1.5, 1 + w * 0.04), rounds = Math.max(3, Math.min(8, (taper ? 4 : 3 + Math.floor(w / 2)) - (recovery ? 1 : 0)));
     const sessions = {};
-    roles.forEach((r, i) => { const d = wds[i];
-      if (r === "I") sessions[d] = {type:"hyint", km:Math.round((recovery ? 5 : Math.min(8, 5 + Math.floor(w / 3))) * (taper ? 0.6 : 1) + 2), desc:`${recovery ? 5 : Math.min(8, 5 + Math.floor(w / 3))} × 1 km at goal race pace, 90 s easy between`};
+    roles.forEach((r0, i) => { const d = wds[i], r = r0 === "Q" ? (w % 2 ? "X" : "I") : nD === 5 && r0 === "I" && w % 2 ? "X" : r0;
+      if (r === "I"){ const reps = recovery ? 4 : Math.min(6, 4 + Math.floor(w / 3)); sessions[d] = {type:"hyint", km:Math.round(reps * (taper ? 0.6 : 1) + 4), desc:`2 km easy, ${reps} × 1 km at goal race pace with 90 s easy between, 2 km easy`}; }
       if (r === "X") sessions[d] = {type:"hysim", km:rounds, desc:`${rounds} rounds: 1 km run, then one station (rotate SkiErg, sled push, sled pull, burpee broad jumps, row, farmers carry, sandbag lunges, wall balls)`};
       if (r === "E") sessions[d] = {type:"easy", km:Math.round(easy0 * f)};
-      if (r === "L") sessions[d] = {type:"long", km:Math.round(easy0 * 1.5 * f)};
+      if (r === "L") sessions[d] = {type:"long", km:Math.round(easy0 * 1.6 * f)};
     });
     weeks.push({start:ymd(ws), w:w + 1, phase, recovery, km:Object.values(sessions).reduce((a, s) => a + (s.type === "hysim" ? s.km : s.km), 0), long:0, b2b:0, sessions, notes:w === 0 ? ["Race: 8 × 1 km runs, each followed by a station. Most of your race time is running, so the runs matter most"] : [], strength:roles.filter(x => x === "S").length});
   }
@@ -795,6 +883,10 @@ function triPlan(ans){
   const roles = {3:["swimE","runE","brick"], 4:["swimE","bikeQ","runE","brick"], 5:["swimE","bikeQ","runQ","swimQ","brick"], 6:["swimE","bikeQ","runQ","swimQ","brick","runL"], 7:["swimE","bikeQ","runQ","swimQ","bikeE","brick","runL"]}[nD];
   // the brick lands on the long day; the long run (if any) the day after or the slot after
   const order = roles.filter(r => r !== "brick"); order.splice(li, 0, "brick");
+  const ri = order.indexOf("runL");
+  if (ri >= 0){ const gap = i => { const a = Math.abs(wds[i] - wds[li]); return Math.min(a, 7 - a); }; let best = ri;
+    order.forEach((r, i) => { if (r !== "brick" && r !== "swimE" && gap(i) >= 2 && (gap(best) < 2 || gap(i) > gap(best))) best = i; });
+    if (best !== ri){ [order[ri], order[best]] = [order[best], order[ri]]; } }
   const lv = [0.55, 0.65, 0.75, 0.85][+ans.triLevel || 1], weeks = [], T = race ? D.taper : 1, peakAt = Math.max(1, Math.round((N - T) * 0.8));
   for (let w = 0; w < N; w++){
     const ws = new Date(start); ws.setDate(ws.getDate() + w * 7);
@@ -824,11 +916,20 @@ function generateEndu(ans, seed){
   let tplSeq = [];
   if (liftDays.length){
     if (hybrid){ const sp = (SPLITS[liftDays.length] || SPLITS[3])[0]; tplSeq = sp.days.slice(0, liftDays.length); }
-    else if (ans.kind === "hyrox") tplSeq = liftDays.map((_, i) => i % 2 ? "hyB" : "hyA");
+    else if (ans.kind === "hyrox") tplSeq = liftDays.length === 1 ? ["hyF"] : liftDays.map((_, i) => i % 2 ? "hyB" : "hyA");
     else tplSeq = liftDays.map((_, i) => i % 2 ? "runB" : "runA");
   }
   const vs = Object.fromEntries(gl.map(g => [g.id, tplSeq.length ? buildVariant(tplSeq, g.id, {...ans, pri:hybrid ? (ans.pri || []) : [], mins:hybrid ? (ans.mins || 60) : 45, level:ans.level || "inter"}, seed) : null]));
-  const toList = (v, i) => v.days[i].list.map(x => { const e = x.ex; exercises[e.k] = Object.fromEntries(Object.entries({n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note, len:e.len}).filter(([, z]) => z !== undefined)); return x.ss && hybrid ? [e.k, x.sets, x.ss] : [e.k, hybrid ? x.sets : Math.min(3, x.sets)]; });
+  const runStr = !hybrid && ans.kind !== "hyrox";
+  const toList = (v, i) => v.days[i].list.map((x, j) => { const e = x.ex; let key = e.k;
+    const def = {n:e.n, lo:e.lo, hi:e.hi, rest:e.rest, eq:e.eq, m:e.ml || MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)], mu:e.mu, note:e.note, len:e.len};
+    let sets = hybrid ? x.sets : Math.min(3, x.sets);
+    if (runStr && j === 0 && e.c && ["squat","hinge"].includes(e.p) && !["db","kb","bw"].includes(e.eq)){ key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:3, hi:6, rest:180, rirMin:2}); sets = 4; }
+    else if (runStr && e.p === "calf") Object.assign(def, {lo:6, hi:10});
+    else if (runStr && ["plow","plat"].includes(e.p)){ def.intent = true; sets = 3; }
+    if (key.endsWith("-hvy") || (e.c && e.eq === "bb" && ["squat","hinge"].includes(e.p))) def.rirMin = 2;
+    exercises[key] = Object.fromEntries(Object.entries(def).filter(([, z]) => z !== undefined));
+    return x.ss && hybrid ? [key, x.sets, x.ss] : [key, sets]; });
   const w0 = plan.weeks[0];
   const days = WD.map(([k, wd]) => {
     const run = w0.sessions[wd] || plan.weeks.find(w => w.sessions[wd])?.sessions[wd];
@@ -838,7 +939,7 @@ function generateEndu(ans, seed){
     if (li >= 0){
       d.variants = Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], li)])); d.gym = gl.some(g => g.id === (ans.gymOf || {})[k]) ? ans.gymOf[k] : gl[0].id;
       const sLabel = hybrid || ans.kind === "hyrox" ? T[tplSeq[li]].label : ans.kind === "tri" ? "Strength for triathletes" : "Strength for runners";
-      d.label = run ? d.label + " + " + sLabel.toLowerCase() : sLabel; d.focus = run ? d.focus : focusOf(vs[gl[0].id].days[li].list); d.tpl = tplSeq[li];
+      d.label = run ? d.label + " + " + sLabel.replace(/^Strength/, "strength") : sLabel; d.focus = run ? d.focus : focusOf(vs[gl[0].id].days[li].list); d.tpl = tplSeq[li];
     } else if (run) d.variants = {};
     return d;
   });
@@ -1145,7 +1246,7 @@ function pStep(s, a){
     ${sel.length ? `<div class="card oblist">${sel.map(x => `<div><span class="obsp"><b>${esc((AJSports.SP[x.id] || [x.id])[0])}</b></span><span class="obstepper"><button data-sportn="${x.id}" data-d="-1">−</button><b class="num">${x.n}× a week</b><button data-sportn="${x.id}" data-d="1">+</button></span></div>`).join("")}</div>` : ""}
     <p class="obnote">On average, cardio doesn't blunt muscle growth. Hard sport sessions can tire your legs, so if one falls the day before leg day, move a session in the Train tab. ${src("interference")}</p>`, cta:sel.length ? "Continue" : "Skip"}; }
   case "split": {
-    const n = a.days.length, opts = SPLITS[n] || [], rec = recommendSplit(a), cur = a.split || (rec && rec.id);
+    const n = a.days.length, opts = splitOpts(a), rec = recommendSplit(a), cur = a.split || (rec && rec.id);
     const seq = a.customSeq && a.customSeq.length === n ? a.customSeq : (opts.find(o => o.id === cur) || opts[0] || {days:[]}).days.slice();
     const warn = a.split === "custom" ? splitWarnings(seq, a) : [];
     return {title:"Pick a split", body:`${rec ? `<div class="banner info"><b>Recommended for you.</b> ${esc(rec.why)}</div>` : ""}
@@ -1302,6 +1403,7 @@ function review(a){
     ${(() => { const v = prog.vol[g] || {}, sh = (su.pri || []).filter(m => (v[m] || 0) < (prog.targets[m] || 0) - 1.5); return sh.length ? `<div class="banner info"><b>Not enough time for full priority volume.</b> ${sh.map(m => MUS[m] + " " + r1(v[m] || 0) + " of " + prog.targets[m]).join(", ")} sets. Add about 15 min per session or another day, or drop a priority.</div>` : ""; })()}
     ${(() => { const v = prog.vol[g] || {}, tg = prog.targets, tot = Object.keys(tg).reduce((x, m) => x + Math.min(v[m] || 0, tg[m]), 0), all = Object.values(tg).reduce((x, y) => x + y, 0), pct = Math.round(tot / all * 100);
       return pct < 85 ? `<div class="banner info"><b>${pct}% of the recommended weekly sets fit.</b> ${a.mins} min sessions on ${train.length} days can't hold it all. Every set still counts, and growth keeps coming from less; for the full dose add about ${Math.round((1 - tot / all) * all * 2.4 / train.length / 5) * 5 + 5} min a session or another day. <button class="obsrc" data-bumpmins="15">Add 15 min and rebuild</button></div>` : ""; })()}
+    ${(prog.under || []).length && g === gl[0].id ? `<div class="banner info"><b>Light on ${prog.under.map(m => MUS[m]).join(", ")}.</b> Under 6 sets a week each, which still keeps what you have but grows slowly. Another day, or about 15 more minutes a session, fixes it.</div>` : ""}
     ${su.split === "custom" && splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).length ? `<div class="banner"><b>Your custom split.</b> ${splitWarnings(prog.days.filter(d => !d.rest).map(d => d.tpl), su).map(esc).join(" ")}</div>` : ""}
     ${gl.length > 1 ? `<div class="spread"><span class="small muted">Sessions shown for</span>${seg2("_gym", gl.map(x => [x.id, gn(x.id)]), g)}</div>` : ""}
     ${train.map(d => { const list = d.variants[g] || [], mins = prog.mins[g][prog.days.filter(x => !x.rest).indexOf(d)];
@@ -1311,10 +1413,10 @@ function review(a){
     ${su.goal === "athletic" ? sportWhy(prog, su) : `<div class="card obwhy"><h2>Why it's built this way</h2>
       <div><b>Volume</b><span>${su.level === "new" ? "Fewer sets while you're new: you grow from less." : `About 10-14 hard sets a week for each muscle, ~${PRIORITY_SETS} for priorities. Presses and rows count towards the muscles they help, so shoulders and arms need less direct work.`} More sets keep adding muscle, but each extra set adds less. ${src("volume")}</span></div>
       <div><b>Frequency</b><span>Most muscles twice a week, so no session gets bloated. ${src("frequency")}</span></div>
-      <div><b>Effort</b><span>RIR ${prog.rir.filter(r => r !== "DL").join(" → ")}, then deload. Trained lifters grow as much stopping 1-2 reps short as at failure; growth improves closer to failure. ${src("rir")}</span></div>
+      <div><b>Effort</b><span>RIR ${prog.rir.filter(r => r !== "DL").join(" → ")}, then deload. Trained lifters grow as much stopping 1-2 reps short as at failure; growth improves closer to failure. Heavy barbell lifts always stop 2-3 reps short: going to failure there adds risk, not strength. ${src("rir")}</span></div>
       <div><b>Reps</b><span>${reps} ${src("load")}</span></div>
-      ${su.supersets !== false ? `<div><b>Supersets</b><span>Isolation lifts for different muscles are paired (A1, A2…) and share rest, which fits more sets into the same time without hurting performance much. Turn off on the block step. ${src("superset")}</span></div>` : ""}
-      <div><b>Rest</b><span>Big barbell lifts ~2.5 min, other compounds ~2 min, isolation ~90 s${su.rest && su.rest !== "std" ? ` (${su.rest === "short" ? "shortened" : "lengthened"} to your preference)` : ""}. Adjustable during any workout. ${src("rest")}</span></div>
+      ${su.supersets !== false ? `<div><b>Supersets</b><span>Isolation lifts for different muscles are paired (A1, A2…)${+su.mins <= 60 ? ", and so are presses with pulls," : ""} and share rest, which fits more sets into the same time without hurting performance much. Turn off on the block step. ${src("superset")}</span></div>` : ""}
+      <div><b>Rest</b><span>Big barbell lifts ~2.5 min, other compounds ~2 min, isolation ~75 s${su.rest && su.rest !== "std" ? ` (${su.rest === "short" ? "shortened" : "lengthened"} to your preference)` : ""}. Adjustable during any workout. ${src("rest")}</span></div>
       <div><b>Exercise choice</b><span>Stretch-biased lifts are favoured${su.level === "new" ? ", with stable machines while you learn" : ""}. ${src("lengthened")}</span></div>
       <div><b>Progression</b><span>Progressive overload: add reps across the range, then add load. ${src("progression")}</span></div>
       <div><b>Deload</b><span>Every ${prog.deloadEvery}th week, half the sets at ~3 RIR${(prog.breaks || []).length ? `. Breaks: ${prog.breaks.map(fmtD).join(", ")} (the block pauses)` : ""}. ${src("deload")}</span></div>
@@ -1619,7 +1721,7 @@ function runBuild(){
     : k === "tri" ? ["Mapping the weeks to " + (a.hasDate ? "race day" : "your distance"), "Balancing swim, bike and run", "Keeping most of it easy", "Adding the weekly brick", ...(+a.strengthN ? ["Writing strength sessions"] : []), "Planning the taper"]
     : ["Mapping the weeks to " + (a.event === "general" ? "your goal" : a.hasDate ? "race day" : "being ready"), ...(+a.runLevel === 0 ? ["Starting with a run/walk build"] : []), "Splitting base, build, peak" + (a.event === "general" ? "" : " and taper"), "Setting the long-run progression", "Balancing easy and hard runs", ...(+a.strengthN ? ["Writing strength sessions"] : []), ...((EVENTS[a.event] || {}).heat ? ["Adding pack and heat training"] : [])];
   const box = document.getElementById("obticks"), bar = document.getElementById("obbar"); let n = 0;
-  if (k === "gym"){ if (a.split !== "custom" && (!a.split || !(SPLITS[a.days.length] || []).some(s => s.id === a.split))){ const r = recommendSplit(a); a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; } F.out = generate(a, F.seed); }
+  if (k === "gym"){ if (a.split !== "custom" && (!a.split || !splitOpts(a).some(s => s.id === a.split))){ const r = recommendSplit(a); a.split = r ? r.id : (SPLITS[a.days.length] || [])[0]?.id; } F.out = generate(a, F.seed); }
   else F.out = generateEndu(F.ans, F.seed);
   box.innerHTML = lines.map(l => `<div><i></i><span>${l}</span></div>`).join("");
   const rows = [...box.children];
