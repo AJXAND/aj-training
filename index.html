@@ -415,6 +415,7 @@ h1{margin-top:2px}
 .mealcard .mealhd{gap:12px}.mealcard .mealhd .mh b{font:800 18px var(--display);color:var(--ink)}.mealgrp.empty .msic{background:var(--sunk);color:var(--muted)}.mealcard .mealgrp.empty .mealhd b{font:800 17px var(--display);color:var(--ink);opacity:.55;text-transform:none;letter-spacing:0}
 .mealhd .msic{margin-left:0}
 .edorig{justify-self:center;margin-top:-6px}
+.mealcard .fbody{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -2414,7 +2415,7 @@ function guessMeal(items, date){
 }
 function entryRow(e, sel){
   const on=sel&&sel.includes(e.id), meta=[e.amount?esc(amtText(e.amount,e.unit)):"", e.src==="coach"?"AI":e.src==="photo"?"photo estimate":e.src==="printed"?"read from photo":e.src==="label"?"label scan":"", e.sample?"sample":""].filter(Boolean).join(" · ");
-  return `<div class="fe ${on?"on":""}" data-id="${e.id}">${sel?`<span class="fchk" aria-hidden="true">${on?HICON.check:""}</span>`:`<span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span>`}<button class="fbody" data-act="selTog" data-id="${e.id}">
+  return `<div class="fe ${on?"on":""}" data-id="${e.id}">${sel?`<span class="fchk" aria-hidden="true">${on?HICON.check:""}</span>`:`<span class="fgrip" data-grip="${e.id}" aria-label="Drag to another meal">⋮⋮</span>`}<button class="fbody" data-act="foodTap" data-id="${e.id}">
       <span class="fn"><b>${esc(e.name)}</b>${meta?`<span class="muted small num">${meta}</span>`:""}</span>
       <span class="fk num"><b>${fmtN(e.kcal)}</b>${macroMini(e)}</span></button></div>`;
 }
@@ -2455,7 +2456,7 @@ function renderFood(){
     <button class="lact ai" data-act="foodAddOpen" data-tab="ai"><span class="li-ic">${ICON.spark}</span><b>AI</b><span>Type or snap it</span></button></div>
   ${S.pendingBarcode?`<div class="banner info"><b>New barcode ${esc(S.pendingBarcode)}.</b> Scan its nutrition label once and it'll be recognised from now on. <button class="link" data-act="scanLabel">Scan label</button> <button class="link muted" data-act="clearBarcode">Cancel</button></div>`:""}
   ${S.busy==="label"||S.busy==="barcode"?`<div class="card"><div class="row"><span class="spinner"></span><span>${S.busy==="label"?"Reading the label…":"Reading the barcode…"}</span></div></div>`:""}
-  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":fmtD(date)}</h2>${sel?`<button class="link" data-act="selMode">Clear</button>`:entries.length?`<span class="small muted">Tap foods to select</span>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
+  <div class="card mealcard"><div class="loghd"><h2>${isToday?"Today's log":fmtD(date)}</h2>${sel?`<button class="link" data-act="selMode">Clear</button>`:entries.length?`<span class="small muted">Tap to open · hold to select</span>`:yN?`<button class="link" data-act="copyDay">Copy ${isToday?"yesterday":"the day before"}</button>`:""}</div>
     ${groups}</div>
   ${sel?`<div class="selbar"><span class="num"><b>${sel.length} selected</b><em>${fmtN(ss.kcal)} kcal · ${Math.round(ss.p)}P ${Math.round(ss.c)}C ${Math.round(ss.f)}F</em></span><div class="selacts">
     ${sel.length===1?`<button data-act="selEdit">Edit</button>`:`<button data-act="selMake">Make meal</button>`}<button data-act="selCopy">Copy</button><button data-act="selMove">Move</button><button class="del" data-act="selDel">Delete</button></div></div>`:trayBar(date)}
@@ -3974,6 +3975,19 @@ $("#main").addEventListener("input", e=>{
   if (i.id==="mineQ"||i.id==="mealQ"){ S[i.id]=i.value; if (i.id==="mineQ") S.mineN=8; const pos=i.selectionStart, id=i.id; render(); const n=$("#"+id); if (n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } return; }
   if (i.id==="foodQ"){ S.moreHits=false; if (S.aiFoods&&S.aiFoods.length) S.aiFoods=[]; S.foodQuery=i.value; const pos=i.selectionStart; render(); const n=$("#foodQ"); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos); }catch(err){} } }
 });
+/* press and hold a food (or a meal you made) to start selecting; then taps add or remove */
+(function(){ let t=null, x0=0, y0=0;
+  const cancel=()=>{ clearTimeout(t); t=null; };
+  $("#main").addEventListener("pointerdown", e=>{ const b=e.target.closest('.fbody[data-act="foodTap"],.fgh .fbody[data-act="grpTog"]'); if (!b||(S.fsel&&S.fselDate===foodDate())) return; x0=e.clientX; y0=e.clientY;
+    t=setTimeout(()=>{ t=null; const date=foodDate(), ids=b.dataset.g?((S.foodlog[date]||{}).entries||[]).filter(x=>x.grp===b.dataset.g).map(x=>x.id):[b.dataset.id];
+      S._lp=Date.now(); S.fsel=ids; S.fselDate=date; S.mealMenu=null; try{ navigator.vibrate&&navigator.vibrate(25); }catch(err){} render(); }, 450); });
+  $("#main").addEventListener("pointermove", e=>{ if (t&&Math.hypot(e.clientX-x0,e.clientY-y0)>8) cancel(); });
+  ["pointerup","pointercancel","scroll"].forEach(ev=>(ev==="scroll"?window:$("#main")).addEventListener(ev, cancel, {passive:true}));
+  $("#main").addEventListener("pointerup", ()=>{ if (S._lp) setTimeout(()=>{ S._lp=0; }, 0); });
+  // the tap that ends a long press shouldn't also open or toggle anything
+  $("#main").addEventListener("click", e=>{ if (S._lp&&Date.now()-S._lp<700){ S._lp=0; e.stopPropagation(); e.preventDefault(); } }, true);
+  $("#main").addEventListener("contextmenu", e=>{ if (e.target.closest(".fbody")) e.preventDefault(); });
+})();
 /* drag a food entry to another meal */
 let fdrag=null;
 $("#main").addEventListener("pointerdown", e=>{ const g=e.target.closest("[data-grip],[data-gripg]"); if(!g) return; e.preventDefault(); const row=g.dataset.gripg?g.closest(".fgrp"):g.closest(".fe"); fdrag={id:g.dataset.grip,grp:g.dataset.gripg,row,y0:e.clientY,s0:scrollY,y:e.clientY,x:e.clientX,over:null}; fdragScroll(); row.classList.add("dragging"); try{ g.setPointerCapture(e.pointerId); }catch(err){} });
@@ -4143,6 +4157,8 @@ $("#main").addEventListener("click", async e=>{
       render(); return; }
     case "fset": { if (b.dataset.date>ymd(new Date())) return; S.foodDate=b.dataset.date; S.fsel=null; S.mealMenu=null; render(); return; }
     case "selMode": S.fsel=S.fsel&&S.fselDate===foodDate()?null:[]; S.fselDate=foodDate(); S.mealMenu=null; render(); return;
+    case "foodTap": { if (S.fsel&&S.fselDate===foodDate()){ b.dataset.act="selTog"; } else return editEntryOpen(b.dataset.id); }
+    // falls through to select when already selecting
     case "selTog": { const id=b.dataset.id, cur=S.fsel&&S.fselDate===foodDate()?S.fsel:[]; S.fselDate=foodDate(); S.mealMenu=null; S.fsel=cur.includes(id)?cur.filter(x=>x!==id):[...cur,id]; if (!S.fsel.length) S.fsel=null; render(); return; }
     case "selEdit": { const id=(S.fsel||[])[0]; if (!id) return; S.fsel=null; render(); return editEntryOpen(id); }
     case "selMeal": { const ids=Object.keys(S._mm||{}).filter(id=>S._mm[id]===b.dataset.meal), all=ids.every(id=>S.fsel.includes(id)); S.fsel=all?S.fsel.filter(x=>!ids.includes(x)):[...new Set([...S.fsel,...ids])]; render(); return; }
