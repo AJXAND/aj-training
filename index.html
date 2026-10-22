@@ -2347,7 +2347,7 @@ const macroMini=s=>`<span class="mm"><i class="p">${Math.round(s.p)}P</i><i clas
    3. Each sitting is scored for every meal on: how close it is to the time YOU usually have that meal (learned from your
       last 60 days), how big it is, and what's in it (where you've filed those foods before, plus what they are).
    4. The best overall fit wins, with breakfast before lunch before dinner and each once a day. Everything else is a snack. */
-const SNACK_RE=/\b(bar|banana|apple|pear|orange|grapes|fruit|crisps|nuts|almonds|cashews|yoghurt|yogurt|skyr|biscuit|cookie|chocolate|popcorn|rice cake|flapjack|kitkat|snickers|twix|haribo|jerky|cheese string|protein ball|muffin|cake)\b/i;
+const SNACK_RE=/\b(bar|banana|apple|pear|orange|grapes|fruit|crisps|nuts|almonds|cashews|yoghurt|yogurt|skyr|biscuit|cookie|chocolate|popcorn|rice cakes?|crackers?|flapjack|kitkat|snickers|twix|haribo|jerky|biltong|babybel|cheese string|protein ball|muffin|cake|sweets)\b/i;
 const BFAST_RE=/\b(porridge|oats|oatmeal|cereal|granola|muesli|weetabix|cornflakes|toast|bagel|croissant|pancakes?|waffles?|eggs?|omelette|bacon|sausage sandwich|hash brown|crumpet|english muffin|overnight oats|acai)\b/i;
 // A shake is protein powder (or a ready-made shake) plus what you mixed it with, logged within 10 minutes of it.
 const SHAKE_MIX_RE=/\b(milk|water|banana|ice|oat drink|almond drink|soya drink|creatine|oat milk|almond milk|soy milk)\b/i;
@@ -2409,7 +2409,7 @@ function mealMap(entries, opt={}){
     const lab=new Array(free.length);
     const rec=(i,last,sc)=>{ if (i===free.length){ if (sc>best){ best=sc; pick=lab.slice(); } return; }
       const c=free[i]; lab[i]="snacks"; rec(i+1,last,sc+c.sc.snacks);
-      MAIN3.forEach(m=>{ if (ORD[m]>last&&ok(m,c.first)){ lab[i]=m; rec(i+1,ORD[m],sc+c.sc[m]); } }); };
+      MAIN3.forEach(m=>{ if (ORD[m]>last&&ok(m,c.first)){ lab[i]=m; rec(i+1,ORD[m],sc+c.sc[m]+0.8); } }); };
     rec(0,-1,0);
   } else { let last=-1; pick=free.map(c=>{ const m=MAIN3.filter(m=>ORD[m]>last&&ok(m,c.first)).sort((a,b)=>c.sc[b]-c.sc[a])[0]; if (m&&c.sc[m]>c.sc.snacks){ last=ORD[m]; return m; } return "snacks"; }); }
   free.forEach((c,i)=>c.meal=pick[i]);
