@@ -58,5 +58,14 @@
   "sealrow",
   "seatedcablerow",
   "ssb"
- ]
+ ],
+ "qc_rule": "Every result is compared side by side with its original photo and checked part by part before acceptance. Use a fresh Gemini chat per item. Move mouse off the photo before screenshotting.",
+ "accepted": {
+  "hack": "u1 chat 006d7ab299b26a5d (v2; v1 had invented calf pad)",
+  "ssb": "u1 chat 9eec04a73e35cb2d (v2; v1 turned sleeves black)",
+  "hipthrustbench": "u1 chat efe987acb040aabf (v2; v1 kept copper brackets)",
+  "seatedcablerow": "u1 chat d228ad2a298c0078 (v2; v1 distorted handle)",
+  "maggrip": "u1 chat 9a9a975068bc4c62 image 4",
+  "monolift": "u1 chat 9a9a975068bc4c62 image 6"
+ }
 }
