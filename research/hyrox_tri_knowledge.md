@@ -301,7 +301,7 @@ Sources A11: https://roxfit.app/blog/how-to-train-for-hyrox · https://www.pureg
 ## A12. HYROX race-day pacing and fuelling
 
 ### A12.1 Pacing rules [C, with E- race data]
-1. **Run 1 at HRP + 0-5 s**, never faster. Average athletes surge with the start wave; lower-ranked London finishers ran run 1 about 2 min faster than their later runs, and on average the last run is close to 2 min slower than the first.
+1. **Run 1 at HRP + 0-5 s**, never faster. Average athletes surge with the start wave, and in Men Open data the last run is on average almost 2 min slower than the first.
 2. **Runs 2-7 within ± 10 s of HRP; spread target ≤ 20 s (H3-H4) or ≤ 30 s (H1-H2).** Podium median spread 17 s.
 3. **Roxzone: jog it.** Target Roxzone total ≤ 1.1 × average run split (podium ≈ 1.04, average Pro ≈ 1.33).
 4. **Ergs**: first 200 m easy, settle at race split (TT + 5-8 s/500 m), last 200 m harder. Ease about 10% below "possible" to protect the run.
