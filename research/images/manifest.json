@@ -113,5 +113,20 @@
  ],
  "gemini_tomorrow": [
   "smith3d"
- ]
+ ],
+ "rejected_text_u2": [
+  "framecarry",
+  "stones",
+  "husafell",
+  "tyre",
+  "log",
+  "circusdb",
+  "shoulderbench_text"
+ ],
+ "accounts": {
+  "u0": "alexander@xandiq.co.uk",
+  "u1": "personal",
+  "u2": "aj@digitaledgecf.com (new, reference-edit only)"
+ },
+ "rule_u2": "AJ: reference images only on new account, no text-only generations"
 }
