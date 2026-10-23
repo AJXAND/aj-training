@@ -273,10 +273,16 @@
    "acct": "u1",
    "chat": "6a7f08e3c38b1511",
    "img": 2
+  },
+  "lowrow": {
+   "acct": "u1",
+   "chat": "91fc0b8c034b2901",
+   "img": 1
   }
  },
  "qc_rejects": [
   "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle",
-  "isochestpress v1 (c342bfd31549fbe2): floating plate, extra horns, 10kg text"
+  "isochestpress v1 (c342bfd31549fbe2): floating plate, extra horns, 10kg text",
+  "frontpulldown (06929053209c09dc): invented/moved horns, redo with another ref"
  ]
 }
