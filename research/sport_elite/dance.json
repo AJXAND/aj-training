@@ -1,928 +1,960 @@
 {
- "id": "dance",
- "name": "Dance",
- "aliases": [
-  "ballet",
-  "contemporary dance",
-  "contemporary",
-  "commercial dance",
-  "jazz dance",
-  "modern dance"
- ],
- "group": "Artistic",
- "variants": [
-  {
-   "id": "ballet",
-   "name": "Ballet",
-   "desc": "Work on demi-pointe and pointe puts heavy load on the foot, ankle and calf; turnout loads the hip.",
-   "q": {},
-   "prehab": [
-    "calf",
-    "ankle",
-    "hipRot"
-   ],
-   "note": "Calf raises go through full demi-pointe range and hip rotation work is never forced."
+  "id": "dance",
+  "name": "Dance",
+  "aliases": [
+    "ballet",
+    "contemporary dance",
+    "contemporary",
+    "commercial dance",
+    "jazz dance",
+    "modern dance"
+  ],
+  "group": "Artistic",
+  "variants": [
+    {
+      "id": "ballet",
+      "name": "Ballet",
+      "desc": "Work on demi-pointe and pointe puts heavy load on the foot, ankle and calf; turnout loads the hip.",
+      "q": {},
+      "prehab": [
+        "calf",
+        "ankle",
+        "hipRot"
+      ],
+      "note": "Do calf raises through full demi-pointe range and never force hip rotation or turnout."
+    },
+    {
+      "id": "partnering",
+      "name": "Partnering and lifts",
+      "desc": "Lifting a partner adds upper-body and low back load.",
+      "q": {
+        "upperPull": 2,
+        "upperPush": 2
+      },
+      "prehab": [
+        "lowback",
+        "shoulderER"
+      ],
+      "note": "Your plan adds extra rows and overhead presses for lifts, and puts back endurance work first.",
+      "add": [
+        {
+          "role": "acc",
+          "ex": [
+            "dbrow",
+            "invrow",
+            "bandrow"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "8-10",
+          "rir": 2
+        },
+        {
+          "role": "acc",
+          "ex": [
+            "standdbohp",
+            "lmpress",
+            "pikepush"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "8-10",
+          "rir": 2
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: squat, split squat, calves",
+        "focus": "Leg strength, jump power and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 3,
+            "note": "Light, stiff ankles."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "cmj",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Land softly, step down."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "squat"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "ffesplit"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "seatedcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-15/side",
+            "rir": 2,
+            "note": "Through full demi-pointe range, slow."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars",
+              "clamshell"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3,
+            "note": "Active hip rotation; never force turnout."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "deadbug",
+              "pallof",
+              "sideplank",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 s",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: hinge, upper body, hips",
+        "focus": "Posterior chain, partnering strength and hip control",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "hopstick",
+              "broadjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3,
+            "note": "Bound sideways, stick for 2 s."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Upper strength for partnering."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "invrow",
+              "bandlatpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "copen",
+              "adductor",
+              "cabadd",
+              "sideadd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Copenhagen: start short-lever."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "abductor",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "stepcalf",
+              "slcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Calf isometric hold."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee tracks over toes."
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: squat, split squat, calves",
+        "focus": "Leg strength, jump power and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "15",
+            "rir": 3,
+            "note": "Light, stiff ankles."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "cmj",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Land softly, step down."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "squat"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "ffesplit"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "seatedcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Through full demi-pointe range, slow."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars",
+              "clamshell"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3,
+            "note": "Active hip rotation; never force turnout."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "deadbug",
+              "pallof",
+              "sideplank",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 s",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: hinge, upper body, hips",
+        "focus": "Posterior chain, partnering strength and hip control",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "hopstick",
+              "broadjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3,
+            "note": "Bound sideways, stick for 2 s."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2,
+            "note": "Upper strength for partnering."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "invrow",
+              "bandlatpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "copen",
+              "adductor",
+              "cabadd",
+              "sideadd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Copenhagen: start short-lever."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "abductor",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "stepcalf",
+              "slcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Calf isometric hold."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee tracks over toes."
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: squat, split squat, calves",
+        "focus": "Leg strength, jump power and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 3,
+            "note": "Light, stiff ankles."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "squat"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "ffesplit"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "seatedcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Through full demi-pointe range, slow."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars",
+              "clamshell"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3,
+            "note": "Active hip rotation; never force turnout."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "deadbug",
+              "pallof",
+              "sideplank",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 s",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: hinge, upper body, hips",
+        "focus": "Posterior chain, partnering strength and hip control",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "hopstick",
+              "broadjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3/side",
+            "rir": 3,
+            "note": "Bound sideways, stick for 2 s."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2,
+            "note": "Upper strength for partnering."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "invrow",
+              "bandlatpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "stepcalf",
+              "slcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Calf isometric hold."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee tracks over toes."
+          }
+        ]
+      }
+    ]
   },
-  {
-   "id": "partnering",
-   "name": "Partnering and lifts",
-   "desc": "Lifting a partner adds upper-body and low back load.",
-   "q": {
-    "upperPull": 2,
-    "upperPush": 2
-   },
-   "prehab": [
-    "lowback",
-    "shoulderER"
-   ],
-   "note": "More pulling and pressing, with back endurance work moved up."
-  }
- ],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: squat, split squat, calves",
-    "focus": "Leg strength, jump power and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+  "conditioning": {
+    "off": [
+      {
+        "name": "Aerobic base",
+        "mode": "bike",
+        "work": "20-30 min",
+        "rest": "none",
+        "intensity": "steady, conversational",
+        "perWeek": 2,
+        "why": "Dancers' aerobic fitness is often only moderate and responds to extra work."
+      }
+    ],
+    "pre": [
+      {
+        "name": "Dance intervals",
+        "mode": "any",
+        "work": "4-6 x 2-3 min of choreography",
+        "rest": "1-2 min",
+        "intensity": "performance intensity",
+        "perWeek": 1,
+        "why": "Matches the demands of long sections on stage; coach practice."
+      }
+    ],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "slcalf",
+      "name": "Single-leg calf raise reps",
+      "how": "Full range on a step, to a metronome, each side",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "good": "25+"
       },
-      "reps": "10",
-      "rir": 3,
-      "note": "Light, stiff ankles."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "cmj",
-       "squatjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+      "note": "Coach practice."
+    },
+    {
+      "id": "hopsym",
+      "name": "Single-leg hop symmetry",
+      "how": "Best single hop each leg; weaker as % of stronger",
+      "unit": "%",
+      "better": "higher",
+      "bands": {
+        "good": "90+"
       },
-      "reps": "4",
-      "rir": 3,
-      "note": "Land softly, step down."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "squat"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
+      "note": "Coach practice."
+    },
+    {
+      "id": "cmj",
+      "name": "Countermovement jump",
+      "how": "Hands on hips, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {},
+      "note": "Track your own trend."
+    },
+    {
+      "id": "ybal",
+      "name": "Y-balance anterior reach difference",
+      "how": "Reach forward on one leg, compare sides",
+      "unit": "cm",
+      "better": "lower",
+      "bands": {
+        "good": "<4"
       },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "ffesplit"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6-8/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "seatedcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10-15/side",
-      "rir": 2,
-      "note": "Through full demi-pointe range, slow."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars",
-       "clamshell"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3,
-      "note": "Active hip rotation; never force turnout."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "deadbug",
-       "pallof",
-       "sideplank",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, upper body, hips",
-    "focus": "Posterior chain, partnering strength and hip control",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "latbound",
-       "hopstick",
-       "broadjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4/side",
-      "rir": 3,
-      "note": "Bound sideways, stick for 2 s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "singlerdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6-8",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "flatdb",
-       "incdb",
-       "lmpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Upper strength for partnering."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "invrow",
-       "bandlatpd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "copen",
-       "adductor",
-       "cabadd",
-       "sideadd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Copenhagen: start short-lever."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bandabd",
-       "sideabd",
-       "abductor",
-       "cababd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "stepcalf",
-       "slcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "30-45 s",
-      "rir": 2,
-      "note": "Calf isometric hold."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee tracks over toes."
-     }
-    ]
-   }
+      "note": "Coach practice."
+    },
+    {
+      "id": "daft",
+      "name": "Dance Aerobic Fitness Test",
+      "how": "Use the Dance Aerobic Fitness Test (DAFT) if you can access it",
+      "unit": "stage",
+      "better": "higher",
+      "bands": {},
+      "note": "Optional aerobic check."
+    }
   ],
-  "pre": [
-   {
-    "name": "Day A: squat, split squat, calves",
-    "focus": "Leg strength, jump power and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "15",
-      "rir": 3,
-      "note": "Light, stiff ankles."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "cmj",
-       "squatjump"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Land softly, step down."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "squat"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "ffesplit"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "seatedcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Through full demi-pointe range, slow."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars",
-       "clamshell"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3,
-      "note": "Active hip rotation; never force turnout."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "deadbug",
-       "pallof",
-       "sideplank",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, upper body, hips",
-    "focus": "Posterior chain, partnering strength and hip control",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "latbound",
-       "hopstick",
-       "broadjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4/side",
-      "rir": 3,
-      "note": "Bound sideways, stick for 2 s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "singlerdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "flatdb",
-       "incdb",
-       "lmpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2,
-      "note": "Upper strength for partnering."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "invrow",
-       "bandlatpd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "copen",
-       "adductor",
-       "cabadd",
-       "sideadd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Copenhagen: start short-lever."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bandabd",
-       "sideabd",
-       "abductor",
-       "cababd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "stepcalf",
-       "slcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "30-45 s",
-      "rir": 2,
-      "note": "Calf isometric hold."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee tracks over toes."
-     }
-    ]
-   }
+  "week": [
+    "Gym at the end of the day or on lighter rehearsal days",
+    "Keep sessions to 30-45 min and low fatigue",
+    "No heavy legs the day before a performance or audition",
+    "Performance season with 6-8 shows a week: 1-2 short sessions"
   ],
-  "in": [
-   {
-    "name": "Day A: squat, split squat, calves",
-    "focus": "Leg strength, jump power and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10",
-      "rir": 3,
-      "note": "Light, stiff ankles."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "squat"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "ffesplit"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "seatedcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Through full demi-pointe range, slow."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars",
-       "clamshell"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3,
-      "note": "Active hip rotation; never force turnout."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "deadbug",
-       "pallof",
-       "sideplank",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30 s",
-      "rir": 2
-     }
+  "primer": [],
+  "taper": {
+    "days": 7,
+    "lines": [
+      "Last hard gym session 5-7 days before a premiere or audition",
+      "Keep prehab going",
+      "No new exercises in the final 2 weeks"
     ]
-   },
-   {
-    "name": "Day B: hinge, upper body, hips",
-    "focus": "Posterior chain, partnering strength and hip control",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "latbound",
-       "hopstick",
-       "broadjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "3/side",
-      "rir": 3,
-      "note": "Bound sideways, stick for 2 s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "singlerdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "flatdb",
-       "incdb",
-       "lmpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6",
-      "rir": 2,
-      "note": "Upper strength for partnering."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "invrow",
-       "bandlatpd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "stepcalf",
-       "slcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "30-45 s",
-      "rir": 2,
-      "note": "Calf isometric hold."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee tracks over toes."
-     }
-    ]
-   }
+  },
+  "rules": [
+    "Never force turnout in the gym",
+    "Foot pain that builds with jumping: check for stress fracture and low energy",
+    "Strength work does not harm flexibility when dosed sensibly; keep it in",
+    "Under-18s follow youth resistance-training rules"
+  ],
+  "sources": [
+    {
+      "source": "Koutedakis & Jamurtas 2004, Sports Medicine"
+    },
+    {
+      "source": "Allen et al. 2012, Journal of Orthopaedic and Sports Physical Therapy"
+    },
+    {
+      "source": "Liederbach, Dilgen & Rose 2008, American Journal of Sports Medicine"
+    },
+    {
+      "source": "Angioi et al. 2009, Medical Problems of Performing Artists"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Foot intrinsic work (short foot, towel scrunch)",
+      "pattern": "ankle",
+      "equipment": "",
+      "why": "Foot and ankle injuries are the most common in dance"
+    }
   ]
- },
- "conditioning": {
-  "off": [
-   {
-    "name": "Aerobic base",
-    "mode": "bike",
-    "work": "20-30 min",
-    "rest": "none",
-    "intensity": "steady, conversational",
-    "perWeek": 2,
-    "why": "Dancers' aerobic fitness is often only moderate and responds to extra work."
-   }
-  ],
-  "pre": [
-   {
-    "name": "Dance intervals",
-    "mode": "any",
-    "work": "4-6 x 2-3 min of choreography",
-    "rest": "1-2 min",
-    "intensity": "performance intensity",
-    "perWeek": 1,
-    "why": "Matches the demands of long sections on stage; coach practice."
-   }
-  ],
-  "in": []
- },
- "tests": [
-  {
-   "id": "slcalf",
-   "name": "Single-leg calf raise reps",
-   "how": "Full range on a step, to a metronome, each side",
-   "unit": "reps",
-   "better": "higher",
-   "bands": {
-    "good": "25+"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "hopsym",
-   "name": "Single-leg hop symmetry",
-   "how": "Best single hop each leg; weaker as % of stronger",
-   "unit": "%",
-   "better": "higher",
-   "bands": {
-    "good": "90+"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "cmj",
-   "name": "Countermovement jump",
-   "how": "Hands on hips, best of 3",
-   "unit": "cm",
-   "better": "higher",
-   "bands": {},
-   "note": "Track your own trend."
-  },
-  {
-   "id": "ybal",
-   "name": "Y-balance anterior reach difference",
-   "how": "Reach forward on one leg, compare sides",
-   "unit": "cm",
-   "better": "lower",
-   "bands": {
-    "good": "<4"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "daft",
-   "name": "Dance Aerobic Fitness Test",
-   "how": "Use the DAFT if you can access it",
-   "unit": "stage",
-   "better": "higher",
-   "bands": {},
-   "note": "Optional aerobic check."
-  }
- ],
- "week": [
-  "Gym at the end of the day or on lighter rehearsal days",
-  "Keep sessions to 30-45 min and low fatigue",
-  "No heavy legs the day before a performance or audition",
-  "Performance season with 6-8 shows a week: 1-2 short sessions"
- ],
- "primer": [],
- "taper": {
-  "days": 7,
-  "lines": [
-   "Last hard gym session 5-7 days before a premiere or audition",
-   "Keep prehab going",
-   "No new exercises in the final 2 weeks"
-  ]
- },
- "rules": [
-  "Never force turnout in the gym",
-  "Foot pain that builds with jumping: check for stress fracture and low energy",
-  "Strength work does not harm flexibility when dosed sensibly; keep it in",
-  "Under-18s follow youth resistance-training rules"
- ],
- "sources": [
-  {
-   "source": "Koutedakis & Jamurtas 2004, Sports Medicine"
-  },
-  {
-   "source": "Allen et al. 2012, Journal of Orthopaedic and Sports Physical Therapy"
-  },
-  {
-   "source": "Liederbach, Dilgen & Rose 2008, American Journal of Sports Medicine"
-  },
-  {
-   "source": "Angioi et al. 2009, Medical Problems of Performing Artists"
-  }
- ],
- "missing_ex": [
-  {
-   "name": "Foot intrinsic work (short foot, towel scrunch)",
-   "pattern": "ankle",
-   "equipment": "",
-   "why": "Foot and ankle injuries are the most common in dance"
-  }
- ]
 }

@@ -21,7 +21,55 @@
     "hipAbd",
     "ankle"
    ],
-   "note": "More aerobic base and lateral endurance; Copenhagen and hip work twice a week."
+   "note": "Your plan adds Copenhagen planks, lateral lunges and hip work. An extra easy aerobic session each week helps with long rallies.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "addsqueeze"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "8/side",
+     "rir": 2,
+     "note": "Short lever first."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "latlunge",
+      "cossack",
+      "latstepup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "bandabd",
+      "cababd",
+      "clamshell"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15/side",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "bigserver",
@@ -36,7 +84,39 @@
     "shoulderER",
     "trunkLat"
    ],
-   "note": "Shoulder module 3 times a week without fail, extra overhead med ball work."
+   "note": "Your plan adds extra overhead med ball throws and shoulder rotation work. Keep the shoulder module 3 times a week.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbohthrow",
+      "mbslam"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Serve pattern, max intent."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "er9090",
+      "sideer",
+      "bander"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "junior",
@@ -50,7 +130,41 @@
     "trunkLat",
     "shoulderER"
    ],
-   "note": "Serve counts are tracked and trunk endurance comes first; no maximal testing."
+   "note": "Your plan adds trunk endurance work and keeps lifting below maximal. Count your serves each session.",
+   "add": [
+    {
+     "role": "core",
+     "ex": [
+      "sideplank",
+      "birddog",
+      "mcgill"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30 s/side",
+     "rir": 2,
+     "note": "Trunk endurance first."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "hyper90",
+      "superman",
+      "birddog"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30 s",
+     "rir": 2,
+     "note": "Hold, no pain."
+    }
+   ]
   },
   {
    "id": "over35",
@@ -63,7 +177,40 @@
     "calf",
     "elbow"
    ],
-   "note": "Calf capacity and eccentric wrist work lead every week; check grip size and string tension."
+   "note": "Your plan adds extra calf work and slow-lowering wrist work. If your elbow hurts, check grip size and string tension.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "seatedcalf",
+      "slcalf",
+      "stepcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 2,
+     "note": "Slow lowering."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "revwristcurl",
+      "pronsup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15",
+     "rir": 2,
+     "note": "Lower slowly, 3-4 s."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -86,7 +233,7 @@
       },
       "reps": "5/side",
       "rir": 3,
-      "note": "New 4/side. Adv 4/side after a heavy split squat."
+      "note": "New 4/side. Advanced 4/side after a heavy split squat."
      },
      {
       "role": "main",
@@ -103,7 +250,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3. I at 80%. Adv 5 x 3 at 85%."
+      "note": "New 3 x 8 at RIR 3. Intermediate at 80%. Advanced 5 x 3 at 85%."
      },
      {
       "role": "acc",
@@ -120,7 +267,7 @@
       },
       "reps": "6/side",
       "rir": 2,
-      "note": "New 8/side. Adv heavy."
+      "note": "New 8/side. Advanced heavy."
      },
      {
       "role": "acc",
@@ -136,7 +283,7 @@
       },
       "reps": "8/side",
       "rir": 2,
-      "note": "Adv 6/side."
+      "note": "Advanced 6/side."
      },
      {
       "role": "pre",
@@ -153,7 +300,7 @@
       },
       "reps": "8/side",
       "rir": 2,
-      "note": "New 6, Adv 12."
+      "note": "New 6, advanced 12."
      },
      {
       "role": "pre",
@@ -170,7 +317,7 @@
       },
       "reps": "10-15",
       "rir": 2,
-      "note": "Seated and single-leg. Adv 3 x 8 heavy + 2 x 15."
+      "note": "Seated and single-leg. Advanced 3 x 8 heavy + 2 x 15."
      },
      {
       "role": "pre",
@@ -185,7 +332,7 @@
       },
       "reps": "30 s/side",
       "rir": 3,
-      "note": "I: eyes closed. Adv: with ball catches."
+      "note": "Intermediate: eyes closed. Advanced: with ball catches."
      },
      {
       "role": "core",
@@ -201,7 +348,7 @@
       },
       "reps": "10/side",
       "rir": 2,
-      "note": "Adv 12/side. Both sides."
+      "note": "Advanced 12/side. Both sides."
      }
     ]
    },
@@ -223,7 +370,7 @@
       },
       "reps": "4/side",
       "rir": 3,
-      "note": "Scoop toss and shot-put, both sides. New 5/side. Adv 3-4 kg."
+      "note": "Scoop toss and shot-put, both sides. New 5/side. Advanced 3-4 kg."
      },
      {
       "role": "pow",
@@ -255,7 +402,7 @@
       },
       "reps": "6-8",
       "rir": 2,
-      "note": "New 8. Adv 6."
+      "note": "New 8. Advanced 6."
      },
      {
       "role": "main",
@@ -272,7 +419,7 @@
       },
       "reps": "8",
       "rir": 2,
-      "note": "New 10. Adv 6."
+      "note": "New 10. Advanced 6."
      },
      {
       "role": "pre",
@@ -294,9 +441,9 @@
      {
       "role": "pre",
       "ex": [
+       "pushupplus",
        "ytw",
-       "scappushup",
-       "wallslide"
+       "scappushup"
       ],
       "sets": {
        "new": 2,
@@ -473,7 +620,7 @@
       },
       "reps": "4/side",
       "rir": 3,
-      "note": "Adv: contrast with heavy split squat."
+      "note": "Advanced: contrast with heavy split squat."
      },
      {
       "role": "main",
@@ -489,7 +636,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "About 85% for I/A. New 3 x 6-8."
+      "note": "About 85% for intermediate and advanced. New 3 x 6-8."
      },
      {
       "role": "pre",
@@ -686,7 +833,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "80-85% for I/A. New 2-3 x 6."
+      "note": "80-85% for intermediate and advanced. New 2-3 x 6."
      },
      {
       "role": "acc",
@@ -827,7 +974,7 @@
     "mode": "bike",
     "work": "30-40 min steady, or 4 x 4 min",
     "rest": "3 min easy (for 4 x 4)",
-    "intensity": "Steady, or 90-95% max HR for 4 x 4",
+    "intensity": "Steady, or 90-95% max heart rate for 4 x 4",
     "perWeek": 2,
     "why": "Matches are mainly aerobic with bursts; aerobic fitness speeds recovery between points."
    },
@@ -931,16 +1078,12 @@
   },
   {
    "id": "arc",
-   "name": "Shoulder total arc",
-   "how": "Phone goniometer, ER + IR at 90 degrees, both arms",
+   "name": "Shoulder total rotation arc difference",
+   "how": "Phone goniometer: external plus internal rotation at 90 degrees, both arms",
    "unit": "deg",
    "better": "lower",
-   "bands": {
-    "club": "<=5",
-    "good": "<=5",
-    "elite": "<=5"
-   },
-   "note": "Hitting arm within 5 degrees of the other; IR loss (GIRD) under 20 degrees."
+   "bands": {},
+   "note": "Difference between arms. Aim for the hitting arm within 5 degrees of the other, and internal rotation loss under 20 degrees."
   }
  ],
  "week": [
@@ -1029,16 +1172,10 @@
    "why": "OFF C; backward sled drag is the nearest"
   },
   {
-   "name": "Push-up plus",
-   "pattern": "scap",
-   "equipment": "",
-   "why": "Shoulder module; scapular push-up stands in"
-  },
-  {
    "name": "Rectus abdominis eccentric (serve)",
    "pattern": "abs",
    "equipment": "",
-   "why": "Research names it; ab wheel is the closest"
+   "why": "Serve-side abdominal strain prevention; ab wheel is the closest"
   }
  ]
 }

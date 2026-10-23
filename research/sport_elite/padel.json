@@ -32,7 +32,39 @@
     "shoulderER",
     "scap"
    ],
-   "note": "Shoulder module first and an extra set of overhead med ball throws."
+   "note": "Your plan puts shoulder work first and adds extra overhead med ball throws and shoulder rotation work.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbohthrow",
+      "mbslam"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 1,
+      "adv": 1
+     },
+     "reps": "5",
+     "rir": 3,
+     "note": "Overhead pattern, max intent."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "er9090",
+      "sideer",
+      "bander"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "rightside",
@@ -46,7 +78,40 @@
     "calf",
     "copenhagen"
    ],
-   "note": "More deep lunge and lateral strength; calf and groin work lead."
+   "note": "Your plan adds extra deep lunge and lateral strength work, with calf and groin work first.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "cossack",
+      "latlunge",
+      "bss"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "6/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "addsqueeze"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "6/side",
+     "rir": 2,
+     "note": "Short lever first."
+    }
+   ]
   },
   {
    "id": "over40",
@@ -60,7 +125,41 @@
     "elbow",
     "lowback"
    ],
-   "note": "Tissue capacity over power: fewer jumps, more calf and forearm work, aerobic base 1-2 times a week."
+   "note": "Your plan adds extra calf and forearm work and an easy aerobic ride each week. Keep jumps low and easy.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "seatedcalf",
+      "slcalf",
+      "stepcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 2,
+     "note": "Slow lowering."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "revwristcurl",
+      "pronsup",
+      "wristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15",
+     "rir": 2,
+     "note": "Lower slowly."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -100,7 +199,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3. I at 80%. Adv 4 x 4 at 85%."
+      "note": "New 3 x 8 at RIR 3. Intermediate at 80%. Advanced 4 x 4 at 85%."
      },
      {
       "role": "acc",
@@ -246,8 +345,7 @@
        "adv": 2
       },
       "reps": "5",
-      "rir": 3,
-      "note": "Left-side players 3 sets."
+      "rir": 3
      },
      {
       "role": "main",
@@ -295,7 +393,7 @@
       },
       "reps": "12",
       "rir": 2,
-      "note": "90/90 ER, then Y-T-W."
+      "note": "90/90 external rotation, then Y-T-W."
      },
      {
       "role": "pre",
@@ -326,7 +424,7 @@
       },
       "reps": "15",
       "rir": 2,
-      "note": "Wrist ext/flex, pronation/supination, slow lowering."
+      "note": "Wrist extension and flexion, pronation/supination, slow lowering."
      },
      {
       "role": "pre",
@@ -398,7 +496,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3. I at 80%. Adv 4 x 4 at 85%."
+      "note": "New 3 x 8 at RIR 3. Intermediate at 80%. Advanced 4 x 4 at 85%."
      },
      {
       "role": "acc",
@@ -544,8 +642,7 @@
        "adv": 2
       },
       "reps": "5",
-      "rir": 3,
-      "note": "Left-side players 3 sets."
+      "rir": 3
      },
      {
       "role": "main",
@@ -593,7 +690,7 @@
       },
       "reps": "12",
       "rir": 2,
-      "note": "90/90 ER, then Y-T-W."
+      "note": "90/90 external rotation, then Y-T-W."
      },
      {
       "role": "pre",
@@ -624,7 +721,7 @@
       },
       "reps": "15",
       "rir": 2,
-      "note": "Wrist ext/flex, pronation/supination, slow lowering."
+      "note": "Wrist extension and flexion, pronation/supination, slow lowering."
      },
      {
       "role": "pre",
@@ -826,13 +923,16 @@
     "why": "Matches the rally and rest pattern of padel."
    },
    {
-    "name": "Aerobic base (over 40)",
+    "name": "Aerobic base",
     "mode": "bike",
     "work": "30 min steady",
     "rest": "None",
     "intensity": "Easy to moderate",
     "perWeek": 1,
-    "why": "Supports recovery and long sessions for older players."
+    "why": "Supports recovery and long sessions for older players.",
+    "for": [
+     "over40"
+    ]
    }
   ],
   "pre": [
@@ -857,7 +957,7 @@
    "better": "lower",
    "bands": {
     "club": "2.5-2.7",
-    "good": "2.40",
+    "good": "2.40-2.50",
     "elite": "<2.35"
    },
    "note": "Good and elite bands borrowed from tennis. Women about 10% slower."
@@ -882,7 +982,7 @@
    "unit": "reps",
    "better": "higher",
    "bands": {
-    "club": ">=25"
+    "club": "25+"
    },
    "note": "Practice benchmark for calf capacity. Both sides should match."
   },
@@ -893,7 +993,7 @@
    "unit": "s",
    "better": "higher",
    "bands": {
-    "club": ">=60"
+    "club": "60+"
    },
    "note": "Practice benchmark for adult amateurs."
   },
@@ -904,7 +1004,7 @@
    "unit": "kg",
    "better": "higher",
    "bands": {
-    "club": ">=45"
+    "club": "45+"
    },
    "note": "Women about 10% lower."
   }

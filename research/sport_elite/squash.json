@@ -15,7 +15,7 @@
     "calf",
     "copenhagen"
    ],
-   "note": "Conditioning gets equal billing with the gym: 2-3 sessions a week in a build block."
+   "note": "Fitness limits you as much as strength: aim for 2-3 conditioning sessions a week in a build block."
   },
   {
    "id": "over40",
@@ -25,7 +25,25 @@
     "calf",
     "ankle"
    ],
-   "note": "Calf and Achilles work comes first, and match frequency builds gradually. Get any chest symptoms checked."
+   "note": "Your plan adds extra calf and Achilles work. Build match frequency gradually and get any chest symptoms checked.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "seatedcalf",
+      "soleuswall",
+      "seateddbcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 2,
+     "note": "Slow lowering. Soleus and Achilles."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -38,6 +56,7 @@
       "role": "pow",
       "ex": [
        "latbound",
+       "splitjump",
        "jumplunge",
        "hopstick"
       ],
@@ -327,6 +346,7 @@
       "role": "pow",
       "ex": [
        "latbound",
+       "splitjump",
        "jumplunge",
        "hopstick"
       ],
@@ -354,7 +374,7 @@
       },
       "reps": "4-5",
       "rir": 2,
-      "note": "New: 6-8 reps at RIR 2-3. Inter: 80-85%. Advanced: 2-4 reps at 85-90%."
+      "note": "New: 6-8 reps at RIR 2-3. Intermediate: 80-85%. Advanced: 2-4 reps at 85-90%."
      },
      {
       "role": "acc",
@@ -616,6 +636,7 @@
       "role": "pow",
       "ex": [
        "latbound",
+       "splitjump",
        "jumplunge",
        "hopstick"
       ],
@@ -942,7 +963,7 @@
     "good": "30+",
     "elite": "35+"
    },
-   "note": "Practice benchmark, not research."
+   "note": "Coaching practice benchmark."
   }
  ],
  "week": [

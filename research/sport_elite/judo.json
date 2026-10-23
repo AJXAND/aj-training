@@ -765,7 +765,7 @@
    {
     "name": "Special Judo Fitness Test",
     "mode": "any",
-    "work": "1 full SJFT",
+    "work": "1 full Special Judo Fitness Test",
     "rest": "n/a",
     "intensity": "All-out",
     "perWeek": 1,
@@ -792,19 +792,19 @@
    "id": "squat1rm",
    "name": "Back squat 1RM",
    "how": "Work up to a hard single, or estimate from a 3-5RM.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.5",
     "good": "1.5-1.8",
-    "elite": "1.8-2.0+"
+    "elite": "1.8+"
    }
   },
   {
    "id": "clean1rm",
    "name": "Power clean 1RM",
    "how": "Coached lifters only. Estimate from a 3RM if unsure.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.0",
@@ -855,7 +855,7 @@
    "Last heavy session 7-10 days out.",
    "One primer 3-4 days out.",
    "Uchikomi stays sharp but short.",
-   "IJF weighs in the evening before, with a random morning check at 5% over."
+   "The IJF (International Judo Federation) weighs in the evening before, with a random morning check at 5% over."
   ]
  },
  "rules": [

@@ -20,7 +20,7 @@
     "mass": 0
    },
    "prehab": [],
-   "note": "Standard plan: heavy legs, low accessory volume, no bulk."
+   "note": "Your plan is the standard one: heavy legs, low accessory volume, no bulk."
   },
   {
    "id": "sprinter",
@@ -30,7 +30,25 @@
     "power": 3
    },
    "prehab": [],
-   "note": "Power slots stay in all year; jumps and swings get full priority."
+   "note": "Your plan adds an extra set of jumps for sprint power.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "squatjump",
+      "tbjump",
+      "cmj"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3",
+     "rir": 3,
+     "note": "Max height, full rest."
+    }
+   ]
   },
   {
    "id": "tt",
@@ -45,7 +63,40 @@
     "lowback",
     "tspine"
    ],
-   "note": "Neck extensor holds and thoracic mobility move to the front of each session."
+   "note": "Your plan adds neck holds and upper back mobility for the aero position.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband",
+      "chintuck"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "20 s",
+     "rir": 2,
+     "note": "Neck extension holds for the aero position."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "openbook",
+      "tspineroller",
+      "catcow"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "8/side",
+     "rir": 3
+    }
+   ]
   }
  ],
  "sessions": {
@@ -634,8 +685,9 @@
    "unit": "W/kg",
    "better": "higher",
    "bands": {
-    "club": "3.5-4.0",
-    "elite": "5.5-6.0+"
+    "club": "<4.0",
+    "good": "4.0-5.5",
+    "elite": "5.5+"
    },
    "note": "Women club 3.0-3.5. Elite is World Tour men. Benchmark, not peer reviewed."
   },
@@ -646,8 +698,9 @@
    "unit": "W",
    "better": "higher",
    "bands": {
-    "club": "1000-1200",
-    "elite": "1400-1800+"
+    "club": "<1200",
+    "good": "1200-1400",
+    "elite": "1400+"
    },
    "note": "Men. Benchmark, not peer reviewed."
   },
@@ -658,7 +711,7 @@
    "unit": "x bodyweight",
    "better": "higher",
    "bands": {
-    "club": "1.25-1.5",
+    "club": "<1.5",
     "elite": "1.5+"
    },
    "note": "Strength helps; extra mass does not."

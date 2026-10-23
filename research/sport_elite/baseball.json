@@ -25,7 +25,7 @@
     "trunkLat",
     "nordic"
    ],
-   "note": "Pitch-count log, daily arm care, landmine instead of barbell overhead, nothing heavy 48 h before a start."
+   "note": "Log your pitch counts and do your arm care every day. Your plan uses landmine presses instead of barbell overhead work, with nothing heavy in the 48 h before a start."
   },
   {
    "id": "softballpitcher",
@@ -39,7 +39,40 @@
     "elbow",
     "scap"
    ],
-   "note": "Adds eccentric biceps curls 2 x 10 and forearm work; pitches tracked per day and per weekend."
+   "note": "Your plan adds slow-lowering biceps curls and extra forearm work. Log your pitches per day and per weekend.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "dbcurl",
+      "hammer",
+      "bbcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "10",
+     "rir": 2,
+     "note": "Lower slowly, 3-4 s."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "pronsup",
+      "wristcurl",
+      "revwristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "catcher",
@@ -54,7 +87,57 @@
     "copenhagen",
     "patellar"
    ],
-   "note": "Adds squat endurance, hip mobility, Copenhagen and knee-friendly single-leg work."
+   "note": "Your plan adds catching-stance holds, Copenhagen planks and step-ups. Do hip mobility in your warm-up.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "wallsit",
+      "goblet",
+      "deepsquathold"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "45-60 s",
+     "rir": 2,
+     "note": "Hold your catching stance."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "addsqueeze"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "6/side",
+     "rir": 2,
+     "note": "Short lever first."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "stepup",
+      "latstepup",
+      "bwss"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8/side",
+     "rir": 2,
+     "note": "Knee-friendly: control the way down."
+    }
+   ]
   },
   {
    "id": "position",
@@ -70,7 +153,7 @@
     "shoulderER",
     "elbow"
    ],
-   "note": "Use session C for hitting power; heavy lower at least 72 h before a game. Outfielders add 20-40 m sprints."
+   "note": "Your plan adds 20-40 m sprint repeats; infielders can skip them. Do heavy leg work at least 72 h before a game."
   }
  ],
  "sessions": {
@@ -93,7 +176,7 @@
       },
       "reps": "4",
       "rir": 3,
-      "note": "Trap bar jump for I/A; new lifters box jump."
+      "note": "Trap bar jump for intermediate and advanced; new lifters box jump."
      },
      {
       "role": "main",
@@ -110,7 +193,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3. Adv 5 x 3 at 85%."
+      "note": "New 3 x 8 at RIR 3. Advanced 5 x 3 at 85%."
      },
      {
       "role": "acc",
@@ -312,9 +395,9 @@
      {
       "role": "pre",
       "ex": [
+       "pushupplus",
        "scappushup",
-       "serpunch",
-       "wallslide"
+       "serpunch"
       ],
       "sets": {
        "new": 2,
@@ -322,7 +405,8 @@
        "adv": 2
       },
       "reps": "12",
-      "rir": 2
+      "rir": 2,
+      "note": "Push the floor away at the top."
      },
      {
       "role": "pre",
@@ -490,7 +574,7 @@
       },
       "reps": "3-5",
       "rir": 2,
-      "note": "80-85% for I/A. New 3 x 6-8."
+      "note": "80-85% for intermediate and advanced. New 3 x 6-8."
      },
      {
       "role": "acc",
@@ -829,13 +913,17 @@
  "conditioning": {
   "off": [
    {
-    "name": "Aerobic base (pitchers)",
+    "name": "Aerobic base",
     "mode": "bike",
     "work": "20-30 min easy bike or run",
     "rest": "None",
     "intensity": "Easy",
     "perWeek": 2,
-    "why": "Recovery between starts. Avoid excess long slow distance."
+    "why": "Recovery between starts. Avoid excess long slow distance.",
+    "for": [
+     "pitcher",
+     "softballpitcher"
+    ]
    }
   ],
   "pre": [
@@ -858,13 +946,16 @@
     "why": "Practises the exact sprint and turn."
    },
    {
-    "name": "Outfield repeats",
+    "name": "20-40 m repeats",
     "mode": "run",
     "work": "6 x 20-40 m",
     "rest": "60-90 s",
     "intensity": "Max effort",
     "perWeek": 1,
-    "why": "Outfielders cover longer sprints."
+    "why": "Outfielders cover longer sprints.",
+    "for": [
+     "position"
+    ]
    }
   ],
   "in": [
@@ -904,7 +995,7 @@
     "good": "4.3-4.5",
     "elite": "<4.3"
    },
-   "note": "Softball bases are 18.3 m: no bands in the research."
+   "note": "Softball bases are 18.3 m: no softball bands yet."
   },
   {
    "id": "cmj",
@@ -925,8 +1016,8 @@
    "unit": "kg",
    "better": "higher",
    "bands": {
-    "club": ">50",
-    "good": ">55",
+    "club": "50-55",
+    "good": "55-60",
     "elite": ">60"
    }
   },
@@ -937,24 +1028,20 @@
    "unit": "mph",
    "better": "higher",
    "bands": {
-    "club": "70-80",
-    "good": "82-88",
-    "elite": "90-95+"
+    "club": "70-82",
+    "good": "82-90",
+    "elite": ">90"
    },
-   "note": "Baseball pitchers. No softball bands in the research."
+   "note": "Baseball pitchers. No softball bands yet."
   },
   {
    "id": "arc",
-   "name": "Shoulder total arc and ER strength",
-   "how": "Phone goniometer ER + IR at 90 degrees; ER strength with a dynamometer",
+   "name": "Shoulder total rotation arc difference",
+   "how": "Phone goniometer: external plus internal rotation at 90 degrees, both arms",
    "unit": "deg",
    "better": "lower",
-   "bands": {
-    "club": "<=5",
-    "good": "<=5",
-    "elite": "<=5"
-   },
-   "note": "Throwing arm total arc within 5 degrees of the other arm; ER strength at least 100% of the other arm (Wilk 2011, 2015)."
+   "bands": {},
+   "note": "Difference between arms. Aim for the throwing arm within 5 degrees of the other arm, and external rotation strength at least equal to the other arm."
   }
  ],
  "week": [
@@ -1028,12 +1115,6 @@
    "pattern": "pup",
    "equipment": "medball",
    "why": "Overhead throw slot; slam is the stand-in"
-  },
-  {
-   "name": "Push-up plus",
-   "pattern": "scap",
-   "equipment": "",
-   "why": "Serratus work; scapular push-up is the nearest"
   },
   {
    "name": "Cross-body shoulder stretch",

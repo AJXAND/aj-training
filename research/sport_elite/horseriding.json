@@ -1,892 +1,898 @@
 {
- "id": "horseriding",
- "name": "Horse riding",
- "aliases": [
-  "equestrian",
-  "riding",
-  "eventing",
-  "show jumping",
-  "dressage",
-  "jockey",
-  "cross-country riding"
- ],
- "group": "Other",
- "variants": [
-  {
-   "id": "dressage",
-   "name": "Dressage",
-   "desc": "Sustained postural control, isometric trunk strength and left-right symmetry.",
-   "q": {},
-   "prehab": [
-    "lowback",
-    "hipRot",
-    "tspine"
-   ],
-   "note": "Symmetry, trunk and hip mobility work lead; no interval block needed."
-  },
-  {
-   "id": "showjumping",
-   "name": "Show jumping",
-   "desc": "Short 60-90 s rounds with repeated squat-like jumping-position holds.",
-   "q": {},
-   "prehab": [
-    "copenhagen",
-    "hipAbd"
-   ],
-   "note": "Jumping-position holds are added from pre-season."
-  },
-  {
-   "id": "eventing",
-   "name": "Eventing",
-   "desc": "Cross-country is 6-12 min at speed in a jumping position at high heart rates.",
-   "q": {},
-   "prehab": [
-    "lowback",
-    "copenhagen"
-   ],
-   "note": "Adds 3-4 x 3-4 min intervals in pre-season and an aerobic test."
-  }
- ],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: squat, row, single leg",
-    "focus": "Leg strength, symmetry and adductor endurance",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "legpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "dbrow",
-       "kbrow",
-       "stcabrow",
-       "sacabrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Single arm, both sides equal."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "dbsplit",
-       "bwss",
-       "bss",
-       "revlunge"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Match reps to your weaker side."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "copen",
-       "adductor",
-       "sideadd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "3-5/side",
-      "rir": 2,
-      "note": "Short lever first, build to long lever over 8 weeks."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3
-     },
-     {
-      "role": "core",
-      "ex": [
-       "pallof",
-       "sideplank",
-       "birddog",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-40 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, upper back, hips",
-    "focus": "Posterior chain, posture and hip control",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "trapdl",
-       "rdl",
-       "dbrdl",
-       "kbdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6-8",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "lmpress",
-       "flatdb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-10",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "facepull",
-       "bandfp",
-       "revfly",
-       "bandpa"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "12",
-      "rir": 2,
-      "note": "Posture and rein contact."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "bandlatpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "adductor",
-       "sideadd",
-       "cabadd",
-       "copen"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "12",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman",
-       "hyper90"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     }
-    ]
-   }
+  "id": "horseriding",
+  "name": "Horse riding",
+  "aliases": [
+    "equestrian",
+    "riding",
+    "eventing",
+    "show jumping",
+    "dressage",
+    "jockey",
+    "cross-country riding"
   ],
-  "pre": [
-   {
-    "name": "Day A: squat, row, single leg",
-    "focus": "Leg strength, symmetry and adductor endurance",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "legpress"
+  "group": "Other",
+  "variants": [
+    {
+      "id": "dressage",
+      "name": "Dressage",
+      "desc": "Sustained postural control, isometric trunk strength and left-right symmetry.",
+      "q": {},
+      "prehab": [
+        "lowback",
+        "hipRot",
+        "tspine"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "dbrow",
-       "kbrow",
-       "stcabrow",
-       "sacabrow"
+      "note": "Your plan puts trunk, hip and upper-back mobility work first. You do not need the interval sessions."
+    },
+    {
+      "id": "showjumping",
+      "name": "Show jumping",
+      "desc": "Short 60-90 s rounds with repeated squat-like jumping-position holds.",
+      "q": {},
+      "prehab": [
+        "copenhagen",
+        "hipAbd"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Single arm, both sides equal."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "dbsplit",
-       "bwss",
-       "bss",
-       "revlunge"
+      "note": "Your plan includes jumping-position holds from pre-season and puts adductor and hip work first."
+    },
+    {
+      "id": "eventing",
+      "name": "Eventing",
+      "desc": "Cross-country is 6-12 min at speed in a jumping position at high heart rates.",
+      "q": {},
+      "prehab": [
+        "lowback",
+        "copenhagen"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Match reps to your weaker side."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "wallsit",
-       "goblet"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "45-90 s",
-      "rir": 2,
-      "note": "Jumping-position hold: quarter squat, hips back, arms forward."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "copen",
-       "adductor",
-       "sideadd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "3-5/side",
-      "rir": 2,
-      "note": "Short lever first, build to long lever over 8 weeks."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3
-     },
-     {
-      "role": "core",
-      "ex": [
-       "pallof",
-       "sideplank",
-       "birddog",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-40 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, upper back, hips",
-    "focus": "Posterior chain, posture and hip control",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "trapdl",
-       "rdl",
-       "dbrdl",
-       "kbdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "lmpress",
-       "flatdb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-10",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "facepull",
-       "bandfp",
-       "revfly",
-       "bandpa"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "12",
-      "rir": 2,
-      "note": "Posture and rein contact."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "bandlatpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "adductor",
-       "sideadd",
-       "cabadd",
-       "copen"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "12",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman",
-       "hyper90"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     }
-    ]
-   }
+      "note": "Your plan adds cross-country intervals (3-4 x 3-4 min) in pre-season and short intervals in season. Use the 2 km row test to track your fitness."
+    }
   ],
-  "in": [
-   {
-    "name": "Day A: squat, row, single leg",
-    "focus": "Leg strength, symmetry and adductor endurance",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "goblet",
-       "frontsq",
-       "dbfrontsq",
-       "legpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: squat, row, single leg",
+        "focus": "Leg strength, symmetry and adductor endurance",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "legpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dbrow",
+              "kbrow",
+              "stcabrow",
+              "sacabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Single arm, both sides equal."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "dbsplit",
+              "bwss",
+              "bss",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Match reps to your weaker side."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "copen",
+              "adductor",
+              "sideadd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3-5/side",
+            "rir": 2,
+            "note": "Short lever first, build to long lever over 8 weeks."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank",
+              "birddog",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-40 s",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "dbrow",
-       "kbrow",
-       "stcabrow",
-       "sacabrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Day B: hinge, upper back, hips",
+        "focus": "Posterior chain, posture and hip control",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "lmpress",
+              "flatdb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "facepull",
+              "bandfp",
+              "revfly",
+              "bandpa"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2,
+            "note": "Posture and rein contact."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "bandlatpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "adductor",
+              "sideadd",
+              "cabadd",
+              "copen"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman",
+              "hyper90"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: squat, row, single leg",
+        "focus": "Leg strength, symmetry and adductor endurance",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "legpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dbrow",
+              "kbrow",
+              "stcabrow",
+              "sacabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Single arm, both sides equal."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "dbsplit",
+              "bwss",
+              "bss",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Match reps to your weaker side."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "wallsit",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "45-90 s",
+            "rir": 2,
+            "note": "Jumping-position hold: quarter squat, hips back, arms forward."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "copen",
+              "adductor",
+              "sideadd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3-5/side",
+            "rir": 2,
+            "note": "Short lever first, build to long lever over 8 weeks."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank",
+              "birddog",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-40 s",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "10/side",
-      "rir": 2,
-      "note": "Single arm, both sides equal."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "dbsplit",
-       "bwss",
-       "bss",
-       "revlunge"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Day B: hinge, upper back, hips",
+        "focus": "Posterior chain, posture and hip control",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "lmpress",
+              "flatdb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "facepull",
+              "bandfp",
+              "revfly",
+              "bandpa"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2,
+            "note": "Posture and rein contact."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "bandlatpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "adductor",
+              "sideadd",
+              "cabadd",
+              "copen"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman",
+              "hyper90"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: squat, row, single leg",
+        "focus": "Leg strength, symmetry and adductor endurance",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "goblet",
+              "frontsq",
+              "dbfrontsq",
+              "legpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dbrow",
+              "kbrow",
+              "stcabrow",
+              "sacabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10/side",
+            "rir": 2,
+            "note": "Single arm, both sides equal."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "dbsplit",
+              "bwss",
+              "bss",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Match reps to your weaker side."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "wallsit",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "60 s",
+            "rir": 2,
+            "note": "Jumping-position hold: quarter squat, hips back, arms forward."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "copen",
+              "adductor",
+              "sideadd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3-5/side",
+            "rir": 2,
+            "note": "Short lever first, build to long lever over 8 weeks."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "9090",
+              "hipcars"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10/side",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank",
+              "birddog",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-40 s",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Match reps to your weaker side."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "wallsit",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "60 s",
-      "rir": 2,
-      "note": "Jumping-position hold: quarter squat, hips back, arms forward."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "copen",
-       "adductor",
-       "sideadd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "3-5/side",
-      "rir": 2,
-      "note": "Short lever first, build to long lever over 8 weeks."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "9090",
-       "hipcars"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8-10/side",
-      "rir": 3
-     },
-     {
-      "role": "core",
-      "ex": [
-       "pallof",
-       "sideplank",
-       "birddog",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-40 s",
-      "rir": 2
-     }
+      {
+        "name": "Day B: hinge, upper back, hips",
+        "focus": "Posterior chain, posture and hip control",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushup",
+              "lmpress",
+              "flatdb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "facepull",
+              "bandfp",
+              "revfly",
+              "bandpa"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12",
+            "rir": 2,
+            "note": "Posture and rein contact."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "bandlatpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "adductor",
+              "sideadd",
+              "cabadd",
+              "copen"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman",
+              "hyper90"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          }
+        ]
+      }
     ]
-   },
-   {
-    "name": "Day B: hinge, upper back, hips",
-    "focus": "Posterior chain, posture and hip control",
-    "slots": [
-     {
-      "role": "main",
-      "ex": [
-       "trapdl",
-       "rdl",
-       "dbrdl",
-       "kbdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Aerobic base",
+        "mode": "any",
+        "work": "30 min",
+        "rest": "none",
+        "intensity": "steady, conversational",
+        "perWeek": 2,
+        "why": "Fitness keeps control late in a round or course."
+      }
+    ],
+    "pre": [
+      {
+        "name": "Aerobic base",
+        "mode": "any",
+        "work": "30 min",
+        "rest": "none",
+        "intensity": "steady",
+        "perWeek": 2,
+        "why": "Holds the aerobic base for all riders."
       },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushup",
-       "lmpress",
-       "flatdb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Cross-country intervals",
+        "mode": "bike",
+        "work": "3-4 x 3-4 min",
+        "rest": "2 min easy",
+        "intensity": "hard",
+        "perWeek": 1,
+        "why": "Matches cross-country length; coach practice.",
+        "for": [
+          "eventing"
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Aerobic base",
+        "mode": "any",
+        "work": "30 min",
+        "rest": "none",
+        "intensity": "steady",
+        "perWeek": 1,
+        "why": "Maintain fitness."
       },
-      "reps": "8-10",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "facepull",
-       "bandfp",
-       "revfly",
-       "bandpa"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12",
-      "rir": 2,
-      "note": "Posture and rein contact."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "bandlatpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "adductor",
-       "sideadd",
-       "cabadd",
-       "copen"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman",
-       "hyper90"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     }
+      {
+        "name": "Short intervals",
+        "mode": "bike",
+        "work": "2-3 x 3 min",
+        "rest": "2 min easy",
+        "intensity": "hard",
+        "perWeek": 1,
+        "why": "Early in the week only.",
+        "for": [
+          "eventing"
+        ]
+      }
     ]
-   }
+  },
+  "tests": [
+    {
+      "id": "sideplank",
+      "name": "Side plank symmetry",
+      "how": "Max hold each side; difference as % of the better side",
+      "unit": "%",
+      "better": "lower",
+      "bands": {
+        "good": "<10"
+      },
+      "note": "Coach practice."
+    },
+    {
+      "id": "slbal",
+      "name": "Single-leg balance, eyes closed",
+      "how": "Stand on one leg, eyes closed, each side",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "good": "30+"
+      },
+      "note": "Coach practice."
+    },
+    {
+      "id": "jphold",
+      "name": "Jumping-position hold",
+      "how": "Quarter squat, hips back, arms forward, max hold",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "good": "120+"
+      },
+      "note": "Coach practice."
+    },
+    {
+      "id": "pushups",
+      "name": "Push-ups",
+      "how": "Full range, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "good": "15+"
+      },
+      "note": "Coach practice."
+    },
+    {
+      "id": "row2k",
+      "name": "2 km row (eventers)",
+      "how": "2 km on a rowing machine, or a 12 min run",
+      "unit": "min:s",
+      "better": "lower",
+      "bands": {},
+      "note": "Track your own trend."
+    }
+  ],
+  "week": [
+    "Gym can go anywhere in the week; riding interferes little",
+    "Sessions of 30-45 min",
+    "No very heavy legs the day before a competition",
+    "Eventers: intervals early in competition week"
+  ],
+  "primer": [],
+  "taper": {
+    "days": 7,
+    "lines": [
+      "Lighter gym in competition week",
+      "No new exercises",
+      "Eventers keep one short interval session early in the week"
+    ]
+  },
+  "rules": [
+    "Helmet to current standard; body protector for jumping",
+    "Train both sides equally; match reps to the weaker side",
+    "Persistent low back pain: get it assessed"
+  ],
+  "sources": [
+    {
+      "source": "Douglas, Price & Peters 2012, Comparative Exercise Physiology"
+    },
+    {
+      "source": "Havlik 2010, Current Sports Medicine Reports"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Isometric jumping-position hold",
+      "pattern": "squat",
+      "equipment": "",
+      "why": "Show jumping and eventing position endurance; wall sit used instead"
+    }
   ]
- },
- "conditioning": {
-  "off": [
-   {
-    "name": "Aerobic base",
-    "mode": "any",
-    "work": "30 min",
-    "rest": "none",
-    "intensity": "steady, conversational",
-    "perWeek": 2,
-    "why": "Fitness keeps control late in a round or course."
-   }
-  ],
-  "pre": [
-   {
-    "name": "Aerobic base",
-    "mode": "any",
-    "work": "30 min",
-    "rest": "none",
-    "intensity": "steady",
-    "perWeek": 2,
-    "why": "Dressage and show jumping riders: this is enough."
-   },
-   {
-    "name": "Cross-country intervals (eventers)",
-    "mode": "bike",
-    "work": "3-4 x 3-4 min",
-    "rest": "2 min easy",
-    "intensity": "hard",
-    "perWeek": 1,
-    "why": "Matches cross-country length; coach practice."
-   }
-  ],
-  "in": [
-   {
-    "name": "Aerobic base",
-    "mode": "any",
-    "work": "30 min",
-    "rest": "none",
-    "intensity": "steady",
-    "perWeek": 1,
-    "why": "Maintain fitness."
-   },
-   {
-    "name": "Short intervals (eventers)",
-    "mode": "bike",
-    "work": "2-3 x 3 min",
-    "rest": "2 min easy",
-    "intensity": "hard",
-    "perWeek": 1,
-    "why": "Early in the week only."
-   }
-  ]
- },
- "tests": [
-  {
-   "id": "sideplank",
-   "name": "Side plank symmetry",
-   "how": "Max hold each side; difference as % of the better side",
-   "unit": "%",
-   "better": "lower",
-   "bands": {
-    "good": "<10"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "slbal",
-   "name": "Single-leg balance, eyes closed",
-   "how": "Stand on one leg, eyes closed, each side",
-   "unit": "s",
-   "better": "higher",
-   "bands": {
-    "good": "30"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "jphold",
-   "name": "Jumping-position hold",
-   "how": "Quarter squat, hips back, arms forward, max hold",
-   "unit": "s",
-   "better": "higher",
-   "bands": {
-    "good": "120"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "pushups",
-   "name": "Push-ups",
-   "how": "Full range, max reps",
-   "unit": "reps",
-   "better": "higher",
-   "bands": {
-    "good": "15+"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "row2k",
-   "name": "2 km row (eventers)",
-   "how": "2 km on a rowing machine, or a 12 min run",
-   "unit": "min:s",
-   "better": "lower",
-   "bands": {},
-   "note": "Track your own trend."
-  }
- ],
- "week": [
-  "Gym can go anywhere in the week; riding interferes little",
-  "Sessions of 30-45 min",
-  "No very heavy legs the day before a competition",
-  "Eventers: intervals early in competition week"
- ],
- "primer": [],
- "taper": {
-  "days": 7,
-  "lines": [
-   "Lighter gym in competition week",
-   "No new exercises",
-   "Eventers keep one short interval session early in the week"
-  ]
- },
- "rules": [
-  "Helmet to current standard; body protector for jumping",
-  "Train both sides equally; match reps to the weaker side",
-  "Persistent low back pain: get it assessed"
- ],
- "sources": [
-  {
-   "source": "Douglas, Price & Peters 2012, Comparative Exercise Physiology"
-  },
-  {
-   "source": "Havlik 2010, Current Sports Medicine Reports"
-  }
- ],
- "missing_ex": [
-  {
-   "name": "Isometric jumping-position hold",
-   "pattern": "squat",
-   "equipment": "",
-   "why": "Show jumping and eventing position endurance; wall sit used instead"
-  }
- ]
 }

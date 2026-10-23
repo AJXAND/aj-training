@@ -17,7 +17,7 @@
    "prehab": [
     "nordic"
    ],
-   "note": "Max-speed runs and 15/15 intervals get priority."
+   "note": "Nordics come first in your prehab. Treat the max-speed runs and 15/15 intervals as your key sessions."
   },
   {
    "id": "full",
@@ -31,7 +31,40 @@
    "prehab": [
     "neck"
    ],
-   "note": "More upper-body strength and short acceleration work, less aerobic volume."
+   "note": "Your plan adds short acceleration work and extra neck work, with more upper-body strength. You need less long aerobic running.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "sledpush",
+      "broadjump",
+      "splitjump"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 4
+     },
+     "reps": "10 m",
+     "rir": 2,
+     "note": "Short, hard drives for acceleration."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "neckband",
+      "neckiso",
+      "chintuck"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 3
+    }
+   ]
   },
   {
    "id": "gk",
@@ -44,7 +77,41 @@
     "trunkLat",
     "lowback"
    ],
-   "note": "Rotational throws and lateral bounds lead; little aerobic running."
+   "note": "Your plan adds rotational throws and lateral bounds, and drops the long aerobic runs.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbrot",
+      "landrot",
+      "cabrot"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 2,
+     "note": "Both sides, max intent."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "decel",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/side",
+     "rir": 2,
+     "note": "Push off sideways and stick each landing."
+    }
+   ]
   },
   {
    "id": "camogie",
@@ -53,13 +120,31 @@
    "prehab": [
     "landing"
    ],
-   "note": "Same plan, with landing work moved to priority 1 (higher ACL risk in women)."
+   "note": "Your plan adds drop landings and puts landing work first, as ACL risk is higher in women.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Step off, land on two feet and stick for 2 s."
+    }
+   ]
   },
   {
    "id": "shinty",
    "name": "Shinty",
    "desc": "Scottish stick game with similar running and two-sided striking demands.",
-   "note": "Use the hurling plan as is; no shinty data in the research, so treat it as practice."
+   "note": "Use the hurling plan as it is. There is little shinty-specific data, so this is coaching practice."
   }
  ],
  "sessions": {
@@ -966,7 +1051,13 @@
     "rest": "3 min easy jog",
     "intensity": "90-95% max heart rate",
     "perWeek": 1,
-    "why": "Builds aerobic power (Helgerud 2001)."
+    "why": "Builds aerobic power (Helgerud 2001).",
+    "for": [
+     "middle",
+     "full",
+     "camogie",
+     "shinty"
+    ]
    },
    {
     "name": "Tempo runs",
@@ -975,7 +1066,13 @@
     "rest": "Walk 100 m",
     "intensity": "About 65-70% of top speed",
     "perWeek": 1,
-    "why": "Running volume and tissue capacity, low stress."
+    "why": "Running volume and tissue capacity, low stress.",
+    "for": [
+     "middle",
+     "full",
+     "camogie",
+     "shinty"
+    ]
    }
   ],
   "pre": [
@@ -986,7 +1083,13 @@
     "rest": "3 min between sets",
     "intensity": "90-95% of 30-15 IFT speed",
     "perWeek": 1,
-    "why": "Gaelic has more continuous running than soccer."
+    "why": "Hurling has more continuous running than soccer.",
+    "for": [
+     "middle",
+     "full",
+     "camogie",
+     "shinty"
+    ]
    },
    {
     "name": "30/30 intervals",
@@ -995,7 +1098,13 @@
     "rest": "3 min between sets",
     "intensity": "85-90% of 30-15 IFT speed",
     "perWeek": 1,
-    "why": "Pre-season aerobic power."
+    "why": "Pre-season aerobic power.",
+    "for": [
+     "middle",
+     "full",
+     "camogie",
+     "shinty"
+    ]
    },
    {
     "name": "Repeated sprints",
@@ -1042,7 +1151,13 @@
     "rest": "3 min",
     "intensity": "RPE 8-9",
     "perWeek": 1,
-    "why": "MD+1 for subs and players short of minutes."
+    "why": "MD+1 for subs and players short of minutes.",
+    "for": [
+     "middle",
+     "full",
+     "camogie",
+     "shinty"
+    ]
    }
   ]
  },

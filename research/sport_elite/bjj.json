@@ -20,7 +20,23 @@
    "prehab": [
     "fingers"
    ],
-   "note": "Grip work stays in every session; swap pull-ups for strapped pulldowns after hard gi days."
+   "note": "Your plan adds band finger extensions. After hard gi days, swap pull-ups for strapped pulldowns.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "fingerext"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "20-25",
+     "rir": 3,
+     "note": "Open the hand fully against the band."
+    }
+   ]
   },
   {
    "id": "nogi",
@@ -33,7 +49,40 @@
     "landing",
     "copenhagen"
    ],
-   "note": "More jumps and knee and groin work; finger hangs can drop to one set."
+   "note": "Your plan adds drop landings and extra groin work for the knees. You can cut finger hangs to one set.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4-6",
+     "rir": 3,
+     "note": "Land soft and hold for 2 s."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "adductor"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "5/side",
+     "rir": 3,
+     "note": "Knee lever first."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -137,7 +186,7 @@
       },
       "reps": "20-40 s",
       "rir": 3,
-      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+      "note": "Gi or towel hangs."
      },
      {
       "role": "core",
@@ -472,7 +521,7 @@
       },
       "reps": "20-40 s",
       "rir": 3,
-      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+      "note": "Gi or towel hangs."
      },
      {
       "role": "core",
@@ -723,7 +772,7 @@
       },
       "reps": "20-40 s",
       "rir": 3,
-      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+      "note": "Gi or towel hangs."
      },
      {
       "role": "core",
@@ -915,7 +964,7 @@
    "id": "deadlift1rm",
    "name": "Deadlift 1RM",
    "how": "Work up to a hard single, or estimate from a 3-5RM.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.75",
@@ -927,7 +976,7 @@
    "id": "squat1rm",
    "name": "Back squat 1RM",
    "how": "Work up to a hard single, or estimate from a 3-5RM.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.4",
@@ -966,7 +1015,7 @@
    "unit": "kg",
    "better": "higher",
    "bands": {
-    "elite": "50-60"
+    "elite": "50+"
    },
    "note": "Elite men's range. Track your own trend per hand."
   }
@@ -990,7 +1039,7 @@
    "Drop to 1 short gym session in the final 1-2 weeks.",
    "That session: 2 x 3 at 80% on one lower and one upper lift, jumps, neck.",
    "Last hard rolls 5-7 days out.",
-   "IBJJF weighs in just before your first match, in the gi: no acute cut."
+   "IBJJF (the main gi federation) weighs in just before your first match, in the gi: no acute cut."
   ]
  },
  "rules": [
@@ -1035,12 +1084,5 @@
    "url": "https://acuresearchbank.acu.edu.au/item/88q7v/acute-weight-loss-strategies-for-combat-sports-and-applications-to-olympic-success"
   }
  ],
- "missing_ex": [
-  {
-   "name": "Band finger extension",
-   "pattern": "grip",
-   "equipment": "bands",
-   "why": "Finger extensor balance for gi grippers."
-  }
- ]
+ "missing_ex": []
 }

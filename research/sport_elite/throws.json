@@ -1,1209 +1,1228 @@
 {
- "id": "throws",
- "name": "Throwing events",
- "aliases": [
-  "shot put",
-  "shot",
-  "discus",
-  "hammer",
-  "hammer throw",
-  "javelin",
-  "weight throw"
- ],
- "group": "Track and field",
- "variants": [
-  {
-   "id": "shot",
-   "name": "Shot put",
-   "desc": "Heaviest implement; body mass, leg drive and pressing strength matter most.",
-   "q": {},
-   "prehab": [
-    "wrist",
-    "shoulderER"
-   ],
-   "note": "Bench and push press stay the priority; wrist work is added twice a week."
-  },
-  {
-   "id": "discus",
-   "name": "Discus",
-   "desc": "Rotational throw with a long release path; trunk rotation and hip separation matter.",
-   "q": {},
-   "prehab": [
-    "tspine",
-    "lowback",
-    "hipRot"
-   ],
-   "note": "Rotational med ball and thoracic rotation work move to the front."
-  },
-  {
-   "id": "hammer",
-   "name": "Hammer",
-   "desc": "Multiple turns against a heavy pulling implement; the low back and trunk take high loads.",
-   "q": {},
-   "prehab": [
-    "lowback",
-    "trunkLat"
-   ],
-   "note": "Back endurance and anti-rotation core come first in prehab."
-  },
-  {
-   "id": "javelin",
-   "name": "Javelin",
-   "desc": "Run-up and overhead throw; less body mass, high shoulder and medial elbow stress.",
-   "q": {
-    "upperPush": 2,
-    "mass": 1
-   },
-   "prehab": [
-    "shoulderER",
-    "scap",
-    "elbow",
-    "nordic"
-   ],
-   "note": "Bench becomes incline DB or landmine press, Nordics are added and throw volume is managed."
-  }
- ],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: Olympic lift, squat, press",
-    "focus": "Heavy lower and upper strength with a fast pull first",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "powerclean",
-       "hangclean",
-       "powersnatch",
-       "tbjump"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "70-80% 1RM. New lifters: trap bar jump or box jump instead."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "frontsq",
-       "ssbsq",
-       "beltsq"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "About 80% 1RM. Hypertrophy weeks: 4 x 8 at 70%."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bench",
-       "flatdb",
-       "incdb",
-       "lmpress"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "About 80% 1RM. Javelin: incline DB or landmine press."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bbrow",
-       "csdb",
-       "dbrow",
-       "cabrow"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Pulling sets at least match pressing sets."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Rotator cuff, slow and controlled."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3,
-      "note": "Thoracic rotation through full range."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "landrot",
-       "mbrot",
-       "woodchop",
-       "cabrot"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "5/side",
-      "rir": 2,
-      "note": "Heavy rotation, hips drive the turn."
-     }
-    ]
-   },
-   {
-    "name": "Day B: throws, hinge, overhead",
-    "focus": "Med ball power, heavy pull and overhead drive",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "mbohthrow",
-       "mbrot",
-       "mbscoop",
-       "mbslam"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Overhead backward or rotational throws, max intent."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "deadlift",
-       "cleanpull",
-       "trapdl",
-       "rdl"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "4",
-      "rir": 2,
-      "note": "About 85% 1RM."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushpress",
-       "pushjerk",
-       "bbohp",
-       "standdbohp"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "4",
-      "rir": 2,
-      "note": "Drive from the legs."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "revlunge",
-       "bbbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "hyper90",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "scappushup",
-       "serpunch"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Serratus and lower trap."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4-6",
-      "rir": 3,
-      "note": "Javelin only. Build from 2 x 5 over 4-6 weeks."
-     }
-    ]
-   },
-   {
-    "name": "Day C: pulls and muscle",
-    "focus": "High pulls, incline press and hypertrophy for heavy throwers",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "mbscoop",
-       "mbohthrow",
-       "mbrot"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Scoop toss, full hip extension."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "sghp",
-       "cleanhighpull",
-       "snatchpull",
-       "kbswing"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "New lifters: kettlebell swing."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "incbench",
-       "incdb",
-       "lmpress",
-       "incsmith"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "6-8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "singlerdl",
-       "dbrdl",
-       "slrdlbw",
-       "bstance"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "latpd",
-       "pullup",
-       "csdb",
-       "cabrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-12",
-      "rir": 2,
-      "note": "Heavy throwers: hypertrophy work."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "legpress",
-       "hack",
-       "walklunge",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-12",
-      "rir": 2,
-      "note": "Heavy throwers: hypertrophy work."
-     }
-    ]
-   }
+  "id": "throws",
+  "name": "Throwing events",
+  "aliases": [
+    "shot put",
+    "shot",
+    "discus",
+    "hammer",
+    "hammer throw",
+    "javelin",
+    "weight throw"
   ],
-  "pre": [
-   {
-    "name": "Day A: Olympic lift, squat, press",
-    "focus": "Heavy lower and upper strength with a fast pull first",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "powerclean",
-       "hangclean",
-       "powersnatch",
-       "tbjump"
+  "group": "Track and field",
+  "variants": [
+    {
+      "id": "shot",
+      "name": "Shot put",
+      "desc": "Heaviest implement; body mass, leg drive and pressing strength matter most.",
+      "q": {},
+      "prehab": [
+        "wrist",
+        "shoulderER"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "2",
-      "rir": 3,
-      "note": "About 85% 1RM. New lifters: trap bar jump or box jump instead."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "frontsq",
-       "ssbsq",
-       "beltsq"
+      "note": "Your plan adds wrist strengthening. Bench and push press stay your priority.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "wristcurl",
+            "revwristcurl",
+            "wristroller"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "12-15",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "discus",
+      "name": "Discus",
+      "desc": "Rotational throw with a long release path; trunk rotation and hip separation matter.",
+      "q": {},
+      "prehab": [
+        "tspine",
+        "lowback",
+        "hipRot"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "3",
-      "rir": 1,
-      "note": "87-90% 1RM. New lifters: 3 x 5 at RIR 3."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bench",
-       "flatdb",
-       "incdb",
-       "lmpress"
+      "note": "Your plan adds rotational med ball throws and puts thoracic rotation work first.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "mbrot",
+            "landrot",
+            "woodchop"
+          ],
+          "sets": {
+            "new": 3,
+            "inter": 3,
+            "adv": 4
+          },
+          "reps": "4/side",
+          "rir": 3,
+          "note": "Max intent, hips lead"
+        }
+      ]
+    },
+    {
+      "id": "hammer",
+      "name": "Hammer",
+      "desc": "Multiple turns against a heavy pulling implement; the low back and trunk take high loads.",
+      "q": {},
+      "prehab": [
+        "lowback",
+        "trunkLat"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
+      "note": "Your plan adds anti-rotation core work and puts back endurance first.",
+      "add": [
+        {
+          "role": "core",
+          "ex": [
+            "pallof",
+            "suitcase",
+            "sideplank"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "10/side",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "javelin",
+      "name": "Javelin",
+      "desc": "Run-up and overhead throw; less body mass, high shoulder and medial elbow stress.",
+      "q": {
+        "upperPush": 2,
+        "mass": 1
       },
-      "reps": "3",
-      "rir": 1,
-      "note": "About 87% 1RM. Javelin: incline DB or landmine press."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bbrow",
-       "csdb",
-       "dbrow",
-       "cabrow"
+      "prehab": [
+        "shoulderER",
+        "scap",
+        "elbow",
+        "nordic"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2,
-      "note": "Pulling sets at least match pressing sets."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Rotator cuff, slow and controlled."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3,
-      "note": "Thoracic rotation through full range."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "landrot",
-       "mbrot",
-       "woodchop",
-       "cabrot"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "5/side",
-      "rir": 2,
-      "note": "Heavy rotation, hips drive the turn."
-     }
-    ]
-   },
-   {
-    "name": "Day B: throws, hinge, overhead",
-    "focus": "Med ball power, heavy pull and overhead drive",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "mbohthrow",
-       "mbrot",
-       "mbscoop",
-       "mbslam"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 5,
-       "adv": 5
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Overhead backward or rotational throws, max intent."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "deadlift",
-       "cleanpull",
-       "trapdl",
-       "rdl"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 1,
-      "note": "Heavy, crisp reps."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushpress",
-       "pushjerk",
-       "bbohp",
-       "standdbohp"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 2,
-      "note": "Drive from the legs."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "revlunge",
-       "bbbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5/side",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "hyper90",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "scappushup",
-       "serpunch"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Serratus and lower trap."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "4-6",
-      "rir": 3,
-      "note": "Javelin only. Build from 2 x 5 over 4-6 weeks."
-     }
-    ]
-   },
-   {
-    "name": "Day C: pulls and muscle",
-    "focus": "High pulls, incline press and hypertrophy for heavy throwers",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "mbscoop",
-       "mbohthrow",
-       "mbrot"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Scoop toss, full hip extension."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "sghp",
-       "cleanhighpull",
-       "snatchpull",
-       "kbswing"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "2",
-      "rir": 3,
-      "note": "New lifters: kettlebell swing."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "incbench",
-       "incdb",
-       "lmpress",
-       "incsmith"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "singlerdl",
-       "dbrdl",
-       "slrdlbw",
-       "bstance"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "latpd",
-       "pullup",
-       "csdb",
-       "cabrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-12",
-      "rir": 2,
-      "note": "Heavy throwers: hypertrophy work."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "legpress",
-       "hack",
-       "walklunge",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8-12",
-      "rir": 2,
-      "note": "Heavy throwers: hypertrophy work."
-     }
-    ]
-   }
+      "note": "Your plan adds Nordic curls. Swap bench for incline dumbbell or landmine press, and count your throws each week.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "nordicham",
+            "slidecurl",
+            "ballcurl"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "5",
+          "rir": 2,
+          "note": "Build from 2 x 5 over 4-6 weeks"
+        }
+      ]
+    }
   ],
-  "in": [
-   {
-    "name": "Day A: Olympic lift, squat, press",
-    "focus": "Heavy lower and upper strength with a fast pull first",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "powerclean",
-       "hangclean",
-       "powersnatch",
-       "tbjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 4,
-       "adv": 4
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: Olympic lift, squat, press",
+        "focus": "Heavy lower and upper strength with a fast pull first",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "powerclean",
+              "hangclean",
+              "powersnatch",
+              "tbjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "70-80% 1RM (one-rep max). New lifters: trap bar jump or box jump instead."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "ssbsq",
+              "beltsq"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "About 80% 1RM. Hypertrophy weeks: 4 x 8 at 70%."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bench",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "About 80% 1RM. Javelin: incline dumbbell or landmine press."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bbrow",
+              "csdb",
+              "dbrow",
+              "cabrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Pulling sets at least match pressing sets."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Rotator cuff, slow and controlled."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3,
+            "note": "Thoracic rotation through full range."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "landrot",
+              "mbrot",
+              "woodchop",
+              "cabrot"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5/side",
+            "rir": 2,
+            "note": "Heavy rotation, hips drive the turn."
+          }
+        ]
       },
-      "reps": "1-2",
-      "rir": 3,
-      "note": "About 85% 1RM, fast. New lifters: trap bar jump or box jump instead."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "frontsq",
-       "ssbsq",
-       "beltsq"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+      {
+        "name": "Day B: throws, hinge, overhead",
+        "focus": "Med ball power, heavy pull and overhead drive",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbohthrow",
+              "mbrot",
+              "mbscoop",
+              "mbslam"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Overhead backward or rotational throws, max intent."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "deadlift",
+              "cleanpull",
+              "trapdl",
+              "rdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 2,
+            "note": "About 85% 1RM."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushpress",
+              "pushjerk",
+              "bbohp",
+              "standdbohp"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 2,
+            "note": "Drive from the legs."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "revlunge",
+              "bbbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "hyper90",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "scappushup",
+              "serpunch"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Serratus and lower trap."
+          }
+        ]
       },
-      "reps": "2",
-      "rir": 1,
-      "note": "About 90% 1RM, low volume."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bench",
-       "flatdb",
-       "incdb",
-       "lmpress"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+      {
+        "name": "Day C: pulls and muscle",
+        "focus": "High pulls, incline press and hypertrophy for heavy throwers",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbscoop",
+              "mbohthrow",
+              "mbrot"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Scoop toss, full hip extension."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "sghp",
+              "cleanhighpull",
+              "snatchpull",
+              "kbswing"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "New lifters: kettlebell swing."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "incbench",
+              "incdb",
+              "lmpress",
+              "incsmith"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "singlerdl",
+              "dbrdl",
+              "slrdlbw",
+              "bstance"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "latpd",
+              "pullup",
+              "csdb",
+              "cabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2,
+            "note": "Heavy throwers: hypertrophy work."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "legpress",
+              "hack",
+              "walklunge",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2,
+            "note": "Heavy throwers: hypertrophy work."
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: Olympic lift, squat, press",
+        "focus": "Heavy lower and upper strength with a fast pull first",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "powerclean",
+              "hangclean",
+              "powersnatch",
+              "tbjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "2",
+            "rir": 3,
+            "note": "About 85% 1RM. New lifters: trap bar jump or box jump instead."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "ssbsq",
+              "beltsq"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "3",
+            "rir": 1,
+            "note": "87-90% 1RM. New lifters: 3 x 5 with 3 reps in reserve."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bench",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 1,
+            "note": "About 87% 1RM. Javelin: incline dumbbell or landmine press."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bbrow",
+              "csdb",
+              "dbrow",
+              "cabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2,
+            "note": "Pulling sets at least match pressing sets."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Rotator cuff, slow and controlled."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3,
+            "note": "Thoracic rotation through full range."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "landrot",
+              "mbrot",
+              "woodchop",
+              "cabrot"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5/side",
+            "rir": 2,
+            "note": "Heavy rotation, hips drive the turn."
+          }
+        ]
       },
-      "reps": "2",
-      "rir": 1,
-      "note": "Heavy and fast. Javelin: landmine press."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bbrow",
-       "csdb",
-       "dbrow",
-       "cabrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Day B: throws, hinge, overhead",
+        "focus": "Med ball power, heavy pull and overhead drive",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbohthrow",
+              "mbrot",
+              "mbscoop",
+              "mbslam"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 5,
+              "adv": 5
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Overhead backward or rotational throws, max intent."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "deadlift",
+              "cleanpull",
+              "trapdl",
+              "rdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 1,
+            "note": "Heavy, crisp reps."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushpress",
+              "pushjerk",
+              "bbohp",
+              "standdbohp"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "Drive from the legs."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "revlunge",
+              "bbbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "hyper90",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "scappushup",
+              "serpunch"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Serratus and lower trap."
+          }
+        ]
       },
-      "reps": "6",
-      "rir": 2,
-      "note": "Pulling sets at least match pressing sets."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
+      {
+        "name": "Day C: pulls and muscle",
+        "focus": "High pulls, incline press and hypertrophy for heavy throwers",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbscoop",
+              "mbohthrow",
+              "mbrot"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Scoop toss, full hip extension."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "sghp",
+              "cleanhighpull",
+              "snatchpull",
+              "kbswing"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "2",
+            "rir": 3,
+            "note": "New lifters: kettlebell swing."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "incbench",
+              "incdb",
+              "lmpress",
+              "incsmith"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "singlerdl",
+              "dbrdl",
+              "slrdlbw",
+              "bstance"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "latpd",
+              "pullup",
+              "csdb",
+              "cabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2,
+            "note": "Heavy throwers: hypertrophy work."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "legpress",
+              "hack",
+              "walklunge",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2,
+            "note": "Heavy throwers: hypertrophy work."
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: Olympic lift, squat, press",
+        "focus": "Heavy lower and upper strength with a fast pull first",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "powerclean",
+              "hangclean",
+              "powersnatch",
+              "tbjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "1-2",
+            "rir": 3,
+            "note": "About 85% 1RM, fast. New lifters: trap bar jump or box jump instead."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "ssbsq",
+              "beltsq"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "2",
+            "rir": 1,
+            "note": "About 90% 1RM, low volume."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bench",
+              "flatdb",
+              "incdb",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "2",
+            "rir": 1,
+            "note": "Heavy and fast. Javelin: landmine press."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bbrow",
+              "csdb",
+              "dbrow",
+              "cabrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2,
+            "note": "Pulling sets at least match pressing sets."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Rotator cuff, slow and controlled."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3,
+            "note": "Thoracic rotation through full range."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "landrot",
+              "mbrot",
+              "woodchop",
+              "cabrot"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2,
+            "note": "Heavy rotation, hips drive the turn."
+          }
+        ]
       },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Rotator cuff, slow and controlled."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3,
-      "note": "Thoracic rotation through full range."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "landrot",
-       "mbrot",
-       "woodchop",
-       "cabrot"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "5/side",
-      "rir": 2,
-      "note": "Heavy rotation, hips drive the turn."
-     }
+      {
+        "name": "Day B: throws, hinge, overhead",
+        "focus": "Med ball power, heavy pull and overhead drive",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbohthrow",
+              "mbrot",
+              "mbscoop",
+              "mbslam"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Overhead backward or rotational throws, max intent."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "deadlift",
+              "cleanpull",
+              "trapdl",
+              "rdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "Heavy, low volume."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pushpress",
+              "pushjerk",
+              "bbohp",
+              "standdbohp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "2",
+            "rir": 2,
+            "note": "Drive from the legs."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "revlunge",
+              "bbbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "hyper90",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Back extensor endurance."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "scappushup",
+              "serpunch"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Serratus and lower trap."
+          }
+        ]
+      }
     ]
-   },
-   {
-    "name": "Day B: throws, hinge, overhead",
-    "focus": "Med ball power, heavy pull and overhead drive",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "mbohthrow",
-       "mbrot",
-       "mbscoop",
-       "mbslam"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Short sprints and jumps",
+        "mode": "run",
+        "work": "6-8 x 20-30 m sprints or 3 x 3 jumps",
+        "rest": "walk back, full recovery",
+        "intensity": "fast and relaxed",
+        "perWeek": 1,
+        "why": "Keeps speed and elastic power; coach practice."
       },
-      "reps": "3",
-      "rir": 3,
-      "note": "Overhead backward or rotational throws, max intent."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "deadlift",
-       "cleanpull",
-       "trapdl",
-       "rdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Easy aerobic",
+        "mode": "any",
+        "work": "20-30 min",
+        "rest": "none",
+        "intensity": "easy, conversational",
+        "perWeek": 1,
+        "why": "Health and recovery between heavy days; coach practice."
+      }
+    ],
+    "pre": [
+      {
+        "name": "Short sprints and jumps",
+        "mode": "run",
+        "work": "6-8 x 20-30 m",
+        "rest": "walk back, full recovery",
+        "intensity": "fast and relaxed",
+        "perWeek": 1,
+        "why": "Speed for the run-up and glide; coach practice."
       },
-      "reps": "3",
-      "rir": 2,
-      "note": "Heavy, low volume."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pushpress",
-       "pushjerk",
-       "bbohp",
-       "standdbohp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "2",
-      "rir": 2,
-      "note": "Drive from the legs."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "revlunge",
-       "bbbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "5/side",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "hyper90",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Back extensor endurance."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "scappushup",
-       "serpunch"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Serratus and lower trap."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 1,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "4-6",
-      "rir": 3,
-      "note": "Javelin only. Build from 2 x 5 over 4-6 weeks."
-     }
+      {
+        "name": "Easy aerobic",
+        "mode": "any",
+        "work": "20-30 min",
+        "rest": "none",
+        "intensity": "easy",
+        "perWeek": 1,
+        "why": "Recovery only."
+      }
+    ],
+    "in": [
+      {
+        "name": "Easy aerobic",
+        "mode": "any",
+        "work": "20 min",
+        "rest": "none",
+        "intensity": "easy",
+        "perWeek": 1,
+        "why": "Recovery only; throwing covers the rest."
+      }
     ]
-   }
+  },
+  "tests": [
+    {
+      "id": "squat1rm",
+      "name": "Back squat 1RM",
+      "how": "Work up to a heavy single or estimate from a 3-rep max",
+      "unit": "x body mass",
+      "better": "higher",
+      "bands": {
+        "club": "<2.0",
+        "good": "2.0-2.5",
+        "elite": ">2.5"
+      },
+      "note": "Heavy throwers. Benchmark, not peer reviewed."
+    },
+    {
+      "id": "bench1rm",
+      "name": "Bench press 1RM",
+      "how": "Heavy single or estimate from a 3-rep max",
+      "unit": "x body mass",
+      "better": "higher",
+      "bands": {
+        "club": "<1.4",
+        "good": "1.4-1.75",
+        "elite": ">1.75"
+      },
+      "note": "Benchmark, not peer reviewed."
+    },
+    {
+      "id": "clean1rm",
+      "name": "Power clean 1RM",
+      "how": "Heavy single with good technique",
+      "unit": "x body mass",
+      "better": "higher",
+      "bands": {
+        "club": "<1.2",
+        "good": "1.2-1.5",
+        "elite": ">1.5"
+      },
+      "note": "Benchmark, not peer reviewed."
+    },
+    {
+      "id": "slj",
+      "name": "Standing long jump",
+      "how": "Two feet, best of 3, measure to the heel",
+      "unit": "m",
+      "better": "higher",
+      "bands": {
+        "club": "<2.6",
+        "good": "2.6-3.0",
+        "elite": ">3.0"
+      },
+      "note": "Women: club 2.2 m, elite 2.5 m+."
+    },
+    {
+      "id": "ohbthrow",
+      "name": "Overhead backward shot throw",
+      "how": "Stand with back to the area, throw the shot overhead, best of 3",
+      "unit": "m",
+      "better": "higher",
+      "bands": {},
+      "note": "Women 4 kg, men 7.26 kg. Track your own trend."
+    }
+  ],
+  "week": [
+    "Throw first, lift after; or lift on non-throwing days",
+    "Day A goes after the main technical throwing session",
+    "Never heavy lifting the day before a competition",
+    "Competition phase: 2 short, heavy, fast sessions",
+    "Keep the hardest throwing and heaviest lifting on the same days"
+  ],
+  "primer": [
+    "2-3 x 2-3 med ball throws at full intent",
+    "2-3 x 2-3 jumps",
+    "Light implement throws only",
+    "Stop well short of fatigue"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy session 7-10 days out",
+      "Final week: light implements and speed",
+      "One primer 2-3 days out",
+      "Final week volume 30-50% of normal",
+      "No new exercises in the final 2 weeks",
+      "No max testing within 10 days"
+    ]
+  },
+  "rules": [
+    "Rotator cuff and scapular work 2-3 times a week",
+    "Pulling sets at least equal pressing sets",
+    "No Olympic lifts for new lifters; use jumps and med ball throws",
+    "Javelin: Nordics all year and count throw volume",
+    "Never to failure on barbell compounds"
+  ],
+  "sources": [
+    {
+      "source": "Stone et al. 2003, Journal of Strength and Conditioning Research"
+    },
+    {
+      "source": "Edouard et al. 2016 (athletics championship injuries)"
+    },
+    {
+      "source": "Andersson et al. 2017, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/51/14/1073"
+    },
+    {
+      "source": "van Dyk, Behan & Whiteley 2019, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/53/21/1362"
+    },
+    {
+      "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17762369/"
+    },
+    {
+      "source": "Haff & Triplett 2016, Essentials of Strength Training and Conditioning"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Rotational shot-put throw (med ball)",
+      "pattern": "prot",
+      "equipment": "medball",
+      "why": "Main rotational power drill for throwers; mbrot used instead"
+    },
+    {
+      "name": "Heavy or light implement throws",
+      "pattern": "prot",
+      "equipment": "implements",
+      "why": "Overload and speed work in the specific phase"
+    }
   ]
- },
- "conditioning": {
-  "off": [
-   {
-    "name": "Short sprints and jumps",
-    "mode": "run",
-    "work": "6-8 x 20-30 m sprints or 3 x 3 jumps",
-    "rest": "walk back, full recovery",
-    "intensity": "fast and relaxed",
-    "perWeek": 1,
-    "why": "Keeps speed and elastic power; coach practice."
-   },
-   {
-    "name": "Easy aerobic",
-    "mode": "any",
-    "work": "20-30 min",
-    "rest": "none",
-    "intensity": "easy, conversational",
-    "perWeek": 1,
-    "why": "Health and recovery between heavy days; coach practice."
-   }
-  ],
-  "pre": [
-   {
-    "name": "Short sprints and jumps",
-    "mode": "run",
-    "work": "6-8 x 20-30 m",
-    "rest": "walk back, full recovery",
-    "intensity": "fast and relaxed",
-    "perWeek": 1,
-    "why": "Speed for the run-up and glide; coach practice."
-   },
-   {
-    "name": "Easy aerobic",
-    "mode": "any",
-    "work": "20-30 min",
-    "rest": "none",
-    "intensity": "easy",
-    "perWeek": 1,
-    "why": "Recovery only."
-   }
-  ],
-  "in": [
-   {
-    "name": "Easy aerobic",
-    "mode": "any",
-    "work": "20 min",
-    "rest": "none",
-    "intensity": "easy",
-    "perWeek": 1,
-    "why": "Recovery only; throwing covers the rest."
-   }
-  ]
- },
- "tests": [
-  {
-   "id": "squat1rm",
-   "name": "Back squat 1RM",
-   "how": "Work up to a heavy single or estimate from a 3RM",
-   "unit": "x body mass",
-   "better": "higher",
-   "bands": {
-    "club": "2.0",
-    "good": "2.0-2.5",
-    "elite": ">2.5"
-   },
-   "note": "Heavy throwers. Benchmark, not peer reviewed."
-  },
-  {
-   "id": "bench1rm",
-   "name": "Bench press 1RM",
-   "how": "Heavy single or estimate from a 3RM",
-   "unit": "x body mass",
-   "better": "higher",
-   "bands": {
-    "club": "1.4",
-    "good": "1.4-1.75",
-    "elite": ">1.75"
-   },
-   "note": "Benchmark, not peer reviewed."
-  },
-  {
-   "id": "clean1rm",
-   "name": "Power clean 1RM",
-   "how": "Heavy single with good technique",
-   "unit": "x body mass",
-   "better": "higher",
-   "bands": {
-    "club": "1.2",
-    "good": "1.2-1.5",
-    "elite": ">1.5"
-   },
-   "note": "Benchmark, not peer reviewed."
-  },
-  {
-   "id": "slj",
-   "name": "Standing long jump",
-   "how": "Two feet, best of 3, measure to the heel",
-   "unit": "m",
-   "better": "higher",
-   "bands": {
-    "club": "2.6",
-    "good": "2.6-3.0",
-    "elite": ">3.0"
-   },
-   "note": "Women: club 2.2 m, elite 2.5 m+."
-  },
-  {
-   "id": "ohbthrow",
-   "name": "Overhead backward shot throw",
-   "how": "Stand with back to the area, throw the shot overhead, best of 3",
-   "unit": "m",
-   "better": "higher",
-   "bands": {},
-   "note": "Women 4 kg, men 7.26 kg. Track your own trend."
-  }
- ],
- "week": [
-  "Throw first, lift after; or lift on non-throwing days",
-  "Day A goes after the main technical throwing session",
-  "Never heavy lifting the day before a competition",
-  "Competition phase: 2 short, heavy, fast sessions",
-  "Keep the hardest throwing and heaviest lifting on the same days"
- ],
- "primer": [
-  "2-3 x 2-3 med ball throws at full intent",
-  "2-3 x 2-3 jumps",
-  "Light implement throws only",
-  "Stop well short of fatigue"
- ],
- "taper": {
-  "days": 10,
-  "lines": [
-   "Last heavy session 7-10 days out",
-   "Final week: light implements and speed",
-   "One primer 2-3 days out",
-   "Final week volume 30-50% of normal",
-   "No new exercises in the final 2 weeks",
-   "No max testing within 10 days"
-  ]
- },
- "rules": [
-  "Rotator cuff and scapular work 2-3 times a week",
-  "Pulling sets at least equal pressing sets",
-  "No Olympic lifts for new lifters; use jumps and med ball throws",
-  "Javelin: Nordics all year and count throw volume",
-  "Never to failure on barbell compounds"
- ],
- "sources": [
-  {
-   "source": "Stone et al. 2003, Journal of Strength and Conditioning Research"
-  },
-  {
-   "source": "Edouard et al. 2016 (athletics championship injuries)"
-  },
-  {
-   "source": "Andersson et al. 2017, British Journal of Sports Medicine",
-   "url": "https://bjsm.bmj.com/content/51/14/1073"
-  },
-  {
-   "source": "van Dyk, Behan & Whiteley 2019, British Journal of Sports Medicine",
-   "url": "https://bjsm.bmj.com/content/53/21/1362"
-  },
-  {
-   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise",
-   "url": "https://pubmed.ncbi.nlm.nih.gov/17762369/"
-  },
-  {
-   "source": "Haff & Triplett 2016, Essentials of Strength Training and Conditioning"
-  }
- ],
- "missing_ex": [
-  {
-   "name": "Rotational shot-put throw (med ball)",
-   "pattern": "prot",
-   "equipment": "medball",
-   "why": "Main rotational power drill for throwers; mbrot used instead"
-  },
-  {
-   "name": "Heavy or light implement throws",
-   "pattern": "prot",
-   "equipment": "implements",
-   "why": "Overload and speed work in the specific phase"
-  }
- ]
 }

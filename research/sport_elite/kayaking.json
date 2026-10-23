@@ -29,7 +29,25 @@
     "shoulderER",
     "scap"
    ],
-   "note": "3 sessions off and pre season, 2 in season, with muscle gain allowed."
+   "note": "Your plan adds bench throws for upper-body power. Some muscle gain is fine.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "benchthrow",
+      "mbchest",
+      "clappu"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3-5",
+     "rir": 3,
+     "note": "Fast arms, full rest."
+    }
+   ]
   },
   {
    "id": "slalom",
@@ -40,7 +58,7 @@
     "shoulderER",
     "wrist"
    ],
-   "note": "Sprint-style plan; on-water gate intervals carry the conditioning."
+   "note": "Your plan follows the sprint plan; gate intervals on the water are your conditioning."
   },
   {
    "id": "marathon",
@@ -57,7 +75,7 @@
     "scap",
     "tspine"
    ],
-   "note": "2 sessions a week (1 in season) at RIR 2-3, 6-12 reps, plus a winter circuit."
+   "note": "Your plan puts shoulder, upper back and spine care first. Lift for robustness, not size: two sessions a week, one in season."
   }
  ],
  "sessions": {
@@ -784,7 +802,10 @@
     "rest": "3 min",
     "intensity": "Race pace",
     "perWeek": 1,
-    "why": "Sprint paddlers, on the water. Coach practice."
+    "why": "On the water. Coach practice.",
+    "for": [
+     "sprint"
+    ]
    },
    {
     "name": "Gate intervals",
@@ -793,7 +814,10 @@
     "rest": "Full recovery",
     "intensity": "Race effort",
     "perWeek": 1,
-    "why": "Slalom, matches run length. Coach practice."
+    "why": "Matches run length. Coach practice.",
+    "for": [
+     "slalom"
+    ]
    }
   ],
   "in": []
@@ -828,7 +852,7 @@
    "unit": "reps",
    "better": "higher",
    "bands": {
-    "good": "20"
+    "good": "20+"
    },
    "note": "National sprint men. Women 10."
   },
@@ -885,12 +909,5 @@
    "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
   }
  ],
- "missing_ex": [
-  {
-   "name": "Bench throw",
-   "pattern": "pup",
-   "equipment": "smith+bench",
-   "why": "Upper power option for sprint paddlers; med ball throws used instead"
-  }
- ]
+ "missing_ex": []
 }

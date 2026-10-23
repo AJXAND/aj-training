@@ -26,7 +26,38 @@
     "landing",
     "ankle"
    ],
-   "note": "More limit bouldering and power; landing and ankle work added for falls."
+   "note": "Your plan adds drop landings and ankle balance work for falls. Spend more of your climbing on limit boulders.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4-6",
+     "rir": 3,
+     "note": "Land soft and hold for 2 s, as on a pad."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "slbalance",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "30 s/side",
+     "rir": 3
+    }
+   ]
   },
   {
    "id": "lead",
@@ -39,7 +70,7 @@
     "fingers",
     "elbow"
    ],
-   "note": "More ARC, route laps and repeaters; less campus and dynamic power."
+   "note": "Your plan leaves out campus board work. Spend more of your climbing on ARC, route laps and repeaters."
   }
  ],
  "sessions": {
@@ -312,6 +343,51 @@
       "reps": "10 s",
       "rir": 1,
       "note": "Max hangs: 18-22 mm edge, half-crimp or open hand. Load so 3 s stay in reserve. 3 min rest."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "fingerext"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20-25",
+      "rir": 3,
+      "note": "Opens the hand after hangs."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "revwristcurl",
+       "wristcurl",
+       "pronsup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Slow lowering for the elbow."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 3
      }
     ]
    }
@@ -716,6 +792,51 @@
       "reps": "7 s on, 3 s off x 6",
       "rir": 2,
       "note": "Repeaters at 60-80% of max-hang load. 3 min rest."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "fingerext"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20-25",
+      "rir": 3,
+      "note": "Opens the hand after hangs."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "revwristcurl",
+       "wristcurl",
+       "pronsup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Slow lowering for the elbow."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 3
      }
     ]
    }
@@ -724,7 +845,7 @@
  "conditioning": {
   "off": [
    {
-    "name": "ARC (forearm aerobic)",
+    "name": "ARC: aerobic restoration and capillarity",
     "mode": "any",
     "work": "20-30 min continuous easy climbing",
     "rest": "none",
@@ -750,7 +871,10 @@
     "rest": "3 min",
     "intensity": "Max speed; stop at any loss of speed",
     "perWeek": 1,
-    "why": "Contact strength; only for adult V7/7b+ climbers with 2+ years of hangboarding."
+    "why": "Contact strength; only for adult V7/7b+ climbers with 2+ years of hangboarding.",
+    "for": [
+     "boulder"
+    ]
    }
   ],
   "in": [
@@ -779,12 +903,12 @@
    "id": "maxhang20",
    "name": "Max hang, 20 mm, half-crimp",
    "how": "10 s hang; total load (body plus added) as % of body mass.",
-   "unit": "% BM",
+   "unit": "% body mass",
    "better": "higher",
    "bands": {
-    "club": "100-115",
-    "good": "125-145",
-    "elite": "150-165"
+    "club": "<125",
+    "good": "125-150",
+    "elite": "150+"
    },
    "note": "Roughly V3-4, V6-7 and V8-9. 170%+ around V10+. Broad bands."
   },
@@ -792,7 +916,7 @@
    "id": "wpullup1rm",
    "name": "Weighted pull-up 1RM",
    "how": "Body mass plus added load for 1 rep, as % of body mass.",
-   "unit": "% BM",
+   "unit": "% body mass",
    "better": "higher",
    "bands": {
     "club": "<140",
@@ -808,7 +932,7 @@
    "better": "higher",
    "bands": {
     "club": "<12",
-    "good": "12-15",
+    "good": "12-20",
     "elite": "20+"
    }
   },
@@ -820,8 +944,7 @@
    "better": "higher",
    "bands": {
     "club": "<25",
-    "good": "25+",
-    "elite": "25+"
+    "good": "25+"
    },
    "note": "Antagonist check: a pass mark, not a performance band."
   }
@@ -859,7 +982,7 @@
   "Finger blocks last 4-8 weeks.",
   "Under 16s: no intensive finger training and no campus board (growth plates).",
   "Rotator cuff and scapular work 2-3x a week.",
-  "Do not chase low body mass: it raises RED-S risk."
+  "Do not chase low body mass: it raises the risk of RED-S (low energy availability)."
  ],
  "sources": [
   {

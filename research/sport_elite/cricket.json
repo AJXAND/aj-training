@@ -27,7 +27,40 @@
     "calf",
     "ankle"
    ],
-   "note": "Bowling workload log, front-leg block work, and no heavy lower on your heaviest bowling day."
+   "note": "Your plan adds front-leg landing and bracing work. Log your balls bowled and keep heavy leg work off your heaviest bowling day.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Land on your front leg and stick for 2 s."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "isosplit",
+      "bss",
+      "dbsplit"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30 s/side",
+     "rir": 2,
+     "note": "Front leg forward, brace hard."
+    }
+   ]
   },
   {
    "id": "batter",
@@ -43,7 +76,25 @@
     "calf",
     "elbow"
    ],
-   "note": "Use session C as your main lower day, add sprint-and-turn drills, heavy legs 48-72 h before a match."
+   "note": "Your plan adds sprint-and-turn running and extra rotational throws. Do heavy leg work 48-72 h before a match.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbscoop",
+      "mbrot",
+      "landrot"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Both sides."
+    }
+   ]
   },
   {
    "id": "spinner",
@@ -58,7 +109,54 @@
     "shoulderER",
     "trunkLat"
    ],
-   "note": "Forearm, wrist and shoulder work twice a week; rotational work both sides."
+   "note": "Your plan adds forearm, wrist, finger and shoulder work. Rotational throws stay equal on both sides.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "wristcurl",
+      "pronsup",
+      "radial"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "fingerext",
+      "gripper"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "20",
+     "rir": 2,
+     "note": "Spinning fingers first."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "er9090",
+      "bander",
+      "sideer"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "keeper",
@@ -73,7 +171,55 @@
     "hipRot",
     "wrist"
    ],
-   "note": "Adds squat-stance holds (3 x 60 s), lateral lunges, Copenhagen, 90/90 hips and finger work."
+   "note": "Your plan adds 60 s keeping-stance holds, lateral lunges and Copenhagen planks. Do 90/90 hip switches and finger stretches in your warm-up.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "wallsit",
+      "goblet",
+      "deepsquathold"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "60 s",
+     "rir": 2,
+     "note": "Hold your keeping stance."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "latlunge",
+      "cossack"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "6/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "addsqueeze"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "6/side",
+     "rir": 2,
+     "note": "Short lever first."
+    }
+   ]
   },
   {
    "id": "allrounder",
@@ -89,7 +235,7 @@
     "nordic",
     "calf"
    ],
-   "note": "Fast bowler rules apply to all bowling: log your balls and respect the rest days."
+   "note": "Fast bowler rules apply to all your bowling: log your balls and keep the rest days."
   }
  ],
  "sessions": {
@@ -112,7 +258,7 @@
       },
       "reps": "4",
       "rir": 3,
-      "note": "Adv: 4 x 3, then single-leg drop and stick on the front leg."
+      "note": "Advanced: 4 x 3, then single-leg drop and stick on the front leg."
      },
      {
       "role": "main",
@@ -129,7 +275,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3. I at 80%. Adv 5 x 3 at 85%."
+      "note": "New 3 x 8 at RIR 3. Intermediate at 80%. Advanced 5 x 3 at 85%."
      },
      {
       "role": "acc",
@@ -146,7 +292,7 @@
       },
       "reps": "6/side",
       "rir": 2,
-      "note": "3 s lowering. New 8 reps, Adv 5 heavy."
+      "note": "3 s lowering. New 8 reps, advanced 5 heavy."
      },
      {
       "role": "pre",
@@ -180,7 +326,7 @@
       },
       "reps": "10",
       "rir": 2,
-      "note": "Seated and standing. New 12, Adv 8 heavy."
+      "note": "Seated and standing. New 12, advanced 8 heavy."
      },
      {
       "role": "core",
@@ -196,7 +342,7 @@
       },
       "reps": "40 s/side",
       "rir": 2,
-      "note": "Side plank with reach. New 30 s, Adv 45 s."
+      "note": "Side plank with reach. New 30 s, advanced 45 s."
      },
      {
       "role": "core",
@@ -212,7 +358,7 @@
       },
       "reps": "20 m/side",
       "rir": 2,
-      "note": "Adv: heavy."
+      "note": "Advanced: heavy."
      },
      {
       "role": "pre",
@@ -228,7 +374,7 @@
       },
       "reps": "45 s",
       "rir": 2,
-      "note": "Isometric hold. New 30 s, Adv 60 s or weighted."
+      "note": "Isometric hold. New 30 s, advanced 60 s or weighted."
      }
     ]
    },
@@ -364,8 +510,8 @@
     ]
    },
    {
-    "name": "C: Speed, rotation and grip (batters, fielders)",
-    "focus": "Batters' main lower day; optional third day for bowlers",
+    "name": "C: Speed, rotation and grip",
+    "focus": "Sprint speed, rotational power both sides and bat grip",
     "slots": [
      {
       "role": "pow",
@@ -503,6 +649,7 @@
      {
       "role": "pow",
       "ex": [
+       "dropstick",
        "hopstick",
        "boxjp",
        "depthjump"
@@ -514,7 +661,7 @@
       },
       "reps": "4",
       "rir": 3,
-      "note": "Drop from 30 cm onto the front leg and stick. Depth jumps for Adv only."
+      "note": "Drop from 30 cm onto the front leg and stick. Depth jumps for advanced only."
      },
      {
       "role": "main",
@@ -530,7 +677,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "About 85% for I/A. New 3 x 6-8."
+      "note": "About 85% for intermediate and advanced. New 3 x 6-8."
      },
      {
       "role": "acc",
@@ -921,22 +1068,31 @@
   ],
   "pre": [
    {
-    "name": "Repeat-spell simulation (bowlers)",
+    "name": "Repeat-spell simulation",
     "mode": "run",
     "work": "4-6 overs of 6 x 20-25 m run-up sprints",
     "rest": "Walk back 30 s; 2 min between overs",
     "intensity": "Run-up pace",
     "perWeek": 1,
-    "why": "Builds the ability to repeat run-ups across a spell."
+    "why": "Builds the ability to repeat run-ups across a spell.",
+    "for": [
+     "fastbowler",
+     "allrounder"
+    ]
    },
    {
-    "name": "Run-three repeats (batters)",
+    "name": "Run-three repeats",
     "mode": "run",
     "work": "2-3 sets of 6 x run three (about 53 m, two turns)",
     "rest": "25-40 s; shorter for T20",
     "intensity": "Max effort",
     "perWeek": 1,
-    "why": "Matches running between wickets with 180 degree turns."
+    "why": "Matches running between wickets with 180 degree turns.",
+    "for": [
+     "batter",
+     "allrounder",
+     "keeper"
+    ]
    },
    {
     "name": "Max-speed runs",
@@ -950,13 +1106,18 @@
   ],
   "in": [
    {
-    "name": "Max speed and turns (batters)",
+    "name": "Max speed and turns",
     "mode": "run",
     "work": "3-5 x 30-40 m build-ups, then 6 x sprint 17.7 m and turn",
     "rest": "2-3 min",
     "intensity": "Fast but controlled",
     "perWeek": 1,
-    "why": "Keeps hamstrings used to top speed through the season."
+    "why": "Keeps hamstrings used to top speed through the season.",
+    "for": [
+     "batter",
+     "allrounder",
+     "keeper"
+    ]
    }
   ]
  },
@@ -1107,12 +1268,6 @@
   }
  ],
  "missing_ex": [
-  {
-   "name": "Single-leg drop and stick (front-foot landing)",
-   "pattern": "land",
-   "equipment": "box",
-   "why": "Fast bowler power slot; hop and stick is the nearest"
-  },
   {
    "name": "Step-down (eccentric)",
    "pattern": "lunge",

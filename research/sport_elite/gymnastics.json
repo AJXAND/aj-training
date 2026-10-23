@@ -1,1033 +1,1084 @@
 {
- "id": "gymnastics",
- "name": "Gymnastics",
- "aliases": [
-  "artistic gymnastics",
-  "calisthenics",
-  "trampolining",
-  "trampoline",
-  "tumbling",
-  "acrobatic gymnastics"
- ],
- "group": "Artistic",
- "variants": [
-  {
-   "id": "mag",
-   "name": "Artistic (men's apparatus)",
-   "desc": "Rings, pommel and bars put very high loads on the shoulders, wrists and elbows.",
-   "q": {},
-   "prehab": [
-    "shoulderER",
-    "scap",
-    "wrist"
-   ],
-   "note": "Shoulder, scapular and wrist work move to the front of every session."
-  },
-  {
-   "id": "wag",
-   "name": "Artistic (women's apparatus)",
-   "desc": "Floor, beam and vault put the load on landings; ACL risk is higher in women.",
-   "q": {},
-   "prehab": [
-    "landing",
-    "ankle",
-    "wrist"
-   ],
-   "note": "Landing and ankle work come first; landing volume is managed."
-  },
-  {
-   "id": "tumbling",
-   "name": "Trampoline and tumbling",
-   "desc": "Repeated take-offs and landings; the research applies only loosely here.",
-   "q": {},
-   "prehab": [
-    "landing",
-    "ankle",
-    "lowback"
-   ],
-   "note": "Landing, ankle and back work lead; keep the same strength base."
-  }
- ],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: squat, pull, push",
-    "focus": "Leg power and heavy upper strength in a short session",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "depthjump",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Box jump or drop to a silent stick."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "frontsq",
-       "squat",
-       "goblet",
-       "ssbsq"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "75-80% 1RM."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "wpullup",
-       "pullup",
-       "chinup",
-       "latpd"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "4-6",
-      "rir": 2,
-      "note": "Add load once bodyweight reps are easy."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "wdip",
-       "dips",
-       "ringdip",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wristcurl",
-       "pronsup",
-       "revwristcurl",
-       "radial"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "15-20",
-      "rir": 2,
-      "note": "Add wrist push-ups and plank rocking."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "core",
-      "ex": [
-       "hollow",
-       "deadbug",
-       "rkcplank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "20-30 s",
-      "rir": 2,
-      "note": "Hollow hold, lower back pressed down."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "lsit",
-       "hangleg",
-       "vup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 2,
-      "note": "Compression: L-sit or pike lifts."
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, overhead, landing",
-    "focus": "Posterior chain, overhead strength and landing resilience",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "hurdlehop",
-       "pogo",
-       "tuckjump",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 3,
-      "note": "Rebound jumps, quick and quiet."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "nordicham",
-       "dbrdl",
-       "slidecurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2,
-      "note": "RDL, or Nordics for 5s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bbohp",
-       "hspu",
-       "standdbohp",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5-6",
-      "rir": 2,
-      "note": "Handstand push-up if you can do clean reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Heavy, full range."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee over toes, soft and silent."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Hold neutral; no forced arching."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "abwheel",
-       "deadbug",
-       "rkcplank",
-       "plank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Anti-extension."
-     }
-    ]
-   }
+  "id": "gymnastics",
+  "name": "Gymnastics",
+  "aliases": [
+    "artistic gymnastics",
+    "calisthenics",
+    "trampolining",
+    "trampoline",
+    "tumbling",
+    "acrobatic gymnastics"
   ],
-  "pre": [
-   {
-    "name": "Day A: squat, pull, push",
-    "focus": "Leg power and heavy upper strength in a short session",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "depthjump",
-       "hopstick"
+  "group": "Artistic",
+  "variants": [
+    {
+      "id": "mag",
+      "name": "Artistic (men's apparatus)",
+      "desc": "Rings, pommel and bars put very high loads on the shoulders, wrists and elbows.",
+      "q": {},
+      "prehab": [
+        "shoulderER",
+        "scap",
+        "wrist"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Box jump or drop to a silent stick."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "frontsq",
-       "squat",
-       "goblet",
-       "ssbsq"
+      "note": "Your plan adds push-up plus for the shoulder blades and puts shoulder and wrist care first.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "pushupplus",
+            "scappushup",
+            "serpunch"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "10-15",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "wag",
+      "name": "Artistic (women's apparatus)",
+      "desc": "Floor, beam and vault put the load on landings; knee ligament (ACL) injury risk is higher in women.",
+      "q": {},
+      "prehab": [
+        "landing",
+        "ankle",
+        "wrist"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "3",
-      "rir": 2,
-      "note": "About 85% 1RM. New lifters: 3 x 5 at RIR 3."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "wpullup",
-       "pullup",
-       "chinup",
-       "latpd"
+      "note": "Your plan adds drop landings to stick and puts landing and ankle work first. Keep your weekly landing volume steady.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "dropstick",
+            "hopstick"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "4",
+          "rir": 3,
+          "note": "Silent landing, hold 2 s"
+        }
+      ]
+    },
+    {
+      "id": "tumbling",
+      "name": "Trampoline and tumbling",
+      "desc": "Repeated take-offs and landings; long passes load the ankles and lower back.",
+      "q": {},
+      "prehab": [
+        "landing",
+        "ankle",
+        "lowback"
       ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4",
-      "rir": 2,
-      "note": "Add load once bodyweight reps are easy."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "wdip",
-       "dips",
-       "ringdip",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wristcurl",
-       "pronsup",
-       "revwristcurl",
-       "radial"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "15-20",
-      "rir": 2,
-      "note": "Add wrist push-ups and plank rocking."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "core",
-      "ex": [
-       "hollow",
-       "deadbug",
-       "rkcplank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "20-30 s",
-      "rir": 2,
-      "note": "Hollow hold, lower back pressed down."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "lsit",
-       "hangleg",
-       "vup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 2,
-      "note": "Compression: L-sit or pike lifts."
-     }
-    ]
-   },
-   {
-    "name": "Day B: hinge, overhead, landing",
-    "focus": "Posterior chain, overhead strength and landing resilience",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "hurdlehop",
-       "pogo",
-       "tuckjump",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 3,
-      "note": "Rebound jumps, quick and quiet."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "nordicham",
-       "dbrdl",
-       "slidecurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "RDL, or Nordics for 5s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bbohp",
-       "hspu",
-       "standdbohp",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "Handstand push-up if you can do clean reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Heavy, full range."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee over toes, soft and silent."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Hold neutral; no forced arching."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "abwheel",
-       "deadbug",
-       "rkcplank",
-       "plank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Anti-extension."
-     }
-    ]
-   }
+      "note": "Your plan adds drop landings to stick and puts landing, ankle and back care first.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "dropstick",
+            "hopstick"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "4",
+          "rir": 3,
+          "note": "Silent landing, hold 2 s"
+        }
+      ]
+    }
   ],
-  "in": [
-   {
-    "name": "Day A: squat, pull, push",
-    "focus": "Leg power and heavy upper strength in a short session",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "depthjump",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: squat, pull, push",
+        "focus": "Leg power and heavy upper strength in a short session",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "depthjump",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Box jump or drop to a silent stick."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "goblet",
+              "ssbsq"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "75-80% 1RM (one-rep max)."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "wpullup",
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2,
+            "note": "Add load once bodyweight reps are easy."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "wdip",
+              "dips",
+              "ringdip",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup",
+              "revwristcurl",
+              "radial"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "15-20",
+            "rir": 2,
+            "note": "Add wrist push-ups and plank rocking."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "deadbug",
+              "rkcplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s",
+            "rir": 2,
+            "note": "Hollow hold, lower back pressed down."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "lsit",
+              "hangleg",
+              "vup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2,
+            "note": "Compression: L-sit or pike lifts."
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 3,
-      "note": "Box jump or drop to a silent stick."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "frontsq",
-       "squat",
-       "goblet",
-       "ssbsq"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Day B: hinge, overhead, landing",
+        "focus": "Posterior chain, overhead strength and landing resilience",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "hurdlehop",
+              "pogo",
+              "tuckjump",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 3,
+            "note": "Rebound jumps, quick and quiet."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "nordicham",
+              "dbrdl",
+              "slidecurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2,
+            "note": "Romanian deadlift, or Nordics in sets of 5."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bbohp",
+              "hspu",
+              "standdbohp",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2,
+            "note": "Handstand push-up if you can do clean reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Heavy, full range."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee over toes, soft and silent."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Hold neutral; no forced arching."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "abwheel",
+              "deadbug",
+              "rkcplank",
+              "plank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Anti-extension."
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: squat, pull, push",
+        "focus": "Leg power and heavy upper strength in a short session",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "depthjump",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Box jump or drop to a silent stick."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "goblet",
+              "ssbsq"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "About 85% 1RM. New lifters: 3 x 5 with 3 reps in reserve."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "wpullup",
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 2,
+            "note": "Add load once bodyweight reps are easy."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "wdip",
+              "dips",
+              "ringdip",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup",
+              "revwristcurl",
+              "radial"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "15-20",
+            "rir": 2,
+            "note": "Add wrist push-ups and plank rocking."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "deadbug",
+              "rkcplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s",
+            "rir": 2,
+            "note": "Hollow hold, lower back pressed down."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "lsit",
+              "hangleg",
+              "vup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2,
+            "note": "Compression: L-sit or pike lifts."
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 2,
-      "note": "Heavy, short."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "wpullup",
-       "pullup",
-       "chinup",
-       "latpd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      {
+        "name": "Day B: hinge, overhead, landing",
+        "focus": "Posterior chain, overhead strength and landing resilience",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "hurdlehop",
+              "pogo",
+              "tuckjump",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 3,
+            "note": "Rebound jumps, quick and quiet."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "nordicham",
+              "dbrdl",
+              "slidecurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "Romanian deadlift, or Nordics in sets of 5."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bbohp",
+              "hspu",
+              "standdbohp",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "Handstand push-up if you can do clean reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Heavy, full range."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee over toes, soft and silent."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Hold neutral; no forced arching."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "abwheel",
+              "deadbug",
+              "rkcplank",
+              "plank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Anti-extension."
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: squat, pull, push",
+        "focus": "Leg power and heavy upper strength in a short session",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "depthjump",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Box jump or drop to a silent stick."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "goblet",
+              "ssbsq"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "Heavy, short."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "wpullup",
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "4",
+            "rir": 2,
+            "note": "Add load once bodyweight reps are easy."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "wdip",
+              "dips",
+              "ringdip",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup",
+              "revwristcurl",
+              "radial"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "15-20",
+            "rir": 2,
+            "note": "Add wrist push-ups and plank rocking."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "deadbug",
+              "rkcplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s",
+            "rir": 2,
+            "note": "Hollow hold, lower back pressed down."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "lsit",
+              "hangleg",
+              "vup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2,
+            "note": "Compression: L-sit or pike lifts."
+          }
+        ]
       },
-      "reps": "4",
-      "rir": 2,
-      "note": "Add load once bodyweight reps are easy."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "wdip",
-       "dips",
-       "ringdip",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wristcurl",
-       "pronsup",
-       "revwristcurl",
-       "radial"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "15-20",
-      "rir": 2,
-      "note": "Add wrist push-ups and plank rocking."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "bander",
-       "sideer",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "core",
-      "ex": [
-       "hollow",
-       "deadbug",
-       "rkcplank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "20-30 s",
-      "rir": 2,
-      "note": "Hollow hold, lower back pressed down."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "lsit",
-       "hangleg",
-       "vup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 2,
-      "note": "Compression: L-sit or pike lifts."
-     }
+      {
+        "name": "Day B: hinge, overhead, landing",
+        "focus": "Posterior chain, overhead strength and landing resilience",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "hurdlehop",
+              "pogo",
+              "tuckjump",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Rebound jumps, quick and quiet."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "nordicham",
+              "dbrdl",
+              "slidecurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "4",
+            "rir": 2,
+            "note": "Romanian deadlift, or Nordics in sets of 5."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bbohp",
+              "hspu",
+              "standdbohp",
+              "pikepush"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "Handstand push-up if you can do clean reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Heavy, full range."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Knee over toes, soft and silent."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 3,
+            "note": "Hold neutral; no forced arching."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "abwheel",
+              "deadbug",
+              "rkcplank",
+              "plank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Anti-extension."
+          }
+        ]
+      }
     ]
-   },
-   {
-    "name": "Day B: hinge, overhead, landing",
-    "focus": "Posterior chain, overhead strength and landing resilience",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "hurdlehop",
-       "pogo",
-       "tuckjump",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Easy aerobic",
+        "mode": "bike",
+        "work": "20 min",
+        "rest": "none",
+        "intensity": "easy, conversational",
+        "perWeek": 1,
+        "why": "Recovery between long training days; coach practice."
+      }
+    ],
+    "pre": [
+      {
+        "name": "Routine simulation",
+        "mode": "any",
+        "work": "2 x half routine (for example floor)",
+        "rest": "2 min",
+        "intensity": "competition effort",
+        "perWeek": 1,
+        "why": "Builds routine-specific endurance; coach practice."
+      }
+    ],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "pullups",
+      "name": "Strict pull-ups",
+      "how": "Dead hang, chin over bar, no kip, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "good": "15+"
       },
-      "reps": "4",
-      "rir": 3,
-      "note": "Rebound jumps, quick and quiet."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "nordicham",
-       "dbrdl",
-       "slidecurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      "note": "Women 10+. Coach practice."
+    },
+    {
+      "id": "lsit",
+      "name": "L-sit hold",
+      "how": "On parallettes or the floor, legs straight",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "good": "20-30",
+        "elite": ">30"
       },
-      "reps": "4",
-      "rir": 2,
-      "note": "RDL, or Nordics for 5s."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bbohp",
-       "hspu",
-       "standdbohp",
-       "pikepush"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      "note": "Coach practice."
+    },
+    {
+      "id": "hshold",
+      "name": "Handstand hold",
+      "how": "Wall or freestanding, straight line",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "good": "60+"
       },
-      "reps": "5",
-      "rir": 2,
-      "note": "Handstand push-up if you can do clean reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      "note": "Coach practice."
+    },
+    {
+      "id": "rope",
+      "name": "Legless rope climb (5 m)",
+      "how": "Arms only, timed to the top",
+      "unit": "s",
+      "better": "lower",
+      "bands": {},
+      "note": "Track your own trend."
+    },
+    {
+      "id": "cmj",
+      "name": "Countermovement jump",
+      "how": "Hands on hips, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "good": "45-55"
       },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Heavy, full range."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "depthjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
+      "note": "Men. Women lower; track your trend."
+    },
+    {
+      "id": "squat",
+      "name": "Squat strength",
+      "how": "Estimate from a 3-5 rep max",
+      "unit": "x body mass",
+      "better": "higher",
+      "bands": {
+        "good": "1.5+"
       },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Knee over toes, soft and silent."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "birddog",
-       "superman"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 3,
-      "note": "Hold neutral; no forced arching."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "abwheel",
-       "deadbug",
-       "rkcplank",
-       "plank"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Anti-extension."
-     }
+      "note": "Under 18: no 1RM test unless a qualified coach supervises."
+    }
+  ],
+  "week": [
+    "strength and conditioning (S&C) at the end of training or as its own session on lighter days",
+    "Keep sessions to 30-45 min",
+    "Never heavy or high-volume S&C the day before competition",
+    "Competition week: one short power and prehab session"
+  ],
+  "primer": [
+    "2-3 x 2-3 rebound or box jumps",
+    "Wrist and shoulder prep, 1 short set each",
+    "Stop well short of fatigue"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy session 7-10 days out",
+      "Competition week: one short power and prehab session",
+      "No new exercises in the final 2 weeks",
+      "No max testing within 10 days"
     ]
-   }
+  },
+  "rules": [
+    "Under 18: supervised, technique first, follow the youth training consensus",
+    "No 1RM testing unless a qualified coach supervises",
+    "Wrist pain on weight-bearing: stop and refer",
+    "Back pain on arching in a young gymnast: medical review",
+    "Avoid sudden spikes in landing or wrist-loading volume"
+  ],
+  "sources": [
+    {
+      "source": "Westermann et al. 2015, Sports Health"
+    },
+    {
+      "source": "DiFiori, Caine & Malina 2006, American Journal of Sports Medicine"
+    },
+    {
+      "source": "Moeskops et al. 2019, Strength and Conditioning Journal"
+    },
+    {
+      "source": "Lloyd et al. 2014, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/48/7/498"
+    },
+    {
+      "source": "Webster & Hewett 2018, Journal of Orthopaedic Research",
+      "url": "https://lida.sport-iat.de/ta/Record/4054906"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Seated pike lift (compression)",
+      "pattern": "core",
+      "equipment": "",
+      "why": "Core compression strength for press handstands and L-sits"
+    },
+    {
+      "name": "Wrist push-up and plank rocking",
+      "pattern": "wrist",
+      "equipment": "",
+      "why": "Progressive weight-bearing wrist loading"
+    }
   ]
- },
- "conditioning": {
-  "off": [
-   {
-    "name": "Easy aerobic",
-    "mode": "bike",
-    "work": "20 min",
-    "rest": "none",
-    "intensity": "easy, conversational",
-    "perWeek": 1,
-    "why": "Recovery between long training days; coach practice."
-   }
-  ],
-  "pre": [
-   {
-    "name": "Routine simulation",
-    "mode": "any",
-    "work": "2 x half routine (for example floor)",
-    "rest": "2 min",
-    "intensity": "competition effort",
-    "perWeek": 1,
-    "why": "Builds routine-specific endurance; coach practice."
-   }
-  ],
-  "in": []
- },
- "tests": [
-  {
-   "id": "pullups",
-   "name": "Strict pull-ups",
-   "how": "Dead hang, chin over bar, no kip, max reps",
-   "unit": "reps",
-   "better": "higher",
-   "bands": {
-    "good": "15+"
-   },
-   "note": "Women 10+. Coach practice."
-  },
-  {
-   "id": "lsit",
-   "name": "L-sit hold",
-   "how": "On parallettes or the floor, legs straight",
-   "unit": "s",
-   "better": "higher",
-   "bands": {
-    "good": "20-30",
-    "elite": ">30"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "hshold",
-   "name": "Handstand hold",
-   "how": "Wall or freestanding, straight line",
-   "unit": "s",
-   "better": "higher",
-   "bands": {
-    "good": "60"
-   },
-   "note": "Coach practice."
-  },
-  {
-   "id": "rope",
-   "name": "Legless rope climb (5 m)",
-   "how": "Arms only, timed to the top",
-   "unit": "s",
-   "better": "lower",
-   "bands": {},
-   "note": "Track your own trend."
-  },
-  {
-   "id": "cmj",
-   "name": "Countermovement jump",
-   "how": "Hands on hips, best of 3",
-   "unit": "cm",
-   "better": "higher",
-   "bands": {
-    "good": "45-55"
-   },
-   "note": "Men. Women lower; track your trend."
-  },
-  {
-   "id": "squat",
-   "name": "Squat strength",
-   "how": "Estimate from a 3-5RM",
-   "unit": "x body mass",
-   "better": "higher",
-   "bands": {
-    "good": "1.5"
-   },
-   "note": "Under 18: no 1RM test unless a qualified coach supervises."
-  }
- ],
- "week": [
-  "S&C at the end of training or as its own session on lighter days",
-  "Keep sessions to 30-45 min",
-  "Never heavy or high-volume S&C the day before competition",
-  "Competition week: one short power and prehab session"
- ],
- "primer": [
-  "2-3 x 2-3 rebound or box jumps",
-  "Wrist and shoulder prep, 1 short set each",
-  "Stop well short of fatigue"
- ],
- "taper": {
-  "days": 10,
-  "lines": [
-   "Last heavy session 7-10 days out",
-   "Competition week: one short power and prehab session",
-   "No new exercises in the final 2 weeks",
-   "No max testing within 10 days"
-  ]
- },
- "rules": [
-  "Under 18: supervised, technique first, follow the youth training consensus",
-  "No 1RM testing unless a qualified coach supervises",
-  "Wrist pain on weight-bearing: stop and refer",
-  "Back pain on arching in a young gymnast: medical review",
-  "Avoid sudden spikes in landing or wrist-loading volume"
- ],
- "sources": [
-  {
-   "source": "Westermann et al. 2015, Sports Health"
-  },
-  {
-   "source": "DiFiori, Caine & Malina 2006, American Journal of Sports Medicine"
-  },
-  {
-   "source": "Moeskops et al. 2019, Strength and Conditioning Journal"
-  },
-  {
-   "source": "Lloyd et al. 2014, British Journal of Sports Medicine",
-   "url": "https://bjsm.bmj.com/content/48/7/498"
-  },
-  {
-   "source": "Webster & Hewett 2018, Journal of Orthopaedic Research",
-   "url": "https://lida.sport-iat.de/ta/Record/4054906"
-  }
- ],
- "missing_ex": [
-  {
-   "name": "Seated pike lift (compression)",
-   "pattern": "core",
-   "equipment": "",
-   "why": "Core compression strength for press handstands and L-sits"
-  },
-  {
-   "name": "Wrist push-up and plank rocking",
-   "pattern": "wrist",
-   "equipment": "",
-   "why": "Progressive weight-bearing wrist loading"
-  }
- ]
 }

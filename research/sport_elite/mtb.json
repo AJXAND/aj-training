@@ -27,7 +27,7 @@
     "lowback",
     "shoulderER"
    ],
-   "note": "Light, strong and aerobic: skip the grip block, keep mass down."
+   "note": "Your plan keeps you light, strong and aerobic. You can skip the grip and neck slots."
   },
   {
    "id": "enduro",
@@ -44,7 +44,7 @@
     "shoulderER",
     "neck"
    ],
-   "note": "Grip block and neck holds stay in; arm pump circuit in pre season."
+   "note": "Keep the grip and neck slots. Your plan adds arm pump circuits and run simulations on the bike."
   },
   {
    "id": "downhill",
@@ -62,7 +62,39 @@
     "neck",
     "shoulderER"
    ],
-   "note": "Most strength and grip work of the three, plus run simulations on the bike."
+   "note": "Your plan adds isometric leg holds and extra grip work, plus arm pump circuits and run simulations on the bike.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "isosplit",
+      "wallsit"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30-40 s/side",
+     "rir": 2,
+     "note": "Hold a deep attack position."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "farmerhold",
+      "deadhang",
+      "towelhang"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30-45 s",
+     "rir": 2
+    }
+   ]
   }
  ],
  "sessions": {
@@ -731,7 +763,11 @@
     "rest": "2 min between rounds",
     "intensity": "Hard but controlled",
     "perWeek": 1,
-    "why": "Gravity riders: grip and holding endurance for long descents. Coach practice."
+    "why": "Grip and holding endurance for long descents. Coach practice.",
+    "for": [
+     "enduro",
+     "downhill"
+    ]
    },
    {
     "name": "Run simulations",
@@ -740,7 +776,11 @@
     "rest": "Full recovery",
     "intensity": "Race effort",
     "perWeek": 1,
-    "why": "Gravity riders: matches race run length. Coach practice."
+    "why": "Matches race run length. Coach practice.",
+    "for": [
+     "enduro",
+     "downhill"
+    ]
    },
    {
     "name": "Over-threshold surges",
@@ -749,7 +789,10 @@
     "rest": "Easy spin between sets",
     "intensity": "Above threshold",
     "perWeek": 1,
-    "why": "XC: repeated surges on climbs."
+    "why": "Repeated surges on climbs.",
+    "for": [
+     "xc"
+    ]
    }
   ],
   "in": [
@@ -760,7 +803,11 @@
     "rest": "2 min between rounds",
     "intensity": "Hard but controlled",
     "perWeek": 1,
-    "why": "Gravity riders: holds grip endurance. Coach practice."
+    "why": "Holds grip endurance. Coach practice.",
+    "for": [
+     "enduro",
+     "downhill"
+    ]
    }
   ]
  },
@@ -783,7 +830,7 @@
    "unit": "x bodyweight",
    "better": "higher",
    "bands": {
-    "good": "1.25"
+    "good": "1.25+"
    },
    "note": "Good amateur XC. Gravity 1.5."
   },
@@ -794,7 +841,7 @@
    "unit": "reps",
    "better": "higher",
    "bands": {
-    "good": "8"
+    "good": "8+"
    },
    "note": "Good amateur XC. Gravity 12."
   },
@@ -805,7 +852,7 @@
    "unit": "s",
    "better": "higher",
    "bands": {
-    "good": "45"
+    "good": "45+"
    },
    "note": "Good amateur XC. Gravity 60 s+."
   }

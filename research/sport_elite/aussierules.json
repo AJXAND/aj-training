@@ -18,7 +18,24 @@
     "upperPush": 1,
     "upperPull": 1
    },
-   "note": "Aerobic power leads; upper body drops to 2 sets, more single-leg and top-speed work."
+   "note": "Your plan has less upper-body work and adds single-leg strength. Treat the aerobic intervals as your key conditioning.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "bss",
+      "stepup",
+      "bwss"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "6/leg",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "small",
@@ -31,7 +48,7 @@
    "prehab": [
     "nordic"
    ],
-   "note": "Speed and repeated sprints lead; upper body drops to 2 sets."
+   "note": "Your plan has less upper-body work and puts Nordics first. Treat the speed and repeated sprint runs as your key sessions."
   },
   {
    "id": "key",
@@ -44,7 +61,41 @@
    "prehab": [
     "landing"
    ],
-   "note": "Extra jumps (single-leg off a 3-step run-up, 3 x 3/leg) and 2 muscle-building accessories in the off-season."
+   "note": "Your plan adds single-leg marking jumps and an extra muscle-building exercise.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "hopstick",
+      "splitjump",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/leg",
+     "rir": 2,
+     "note": "Jump off one leg from a 3-step run-up, reach high, land and stick."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "incdb",
+      "incbench",
+      "pushup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8-12",
+     "rir": 2,
+     "note": "Muscle-building work."
+    }
+   ]
   },
   {
    "id": "ruck",
@@ -58,7 +109,41 @@
     "patellar",
     "landing"
    ],
-   "note": "Extra jump and landing work, patellar tendon loading twice a week, more mass work."
+   "note": "Your plan adds drop landings and patellar tendon holds, with more mass work.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Step off, land on two feet and stick for 2 s."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "isosplit",
+      "spanishsq",
+      "legext"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 4,
+      "adv": 4
+     },
+     "reps": "30-45 s",
+     "rir": 2,
+     "note": "Patellar tendon loading. Hold, do not move."
+    }
+   ]
   },
   {
    "id": "aflw",
@@ -67,7 +152,25 @@
    "prehab": [
     "landing"
    ],
-   "note": "Landing work is priority 1, 2-3 times a week, all year."
+   "note": "Your plan adds drop landings and puts landing work first. Keep it going all year.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick",
+      "latbound"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Step off, land on two feet and stick for 2 s."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -1063,12 +1166,12 @@
    "id": "tt2k",
    "name": "2 km time trial",
    "how": "Flat 400 m track or measured loop, run all out.",
-   "unit": "min:s",
+   "unit": "m:ss",
    "better": "lower",
    "bands": {
     "club": "7:00-7:45",
     "good": "6:20-7:00",
-    "elite": "<6:15"
+    "elite": "<6:20"
    },
    "note": "AFL midfielders about 6:00. Male bands."
   },
@@ -1113,7 +1216,7 @@
    "id": "rm",
    "name": "Squat 1RM",
    "how": "Estimate from a 3RM. Report as x body mass.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "1.25",
@@ -1128,9 +1231,9 @@
    "unit": "N",
    "better": "higher",
    "bands": {
-    "good": ">256 early pre-season, >279 end of pre-season"
+    "good": ">256"
    },
-   "note": "Below these, strain risk was 2.7-4.3 times higher (Opar 2015)."
+   "note": "Aim for over 256 N early in pre-season and over 279 N by the end. Below these, strain risk was 2.7-4.3 times higher (Opar 2015)."
   }
  ],
  "week": [

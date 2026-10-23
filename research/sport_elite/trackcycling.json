@@ -64,7 +64,7 @@
     "nordic",
     "copenhagen"
    ],
-   "note": "Full plan: 3 sessions off and pre season, 2 heavy low-volume sessions in season."
+   "note": "Your plan is the full sprint plan, with hamstring and groin work first in your prehab."
   },
   {
    "id": "endurance",
@@ -80,7 +80,7 @@
     "lowback",
     "hipAbd"
    ],
-   "note": "Use the road cycling plan plus this power day; keep mass down."
+   "note": "Your plan puts lower back and hip work first. Keep extra muscle down: lift heavy and keep accessories light."
   }
  ],
  "sessions": {
@@ -756,7 +756,10 @@
     "rest": "10-15 min",
     "intensity": "Race pace or above",
     "perWeek": 1,
-    "why": "For kilo and team sprint man three only. Coach practice."
+    "why": "Mainly for kilo and team sprint man three. Coach practice.",
+    "for": [
+     "sprint"
+    ]
    }
   ],
   "in": [
@@ -790,7 +793,7 @@
    "bands": {
     "club": "<1.75",
     "good": "1.75-2.0",
-    "elite": "2.0-2.5"
+    "elite": "2.0+"
    },
    "note": "Good = national level, elite = international. Men; benchmark, not peer reviewed."
   },
@@ -802,8 +805,8 @@
    "better": "higher",
    "bands": {
     "club": "<18",
-    "good": "18-20",
-    "elite": "22-25+"
+    "good": "18-22",
+    "elite": "22+"
    },
    "note": "Men. Benchmark, not peer reviewed."
   },
@@ -815,7 +818,7 @@
    "better": "higher",
    "bands": {
     "club": "<50",
-    "good": "50",
+    "good": "50-60",
     "elite": "60+"
    },
    "note": "Men. Benchmark, not peer reviewed."
@@ -828,7 +831,7 @@
    "better": "lower",
    "bands": {
     "club": ">11.0",
-    "good": "<11.0",
+    "good": "10.0-11.0",
     "elite": "<10.0"
    },
    "note": "Men. Benchmark, not peer reviewed."

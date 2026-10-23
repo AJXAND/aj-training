@@ -21,7 +21,7 @@
    "prehab": [
     "nordic"
    ],
-   "note": "More top-speed running, Nordics first, and a bigger aerobic power target."
+   "note": "Nordics come first in your prehab. Get extra top-speed running: 90%+ of top speed at least twice a week."
   },
   {
    "id": "cm",
@@ -30,7 +30,7 @@
    "prehab": [
     "nordic"
    ],
-   "note": "Aerobic power (15/15 intervals) comes first in your conditioning."
+   "note": "Nordics come first in your prehab. Treat the 15/15 intervals as your key conditioning session."
   },
   {
    "id": "cbst",
@@ -45,7 +45,41 @@
     "landing",
     "neck"
    ],
-   "note": "Extra jump and landing work, upper-body and trunk strength, optional neck work once a week (practice)."
+   "note": "Your plan adds drop landings and neck work, with more upper-body and trunk strength.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Step off, land on two feet and stick for 2 s."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband",
+      "chintuck"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10 s each way",
+     "rir": 3,
+     "note": "4 directions, 50-70% effort."
+    }
+   ]
   },
   {
    "id": "gk",
@@ -63,7 +97,54 @@
     "wrist",
     "fingers"
    ],
-   "note": "Swap linear jumps for lateral bounds, add shoulder, wrist and finger work, and drop most aerobic conditioning."
+   "note": "Your plan adds lateral bounds, shoulder, wrist and finger work, and drops the long aerobic runs.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "decel",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/side",
+     "rir": 2,
+     "note": "Push off sideways and stick each landing."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "bander",
+      "cabler",
+      "sideer"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "fingerext",
+      "wristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15-20",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "futsal",
@@ -74,7 +155,25 @@
     "ankle",
     "landing"
    ],
-   "note": "Conditioning becomes short intervals and change of direction; keep Nordics and Copenhagens (practice, no futsal data in the research)."
+   "note": "Your plan adds deceleration drills and keeps Nordics and Copenhagens. Swap long runs for short court intervals with turns (coaching practice).",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "decel",
+      "hopstick",
+      "latbound"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 2,
+     "note": "Sprint 5 m, stop in 2 steps and stick."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -353,6 +452,7 @@
       "role": "pow",
       "ex": [
        "latbound",
+       "decel",
        "hopstick",
        "broadjump"
       ],
@@ -917,7 +1017,13 @@
     "rest": "3 min easy jog",
     "intensity": "90-95% max heart rate",
     "perWeek": 1,
-    "why": "Builds aerobic power (Helgerud 2001)."
+    "why": "Builds aerobic power (Helgerud 2001).",
+    "for": [
+     "wide",
+     "cm",
+     "cbst",
+     "futsal"
+    ]
    },
    {
     "name": "Tempo runs",
@@ -926,7 +1032,13 @@
     "rest": "Walk 100 m",
     "intensity": "About 65-70% of top speed",
     "perWeek": 1,
-    "why": "Running volume and tissue capacity, low stress."
+    "why": "Running volume and tissue capacity, low stress.",
+    "for": [
+     "wide",
+     "cm",
+     "cbst",
+     "futsal"
+    ]
    },
    {
     "name": "Max speed",
@@ -946,7 +1058,13 @@
     "rest": "3 min between sets",
     "intensity": "90-95% of 30-15 IFT speed, or RPE 8-9",
     "perWeek": 1,
-    "why": "Aerobic power for repeated efforts (Buchheit 2008)."
+    "why": "Aerobic power for repeated efforts (Buchheit 2008).",
+    "for": [
+     "wide",
+     "cm",
+     "cbst",
+     "futsal"
+    ]
    },
    {
     "name": "Repeated sprints",
@@ -975,7 +1093,13 @@
     "rest": "3 min",
     "intensity": "RPE 8-9; sprints 90%+",
     "perWeek": 1,
-    "why": "Only for subs and non-starters, MD+1 or MD+2."
+    "why": "Only for subs and non-starters, MD+1 or MD+2.",
+    "for": [
+     "wide",
+     "cm",
+     "cbst",
+     "futsal"
+    ]
    },
    {
     "name": "Weekly top speed",
@@ -1047,7 +1171,7 @@
    "better": "higher",
    "bands": {
     "club": "1200-1600",
-    "good": "1600-2100",
+    "good": "1600-2200",
     "elite": ">2200"
    },
    "note": "Women about 35-40% lower. Or use the 30-15 IFT: 17.0-18.5 / 18.5-19.5 / >19.5 km/h."
@@ -1056,7 +1180,7 @@
    "id": "rm",
    "name": "Trap bar or squat 1RM",
    "how": "Estimate from a 3-5RM. Report as x body mass.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "1.25",
@@ -1163,12 +1287,6 @@
    "pattern": "kneeflex",
    "equipment": "anchor+bands",
    "why": "Nordic regression for new lifters"
-  },
-  {
-   "name": "Deceleration drill",
-   "pattern": "land",
-   "equipment": "",
-   "why": "Landing and cutting module"
   }
  ]
 }

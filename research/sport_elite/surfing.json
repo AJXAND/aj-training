@@ -1,735 +1,735 @@
 {
- "id": "surfing",
- "name": "Surfing",
- "aliases": [
-  "surf",
-  "bodyboarding",
-  "shortboard",
-  "longboard",
-  "competitive surfing"
- ],
- "group": "Water",
- "variants": [],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: legs, pull and rotation",
-    "focus": "Lower-body strength and power, pulling strength",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "cmj",
-       "boxjp",
-       "squatjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Add a quarter turn to stick once clean"
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "About 80% 1RM"
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pullup",
-       "chinup",
-       "latpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bss",
-       "latlunge",
-       "dbsplit",
-       "bwss"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "sideer",
-       "bander",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "serpunch",
-       "scappushup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 2
-     },
-     {
-      "role": "core",
-      "ex": [
-       "landrot",
-       "woodchop",
-       "cabrot"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: pop-up power and hinge",
-    "focus": "Explosive push, posterior chain, upper back",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "clappu",
-       "mbchest",
-       "pushup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "5",
-      "rir": 3,
-      "note": "Fast hands off the floor, like a pop-up"
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "csdb",
-       "csrow",
-       "dbrow",
-       "invrow"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "ytw",
-       "bodbrev",
-       "revfly"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 2,
-      "note": "Prone Y-T-W, light"
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "burpee",
-       "pushup",
-       "clappu"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 3,
-      "note": "Push-up to pop-up drill, land in stance"
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 3,
-      "note": "Can go in the warm-up"
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "hyper90",
-       "superman",
-       "birddog"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Stick each landing, knee over toes"
-     }
-    ]
-   }
+  "id": "surfing",
+  "name": "Surfing",
+  "aliases": [
+    "surf",
+    "bodyboarding",
+    "shortboard",
+    "longboard",
+    "competitive surfing"
   ],
-  "pre": [
-   {
-    "name": "Day A: power and strength",
-    "focus": "Jumps, heavy legs, pulling",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "cmj",
-       "boxjp",
-       "squatjump"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
+  "group": "Water",
+  "variants": [],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: legs, pull and rotation",
+        "focus": "Lower-body strength and power, pulling strength",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Add a quarter turn to stick once clean"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "About 80% 1RM (one-rep max)"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "latlunge",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "sideer",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "serpunch",
+              "scappushup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "landrot",
+              "woodchop",
+              "cabrot"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 3
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
+      {
+        "name": "Day B: pop-up power and hinge",
+        "focus": "Explosive push, posterior chain, upper back",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "clappu",
+              "mbchest",
+              "pushup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 3,
+            "note": "Fast hands off the floor, like a pop-up"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "csdb",
+              "csrow",
+              "dbrow",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "ytw",
+              "bodbrev",
+              "revfly"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2,
+            "note": "Prone Y-T-W, light"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "burpee",
+              "pushup",
+              "clappu"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 3,
+            "note": "Push-up to pop-up drill, land in stance"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3,
+            "note": "Can go in the warm-up"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "hyper90",
+              "superman",
+              "birddog"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Stick each landing, knee over toes"
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: power and strength",
+        "focus": "Jumps, heavy legs, pulling",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "About 85% 1RM"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "latlunge",
+              "dbsplit"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "sideer",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "serpunch",
+              "scappushup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 2,
-      "note": "About 85% 1RM"
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pullup",
-       "chinup",
-       "latpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 4
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "bss",
-       "latlunge",
-       "dbsplit"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "sideer",
-       "bander",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "serpunch",
-       "scappushup"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 2
-     }
+      {
+        "name": "Day B: explosive push and hinge",
+        "focus": "Pop-up speed, hinge, upper back",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "clappu",
+              "mbchest",
+              "mbslam"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "csdb",
+              "csrow",
+              "dbrow",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "burpee",
+              "pushup",
+              "clappu"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 3,
+            "note": "Pop-up drill, as fast as you can"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "openbook",
+              "tspineroller",
+              "wgs"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3,
+            "note": "Can go in the warm-up"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "hyper90",
+              "superman",
+              "birddog"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hopstick",
+              "latbound",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4-6/side",
+            "rir": 3,
+            "note": "Stick each landing, knee over toes"
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Full body maintain",
+        "focus": "One short session on a flat day",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "About 85% 1RM"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "rdl",
+              "dbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "sideer",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wallslide",
+              "serpunch",
+              "scappushup"
+            ],
+            "sets": {
+              "new": 1,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-15",
+            "rir": 2
+          }
+        ]
+      }
     ]
-   },
-   {
-    "name": "Day B: explosive push and hinge",
-    "focus": "Pop-up speed, hinge, upper back",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "clappu",
-       "mbchest",
-       "mbslam"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Paddle endurance",
+        "mode": "swim",
+        "work": "3-4 x 5 min",
+        "rest": "1-2 min",
+        "intensity": "Moderate to hard, steady",
+        "perWeek": 2,
+        "why": "Paddling is about half of heat time; SkiErg works on land"
       },
-      "reps": "4",
-      "rir": 3
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
+      {
+        "name": "Repeated sprint paddle",
+        "mode": "swim",
+        "work": "10-15 x 15 s hard",
+        "rest": "45 s easy",
+        "intensity": "Near max, like chasing a wave",
+        "perWeek": 1,
+        "why": "Repeated sprints to catch waves (coach practice); SkiErg also works"
+      }
+    ],
+    "pre": [
+      {
+        "name": "Repeated sprint paddle",
+        "mode": "swim",
+        "work": "10-15 x 15 s hard",
+        "rest": "45 s easy",
+        "intensity": "Near max",
+        "perWeek": 1,
+        "why": "Sharpens wave-catching speed before contests or a trip"
       },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "csdb",
-       "csrow",
-       "dbrow",
-       "invrow"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 3,
-       "adv": 3
+      {
+        "name": "Paddle endurance",
+        "mode": "swim",
+        "work": "3 x 5 min",
+        "rest": "1-2 min",
+        "intensity": "Moderate to hard",
+        "perWeek": 1,
+        "why": "Holds paddle fitness on flat weeks"
+      }
+    ],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "paddle15",
+      "name": "15 m sprint paddle",
+      "how": "Pool or flat water, from still, timed by a friend",
+      "unit": "s",
+      "better": "lower",
+      "bands": {},
+      "note": "Used in surf testing; track your trend"
+    },
+    {
+      "id": "paddle400",
+      "name": "400 m paddle or swim",
+      "how": "Pool swim or board paddle, timed",
+      "unit": "s",
+      "better": "lower",
+      "bands": {},
+      "note": "Track your trend"
+    },
+    {
+      "id": "cmj",
+      "name": "Countermovement jump",
+      "how": "Hands on hips, jump and reach or use a jump app; best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "club": "<40",
+        "good": "40+"
       },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "burpee",
-       "pushup",
-       "clappu"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
+      "note": "Good amateur, men; women 30 cm (coach practice)"
+    },
+    {
+      "id": "pullups",
+      "name": "Strict pull-ups",
+      "how": "Dead hang start, chin over bar, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "club": "<10",
+        "good": "10+"
       },
-      "reps": "6",
-      "rir": 3,
-      "note": "Pop-up drill, as fast as you can"
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "openbook",
-       "tspineroller",
-       "wgs"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      "note": "Women: 5+"
+    },
+    {
+      "id": "squat1rm",
+      "name": "Back squat 1RM",
+      "how": "Estimate from a 3-5 rep max",
+      "unit": "x BM",
+      "better": "higher",
+      "bands": {
+        "club": "<1.25",
+        "good": "1.25-1.5"
       },
-      "reps": "8/side",
-      "rir": 3,
-      "note": "Can go in the warm-up"
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hipext",
-       "hyper90",
-       "superman",
-       "birddog"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "10-15",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "hopstick",
-       "latbound",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "4-6/side",
-      "rir": 3,
-      "note": "Stick each landing, knee over toes"
-     }
-    ]
-   }
+      "note": "Coach practice"
+    }
   ],
-  "in": [
-   {
-    "name": "Full body maintain",
-    "focus": "One short session on a flat day",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "cmj",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "3",
-      "rir": 3
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "3",
-      "rir": 2,
-      "note": "About 85% 1RM"
-     },
-     {
-      "role": "main",
-      "ex": [
-       "pullup",
-       "chinup",
-       "latpd",
-       "invrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "rdl",
-       "dbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "cabler",
-       "sideer",
-       "bander",
-       "ytw"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "wallslide",
-       "serpunch",
-       "scappushup"
-      ],
-      "sets": {
-       "new": 1,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10-15",
-      "rir": 2
-     }
+  "week": [
+    "Surf when the waves are good; lift on flat days",
+    "Off or flat season: 3 sessions; consistent swell: 1",
+    "No heavy upper body before a long paddle session",
+    "Keep cuff and scapular work in 2-3 times a week"
+  ],
+  "primer": [],
+  "taper": {
+    "days": 7,
+    "lines": [
+      "Last heavy session 5-7 days before a contest or trip",
+      "Keep paddling volume, cut gym volume",
+      "No new exercises in the last 2 weeks"
     ]
-   }
+  },
+  "rules": [
+    "Cuff and scapular work 2-3 times a week",
+    "Pulling sets at least equal to pressing sets",
+    "Stop and get checked if shoulder pain lingers after paddling"
+  ],
+  "sources": [
+    {
+      "source": "Mendez-Villanueva and Bishop 2005, Sports Medicine"
+    },
+    {
+      "source": "Farley, Harris and Kilding 2012, Journal of Strength and Conditioning Research"
+    },
+    {
+      "source": "Secomb et al. 2015, International Journal of Sports Science and Coaching"
+    },
+    {
+      "source": "Nathanson, Haynes and Galanis 2002, American Journal of Emergency Medicine"
+    },
+    {
+      "source": "Andersson et al. 2017, British Journal of Sports Medicine"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Push-up to pop-up drill",
+      "pattern": "pup",
+      "equipment": "",
+      "why": "Sport-specific pop-up speed"
+    },
+    {
+      "name": "Rotational jump to stick",
+      "pattern": "plow",
+      "equipment": "",
+      "why": "Power for turns and aerial landings"
+    }
   ]
- },
- "conditioning": {
-  "off": [
-   {
-    "name": "Paddle endurance",
-    "mode": "swim",
-    "work": "3-4 x 5 min",
-    "rest": "1-2 min",
-    "intensity": "Moderate to hard, steady",
-    "perWeek": 2,
-    "why": "Paddling is about half of heat time; SkiErg works on land"
-   },
-   {
-    "name": "Repeated sprint paddle",
-    "mode": "swim",
-    "work": "10-15 x 15 s hard",
-    "rest": "45 s easy",
-    "intensity": "Near max, like chasing a wave",
-    "perWeek": 1,
-    "why": "Repeated sprints to catch waves (coach practice); SkiErg also works"
-   }
-  ],
-  "pre": [
-   {
-    "name": "Repeated sprint paddle",
-    "mode": "swim",
-    "work": "10-15 x 15 s hard",
-    "rest": "45 s easy",
-    "intensity": "Near max",
-    "perWeek": 1,
-    "why": "Sharpens wave-catching speed before contests or a trip"
-   },
-   {
-    "name": "Paddle endurance",
-    "mode": "swim",
-    "work": "3 x 5 min",
-    "rest": "1-2 min",
-    "intensity": "Moderate to hard",
-    "perWeek": 1,
-    "why": "Holds paddle fitness on flat weeks"
-   }
-  ],
-  "in": []
- },
- "tests": [
-  {
-   "id": "paddle15",
-   "name": "15 m sprint paddle",
-   "how": "Pool or flat water, from still, timed by a friend",
-   "unit": "s",
-   "better": "lower",
-   "bands": {},
-   "note": "Used in surf testing; track your trend"
-  },
-  {
-   "id": "paddle400",
-   "name": "400 m paddle or swim",
-   "how": "Pool swim or board paddle, timed",
-   "unit": "s",
-   "better": "lower",
-   "bands": {},
-   "note": "Track your trend"
-  },
-  {
-   "id": "cmj",
-   "name": "Countermovement jump",
-   "how": "Hands on hips, jump and reach or use a jump app; best of 3",
-   "unit": "cm",
-   "better": "higher",
-   "bands": {
-    "club": "<40",
-    "good": "40+"
-   },
-   "note": "Good amateur, men; women 30 cm (coach practice)"
-  },
-  {
-   "id": "pullups",
-   "name": "Strict pull-ups",
-   "how": "Dead hang start, chin over bar, max reps",
-   "unit": "reps",
-   "better": "higher",
-   "bands": {
-    "club": "<10",
-    "good": "10+"
-   },
-   "note": "Women: 5+"
-  },
-  {
-   "id": "squat1rm",
-   "name": "Back squat 1RM",
-   "how": "Estimate from a 3-5 rep max",
-   "unit": "x BM",
-   "better": "higher",
-   "bands": {
-    "club": "<1.25",
-    "good": "1.25-1.5"
-   },
-   "note": "Coach practice"
-  }
- ],
- "week": [
-  "Surf when the waves are good; lift on flat days",
-  "Off or flat season: 3 sessions; consistent swell: 1",
-  "No heavy upper body before a long paddle session",
-  "Keep cuff and scapular work in 2-3 times a week"
- ],
- "primer": [],
- "taper": {
-  "days": 7,
-  "lines": [
-   "Last heavy session 5-7 days before a contest or trip",
-   "Keep paddling volume, cut gym volume",
-   "No new exercises in the last 2 weeks"
-  ]
- },
- "rules": [
-  "Cuff and scapular work 2-3 times a week",
-  "Pulling sets at least equal to pressing sets",
-  "Stop and get checked if shoulder pain lingers after paddling"
- ],
- "sources": [
-  {
-   "source": "Mendez-Villanueva and Bishop 2005, Sports Medicine"
-  },
-  {
-   "source": "Farley, Harris and Kilding 2012, Journal of Strength and Conditioning Research"
-  },
-  {
-   "source": "Secomb et al. 2015, International Journal of Sports Science and Coaching"
-  },
-  {
-   "source": "Nathanson, Haynes and Galanis 2002, American Journal of Emergency Medicine"
-  },
-  {
-   "source": "Andersson et al. 2017, British Journal of Sports Medicine"
-  }
- ],
- "missing_ex": [
-  {
-   "name": "Push-up to pop-up drill",
-   "pattern": "pup",
-   "equipment": "",
-   "why": "Sport-specific pop-up speed"
-  },
-  {
-   "name": "Rotational jump to stick",
-   "pattern": "plow",
-   "equipment": "",
-   "why": "Power for turns and aerial landings"
-  }
- ]
 }

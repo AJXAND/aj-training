@@ -25,7 +25,41 @@
     "shoulderER",
     "scap"
    ],
-   "note": "3 gym sessions off and pre season, 2 in season, with jumps and heavy squats for starts."
+   "note": "Your plan adds extra jumps for starts and turns and upper-body power throws.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "squatjump",
+      "boxjp",
+      "cmj"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3",
+     "rir": 3,
+     "note": "Explode like a start. Full rest."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "benchthrow",
+      "mbchest",
+      "clappu"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3",
+     "rir": 3,
+     "note": "Fast arms, full rest."
+    }
+   ]
   },
   {
    "id": "distance",
@@ -42,7 +76,7 @@
     "scap",
     "tspine"
    ],
-   "note": "2 sessions a week (1 in season), lower set counts, RIR 2-3. Lift for robustness and turns, not size."
+   "note": "Lift for robustness and turns, not size. Two sessions a week is plenty, one in season."
   },
   {
    "id": "breaststroke",
@@ -53,7 +87,7 @@
     "copenhagen",
     "hipRot"
    ],
-   "note": "Copenhagen and hip rotation work move to the front. Avoid sudden jumps in kick volume."
+   "note": "Your plan puts groin and hip rotation work first in your prehab. Build kick volume gradually."
   }
  ],
  "sessions": {
@@ -790,14 +824,14 @@
    "bands": {
     "club": "<1.25",
     "good": "1.25-1.5",
-    "elite": "1.5-1.75"
+    "elite": "1.5+"
    },
    "note": "1.25 x is the distance target, 1.5-1.75 x sprint."
   },
   {
    "id": "erir",
-   "name": "Shoulder ER:IR strength ratio",
-   "how": "Handheld dynamometer at 90 degrees, or 5RM cable ER vs IR.",
+   "name": "Shoulder rotation strength ratio (external to internal)",
+   "how": "Handheld dynamometer at 90 degrees, or 5-rep max cable external vs internal rotation.",
    "unit": "ratio",
    "better": "higher",
    "bands": {

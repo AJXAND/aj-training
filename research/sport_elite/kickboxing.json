@@ -15,14 +15,48 @@
   {
    "id": "muaythai",
    "name": "Muay Thai",
-   "desc": "Elbows, knees and a long clinch; pro bouts 5 x 3 min, amateur (IFMA) 3 x 3 min.",
+   "desc": "Elbows, knees and a long clinch; pro bouts 5 x 3 min, amateur 3 x 3 min.",
    "q": {
     "grip": 3
    },
    "prehab": [
     "neck"
    ],
-   "note": "Neck and grip work rise for the clinch; round sims include a clinch-knee round."
+   "note": "Your plan adds extra neck and grip work for the clinch. Include a clinch-knee round in your round sims.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "neckband",
+      "neckiso",
+      "neckharness"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12-20/direction",
+     "rir": 3,
+     "note": "Slow, all 4 directions."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "towelhang",
+      "farmerhold",
+      "platepinch"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30-40 s",
+     "rir": 2,
+     "note": "Clinch grip."
+    }
+   ]
   },
   {
    "id": "kickboxing",
@@ -33,7 +67,39 @@
     "hipAbd",
     "ankle"
    ],
-   "note": "More single-leg and hip work for kicking; less clinch grip work."
+   "note": "Your plan adds split jumps and extra hip work for kicking.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "splitjump",
+      "latbound"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Switch legs in the air, land soft."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "cababd",
+      "sideabd",
+      "bandabd"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12-15/side",
+     "rir": 3
+    }
+   ]
   }
  ],
  "sessions": {
@@ -901,7 +967,7 @@
    "id": "trapdl1rm",
    "name": "Trap bar deadlift 1RM",
    "how": "Work up to a hard single, or estimate from a 3-5RM.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.75",

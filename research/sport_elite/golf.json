@@ -147,6 +147,7 @@
       "role": "pow",
       "ex": [
        "mbchest",
+       "landpunch",
        "salmpress",
        "mbrot"
       ],
@@ -157,7 +158,7 @@
       },
       "reps": "5",
       "rir": 3,
-      "note": "Or landmine rotational press, drive from the hips."
+      "note": "Drive from the hips."
      },
      {
       "role": "main",
@@ -510,6 +511,7 @@
       "role": "pow",
       "ex": [
        "mbchest",
+       "landpunch",
        "salmpress",
        "mbrot"
       ],
@@ -787,6 +789,7 @@
       "role": "pow",
       "ex": [
        "mbchest",
+       "landpunch",
        "salmpress",
        "mbrot"
       ],
@@ -980,8 +983,8 @@
    "unit": "mph",
    "better": "higher",
    "bands": {
-    "club": "90-95",
-    "good": "105-110",
+    "club": "<105",
+    "good": "105-115",
     "elite": "115+"
    },
    "note": "Women: amateur about 70-80, tour about 94-96. Industry data, not peer reviewed."
@@ -994,8 +997,7 @@
    "better": "lower",
    "bands": {
     "club": ">10",
-    "good": "<10",
-    "elite": "<10"
+    "good": "<10"
    },
    "note": "Keep left and right within 10%."
   },
@@ -1015,7 +1017,7 @@
    "id": "trapdl1rm",
    "name": "Trap bar deadlift 1RM",
    "how": "Work up to a hard single, or estimate from a 3-5RM.",
-   "unit": "x BM",
+   "unit": "x body mass",
    "better": "higher",
    "bands": {
     "club": "<1.5",
@@ -1025,15 +1027,15 @@
   {
    "id": "rotscreen",
    "name": "Rotation screen",
-   "how": "Seated trunk rotation about 45 degrees each way; 90/90 hip IR about 35-45 degrees; deep squat; toe touch.",
-   "unit": "pass/fail",
+   "how": "Four checks: seated trunk rotation about 45 degrees each way; 90/90 hip internal rotation about 35-45 degrees; deep squat; toe touch. Count how many you pass.",
+   "unit": "passed (of 4)",
    "better": "higher",
    "bands": {
-    "club": "fail 2+",
-    "good": "fail 1",
-    "elite": "pass all"
+    "club": "<3",
+    "good": "3",
+    "elite": "4"
    },
-   "note": "TPI-style screen, coach practice."
+   "note": "Golf fitness screen, coach practice."
   }
  ],
  "week": [
@@ -1082,12 +1084,5 @@
    "source": "Murray AD et al. 2017, BJSM"
   }
  ],
- "missing_ex": [
-  {
-   "name": "Landmine rotational press",
-   "pattern": "prot",
-   "equipment": "landmine+bb",
-   "why": "Day B rotational power option; mapped to single-arm landmine press."
-  }
- ]
+ "missing_ex": []
 }

@@ -20,7 +20,7 @@
     "copenhagen",
     "hipFlex"
    ],
-   "note": "Shift intervals stay short (30-45 s) and acceleration power gets priority."
+   "note": "Your plan puts more weight on acceleration power. Keep your shift intervals short, 30-45 s."
   },
   {
    "id": "defence",
@@ -35,7 +35,39 @@
     "copenhagen",
     "shoulderER"
    ],
-   "note": "More aerobic recovery work and extra upper-body strength for board battles."
+   "note": "Your plan adds extra upper-body pressing and rowing for board battles. An extra easy bike ride each week helps you recover from long shifts.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "lmpress",
+      "standdbohp",
+      "pushup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8",
+     "rir": 2
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "dbrow",
+      "cabrow",
+      "invrow"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8-10",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "goalie",
@@ -51,7 +83,41 @@
     "hipRot",
     "hipAbd"
    ],
-   "note": "Hip mobility only in a pain-free range, lateral push-off power, little running conditioning."
+   "note": "Your plan adds pain-free hip mobility and lateral push-off power, and leaves out the sprint and shift intervals.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "9090",
+      "hipcars",
+      "frog"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "5/side",
+     "rir": 3,
+     "note": "Pain-free range only."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "hopstick",
+      "bounding"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Push off sideways and stick the landing."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -91,7 +157,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "New 3 x 8 at RIR 3 (goblet or trap bar). Adv 5 x 3 at 85%."
+      "note": "New: 3 x 8, 3 reps in reserve (goblet or trap bar). Advanced: 5 x 3 at 85%."
      },
      {
       "role": "acc",
@@ -357,6 +423,7 @@
      {
       "role": "pow",
       "ex": [
+       "splitjump",
        "jumplunge",
        "bwss"
       ],
@@ -422,7 +489,7 @@
       },
       "reps": "4/side",
       "rir": 3,
-      "note": "Adv: pair each set with heavy split squats (3/side) 3-4 min before."
+      "note": "Advanced: pair each set with heavy split squats (3/side) 3-4 min before."
      },
      {
       "role": "main",
@@ -439,7 +506,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "Around 85% for I/A. New 3 x 6-8."
+      "note": "Around 85% for intermediate and advanced. New: 3 x 6-8."
      },
      {
       "role": "pre",
@@ -506,7 +573,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "Around 85% for I/A."
+      "note": "Around 85% for intermediate and advanced."
      },
      {
       "role": "main",
@@ -590,7 +657,7 @@
       },
       "reps": "3",
       "rir": 2,
-      "note": "80-85% for I/A. New 2-3 x 6 at RIR 2."
+      "note": "80-85% for intermediate and advanced. New: 2-3 x 6, 2 reps in reserve."
      },
      {
       "role": "main",
@@ -726,7 +793,11 @@
     "rest": "90-120 s easy",
     "intensity": "Hard, near all-out",
     "perWeek": 1,
-    "why": "Matches a typical 40-50 s shift. Slideboard works too."
+    "why": "Matches a typical 40-50 s shift. Slideboard works too.",
+    "for": [
+     "forward",
+     "defence"
+    ]
    }
   ],
   "pre": [
@@ -737,7 +808,11 @@
     "rest": "30 s",
     "intensity": "Max effort",
     "perWeek": 1,
-    "why": "Repeated maximal accelerations and stops, on skates."
+    "why": "Repeated maximal accelerations and stops, on skates.",
+    "for": [
+     "forward",
+     "defence"
+    ]
    },
    {
     "name": "Shift simulation",
@@ -746,7 +821,11 @@
     "rest": "2 min 15 s",
     "intensity": "Game pace",
     "perWeek": 1,
-    "why": "Mimics the shift-to-bench ratio. On ice, or bike if no ice."
+    "why": "Mimics the shift-to-bench ratio. On ice, or bike if no ice.",
+    "for": [
+     "forward",
+     "defence"
+    ]
    }
   ],
   "in": [
@@ -757,7 +836,11 @@
     "rest": "90-120 s easy",
     "intensity": "Hard",
     "perWeek": 1,
-    "why": "Games and practice cover it for regulars; scratched players need a top-up."
+    "why": "Games and practice cover it for regulars; scratched players need a top-up.",
+    "for": [
+     "forward",
+     "defence"
+    ]
    }
   ]
  },
@@ -771,7 +854,7 @@
    "bands": {
     "club": "40-45",
     "good": "45-55",
-    "elite": ">55-60"
+    "elite": ">55"
    },
    "note": "NHL Combine average about 60 cm vertical."
   },
@@ -821,7 +904,7 @@
    "bands": {
     "club": "6-8",
     "good": "10-12",
-    "elite": "12-15+"
+    "elite": ">12"
    }
   },
   {
@@ -830,12 +913,8 @@
    "how": "Handheld dynamometer or squeeze cuff, side-lying, both directions",
    "unit": "ratio",
    "better": "higher",
-   "bands": {
-    "club": ">=0.8",
-    "good": ">=0.8",
-    "elite": ">=0.8"
-   },
-   "note": "Below 0.8 linked to 17 times the risk of adductor strain (Tyler 2001). Pass mark, not a band."
+   "bands": {},
+   "note": "Aim for 0.8 or above. Below 0.8 is linked to 17 times the risk of adductor strain. Compare with your last test."
   }
  ],
  "week": [
@@ -897,12 +976,6 @@
    "pattern": "plat",
    "equipment": "",
    "why": "Key stride-power drill; lateral bound is the stand-in"
-  },
-  {
-   "name": "Split jump",
-   "pattern": "plow",
-   "equipment": "",
-   "why": "Jumping lunge is close enough; listed for naming"
   },
   {
    "name": "Lateral sled drag",

@@ -1,962 +1,962 @@
 {
- "id": "middledistance",
- "name": "Middle distance (800 m, 1500 m)",
- "aliases": [
-  "800m",
-  "1500m",
-  "800 m",
-  "1500 m",
-  "mile",
-  "track running",
-  "middle-distance running",
-  "miler"
- ],
- "group": "Track and field",
- "q": {
-  "maxStrength": 2,
-  "power": 2,
-  "rotational": 0,
-  "unilateral": 3,
-  "upperPull": 1,
-  "upperPush": 1,
-  "lowerBody": 3,
-  "grip": 0,
-  "neck": 0,
-  "trunk": 2,
-  "mass": 0
- },
- "prehab": [
-  "calf",
-  "nordic",
-  "hipAbd",
-  "ankle",
-  "shin"
- ],
- "season": {
-  "off": 2,
-  "pre": 2,
-  "in": 1
- },
- "avoidBefore": "lower",
- "energy": "800 m is about two-thirds aerobic and 1500 m about 80-85% aerobic, and both need a big gap between top speed and VO2max speed.",
- "summary": "Middle distance needs a big aerobic engine, top-end speed, and calves, tendons and bones that cope with high mileage. The plan uses heavy and explosive lifting twice a week to improve running economy without adding bulk, plus calf, hamstring and shin protection.",
- "evidence": [
-  {
-   "claim": "Heavy and explosive strength training improves running economy and middle- and long-distance performance without harming endurance.",
-   "source": "Blagrove, Howatson & Hayes 2018, Sports Medicine",
-   "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Effects_of_strength_training_on_the_physiological_determinants_of_middle-_and_long-distance_running_performance_a_systematic_review/9619553"
+  "id": "middledistance",
+  "name": "Middle distance (800 m, 1500 m)",
+  "aliases": [
+    "800m",
+    "1500m",
+    "800 m",
+    "1500 m",
+    "mile",
+    "track running",
+    "middle-distance running",
+    "miler"
+  ],
+  "group": "Track and field",
+  "q": {
+    "maxStrength": 2,
+    "power": 2,
+    "rotational": 0,
+    "unilateral": 3,
+    "upperPull": 1,
+    "upperPush": 1,
+    "lowerBody": 3,
+    "grip": 0,
+    "neck": 0,
+    "trunk": 2,
+    "mass": 0
   },
-  {
-   "claim": "World-class distance runners do about 80% of their running at low intensity, with structured threshold and VO2max sessions.",
-   "source": "Haugen et al. 2022, Sports Medicine Open",
-   "url": "https://munin.uit.no/handle/10037/26245"
-  }
- ],
- "confidence": "moderate",
- "variants": [
-  {
-   "id": "800",
-   "name": "800 m",
-   "desc": "About two-thirds aerobic; more anaerobic and sprint speed demand, and more sprint-type hamstring risk.",
-   "q": {},
-   "prehab": [
-    "nordic"
-   ],
-   "note": "Nordics stay in all year and your weekly speed session matters most."
-  },
-  {
-   "id": "1500",
-   "name": "1500 m and mile",
-   "desc": "About 80-85% aerobic; more threshold volume and calf and Achilles load from mileage.",
-   "q": {},
-   "prehab": [
+  "prehab": [
     "calf",
+    "nordic",
+    "hipAbd",
+    "ankle",
     "shin"
-   ],
-   "note": "Calf and shin work come first; race pace is 4-5 x 400 m at 1500 m pace."
-  }
- ],
- "sessions": {
-  "off": [
-   {
-    "name": "Day A: strength and stiffness",
-    "focus": "Heavy legs, elastic ankles and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "10",
-      "rir": 3,
-      "note": "Stiff ankles, minimal ground time."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "boxjp",
-       "cmj",
-       "squatjump"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Box jump, step down."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "5",
-      "rir": 2,
-      "note": "80-85% 1RM. Heavy, never high-rep sets."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "smithbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Straight knee, slow, add load past 25 reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "seatedcalf",
-       "seateddbcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Bent knee, heavy, for the soleus."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5-8",
-      "rir": 3,
-      "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "bandabd",
-       "sideabd",
-       "abductor",
-       "cababd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Lateral hip for knee control."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "sideplank",
-       "deadbug",
-       "pallof",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-45 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: single leg and bounds",
-    "focus": "Hinge strength, single-leg control and lower-leg resilience",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "broadjump",
-       "squatjump",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "4",
-      "rir": 3,
-      "note": "Stick each landing."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "singlerdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "stepup",
-       "bbstepup",
-       "latstepup",
-       "revlunge"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "invrow",
-       "dbrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pushup",
-       "flatdb",
-       "incdb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "tibraise",
-       "tibbar",
-       "banddorsi"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "15-25",
-      "rir": 2,
-      "note": "For shin pain resistance."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "stepcalf",
-       "slcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "30-45 s",
-      "rir": 2,
-      "note": "Calf isometric hold, hard effort."
-     }
-    ]
-   }
   ],
-  "pre": [
-   {
-    "name": "Day A: strength and stiffness",
-    "focus": "Heavy legs, elastic ankles and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "15",
-      "rir": 3,
-      "note": "Stiff ankles, minimal ground time."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "hurdlehop",
-       "boxjp",
-       "tuckjump"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 4
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Hurdle hops, quick contacts."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "3-4",
-      "rir": 2,
-      "note": "About 85% 1RM. New lifters: 3 x 5 at RIR 3."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "smithbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Straight knee, slow, add load past 25 reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "seatedcalf",
-       "seateddbcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Bent knee, heavy, for the soleus."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "4-6",
-      "rir": 3,
-      "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "bandabd",
-       "sideabd",
-       "abductor",
-       "cababd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Lateral hip for knee control."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "sideplank",
-       "deadbug",
-       "pallof",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-45 s",
-      "rir": 2
-     }
-    ]
-   },
-   {
-    "name": "Day B: single leg and bounds",
-    "focus": "Hinge strength, single-leg control and lower-leg resilience",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "broadjump",
-       "squatjump",
-       "boxjp"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "3",
-      "rir": 3,
-      "note": "Stick each landing."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "bounding",
-       "latbound",
-       "hurdlehop"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5/side",
-      "rir": 3,
-      "note": "Single-leg bounds, tall and springy."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "rdl",
-       "singlerdl",
-       "dbrdl",
-       "kbrdl"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "5",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "stepup",
-       "bbstepup",
-       "latstepup",
-       "revlunge"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "6/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pullup",
-       "latpd",
-       "invrow",
-       "dbrow"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "pushup",
-       "flatdb",
-       "incdb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "tibraise",
-       "tibbar",
-       "banddorsi"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "15-25",
-      "rir": 2,
-      "note": "For shin pain resistance."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "slbalance",
-       "hopstick"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
-      },
-      "reps": "30-45 s/side",
-      "rir": 3
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "stepcalf",
-       "slcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 3,
-       "inter": 4,
-       "adv": 5
-      },
-      "reps": "30-45 s",
-      "rir": 2,
-      "note": "Calf isometric hold, hard effort."
-     }
-    ]
-   }
+  "season": {
+    "off": 2,
+    "pre": 2,
+    "in": 1
+  },
+  "avoidBefore": "lower",
+  "energy": "800 m is about two-thirds aerobic and 1500 m about 80-85% aerobic, and both need a big gap between top speed and VO2max (maximal aerobic) speed.",
+  "summary": "Middle distance needs a big aerobic engine, top-end speed, and calves, tendons and bones that cope with high mileage. The plan uses heavy and explosive lifting twice a week to improve running economy without adding bulk, plus calf, hamstring and shin protection.",
+  "evidence": [
+    {
+      "claim": "Heavy and explosive strength training improves running economy and middle- and long-distance performance without harming endurance.",
+      "source": "Blagrove, Howatson & Hayes 2018, Sports Medicine",
+      "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Effects_of_strength_training_on_the_physiological_determinants_of_middle-_and_long-distance_running_performance_a_systematic_review/9619553"
+    },
+    {
+      "claim": "World-class distance runners do about 80% of their running at low intensity, with structured threshold and VO2max sessions.",
+      "source": "Haugen et al. 2022, Sports Medicine Open",
+      "url": "https://munin.uit.no/handle/10037/26245"
+    }
   ],
-  "in": [
-   {
-    "name": "Day A: strength and stiffness",
-    "focus": "Heavy legs, elastic ankles and calf capacity",
-    "slots": [
-     {
-      "role": "pow",
-      "ex": [
-       "pogo",
-       "skipping",
-       "cmj"
+  "confidence": "moderate",
+  "variants": [
+    {
+      "id": "800",
+      "name": "800 m",
+      "desc": "About two-thirds aerobic; more anaerobic and sprint speed demand, and more sprint-type hamstring risk.",
+      "q": {},
+      "prehab": [
+        "nordic"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "10",
-      "rir": 3,
-      "note": "Stiff ankles, minimal ground time."
-     },
-     {
-      "role": "pow",
-      "ex": [
-       "hurdlehop",
-       "boxjp",
-       "cmj"
+      "note": "Nordics stay in all year. Your weekly speed session on the track matters most."
+    },
+    {
+      "id": "1500",
+      "name": "1500 m and mile",
+      "desc": "About 80-85% aerobic; more threshold volume and calf and Achilles load from mileage.",
+      "q": {},
+      "prehab": [
+        "calf",
+        "shin"
       ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
+      "note": "Your plan puts calf and shin work first. For race pace, run 4-5 x 400 m at 1500 m pace."
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: strength and stiffness",
+        "focus": "Heavy legs, elastic ankles and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 3,
+            "note": "Stiff ankles, minimal ground time."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "cmj",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Box jump, step down."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 2,
+            "note": "80-85% 1RM (one-rep max). Heavy, never high-rep sets."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "smithbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Straight knee, slow, add load past 25 reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "seatedcalf",
+              "seateddbcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Bent knee, heavy, for the soleus."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "nordicbench",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-8",
+            "rir": 3,
+            "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "abductor",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Lateral hip for knee control."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "deadbug",
+              "pallof",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-45 s",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 3,
-      "note": "Low volume, full intent."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "squat",
-       "trapdl",
-       "frontsq",
-       "goblet"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 3
+      {
+        "name": "Day B: single leg and bounds",
+        "focus": "Hinge strength, single-leg control and lower-leg resilience",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "broadjump",
+              "squatjump",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3,
+            "note": "Stick each landing."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "stepup",
+              "bbstepup",
+              "latstepup",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "invrow",
+              "dbrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pushup",
+              "flatdb",
+              "incdb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "tibraise",
+              "tibbar",
+              "banddorsi"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "15-25",
+            "rir": 2,
+            "note": "For shin pain resistance."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "stepcalf",
+              "slcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Calf isometric hold, hard effort."
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: strength and stiffness",
+        "focus": "Heavy legs, elastic ankles and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "15",
+            "rir": 3,
+            "note": "Stiff ankles, minimal ground time."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "hurdlehop",
+              "boxjp",
+              "tuckjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Hurdle hops, quick contacts."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3-4",
+            "rir": 2,
+            "note": "About 85% 1RM. New lifters: 3 x 5 with 3 reps in reserve."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "smithbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Straight knee, slow, add load past 25 reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "seatedcalf",
+              "seateddbcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Bent knee, heavy, for the soleus."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "nordicbench",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "4-6",
+            "rir": 3,
+            "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "abductor",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Lateral hip for knee control."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "deadbug",
+              "pallof",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-45 s",
+            "rir": 2
+          }
+        ]
       },
-      "reps": "3",
-      "rir": 2,
-      "note": "About 85% 1RM, 2-3 sets only."
-     },
-     {
-      "role": "main",
-      "ex": [
-       "bss",
-       "dbsplit",
-       "bwss",
-       "smithbss"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "5/side",
-      "rir": 2
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "slcalf",
-       "stepcalf",
-       "standcalf",
-       "smithcalf"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8/side",
-      "rir": 2,
-      "note": "Straight knee, slow, add load past 25 reps."
-     },
-     {
-      "role": "acc",
-      "ex": [
-       "seatedcalf",
-       "seateddbcalf",
-       "soleuswall"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "8",
-      "rir": 2,
-      "note": "Bent knee, heavy, for the soleus."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "nordicham",
-       "nordicbench",
-       "slidecurl",
-       "lyingcurl"
-      ],
-      "sets": {
-       "new": 1,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "4-6",
-      "rir": 3,
-      "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
-     },
-     {
-      "role": "pre",
-      "ex": [
-       "bandabd",
-       "sideabd",
-       "abductor",
-       "cababd"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 2,
-       "adv": 2
-      },
-      "reps": "12-20",
-      "rir": 2,
-      "note": "Lateral hip for knee control."
-     },
-     {
-      "role": "core",
-      "ex": [
-       "sideplank",
-       "deadbug",
-       "pallof",
-       "pallofb"
-      ],
-      "sets": {
-       "new": 2,
-       "inter": 3,
-       "adv": 3
-      },
-      "reps": "30-45 s",
-      "rir": 2
-     }
+      {
+        "name": "Day B: single leg and bounds",
+        "focus": "Hinge strength, single-leg control and lower-leg resilience",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "broadjump",
+              "squatjump",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Stick each landing."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "bounding",
+              "latbound",
+              "hurdlehop"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 3,
+            "note": "Single-leg bounds, tall and springy."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "stepup",
+              "bbstepup",
+              "latstepup",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pullup",
+              "latpd",
+              "invrow",
+              "dbrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "pushup",
+              "flatdb",
+              "incdb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "tibraise",
+              "tibbar",
+              "banddorsi"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "15-25",
+            "rir": 2,
+            "note": "For shin pain resistance."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30-45 s/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "stepcalf",
+              "slcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Calf isometric hold, hard effort."
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: strength and stiffness",
+        "focus": "Heavy legs, elastic ankles and calf capacity",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "skipping",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 3,
+            "note": "Stiff ankles, minimal ground time."
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "hurdlehop",
+              "boxjp",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Low volume, full intent."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "frontsq",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "About 85% 1RM, 2-3 sets only."
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "smithbss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf",
+              "smithcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 2,
+            "note": "Straight knee, slow, add load past 25 reps."
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "seatedcalf",
+              "seateddbcalf",
+              "soleuswall"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8",
+            "rir": 2,
+            "note": "Bent knee, heavy, for the soleus."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "nordicbench",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 1,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "4-6",
+            "rir": 3,
+            "note": "Build from 2 x 5 over 4-6 weeks. New: slider curls first."
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "abductor",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-20",
+            "rir": 2,
+            "note": "Lateral hip for knee control."
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "deadbug",
+              "pallof",
+              "pallofb"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-45 s",
+            "rir": 2
+          }
+        ]
+      }
     ]
-   }
-  ]
- },
- "conditioning": {
-  "off": [],
-  "pre": [],
-  "in": []
- },
- "tests": [
-  {
-   "id": "t800",
-   "name": "800 m time trial",
-   "how": "Flat-out 800 m on a track, timed",
-   "unit": "min:s",
-   "better": "lower",
-   "bands": {
-    "club": "2:05",
-    "good": "1:50-2:05",
-    "elite": "<1:50"
-   },
-   "note": "Women: club 2:25, national 2:05. Benchmark, not peer reviewed."
   },
-  {
-   "id": "t1500",
-   "name": "1500 m time trial",
-   "how": "Flat-out 1500 m on a track, timed",
-   "unit": "min:s",
-   "better": "lower",
-   "bands": {
-    "club": "4:15",
-    "good": "3:50-4:15",
-    "elite": "<3:50"
-   },
-   "note": "Women: club 5:00, national 4:20. Benchmark, not peer reviewed."
+  "conditioning": {
+    "off": [],
+    "pre": [],
+    "in": []
   },
-  {
-   "id": "fly30",
-   "name": "Flying 30 m",
-   "how": "20 m run-in, time the next 30 m",
-   "unit": "s",
-   "better": "lower",
-   "bands": {},
-   "note": "Tracks max speed for your speed reserve."
+  "tests": [
+    {
+      "id": "t800",
+      "name": "800 m time trial",
+      "how": "Flat-out 800 m on a track, timed",
+      "unit": "min:s",
+      "better": "lower",
+      "bands": {
+        "club": ">2:05",
+        "good": "1:50-2:05",
+        "elite": "<1:50"
+      },
+      "note": "Women: club 2:25, national 2:05. Benchmark, not peer reviewed."
+    },
+    {
+      "id": "t1500",
+      "name": "1500 m time trial",
+      "how": "Flat-out 1500 m on a track, timed",
+      "unit": "min:s",
+      "better": "lower",
+      "bands": {
+        "club": ">4:15",
+        "good": "3:50-4:15",
+        "elite": "<3:50"
+      },
+      "note": "Women: club 5:00, national 4:20. Benchmark, not peer reviewed."
+    },
+    {
+      "id": "fly30",
+      "name": "Flying 30 m",
+      "how": "20 m run-in, time the next 30 m",
+      "unit": "s",
+      "better": "lower",
+      "bands": {},
+      "note": "Tracks max speed for your speed reserve."
+    },
+    {
+      "id": "cmj",
+      "name": "Countermovement jump",
+      "how": "Hands on hips, jump app or chalk on a wall, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "club": "<40",
+        "good": "40-45",
+        "elite": ">45"
+      },
+      "note": "Women: club 30 cm, national 35 cm."
+    },
+    {
+      "id": "slcalf",
+      "name": "Single-leg calf raise reps",
+      "how": "Full range on a step, to a metronome, each side",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "club": "<25",
+        "good": "25-30",
+        "elite": ">30"
+      },
+      "note": "Coach practice benchmark."
+    },
+    {
+      "id": "squat1rm",
+      "name": "Back squat 1RM",
+      "how": "Estimate from a 3-5 rep max",
+      "unit": "x body mass",
+      "better": "higher",
+      "bands": {
+        "good": "1.25-1.5"
+      },
+      "note": "Enough for runners; more is not the goal."
+    }
+  ],
+  "week": [
+    "Lift on hard-run days, after the run, ideally 6 h later",
+    "Never lift legs on long-run day or before a quality session",
+    "In season: one short session early in the week",
+    "If lifting and running share a session, lift first",
+    "Threshold, VO2max, race-pace and speed work come from your running plan"
+  ],
+  "primer": [
+    "Pogo hops 2 x 10",
+    "Hops 2 x 3",
+    "Up to 3 days before the race"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Taper 7-14 days: run volume down 40-60%, keep intensity",
+      "Last heavy lift 7-10 days out",
+      "Plyometric primer up to 3 days out",
+      "No new exercises in the final 2 weeks"
+    ]
   },
-  {
-   "id": "cmj",
-   "name": "Countermovement jump",
-   "how": "Hands on hips, jump app or chalk on a wall, best of 3",
-   "unit": "cm",
-   "better": "higher",
-   "bands": {
-    "club": "40",
-    "good": "40-45",
-    "elite": ">45"
-   },
-   "note": "Women: club 30 cm, national 35 cm."
-  },
-  {
-   "id": "slcalf",
-   "name": "Single-leg calf raise reps",
-   "how": "Full range on a step, to a metronome, each side",
-   "unit": "reps",
-   "better": "higher",
-   "bands": {
-    "club": "25",
-    "good": "25-30",
-    "elite": ">30"
-   },
-   "note": "Coach practice benchmark."
-  },
-  {
-   "id": "squat1rm",
-   "name": "Back squat 1RM",
-   "how": "Estimate from a 3-5RM",
-   "unit": "x body mass",
-   "better": "higher",
-   "bands": {
-    "good": "1.25-1.5"
-   },
-   "note": "Enough for runners; more is not the goal."
-  }
- ],
- "week": [
-  "Lift on hard-run days, after the run, ideally 6 h later",
-  "Never lift legs on long-run day or before a quality session",
-  "In season: one short session early in the week",
-  "If lifting and running share a session, lift first",
-  "Threshold, VO2max, race-pace and speed work come from your running plan"
- ],
- "primer": [
-  "Pogo hops 2 x 10",
-  "Hops 2 x 3",
-  "Up to 3 days before the race"
- ],
- "taper": {
-  "days": 10,
-  "lines": [
-   "Taper 7-14 days: run volume down 40-60%, keep intensity",
-   "Last heavy lift 7-10 days out",
-   "Plyometric primer up to 3 days out",
-   "No new exercises in the final 2 weeks"
-  ]
- },
- "rules": [
-  "Heavy (3-6 reps) and explosive lifting only, no high-rep endurance sets",
-  "Nordics all year, with a ramp in and low-volume maintenance",
-  "Twice a week off-season, once in season keeps the gains",
-  "Bone stress injury or missed periods: screen for low energy (REDs) first",
-  "Irritable Achilles or calf: switch to calf isometrics and get it checked"
- ],
- "sources": [
-  {
-   "source": "Blagrove, Howatson & Hayes 2018, Sports Medicine",
-   "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Effects_of_strength_training_on_the_physiological_determinants_of_middle-_and_long-distance_running_performance_a_systematic_review/9619553"
-  },
-  {
-   "source": "Haugen et al. 2022, Sports Medicine Open",
-   "url": "https://munin.uit.no/handle/10037/26245"
-  },
-  {
-   "source": "Sandford, Laursen & Buchheit 2021, Sports Medicine"
-  },
-  {
-   "source": "Spencer & Gastin 2001 (energy system contribution)"
-  },
-  {
-   "source": "Mountjoy et al. 2023 (REDs consensus)"
-  },
-  {
-   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise",
-   "url": "https://pubmed.ncbi.nlm.nih.gov/17762369/"
-  },
-  {
-   "source": "van Dyk, Behan & Whiteley 2019, British Journal of Sports Medicine",
-   "url": "https://bjsm.bmj.com/content/53/21/1362"
-  }
- ],
- "missing_ex": []
+  "rules": [
+    "Heavy (3-6 reps) and explosive lifting only, no high-rep endurance sets",
+    "Nordics all year, with a ramp in and low-volume maintenance",
+    "Twice a week off-season, once in season keeps the gains",
+    "Bone stress injury or missed periods: screen for relative energy deficiency in sport (REDs) first",
+    "Irritable Achilles or calf: switch to calf isometrics and get it checked"
+  ],
+  "sources": [
+    {
+      "source": "Blagrove, Howatson & Hayes 2018, Sports Medicine",
+      "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Effects_of_strength_training_on_the_physiological_determinants_of_middle-_and_long-distance_running_performance_a_systematic_review/9619553"
+    },
+    {
+      "source": "Haugen et al. 2022, Sports Medicine Open",
+      "url": "https://munin.uit.no/handle/10037/26245"
+    },
+    {
+      "source": "Sandford, Laursen & Buchheit 2021, Sports Medicine"
+    },
+    {
+      "source": "Spencer & Gastin 2001 (energy system contribution)"
+    },
+    {
+      "source": "Mountjoy et al. 2023 (REDs consensus)"
+    },
+    {
+      "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17762369/"
+    },
+    {
+      "source": "van Dyk, Behan & Whiteley 2019, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/53/21/1362"
+    }
+  ],
+  "missing_ex": []
 }
