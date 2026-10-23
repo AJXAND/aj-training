@@ -73,7 +73,7 @@
         "ankle",
         "calf"
       ],
-      "note": "Your plan adds side hops for ankle control on rough ground. Do some easy runs off-path each week.",
+      "note": "Your plan adds lateral bounds and hops for ankle control on rough ground. Do some easy runs off-path each week.",
       "add": [
         {
           "role": "pre",
@@ -652,7 +652,7 @@
       "better": "lower",
       "bands": {
         "club": ">22:00",
-        "good": "18:00-22:00",
+        "good": "16:00-22:00",
         "elite": "<16:00"
       },
       "note": "Coach practice for men; women about 10-12% slower"
@@ -664,10 +664,10 @@
       "unit": "cm",
       "better": "lower",
       "bands": {
-        "good": "<4",
-        "club": ">4"
+        "club": ">4",
+        "good": "<4"
       },
-      "note": "Threshold from basketball research (Plisky 2006); coach practice for orienteering"
+      "note": "4 cm threshold from a basketball study (Plisky et al. 2006); coach practice for orienteering"
     },
     {
       "id": "calfreps",
@@ -712,7 +712,7 @@
     "Previous ankle sprain: balance work all year and consider a brace or tape for races",
     "Build running volume by no more than about 10% a week",
     "Shin pain that lingers after runs: cut volume and see a physio",
-    "Strength is heavy and low-rep, not high-rep endurance lifting"
+    "Main lifts are heavy and low-rep, not high-rep endurance lifting"
   ],
   "sources": [
     {

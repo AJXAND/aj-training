@@ -678,7 +678,7 @@
       "better": "higher",
       "bands": {
         "club": "<55",
-        "good": "55-65",
+        "good": "55-68",
         "elite": ">68"
       },
       "note": "Elite men in studies about 71, sub-elite about 62. Women lower. Club band is coach practice"
@@ -736,7 +736,7 @@
     ]
   },
   "rules": [
-    "Strength is heavy and low-rep, not high-rep endurance lifting",
+    "Main lifts are heavy and low-rep, not high-rep endurance lifting",
     "Avalanche training, kit and partner before any off-piste touring",
     "Build climbing volume by no more than about 10% a week",
     "Knee pain on descents: cut eccentric volume and see a physio"
