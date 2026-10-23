@@ -304,6 +304,21 @@
    "acct": "u2",
    "chat": "097da214c5f01b77",
    "img": 1
+  },
+  "tbar": {
+   "acct": "u2",
+   "chat": "d2b1c4a5e9d9e168",
+   "img": 1,
+   "post": "paint out small label on base rail"
+  },
+  "shrugm": {
+   "alias": "deadliftm",
+   "note": "ground base deadlift/shrug machine serves both"
+  },
+  "shoulderpress": {
+   "acct": "u2",
+   "chat": "9fb05b577cfc824a",
+   "img": 1
   }
  },
  "qc_rejects": [
