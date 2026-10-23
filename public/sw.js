@@ -1,6 +1,6 @@
 /* AJ Training service worker: keeps the app available offline and shows push notifications. */
 const VERSION = "ajt-v72";
-const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/coach.js", "/strength.js", "/run.js", "/science.js", "/sports.js", "/sportprofiles.js", "/sporticons.js", "/gymicons.js", "/programmes.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
+const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/coach.js", "/strength.js", "/run.js", "/science.js", "/sports.js", "/sportprofiles.js", "/sporticons.js", "/gymicons.js", "/equipment.js", "/programmes.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
   "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png", "/icons/badge-96.png", "/foods-db.json"];
 
 self.addEventListener("install", e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
@@ -21,7 +21,7 @@ self.addEventListener("fetch", e => {
     return;
   }
   // Big static files (libraries, icons, food database): cache first, refresh in the background.
-  if (/^\/(vendor|icons)\/|\/foods-db\.json$/.test(url.pathname)){
+  if (/^\/(vendor|icons|img)\/|\/foods-db\.json$/.test(url.pathname)){
     e.respondWith(caches.open(VERSION).then(async c => { const hit = await c.match(req, {ignoreSearch:true}); const net = fetch(req).then(r => { if (r.ok) c.put(req, r.clone()); return r; }).catch(() => hit); return hit || net; }));
     return;
   }

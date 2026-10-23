@@ -55,8 +55,16 @@ const EQG = [
   ["Cardio", [["treadmill","Treadmill"],["curvedtm","Curved / self-powered treadmill"],["rower","Rowing machine"],["skierg","SkiErg"],["bikeerg","BikeErg"],["airbike","Assault / air bike"],["uprightbike","Upright bike"],["recumbent","Recumbent bike"],["spinbike","Spin bike"],["elliptical","Cross-trainer"],["stairs","Stair climber"],["stepper","Stepper"],["versaclimber","VersaClimber"],["jacobs","Jacob's ladder"]]],
   ["Strongman and conditioning", [["sled","Sled / prowler"],["sandbag","Sandbag"],["yoke","Yoke"],["farmerhandles","Farmer's handles"],["stones","Atlas stones"],["tyre","Tyre"],["log","Log"],["turf","Turf track"]]]
 ];
+// The full catalogue (public/equipment.js, 248 items) replaces the short list above when it's loaded.
+const EQX = window.AJEquip || null;
+if (EQX) EQG.splice(0, EQG.length, ...EQX.g.map(([gn, ids]) => [gn, ids.map(id => [id, EQX.i[id][0]])]));
 const EQUIP = EQG.flatMap(g => g[1]);
-const EQG_IC = ["bb","rack","db","pullup","cable_dual","pecdeck","rowm","curlm","legpress","captain","treadmill","sled"];
+const EQ_GIC = {"Bars and plates":"bb","Racks and benches":"rack","Dumbbells and kettlebells":"db","Cables and attachments":"cable_dual","Chest machines":"pecdeck","Back machines":"rowm","Shoulder machines":"shoulderpress","Arm machines":"curlm","Leg machines: quads":"legpress","Leg machines: hamstrings and glutes":"lyingcurl","Leg machines: calves and other":"calfm","Core machines":"captain","Cardio":"treadmill","Conditioning and HYROX":"sled","Strongman":"stones","Bodyweight and accessories":"pullup","Mobility and rehab":"swissball","Leg machines":"legpress","Cables":"cable_dual","Chest and shoulder machines":"pecdeck","Strongman and conditioning":"sled"};
+const EQG_IC = EQG.map(([gn, items]) => EQ_GIC[gn] || (items.find(([k]) => window.AJGymIcon && AJGymIcon.has(k)) || items[0])[0]);
+const EQ_IMG = new Set(EQX ? EQX.img : []);
+// Search matches the name and the other names people call it (e.g. "hex bar" finds the trap bar).
+function eqMatch(k, n, q){ return n.toLowerCase().includes(q) || (EQX && EQX.i[k] && EQX.i[k][1].toLowerCase().includes(q)); }
+function eqThumb(k){ return EQ_IMG.has(k) ? `<img src="/img/eq/${k}.webp" alt="" loading="lazy" decoding="async">` : (window.AJGymIcon ? AJGymIcon(k) : ""); }
 const ALLKIT = EQUIP.map(e => e[0]);
 // equipment that also satisfies an older or simpler requirement
 const KIT_ALIAS = {adjdb:["db"], functional:["cable_hi","cable_mid","cable_low","cable_dual"], halfrack:["rack"], benchrack:["bench"], flatbench:[], latpdplate:["latpd"], seatedrowm:["cable_low"], hlegpress:["legpress"], vsquat:["hack"], dipm:["dip","pullup"], tridipm:[], trx:["rings"], backext:["hipext"], preacherm:["preacher"], spinbike:["airbike"], bikeerg:["airbike"], uprightbike:["airbike"]};
@@ -71,7 +79,13 @@ const GYMTYPES = {
   outdoor:["Outdoor or calisthenics park", "Bars, rings and your bodyweight", ["pullup","dip","rings","parallettes","anchor","bands"]],
   uni:["University or sports centre", "Mix of free weights and machines", ["bb","ez","rack","jhooks","bench","flatbench","db","kb","pullup","dip","anchor","bands","box","medball","cable_hi","cable_mid","cable_low","cable_dual","latpd","chestpress","pecdeck","shoulderpress","smith","rowm","seatedrowm","legpress","legext","lyingcurl","seatedcurl","hipext","adductor","abductor","calfm","treadmill","rower","uprightbike","spinbike","elliptical","airbike"]]
 };
-GYMTYPES.bodybuilding[2] = ALLKIT.filter(k => !["sandbag","wallball","slamball","yoke","stones","tyre","log","climbrope","pegboard","rings","battleropes","axle","turf"].includes(k));
+GYMTYPES.bodybuilding[2] = EQX ? [...new Set(GYMTYPES.commercial[2].concat(ALLKIT.filter(k => EQX.i[k][3].includes("bodybuilding"))))]
+  : ALLKIT.filter(k => !["sandbag","wallball","slamball","yoke","stones","tyre","log","climbrope","pegboard","rings","battleropes","axle","turf"].includes(k));
+// With the full catalogue: gyms that have cables also have the usual attachments, and most gyms have a mat and a foam roller.
+if (EQX){ const has = k => !!EQX.i[k], add = (t, ks) => { GYMTYPES[t][2] = [...new Set(GYMTYPES[t][2].concat(ks.filter(has)))]; };
+  for (const t of Object.keys(GYMTYPES)) if (GYMTYPES[t][2].some(k => /^cable_|functional|latpd/.test(k))) add(t, ["cablerope","straightbar","vbar","dhandle","latbar","anklestrap"]);
+  for (const t of ["commercial","bodybuilding","hotel","uni","box"]) add(t, ["foamroller","yogamat"]);
+  add("box", ["bumpers","rig","jumprope","weightvest"]); add("garage", ["bumpers"]); add("home", ["yogamat","minibands"]); add("commercial", ["seatedcablerow","legextcurl"]); }
 const PRESETS = GYMTYPES;
 const KIT_DEFAULT = {home:PRESETS.garage[2].slice(), shwc:PRESETS.commercial[2].concat(["hack"])};
 
@@ -1621,7 +1635,7 @@ const DBW = [1,2,2.5,3,4,5,6,7,7.5,8,9,10,11,12,12.5,13,14,15,16,17.5,18,20,22,2
 function gymEditor(a){
   const q = (F.eqq || "").toLowerCase().trim();
   return `${a.gyms.map((g, gi) => { const t = g.type || "";
-    const row = ([k, n]) => `<button class="eqrow" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}"><span class="eqic">${gIc(k)}</span><span>${n}</span><i class="eqtick"></i></button>`;
+    const row = ([k, n]) => `<button class="eqrow" data-gkit="${k}" data-g="${g.id}" aria-pressed="${g.kit.includes(k)}"><span class="eqic${EQ_IMG.has(k) ? " eqimg" : ""}">${eqThumb(k)}</span><span>${n}</span><i class="eqtick"></i></button>`;
     return `<div class="card obgymc">
     <div class="spread"><input class="field obgname" data-gname="${g.id}" value="${esc(g.name)}" placeholder="Name it, e.g. Home or your gym's name" aria-label="Gym name" autocomplete="off">${a.gyms.length > 1 ? `<button class="link muted" data-gdel="${g.id}">Remove</button>` : ""}</div>
     <span class="obl">What kind of gym is it?</span>
@@ -1629,7 +1643,7 @@ function gymEditor(a){
     <div class="spread"><span class="obl">Equipment</span><span class="small muted">${g.kit.length} items ticked</span></div>
     <span class="obhint">${t ? "Filled in for a typical " + GYMTYPES[t][0].toLowerCase() + ". Untick anything yours doesn't have, or add what it does." : "Pick the kind of gym above to fill this in, then adjust."}</span>
     <label class="sb card eqsearch"><span>${ICON.search}</span><input data-eqq="1" placeholder="Search ${ALLKIT.length} pieces of equipment" value="${esc(F.eqq || "")}" autocomplete="off"></label>
-    ${q ? `<div class="eqlist">${EQUIP.filter(([, n]) => n.toLowerCase().includes(q)).map(row).join("") || `<p class="small muted">Nothing matches. Tell us what's missing in the AI chat and we'll add it.</p>`}</div>`
+    ${q ? `<div class="eqlist">${EQUIP.filter(([k, n]) => eqMatch(k, n, q)).map(row).join("") || `<p class="small muted">Nothing matches. Tell us what's missing in the AI chat and we'll add it.</p>`}</div>`
     : EQG.map(([gn, items], qi) => { const on2 = items.filter(([k]) => g.kit.includes(k)).length;
       return `<details class="eqgrp" ${(F.openEq || []).includes(g.id + qi) ? "open" : ""}><summary><span class="eqic">${gIc(EQG_IC[qi])}</span><b>${gn}</b><span class="muted small num">${on2}/${items.length}</span><button class="link" data-gall="${qi}" data-g="${g.id}">${on2 === items.length ? "None" : "All"}</button></summary>
       <div class="eqlist">${items.map(row).join("")}</div></details>`; }).join("")}
