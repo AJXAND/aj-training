@@ -242,6 +242,27 @@
    "acct": "u1",
    "chat": "d1fb998afd9eebac",
    "img": 1
+  },
+  "pecdeck": {
+   "acct": "u1",
+   "chat": "8c03b1360488d298",
+   "img": 1
+  },
+  "declinepress": {
+   "acct": "u1",
+   "chat": "591bd068e207a8ab",
+   "img": 1
+  },
+  "platefly": {
+   "acct": "u1",
+   "chat": "4f2cf3ff7d8493e2",
+   "img": 1
+  },
+  "pushupm": {
+   "acct": "u1",
+   "chat": "3ed80c9c57ffd4bc",
+   "img": 1,
+   "note": "seated dip HS ref"
   }
  },
  "qc_rejects": [
