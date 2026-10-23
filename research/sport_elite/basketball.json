@@ -1,0 +1,1036 @@
+{
+ "id": "basketball",
+ "name": "Basketball",
+ "aliases": [
+  "hoops",
+  "3x3 basketball",
+  "3x3",
+  "streetball"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "guard",
+   "name": "Guard",
+   "desc": "Most accelerations, sprints and distance, plus defensive slides.",
+   "q": {
+    "unilateral": 3
+   },
+   "prehab": [
+    "ankle",
+    "hipAbd"
+   ],
+   "note": "More court intervals and lateral work; aerobic power is a priority."
+  },
+  {
+   "id": "forward",
+   "name": "Forward (wing)",
+   "desc": "Mixed demands with the most transition sprints and rebounds.",
+   "q": {},
+   "prehab": [
+    "landing",
+    "ankle"
+   ],
+   "note": "The standard plan."
+  },
+  {
+   "id": "big",
+   "name": "Centre / big",
+   "desc": "Most jumps and contact: strength, upper body, trunk and tendon care.",
+   "q": {
+    "maxStrength": 3,
+    "upperPush": 3,
+    "trunk": 3
+   },
+   "prehab": [
+    "patellar",
+    "landing"
+   ],
+   "note": "Spanish squats every lower day and more upper-body and trunk strength."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower strength",
+    "focus": "Heavy legs, tendons and calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "pogo",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "New: pogo hops 3 x 10."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3-8",
+      "rir": 2,
+      "note": "New 8 RIR 3 (trap bar or goblet). Inter 5 at 80%. Adv 3 at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "smithbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "seateddbcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Bent-knee soleus first."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "30 s",
+      "rir": 2,
+      "note": "Bigs, or anyone with knee pain."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper, posterior chain and lateral",
+    "focus": "Lateral power, hinge, push and pull",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick each landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bandpullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "cabadd",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Add ball catches."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-40 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Reactive and deceleration",
+    "focus": "Inter and adv only; new players skip this day",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "hurdlehop",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Inter: hurdle hops. Adv: depth jump to CMJ."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "bbstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "standdbohp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Deceleration: sprint 5 m, stop in 2 steps."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Jump and strength contrast",
+    "focus": "Approach jumps, squat, hamstrings, tendons",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "2-step approach to max jump, land and stick."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "trapdl",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3-6",
+      "rir": 2,
+      "note": "New 6. Inter 4 at 80%. Adv 3 at 85%, then 3 box jumps."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Power and upper",
+    "focus": "Trap bar jump, press, pull, lateral",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "boxjp",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "New: box jump."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushpress",
+       "standdbohp",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Adv: push press. Others: DB press."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bandpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "cabadd",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "deadbug",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "In-season A",
+    "focus": "MD-4 or MD-3, 35-40 min",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3-6",
+      "rir": 2,
+      "note": "New 6. Inter and adv 3 at 80-85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bandpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "In-season B",
+    "focus": "MD-2, about 25 min, low leg load",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "clappu"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "cabadd",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "15-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "plank",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-12",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "4 x 4 min",
+    "rest": "3 min easy",
+    "intensity": "90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Aerobic power speeds recovery between bursts. Bike or court."
+   },
+   {
+    "name": "Court tempo",
+    "mode": "court",
+    "work": "15 x full-court jog, walk back",
+    "rest": "walk back",
+    "intensity": "easy to moderate",
+    "perWeek": 1,
+    "why": "Low-strain running volume on court."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Court HIIT",
+    "mode": "court",
+    "work": "3-4 sets of 6-8 x 15 s full-court sprint with a layup",
+    "rest": "15-30 s between reps, 3 min between sets",
+    "intensity": "hard",
+    "perWeek": 1,
+    "why": "Matches the bursts of live play."
+   },
+   {
+    "name": "Repeated sprints with turns",
+    "mode": "court",
+    "work": "6 x 2 x 14 m with a 180 degree turn",
+    "rest": "20 s",
+    "intensity": "maximal",
+    "perWeek": 1,
+    "why": "Repeated sprint ability with braking."
+   },
+   {
+    "name": "Defensive slides",
+    "mode": "court",
+    "work": "6 x 15 s",
+    "rest": "15-30 s",
+    "intensity": "hard",
+    "perWeek": 1,
+    "why": "Lateral conditioning for on-ball defence."
+   }
+  ],
+  "in": [
+   {
+    "name": "Bench top-up",
+    "mode": "court",
+    "work": "2 sets of 6 x 15 s on / 15 s off",
+    "rest": "3 min between sets",
+    "intensity": "hard",
+    "perWeek": 1,
+    "why": "MD+1 for players with low minutes."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump mat or phone app, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "38-44",
+    "good": "44-52",
+    "elite": ">52"
+   },
+   "note": "Women about 25-30% lower."
+  },
+  {
+   "id": "approachvj",
+   "name": "Max approach vertical",
+   "how": "Approach jump, reach minus standing reach, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "60-70",
+    "good": "70-80",
+    "elite": ">80"
+   },
+   "note": "Women about 25-30% lower."
+  },
+  {
+   "id": "sprint34",
+   "name": "3/4-court sprint (22.9 m)",
+   "how": "Baseline to far free-throw line, best of 3.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "3.40-3.50",
+    "good": "3.25-3.40",
+    "elite": "<3.25"
+   },
+   "note": "Women about 8-10% slower."
+  },
+  {
+   "id": "laneagility",
+   "name": "Lane agility",
+   "how": "Slide, sprint and backpedal around the key, best of 2.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "11.8-12.3",
+    "good": "11.2-11.8",
+    "elite": "<11.2"
+   }
+  },
+  {
+   "id": "yoyo1",
+   "name": "Yo-Yo IR1",
+   "how": "2 x 20 m shuttles at rising speed with 10 s recovery.",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "1,000-1,400",
+    "good": "1,400-1,800",
+    "elite": ">1,800"
+   }
+  },
+  {
+   "id": "trapbar1rm",
+   "name": "Trap bar or squat estimated 1RM",
+   "how": "3-5RM, convert to 1RM, divide by body mass.",
+   "unit": "x body mass",
+   "better": "higher",
+   "bands": {
+    "club": "1.25",
+    "good": "1.5",
+    "elite": "1.75"
+   }
+  }
+ ],
+ "week": [
+  "One game (Sat), practice Tue and Thu.",
+  "Mon MD-5: gym A, lower strength.",
+  "Wed MD-3: gym B, power and upper, low leg volume.",
+  "Fri MD-1: optional primer.",
+  "Two games a week: one maintenance session on MD+2 or MD-2.",
+  "Heavy lower at least 72 h before a game."
+ ],
+ "primer": [
+  "10 min.",
+  "2-3 x 3 jumps.",
+  "2-3 short sprints.",
+  "Daily during tournaments."
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "7-10 days. Practice volume down 30-40%, keep intensity.",
+   "Last heavy lower MD-5.",
+   "Daily 10 min primers during tournaments."
+  ]
+ },
+ "rules": [
+  "Previous ankle sprain: prompt to wear a lace-up brace in all play.",
+  "Count gym jumps in the weekly jump load; in heavy practice weeks cut gym plyos.",
+  "Female players: landing module is priority 1, 2-3 times a week, all year.",
+  "Y-balance anterior reach difference over 4 cm is a flag.",
+  "New lifters: no depth jumps or Olympic lifts."
+ ],
+ "sources": [
+  {
+   "source": "Stojanović et al. 2018, Sports Med"
+  },
+  {
+   "source": "Ben Abdelkrim et al. 2007, Br J Sports Med"
+  },
+  {
+   "source": "McGuine & Keene 2006, Am J Sports Med"
+  },
+  {
+   "source": "McGuine et al. 2011, Am J Sports Med"
+  },
+  {
+   "source": "Longo et al. 2012, Am J Sports Med"
+  },
+  {
+   "source": "Agel et al. 2007, J Athl Train"
+  },
+  {
+   "source": "Drakos et al. 2010, Sports Health"
+  },
+  {
+   "source": "Plisky et al. 2006, J Orthop Sports Phys Ther"
+  },
+  {
+   "source": "Webster & Hewett 2018, J Orthop Res"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Approach jump",
+   "pattern": "plow",
+   "equipment": "",
+   "why": "signature jump; cmj used instead"
+  },
+  {
+   "name": "Deceleration drill (sprint and stop)",
+   "pattern": "land",
+   "equipment": "",
+   "why": "court braking; hop and stick used instead"
+  }
+ ]
+}

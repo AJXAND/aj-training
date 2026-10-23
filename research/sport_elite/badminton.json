@@ -1,0 +1,1039 @@
+{
+ "id": "badminton",
+ "name": "Badminton",
+ "aliases": [
+  "shuttlecock",
+  "badders"
+ ],
+ "group": "Racket",
+ "variants": [
+  {
+   "id": "singles",
+   "name": "Singles",
+   "desc": "Most court coverage: aerobic power and repeated lunges matter most.",
+   "note": "Footwork intervals use 10 s on / 20 s off and the aerobic session stays in."
+  },
+  {
+   "id": "doubles",
+   "name": "Doubles",
+   "desc": "More front-back rotation, smashes and drives, with shorter rallies.",
+   "prehab": [
+    "shoulderER"
+   ],
+   "note": "Intervals shorten to 6-8 s on / 15 s off and power work gets priority."
+  },
+  {
+   "id": "over35",
+   "name": "Recreational over 35",
+   "desc": "Badminton is one of the leading sports for Achilles ruptures in northern Europe.",
+   "prehab": [
+    "calf",
+    "ankle"
+   ],
+   "note": "Calf and Achilles work comes first and plyometrics progress more slowly."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower power and lunge",
+    "focus": "Jump and lunge power, calf, knee tendon, ankle",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "jumplunge",
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Split jumps for inter and advanced. New: lateral bounds."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "jumplunge",
+       "latbound"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3,
+      "note": "Scissor-kick jump, land on the rear leg and stick."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: 8 reps at RIR 3. Advanced: 3 reps at about 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Reach forward with the racket hand as you lunge."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Heavy and slow, 3 s down."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Single-leg on a step."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2,
+      "note": "Hard effort. Good for the patellar tendon."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Upper, smash and shoulder",
+    "focus": "Overhead and rotational power, pulling, shoulder, groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Overhead throw: drive from the legs, like a smash."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Smashing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-8/side",
+      "rir": 2,
+      "note": "Short lever first."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Lower power and lunge",
+    "focus": "Jump and lunge power, calf, knee tendon, ankle",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "jumplunge",
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Split jumps for inter and advanced. New: lateral bounds."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "jumplunge",
+       "latbound"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3,
+      "note": "Scissor-kick jump, land on the rear leg and stick."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "New: 6-8 reps at RIR 2-3. Inter: 80-85%. Advanced: 2-4 reps at 85-90%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Reach forward with the racket hand as you lunge."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Heavy and slow, 3 s down."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Single-leg on a step."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2,
+      "note": "Hard effort. Good for the patellar tendon."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Upper, smash and shoulder",
+    "focus": "Overhead and rotational power, pulling, shoulder, groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Overhead throw: drive from the legs, like a smash."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Smashing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-8/side",
+      "rir": 2,
+      "note": "Short lever first."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Compete lower",
+    "focus": "Hold leg power with low fatigue",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "jumplunge",
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 80%. New: 6 reps at RIR 2. Never near failure in season."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper, smash and shoulder",
+    "focus": "Overhead and rotational power, pulling, shoulder, groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Overhead throw: drive from the legs, like a smash."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Smashing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-8/side",
+      "rir": 2,
+      "note": "Short lever first."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady, or 4 x 4 min",
+    "rest": "3 min easy between 4 min efforts",
+    "intensity": "Steady, or 90-95% max heart rate for intervals",
+    "perWeek": 1,
+    "why": "Elite singles players average above 90% max heart rate."
+   },
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "10 s to the six corners / 20 s rest x 10-12, 3 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace",
+    "perWeek": 1,
+    "why": "Work:rest of 1:2 matches the game."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "10 s / 20 s x 10-12, 3 sets (doubles: 6-8 s / 15 s)",
+    "rest": "3 min between sets",
+    "intensity": "Match pace or a touch faster",
+    "perWeek": 2,
+    "why": "Builds repeated explosive movement at the game's work:rest ratio."
+   },
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "4 x 4 min",
+    "rest": "3 min easy",
+    "intensity": "90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Keeps recovery between rallies quick."
+   }
+  ],
+  "in": [
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "10 s / 20 s x 10, 2 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace",
+    "perWeek": 1,
+    "why": "Top-up only. Not the day before a match."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "vo2max",
+   "name": "VO2max",
+   "how": "Lab test, or track the footwork test as a field proxy",
+   "unit": "ml/kg/min",
+   "better": "higher",
+   "bands": {
+    "club": "45-50",
+    "good": "50-55",
+    "elite": ">55"
+   },
+   "note": "Adult men. Women about 15% lower."
+  },
+  {
+   "id": "footwork",
+   "name": "Badminton footwork test",
+   "how": "Six-point or four-corner shadow test, 3 rounds, time it",
+   "unit": "s",
+   "better": "lower",
+   "bands": {},
+   "note": "No published bands. Track your own change."
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, phone app such as My Jump, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "32-38",
+    "good": "38-45",
+    "elite": ">45"
+   },
+   "note": "Adult men. Women lower."
+  },
+  {
+   "id": "505",
+   "name": "505 change of direction",
+   "how": "10 m run-in, turn 180 degrees, time the 5 m in and out. Both sides",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "2.50",
+    "good": "2.40",
+    "elite": "<2.30"
+   },
+   "note": "Adult men. Women about 10% slower."
+  },
+  {
+   "id": "calfraise",
+   "name": "Single-leg calf raise to fatigue",
+   "how": "On a step, full range, count clean reps. Each leg",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "25+",
+    "good": "30+",
+    "elite": "35+"
+   },
+   "note": "Practice benchmark, not research."
+  }
+ ],
+ "week": [
+  "League match: heavy lower 48 h or more before.",
+  "No footwork intervals the day before a match.",
+  "Build block: gym 2-3 a week. Compete weeks: 1-2 short sessions.",
+  "Tournament on back-to-back days: primers only."
+ ],
+ "primer": [
+  "2 x 3 split or lateral jumps",
+  "2 x 2 scissor-kick landings each side",
+  "Band shoulder external rotation 1 x 12",
+  "A few shadow footwork reps at match pace"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Cut conditioning volume by about half.",
+   "Keep footwork intervals fast in short sets.",
+   "Last heavy lower 4 days before.",
+   "Primer on match day."
+  ]
+ },
+ "rules": [
+  "Over 35: calf and Achilles work every week, all year, and slower plyo progressions.",
+  "New lifters: no split jumps or drop jumps. Low-amplitude plyos only.",
+  "Track jump volume in heavy weeks: load spikes drive knee tendon pain.",
+  "Shoulder work 2-3 times a week for the smashing arm, both sides trained."
+ ],
+ "sources": [
+  {
+   "source": "Phomsoupha M, Laffaye G 2015, Sports Med 45(4):473-495",
+   "url": "https://www.worldbadminton.com/reference/research/documents/The_Science_of_Badminton_Game.pdf"
+  },
+  {
+   "source": "Phomsoupha M, Laffaye G 2020, Sci Sports 35(4):189-199"
+  },
+  {
+   "source": "Fahlstrom M, Bjornstig U, Lorentzon R 1998, Scand J Med Sci Sports 8(3):150-155"
+  },
+  {
+   "source": "Gomez MA et al. 2020, rally characteristics in badminton",
+   "url": "https://researchonline.jcu.edu.au/63416/"
+  },
+  {
+   "source": "Schiftan, Ross and Hahne 2015, J Sci Med Sport 18(3):238-244",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24831756/"
+  },
+  {
+   "source": "Andersson et al. 2017, Br J Sports Med 51(14):1073-1080",
+   "url": "https://bjsm.bmj.com/content/51/14/1073"
+  },
+  {
+   "source": "Kongsgaard et al. 2009, Scand J Med Sci Sports 19(6):790-802"
+  },
+  {
+   "source": "Ronnestad, Nymark and Raastad 2011, J Strength Cond Res 25(10):2653-2660",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Scissor-kick jump and land",
+   "pattern": "land",
+   "equipment": "",
+   "why": "Badminton-specific rear-leg landing control; hop and stick used instead"
+  },
+  {
+   "name": "Overhead med ball throw (forward)",
+   "pattern": "pup",
+   "equipment": "medball",
+   "why": "Smash power; slam and backward overhead throw used instead"
+  }
+ ]
+}

@@ -1,0 +1,923 @@
+{
+ "id": "alpineskiing",
+ "name": "Alpine skiing",
+ "aliases": [
+  "skiing",
+  "downhill skiing",
+  "ski racing",
+  "slalom",
+  "giant slalom",
+  "super-G",
+  "downhill",
+  "ski touring"
+ ],
+ "group": "Snow",
+ "variants": [
+  {
+   "id": "racer",
+   "name": "Ski racer",
+   "desc": "Runs of 45 s (slalom) to 2.5 min (downhill) with high eccentric and isometric leg loads and G-forces.",
+   "q": {
+    "mass": 2
+   },
+   "prehab": [
+    "landing",
+    "nordic"
+   ],
+   "note": "Dry-land season (May to Oct) is your main strength window; on snow you lift 1-2 times a week."
+  },
+  {
+   "id": "recreational",
+   "name": "Recreational skier",
+   "desc": "Long days of repeated moderate eccentric work; fatigue late in the day drives injury.",
+   "q": {
+    "mass": 1
+   },
+   "prehab": [
+    "landing",
+    "hipAbd"
+   ],
+   "note": "Train 2-3 times a week for 6-8 weeks before your trip, then one short session the week you travel and none on ski days."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: squat and lateral power",
+    "focus": "Leg strength, lateral landings, trunk",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick every landing for 2 s"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5-6",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5-8",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "cabsidebend"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: hinge and single leg",
+    "focus": "Posterior chain, frontal-plane strength, hip control",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "depthjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Step down from the box, stick the landing"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "rdl",
+       "dbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "invrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "cabadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-8/side",
+      "rir": 2,
+      "note": "Start short lever (knee), build to long lever"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: eccentric squat and iso holds",
+    "focus": "Slow lowering, ski-depth isometrics, lateral power",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick every landing"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "82-85% 1RM, 3 s lowering"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wallsit",
+       "spanishsq",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2,
+      "note": "Hold at your ski-depth knee angle"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-6",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: hinge and lateral strength",
+    "focus": "Hinge strength, lateral lunges, hip control",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "depthjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Low drop, stick the landing"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "rdl",
+       "dbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "About 85% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "cabadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-8/side",
+      "rir": 2,
+      "note": "Start short lever (knee), build to long lever"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Day A: maintain strength",
+    "focus": "Short heavy session, mid-week",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wallsit",
+       "spanishsq",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2,
+      "note": "Ski-depth angle"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: maintain hinge",
+    "focus": "Optional second session in a light week",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "rdl",
+       "dbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady",
+    "rest": "none",
+    "intensity": "Easy to moderate, can talk in sentences",
+    "perWeek": 2,
+    "why": "Aerobic capacity lets you recover between runs (racers 2-3 a week)"
+   }
+  ],
+  "pre": [
+   {
+    "name": "Run-length intervals",
+    "mode": "bike",
+    "work": "6-8 x 60-90 s hard",
+    "rest": "3-4 min easy",
+    "intensity": "Hard, close to race-run effort",
+    "perWeek": 1,
+    "why": "Matches race-run duration (coach practice); slide board also works"
+   },
+   {
+    "name": "Pre-trip leg circuit",
+    "mode": "any",
+    "work": "2-3 x 60-90 s wall sit then lateral hops",
+    "rest": "2 min",
+    "intensity": "Hard but controlled",
+    "perWeek": 2,
+    "why": "Recreational skiers: builds leg endurance for long ski days"
+   },
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30 min steady",
+    "rest": "none",
+    "intensity": "Moderate",
+    "perWeek": 2,
+    "why": "Recreational skiers: 6 weeks before the trip"
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5 rep max with good depth",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.5",
+    "good": "1.5-1.8",
+    "elite": "1.8-2.0+"
+   },
+   "note": "Racer benchmarks; skip true maxes in season"
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump and reach or use a jump app; best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<45",
+    "good": "45+"
+   },
+   "note": "Good racer level; women 35 cm. No elite figure in our sources"
+  },
+  {
+   "id": "latbox90",
+   "name": "Lateral box jump, 90 s",
+   "how": "Jump side to side over a low box for 90 s; count contacts",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {},
+   "note": "Used in ski testing; track your own trend"
+  },
+  {
+   "id": "hopsym",
+   "name": "Single-leg hop symmetry",
+   "how": "3 single-leg hops for distance each side; weaker / stronger x 100",
+   "unit": "%",
+   "better": "higher",
+   "bands": {
+    "club": "<90",
+    "good": "90+"
+   },
+   "note": "Below 90% means work the weaker leg (coach practice)"
+  },
+  {
+   "id": "wallsit",
+   "name": "Wall sit at 90 degrees",
+   "how": "Back flat on a wall, thighs level; hold to failure",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "<120",
+    "good": "120+"
+   },
+   "note": "Recreational target (coach practice)"
+  }
+ ],
+ "week": [
+  "Racers: May to Oct is the main strength block, 3 sessions a week",
+  "On snow (Nov to Apr): 1-2 short sessions, heavy one mid-week",
+  "Nothing heavy for the legs within 48 h of a race",
+  "Recreational: 2-3 sessions a week for 6-8 weeks before a trip",
+  "Trip week: one short session, none on ski days"
+ ],
+ "primer": [
+  "Easy bike or jog 5-8 min",
+  "Leg swings and lateral lunges",
+  "2-3 x 2-3 lateral bounds to stick",
+  "2 x 3 squat jumps, full rest"
+ ],
+ "taper": {
+  "days": 5,
+  "lines": [
+   "Racers: keep one short heavy session mid-week",
+   "No heavy legs within 48 h of a race",
+   "Recreational: last hard session 4-5 days before you travel",
+   "Cut volume by about half in the final week, keep the load",
+   "No new exercises in the last 2 weeks"
+  ]
+ },
+ "rules": [
+  "Nordics all year: ramp up, then low-volume maintenance",
+  "Stop skiing when your legs are tired; late-day fatigue drives knee injuries",
+  "Get your bindings set by a ski shop for your weight and level",
+  "Learn the ACL-safe fall: arms forward, hands over skis, do not fight a fall back",
+  "Release your poles when you fall (skier's thumb)",
+  "Core strength is a priority, not an afterthought"
+ ],
+ "sources": [
+  {
+   "source": "Bere et al. 2011, American Journal of Sports Medicine"
+  },
+  {
+   "source": "Ettlinger, Johnson and Shealy 1995, American Journal of Sports Medicine"
+  },
+  {
+   "source": "Raschner et al. 2012, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/46/15/1065"
+  },
+  {
+   "source": "Turnbull, Kilding and Keogh 2009, Scand J Med Sci Sports"
+  },
+  {
+   "source": "Hydren et al. 2013, Strength and Conditioning Journal"
+  },
+  {
+   "source": "van Dyk, Behan and Whiteley 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/21/1362"
+  },
+  {
+   "source": "Webster and Hewett 2018, Journal of Orthopaedic Research",
+   "url": "https://lida.sport-iat.de/ta/Record/4054906"
+  },
+  {
+   "source": "Harøy et al. 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/3/150"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Isometric split squat hold",
+   "pattern": "lunge",
+   "equipment": "",
+   "why": "Ski-depth isometric main lift in pre-season"
+  },
+  {
+   "name": "Depth drop to stick",
+   "pattern": "land",
+   "equipment": "box",
+   "why": "Landing control without the rebound jump"
+  },
+  {
+   "name": "Lateral slide board",
+   "pattern": "cond",
+   "equipment": "slideboard",
+   "why": "Ski-specific conditioning intervals"
+  }
+ ]
+}

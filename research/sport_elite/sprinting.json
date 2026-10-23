@@ -1,0 +1,938 @@
+{
+ "id": "sprinting",
+ "name": "Sprinting (track)",
+ "aliases": [
+  "sprint",
+  "sprinter",
+  "60m",
+  "100m",
+  "200m",
+  "400m",
+  "hurdles",
+  "110m hurdles",
+  "100m hurdles",
+  "400m hurdles"
+ ],
+ "group": "Track and field",
+ "variants": [
+  {
+   "id": "short",
+   "name": "60-200 m",
+   "desc": "Acceleration and top speed dominate; mostly alactic with a glycolytic share.",
+   "q": {},
+   "prehab": [
+    "nordic",
+    "calf"
+   ],
+   "note": "Track work is acceleration, flying runs and 80-150 m speed endurance."
+  },
+  {
+   "id": "long",
+   "name": "400 m",
+   "desc": "Large glycolytic and aerobic share, about 40% aerobic or more.",
+   "q": {},
+   "prehab": [
+    "nordic",
+    "calf"
+   ],
+   "note": "Track adds special endurance (2-3 x 300-350 m) and more tempo; gym stays the same."
+  },
+  {
+   "id": "hurdles",
+   "name": "Hurdles",
+   "desc": "Sprint demands plus repeated hip flexion and lumbar extension over barriers.",
+   "q": {},
+   "prehab": [
+    "lowback",
+    "copenhagen"
+   ],
+   "note": "Back extensor and anti-extension core work move up to protect the lower back."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: acceleration day, heavy",
+    "focus": "Olympic pull, horizontal jumps, heavy squat",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "cleanpull",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "70-75% 1RM. New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "broadjump",
+       "bounding",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3-6",
+      "rir": 2,
+      "note": "Weeks 1-4: 6 at 75%; then 3-5 at 82-88%"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Rear foot elevated"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "cabadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-8/side",
+      "rir": 2,
+      "note": "Start short lever (knee), build to long lever"
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "bbrollout",
+       "deadbug",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Anti-extension"
+     }
+    ]
+   },
+   {
+    "name": "Day B: max-velocity day, hinge",
+    "focus": "Reactive jumps, hip extension, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "hurdlehop",
+       "pogo",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Low box, short contacts"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "dbhipthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5-6",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "stepup",
+       "bstance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "bbcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Heavy, single leg"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "csdb",
+       "invrow",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Arm action balance"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Isometric hold, hard effort"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day C: power and hip flexors",
+    "focus": "Upper power, single leg, hip flexor strength",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pushpress",
+       "pushjerk",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbohthrow",
+       "mbscoop",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Overhead backward throw"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "bbstepup",
+       "petersen"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "psoasmarch",
+       "cabhipflex",
+       "slr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2,
+      "note": "Hip flexor march"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: acceleration day, heavy",
+    "focus": "Heavier pulls, bounds, heavy triples",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "cleanpull",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "80-85% 1RM. New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "broadjump",
+       "bounding",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Then 3 x 5 alternate-leg bounds"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "87-90% 1RM; new lifters 5 at RIR 3"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "cabadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-8/side",
+      "rir": 2,
+      "note": "Start short lever (knee), build to long lever"
+     }
+    ]
+   },
+   {
+    "name": "Day B: max-velocity day, hinge",
+    "focus": "Reactive jumps, heavy hinge, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "hurdlehop",
+       "pogo",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "dbhipthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "About 85% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "stepup",
+       "bstance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "bbcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Isometric hold, hard effort"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Day A: heavy, low volume",
+    "focus": "Fast pulls and heavy doubles after acceleration",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "cleanpull",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "About 80% 1RM. New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "broadjump",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 2,
+      "note": "85-90% 1RM; stop if bar speed drops"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     }
+    ]
+   },
+   {
+    "name": "Day B: fast power",
+    "focus": "Short contacts, hinge, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "hurdlehop",
+       "pogo"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "stepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Isometric hold, hard effort"
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [],
+  "pre": [],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "sprint30",
+   "name": "30 m sprint",
+   "how": "Block or 3-point start, timing gates or phone slow-motion video",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": ">4.3",
+    "good": "3.9-4.3",
+    "elite": "<3.9"
+   },
+   "note": "Women: good club 4.8 s, elite 4.3 s"
+  },
+  {
+   "id": "fly30",
+   "name": "Flying 30 m",
+   "how": "20-30 m build-up, time the next 30 m",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": ">3.2",
+    "good": "2.9-3.2",
+    "elite": "2.7-2.9"
+   },
+   "note": "Women: good club 3.6 s, elite 3.0-3.2 s"
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump app or jump-and-reach; best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<50",
+    "good": "50-60",
+    "elite": "60+"
+   },
+   "note": "Women: good club 38 cm, elite 45 cm+"
+  },
+  {
+   "id": "slj",
+   "name": "Standing long jump",
+   "how": "Two-foot take-off and landing, measure to the heel",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "<2.7",
+    "good": "2.7-3.1",
+    "elite": "3.1+"
+   },
+   "note": "Women: good club 2.3 m, elite 2.6 m+"
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3 rep max; never within 10 days of a race",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.75",
+    "good": "1.75-2.0",
+    "elite": "2.0-2.5"
+   }
+  },
+  {
+   "id": "clean1rm",
+   "name": "Power clean 1RM",
+   "how": "Estimate from a 2-3 rep max with good technique",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.1",
+    "good": "1.1-1.4",
+    "elite": "1.4-1.5"
+   },
+   "note": "Skip if you do not clean"
+  }
+ ],
+ "week": [
+  "Mon: acceleration on the track, then heavy lower gym",
+  "Tue: tempo running, no gym",
+  "Wed: max velocity or speed endurance, then power gym",
+  "Thu: off or tempo",
+  "Fri: acceleration or event work, then light power (off and pre)",
+  "Sat: speed endurance; Sun: off"
+ ],
+ "primer": [
+  "3-4 days out, gym primer only",
+  "2 x 2 hang clean at 75%",
+  "2 x 3 jumps",
+  "1 set of 2 squats at 80%"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Last heavy session (90%) 7-10 days out",
+   "Last high-volume track session 10-12 days out",
+   "Final week: volume down 40-50%, keep intensity",
+   "Keep short accelerations and a few flying runs",
+   "No maxing within 10 days of the race"
+  ]
+ },
+ "rules": [
+  "Nordics all year: ramp up, then low-volume maintenance",
+  "Track quality first: gym follows the hard track session",
+  "Build high-speed running and spike work gradually",
+  "Repeated bone or tendon pain with low energy intake: get screened for REDs",
+  "Never lift heavy legs the day before a race"
+ ],
+ "sources": [
+  {
+   "source": "Haugen, Seiler, Sandbakk and Tønnessen 2019, Sports Medicine Open"
+  },
+  {
+   "source": "Edouard, Branco and Alonso 2016, British Journal of Sports Medicine"
+  },
+  {
+   "source": "van Dyk, Behan and Whiteley 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/21/1362"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  },
+  {
+   "source": "Rønnestad, Nymark and Raastad 2011, Journal of Strength and Conditioning Research",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  },
+  {
+   "source": "Spencer and Gastin 2001, Medicine and Science in Sports and Exercise"
+  },
+  {
+   "source": "Timmins et al. 2016, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Mountjoy et al. 2023, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Harøy et al. 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/3/150"
+  }
+ ],
+ "missing_ex": []
+}

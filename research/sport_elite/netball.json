@@ -1,0 +1,1061 @@
+{
+ "id": "netball",
+ "name": "Netball",
+ "aliases": [
+  "mixed netball",
+  "men's netball"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "centrecourt",
+   "name": "Centre court (C, WA, WD)",
+   "desc": "Most running: repeated sprints and aerobic power matter most.",
+   "q": {},
+   "prehab": [
+    "landing",
+    "ankle"
+   ],
+   "note": "Adds 15/15 intervals; upper body stays at 2-3 sets of one push and one pull."
+  },
+  {
+   "id": "circle",
+   "name": "Circle (GS, GK)",
+   "desc": "Most jumping and holding position: landing, upper-body and trunk strength. GA and GD sit between the two.",
+   "q": {
+    "upperPush": 2,
+    "upperPull": 2,
+    "trunk": 3
+   },
+   "prehab": [
+    "landing",
+    "patellar"
+   ],
+   "note": "Adds one upper set and anti-rotation trunk work, plus patellar tendon isometrics."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower strength",
+    "focus": "Heavy legs, slow eccentrics, calves",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "pogo",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "New: pogo hops 3 x 10."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3-8",
+      "rir": 2,
+      "note": "New 8 RIR 3 (trap bar or goblet). Inter 5 at 80%. Adv 3 at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8/side",
+      "rir": 2,
+      "note": "3 s lowering."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "30 s",
+      "rir": 2,
+      "note": "Circle players, or anyone with knee pain."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Lateral, hinge and upper",
+    "focus": "Single-leg landing, hinge, one push and one pull",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick each landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Circle players: add 1 set."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "bandpullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "Circle players: add 1 set."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Add ball catches."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-40 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Reactive and deceleration",
+    "focus": "Inter and adv only; new players skip this day",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "hurdlehop",
+       "depthjump",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Inter: hurdle hops. Adv: depth jump."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "petersen"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Step-down with 3 s lowering."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3/leg",
+      "rir": 3,
+      "note": "Sprint 5 m, stop on one foot inside the one-step rule."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "standdbohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Jump and strength contrast",
+    "focus": "Landing, squat, hamstrings",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Jump, land on one foot, stick."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "trapdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3-6",
+      "rir": 2,
+      "note": "New 6. Inter 4 at 80%. Adv 3 at 85%, then 3 box jumps."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3/leg",
+      "rir": 3,
+      "note": "Sprint 5 m, stop on one foot inside the one-step rule."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Add ball catches."
+     }
+    ]
+   },
+   {
+    "name": "Power and upper",
+    "focus": "Trap bar jump, press, pull, lateral",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "boxjp",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "New: box jump."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "standdbohp",
+       "pushpress",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Adv: push press."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "bandpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "deadbug",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2,
+      "note": "Circle players: anti-rotation focus."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "In-season A",
+    "focus": "MD-4 or MD-3, 35-40 min",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3-6",
+      "rir": 2,
+      "note": "New 6. Inter and adv 3 at 80-85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2,
+      "note": "3 s lowering."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "ghr",
+       "slidecurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "New: band-assisted or partial range"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "stepcalf",
+       "standcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Add ball catches."
+     }
+    ]
+   },
+   {
+    "name": "In-season B",
+    "focus": "MD-2, about 25 min, low leg load",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10 min",
+      "rir": 3,
+      "note": "KNEE / NetballSmart block: land on two feet then one, stop in one step, stick."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "sideabd",
+       "cababd",
+       "abductor"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "plank",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-12",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "4 x 4 min",
+    "rest": "3 min easy",
+    "intensity": "90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Aerobic base for repeated sprints (shared method)."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Netball court HIIT",
+    "mode": "court",
+    "work": "3 sets of 8 x (5 m sprint, stop, change direction, 5 m sprint, jump and land)",
+    "rest": "15-30 s between reps, 3 min between sets",
+    "intensity": "hard, 15 s on",
+    "perWeek": 1,
+    "why": "Copies netball stop-start movement."
+   },
+   {
+    "name": "Repeated sprints with a stop",
+    "mode": "court",
+    "work": "6 x 10-15 m, stop on one foot",
+    "rest": "20 s",
+    "intensity": "maximal",
+    "perWeek": 1,
+    "why": "Repeated sprints plus braking control."
+   },
+   {
+    "name": "15/15 intervals (centre court)",
+    "mode": "run",
+    "work": "2 x 6-8 min, 15 s run / 15 s rest",
+    "rest": "3 min between sets",
+    "intensity": "90-95% of 30-15 IFT speed, or RPE 8-9",
+    "perWeek": 1,
+    "why": "Aerobic power for the highest-running positions."
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "sprint10",
+   "name": "10 m sprint",
+   "how": "Start 0.5 m behind the line, best of 3.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "2.05",
+    "good": "1.95",
+    "elite": "<1.90"
+   },
+   "note": "Senior female. 5 m: 1.20 / 1.15 / <1.10."
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump mat or phone app, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "26-30",
+    "good": "30-35",
+    "elite": ">35"
+   },
+   "note": "Senior female."
+  },
+  {
+   "id": "505",
+   "name": "505 change of direction",
+   "how": "10 m run-in, time 5 m to the line, turn 180 degrees, 5 m back. Both sides.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "2.65-2.80",
+    "good": "2.55-2.65",
+    "elite": "<2.50"
+   },
+   "note": "Senior female."
+  },
+  {
+   "id": "yoyo1",
+   "name": "Yo-Yo IR1",
+   "how": "2 x 20 m shuttles at rising speed with 10 s recovery.",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "600-900",
+    "good": "900-1,200",
+    "elite": ">1,200"
+   },
+   "note": "Senior female; centre court higher."
+  },
+  {
+   "id": "squat1rm",
+   "name": "Squat estimated 1RM",
+   "how": "3-5RM, convert to 1RM, divide by body mass.",
+   "unit": "x body mass",
+   "better": "higher",
+   "bands": {
+    "club": "1.0",
+    "good": "1.25",
+    "elite": "1.5"
+   },
+   "note": "Senior female."
+  },
+  {
+   "id": "hopasym",
+   "name": "Single-leg hop asymmetry",
+   "how": "Hop for distance on each leg, best of 3; difference as % of the better leg.",
+   "unit": "%",
+   "better": "lower",
+   "bands": {
+    "club": "<10",
+    "good": "<10",
+    "elite": "<10"
+   },
+   "note": "Over 10% is a flag at any level."
+  }
+ ],
+ "week": [
+  "One game (Sat), practice Tue and Thu.",
+  "Mon MD-5: gym A, lower strength.",
+  "Wed MD-3: gym B, power and upper, low leg volume.",
+  "Fri MD-1: optional primer.",
+  "Two games a week: one maintenance session on MD+2 or MD-2.",
+  "Heavy lower at least 72 h before a game."
+ ],
+ "primer": [
+  "10 min landing warm-up first.",
+  "2-3 x 3 jumps with stick landings.",
+  "2-3 short sprints with a one-foot stop."
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "7-10 days. Practice volume down 30-40%, keep intensity.",
+   "Last heavy lower MD-5.",
+   "Tournaments with 2-3 games a day: no gym; landing warm-up before every game."
+  ]
+ },
+ "rules": [
+  "Start every session with the 10 min KNEE / NetballSmart block.",
+  "Previous ankle sprain: prompt to brace or tape for play.",
+  "Landing module 2-3 times a week, all year.",
+  "Count gym jumps in the weekly jump load; in heavy practice weeks cut gym plyos.",
+  "Assume female by default, but men's and mixed netball exist: do not hard-code it."
+ ],
+ "sources": [
+  {
+   "source": "Rowe, Bryant & Paterson 2021, BMC Sports Sci Med Rehabil",
+   "url": "https://link.springer.com/article/10.1186/s13102-021-00342-9"
+  },
+  {
+   "source": "Attenborough et al. 2016, J Sci Med Sport"
+  },
+  {
+   "source": "Belcher et al. 2021, Phys Ther Sport"
+  },
+  {
+   "source": "Saad et al. 2021, J Sports Sci"
+  },
+  {
+   "source": "Webster & Hewett 2018, J Orthop Res"
+  },
+  {
+   "source": "Schiftan, Ross & Hahne 2015, J Sci Med Sport"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Deceleration drill (sprint and one-foot stop)",
+   "pattern": "land",
+   "equipment": "",
+   "why": "the main netball injury mechanism; hop and stick used instead"
+  }
+ ]
+}

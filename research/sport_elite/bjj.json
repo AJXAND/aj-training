@@ -1,0 +1,1046 @@
+{
+ "id": "bjj",
+ "name": "Brazilian jiu-jitsu",
+ "aliases": [
+  "jiu jitsu",
+  "jiu-jitsu",
+  "bjj",
+  "grappling",
+  "no-gi",
+  "nogi",
+  "gi"
+ ],
+ "group": "Combat",
+ "variants": [
+  {
+   "id": "gi",
+   "name": "Gi",
+   "desc": "Cloth grips make grip and finger endurance the classic limiter.",
+   "q": {},
+   "prehab": [
+    "fingers"
+   ],
+   "note": "Grip work stays in every session; swap pull-ups for strapped pulldowns after hard gi days."
+  },
+  {
+   "id": "nogi",
+   "name": "No-gi",
+   "desc": "Faster scrambles and wrist and body locks; less finger load, more heel hook risk to knees.",
+   "q": {
+    "power": 3
+   },
+   "prehab": [
+    "landing",
+    "copenhagen"
+   ],
+   "note": "More jumps and knee and groin work; finger hangs can drop to one set."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Hinge, pull and grip",
+    "focus": "Heavy hinge, gi pulling strength, neck and fingers",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "kbswing",
+       "boxjp",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 3,
+      "note": "Or box jump 3 x 4."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "80-85% 1RM. New: 5-8 reps, 3 in reserve."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "towelpull",
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5-6",
+      "rir": 2,
+      "note": "Gi or towel grip. Fried grip from gi? Pulldown with straps."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-20/direction",
+      "rir": 3,
+      "note": "Weeks 1-4: 10-15 s holds only. No bridging."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "towelhang",
+       "deadhang",
+       "farmerhold",
+       "gripper"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-40 s",
+      "rir": 3,
+      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "hanglegstraight",
+       "legraise"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and carry",
+    "focus": "Squat, bench, rows and loaded carries",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "80% 1RM. New: 5-8 reps, 3 in reserve."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "dbfloor",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5-6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bbrow",
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "towelhang"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-5/side",
+      "rir": 3,
+      "note": "Knee lever first; build to long lever 8-15 over 8 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Or 30-60 s holds."
+     }
+    ]
+   },
+   {
+    "name": "Single-leg and trunk",
+    "focus": "Get-ups, single-leg hinge, sled and neck",
+    "slots": [
+     {
+      "role": "core",
+      "ex": [
+       "tgu",
+       "windmill",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2/side",
+      "rir": 2,
+      "note": "Slow and controlled."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "salmpress",
+       "lmpress",
+       "standdbohp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "sledpush",
+       "sledpull",
+       "farmers"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "20 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-20/direction",
+      "rir": 3,
+      "note": "Weeks 1-4: 10-15 s holds only. No bridging."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Hinge, pull and grip",
+    "focus": "Heavy hinge, gi pulling strength, neck and fingers",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "kbswing",
+       "boxjp",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "towelpull",
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "max minus 2",
+      "rir": 2,
+      "note": "Stop 2 reps short of failure."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20/direction",
+      "rir": 3,
+      "note": "Slow, 2-3 s each way. Add 1 set of holds."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "towelhang",
+       "deadhang",
+       "farmerhold",
+       "gripper"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-40 s",
+      "rir": 3,
+      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "hanglegstraight",
+       "legraise"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and carry",
+    "focus": "Squat, bench, rows and loaded carries",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "82% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "dbfloor",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bbrow",
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "towelhang"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-5/side",
+      "rir": 3,
+      "note": "Knee lever first; build to long lever 8-15 over 8 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Or 30-60 s holds."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Hinge, pull and grip",
+    "focus": "Heavy hinge, gi pulling strength, neck and fingers",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "kbswing",
+       "boxjp",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "towelpull",
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20/direction",
+      "rir": 3,
+      "note": "Keep 2-3x a week all year."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "towelhang",
+       "deadhang",
+       "farmerhold",
+       "gripper"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-40 s",
+      "rir": 3,
+      "note": "Gi or towel hangs. Add band finger extensions 2 x 25."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "hanglegstraight",
+       "legraise"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and carry",
+    "focus": "Squat, bench, rows and loaded carries",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "dbfloor",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bbrow",
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "towelhang"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "sideadd",
+       "adductor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-5/side",
+      "rir": 3,
+      "note": "Knee lever first; build to long lever 8-15 over 8 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Or 30-60 s holds."
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-40 min",
+    "rest": "none",
+    "intensity": "Zone 2, can hold a conversation",
+    "perWeek": 2,
+    "why": "Aerobic fitness speeds recovery between rounds and matches."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Match simulation",
+    "mode": "any",
+    "work": "4-6 rounds of your belt's match length (5-10 min)",
+    "rest": "1-2 min",
+    "intensity": "Match pace; fresh partner each minute in the last 3 weeks",
+    "perWeek": 1,
+    "why": "Only if you roll hard fewer than 3x a week."
+   },
+   {
+    "name": "Gym grappling circuit",
+    "mode": "any",
+    "work": "3-4 x 6 min: 20 s sled, rope pull or air bike, then 40 s grip hold or carry",
+    "rest": "2 min",
+    "intensity": "Hard but repeatable",
+    "perWeek": 1,
+    "why": "Mimics bursts inside long grip holds when mat time is short."
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "deadlift1rm",
+   "name": "Deadlift 1RM",
+   "how": "Work up to a hard single, or estimate from a 3-5RM.",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.75",
+    "good": "1.75-2.25",
+    "elite": "2.25+"
+   }
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Work up to a hard single, or estimate from a 3-5RM.",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.4",
+    "good": "1.4-1.75",
+    "elite": "1.75+"
+   }
+  },
+  {
+   "id": "gihang",
+   "name": "Gi or towel hang",
+   "how": "Hang from a gi or two towels over a bar, time to failure.",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "<40",
+    "good": "40-70",
+    "elite": "70+"
+   }
+  },
+  {
+   "id": "pullups",
+   "name": "Max pull-ups",
+   "how": "Dead hang start, chin over bar, no kipping.",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "<10",
+    "good": "10-18",
+    "elite": "18+"
+   }
+  },
+  {
+   "id": "handgrip",
+   "name": "Handgrip dynamometer",
+   "how": "Best of 3 per hand, arm by your side.",
+   "unit": "kg",
+   "better": "higher",
+   "bands": {
+    "elite": "50-60"
+   },
+   "note": "Elite men's range. Track your own trend per hand."
+  }
+ ],
+ "week": [
+  "Gym on drilling or lighter class days.",
+  "Never lift hard the day before the hardest open mat.",
+  "Heavy lift after class, or at least 6 h apart.",
+  "Rolled hard in the gi? Swap grip-heavy pulls for strapped pulldowns.",
+  "Keep easy days easy."
+ ],
+ "primer": [
+  "Jumps: 2 x 3",
+  "One lower lift: 2 x 3 at 80%",
+  "One upper pull: 2 x 3 at 80%",
+  "Neck holds: 1 x 10 s each way"
+ ],
+ "taper": {
+  "days": 14,
+  "lines": [
+   "Drop to 1 short gym session in the final 1-2 weeks.",
+   "That session: 2 x 3 at 80% on one lower and one upper lift, jumps, neck.",
+   "Last hard rolls 5-7 days out.",
+   "IBJJF weighs in just before your first match, in the gi: no acute cut."
+  ]
+ },
+ "rules": [
+  "Neck work every week, all year, 2-3x (1-2x in the peak week).",
+  "No neck bridging for amateurs.",
+  "No heavy or high-volume lifting the day before hard sparring or competition.",
+  "No dehydration cuts for amateurs; none at all for under-18s or same-day weigh-ins.",
+  "Flag any plan for more than 5% acute weight loss.",
+  "Chronic weight loss: 0.5-1% of body mass a week, strength work kept in.",
+  "Last heavy lift 7-10 days out; no new exercises in the final 2 weeks.",
+  "No max testing within 10 days of a competition.",
+  "Gym conditioning only if mat or ring work does not already cover it.",
+  "Tap early: no exercise protects a locked armbar or heel hook.",
+  "Buddy tape sore fingers; vary grips."
+ ],
+ "sources": [
+  {
+   "source": "Andreato LV et al. 2017, Sports Medicine Open"
+  },
+  {
+   "source": "Scoggin JF et al. 2014, Orthopaedic Journal of Sports Medicine"
+  },
+  {
+   "source": "Petrisor BA et al. 2019, Sports Health"
+  },
+  {
+   "source": "James LP, Haff GG, Kelly VG, Beckman EM 2016, Sports Medicine",
+   "url": "https://ro.ecu.edu.au/ecuworkspost2013/2325"
+  },
+  {
+   "source": "Hrysomallis C 2016, Sports Medicine (neck strength review)"
+  },
+  {
+   "source": "Collins CL et al. 2014, Journal of Primary Prevention"
+  },
+  {
+   "source": "Ronnestad BR, Nymark BS, Raastad T 2011, JSCR",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  },
+  {
+   "source": "Reale R, Slater G, Burke LM 2017, IJSPP",
+   "url": "https://acuresearchbank.acu.edu.au/item/88q7v/acute-weight-loss-strategies-for-combat-sports-and-applications-to-olympic-success"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Band finger extension",
+   "pattern": "grip",
+   "equipment": "bands",
+   "why": "Finger extensor balance for gi grippers."
+  }
+ ]
+}

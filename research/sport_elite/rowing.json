@@ -1,0 +1,866 @@
+{
+ "id": "rowing",
+ "name": "Rowing",
+ "aliases": [
+  "indoor rowing",
+  "erg",
+  "sculling",
+  "sweep rowing",
+  "crew",
+  "regatta",
+  "lightweight rowing"
+ ],
+ "group": "Endurance",
+ "variants": [
+  {
+   "id": "sweep",
+   "name": "Sweep (one oar)",
+   "desc": "Rowing on one side loads the back asymmetrically.",
+   "q": {},
+   "prehab": [
+    "lowback",
+    "tspine"
+   ],
+   "note": "Single-side work done on both sides; anti-rotation core in every session."
+  },
+  {
+   "id": "sculling",
+   "name": "Sculling (two oars)",
+   "desc": "Symmetrical stroke; more feathering and wrist load.",
+   "q": {},
+   "prehab": [
+    "wrist",
+    "lowback"
+   ],
+   "note": "Wrist work moves up; keep hands warm in the cold."
+  },
+  {
+   "id": "lightweight",
+   "name": "Lightweight",
+   "desc": "Same demands under a weight limit.",
+   "q": {
+    "mass": 0
+   },
+   "prehab": [],
+   "note": "No muscle-gain block. Weight loss 0.5-1% a week, no dehydration cuts."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Squat and pull",
+    "focus": "Clean, squat and bench pull",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "boxjp",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "70-75%. New lifters: box jumps."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "80-85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "sealrow",
+       "csrow",
+       "bbrow",
+       "csdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2,
+      "note": "Serratus work for rib protection."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Hinge and press",
+    "focus": "Deadlift, vertical pull, antagonist pressing",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "rdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "80-85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "bench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Antagonist pressing helps protect the ribs."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "abductor",
+       "sideabd",
+       "cababd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Strength-endurance circuit",
+    "focus": "Winter only. 3 rounds, 40 s on, 20 s off",
+    "slots": [
+     {
+      "role": "acc",
+      "ex": [
+       "legpress",
+       "goblet",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3,
+      "note": "Each station 40 s, 20 s to move. RIR 3-4."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "sealrow",
+       "csrow",
+       "bbrow",
+       "csdb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "revlunge",
+       "walklunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "plank",
+       "sideplank",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "kbswing",
+       "sakbswing",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rowerg",
+       "skiint",
+       "bikeerg"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s",
+      "rir": 3
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Squat and pull",
+    "focus": "Strength into power",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "boxjp",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2-3",
+      "rir": 3,
+      "note": "About 80%."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3-4",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "sealrow",
+       "csrow",
+       "bbrow",
+       "csdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Pull fast."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Hinge and press",
+    "focus": "Heavy hinge, keep it short",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "rdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "bench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Squat and pull",
+    "focus": "Maintain heavy strength, short",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "boxjp",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "sealrow",
+       "csrow",
+       "bbrow",
+       "csdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Hinge and press",
+    "focus": "Short heavy hinge and balance work",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "deadlift",
+       "trapdl",
+       "rdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "bench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [],
+  "pre": [],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "erg2k",
+   "name": "2000 m erg",
+   "how": "Concept2, damper 120-140 drag factor, all-out.",
+   "unit": "min:s",
+   "better": "lower",
+   "bands": {
+    "club": "6:30-7:00",
+    "elite": "5:40-5:55"
+   },
+   "note": "Men. Women club 7:30-8:00, international 6:20-6:40. Openweight."
+  },
+  {
+   "id": "squat1rm",
+   "name": "Squat 1RM",
+   "how": "Estimate from a 3-5RM.",
+   "unit": "x bodyweight",
+   "better": "higher",
+   "bands": {
+    "club": "1.5",
+    "elite": "1.75-2.0"
+   },
+   "note": "Benchmark, not peer reviewed."
+  },
+  {
+   "id": "dl1rm",
+   "name": "Deadlift 1RM",
+   "how": "Estimate from a 3-5RM.",
+   "unit": "x bodyweight",
+   "better": "higher",
+   "bands": {
+    "club": "1.75",
+    "elite": "2.0-2.25"
+   },
+   "note": "Benchmark, not peer reviewed."
+  },
+  {
+   "id": "benchpull",
+   "name": "Bench pull 1RM",
+   "how": "Prone on a high bench, bar to the underside. Estimate from a 3-5RM.",
+   "unit": "x bodyweight",
+   "better": "higher",
+   "bands": {
+    "club": "1.0",
+    "elite": "1.2-1.4"
+   },
+   "note": "Benchmark, not peer reviewed."
+  },
+  {
+   "id": "stroke7",
+   "name": "7-stroke max power",
+   "how": "Erg from standstill, 7 all-out strokes, note peak watts.",
+   "unit": "W",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your own trend."
+  }
+ ],
+ "week": [
+  "Heavy lifting after the morning row on a lower-intensity day.",
+  "Or pair it with a hard session when the afternoon is off.",
+  "No gym the day before a race or a 2 km test.",
+  "Winter: circuit on a third day, away from key ergs."
+ ],
+ "primer": [
+  "2-3 x 2 cleans or jumps",
+  "One lift 2 x 2 at about 80%",
+  "Once, 3-4 days before the race"
+ ],
+ "taper": {
+  "days": 12,
+  "lines": [
+   "Water and erg volume down 40-60% over 10-14 days.",
+   "Last heavy lift 7-10 days out.",
+   "One primer 3-4 days out.",
+   "No new exercises in the final 2 weeks."
+  ]
+ },
+ "rules": [
+  "Erg and water volume up no more than 10-15% a week (rib stress).",
+  "Avoid long low-rate ergs and sudden volume jumps.",
+  "Eat enough: low energy availability raises rib stress risk.",
+  "Sweep rowers: single-side work on both sides on land.",
+  "Lightweights: 0.5-1% body mass a week, no dehydration cuts.",
+  "Rib pain on the stroke: stop and refer."
+ ],
+ "sources": [
+  {
+   "source": "Lawton, Cronin and McGuigan 2011, Sports Medicine",
+   "url": "https://ro.ecu.edu.au/ecuworks2011/104"
+  },
+  {
+   "source": "Thornton et al. 2017, Sports Medicine"
+  },
+  {
+   "source": "Evans and Redgrave 2016, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  }
+ ],
+ "missing_ex": []
+}

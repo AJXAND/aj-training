@@ -1,0 +1,1141 @@
+{
+ "id": "cricket",
+ "name": "Cricket",
+ "aliases": [
+  "T20",
+  "one-day cricket",
+  "test cricket",
+  "club cricket",
+  "indoor cricket",
+  "fast bowling"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "fastbowler",
+   "name": "Fast bowler (pace and seam)",
+   "desc": "Front-foot impact of about 4-9 x body mass plus trunk extension, side bend and rotation at release.",
+   "q": {
+    "trunk": 3,
+    "lowerBody": 3,
+    "unilateral": 3
+   },
+   "prehab": [
+    "trunkLat",
+    "lowback",
+    "nordic",
+    "calf",
+    "ankle"
+   ],
+   "note": "Bowling workload log, front-leg block work, and no heavy lower on your heaviest bowling day."
+  },
+  {
+   "id": "batter",
+   "name": "Batter",
+   "desc": "Short sprints between wickets with 180 degree turns, and rotational bat power.",
+   "q": {
+    "power": 3,
+    "rotational": 3
+   },
+   "prehab": [
+    "nordic",
+    "trunkLat",
+    "calf",
+    "elbow"
+   ],
+   "note": "Use session C as your main lower day, add sprint-and-turn drills, heavy legs 48-72 h before a match."
+  },
+  {
+   "id": "spinner",
+   "name": "Spin bowler",
+   "desc": "High volume of wrist and finger spin; spinning finger, shoulder and side strain are the risks.",
+   "q": {
+    "grip": 3
+   },
+   "prehab": [
+    "elbow",
+    "wrist",
+    "shoulderER",
+    "trunkLat"
+   ],
+   "note": "Forearm, wrist and shoulder work twice a week; rotational work both sides."
+  },
+  {
+   "id": "keeper",
+   "name": "Wicketkeeper",
+   "desc": "Hundreds of squats per innings and lateral dives; knee, hip and finger load.",
+   "q": {
+    "unilateral": 3,
+    "lowerBody": 3
+   },
+   "prehab": [
+    "copenhagen",
+    "hipRot",
+    "wrist"
+   ],
+   "note": "Adds squat-stance holds (3 x 60 s), lateral lunges, Copenhagen, 90/90 hips and finger work."
+  },
+  {
+   "id": "allrounder",
+   "name": "All-rounder",
+   "desc": "Bats and bowls, so carries both sets of demands.",
+   "q": {
+    "trunk": 3,
+    "power": 3
+   },
+   "prehab": [
+    "trunkLat",
+    "lowback",
+    "nordic",
+    "calf"
+   ],
+   "note": "Fast bowler rules apply to all bowling: log your balls and respect the rest days."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "A: Lower strength and trunk",
+    "focus": "Front-leg strength, back and side resilience",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Adv: 4 x 3, then single-leg drop and stick on the front leg."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "squat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New 3 x 8 at RIR 3. I at 80%. Adv 5 x 3 at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "ffesplit",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "3 s lowering. New 8 reps, Adv 5 heavy."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: band-assisted or slider curls first."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Seated and standing. New 12, Adv 8 heavy."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s/side",
+      "rir": 2,
+      "note": "Side plank with reach. New 30 s, Adv 45 s."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "suitcase",
+       "farmers",
+       "farmerwalk"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20 m/side",
+      "rir": 2,
+      "note": "Adv: heavy."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "45 s",
+      "rir": 2,
+      "note": "Isometric hold. New 30 s, Adv 60 s or weighted."
+     }
+    ]
+   },
+   {
+    "name": "B: Upper and rotation",
+    "focus": "Rotational power to both sides, shoulder and trunk endurance",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Equal both ways: the bowling action is one-sided."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "bandpullup",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "er9090",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "bandpa",
+       "wallslide"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "cabsidebend",
+       "dbsidebend",
+       "sidebend45"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12/side",
+      "rir": 3,
+      "note": "Light. Lateral trunk endurance."
+     }
+    ]
+   },
+   {
+    "name": "C: Speed, rotation and grip (batters, fielders)",
+    "focus": "Batters' main lower day; optional third day for bowlers",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbscoop",
+       "mbrot",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Scoop toss, both sides."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Shot-put throw, both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New 3 x 8 at RIR 3."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "wristcurl",
+       "farmers",
+       "pronsup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 2,
+      "note": "Grip and forearm for bat control."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "woodchop",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "A: Landing power and legs",
+    "focus": "Front-foot landing, heavy legs, trunk",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "boxjp",
+       "depthjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Drop from 30 cm onto the front leg and stick. Depth jumps for Adv only."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% for I/A. New 3 x 6-8."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "ffesplit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "40 s/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "45 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Throws and upper",
+    "focus": "Overhead and rotational power, shoulder",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "ohp",
+       "standdbohp",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "er9090",
+       "bander",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "A: Strength hold (72 h or more before a long spell)",
+    "focus": "35 min. Usually Mon or Tue",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "goblet",
+       "frontsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 80%. New 2-3 x 6 at RIR 2."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "40 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Upper and trunk (MD-3 or MD-2)",
+    "focus": "25 min",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "lmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "er9090",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "run",
+    "work": "30-40 min easy run or bike",
+    "rest": "None",
+    "intensity": "Easy, conversational",
+    "perWeek": 2,
+    "why": "Fast bowlers need aerobic capacity to repeat spells."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Repeat-spell simulation (bowlers)",
+    "mode": "run",
+    "work": "4-6 overs of 6 x 20-25 m run-up sprints",
+    "rest": "Walk back 30 s; 2 min between overs",
+    "intensity": "Run-up pace",
+    "perWeek": 1,
+    "why": "Builds the ability to repeat run-ups across a spell."
+   },
+   {
+    "name": "Run-three repeats (batters)",
+    "mode": "run",
+    "work": "2-3 sets of 6 x run three (about 53 m, two turns)",
+    "rest": "25-40 s; shorter for T20",
+    "intensity": "Max effort",
+    "perWeek": 1,
+    "why": "Matches running between wickets with 180 degree turns."
+   },
+   {
+    "name": "Max-speed runs",
+    "mode": "run",
+    "work": "3-5 x 30-40 m build-ups",
+    "rest": "2-3 min",
+    "intensity": "Over 90-95% of top speed",
+    "perWeek": 1,
+    "why": "Top-speed exposure for hamstring robustness."
+   }
+  ],
+  "in": [
+   {
+    "name": "Max speed and turns (batters)",
+    "mode": "run",
+    "work": "3-5 x 30-40 m build-ups, then 6 x sprint 17.7 m and turn",
+    "rest": "2-3 min",
+    "intensity": "Fast but controlled",
+    "perWeek": 1,
+    "why": "Keeps hamstrings used to top speed through the season."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "sprint20",
+   "name": "20 m sprint",
+   "how": "Phone slow-motion video, 0.5 m behind the line, best of 3",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "3.15-3.30",
+    "good": "3.05-3.15",
+    "elite": "<3.05"
+   }
+  },
+  {
+   "id": "runtwo",
+   "name": "Run-a-two",
+   "how": "2 x 17.68 m with one turn, bat in hand, best of 3",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "6.6-7.0",
+    "good": "6.3-6.6",
+    "elite": "<6.3"
+   }
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump mat or My Jump app, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "32-38",
+    "good": "38-44",
+    "elite": ">44"
+   },
+   "note": "Fast bowlers often score higher."
+  },
+  {
+   "id": "trapbar1rm",
+   "name": "Trap bar or squat 1RM",
+   "how": "Estimate from a 3-5RM, report as x body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "1.25",
+    "good": "1.5",
+    "elite": "1.75"
+   }
+  },
+  {
+   "id": "sideplank",
+   "name": "Side plank hold",
+   "how": "Each side, hips in line, stop when hips drop",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "60",
+    "good": "90",
+    "elite": "120"
+   },
+   "note": "Practice benchmark. Both sides should be within about 10%."
+  },
+  {
+   "id": "ballspeed",
+   "name": "Fast bowler ball speed",
+   "how": "Radar gun or phone speed app, best of 6 full run-up balls",
+   "unit": "km/h",
+   "better": "higher",
+   "bands": {
+    "club": "110-120",
+    "good": "120-130",
+    "elite": "135-150"
+   },
+   "note": "Fast bowlers only."
+  }
+ ],
+ "week": [
+  "Bowler: Mon gym A (lower and trunk), Tue nets (moderate overs).",
+  "Bowler: Wed gym B (upper and power, no heavy lower), Thu nets (short, intense).",
+  "Fri rest or primer, Sat match.",
+  "Bowling Sat and Sun: Mon recovery only; gym A moves to Tue, at least 6 h before nets, or becomes maintenance.",
+  "Batter: heavy lower at least 48-72 h before the match.",
+  "Never heavy lower and the heaviest bowling on the same day; no hard trunk session the day after a long spell."
+ ],
+ "primer": [
+  "Dynamic warm-up, 8-10 min",
+  "2 x 3 countermovement jumps",
+  "2 x 3 rotational med ball throws per side",
+  "3 x 20 m build-up sprints"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Bowlers: cut net overs by 30-50% over the last 5-7 days.",
+   "Keep bowling at full pace in short spells.",
+   "Last heavy lower session MD-4; primer MD-1.",
+   "Multi-day match: no lifting during it; MD+1 is recovery."
+  ]
+ },
+ "rules": [
+  "Log balls bowled per day; warn when weekly balls move more than 20% from the 4-week average.",
+  "Acute load more than about 1.5 x the 4-week average is a spike: cut back.",
+  "Pre-season bowling build over 8-12 weeks: start 3-4 overs a session, 2 a week, 2 days or more apart.",
+  "Never jump from no bowling to a full match.",
+  "Juniors: follow the ECB Fast Bowling Match Directives for overs per spell and per day.",
+  "Rotational med ball work to both sides for every role.",
+  "4-6 weeks off bowling at the end of the season, then easy technical work."
+ ],
+ "sources": [
+  {
+   "source": "Orchard et al. 2015, Br J Sports Med 49(16):1064-1068 (fast bowling workload and injury)",
+   "url": "https://bjsm.bmj.com/content/49/16/1064"
+  },
+  {
+   "source": "Dennis et al. 2005, Br J Sports Med 39(11):843-846 (bowling workload in junior fast bowlers)",
+   "url": "https://bjsm.bmj.com/content/39/11/843"
+  },
+  {
+   "source": "Dennis, Farhart, Goumas & Orchard 2003, J Sci Med Sport 6(3):359-367"
+  },
+  {
+   "source": "Hulin et al. 2014, Br J Sports Med 48(8):708-712 (workload spikes in fast bowlers)"
+  },
+  {
+   "source": "Orchard et al. 2016, Br J Sports Med 50(20):1245-1251 (injury surveillance consensus)"
+  },
+  {
+   "source": "Alway et al. 2019, BMJ Open Sport Exerc Med 5:e000529 (lumbar stress fracture in county fast bowlers)",
+   "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Incidence_and_prevalence_of_lumbar_stress_fracture_in_English_County_Cricket_fast_bowlers_association_with_bowling_workload_and_seasonal_variation/9623252"
+  },
+  {
+   "source": "Loughborough University fast bowling research programme",
+   "url": "https://lboro.ac.uk/research/spotlights/fast-bowling/"
+  },
+  {
+   "source": "Petersen et al. 2010, J Sports Sci 28(1):45-52 (movement by position and format)"
+  },
+  {
+   "source": "ECB Fast Bowling Match Directives (current edition)"
+  },
+  {
+   "source": "van Dyk, Behan & Whiteley 2019, Br J Sports Med 53(21):1362-1370 (Nordic halves hamstring injuries)",
+   "url": "https://bjsm.bmj.com/content/53/21/1362"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Single-leg drop and stick (front-foot landing)",
+   "pattern": "land",
+   "equipment": "box",
+   "why": "Fast bowler power slot; hop and stick is the nearest"
+  },
+  {
+   "name": "Step-down (eccentric)",
+   "pattern": "lunge",
+   "equipment": "box",
+   "why": "Front-leg block option"
+  },
+  {
+   "name": "Side plank with reach",
+   "pattern": "core",
+   "equipment": "",
+   "why": "Side strain module; plain side plank used"
+  },
+  {
+   "name": "Sprint and turn at the crease",
+   "pattern": "cond",
+   "equipment": "",
+   "why": "Batter turn drill, 6-8 reps"
+  },
+  {
+   "name": "Squat-stance hold (keeper)",
+   "pattern": "squat",
+   "equipment": "db",
+   "why": "Keeper squat endurance; goblet squat or wall sit as stand-in"
+  }
+ ]
+}

@@ -1,0 +1,888 @@
+{
+ "id": "trackcycling",
+ "name": "Track cycling",
+ "aliases": [
+  "track cycling",
+  "track sprint",
+  "velodrome",
+  "keirin",
+  "team sprint",
+  "kilo",
+  "flying 200",
+  "pursuit",
+  "omnium",
+  "madison"
+ ],
+ "group": "Endurance",
+ "q": {
+  "maxStrength": 3,
+  "power": 3,
+  "rotational": 0,
+  "unilateral": 2,
+  "upperPull": 2,
+  "upperPush": 1,
+  "lowerBody": 3,
+  "grip": 2,
+  "neck": 0,
+  "trunk": 3,
+  "mass": 2
+ },
+ "prehab": [
+  "nordic",
+  "lowback",
+  "hipAbd",
+  "copenhagen"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 3,
+  "in": 2
+ },
+ "avoidBefore": "lower",
+ "energy": "Alactic and glycolytic: maximal efforts of about 10 s to 70 s at very high power.",
+ "summary": "Track sprinting needs huge leg force for standing starts and very high cadence for flying efforts. The gym is a main training tool: heavy squats and hinges, Olympic lifts and jumps, with Nordics all year.",
+ "evidence": [
+  {
+   "claim": "Sprint cycling power depends on maximal force and speed; heavy strength and leg extensor size support it, alongside on-bike torque and speed work.",
+   "source": "Douglas, Ross and Martin 2021, Sports Medicine Open",
+   "url": "https://sportsmedicine-open.springeropen.com/articles/10.1186/s40798-021-00341-7"
+  },
+  {
+   "claim": "Heavy strength training added to cycling training improves sprint power and cycling performance.",
+   "source": "Rønnestad and Mujika 2014, Scandinavian Journal of Medicine and Science in Sports",
+   "url": "https://doi.org/10.1111/sms.12104"
+  }
+ ],
+ "confidence": "moderate",
+ "variants": [
+  {
+   "id": "sprint",
+   "name": "Sprint (200 m, sprint, keirin, team sprint, kilo)",
+   "desc": "Maximal efforts of 10-70 s; the gym is a primary tool.",
+   "q": {},
+   "prehab": [
+    "nordic",
+    "copenhagen"
+   ],
+   "note": "Full plan: 3 sessions off and pre season, 2 heavy low-volume sessions in season."
+  },
+  {
+   "id": "endurance",
+   "name": "Endurance (pursuit, points, Madison, omnium)",
+   "desc": "Mostly aerobic racing with repeated hard surges.",
+   "q": {
+    "upperPull": 1,
+    "grip": 0,
+    "trunk": 2,
+    "mass": 0
+   },
+   "prehab": [
+    "lowback",
+    "hipAbd"
+   ],
+   "note": "Use the road cycling plan plus this power day; keep mass down."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Max strength",
+    "focus": "Muscle then max strength in the leg extensors",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Loaded jumps at 20-30% squat 1RM. New lifters: bodyweight."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "legpress",
+       "beltsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3-8",
+      "rir": 2,
+      "note": "First block 4 x 8 at 70-75%, then 5 x 3-5 at 85-90%."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "slegpress",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "csdb",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Bar pull matters in starts."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "lyingcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5-10",
+      "rir": 3,
+      "note": "Start 2 x 5, build to 3 x 8-12 over 4-6 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-5/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "standrollout",
+       "deadbug",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power",
+    "focus": "Olympic lift, heavy hinge and hips",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "dbhangclean",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "70-80%. New lifters: swings or box jumps."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "abductor",
+       "sideabd",
+       "cababd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Max strength",
+    "focus": "Heavy triples with fast intent",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "legpress",
+       "beltsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "87-90% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "slegpress",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "csdb",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "lyingcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power",
+    "focus": "Heavier cleans, power over volume",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "dbhangclean",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "80-85%."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bandabd",
+       "abductor",
+       "sideabd",
+       "cababd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Max strength",
+    "focus": "Heavy, low volume, stay fresh for the track",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "ssbsq",
+       "legpress",
+       "beltsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2-3",
+      "rir": 2,
+      "note": "85-90% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "slegpress",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "csdb",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "lyingcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power",
+    "focus": "Short power session",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "powerclean",
+       "dbhangclean",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf",
+       "seatedcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [],
+  "pre": [
+   {
+    "name": "Standing starts",
+    "mode": "bike",
+    "work": "4-6 x 0-60 m",
+    "rest": "8-10 min",
+    "intensity": "Maximal",
+    "perWeek": 1,
+    "why": "Trains force at low cadence. Same day as heavy lifting. Coach practice."
+   },
+   {
+    "name": "Flying efforts",
+    "mode": "bike",
+    "work": "3-4 x 6-8 s",
+    "rest": "Full recovery",
+    "intensity": "Maximal, very high cadence",
+    "perWeek": 1,
+    "why": "Top speed, over 130-150 rpm. Keep apart from heavy legs. Coach practice."
+   },
+   {
+    "name": "Lactate tolerance",
+    "mode": "bike",
+    "work": "3-4 x 30-45 s",
+    "rest": "10-15 min",
+    "intensity": "Race pace or above",
+    "perWeek": 1,
+    "why": "For kilo and team sprint man three only. Coach practice."
+   }
+  ],
+  "in": [
+   {
+    "name": "Standing starts",
+    "mode": "bike",
+    "work": "4-6 x 0-60 m",
+    "rest": "8-10 min",
+    "intensity": "Maximal",
+    "perWeek": 1,
+    "why": "Keeps start force sharp. Coach practice."
+   },
+   {
+    "name": "Flying efforts",
+    "mode": "bike",
+    "work": "3-4 x 6-8 s",
+    "rest": "Full recovery",
+    "intensity": "Maximal",
+    "perWeek": 1,
+    "why": "Keeps top speed. Coach practice."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5RM unless you are used to maxing.",
+   "unit": "x bodyweight",
+   "better": "higher",
+   "bands": {
+    "club": "<1.75",
+    "good": "1.75-2.0",
+    "elite": "2.0-2.5"
+   },
+   "note": "Good = national level, elite = international. Men; benchmark, not peer reviewed."
+  },
+  {
+   "id": "peak6s",
+   "name": "6 s peak power",
+   "how": "6 s all-out from rolling start on a power meter or Wattbike.",
+   "unit": "W/kg",
+   "better": "higher",
+   "bands": {
+    "club": "<18",
+    "good": "18-20",
+    "elite": "22-25+"
+   },
+   "note": "Men. Benchmark, not peer reviewed."
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Jump mat or phone app, hands on hips, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<50",
+    "good": "50",
+    "elite": "60+"
+   },
+   "note": "Men. Benchmark, not peer reviewed."
+  },
+  {
+   "id": "flying200",
+   "name": "Flying 200 m",
+   "how": "Timed on the track, electronic timing if possible.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": ">11.0",
+    "good": "<11.0",
+    "elite": "<10.0"
+   },
+   "note": "Men. Benchmark, not peer reviewed."
+  }
+ ],
+ "week": [
+  "Heavy lifting on standing start or torque days.",
+  "Flying and speed work on separate days from heavy legs.",
+  "No heavy legs the day before racing or key track sessions.",
+  "In season: 2 short heavy sessions a week."
+ ],
+ "primer": [
+  "3 x 2 jumps",
+  "One lift 2 x 2 at about 80%",
+  "Done once in race week"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Last heavy session 7-10 days out.",
+   "Race week: one primer only.",
+   "On-bike volume down 40-50%, quality kept.",
+   "No new exercises in the final 2 weeks."
+  ]
+ },
+ "rules": [
+  "Nordics all year: ramp in, then low-volume maintenance.",
+  "Never to failure on squats, deadlifts or cleans.",
+  "New lifters: no Olympic lifts; use swings or box jumps.",
+  "Sore patellar tendon: swap to Spanish squat holds and cut squat volume.",
+  "Use a belt for maximal sets only if trained to brace with one."
+ ],
+ "sources": [
+  {
+   "source": "Douglas, Ross and Martin 2021, Sports Medicine Open",
+   "url": "https://sportsmedicine-open.springeropen.com/articles/10.1186/s40798-021-00341-7"
+  },
+  {
+   "source": "Rønnestad and Mujika 2014, Scandinavian Journal of Medicine and Science in Sports",
+   "url": "https://doi.org/10.1111/sms.12104"
+  },
+  {
+   "source": "van Dyk, Behan and Whiteley 2019, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Loaded jump squat",
+   "pattern": "plow",
+   "equipment": "bb+rack",
+   "why": "Main power option at 20-30% squat 1RM; tbjump used instead"
+  }
+ ]
+}

@@ -1,0 +1,787 @@
+{
+ "id": "jumps",
+ "name": "Jumping events",
+ "aliases": [
+  "long jump",
+  "triple jump",
+  "high jump",
+  "pole vault",
+  "jumper",
+  "horizontal jumps",
+  "vertical jumps"
+ ],
+ "group": "Track and field",
+ "variants": [
+  {
+   "id": "long",
+   "name": "Long jump",
+   "desc": "Approach speed is the biggest single factor; one fast take-off.",
+   "q": {},
+   "prehab": [
+    "nordic",
+    "landing"
+   ],
+   "note": "Sprint work matters most; hamstring protection is front and centre."
+  },
+  {
+   "id": "triple",
+   "name": "Triple jump",
+   "desc": "The highest take-off forces of the jumps, three contacts in a row.",
+   "q": {},
+   "prehab": [
+    "patellar",
+    "calf"
+   ],
+   "note": "Tendon work leads; build hop-phase loading slowly to avoid heel bruising."
+  },
+  {
+   "id": "high",
+   "name": "High jump",
+   "desc": "Curved approach and a single-leg take-off with back arching over the bar.",
+   "q": {},
+   "prehab": [
+    "ankle",
+    "lowback"
+   ],
+   "note": "Ankle and lower-back care move up; more single-leg vertical jumps."
+  },
+  {
+   "id": "pole",
+   "name": "Pole vault",
+   "desc": "Sprint approach plus a big upper-body pull, swing and invert.",
+   "q": {
+    "upperPull": 3,
+    "upperPush": 2,
+    "grip": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "lowback"
+   ],
+   "note": "Pull-ups become 4 x 5 weighted, plus rope climbs and shoulder care."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: Olympic lift, bounds, squat",
+    "focus": "Explosive hips, reactive single-leg power, max strength",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "powersnatch",
+       "hangclean",
+       "hangpsnatch",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "About 70% 1RM. New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "bounding",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Low box; single-leg bounds once ready"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "bbstepup",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "High box"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hanglegstraight",
+       "hangleg",
+       "captainraise"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: jump squat and hinge",
+    "focus": "Loaded jumps, hip extension, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "20-30% of squat 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "dbhipthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "bbcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Heavy, single leg"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Pole vault: 4 x 5 weighted plus rope climbs"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: heavier pulls and bounds",
+    "focus": "Speed-strength and heavy triples",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "powersnatch",
+       "hangclean",
+       "hangpsnatch",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "About 80% 1RM. New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "bounding",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "85-90% 1RM; new lifters 5 at RIR 3"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "bbstepup",
+       "bss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     }
+    ]
+   },
+   {
+    "name": "Day B: jump squat and hinge",
+    "focus": "Fast loaded jumps, hinge, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "20-30% of squat 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "dbhipthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "bbcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Day A: heavy, low volume",
+    "focus": "After the main jump session",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "powersnatch",
+       "hangclean",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "New lifters: no Olympic lifts, use the swing or a jump"
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "depthjump",
+       "bounding"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Drop these on full jump-session days"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2-3",
+      "rir": 2,
+      "note": "85-90% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "bss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "lyingcurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "New: 4 weeks of slider or lying curls before Nordics"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     }
+    ]
+   },
+   {
+    "name": "Day B: fast power",
+    "focus": "Light loaded jumps, hinge, calves",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "slcalf",
+       "standcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-45 s/side",
+      "rir": 3
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [],
+  "pre": [],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump app or jump-and-reach; best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<50",
+    "good": "50-65",
+    "elite": "65+"
+   },
+   "note": "Women: good club 40 cm, elite 50 cm+"
+  },
+  {
+   "id": "rsi",
+   "name": "Reactive strength index",
+   "how": "Drop jump from 30 cm; jump height / contact time (jump app)",
+   "unit": "ratio",
+   "better": "higher",
+   "bands": {
+    "club": "<2.0",
+    "good": "2.0-2.5",
+    "elite": "2.5-3.0+"
+   }
+  },
+  {
+   "id": "stj",
+   "name": "Standing triple jump",
+   "how": "Two-foot start, hop, step, jump into a pit; measure to the heel",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "<8.0",
+    "good": "8.0-9.0",
+    "elite": "9.0+"
+   },
+   "note": "Women: good club 7.0 m, elite 8.0 m+"
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3 rep max; never within 10 days of competing",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.75",
+    "good": "1.75-2.0",
+    "elite": "2.0-2.25"
+   }
+  },
+  {
+   "id": "sprint30",
+   "name": "30 m sprint",
+   "how": "3-point start, timing gates or phone slow-motion video",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": ">4.3",
+    "good": "3.9-4.3",
+    "elite": "<3.9"
+   },
+   "note": "As sprinters; women good club 4.8 s, elite 4.3 s"
+  }
+ ],
+ "week": [
+  "Gym follows the hardest track or jump session, never before it",
+  "Count all take-offs and bounds across track and gym",
+  "Full jump session that day: cut gym plyometrics",
+  "Plyo contacts: new 40-60, intermediate 60-100, advanced 80-140 per gym session",
+  "Two peaks a year (indoor and outdoor) are normal"
+ ],
+ "primer": [
+  "3-4 days out, gym primer only",
+  "2 x 2 hang clean at 75%",
+  "2 x 3 jumps",
+  "1 set of 2 squats at 80%"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Last heavy session (90%) 7-10 days out",
+   "Roughly halve take-off volume in the final 10 days",
+   "Final week: volume down 40-50%, keep intensity",
+   "No maxing within 10 days of competing"
+  ]
+ },
+ "rules": [
+  "Nordics all year: ramp up, then low-volume maintenance",
+  "Count take-offs; knee tendon pain means cut jump volume, not just push on",
+  "Patellar isometrics and heavy slow work if the knee tendon is sore",
+  "Build triple jump hop-phase loading gradually",
+  "Never lift heavy legs the day before competing"
+ ],
+ "sources": [
+  {
+   "source": "Haugen, Seiler, Sandbakk and Tønnessen 2019, Sports Medicine Open"
+  },
+  {
+   "source": "Edouard, Branco and Alonso 2016, British Journal of Sports Medicine"
+  },
+  {
+   "source": "van Dyk, Behan and Whiteley 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/21/1362"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  },
+  {
+   "source": "Rønnestad, Nymark and Raastad 2011, Journal of Strength and Conditioning Research",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  },
+  {
+   "source": "Kongsgaard et al. 2009, Scand J Med Sci Sports"
+  },
+  {
+   "source": "Rio et al. 2015, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Visnes and Bahr 2007, British Journal of Sports Medicine"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Single-leg bounds",
+   "pattern": "plow",
+   "equipment": "",
+   "why": "Key take-off specific plyometric; bounding is the stand-in"
+  },
+  {
+   "name": "Barbell jump squat (20-30% 1RM)",
+   "pattern": "plow",
+   "equipment": "bb",
+   "why": "Loaded jump; trap bar jump is the stand-in"
+  }
+ ]
+}

@@ -1,0 +1,783 @@
+{
+ "id": "sailing",
+ "name": "Sailing",
+ "aliases": [
+  "dinghy sailing",
+  "yachting",
+  "ILCA",
+  "Laser",
+  "470",
+  "49er",
+  "keelboat",
+  "grinder",
+  "America's Cup",
+  "windsurfing",
+  "kitesurfing"
+ ],
+ "group": "Water",
+ "variants": [
+  {
+   "id": "dinghy",
+   "name": "Dinghy (hiking or trapeze)",
+   "desc": "Minutes of near-isometric quad, hip flexor and trunk work while hiking, with short bursts of sheeting and tacks.",
+   "q": {
+    "lowerBody": 3
+   },
+   "prehab": [
+    "patellar",
+    "lowback"
+   ],
+   "note": "Hiking holds and leg strength lead; body mass matters for righting moment, so hold or gain it if your class needs it."
+  },
+  {
+   "id": "grinder",
+   "name": "Big boat grinder",
+   "desc": "Repeated high-power upper-body efforts of 5-30 s with short recoveries.",
+   "q": {
+    "maxStrength": 3,
+    "power": 3,
+    "upperPush": 3,
+    "lowerBody": 2,
+    "grip": 2,
+    "mass": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "lowback"
+   ],
+   "note": "Swap hiking holds for upper-body power: med ball chest pass 4 x 4, bench 4 x 4 at 85%, push press, plus arm-crank sprints."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: legs, pull, hiking",
+    "focus": "Leg strength, pulling, hiking endurance",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "legpress",
+       "hack",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "75-80% 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "sealrow",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "Pull-up or bench pull"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "wallsit",
+       "spanishsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "60-90 s",
+      "rir": 2,
+      "note": "Hiking hold: wall sit or hiking bench"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "legext",
+       "cablegext",
+       "sissy"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hollow",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: hinge, row, grip",
+    "focus": "Back strength, sheeting pull, grip and wrists",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl",
+       "trapdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "sacabrow",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Sheeting-style pull"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "towelhang",
+       "farmerhold",
+       "deadhang"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2,
+      "note": "Farmers carry or towel hang"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: strength endurance and hiking",
+    "focus": "Higher reps, long hiking holds",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "legpress",
+       "hack",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "About 70% 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "sealrow",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "wallsit",
+       "spanishsq"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 5,
+       "adv": 6
+      },
+      "reps": "2-3 min",
+      "rir": 2,
+      "note": "Hiking hold, 1 min rest"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "legext",
+       "cablegext",
+       "sissy"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hollow",
+       "pallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: hinge and sheeting endurance",
+    "focus": "Back, long pulling sets, grip",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "sacabrow",
+       "bandrow",
+       "dbrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Sheeting endurance"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "towelhang",
+       "deadhang"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Day A: maintain legs and pull",
+    "focus": "Short and heavy, non-sailing day",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "sealrow",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "wallsit",
+       "spanishsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "90 s",
+      "rir": 2,
+      "note": "Hiking hold"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: maintain hinge and row",
+    "focus": "Optional second session",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "sacabrow",
+       "dbrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "spanishsq",
+       "wallsit",
+       "legext"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 3,
+      "note": "Hard isometric hold; eases tendon pain"
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady",
+    "rest": "none",
+    "intensity": "Easy to moderate",
+    "perWeek": 2,
+    "why": "Breeze racing is aerobic; cycling trains the hiking muscles"
+   },
+   {
+    "name": "Hiking intervals",
+    "mode": "any",
+    "work": "6-8 x 2-3 min wall sit or hiking hold with band sheeting reps",
+    "rest": "1 min",
+    "intensity": "Hard, steady posture",
+    "perWeek": 1,
+    "why": "Dinghy: matches long hiking legs with sheeting"
+   }
+  ],
+  "pre": [
+   {
+    "name": "Hiking intervals",
+    "mode": "any",
+    "work": "6-8 x 2-3 min hiking hold with sheeting reps",
+    "rest": "1 min",
+    "intensity": "Hard, steady posture",
+    "perWeek": 2,
+    "why": "Dinghy: race-specific hiking endurance"
+   },
+   {
+    "name": "Arm-crank sprints",
+    "mode": "any",
+    "work": "10-15 x 10-20 s",
+    "rest": "40 s",
+    "intensity": "Max effort",
+    "perWeek": 2,
+    "why": "Grinders only: repeated grinding bursts"
+   },
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady",
+    "rest": "none",
+    "intensity": "Moderate",
+    "perWeek": 1,
+    "why": "Holds the aerobic base"
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "hiking",
+   "name": "Hiking endurance",
+   "how": "Wall sit or hiking bench at your usual posture, hold to failure",
+   "unit": "s",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your trend (coach practice)"
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5 rep max",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.25",
+    "good": "1.25-1.5"
+   },
+   "note": "Coach practice"
+  },
+  {
+   "id": "pullups",
+   "name": "Strict pull-ups",
+   "how": "Dead hang start, chin over bar, max reps",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "<10",
+    "good": "10+"
+   },
+   "note": "Coach practice"
+  },
+  {
+   "id": "deadhang",
+   "name": "Dead hang",
+   "how": "Hang from a bar, arms straight, to failure",
+   "unit": "s",
+   "better": "higher",
+   "bands": {},
+   "note": "Grip check; track your trend"
+  }
+ ],
+ "week": [
+  "Gym on non-sailing days",
+  "Winter: 3 sessions; spring: 2; regatta season: 1-2",
+  "On-water days are full training days: do not add gym on top",
+  "Keep one short hiking-endurance session in regatta weeks"
+ ],
+ "primer": [],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Last heavy session 5-7 days before a regatta",
+   "Hold hiking endurance with one short session",
+   "Cut gym volume by about half",
+   "No new exercises in the last 2 weeks"
+  ]
+ },
+ "rules": [
+  "Never round the lower back under load; brace in hiking holds",
+  "Knee pain from hiking: swap to isometric holds and see a physio if it persists",
+  "Grinders: pulling sets at least equal to pressing sets"
+ ],
+ "sources": [
+  {
+   "source": "Allen and De Jong 2006, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Neville et al. 2006, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Rio et al. 2015, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Kongsgaard et al. 2009, Scand J Med Sci Sports"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Hiking bench isometric",
+   "pattern": "squat",
+   "equipment": "hikingbench",
+   "why": "Sport-specific hiking hold; wall sit is the stand-in"
+  },
+  {
+   "name": "Sheeting cable pull",
+   "pattern": "row",
+   "equipment": "cable_mid",
+   "why": "Hand-over-hand rope pull for sheeting"
+  },
+  {
+   "name": "Arm-crank ergometer",
+   "pattern": "erg",
+   "equipment": "armcrank",
+   "why": "Grinder conditioning"
+  }
+ ]
+}

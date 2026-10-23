@@ -1,0 +1,1155 @@
+{
+ "id": "boxing",
+ "name": "Boxing",
+ "aliases": [
+  "amateur boxing",
+  "white collar boxing",
+  "pro boxing"
+ ],
+ "group": "Combat",
+ "variants": [
+  {
+   "id": "amateur",
+   "name": "Amateur (3 x 3 min)",
+   "desc": "Short bouts with high lactate and frequent same-day or day-before weigh-ins.",
+   "note": "Round simulations use 4 x 3 min. Default to no acute weight cut."
+  },
+  {
+   "id": "pro",
+   "name": "Professional (4-12 x 3 min)",
+   "desc": "Longer bouts lean harder on the aerobic system to recover between rounds and exchanges.",
+   "note": "More aerobic base in the off-season and round simulations of bout rounds plus one."
+  },
+  {
+   "id": "upclass",
+   "name": "Moving up a weight class",
+   "desc": "Gaining muscle is the goal for this block, not holding weight.",
+   "q": {
+    "mass": 1
+   },
+   "note": "Off-season adds hypertrophy accessory volume. Relative power still matters most."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower power and strength",
+    "focus": "Leg drive and rotation for punching, neck and shoulder",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "tbjump",
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "70-75% on the clean. New lifters: jumps only, no cleans."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "3-4 kg ball, max intent, both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "kbdl",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "80-85%. New: 6-8 reps at RIR 3."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Flexion, extension, both sides. New: isometric 10-15 s holds for 4 weeks, then banded 12-20 slow reps. No bridging."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "landrot",
+       "pallof",
+       "pallofb",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Fast pressing, pulling balance, wrist, thoracic spine",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "clappu",
+       "salmpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Explosive chest pass or landmine punch press."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "dbfloor",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80%. New: 6-8 reps at RIR 3."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wpullup",
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5-6",
+      "rir": 2,
+      "note": "Add load once you have 8 clean reps."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "csrow",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "wristroller",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Single-leg and conditioning",
+    "focus": "Off-season only: single-leg strength, push press, neck, then conditioning",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pushpress",
+       "salmpress",
+       "dbsnatch"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "New: landmine press instead of the push press."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "bbstepup",
+       "bss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "invrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "pushup",
+       "flatdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Flexion, extension, both sides. New: isometric 10-15 s holds for 4 weeks, then banded 12-20 slow reps. No bridging."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Lower power and strength",
+    "focus": "Leg drive and rotation for punching, neck and shoulder",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "tbjump",
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "75-80% on the clean. New lifters: jumps only, no cleans."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "3-4 kg ball, max intent, both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "kbdl",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85%. New: 5-6 reps at RIR 3."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Flexion, extension, both sides. New: isometric 10-15 s holds for 4 weeks, then banded 12-20 slow reps. No bridging."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "landrot",
+       "pallof",
+       "pallofb",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Fast."
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Fast pressing, pulling balance, wrist, thoracic spine",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "clappu",
+       "salmpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Max speed."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "dbfloor",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85%. New: 5-6 reps at RIR 3."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "clappu",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Straight after each bench set: plyo push-up or bench throw."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wpullup",
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "csrow",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "wristroller",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Lower power and strength",
+    "focus": "Leg drive and rotation for punching, neck and shoulder",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hangclean",
+       "tbjump",
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "About 75% on the clean. New lifters: jumps only, no cleans."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3,
+      "note": "3-4 kg ball, max intent, both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "kbdl",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85%. New: 5 reps at RIR 3."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "revlunge",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband",
+       "neckharness"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Flexion, extension, both sides. New: isometric 10-15 s holds for 4 weeks, then banded 12-20 slow reps. No bridging."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "landrot",
+       "pallof",
+       "pallofb",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Fast pressing, pulling balance, wrist, thoracic spine",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "clappu",
+       "salmpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Max speed."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "dbfloor",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 80%. New: 5 reps at RIR 3."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wpullup",
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "csrow",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "wristroller",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-45 min",
+    "rest": "None",
+    "intensity": "Zone 2, conversational pace",
+    "perWeek": 2,
+    "why": "Recovery between exchanges and rounds is aerobic. Only if under 4 boxing sessions a week."
+   },
+   {
+    "name": "Tempo intervals",
+    "mode": "any",
+    "work": "4-6 x 4 min",
+    "rest": "2 min easy",
+    "intensity": "About 85% max heart rate",
+    "perWeek": 1,
+    "why": "Raises aerobic power without big fatigue."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Round simulation",
+    "mode": "bike",
+    "work": "Bout rounds + 1 x 3 min. In each 30 s: 10 s all-out, 20 s moderate",
+    "rest": "1 min between rounds",
+    "intensity": "All-out bursts on bag or air bike",
+    "perWeek": 1,
+    "why": "Matches the bout format. Practice method."
+   },
+   {
+    "name": "Repeated sprints",
+    "mode": "bike",
+    "work": "8-10 x 6-8 s all-out, 2 sets",
+    "rest": "30-50 s between sprints, 3 min between sets",
+    "intensity": "Maximal",
+    "perWeek": 1,
+    "why": "Repeated short bursts like punch flurries. Skip if sparring covers it."
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, phone app such as My Jump, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "good": "40",
+    "elite": "50+"
+   },
+   "note": "Men. Women: good 30, elite 38+."
+  },
+  {
+   "id": "trapdl",
+   "name": "Trap bar deadlift 1RM (estimated)",
+   "how": "Work up to a 3-5RM and estimate. Divide by body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "good": "1.75",
+    "elite": "2.0-2.25"
+   }
+  },
+  {
+   "id": "bench",
+   "name": "Bench press 1RM (estimated)",
+   "how": "3-5RM, estimate 1RM, divide by body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "good": "1.0-1.2",
+    "elite": "1.3-1.5"
+   }
+  },
+  {
+   "id": "pullups",
+   "name": "Strict pull-ups",
+   "how": "Dead hang start, chin over bar, max reps",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "good": "12",
+    "elite": "18+"
+   },
+   "note": "Women: good 6, elite 10+."
+  },
+  {
+   "id": "ift3015",
+   "name": "30-15 Intermittent Fitness Test",
+   "how": "40 m shuttles, 30 s run, 15 s walk, speed rises each stage",
+   "unit": "km/h",
+   "better": "higher",
+   "bands": {},
+   "note": "Use the final speed to set interval targets."
+  },
+  {
+   "id": "neck",
+   "name": "Neck strength balance",
+   "how": "Handheld dynamometer or loaded harness hold, each direction",
+   "unit": "%",
+   "better": "higher",
+   "bands": {
+    "good": "70+"
+   },
+   "note": "Flexion at least 70% of extension, left and right within 10%. Practice."
+  }
+ ],
+ "week": [
+  "Lift after boxing on hard technical days, or morning gym and evening boxing 6 h apart.",
+  "Day before hard sparring: no heavy lower body and no high-volume upper body.",
+  "Off-season gym 3 a week; camp 2; final 3 weeks 1-2.",
+  "Last hard sparring about 7-10 days before the bout."
+ ],
+ "primer": [
+  "2 x 2 jumps",
+  "2 x 3 med ball throws",
+  "2 x 3 at 70% on one lift",
+  "Neck isometrics"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Last heavy lift (85%+, low volume) 7-10 days out.",
+   "Final week: one short session 3-4 days out.",
+   "Last bout-pace conditioning 4-5 days out.",
+   "Peak week: 2-3 rounds at fight pace, early in the week.",
+   "No extra conditioning to burn weight.",
+   "Prehab drops to one short session."
+  ]
+ },
+ "rules": [
+  "Neck work every week, all year, 2-3 times (1-2 in the peak week).",
+  "No neck bridging for amateurs.",
+  "Under 18, pregnant, or a concussion history: conservative defaults and get medical clearance.",
+  "Gym conditioning only where sport practice does not already provide it.",
+  "No new exercises in the last 2 weeks and no max testing within 10 days of a bout.",
+  "Boxing weigh-ins are often same day or day before: default to no acute cut.",
+  "Headguard in sparring; keep most sparring at 50-70% effort.",
+  "Weight loss to reach a class: 0.5-1% of body mass a week, protein 1.8-2.2 g/kg, keep lifting.",
+  "Pick a class your normal training weight sits no more than about 5% above.",
+  "No dehydration cuts for amateurs. Never sweat suits, saunas, spitting, diuretics or laxatives.",
+  "Same-day weigh-in, or under 18: no acute weight loss at all.",
+  "Weigh-in 24 h+ before and you choose to cut: cap at about 3% via low-residue, lower-carb eating for 2-4 days.",
+  "Any plan above 5% acute loss is flagged.",
+  "During a cut: 1-2 short heavy sessions (3 x 3 at 80-85% on two lifts), accessories halved in the last 10 days, no max tests.",
+  "After weigh-in: fluids with sodium and 5-10 g/kg carbohydrate in the time available."
+ ],
+ "sources": [
+  {
+   "source": "Loturco I et al. 2016, J Strength Cond Res 30(1)"
+  },
+  {
+   "source": "Slimani M et al. 2017, J Strength Cond Res 31(4)"
+  },
+  {
+   "source": "Loosemore M et al. 2015, Br J Sports Med 49(17)"
+  },
+  {
+   "source": "James LP, Haff GG, Kelly VG, Beckman EM 2016, Sports Med",
+   "url": "https://ro.ecu.edu.au/ecuworkspost2013/2325"
+  },
+  {
+   "source": "Collins CL et al. 2014, J Prim Prev 35(5):309-319"
+  },
+  {
+   "source": "Hrysomallis C 2016, Sports Med (neck strength and injury risk review)"
+  },
+  {
+   "source": "Andersson et al. 2017, Br J Sports Med 51(14):1073-1080",
+   "url": "https://bjsm.bmj.com/content/51/14/1073"
+  },
+  {
+   "source": "Ronnestad, Nymark and Raastad 2011, J Strength Cond Res 25(10):2653-2660",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  },
+  {
+   "source": "Reale, Slater and Burke 2017, Int J Sports Physiol Perform 12(2)",
+   "url": "https://acuresearchbank.acu.edu.au/item/88q7v/acute-weight-loss-strategies-for-combat-sports-and-applications-to-olympic-success"
+  },
+  {
+   "source": "Artioli GG et al. 2016, Sports Med (it is time to ban rapid weight loss from combat sports)"
+  },
+  {
+   "source": "Matthews JJ et al. 2019, Int J Sport Nutr Exerc Metab (rapid weight loss in UK MMA)"
+  },
+  {
+   "source": "Travis SK et al. 2020, Sports (Basel) 8(9)"
+  },
+  {
+   "source": "Haff GG, Triplett NT (eds) 2016, Essentials of Strength Training and Conditioning, 4th ed."
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Landmine punch press",
+   "pattern": "pup",
+   "equipment": "landmine+bb",
+   "why": "Boxing-specific upper power; single-arm landmine press used instead"
+  },
+  {
+   "name": "Bench throw (Smith or ballistic bench)",
+   "pattern": "pup",
+   "equipment": "smith+bench",
+   "why": "Camp contrast pair after bench; clap push-up used instead"
+  }
+ ]
+}

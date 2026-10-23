@@ -1,0 +1,920 @@
+{
+ "id": "icehockey",
+ "name": "Ice hockey",
+ "aliases": [
+  "hockey on ice",
+  "ice-hockey",
+  "NHL",
+  "EIHL"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "forward",
+   "name": "Forward",
+   "desc": "Shorter, more intense shifts with more repeated accelerations.",
+   "q": {
+    "power": 3
+   },
+   "prehab": [
+    "copenhagen",
+    "hipFlex"
+   ],
+   "note": "Shift intervals stay short (30-45 s) and acceleration power gets priority."
+  },
+  {
+   "id": "defence",
+   "name": "Defence",
+   "desc": "Longer time on ice, more board battles and backwards skating.",
+   "q": {
+    "upperPull": 3,
+    "upperPush": 3,
+    "maxStrength": 3
+   },
+   "prehab": [
+    "copenhagen",
+    "shoulderER"
+   ],
+   "note": "More aerobic recovery work and extra upper-body strength for board battles."
+  },
+  {
+   "id": "goalie",
+   "name": "Goaltender",
+   "desc": "Butterfly technique loads the hip and groin hard; high rates of hip impingement.",
+   "q": {
+    "unilateral": 3,
+    "maxStrength": 2,
+    "mass": 1
+   },
+   "prehab": [
+    "copenhagen",
+    "hipRot",
+    "hipAbd"
+   ],
+   "note": "Hip mobility only in a pain-free range, lateral push-off power, little running conditioning."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "A: Lower strength",
+    "focus": "Leg strength, lateral strength and the groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "bounding"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Lateral bound and stick, 2 s hold."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "trapdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New 3 x 8 at RIR 3 (goblet or trap bar). Adv 5 x 3 at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "kbrdl",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Short lever first, build to long lever over 8 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "adductor",
+       "cabadd",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Target adductor strength at least 80% of abductor."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "psoasmarch",
+       "cabhipflex",
+       "slr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Upper strength",
+    "focus": "Upper strength for contact, neck and shoulder",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wpullup",
+       "pullup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "standdbohp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Isometric only for the first 4 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "suitcase",
+       "farmerwalk"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "C: Power",
+    "focus": "Stride power: triple extension and lateral push-off",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "hangclean",
+       "squatjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Hang clean for advanced only."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "bounding"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Skater-jump pattern: push off sideways, land on the other leg."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "jumplunge",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "New: split squat, no jump."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "sleddrag",
+       "bandabd",
+       "sledpush"
+      ],
+      "sets": {
+       "new": 4,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "20 m",
+      "rir": 2,
+      "note": "Drag sideways in a skating stance. Slideboard if you have one."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallofb",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "A: Strength into power",
+    "focus": "Heavy legs, contrast for advanced, groin and neck",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "bounding"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Adv: pair each set with heavy split squats (3/side) 3-4 min before."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "squat",
+       "trapdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "Around 85% for I/A. New 3 x 6-8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckband",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12/direction",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "B: Power and upper",
+    "focus": "Explosive lower, heavy upper, rotation",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "hangclean",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "Around 85% for I/A."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "A: Strength hold (MD+1 or MD-3)",
+    "focus": "35-40 min",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "bounding"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "trapdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "80-85% for I/A. New 2-3 x 6 at RIR 2."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "B: Primer (MD-2)",
+    "focus": "20 min. Fast and light",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "About 80%."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "adductor",
+       "cabadd",
+       "copen"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady",
+    "rest": "None",
+    "intensity": "Easy to moderate, can hold a conversation",
+    "perWeek": 2,
+    "why": "Aerobic capacity drives recovery between shifts and periods."
+   },
+   {
+    "name": "Shift intervals",
+    "mode": "bike",
+    "work": "8-12 x 30-45 s hard",
+    "rest": "90-120 s easy",
+    "intensity": "Hard, near all-out",
+    "perWeek": 1,
+    "why": "Matches a typical 40-50 s shift. Slideboard works too."
+   }
+  ],
+  "pre": [
+   {
+    "name": "On-ice repeat sprints",
+    "mode": "any",
+    "work": "6 x 40-50 m with hard stops",
+    "rest": "30 s",
+    "intensity": "Max effort",
+    "perWeek": 1,
+    "why": "Repeated maximal accelerations and stops, on skates."
+   },
+   {
+    "name": "Shift simulation",
+    "mode": "any",
+    "work": "8-10 x 45 s",
+    "rest": "2 min 15 s",
+    "intensity": "Game pace",
+    "perWeek": 1,
+    "why": "Mimics the shift-to-bench ratio. On ice, or bike if no ice."
+   }
+  ],
+  "in": [
+   {
+    "name": "Scratched-player top-up",
+    "mode": "bike",
+    "work": "8 x 30-45 s hard",
+    "rest": "90-120 s easy",
+    "intensity": "Hard",
+    "perWeek": 1,
+    "why": "Games and practice cover it for regulars; scratched players need a top-up."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump mat or My Jump app, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "40-45",
+    "good": "45-55",
+    "elite": ">55-60"
+   },
+   "note": "NHL Combine average about 60 cm vertical."
+  },
+  {
+   "id": "broadjump",
+   "name": "Standing broad jump",
+   "how": "Two-foot take-off, measure to the heel, best of 3",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "2.20-2.40",
+    "good": "2.40-2.60",
+    "elite": ">2.60"
+   }
+  },
+  {
+   "id": "skate30",
+   "name": "30 m on-ice skate",
+   "how": "Flying or standing start, phone video timing, best of 3",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "4.6-4.9",
+    "good": "4.3-4.6",
+    "elite": "<4.3"
+   }
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5RM, report as x body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "1.25",
+    "good": "1.5",
+    "elite": "1.75-2.0"
+   },
+   "note": "Bench 1RM bands: 1.0, 1.2, 1.3-1.5 x BM."
+  },
+  {
+   "id": "pullups",
+   "name": "Strict pull-ups",
+   "how": "Dead hang, chin over bar, no kip, max reps",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "6-8",
+    "good": "10-12",
+    "elite": "12-15+"
+   }
+  },
+  {
+   "id": "addabd",
+   "name": "Adductor to abductor strength ratio",
+   "how": "Handheld dynamometer or squeeze cuff, side-lying, both directions",
+   "unit": "ratio",
+   "better": "higher",
+   "bands": {
+    "club": ">=0.8",
+    "good": ">=0.8",
+    "elite": ">=0.8"
+   },
+   "note": "Below 0.8 linked to 17 times the risk of adductor strain (Tyler 2001). Pass mark, not a band."
+  }
+ ],
+ "week": [
+  "One game a week: gym A MD-4, gym B MD-2.",
+  "2-3 games a week: two short sessions on non-game days.",
+  "Day after a game: lower strength for starters.",
+  "Two days before the next game: power, low volume.",
+  "Heavy lower work never the day before a game."
+ ],
+ "primer": [
+  "Dynamic warm-up, 8-10 min",
+  "2 x 3 lateral bounds per side",
+  "2 x 3 countermovement jumps",
+  "2 x 2 rotational med ball throws per side"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Play-offs: keep 2 short sessions a week, cut volume, keep load.",
+   "Tournament weekend with several games: primers only.",
+   "Keep Copenhagen and neck work at 1 set."
+  ]
+ },
+ "rules": [
+  "Copenhagen and adductor work first, all year.",
+  "Adductor strength below 80% of abductor: extra adductor sets until it recovers.",
+  "Conditioning on bike, slideboard or ice. Running transfers poorly to skating.",
+  "Goalies: hip mobility only in a pain-free range.",
+  "New lifters: no Olympic lifts or depth jumps; use trap bar jumps and box jumps."
+ ],
+ "sources": [
+  {
+   "source": "Tyler et al. 2001, Am J Sports Med 29(2):124-128 (hip strength and adductor strains in NHL players)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11292035/"
+  },
+  {
+   "source": "Tyler et al. 2002, Am J Sports Med 30(5):680-683 (pre-season adductor programme in pro ice hockey)"
+  },
+  {
+   "source": "Vigh-Larsen & Mohr, Scand J Med Sci Sports (physiology of ice hockey: an update)"
+  },
+  {
+   "source": "Montgomery 1988, Sports Med 5(2):99-126 (physiology of ice hockey)"
+  },
+  {
+   "source": "Flik et al. 2005, Am J Sports Med 33(2):183-187 (collegiate ice hockey injuries)"
+  },
+  {
+   "source": "Harøy et al. 2019, Br J Sports Med 53(3):150-157 (adductor programme)",
+   "url": "https://bjsm.bmj.com/content/53/3/150"
+  },
+  {
+   "source": "Collins et al. 2014, J Prim Prev 35(5):309-319 (neck strength and concussion)"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Skater jump",
+   "pattern": "plat",
+   "equipment": "",
+   "why": "Key stride-power drill; lateral bound is the stand-in"
+  },
+  {
+   "name": "Split jump",
+   "pattern": "plow",
+   "equipment": "",
+   "why": "Jumping lunge is close enough; listed for naming"
+  },
+  {
+   "name": "Lateral sled drag",
+   "pattern": "sled",
+   "equipment": "sled",
+   "why": "Backward sled drag is the nearest key"
+  },
+  {
+   "name": "Slideboard",
+   "pattern": "cond",
+   "equipment": "slideboard",
+   "why": "Off-ice skating-specific conditioning"
+  }
+ ]
+}

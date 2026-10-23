@@ -1,0 +1,645 @@
+key	name	pattern	equipment	extra_lib	reps
+9090	90/90 hip switch	mob		1	8-12
+incbench	Incline bench	ipress	bb+rack+bench	0	6-10
+incdb	Incline DB press	ipress	db+bench	0	8-12
+incsmith	Incline Smith press	ipress	smith+bench	0	6-10
+flatdb	Flat DB press	fpress	db+bench	0	8-12
+chestpress	Machine chest press	fpress	chestpress	0	8-12
+dips	Dips, chest lean	fpress	dip	0	6-12
+incfly	Incline DB flyes	fly	db+bench	0	10-15
+scpress	Single-arm high-to-low cable press	fpress	cable_hi	0	10-15
+cabfly	Low-to-high cable fly	fly	cable_dual+cable_low	0	10-15
+pecdeck	Pec deck	fly	pecdeck	0	10-15
+pullup	Pull-up	vpull	pullup	0	6-12
+latpd	Lat pulldown	vpull	latpd	0	8-12
+sulek	Sulek single-arm pull	vpull	cable_hi	0	8-12
+pullover	Cable pullover	latiso	cable_hi	0	10-15
+bbrow	Barbell row	row	bb	0	6-10
+vbar	Landmine V-bar row	row	landmine+bb	0	8-12
+csdb	Chest-supported DB row	row	db+bench	0	8-12
+csrow	Chest-supported row machine	row	rowm	0	8-12
+cabrow	Seated cable row	row	cable_low	0	8-12
+dbrow	One-arm DB row	row	db+bench	0	8-12
+ohp	Seated DB shoulder press	ohp	db+bench	0	6-10
+smithohp	Smith shoulder press	ohp	smith+bench	0	6-10
+cablat	Cable lateral raise	lat	cable_mid	0	10-15
+lyinglat	Incline-lying DB lateral	lat	db+bench	0	10-15
+dblat	DB lateral raise	lat	db	0	10-15
+revfly	Cross-body cable reverse fly	rear	cable_hi	0	10-15
+revpec	Reverse pec deck	rear	pecdeck	0	10-15
+dbrevfly	Chest-supported DB reverse fly	rear	db+bench	0	10-15
+facepull	Face pull	rear	cable_hi	0	10-15
+bayes	Bayesian curl	curl	cable_mid	0	10-15
+incurl	Incline DB curl	curl	db+bench	0	8-12
+preacher	Preacher curl	curl	preacher	0	8-12
+bbcurl	Barbell curl	curl	bb	0	8-12
+hammer	Hammer curl	curl	db	0	8-12
+revcurl	Reverse barbell curl	curl	bb	0	8-12
+ohext	Overhead cable extension	triext	cable_hi	0	10-15
+dbohext	Overhead DB extension	triext	db	0	10-15
+skull	DB skull crusher	triext	db+bench	0	8-12
+pdfixed	Pushdown, elbows fixed	pushdown	cable_hi	0	10-15
+pdbar	Straight-bar pushdown	pushdown	cable_hi	0	10-15
+pdmove	Pushdown, elbows moving	pushdown	cable_hi	0	10-15
+cgbench	Close-grip bench	tripress	bb+rack+bench	0	6-10
+squat	Back squat	squat	bb+rack	0	6-10
+hack	Hack squat	squat	hack	0	6-10
+smith	Smith squat	squat	smith	0	6-10
+legpress	Leg press	squat	legpress	0	8-12
+bss	DB Bulgarian split squat	lunge	db+bench	0	8-12
+legext	Leg extension	kneeext	legext	0	10-15
+nordic	Reverse nordic curl	kneeext		0	8-12
+rdl	RDL	hinge	bb	0	6-10
+dbrdl	DB RDL	hinge	db	0	8-12
+hipext	Hip extension	hinge	hipext	0	8-12
+seatedcurl	Seated leg curl	kneeflex	seatedcurl	0	8-12
+lyingcurl	Lying leg curl	kneeflex	lyingcurl	0	8-12
+nordicham	Nordic hamstring curl	kneeflex	anchor	0	4-8
+hipthrust	Barbell hip thrust	glute	bb+bench	0	8-12
+adductor	Adductor machine	add	adductor	0	10-15
+standcalf	Standing calf raise	calf	calfm	0	10-15
+smithcalf	Smith calf raise	calf	smith	0	10-15
+slcalf	Single-leg DB calf raise	calf	db	0	10-15
+legraise	Lying leg raise	abs		0	10-15
+hangleg	Hanging knee raise	abs	pullup	0	10-15
+cabcrunch	Cable crunch	abs	cable_hi	0	10-15
+bench	Barbell bench press	fpress	bb+rack+bench	0	5-8
+pushup	Push-up	fpress		0	8-15
+dbfly	Flat DB fly	fly	db+bench	0	10-15
+cabpress	Cable chest press	fpress	cable_dual	0	8-12
+chinup	Chin-up	vpull	pullup	0	6-12
+ngpd	Neutral-grip pulldown	vpull	latpd	0	8-12
+tbarrow	T-bar row	row	tbar	0	8-12
+meadows	Meadows row	row	landmine+bb	0	8-12
+invrow	Inverted row	row	rings	0	8-15
+bandrow	Band row	row	bands	0	12-20
+bbohp	Standing overhead press	ohp	bb+rack	0	5-8
+mshoulder	Machine shoulder press	ohp	shoulderpress	0	8-12
+arnold	Arnold press	ohp	db	0	8-12
+cabupright	Cable upright row	lat	cable_low	0	10-15
+bandlat	Band lateral raise	lat	bands	0	12-20
+ezcurl	EZ-bar curl	curl	ez	0	8-12
+cabcurl	Cable curl	curl	cable_low	0	10-15
+spider	Spider curl	curl	db+bench	0	10-15
+ezskull	EZ-bar skull crusher	triext	ez+bench	0	8-12
+tridip	Dips, upright	tripress	dip	0	8-12
+kickback	Cable triceps kickback	pushdown	cable_mid	0	10-15
+frontsq	Front squat	squat	bb+rack	0	5-8
+goblet	Goblet squat	squat	db	0	8-15
+lmhack	Landmine hack squat	squat	landmine+bb	0	8-12
+sissy	Sissy squat	kneeext		0	8-15
+bbcalf	Barbell calf raise	calf	bb+rack	0	8-15
+cablecurlleg	Standing cable leg curl	kneeflex	cable_low	0	10-15
+dbpreacher	DB preacher curl	curl	db+bench	0	8-12
+lmpress	Landmine press	ipress	landmine+bb	0	8-12
+bwtriext	Bodyweight triceps extension	triext	pullup	0	8-15
+cabyraise	Cable Y-raise	lat	cable_low	0	12-20
+cabkick	Cable glute kickback	glute	cable_low	0	12-20
+ropehammer	Cable rope hammer curl	curl	cable_low	0	10-15
+revpd	Close-grip underhand pulldown	vpull	latpd	0	8-12
+xbodyext	Cross-body cable triceps extension	triext	cable_mid	0	10-15
+defrevlunge	Deficit DB reverse lunge	lunge	db	0	8-12
+defpushup	Deficit push-up	fpress		0	8-20
+dbcurl	DB curl	curl	db	0	8-12
+dbshrug	DB shrug	shrug	db	0	10-20
+dbcrunch	Weighted crunch	abs	db	0	10-20
+pikepush	Feet-elevated pike push-up	ohp		0	6-12
+cyclist	Heel-elevated cyclist squat	squat		0	12-25
+dblegcurl	Lying DB leg curl	kneeflex	db+bench	0	10-15
+smithlunge	Smith deficit reverse lunge	lunge	smith	0	8-12
+pendulum	Pendulum squat	squat	pendulum	0	6-10
+walklunge	Walking lunge	lunge	db	0	8-12
+stepup	DB step-up	lunge	db+bench	0	8-12
+deadlift	Deadlift	hinge	bb	0	3-6
+trapdl	Trap bar deadlift	hinge	trapbar	0	4-8
+goodmorning	Good morning	hinge	bb+rack	0	6-10
+kbrdl	Kettlebell RDL	hinge	kb	0	8-15
+singlerdl	Single-leg DB RDL	hinge	db	0	8-12
+hipthrustm	Hip thrust machine	glute	glutedrive	0	8-12
+pullthrough	Cable pull-through	glute	cable_low	0	10-15
+abductor	Abductor machine	abd	abductor	0	10-15
+glutebridge	Glute bridge	glute		0	12-20
+bandabd	Banded side walk	abd	bands	0	12-20
+seatedcalf	Seated calf raise	calf	seatedcalf	0	10-15
+lpcalf	Leg press calf raise	calf	legpress	0	10-15
+abwheel	Ab wheel rollout	abs		0	6-12
+plank	Plank (timed)	abs		0	30-60
+woodchop	Cable woodchop	abs	cable_mid	0	10-15
+beltsq	Belt squat	squat	beltsquat	0	8-12
+ssbsq	Safety bar squat	squat	ssb+rack	0	5-8
+ghr	Glute-ham raise	kneeflex	ghd	0	6-10
+revhyp	Reverse hyper	glute	revhyper	0	10-15
+standcurlm	Standing leg curl	kneeflex	standcurl	0	8-12
+kickbackmach	Glute kickback machine	glute	kickbackm	0	10-15
+donkey	Donkey calf raise	calf	donkeycalf	0	10-15
+incmachine	Incline chest press machine	ipress	incchestpress	0	8-12
+latraisemach	Lateral raise machine	lat	latraisem	0	10-15
+revdeltm	Rear delt machine	rear	revdelt	0	10-15
+seatedrowmach	Seated row machine	row	seatedrowm	0	8-12
+highrowm	High row machine	vpull	highrow	0	8-12
+pullovermach	Pullover machine	latiso	pulloverm	0	10-15
+curlmach	Biceps curl machine	curl	curlm	0	10-15
+triextmach	Triceps extension machine	triext	triextm	0	10-15
+dipmach	Seated dip machine	tripress	tridipm	0	8-12
+abcrunchmach	Ab crunch machine	abs	abcrunchm	0	10-15
+captainraise	Captain's chair leg raise	abs	captain	0	10-15
+trxrow	Suspension row	row	trx	0	8-15
+trapshrug	Trap bar shrug	row	trapbar	0	8-12
+pausesq	Paused squat (2 s)	squat	bb+rack	0	3-5
+lpbench	Long-pause bench (3 s)	fpress	bb+rack+bench	0	3-5
+larsen	Larsen press	fpress	bb+rack+bench	0	4-6
+pausedl	Paused deadlift (below the knee)	hinge	bb	0	2-4
+deficitdl	Deficit deadlift (5 cm)	hinge	bb+platform	0	2-4
+dbbor	DB bent-over row	row	db	0	8-12
+dbfloor	DB floor press	fpress	db	0	8-12
+floorpo	DB pullover on the floor	latiso	db	0	10-15
+bodbrev	Bent-over DB reverse fly	rear	db	0	10-15
+bandpa	Band pull-apart	rear	bands	0	15-25
+bandfp	Band face pull	rear	bands	0	12-20
+bandpd	Band pushdown	pushdown	bands	0	12-20
+bandcurl	Band curl	curl	bands	0	12-20
+bwss	Bodyweight split squat	lunge		0	10-20
+skater	Skater squat	squat		0	6-12
+slrdlbw	Single-leg RDL, bodyweight	hinge		0	10-15
+slthrust	Single-leg hip thrust	glute		0	10-20
+slidecurl	Slider leg curl	kneeflex		0	8-15
+stepcalf	Single-leg calf raise on a step	calf		0	10-20
+kbswing	Kettlebell swing	cond	kb	0	12-20
+wallballs	Wall balls	cond	wallball	0	15-25
+sledpush	Sled push	sled	sled	0	20-25
+sledpull	Sled pull	sled	sled	0	20-25
+farmers	Farmers carry	carry	db	0	30-50
+sandlunge	Sandbag lunges	lunge	sandbag	0	10-20
+bbj	Burpee broad jumps	cond		0	8-15
+boxjump	Box jump	cond	box	0	5-10
+thruster	Thrusters	cond	bb	0	8-15
+t2b	Toes-to-bar	abs	pullup	0	6-12
+pushjerk	Push jerk	ohp	bb+rack	0	3-5
+rowerg	Row intervals	erg	rower	0	250-500
+skiint	SkiErg intervals	erg	skierg	0	250-500
+cmj	Countermovement jump	plow		0	3-5
+boxjp	Box jump	plow	box	0	3-5
+broadjump	Broad jump	plow		0	3-5
+hangclean	Hang power clean	plow	bb	0	3-4
+pogo	Pogo hops	plow		0	15-20
+latbound	Lateral bound	plat		0	3-5
+mbrot	Rotational med ball throw	prot	medball	0	4-6
+landrot	Landmine rotation	prot	bb+landmine	0	6-8
+mbchest	Med ball chest pass	pup	medball	0	4-6
+mbslam	Med ball slam	pup	medball	0	5-6
+pushpress	Push press	pup	bb+rack	0	3-5
+cabler	Cable external rotation	er	cable_mid	0	12-15
+bander	Band external rotation	er	bands	0	15-20
+sideer	Side-lying DB external rotation	er	db	0	12-15
+ytw	Prone Y-T-W raise	er	db+bench	0	8-10
+copen	Copenhagen plank	add	bench	0	15-30
+neckiso	Neck isometrics	neck		0	10-15
+neckband	Banded neck strengthening	neck	bands	0	12-15
+hangboard	Fingerboard hang	fing	hangboard	0	7-10
+deadhang	Dead hang	grip	pullup	0	20-40
+wristcurl	Wrist curl and extension	grip	db	0	12-15
+pallof	Pallof press	core	cable_mid	0	8-12
+pallofb	Band Pallof press	core	bands	0	10-12
+sideplank	Side plank	core		0	20-40
+hopstick	Single-leg hop and stick	land		0	4-6
+slbalance	Single-leg balance reach	ankle		0	6-8
+declbench	Decline barbell bench press	fpress	bb+declinebench	1	6-10
+widebench	Wide-grip bench press	fpress	bb+rack+bench	1	6-10
+revgripbench	Reverse-grip bench press	fpress	bb+rack+bench	1	6-10
+spoto	Spoto press	fpress	bb+rack+bench	1	4-8
+pinpress	Pin press	fpress	bb+rack+bench	1	3-6
+bbfloor	Barbell floor press	fpress	bb+rack	1	5-8
+chainbench	Bench press with chains	fpress	bb+rack+bench+chains	1	3-6
+bandbench	Banded bench press	fpress	bb+rack+bench+bands	1	3-6
+swissbench	Multi-grip bar bench press	fpress	swissbar+rack+bench	1	6-10
+cambench	Cambered bar bench press	fpress	cambered+rack+bench	1	6-10
+guillotine	Guillotine press	fpress	bb+rack+bench	1	8-12
+smithbench	Smith machine bench press	fpress	smith+bench	1	6-10
+declsmith	Decline Smith press	fpress	smith+declinebench	1	6-10
+lowincdb	Low-incline DB press	ipress	db+bench	1	8-12
+decdb	Decline DB press	fpress	db+declinebench	1	8-12
+ngdbpress	Neutral-grip DB press	fpress	db+bench	1	8-12
+squeeze	DB squeeze press	fpress	db+bench	1	10-15
+sadbbench	Single-arm DB bench press	fpress	db+bench	1	8-12
+svend	Svend press	fly	bb	1	12-20
+decfly	Decline DB fly	fly	db+declinebench	1	10-15
+hilofly	High-to-low cable fly	fly	cable_dual	1	10-15
+midfly	Mid-cable fly	fly	cable_dual	1	10-15
+benchcabfly	Flat-bench cable fly	fly	cable_dual+bench	1	10-15
+inccabfly	Incline-bench cable fly	fly	cable_dual+bench	1	10-15
+sacabfly	Single-arm cable fly	fly	cable_mid	1	10-15
+sapecdeck	Single-arm pec deck	fly	pecdeck	1	10-15
+bandfly	Band chest fly	fly	bands	1	15-25
+ringfly	Ring fly	fly	rings	1	6-12
+trxfly	Suspension chest fly	fly	trx	1	8-15
+declmachine	Decline chest press machine	fpress	declinepress	1	8-12
+isochest	Iso-lateral chest press	fpress	isochestpress	1	8-12
+isoinc	Iso-lateral incline press	ipress	isoincpress	1	8-12
+isowide	Iso-lateral wide chest press	fpress	isochestpress	1	8-12
+isobench	Iso-lateral bench press	fpress	isochestpress	1	8-12
+sacabpress	Single-arm cable chest press	fpress	cable_mid	1	10-15
+incpushup	Incline push-up	fpress		1	10-25
+kneepushup	Kneeling push-up	fpress		1	10-25
+declpushup	Feet-elevated push-up	ipress		1	8-20
+widepushup	Wide push-up	fpress		1	10-20
+diamond	Diamond push-up	tripress		1	8-20
+archerpu	Archer push-up	fpress		1	5-10
+onearmpu	One-arm push-up	fpress		1	3-8
+pppushup	Pseudo-planche push-up	fpress		1	5-12
+ringpushup	Ring push-up	fpress	rings	1	6-15
+trxpushup	Suspension push-up	fpress	trx	1	8-15
+wpushup	Weighted push-up	fpress	weightvest	1	6-12
+wdip	Weighted dip	fpress	dip+dipbelt	1	5-10
+ringdip	Ring dip	fpress	rings	1	5-12
+assistdip	Assisted dip machine	tripress	dipm	1	8-15
+benchdip	Bench dip	tripress	bench	1	10-20
+sbdip	Straight bar dip	tripress	pullup	1	5-12
+dbpullover	DB pullover	latiso	db+bench	1	8-15
+ezpullover	Lying EZ-bar pullover	latiso	ez+bench	1	8-15
+ngpullup	Neutral-grip pull-up	vpull	pullup	1	6-12
+widepullup	Wide-grip pull-up	vpull	pullup	1	5-10
+wpullup	Weighted pull-up	vpull	pullup+dipbelt	1	5-10
+wchinup	Weighted chin-up	vpull	pullup+dipbelt	1	5-10
+asspullup	Assisted pull-up machine	vpull	dipm	1	8-12
+bandpullup	Band-assisted pull-up	vpull	pullup+bands	1	6-12
+negpullup	Eccentric pull-up	vpull	pullup	1	3-6
+archerpull	Archer pull-up	vpull	pullup	1	3-8
+oachin	One-arm chin-up	vpull	pullup	1	1-5
+lsitpull	L-sit pull-up	vpull	pullup	1	5-10
+c2b	Chest-to-bar pull-up	vpull	pullup	1	5-12
+kippull	Kipping pull-up	vpull	pullup	1	8-20
+butterfly	Butterfly pull-up	vpull	pullup	1	10-30
+towelpull	Towel pull-up	vpull	pullup	1	3-8
+ropeclimb	Rope climb	vpull	climbrope	1	2-5
+leglessrope	Legless rope climb	vpull	climbrope	1	1-3
+pegboard	Pegboard climb	vpull	pegboard	1	1-3
+wngpd	Wide neutral-grip pulldown	vpull	latpd	1	8-12
+btnpd	Behind-the-neck pulldown	vpull	latpd	1	10-12
+sapd	Single-arm lat pulldown	vpull	latpd	1	10-15
+isopd	Iso-lateral front pulldown	vpull	latpdplate	1	8-12
+plpd	Plate-loaded pulldown	vpull	latpdplate	1	8-12
+bandlatpd	Band lat pulldown	vpull	bands	1	12-20
+ropepullover	Rope straight-arm pulldown	latiso	cable_hi	1	10-15
+lycabpo	Lying cable pullover	latiso	cable_low+bench	1	10-15
+sastraight	Single-arm cable lat pullaround	latiso	cable_hi	1	10-15
+pendlay	Pendlay row	row	bb	1	5-8
+yatesrow	Underhand barbell row	row	bb	1	6-10
+sealrow	Seal row	row	bb+sealrow	1	8-12
+smithrow	Smith machine row	row	smith	1	8-12
+helms	Helms row	row	db+bench	1	8-12
+kroc	Kroc row	row	db	1	15-25
+renegade	Renegade row	row	db	1	6-12
+gorilla	Gorilla row	row	kb	1	8-12
+kbrow	Single-arm KB row	row	kb+bench	1	8-15
+widecabrow	Seated cable row, wide overhand grip	row	cable_low	1	8-12
+sacabrow	Single-arm seated cable row	row	cable_low	1	10-15
+stcabrow	Standing single-arm cable row	row	cable_mid	1	10-15
+isorow	Iso-lateral row	row	rowm	1	8-12
+lowrowm	Low row machine	row	lowrow	1	8-12
+dyrow	D.Y. row machine	row	dyrow	1	8-12
+barinvrow	Inverted row	row	rack	1	8-15
+feinvrow	Feet-elevated inverted row	row	rack+bench	1	6-12
+bbshrug	Barbell shrug	shrug	bb+rack	1	8-15
+btbshrug	Behind-the-back barbell shrug	shrug	bb+rack	1	8-15
+seateddbshrug	Seated DB shrug	shrug	db+bench	1	10-20
+smithshrug	Smith machine shrug	shrug	smith	1	10-20
+cabshrug	Cable shrug	shrug	cable_low	1	12-20
+shrugmach	Shrug machine	shrug	shrugm	1	10-20
+kelso	Kelso shrug	shrug	db+bench	1	10-15
+rackpull	Rack pull	hinge	bb+rack	1	3-6
+seatbbohp	Seated barbell overhead press	ohp	bb+rack+bench	1	6-10
+btnpress	Behind-the-neck press	ohp	bb+rack+bench	1	8-12
+zpress	Z press	ohp	bb+rack	1	6-10
+bradford	Bradford press	ohp	bb+rack	1	8-12
+standdbohp	Standing DB shoulder press	ohp	db	1	6-10
+sadbohp	Single-arm DB overhead press	ohp	db	1	8-12
+kbpress	Kettlebell overhead press	ohp	kb	1	6-10
+bukbpress	Bottoms-up KB press	ohp	kb	1	5-8
+isoohp	Iso-lateral shoulder press	ohp	isoshoulderpress	1	8-12
+viking	Viking press	ohp	vikingm	1	6-10
+salmpress	Single-arm landmine press	ohp	landmine+bb	1	8-12
+floorpike	Pike push-up	ohp		1	6-15
+hspu	Handstand push-up	ohp		1	3-10
+defhspu	Deficit handstand push-up	ohp	parallettes	1	3-8
+splitjerk	Split jerk	oly	bb+rack	1	1-3
+logpress	Log clean and press	strongman	log	1	1-5
+axlepress	Axle clean and press	strongman	axle	1	1-5
+circusdb	Circus DB press	strongman	db	1	1-5
+dbfrontraise	DB front raise	lat	db	1	10-15
+platefront	Plate front raise	lat	bb	1	10-15
+cabfront	Cable front raise	lat	cable_low	1	10-15
+bbfront	Barbell front raise	lat	bb	1	10-15
+seatedlat	Seated DB lateral raise	lat	db+bench	1	12-20
+leanawaylat	Lean-away DB lateral raise	lat	db	1	12-20
+sidelyinglat	Side-lying lateral raise	lat	db	1	12-20
+btbcablat	Behind-the-back cuffed cable lateral raise	lat	cable_low	1	12-20
+dualcablat	Dual cable lateral raise	lat	cable_dual	1	12-20
+lmlat	Landmine lateral raise	lat	landmine+bb	1	10-15
+luraise	Lu raise	lat	db	1	10-15
+csyraise	Chest-supported DB Y-raise	lat	db+bench	1	12-20
+bbupright	Barbell upright row	lat	bb	1	8-12
+ezupright	Wide-grip EZ-bar upright row	lat	ez	1	10-15
+dbupright	DB upright row	lat	db	1	10-15
+sacabrear	Single-arm cable rear delt fly	rear	cable_mid	1	12-20
+seatedrevfly	Seated bent-over DB reverse fly	rear	db+bench	1	12-20
+lyingrear	Side-lying rear delt raise	rear	db+bench	1	12-20
+reardeltrow	Rear delt DB row	rear	db+bench	1	12-20
+reardeltcabrow	Rear delt cable row	rear	cable_low	1	12-20
+trxyraise	Suspension Y-fly	rear	trx	1	10-15
+cabir	Cable internal rotation	er	cable_mid	1	12-15
+bandir	Band internal rotation	er	bands	1	15-20
+er9090	90/90 DB external rotation	er	db+bench	1	10-15
+cuban	Cuban press	er	db	1	8-12
+scappushup	Scapular push-up	scap		1	10-15
+scappull	Scapular pull-up	scap	pullup	1	8-12
+wallslide	Wall slide	scap		1	10-15
+serpunch	Cable serratus punch	scap	cable_mid	1	12-15
+dragcurl	Drag curl	curl	bb	1	8-12
+seatdbcurl	Seated DB curl	curl	db+bench	1	8-12
+conc	Concentration curl	curl	db+bench	1	10-15
+xbodyhammer	Cross-body hammer curl	curl	db	1	8-12
+zottman	Zottman curl	curl	db	1	8-12
+ezrevcurl	Reverse EZ-bar curl	curl	ez	1	10-15
+cabpreacher	Cable preacher curl	curl	preacher+cable_low	1	10-15
+preacherm	Preacher curl machine	curl	preacherm	1	8-12
+sacabcurl	Single-arm cable curl	curl	cable_low	1	10-15
+highcabcurl	High cable curl	curl	cable_dual	1	12-15
+trxcurl	Suspension biceps curl	curl	trx	1	10-15
+saohext	Single-arm overhead cable extension	triext	cable_mid	1	10-15
+sadbohext	Single-arm overhead DB extension	triext	db	1	10-15
+ezohext	Seated EZ-bar overhead extension	triext	ez+bench	1	8-12
+bandohext	Band overhead triceps extension	triext	bands	1	15-20
+ohtriextm	Overhead triceps extension machine	triext	triextm	1	10-15
+cabskull	Lying cable triceps extension	triext	cable_low+bench	1	10-15
+jmpress	JM press	tripress	bb+rack+bench	1	6-10
+tate	Tate press	triext	db+bench	1	10-15
+smithcg	Smith close-grip bench press	tripress	smith+bench	1	6-10
+cgdbpress	Close-grip DB press	tripress	db+bench	1	8-12
+vbarpd	V-bar pushdown	pushdown	cable_hi	1	10-20
+revpdown	Reverse-grip pushdown	pushdown	cable_hi	1	12-20
+sapd_tri	Single-arm cable pushdown	pushdown	cable_hi	1	12-20
+dbkickback	DB triceps kickback	pushdown	db+bench	1	12-20
+trxtriext	Suspension triceps extension	triext	trx	1	8-15
+lowbar	Low-bar back squat	squat	bb+rack	1	3-8
+camsq	Cambered bar squat	squat	cambered+rack	1	5-8
+boxsquat	Box squat	squat	bb+rack+box	1	3-6
+pinsquat	Pin squat	squat	bb+rack	1	3-5
+zercher	Zercher squat	squat	bb+rack	1	5-8
+chainsq	Squat with chains	squat	bb+rack+chains	1	3-5
+bandsq	Banded squat	squat	bb+rack+bands	1	3-5
+revhack	Reverse hack squat	squat	hack	1	8-12
+vsq	V-squat	squat	vsquat	1	8-12
+leversq	Leverage squat machine	squat	supersquat	1	8-12
+slegpress	Single-leg leg press	squat	legpress	1	10-15
+widelegpress	Wide-stance leg press	squat	legpress	1	10-15
+narrowlp	Narrow-stance low-foot leg press	squat	legpress	1	10-15
+hlegpress	Seated leg press	squat	hlegpress	1	10-15
+vertlp	Vertical leg press	squat	vertlegpress	1	10-15
+dbsquat	DB squat	squat	db	1	8-15
+dbfrontsq	DB front squat	squat	db	1	8-15
+dkbfsq	Double KB front squat	squat	kb	1	6-12
+sumosq	DB sumo squat	squat	db	1	10-15
+lmsquat	Landmine squat	squat	landmine+bb	1	8-12
+bwsquat	Bodyweight squat	squat		1	15-30
+pistol	Pistol squat	squat		1	3-10
+boxpistol	Box pistol squat	squat	box	1	6-12
+shrimp	Shrimp squat	squat		1	5-10
+spanishsq	Spanish squat	squat	bands	1	10-15
+wallsit	Wall sit	squat		1	30-60
+sissybench	Sissy squat machine	kneeext	sissy	1	8-15
+bbbss	Barbell Bulgarian split squat	lunge	bb+rack+bench	1	6-10
+smithbss	Smith Bulgarian split squat	lunge	smith+bench	1	8-12
+dbsplit	DB split squat	lunge	db	1	8-12
+ffesplit	Front-foot-elevated split squat	lunge	db	1	8-12
+bbwalklunge	Barbell walking lunge	lunge	bb+rack	1	8-12
+fwdlunge	DB forward lunge	lunge	db	1	8-12
+revlunge	DB reverse lunge	lunge	db	1	8-12
+bbrevlunge	Barbell reverse lunge	lunge	bb+rack	1	6-10
+lmrevlunge	Landmine reverse lunge	lunge	landmine+bb	1	8-12
+curtsy	Curtsy lunge	lunge	db	1	10-15
+latlunge	Lateral lunge	lunge	db	1	8-12
+cossack	Cossack squat	lunge		1	6-12
+bbstepup	Barbell step-up	lunge	bb+rack+box	1	6-10
+latstepup	Lateral step-up	lunge	box	1	10-15
+petersen	Petersen step-up	lunge	box	1	10-15
+ohlunge	Overhead walking lunge	lunge	bb	1	8-12
+slegext	Single-leg extension	kneeext	legext	1	10-15
+cablegext	Cable leg extension	kneeext	cable_low+bench	1	12-20
+tke	Banded terminal knee extension	kneeext	bands	1	15-20
+kneelcurlm	Kneeling leg curl	kneeflex	kneelcurl	1	8-12
+bandlegcurl	Band leg curl	kneeflex	bands	1	15-20
+nordicbench	Nordic curl bench	kneeflex	nordicbench	1	4-8
+ballcurl	Swiss ball leg curl	kneeflex	swissball	1	10-15
+trxlegcurl	Suspension leg curl	kneeflex	trx	1	10-15
+sumodl	Sumo deadlift	hinge	bb	1	3-6
+snatchdl	Snatch-grip deadlift	hinge	bb	1	4-8
+axledl	Axle deadlift	hinge	axle	1	1-5
+kbdl	Kettlebell deadlift	hinge	kb	1	8-15
+suitcasedl	Suitcase deadlift	hinge	db	1	6-10
+sldl	Stiff-leg deadlift	hinge	bb	1	6-10
+smithrdl	Smith RDL	hinge	smith	1	8-12
+bstance	B-stance RDL	hinge	db	1	8-12
+ssbgm	Safety bar good morning	hinge	ssb+rack	1	6-10
+bandgm	Band good morning	hinge	bands	1	15-20
+hyper90	90 degree back extension	hinge	hyper90	1	8-15
+ghdbackext	GHD back extension	hinge	ghd	1	10-15
+backextm	Seated back extension machine	hinge	backext	1	10-15
+superman	Superman	core		1	10-20
+dbhipthrust	DB hip thrust	glute	db+bench	1	10-15
+smiththrust	Smith hip thrust	glute	smith+bench	1	8-12
+bstancethrust	B-stance hip thrust	glute	bb+bench	1	8-12
+bbbridge	Barbell glute bridge	glute	bb	1	10-15
+slbridge	Single-leg glute bridge	glute		1	10-20
+frogpump	Frog pump	glute		1	20-40
+mhkick	Multi-hip kickback	glute	multihip	1	10-15
+donkeykick	Quadruped donkey kick	glute		1	15-25
+cababd	Cable hip abduction	abd	cable_low	1	12-20
+sideabd	Side-lying hip abduction	abd		1	15-25
+mhabd	Multi-hip abduction	abd	multihip	1	12-20
+clamshell	Clamshell	abd	bands	1	15-25
+seatbandabd	Seated banded abduction	abd	bands	1	20-30
+hydrant	Fire hydrant	abd		1	15-20
+cabadd	Cable hip adduction	add	cable_low	1	12-20
+sideadd	Side-lying hip adduction	add		1	15-25
+mhadd	Multi-hip adduction	add	multihip	1	12-20
+addsqueeze	Adductor squeeze	add		1	5-10
+bwcalf	Bodyweight calf raise	calf		1	15-30
+hackcalf	Hack squat calf raise	calf	hack	1	10-15
+seateddbcalf	Seated DB calf raise	calf	db+bench	1	12-20
+soleuswall	Bent-knee calf raise	calf		1	15-25
+tibraise	Tibialis raise	tib		1	15-25
+tibbar	Tib bar raise	tib	tibbar	1	12-20
+banddorsi	Band dorsiflexion	tib	bands	1	15-25
+crunch	Crunch	abs		1	15-30
+ballcrunch	Swiss ball crunch	abs	swissball	1	12-20
+decsitup	Decline sit-up	abs	declinesitup	1	10-20
+deccrunch	Weighted decline crunch	abs	declinesitup	1	10-15
+situp	Sit-up	abs		1	15-25
+ghdsitup	GHD sit-up	abs	ghd	1	10-20
+vup	V-up	abs		1	10-20
+mcgill	McGill curl-up	abs		1	6-10
+revcrunch	Reverse crunch	abs		1	12-20
+flutter	Flutter kicks	abs		1	20-40
+hanglegstraight	Hanging leg raise	abs	pullup	1	8-15
+dragonflag	Dragon flag	abs	bench	1	3-8
+standrollout	Standing ab wheel rollout	abs	abwheel	1	3-8
+bbrollout	Barbell rollout	abs	bb	1	6-12
+ballrollout	Swiss ball rollout	abs	swissball	1	8-15
+trxpike	Suspension pike	abs	trx	1	8-15
+trxtuck	Suspension knee tuck	abs	trx	1	10-15
+abcoaster	Ab coaster	abs	abcoaster	1	10-20
+rkcplank	RKC plank	core		1	10-20
+plankst	Plank shoulder taps	core		1	10-20
+deadbug	Dead bug	core		1	8-12
+birddog	Bird dog	core		1	8-12
+hollow	Hollow body hold	core		1	20-40
+stirpot	Stir the pot	core	swissball	1	6-10
+hkpallof	Half-kneeling Pallof press	core	cable_mid	1	8-12
+cablelift	Cable lift	obl	cable_low	1	10-15
+cabrot	Cable horizontal rotation	obl	cable_mid	1	10-15
+torso	Rotary torso machine	obl	torso	1	10-15
+russian	Russian twist	obl		1	20-30
+bicycle	Bicycle crunch	obl		1	20-30
+wiper	Hanging windscreen wipers	obl	pullup	1	6-12
+hangoblique	Hanging oblique knee raise	obl	pullup	1	10-15
+dbsidebend	DB side bend	obl	db	1	12-20
+cabsidebend	Cable side bend	obl	cable_low	1	12-20
+sidebend45	45 degree side bend	obl	hipext	1	12-20
+windmill	Kettlebell windmill	obl	kb	1	5-8
+tgu	Turkish get-up	core	kb	1	1-5
+psoasmarch	Banded psoas march	hipflex	bands	1	10-15
+cabhipflex	Cable hip flexion	hipflex	cable_low	1	12-15
+slr	Straight-leg raise	hipflex		1	10-15
+neckflexplate	Lying plate neck flexion	neck	bb+bench	1	12-20
+neckextplate	Lying plate neck extension	neck	bb+bench	1	12-20
+neckharness	Neck harness extension	neck	neckharness	1	12-20
+neckmflex	Neck machine flexion	neck	neckm	1	12-20
+neckmext	Neck machine extension	neck	neckm	1	12-20
+neckmlat	Neck machine lateral flexion	neck	neckm	1	12-20
+chintuck	Chin tuck	neck		1	10-15
+bbwristcurl	Barbell wrist curl	wrist	bb+bench	1	12-20
+dbwristcurl	DB wrist curl	wrist	db+bench	1	12-20
+btbwristcurl	Behind-the-back barbell wrist curl	wrist	bb+rack	1	12-20
+revwristcurl	Reverse wrist curl	wrist	db+bench	1	15-25
+cabwristcurl	Cable wrist curl	wrist	cable_low+bench	1	12-20
+pronsup	DB pronation and supination	wrist	db	1	12-15
+radial	Radial deviation	wrist	db	1	12-15
+wristroller	Wrist roller	wrist	wristroller	1	2-4
+gripper	Hand gripper	grip	grippers	1	8-15
+platepinch	Plate pinch	grip	bb	1	20-40
+farmerhold	Farmer's hold	grip	db	1	20-40
+towelhang	Towel hang	grip	pullup	1	10-30
+clean	Squat clean	oly	bb+platform	1	1-3
+powerclean	Power clean	oly	bb+platform	1	1-3
+hangsqclean	Hang clean	oly	bb	1	1-3
+cleanpull	Clean pull	oly	bb+platform	1	2-4
+cleanhighpull	Clean high pull	oly	bb	1	2-5
+cj	Clean and jerk	oly	bb+platform	1	1-2
+snatch	Snatch	oly	bb+platform	1	1-3
+powersnatch	Power snatch	oly	bb+platform	1	1-3
+hangpsnatch	Hang power snatch	oly	bb	1	2-4
+snatchpull	Snatch pull	oly	bb+platform	1	2-4
+sghp	Snatch-grip high pull	oly	bb	1	3-5
+musclesnatch	Muscle snatch	oly	bb	1	3-5
+snatchbal	Snatch balance	oly	bb+rack	1	2-4
+ohs	Overhead squat	oly	bb+rack	1	3-6
+dbsnatch	DB snatch	oly	db	1	5-10
+dbhangclean	DB hang clean	oly	db	1	5-10
+kbsnatch	Kettlebell snatch	oly	kb	1	5-15
+kbclean	Kettlebell clean	oly	kb	1	5-10
+farmerwalk	Farmer's walk (handles)	carry	farmerhandles	1	20-40
+suitcase	Suitcase carry	carry	db	1	20-40
+ohcarry	Overhead carry	carry	db	1	20-40
+frontrackcarry	Front-rack KB carry	carry	kb	1	20-40
+zerchercarry	Zercher carry	carry	bb	1	20-30
+yoke	Yoke carry	strongman	yoke	1	15-30
+sandbagcarry	Sandbag bear-hug carry	carry	sandbag	1	20-40
+stoneload	Atlas stone load	strongman	stones	1	1-5
+stoneshoulder	Stone to shoulder	strongman	stones	1	1-5
+sbshoulder	Sandbag to shoulder	strongman	sandbag	1	3-8
+tyreflip	Tyre flip	strongman	tyre	1	3-8
+sledgehammer	Sledgehammer tyre strikes	cond	sledgehammer+tyre	1	10-20
+sleddrag	Backward sled drag	sled	sled	1	20-40
+squatjump	Squat jump	plow		1	5-8
+tuckjump	Tuck jump	plow		1	5-10
+tbjump	Trap bar jump	plow	trapbar	1	3-5
+depthjump	Depth jump	plow	box	1	3-5
+hurdlehop	Hurdle hops	plow	agility	1	5-8
+bounding	Bounding	plow		1	20-30
+jumplunge	Jumping lunge	plow		1	6-10
+clappu	Clap push-up	pup		1	5-8
+mbohthrow	Med ball overhead backward throw	plow	medball	1	3-5
+mbscoop	Med ball scoop toss	prot	medball	1	4-6
+amswing	American kettlebell swing	cond	kb	1	10-20
+sakbswing	Single-arm kettlebell swing	cond	kb	1	10-15
+dbthruster	DB thruster	cond	db	1	8-15
+sdhp	Sumo deadlift high pull	cond	bb	1	10-15
+burpee	Burpee	cond		1	10-20
+burpeebox	Burpee box jump-over	cond	box	1	8-15
+devilpress	Devil press	cond	db	1	8-12
+manmaker	Man maker	cond	db	1	6-10
+mtclimber	Mountain climber	cond		1	20-40
+jacks	Jumping jacks	cond		1	30-60
+bearcrawl	Bear crawl	cond		1	10-20
+wallwalk	Wall walk	cond		1	3-6
+ropewaves	Battle rope waves	cond	battleropes	1	20-30
+ropeslams	Battle rope slams	cond	battleropes	1	20-30
+skipping	Skipping	cond	jumprope	1	60-180
+du	Double-unders	cond	jumprope	1	20-50
+bikeint	Air bike intervals	erg	airbike	1	10-20
+bikeerg	BikeErg intervals	erg	bikeerg	1	500-1000
+tmrun	Treadmill run	erg	treadmill	1	10-30
+inclinewalk	Incline treadmill walk	erg	treadmill	1	10-30
+curvedsprint	Curved treadmill sprint	erg	curvedtm	1	10-30
+sprint	Sprint	erg		1	20-60
+stairclimb	Stair climber	erg	stairs	1	10-30
+stepper	Stepper	erg	stepper	1	10-30
+xtrainer	Cross-trainer	erg	elliptical	1	10-30
+spin	Spin bike	erg	spinbike	1	10-45
+uprightbike	Upright bike	erg	uprightbike	1	10-45
+recumbent	Recumbent bike	erg	recumbent	1	10-45
+versa	VersaClimber	erg	versaclimber	1	1-5
+jacobs	Jacob's ladder	erg	jacobs	1	1-5
+muscleup	Bar muscle-up	skill	pullup	1	1-5
+ringmu	Ring muscle-up	skill	rings	1	1-5
+ringsupport	Ring support hold	skill	rings	1	15-30
+tuckfl	Tuck front lever	skill	pullup	1	10-20
+frontlever	Front lever	skill	pullup	1	3-10
+flraise	Front lever raise	skill	pullup	1	3-8
+backlever	Back lever	skill	rings	1	5-15
+skinthecat	Skin the cat	skill	rings	1	3-6
+tuckplanche	Tuck planche	skill	parallettes	1	5-15
+planchelean	Planche lean	skill		1	15-30
+handstand	Wall handstand hold	skill		1	20-60
+freehs	Freestanding handstand	skill		1	5-30
+lsit	L-sit	skill	parallettes	1	10-30
+flag	Human flag	skill	pullup	1	3-10
+wgs	World's greatest stretch	mob		1	5-8
+couch	Couch stretch	mob		1	60-120
+hkhf	Half-kneeling hip flexor stretch	mob		1	30-60
+pigeon	Pigeon stretch	mob		1	30-60
+frog	Frog stretch	mob		1	30-60
+deepsquathold	Deep squat hold	mob		1	30-60
+hipcars	Hip CARs	mob		1	3-5
+shouldercars	Shoulder CARs	mob		1	3-5
+catcow	Cat-cow	mob		1	8-12
+openbook	Open book	mob		1	8-12
+tspineroller	Foam roller thoracic extension	mob	foamroller	1	8-12
+dislocates	Band shoulder dislocates	mob	bands	1	10-15
+sleeper	Sleeper stretch	mob		1	30-60
+doorpec	Doorway pec stretch	mob		1	30-60
+kneetowall	Knee-to-wall ankle mobilisation	mob		1	10-15
+calfstretch	Wall calf stretch	mob		1	30-60
+hamband	Lying band hamstring stretch	mob	bands	1	30-60
+jefferson	Jefferson curl	mob	db+box	1	5-8
+kbhalo	Kettlebell halo	mob	kb	1	6-10
+childspose	Child's pose lat stretch	mob		1	30-60
+pushupplus	Push-up plus	scap		1	10-15
+decel	Deceleration drill	plat		1	3-5
+isosplit	Isometric split squat hold	lunge		1	20-40
+scrumhold	Scrum isometric hold	squat	rack	1	6-8
+splitjump	Split-stance jump	plow		1	3-5
+dropstick	Drop landing to stick	land	box	1	4-6
+landpunch	Landmine punch press	pup	landmine	1	4-6
+fingerext	Band finger extension	fing	bands	1	15-25
+benchthrow	Smith bench throw	pup	smith+bench	1	3-5

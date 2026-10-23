@@ -1,0 +1,912 @@
+{
+ "id": "climbing",
+ "name": "Rock climbing & bouldering",
+ "aliases": [
+  "bouldering",
+  "climbing",
+  "sport climbing",
+  "lead climbing",
+  "rock climbing",
+  "indoor climbing",
+  "trad climbing",
+  "trad",
+  "top rope"
+ ],
+ "group": "Climbing & board",
+ "variants": [
+  {
+   "id": "boulder",
+   "name": "Bouldering",
+   "desc": "Short, near-maximal problems under a minute with long rests; falls onto pads.",
+   "q": {
+    "power": 3
+   },
+   "prehab": [
+    "fingers",
+    "landing",
+    "ankle"
+   ],
+   "note": "More limit bouldering and power; landing and ankle work added for falls."
+  },
+  {
+   "id": "lead",
+   "name": "Lead, sport and trad",
+   "desc": "2-10 min of sustained forearm effort; forearm aerobic capacity and critical force matter most.",
+   "q": {
+    "power": 1
+   },
+   "prehab": [
+    "fingers",
+    "elbow"
+   ],
+   "note": "More ARC, route laps and repeaters; less campus and dynamic power."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Pull and antagonist",
+    "focus": "Weighted pulls, overhead press, shoulder and elbow care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pullup",
+       "mbslam",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Explosive pull-up: fast up, slow down."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "Weighted, about 85% 1RM. New: 5-8 reps, 3 in reserve."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "ohp",
+       "standdbohp",
+       "pikepush"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "Antagonist press."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wallslide",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Serratus and lower trap."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "revwristcurl",
+       "wristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Slow eccentrics for the elbow; flexbar if you have one."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "t2b",
+       "hanglegstraight"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Lower, push and trunk",
+    "focus": "Single-leg, push-ups, hinge, body tension, hip mobility",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "stepup",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-8/side",
+      "rir": 2,
+      "note": "High step-ups suit climbing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushup",
+       "wpushup",
+       "flatdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8-12",
+      "rir": 2,
+      "note": "Add a vest or plate when 12 is easy."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "tuckfl",
+       "abwheel",
+       "frontlever"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-10",
+      "rir": 2,
+      "note": "Front lever progression or rollout."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "frog",
+       "9090",
+       "deepsquathold"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Hip mobility for high steps and heel hooks."
+     }
+    ]
+   },
+   {
+    "name": "Finger strength",
+    "focus": "Hangboard after a full warm-up. Only once the safety gates are passed.",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "hangboard",
+       "deadhang"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "10 s",
+      "rir": 1,
+      "note": "Max hangs: 18-22 mm edge, half-crimp or open hand. Load so 3 s stay in reserve. 3 min rest."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Pull and antagonist",
+    "focus": "Weighted pulls, overhead press, shoulder and elbow care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pullup",
+       "mbslam",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 5,
+       "adv": 5
+      },
+      "reps": "2",
+      "rir": 3,
+      "note": "Explosive."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "Weighted, 87-90% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "ohp",
+       "standdbohp",
+       "pikepush"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wallslide",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Serratus and lower trap."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "revwristcurl",
+       "wristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Slow eccentrics for the elbow; flexbar if you have one."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "t2b",
+       "hanglegstraight"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Lower, push and trunk",
+    "focus": "Single-leg, push-ups, hinge, body tension, hip mobility",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "stepup",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushup",
+       "wpushup",
+       "flatdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "tuckfl",
+       "abwheel",
+       "frontlever"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "frog",
+       "9090",
+       "deepsquathold"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Hip mobility for high steps and heel hooks."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Pull and antagonist",
+    "focus": "Weighted pulls, overhead press, shoulder and elbow care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pullup",
+       "mbslam",
+       "kbswing"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "2",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "Weighted."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "ohp",
+       "standdbohp",
+       "pikepush"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wallslide",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 3,
+      "note": "Serratus and lower trap."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "revwristcurl",
+       "wristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Slow eccentrics for the elbow; flexbar if you have one."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hangleg",
+       "t2b",
+       "hanglegstraight"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Finger maintenance",
+    "focus": "Repeaters for strength endurance. Only once the safety gates are passed.",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "hangboard",
+       "deadhang"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 6
+      },
+      "reps": "7 s on, 3 s off x 6",
+      "rir": 2,
+      "note": "Repeaters at 60-80% of max-hang load. 3 min rest."
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "ARC (forearm aerobic)",
+    "mode": "any",
+    "work": "20-30 min continuous easy climbing",
+    "rest": "none",
+    "intensity": "Pump no higher than 3/10",
+    "perWeek": 2,
+    "why": "Builds forearm aerobic capacity for routes."
+   },
+   {
+    "name": "General aerobic",
+    "mode": "any",
+    "work": "30 min bike, run or row",
+    "rest": "none",
+    "intensity": "Easy",
+    "perWeek": 1,
+    "why": "Recovery and the base for long multi-pitch days."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Campus board (advanced only)",
+    "mode": "any",
+    "work": "4-6 sets of ladders or bumps",
+    "rest": "3 min",
+    "intensity": "Max speed; stop at any loss of speed",
+    "perWeek": 1,
+    "why": "Contact strength; only for adult V7/7b+ climbers with 2+ years of hangboarding."
+   }
+  ],
+  "in": [
+   {
+    "name": "4 x 4s",
+    "mode": "any",
+    "work": "4 boulder problems back to back, 4 rounds",
+    "rest": "4 min",
+    "intensity": "3-4 grades below your max",
+    "perWeek": 1,
+    "why": "Route power endurance."
+   },
+   {
+    "name": "Route laps",
+    "mode": "any",
+    "work": "4-6 x one 2-3 min route",
+    "rest": "Equal to climb time",
+    "intensity": "Hard but below your limit",
+    "perWeek": 1,
+    "why": "Sustained forearm effort with recovery between."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "maxhang20",
+   "name": "Max hang, 20 mm, half-crimp",
+   "how": "10 s hang; total load (body plus added) as % of body mass.",
+   "unit": "% BM",
+   "better": "higher",
+   "bands": {
+    "club": "100-115",
+    "good": "125-145",
+    "elite": "150-165"
+   },
+   "note": "Roughly V3-4, V6-7 and V8-9. 170%+ around V10+. Broad bands."
+  },
+  {
+   "id": "wpullup1rm",
+   "name": "Weighted pull-up 1RM",
+   "how": "Body mass plus added load for 1 rep, as % of body mass.",
+   "unit": "% BM",
+   "better": "higher",
+   "bands": {
+    "club": "<140",
+    "good": "140-160",
+    "elite": "160+"
+   }
+  },
+  {
+   "id": "pullups",
+   "name": "Max pull-ups",
+   "how": "Dead hang start, chin over bar, no kipping.",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "<12",
+    "good": "12-15",
+    "elite": "20+"
+   }
+  },
+  {
+   "id": "pushups",
+   "name": "Max push-ups",
+   "how": "Chest to fist height, body straight, no rest.",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "<25",
+    "good": "25+",
+    "elite": "25+"
+   },
+   "note": "Antagonist check: a pass mark, not a performance band."
+  }
+ ],
+ "week": [
+  "Priority: climbing quality, then fingers, then strength, then conditioning.",
+  "Hangboard at the start of a climbing session after a full warm-up, or on its own.",
+  "Never hangboard after a hard climbing session.",
+  "Strength after an easy climb or on a rest day.",
+  "No heavy pulling the day before a project or comp."
+ ],
+ "primer": [
+  "10 min general warm-up",
+  "5-8 progressive hangs on big edges at 30-80% effort",
+  "A few hard moves, then stop"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Final hard finger session 5-7 days out.",
+   "Last limit climbing 3-4 days out.",
+   "Then 1-2 days of rest or easy movement.",
+   "Final week volume about half; keep a few hard moves."
+  ]
+ },
+ "rules": [
+  "No hangboard under 16 years old (BMC guidance).",
+  "No hangboard before about 18-24 months of regular climbing.",
+  "Maximum 2 finger sessions a week, at least 48 h apart.",
+  "Add no more than about 2-5% body mass (about 2 kg) a week.",
+  "No campus board unless advanced: adult, V7/7b+, 2+ years hangboarding, no finger issues.",
+  "Sharp finger pain stops the session.",
+  "Never hangboard with cold or already tired fingers.",
+  "Never full crimp under maximal load; no one-arm hangs below advanced.",
+  "Finger blocks last 4-8 weeks.",
+  "Under 16s: no intensive finger training and no campus board (growth plates).",
+  "Rotator cuff and scapular work 2-3x a week.",
+  "Do not chase low body mass: it raises RED-S risk."
+ ],
+ "sources": [
+  {
+   "source": "López-Rivera E, González-Badillo JJ 2012, Sports Technology"
+  },
+  {
+   "source": "Medernach JP, Kleinöder H, Lötzerich HH 2015, JSCR"
+  },
+  {
+   "source": "Baláš J, Pecha O, Martin AJ, Cochrane D 2012, European Journal of Sport Science"
+  },
+  {
+   "source": "Giles D et al. 2019, IJSPP"
+  },
+  {
+   "source": "Schöffl V et al. 2010, Sports Medicine"
+  },
+  {
+   "source": "Morrison AB, Schöffl VR 2007, BJSM",
+   "url": "https://bjsm.bmj.com/content/41/12/852"
+  },
+  {
+   "source": "British Mountaineering Council, Training issues and under 16s",
+   "url": "https://www.thebmc.co.uk/training-issues-and-under-16s"
+  },
+  {
+   "source": "Mountjoy M et al. 2023, BJSM (IOC REDs consensus)"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "No-hang block lift",
+   "pattern": "fing",
+   "equipment": "loading pin or block",
+   "why": "Finger strength for climbers new to fingerboarding or returning."
+  },
+  {
+   "name": "Flexbar eccentric wrist extension",
+   "pattern": "wrist",
+   "equipment": "flexbar",
+   "why": "Climber's elbow prevention (3 x 15)."
+  },
+  {
+   "name": "Explosive pull-up",
+   "pattern": "vpull",
+   "equipment": "pullup",
+   "why": "Power slot; mapped to pull-up with a note."
+  }
+ ]
+}

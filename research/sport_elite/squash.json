@@ -1,0 +1,1012 @@
+{
+ "id": "squash",
+ "name": "Squash",
+ "aliases": [
+  "squash rackets",
+  "doubles squash"
+ ],
+ "group": "Racket",
+ "variants": [
+  {
+   "id": "competitive",
+   "name": "Competitive (league or ranked)",
+   "desc": "Matches run at about 92% of max heart rate, so fitness limits you as much as strength.",
+   "prehab": [
+    "calf",
+    "copenhagen"
+   ],
+   "note": "Conditioning gets equal billing with the gym: 2-3 sessions a week in a build block."
+  },
+  {
+   "id": "over40",
+   "name": "Recreational over 40",
+   "desc": "Calf tears and Achilles ruptures cluster in players aged 30-50, and unfit older players carry more cardiac risk.",
+   "prehab": [
+    "calf",
+    "ankle"
+   ],
+   "note": "Calf and Achilles work comes first, and match frequency builds gradually. Get any chest symptoms checked."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower strength and lunge",
+    "focus": "Leg strength, lunge capacity, calf and groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "jumplunge",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Split squat jumps for advanced only. Stick each landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: 8 reps at RIR 3. Advanced: 3 reps at about 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Forward lunge to your deepest match lunge depth."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "ghr",
+       "nordicbench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: slider curls for 4 weeks before Nordics."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Heavy and slow. Then the single-leg set below."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Single-leg, full range on a step."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-8/side",
+      "rir": 2,
+      "note": "Short lever first. Add reps before going long lever."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Eyes closed or reaching once steady."
+     }
+    ]
+   },
+   {
+    "name": "Upper, rotation and trunk",
+    "focus": "Rotational power, pulling, shoulder, wrist and back",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides. Throw hard, full rest."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl",
+       "bstance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Hitting arm first. Do both arms."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Lower strength and lunge",
+    "focus": "Leg strength, lunge capacity, calf and groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "jumplunge",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Max intent. Full rest between sets."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4-5",
+      "rir": 2,
+      "note": "New: 6-8 reps at RIR 2-3. Inter: 80-85%. Advanced: 2-4 reps at 85-90%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Forward lunge to your deepest match lunge depth."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "ghr",
+       "nordicbench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: slider curls for 4 weeks before Nordics."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Heavy and slow."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "stepcalf",
+       "slcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Single-leg, full range on a step."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3-8/side",
+      "rir": 2,
+      "note": "Short lever first. Add reps before going long lever."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Eyes closed or reaching once steady."
+     }
+    ]
+   },
+   {
+    "name": "Upper, rotation and trunk",
+    "focus": "Rotational power, pulling, shoulder, wrist and back",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides. Throw hard, full rest."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl",
+       "bstance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Hitting arm first. Do both arms."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Compete lower",
+    "focus": "Hold leg strength with low fatigue",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "jumplunge",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3,
+      "note": "Short and sharp."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "frontsq",
+       "goblet",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 80%. New: 6 reps at RIR 2. Never near failure in season."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "fwdlunge",
+       "revlunge",
+       "bss",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "bbcalf",
+       "smithcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "adductor",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5-8/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper, rotation and trunk",
+    "focus": "Rotational power, pulling, shoulder, wrist and back",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides. Throw hard, full rest."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl",
+       "bstance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Hitting arm first. Do both arms."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min steady, or 4 x 4 min",
+    "rest": "3 min easy between 4 min efforts",
+    "intensity": "Steady: conversational. Intervals: 90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Squash is the most aerobic racket sport, so the base comes first."
+   },
+   {
+    "name": "Ghosting intervals",
+    "mode": "court",
+    "work": "10-20 s ghosting to the corners x 10-15, 3 sets",
+    "rest": "10-20 s between reps, 3 min between sets",
+    "intensity": "Match pace, recover to the T each time",
+    "perWeek": 1,
+    "why": "The standard squash method: it matches rally length and movement."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Ghosting intervals",
+    "mode": "court",
+    "work": "10-20 s on / 10-20 s off x 10-15, 3-4 sets; or 6 corners x 4-6 at 30 s on / 30 s off",
+    "rest": "3 min between sets",
+    "intensity": "Hard, near match pace",
+    "perWeek": 2,
+    "why": "Builds the repeated lunge and turn fitness squash rallies demand."
+   },
+   {
+    "name": "Lunge clock",
+    "mode": "court",
+    "work": "Lunge to all four corners on a clock, 60 s on x 5",
+    "rest": "60 s off",
+    "intensity": "Hard but controlled lunges",
+    "perWeek": 1,
+    "why": "Repeated lunge endurance under fatigue."
+   }
+  ],
+  "in": [
+   {
+    "name": "Ghosting intervals",
+    "mode": "court",
+    "work": "10-20 s on / 10-20 s off x 10, 2-3 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace",
+    "perWeek": 1,
+    "why": "Keeps court fitness. Never the day before a match."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "vo2max",
+   "name": "VO2max",
+   "how": "Lab test, or track the squash ghosting test as a field proxy",
+   "unit": "ml/kg/min",
+   "better": "higher",
+   "bands": {
+    "club": "45-50",
+    "good": "50-55",
+    "elite": "55-64"
+   },
+   "note": "Professional women about 45-55."
+  },
+  {
+   "id": "ghost",
+   "name": "Squash ghosting test",
+   "how": "Court-specific multistage ghosting test (Wilkinson). Log stages completed",
+   "unit": "stages",
+   "better": "higher",
+   "bands": {},
+   "note": "No published amateur bands. Track your own change."
+  },
+  {
+   "id": "505",
+   "name": "505 change of direction",
+   "how": "10 m run-in, turn 180 degrees at 15 m, time the 5 m in and out. Both sides",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "2.55",
+    "good": "2.40",
+    "elite": "<2.35"
+   }
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, phone app such as My Jump, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "30-35",
+    "good": "35-40",
+    "elite": ">40"
+   }
+  },
+  {
+   "id": "calfraise",
+   "name": "Single-leg calf raise to fatigue",
+   "how": "On a step, full range, 1 rep every 2 s, count clean reps. Each leg",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "25+",
+    "good": "30+",
+    "elite": "35+"
+   },
+   "note": "Practice benchmark, not research."
+  }
+ ],
+ "week": [
+  "League match evening: heavy lower 48 h or more before.",
+  "No ghosting intervals the day before a match.",
+  "Build block: gym 3 a week (alternate A and B), conditioning 2-3.",
+  "Compete weeks: gym 2 short sessions, conditioning 1.",
+  "Tournament on back-to-back days: primers only."
+ ],
+ "primer": [
+  "2 x 3 lateral bounds each side",
+  "2 x 3 jumps",
+  "Band shoulder external rotation 1 x 12",
+  "A few match-pace ghosting reps"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Cut conditioning volume by about half.",
+   "Keep ghosting at high intensity in short sets.",
+   "Last heavy lower 4 days before.",
+   "Primer on match day."
+  ]
+ },
+ "rules": [
+  "Protective eyewear: compulsory for juniors and doubles, advised for everyone.",
+  "Over 40 and unfit: build match frequency gradually and get chest pain or unusual breathlessness checked.",
+  "Over 35-40: calf and Achilles work every week, all year.",
+  "New lifters: no split jumps or drop jumps. Low-amplitude plyos only.",
+  "Train rotation and single-leg work on both sides."
+ ],
+ "sources": [
+  {
+   "source": "Turner MA et al. 2024, physiological and nutritional considerations for elite squash: a systematic review",
+   "url": "https://shura.shu.ac.uk/34486/"
+  },
+  {
+   "source": "Girard O et al. 2007, J Strength Cond Res 21(3):909-914"
+  },
+  {
+   "source": "Murray S et al. 2016, J Sports Sci 34(23):2170-2174"
+  },
+  {
+   "source": "Wilkinson M and colleagues, squash-specific multistage ghosting fitness test"
+  },
+  {
+   "source": "UKSCA, a review of sport-specific performance testing in squash",
+   "url": "https://cdn.uksca.org.uk/assets/pdfs/UkscaIqPdfs/a-review-of-sportspecific-performance-testing-in-squash-636825595030882093.pdf"
+  },
+  {
+   "source": "Schiftan, Ross and Hahne 2015, J Sci Med Sport 18(3):238-244",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24831756/"
+  },
+  {
+   "source": "Haroy et al. 2019, Br J Sports Med 53(3):150-157",
+   "url": "https://bjsm.bmj.com/content/53/3/150"
+  },
+  {
+   "source": "Helgerud et al. 2001, Med Sci Sports Exerc 33(11):1925-1931"
+  },
+  {
+   "source": "Ronnestad, Nymark and Raastad 2011, J Strength Cond Res 25(10):2653-2660",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  }
+ ],
+ "missing_ex": []
+}

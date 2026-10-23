@@ -1,0 +1,946 @@
+{
+ "id": "pickleball",
+ "name": "Pickleball",
+ "aliases": [
+  "pickle ball"
+ ],
+ "group": "Racket",
+ "variants": [
+  {
+   "id": "over55",
+   "name": "Older adult (55+)",
+   "desc": "Most injured players are over 60, often from falls and backpedalling for lobs.",
+   "prehab": [
+    "ankle",
+    "calf"
+   ],
+   "note": "Default when you are over 55. Balance, leg power and bone loading lead the plan."
+  },
+  {
+   "id": "younger",
+   "name": "Younger competitive player",
+   "desc": "Faster, more powerful play closer to tennis demands.",
+   "q": {
+    "power": 2,
+    "maxStrength": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "elbow"
+   ],
+   "note": "Lateral power, shoulder and elbow work get more weight."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Strength and balance",
+    "focus": "Leg strength, balance, calf and Achilles",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "bwsquat",
+       "legpress",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-10",
+      "rir": 2,
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "bbstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bwss",
+       "bss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/leg",
+      "rir": 3,
+      "note": "Add head turns and reaches as it gets easy."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "stepcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "seateddbcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power, upper and shoulder",
+    "focus": "Lateral stepping power, hinge, pulling, shoulder, grip",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Lateral step and stick, then small lateral hops. Fast intent, low amplitude."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "dbrdl",
+       "kbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "salmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerhold",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20 m",
+      "rir": 2,
+      "note": "Grip and bone loading."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Strength and balance",
+    "focus": "Leg strength, balance, calf and Achilles",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "bwsquat",
+       "legpress",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-10",
+      "rir": 2,
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "bbstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bwss",
+       "bss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/leg",
+      "rir": 3,
+      "note": "Add head turns and reaches as it gets easy."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "stepcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "seateddbcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power, upper and shoulder",
+    "focus": "Lateral stepping power, hinge, pulling, shoulder, grip",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Lateral step and stick, then small lateral hops. Fast intent, low amplitude."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "dbrdl",
+       "kbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "salmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerhold",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20 m",
+      "rir": 2,
+      "note": "Grip and bone loading."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Strength and balance",
+    "focus": "Leg strength, balance, calf and Achilles",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "bwsquat",
+       "legpress",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-10",
+      "rir": 2,
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "latstepup",
+       "bbstepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bwss",
+       "bss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/leg",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/leg",
+      "rir": 3,
+      "note": "Add head turns and reaches as it gets easy."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slcalf",
+       "standcalf",
+       "stepcalf",
+       "bwcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "seateddbcalf",
+       "soleuswall"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Power, upper and shoulder",
+    "focus": "Lateral stepping power, hinge, pulling, shoulder, grip",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Lateral step and stick, then small lateral hops. Fast intent, low amplitude."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "dbrdl",
+       "kbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "salmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20-30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerhold",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "20 m",
+      "rir": 2,
+      "note": "Grip and bone loading."
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Brisk walk or bike",
+    "mode": "any",
+    "work": "20-30 min",
+    "rest": "None",
+    "intensity": "Brisk, can talk in short sentences",
+    "perWeek": 2,
+    "why": "General health and aerobic fitness."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Brisk walk or bike",
+    "mode": "any",
+    "work": "20-30 min",
+    "rest": "None",
+    "intensity": "Brisk",
+    "perWeek": 2,
+    "why": "General health."
+   },
+   {
+    "name": "Court drills",
+    "mode": "court",
+    "work": "20-30 s dink-to-lob recovery patterns x 8",
+    "rest": "40 s",
+    "intensity": "Quick but controlled. Turn and run for lobs",
+    "perWeek": 1,
+    "why": "Rehearses the movements that cause falls, safely."
+   }
+  ],
+  "in": [
+   {
+    "name": "Brisk walk or bike",
+    "mode": "any",
+    "work": "20-30 min",
+    "rest": "None",
+    "intensity": "Brisk",
+    "perWeek": 2,
+    "why": "General health. Play covers the rest."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "chairstand",
+   "name": "30 s chair stand",
+   "how": "Arms crossed, stand fully and sit, count reps in 30 s",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "12-13",
+    "good": "14-17",
+    "elite": ">18"
+   },
+   "note": "Bands for ages 60-69. Under 12 needs work."
+  },
+  {
+   "id": "slstand",
+   "name": "Single-leg stand, eyes open",
+   "how": "Hands on hips, time until the foot moves or touches down. Each leg",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "10-20",
+    "good": "20-30",
+    "elite": ">30"
+   },
+   "note": "Under 10 s needs work."
+  },
+  {
+   "id": "calfraise",
+   "name": "Single-leg calf raise to fatigue",
+   "how": "Full range, hand on a wall, count clean reps. Each leg",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "15-20",
+    "good": "20-25",
+    "elite": ">25"
+   },
+   "note": "Under 15 needs work."
+  },
+  {
+   "id": "grip",
+   "name": "Grip strength",
+   "how": "Hand dynamometer, best of 3, stronger hand",
+   "unit": "kg",
+   "better": "higher",
+   "bands": {
+    "club": "30-35",
+    "good": "35-40",
+    "elite": ">45"
+   },
+   "note": "Men shown. Women: needs work under 20, good 22-26, excellent over 28."
+  },
+  {
+   "id": "5105",
+   "name": "5-10-5 shuttle",
+   "how": "Start in the middle, 5 m one way, 10 m back, 5 m to finish",
+   "unit": "s",
+   "better": "lower",
+   "bands": {},
+   "note": "Track your own change."
+  }
+ ],
+ "week": [
+  "Default 2 gym sessions a week; 3 in a build block.",
+  "No heavy lower within 24-48 h of a tournament.",
+  "Social play can follow a gym session the same day.",
+  "Heavy tournament weeks: 1-2 short sessions."
+ ],
+ "primer": [
+  "Warm-up before every match: 5 min easy movement",
+  "Balance holds 2 x 20 s each leg",
+  "Band shoulder external rotation 1 x 15",
+  "A few lateral steps and sticks"
+ ],
+ "taper": {
+  "days": 3,
+  "lines": [
+   "Last heavy session 3 days before a tournament.",
+   "Day before: balance and shoulder prep only.",
+   "Warm up before every match."
+  ]
+ },
+ "rules": [
+  "Turn and run back for lobs. Do not backpedal: it causes many falls.",
+  "Older beginners: power work is fast intent, low amplitude only.",
+  "Low hops for bone health only if appropriate for you.",
+  "Lift heavy enough to load bone: the last reps of a set should feel hard."
+ ],
+ "sources": [
+  {
+   "source": "Forrester MB 2020, J Emerg Med 58(2):275-279"
+  },
+  {
+   "source": "Increasing incidence of pickleball injuries presenting to US emergency departments, Icahn School of Medicine at Mount Sinai",
+   "url": "https://scholars.mssm.edu/en/publications/increasing-incidence-of-pickleball-injuries-presenting-to-us-emer/"
+  },
+  {
+   "source": "Sherrington C et al. 2019, Cochrane Database Syst Rev (exercise for preventing falls in older people)"
+  },
+  {
+   "source": "Watson SL et al. 2018, J Bone Miner Res 33(2):211-220 (LIFTMOR trial)"
+  },
+  {
+   "source": "Schiftan, Ross and Hahne 2015, J Sci Med Sport 18(3):238-244",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24831756/"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Sit-to-stand to a box (fast up, slow down)",
+   "pattern": "squat",
+   "equipment": "box",
+   "why": "Main lower lift for older beginners; goblet and bodyweight squat used instead"
+  },
+  {
+   "name": "Lateral step and stick",
+   "pattern": "land",
+   "equipment": "",
+   "why": "Entry-level lateral power for older players; hop and stick used instead"
+  }
+ ]
+}

@@ -1,0 +1,1201 @@
+{
+ "id": "handball",
+ "name": "Handball",
+ "aliases": [
+  "team handball",
+  "olympic handball",
+  "beach handball"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "wing",
+   "name": "Wing",
+   "desc": "Fastest players: counter-attack sprints and jump shots from tight angles.",
+   "q": {
+    "power": 3,
+    "unilateral": 3
+   },
+   "prehab": [
+    "nordic",
+    "landing"
+   ],
+   "note": "Your plan adds max-speed sprints (4 x 30 m) and extra single-leg bounds. Nordics stay in all year.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "bounding",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Stick each landing."
+    }
+   ]
+  },
+  {
+   "id": "back",
+   "name": "Back (left, right, centre)",
+   "desc": "Jump shots and long-range throws through blocks and contact.",
+   "q": {
+    "rotational": 3,
+    "upperPush": 3,
+    "power": 3
+   },
+   "prehab": [
+    "shoulderER"
+   ],
+   "note": "Your plan puts shoulder work first and adds extra med ball throws and shoulder rotation work.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbohthrow",
+      "mbslam",
+      "mbchest"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Max intent, full rest."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "cabler",
+      "bander",
+      "sideer"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 2,
+     "note": "Throwing arm first."
+    }
+   ]
+  },
+  {
+   "id": "pivot",
+   "name": "Pivot (line player)",
+   "desc": "Wrestles for space on the 6 m line; the most contact on court.",
+   "q": {
+    "maxStrength": 3,
+    "mass": 3,
+    "upperPush": 3,
+    "upperPull": 3,
+    "neck": 2
+   },
+   "prehab": [
+    "neck",
+    "shoulderER"
+   ],
+   "note": "Your plan adds neck work and heavy carries for contact, with more weight on strength.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15 s/direction",
+     "rir": 3,
+     "note": "Isometric only for the first 4 weeks."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "farmers",
+      "farmerwalk",
+      "suitcase"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30 m",
+     "rir": 2,
+     "note": "Heavy, stay tall."
+    }
+   ]
+  },
+  {
+   "id": "goalkeeper",
+   "name": "Goalkeeper",
+   "desc": "Splits and lateral leaps put the groin and hips under heavy load.",
+   "q": {
+    "unilateral": 3,
+    "power": 3
+   },
+   "prehab": [
+    "copenhagen",
+    "hipRot",
+    "hipAbd"
+   ],
+   "note": "Your plan adds Copenhagen planks, lateral lunges and hip mobility to your gym sessions.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "sideadd",
+      "addsqueeze"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "6/side",
+     "rir": 2,
+     "note": "Short lever (knee on bench) first."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "latlunge",
+      "cossack",
+      "goblet"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "6/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "9090",
+      "hipcars",
+      "frog"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "5/side",
+     "rir": 3,
+     "note": "Slow, no pain."
+    }
+   ]
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "A: Lower strength and shoulder",
+    "focus": "Build leg strength, landing control and the shoulder base",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Step down from the box. New: low box."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "frontsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: 3 x 8, 3 reps in reserve. Advanced: 5 x 3 at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: band-assisted or slider curls first."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "addsqueeze",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Short lever (knee on bench) first."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "er9090",
+       "bander",
+       "sideer",
+       "cabler"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Elbow at shoulder height, slow."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "sleeper",
+       "shouldercars"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 3,
+      "note": "Throwing arm. Gentle stretch, no pain."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "bandpa",
+       "wallslide"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Upper and throwing power",
+    "focus": "Throwing speed and upper strength, pulls at least equal to presses",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Max intent, full rest."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5-8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "bandpullup",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "sadbohp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "pushupplus",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2,
+      "note": "Push the floor away at the top."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "C: Lateral power and robustness",
+    "focus": "Intermediate and advanced. New lifters repeat A or B",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick each landing for 2 s."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushpress",
+       "standdbohp",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "Push press for advanced only."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "kbrdl",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "suitcase",
+       "farmerwalk"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15 s/direction",
+      "rir": 3,
+      "note": "Isometric only for the first 4 weeks."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "woodchop",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-40 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "A: Jump-shot power and legs",
+    "focus": "Convert strength to the one-leg jump shot",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "bounding",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/leg",
+      "rir": 3,
+      "note": "3-step approach, take off one leg, land and stick."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "trapdl",
+       "frontsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3-4",
+      "rir": 2,
+      "note": "Intermediate: 3 x 4 at 80%. Advanced: 4 x 3 at 85%, 3 box jumps after each set."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Knee over toes on every landing."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "er9090",
+       "bander",
+       "sideer",
+       "cabler"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Throwing power and upper strength",
+    "focus": "Max-intent throws, heavy upper, groin",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Max intent."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3-4",
+      "rir": 2,
+      "note": "Around 85% for intermediate and advanced. New: 3 x 6-8."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "wpullup",
+       "pullup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "bander",
+       "cabler",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "addsqueeze",
+       "sideadd"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "A: Strength hold (MD-4)",
+    "focus": "40 min. Heaviest session of the week",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "80-85% for intermediate and advanced. New: 2-3 x 6, 2 reps in reserve."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3-4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "nordicbench",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "er9090",
+       "bander",
+       "sideer",
+       "cabler"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "B: Primer and prehab (MD-2)",
+    "focus": "25 min. Light, fast, no soreness",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbsplit",
+       "bwss",
+       "bss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Light."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "bander",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "run",
+    "work": "4 x 4 min",
+    "rest": "3 min easy jog",
+    "intensity": "90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Aerobic fitness speeds recovery between repeated sprints and jumps."
+   }
+  ],
+  "pre": [
+   {
+    "name": "15/15 intervals",
+    "mode": "run",
+    "work": "2 x 8 min of 15 s run / 15 s rest",
+    "rest": "3 min between sets",
+    "intensity": "90-95% of your 30-15 Intermittent Fitness Test speed, or RPE 8-9",
+    "perWeek": 1,
+    "why": "Aerobic power for repeated high-intensity actions."
+   },
+   {
+    "name": "Repeated sprints with a cut",
+    "mode": "run",
+    "work": "3 x 6 x 20-30 m, cut on each rep",
+    "rest": "20-25 s, 4-5 min between sets",
+    "intensity": "Max effort",
+    "perWeek": 1,
+    "why": "Matches have 15-20 sprints with cuts and fast breaks."
+   },
+   {
+    "name": "Fast-break drills",
+    "mode": "court",
+    "work": "6 x 30 s fast-break drills",
+    "rest": "Walk-back recovery",
+    "intensity": "Hard, match pace",
+    "perWeek": 1,
+    "why": "Matches the transition pattern of the game."
+   },
+   {
+    "name": "Max-speed runs",
+    "mode": "run",
+    "work": "4 x 30 m",
+    "rest": "2-3 min",
+    "intensity": "Over 90-95% of top speed",
+    "perWeek": 1,
+    "why": "Wings sprint the most; top-speed exposure protects the hamstrings.",
+    "for": [
+     "wing"
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Top-up for low-minute players",
+    "mode": "run",
+    "work": "2 x 6 x 20-30 m with a cut",
+    "rest": "20-25 s, 4 min between sets",
+    "intensity": "Max effort",
+    "perWeek": 1,
+    "why": "Matches are the conditioning for starters; bench players need a top-up."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "sprint10",
+   "name": "10 m sprint",
+   "how": "Phone slow-motion video, 0.5 m behind the line, best of 3",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "1.85",
+    "good": "1.78",
+    "elite": "<1.72"
+   },
+   "note": "Women: club 2.00, national 1.92, international <1.88."
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump mat or My Jump app, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "38",
+    "good": "43",
+    "elite": ">48"
+   },
+   "note": "Women: club 28, national 32, international >35."
+  },
+  {
+   "id": "throwvel",
+   "name": "Standing throw velocity (7 m)",
+   "how": "Radar gun or phone radar app, standing throw from 7 m, best of 3",
+   "unit": "m/s",
+   "better": "higher",
+   "bands": {
+    "club": "20",
+    "good": "23",
+    "elite": ">26"
+   },
+   "note": "Women: club 16, national 18, international >20."
+  },
+  {
+   "id": "yoyo1",
+   "name": "Yo-Yo IR1",
+   "how": "20 m shuttles with 10 s recovery, app audio",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "1200",
+    "good": "1600",
+    "elite": ">2000"
+   },
+   "note": "Women: club 800, national 1100, international >1400."
+  },
+  {
+   "id": "bench1rm",
+   "name": "Bench press 1RM",
+   "how": "Estimate from a 3-5RM, report as x body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "1.0",
+    "good": "1.2",
+    "elite": "1.4"
+   },
+   "note": "Women: 0.6, 0.75, 0.85 x BM."
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5RM, report as x body mass",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "1.25",
+    "good": "1.5",
+    "elite": "1.75"
+   },
+   "note": "Women: 1.0, 1.25, 1.5 x BM."
+  }
+ ],
+ "week": [
+  "One match (Sat), training Tue/Thu: gym A Mon (MD-5, lower strength).",
+  "Gym B Wed (MD-3): power and upper, low lower-body volume.",
+  "Fri (MD-1): optional 15-min primer.",
+  "Two matches a week: one maintenance session on MD+2 or MD-2.",
+  "Keep heavy upper strength off the day of the hardest shooting practice.",
+  "Heaviest lower work at least 72 h before the match."
+ ],
+ "primer": [
+  "Shoulder warm-up: band ER and Y-T-W, 1 x 10 each",
+  "2 x 3 countermovement jumps",
+  "2 x 3 med ball throws (overhead and rotational)",
+  "2 x 10 m sprints at full speed"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Play-off or key match: 7-10 days, practice volume down 30-40%.",
+   "Keep load on the bar, cut sets by about half.",
+   "Last heavy lower session MD-5.",
+   "Championships (5-9 games in 10-14 days): only a 15-min primer every 2-3 days.",
+   "Keep the shoulder programme daily during tournaments."
+  ]
+ },
+ "rules": [
+  "Shoulder programme 3 times a week all season, as part of the warm-up.",
+  "Female players: landing module first, 2-3 times a week, all year.",
+  "Previous ankle sprain: prompt to brace or tape for training and matches.",
+  "Count jumps: in heavy practice weeks cut gym plyos, do not add them.",
+  "Use hour-based gaps, not a blanket ban: heavy lower 72 h or more before a match.",
+  "New lifters: no Olympic lifts, no depth jumps, Nordics start assisted."
+ ],
+ "sources": [
+  {
+   "source": "Andersson et al. 2017, Br J Sports Med (OSTRC shoulder programme, 660 elite handball players)",
+   "url": "https://bjsm.bmj.com/content/51/14/1073"
+  },
+  {
+   "source": "Olsen et al. 2005, BMJ 330:449 (structured warm-up in youth handball)"
+  },
+  {
+   "source": "Myklebust et al. 2003, Clin J Sport Med 13(2):71-78 (ACL prevention in female handball)"
+  },
+  {
+   "source": "Achenbach et al. 2018, Knee Surg Sports Traumatol Arthrosc 26(7):1901-1908"
+  },
+  {
+   "source": "Michalsik & Aagaard 2015, J Sports Med Phys Fitness 55(9):878-891 (demands in elite handball)"
+  },
+  {
+   "source": "Wagner et al. 2014, J Sports Sci Med 13(4):808-816"
+  },
+  {
+   "source": "Clarsen et al. 2014, Br J Sports Med 48(17):1327-1333 (shoulder problems in elite handball)"
+  },
+  {
+   "source": "Webster & Hewett 2018, J Orthop Res 36(10):2696-2708 (ACL prevention meta-analysis)"
+  },
+  {
+   "source": "Helgerud et al. 2001, Med Sci Sports Exerc 33(11):1925-1931 (4 x 4 min intervals)"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Med ball overhead forward throw",
+   "pattern": "pup",
+   "equipment": "medball",
+   "why": "Main throwing-power drill; slam and backward throw are stand-ins"
+  },
+  {
+   "name": "Approach single-leg jump (jump-shot pattern)",
+   "pattern": "plow",
+   "equipment": "",
+   "why": "PRE A power slot"
+  },
+  {
+   "name": "Adductor rock-back",
+   "pattern": "mob",
+   "equipment": "",
+   "why": "Goalkeeper hip mobility"
+  }
+ ]
+}

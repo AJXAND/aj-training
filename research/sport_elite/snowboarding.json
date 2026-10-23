@@ -1,0 +1,765 @@
+{
+ "id": "snowboarding",
+ "name": "Snowboarding",
+ "aliases": [
+  "snowboard",
+  "boarding",
+  "freestyle snowboarding",
+  "slopestyle",
+  "halfpipe",
+  "big air",
+  "snowboard cross",
+  "boardercross",
+  "freeride"
+ ],
+ "group": "Snow",
+ "variants": [
+  {
+   "id": "freeride",
+   "name": "Freeride and recreational",
+   "desc": "Long sessions of isometric and eccentric leg work in a flexed stance; aerobic base matters.",
+   "q": {
+    "power": 2
+   },
+   "prehab": [
+    "wrist",
+    "landing"
+   ],
+   "note": "More leg endurance and wall-sit circuits; jumps stay but at lower volume."
+  },
+  {
+   "id": "freestyle",
+   "name": "Freestyle (park, pipe, big air)",
+   "desc": "Explosive take-offs, rotations and very high landing forces.",
+   "q": {
+    "power": 3
+   },
+   "prehab": [
+    "landing",
+    "ankle"
+   ],
+   "note": "Rotational jumps and landing work move up; trampoline and airbag time counts as skill, not gym."
+  },
+  {
+   "id": "cross",
+   "name": "Snowboard cross",
+   "desc": "Gate starts that need an upper-body pull, pumping and jumps over 40-60 s heats.",
+   "q": {
+    "upperPull": 2
+   },
+   "prehab": [
+    "landing",
+    "shoulderER"
+   ],
+   "note": "Pull-ups stay in all year for gate starts; add run-length intervals in pre-season."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: legs and landings",
+    "focus": "Squat strength, rotational jumps, landing control",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "tuckjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Add 90-180 degree turns once landings are clean"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "landrot",
+       "woodchop",
+       "cabrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Day B: hinge, upper body, wrists",
+    "focus": "Rotational power, hinge, fall-proof upper body",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "landrot",
+       "mbscoop"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "rdl",
+       "dbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Trap bar first choice"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Gate starts and falls"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Can go in the warm-up"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: rotational power and squat",
+    "focus": "Jump turns both ways, heavy squat",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "tuckjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3 each way",
+      "rir": 3,
+      "note": "90-180 degree jumps to a stick"
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2,
+      "note": "About 85% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Day B: throws, hinge, upper body",
+    "focus": "Rotational power, hinge, wrist care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "landrot",
+       "mbscoop"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "rdl",
+       "dbrdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pushup",
+       "flatdb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Can go in the warm-up"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Full body maintain",
+    "focus": "Short session away from riding days",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "legpress",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM"
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "bbbss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "pushup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Alternate pull-up and push-up sets"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hopstick",
+       "latbound",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6/side",
+      "rir": 3,
+      "note": "Stick each landing, knee over toes"
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Flexion, extension and forearm rotation"
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30 min steady",
+    "rest": "none",
+    "intensity": "Easy to moderate",
+    "perWeek": 2,
+    "why": "Supports long riding days (coach practice)"
+   }
+  ],
+  "pre": [
+   {
+    "name": "Freeride leg circuit",
+    "mode": "any",
+    "work": "60 s squat hold then lateral hops, 3-4 rounds",
+    "rest": "1-2 min",
+    "intensity": "Hard but controlled",
+    "perWeek": 2,
+    "why": "Freeriders: leg endurance in a flexed stance (coach practice)"
+   },
+   {
+    "name": "Freestyle jump circuit",
+    "mode": "any",
+    "work": "8-10 x 10 s jumps",
+    "rest": "50 s",
+    "intensity": "Fast, crisp landings",
+    "perWeek": 1,
+    "why": "Freestylers: repeated take-offs and landings (coach practice)"
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump and reach or use a jump app; best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your trend; no snowboard norms in our sources"
+  },
+  {
+   "id": "hopsym",
+   "name": "Single-leg hop symmetry",
+   "how": "3 single-leg hops for distance each side; weaker / stronger x 100",
+   "unit": "%",
+   "better": "higher",
+   "bands": {
+    "club": "<90",
+    "good": "90+"
+   },
+   "note": "Coach practice"
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5 rep max",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.25",
+    "good": "1.25-1.5"
+   },
+   "note": "Coach practice"
+  },
+  {
+   "id": "wallsit",
+   "name": "Wall sit at 90 degrees",
+   "how": "Back flat on a wall, thighs level; hold to failure",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "<120",
+    "good": "120+"
+   },
+   "note": "Recreational target (coach practice)"
+  }
+ ],
+ "week": [
+  "Off-season (May to Oct): 3 sessions a week",
+  "On snow: 1 short session, away from riding days",
+  "Nothing heavy for the legs within 48 h of a contest",
+  "Trip week: one short session, none on riding days",
+  "Freestyle: trampoline and airbag time is skill work"
+ ],
+ "primer": [
+  "Easy jog or bike 5-8 min",
+  "Hip and ankle mobility",
+  "2-3 x 2-3 box jumps or jump turns to stick",
+  "Wrist circles and forearm warm-up"
+ ],
+ "taper": {
+  "days": 5,
+  "lines": [
+   "Last hard session 4-5 days before a trip or contest",
+   "No heavy legs within 48 h of competing",
+   "Cut volume by about half, keep the load",
+   "No new exercises in the last 2 weeks"
+  ]
+ },
+ "rules": [
+  "Wear wrist guards and a helmet, especially while learning",
+  "Learn to fall onto forearms and roll, not onto an outstretched hand",
+  "Only add jump rotations once straight landings are clean",
+  "Stiffer boots for freestyle help protect the ankle"
+ ],
+ "sources": [
+  {
+   "source": "Rønning et al. 2001, American Journal of Sports Medicine"
+  },
+  {
+   "source": "Russell, Hagel and Francescutti 2007, Clinical Journal of Sport Medicine"
+  },
+  {
+   "source": "Turnbull, Kilding and Keogh 2009, Scand J Med Sci Sports"
+  },
+  {
+   "source": "Webster and Hewett 2018, Journal of Orthopaedic Research",
+   "url": "https://lida.sport-iat.de/ta/Record/4054906"
+  },
+  {
+   "source": "Hübscher et al. 2010, Medicine and Science in Sports and Exercise"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Rotational jump to stick (90-180 degrees)",
+   "pattern": "plow",
+   "equipment": "",
+   "why": "Main power drill for freestyle take-offs and landings"
+  }
+ ]
+}

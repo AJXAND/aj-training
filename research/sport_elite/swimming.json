@@ -1,0 +1,873 @@
+{
+ "id": "swimming",
+ "name": "Swimming",
+ "aliases": [
+  "open water swimming",
+  "swim",
+  "sprint swimming",
+  "distance swimming",
+  "masters swimming",
+  "triathlon swim"
+ ],
+ "group": "Endurance",
+ "variants": [
+  {
+   "id": "sprint",
+   "name": "Sprint (50-100 m)",
+   "desc": "Short races where starts, turns and raw power decide results.",
+   "q": {
+    "maxStrength": 3,
+    "power": 3,
+    "lowerBody": 3,
+    "mass": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "scap"
+   ],
+   "note": "3 gym sessions off and pre season, 2 in season, with jumps and heavy squats for starts."
+  },
+  {
+   "id": "distance",
+   "name": "Distance (400 m+, open water)",
+   "desc": "Mostly aerobic races; shoulder load from big swim volume is the main risk.",
+   "q": {
+    "maxStrength": 2,
+    "power": 1,
+    "upperPush": 1,
+    "mass": 0
+   },
+   "prehab": [
+    "shoulderER",
+    "scap",
+    "tspine"
+   ],
+   "note": "2 sessions a week (1 in season), lower set counts, RIR 2-3. Lift for robustness and turns, not size."
+  },
+  {
+   "id": "breaststroke",
+   "name": "Breaststroke",
+   "desc": "The whip kick stresses the inner knee (MCL) and adductors.",
+   "q": {},
+   "prehab": [
+    "copenhagen",
+    "hipRot"
+   ],
+   "note": "Copenhagen and hip rotation work move to the front. Avoid sudden jumps in kick volume."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower and start power",
+    "focus": "Jumps and heavy legs for starts and turns, plus heavy pulling",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "Explode like a start. Full rest, stop if height drops."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Add load once 10 clean reps are easy."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "hollow",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper and trunk",
+    "focus": "Upper power, balanced press and pull, single-leg work",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbchest",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "lmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "csrow",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullover",
+       "ropepullover",
+       "dbpullover"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 2,
+      "note": "Straight arms, feel the lats."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2,
+      "note": "Short lever first, build to long lever over 8 weeks."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Lower and start power",
+    "focus": "Heavier, faster: strength into power",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "broadjump",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Stick the landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "About 85% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "hollow",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper and trunk",
+    "focus": "Upper power and shoulder balance",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbchest",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "lmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "csrow",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullover",
+       "ropepullover",
+       "dbpullover"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Lower and start power",
+    "focus": "Maintain power and strength, low volume",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "squat",
+       "frontsq",
+       "ssbsq",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "80-85% 1RM, crisp reps."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "wpullup",
+       "latpd",
+       "bandpullup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "hollow",
+       "pallof",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Upper and trunk",
+    "focus": "Short upper maintenance",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbslam",
+       "mbchest",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "lmpress",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "csrow",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullover",
+       "ropepullover",
+       "dbpullover"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bss",
+       "dbsplit"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "wallslide",
+       "scappushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "addsqueeze",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [],
+  "pre": [],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Jump mat or phone app, hands on hips, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<45",
+    "good": "45-55",
+    "elite": ">55"
+   },
+   "note": "Competitive sprint men (coach practice). Women 35-42 cm. Distance: just track it."
+  },
+  {
+   "id": "pullups",
+   "name": "Max pull-ups",
+   "how": "Dead hang start, chin over bar, no kip.",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "<12",
+    "good": "12-15",
+    "elite": "15+"
+   },
+   "note": "15 is the sprint target, 12 distance. Women about 8 sprint, 6 distance."
+  },
+  {
+   "id": "squat1rm",
+   "name": "Back squat 1RM",
+   "how": "Estimate from a 3-5RM, never test to failure in taper.",
+   "unit": "x bodyweight",
+   "better": "higher",
+   "bands": {
+    "club": "<1.25",
+    "good": "1.25-1.5",
+    "elite": "1.5-1.75"
+   },
+   "note": "1.25 x is the distance target, 1.5-1.75 x sprint."
+  },
+  {
+   "id": "erir",
+   "name": "Shoulder ER:IR strength ratio",
+   "how": "Handheld dynamometer at 90 degrees, or 5RM cable ER vs IR.",
+   "unit": "ratio",
+   "better": "higher",
+   "bands": {
+    "club": "<0.66",
+    "good": "0.66+"
+   },
+   "note": "Low ratios are common in swimmers. Below about 0.66: more cuff work."
+  },
+  {
+   "id": "start15",
+   "name": "Start: time to 15 m",
+   "how": "Dive start, video or coach stopwatch to the 15 m mark.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {},
+   "note": "Track your own trend."
+  }
+ ],
+ "week": [
+  "Gym after a lighter swim, or the afternoon of a single-swim day.",
+  "No heavy upper pulling before big pull sets or key quality swims.",
+  "No upper-body gym the day before a race.",
+  "Count lat and shoulder load across pool and gym together.",
+  "Distance swimmers: 2 sessions, keep one heavy lower lift for turns and bone health."
+ ],
+ "primer": [
+  "3 x 2 jumps",
+  "3 x 3 med ball throws",
+  "One lift 2 x 2 at about 80%",
+  "Last one 3-5 days before the race"
+ ],
+ "taper": {
+  "days": 21,
+  "lines": [
+   "Swim volume down 41-60% over 2-3 weeks, intensity kept.",
+   "Sprinters: last heavy lift 7-10 days out.",
+   "Distance: last heavy lift 10-14 days out.",
+   "Then 1-2 short power sessions, ending 3-5 days out.",
+   "Do not drop lifting for all 3 weeks: sprinters lose power.",
+   "No new exercises in the final 2 weeks."
+  ]
+ },
+ "rules": [
+  "Rotator cuff and scapular work 2-3 times a week, all year.",
+  "Pulling sets at least equal to pressing sets.",
+  "Low-volume, heavy or fast lifting; no high-rep burnout sets.",
+  "Shoulder pain that lasts: cut swim and pull volume, refer if it persists.",
+  "No maxing within 10 days of a target race."
+ ],
+ "sources": [
+  {
+   "source": "Crowley, Harrison and Lyons 2017, Sports Medicine",
+   "url": "https://pure.ul.ie/en/publications/the-impact-of-resistance-training-on-swimming-performance-a-syste/"
+  },
+  {
+   "source": "Sein et al. 2010, British Journal of Sports Medicine"
+  },
+  {
+   "source": "Hibberd et al. 2012, Journal of Sport Rehabilitation"
+  },
+  {
+   "source": "Pyne, Mujika and Reilly 2009, Journal of Sports Sciences"
+  },
+  {
+   "source": "Bosquet et al. 2007, Medicine and Science in Sports and Exercise"
+  },
+  {
+   "source": "Andersson et al. 2017, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/51/14/1073"
+  }
+ ],
+ "missing_ex": []
+}

@@ -1,0 +1,1215 @@
+{
+ "id": "fieldhockey",
+ "name": "Field hockey",
+ "aliases": [
+  "hockey",
+  "indoor hockey",
+  "hockey5s"
+ ],
+ "group": "Team",
+ "variants": [
+  {
+   "id": "def",
+   "name": "Defender",
+   "desc": "Most minutes on the pitch and most time above 85% heart rate.",
+   "note": "Aerobic power gets priority in your conditioning."
+  },
+  {
+   "id": "mid",
+   "name": "Midfielder",
+   "desc": "Most high-speed running.",
+   "prehab": [
+    "nordic"
+   ],
+   "note": "Repeated sprints and aerobic power lead."
+  },
+  {
+   "id": "fwd",
+   "name": "Forward",
+   "desc": "Highest relative distance and speed.",
+   "prehab": [
+    "nordic"
+   ],
+   "note": "More top-speed and acceleration work."
+  },
+  {
+   "id": "dragflick",
+   "name": "Drag-flicker",
+   "desc": "Penalty corner specialist: extreme lunge with trunk rotation and side bend.",
+   "q": {
+    "rotational": 3,
+    "trunk": 3
+   },
+   "prehab": [
+    "lowback",
+    "copenhagen",
+    "trunkLat"
+   ],
+   "note": "Back and groin work move to the front; count your flicks each week like a bowler counts deliveries (practice)."
+  },
+  {
+   "id": "gk",
+   "name": "Goalkeeper",
+   "desc": "Heavy kit, lateral power, splits and saves.",
+   "q": {
+    "unilateral": 3
+   },
+   "prehab": [
+    "copenhagen",
+    "hipRot"
+   ],
+   "note": "Hip mobility, groin and single-leg strength; little aerobic running."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower strength",
+    "focus": "Heavy legs, hamstring and groin work. MD-5 or MD-4.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "pogo",
+       "cmj"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "New: pogo hops, 3 x 10. Adv 4 x 4. Step down from the box."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "New: goblet, 8 reps, RIR 3. Inter 78-82%. Adv 3-4 reps at 83-87%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8/leg",
+      "rir": 2,
+      "note": "New 8/leg. Adv heavy, 5-6/leg."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "curtsy"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Low and wide, like a tackle."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "New: band-assisted or part range. Follow the Nordic progression."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-10/side",
+      "rir": 2,
+      "note": "New: short lever, 6-8. Adv: long lever, 10-12."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-12/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15 s hold",
+      "rir": 2,
+      "note": "Isometric hold at the top; 12-15 reps or holds."
+     }
+    ]
+   },
+   {
+    "name": "Upper and posterior chain",
+    "focus": "Push, pull and hinge with low leg fatigue.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "broadjump",
+       "cmj",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Full rest. Stick each landing."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "New 8-10. Adv 5-6."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "Upper body is lower priority here."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordic",
+       "psoasmarch",
+       "cabhipflex"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2,
+      "note": "Reverse Nordic for the quads, or hip flexor march."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/leg",
+      "rir": 2,
+      "note": "Inter: eyes closed. Adv: with ball catches."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-40 s/side",
+      "rir": 2,
+      "note": "New 20-30 s. Adv 45 s."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15 s hold",
+      "rir": 2,
+      "note": "Isometric hold at the top; 12-15 reps or holds."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-12/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Single-leg and speed-strength",
+    "focus": "Third session, inter and adv only.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Stick each landing for 2 s."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "bss",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Low-position strength. New: goblet or split squat."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stepup",
+       "bbstepup",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/leg",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "invrow",
+       "trxrow",
+       "barinvrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "abwheel",
+       "ballrollout",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15 s hold",
+      "rir": 2,
+      "note": "Isometric hold at the top; 12-15 reps or holds."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Strength and power",
+    "focus": "Heavy lift paired with jumps. MD-4 once fixtures start.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "hurdlehop",
+       "depthjump",
+       "pogo",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4-5",
+      "rir": 3,
+      "note": "New: low hurdles, 5. Adv: drop jump from 30-40 cm, 4."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "bss",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3-4",
+      "rir": 2,
+      "note": "Low position. New: goblet, 6, RIR 2. Adv 3 at 85-90%."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 0,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Contrast: 60-90 s after each heavy set. Inter and adv only."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "curtsy"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2,
+      "note": "Low and wide, like a tackle."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Adv 6."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2,
+      "note": "New 8. Adv 12."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "sideplank",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15 s hold",
+      "rir": 2,
+      "note": "Isometric hold at the top; 12-15 reps or holds."
+     }
+    ]
+   },
+   {
+    "name": "Power and upper",
+    "focus": "Fast lower work, upper strength. MD-3 or MD-2.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "tbjump",
+       "cmj",
+       "squatjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 3,
+      "note": "20-30% of trap bar max. New: CMJ."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Both sides."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordic",
+       "psoasmarch",
+       "cabhipflex"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Reverse Nordic or hip flexor march."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/leg",
+      "rir": 2,
+      "note": "Inter: eyes closed. Adv: with ball catches."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15 s hold",
+      "rir": 2,
+      "note": "Isometric hold at the top; 12-15 reps or holds."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "MD-4 strength",
+    "focus": "About 40 min. 10-14 working sets. Never to failure.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "broadjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Max intent, full rest."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3-4",
+      "rir": 2,
+      "note": "New 6, RIR 2-3. Inter 80-85%. Adv 2-3 at 85-90%."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "chinup",
+       "latpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordicham",
+       "slidecurl",
+       "ghr"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4-6",
+      "rir": 2,
+      "note": "The in-season dose. 72 h+ before the match."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "copen",
+       "adductor",
+       "cabadd"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8-10/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "seatedcalf",
+       "stepcalf",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Or ankle balance if you have had a sprain."
+     }
+    ]
+   },
+   {
+    "name": "MD-3 or MD-2 upper and power",
+    "focus": "About 30 min. Leaves no soreness.",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "broadjump",
+       "mbscoop"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bench",
+       "flatdb",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "singlerdl",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 3,
+      "note": "Moderate load only."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "nordic",
+       "psoasmarch",
+       "cabhipflex"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "run",
+    "work": "4 x 4 min (or 3 x 8 min at RPE 7)",
+    "rest": "3 min easy jog",
+    "intensity": "90-95% max heart rate",
+    "perWeek": 1,
+    "why": "Builds aerobic power (Helgerud 2001)."
+   },
+   {
+    "name": "Tempo runs",
+    "mode": "run",
+    "work": "12-16 x 100 m",
+    "rest": "Walk 100 m",
+    "intensity": "About 65-70% of top speed",
+    "perWeek": 1,
+    "why": "Running volume and tissue capacity, low stress."
+   }
+  ],
+  "pre": [
+   {
+    "name": "15/15 intervals",
+    "mode": "run",
+    "work": "2 x 8 min of 15 s run, 15 s rest",
+    "rest": "3 min between sets",
+    "intensity": "95-100% of 30-15 IFT speed",
+    "perWeek": 1,
+    "why": "Rolling subs make short, very hard bouts the norm."
+   },
+   {
+    "name": "Repeated sprints",
+    "mode": "run",
+    "work": "3 x 6 x 20-25 m with stick and ball",
+    "rest": "20 s, then 4-5 min between sets",
+    "intensity": "Flat out",
+    "perWeek": 1,
+    "why": "Match-like short sprints."
+   },
+   {
+    "name": "Low dribbling circuit",
+    "mode": "run",
+    "work": "6 x 20 s dribbling in a low crouch",
+    "rest": "40 s",
+    "intensity": "Hard",
+    "perWeek": 1,
+    "why": "Builds endurance in the crouched posture."
+   },
+   {
+    "name": "Max speed",
+    "mode": "run",
+    "work": "4 x 30 m build-ups",
+    "rest": "2-3 min",
+    "intensity": "90%+ of top speed",
+    "perWeek": 1,
+    "why": "Weekly top-speed exposure."
+   }
+  ],
+  "in": [
+   {
+    "name": "Top-up",
+    "mode": "run",
+    "work": "2 x 6 min of 15/15",
+    "rest": "3 min",
+    "intensity": "RPE 8-9",
+    "perWeek": 1,
+    "why": "Only for players with low minutes."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "sprint10",
+   "name": "10 m sprint",
+   "how": "Start 0.5 m behind the line, best of 3.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "1.85",
+    "good": "1.78",
+    "elite": "<1.75"
+   },
+   "note": "Women: 2.00 / 1.92 / <1.88 s."
+  },
+  {
+   "id": "sprint30",
+   "name": "30 m sprint",
+   "how": "Same set-up, best of 3.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "4.4",
+    "good": "4.2",
+    "elite": "<4.15"
+   },
+   "note": "Women: 4.9 / 4.7 / <4.6 s."
+  },
+  {
+   "id": "yoyo1",
+   "name": "Yo-Yo IR1",
+   "how": "2 x 20 m shuttles at rising speed, 10 s recovery.",
+   "unit": "m",
+   "better": "higher",
+   "bands": {
+    "club": "1400",
+    "good": "1800",
+    "elite": ">2200"
+   },
+   "note": "Women: 900 / 1200 / >1500 m."
+  },
+  {
+   "id": "505",
+   "name": "505 change of direction",
+   "how": "10 m run-in, 5 m to the line, turn, 5 m back. Both sides.",
+   "unit": "s",
+   "better": "lower",
+   "bands": {
+    "club": "2.45",
+    "good": "2.35",
+    "elite": "<2.30"
+   },
+   "note": "Women: 2.65 / 2.55 / <2.50 s."
+  },
+  {
+   "id": "sorensen",
+   "name": "Back extensor hold",
+   "how": "Biering-Sorensen: hips on a bench edge, hold the trunk level, time to failure.",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": ">90",
+    "good": ">120",
+    "elite": ">150"
+   },
+   "note": "Practice bands."
+  }
+ ],
+ "week": [
+  "Saturday match, train Tue/Thu: Mon gym A (lower heavy, Nordic, Copenhagen).",
+  "Wed gym B: power, upper, back endurance.",
+  "Fri: rest or 15 min primer. Sun: recovery.",
+  "Heavy lower and Nordics at least 72 h before push-back.",
+  "Tournament (2-4 matches in 3-5 days): no gym, primer only."
+ ],
+ "primer": [
+  "15 min, MD-1",
+  "FIFA 11+ style warm-up",
+  "2-3 x 3 CMJ",
+  "2 x 3/side rotational throws",
+  "2-3 x 10-20 m sprints"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Tournament: 7-10 days, cut volume 40-50%.",
+   "Keep sprint and interval intensity with short sets.",
+   "No gym after MD-4 except primers."
+  ]
+ },
+ "rules": [
+  "Back extensor and side plank work in every off and pre-season session.",
+  "Drag-flickers: count flicks each week and avoid sudden jumps.",
+  "Indoor winter season: treat as congested weeks.",
+  "Never take a set close to failure in season.",
+  "New lifters: no Olympic lifts, drop jumps or barbell front squats."
+ ],
+ "sources": [
+  {
+   "source": "McGuinness et al. 2017, Journal of Strength and Conditioning Research (elite female hockey)",
+   "url": "https://researchonline.ljmu.ac.uk/id/eprint/6922/"
+  },
+  {
+   "source": "Locomotor activity in international men's hockey, Frontiers in Sports and Active Living 2021",
+   "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2021.653364/full"
+  },
+  {
+   "source": "Barboza et al. 2018, Sports Medicine (field hockey injuries review)"
+  },
+  {
+   "source": "Murtaugh 2009, Current Sports Medicine Reports"
+  },
+  {
+   "source": "Thorborg et al. 2017, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/51/7/562"
+  },
+  {
+   "source": "Petersen et al. 2011, American Journal of Sports Medicine",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21825112/"
+  },
+  {
+   "source": "Harøy et al. 2019, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/53/3/150"
+  },
+  {
+   "source": "Schiftan, Ross & Hahne 2015, Journal of Science and Medicine in Sport"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Rotational med ball shot-put throw",
+   "pattern": "prot",
+   "equipment": "medball",
+   "why": "Hitting power; mbrot used instead"
+  },
+  {
+   "name": "Biering-Sorensen hold",
+   "pattern": "hinge",
+   "equipment": "bench",
+   "why": "Back extensor endurance; hipext hold used instead"
+  }
+ ]
+}

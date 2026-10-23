@@ -1,0 +1,899 @@
+{
+ "id": "tabletennis",
+ "name": "Table tennis",
+ "aliases": [
+  "ping pong",
+  "ping-pong",
+  "TT"
+ ],
+ "group": "Racket",
+ "variants": [
+  {
+   "id": "attacker",
+   "name": "Attacker (looper away from the table)",
+   "desc": "More lateral movement and hard forehand loops driven by the legs and trunk.",
+   "q": {
+    "power": 3
+   },
+   "prehab": [
+    "shoulderER",
+    "lowback"
+   ],
+   "note": "Lateral bounds and rotational throws get an extra set."
+  },
+  {
+   "id": "blocker",
+   "name": "Close-to-table blocker",
+   "desc": "Lower movement demand, with quick small steps and hand speed.",
+   "q": {
+    "power": 1
+   },
+   "note": "Less power volume. Keep shoulder, back and balance work."
+  },
+  {
+   "id": "older",
+   "name": "Older recreational player",
+   "desc": "Balance and leg strength are the main gains from training.",
+   "q": {
+    "power": 1
+   },
+   "prehab": [
+    "ankle"
+   ],
+   "note": "Balance and single-leg strength come first. Power work is fast but low amplitude."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower and lateral",
+    "focus": "Lateral power, leg strength, ankle",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "skater"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Push off hard, stick the landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq",
+       "trapdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Rotational power, shoulder, wrist, trunk",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides, max intent."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "woodchop",
+       "cabrot",
+       "landrot",
+       "cablelift"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Playing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-45 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Lower and lateral",
+    "focus": "Lateral power, leg strength, ankle",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "skater"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Push off hard, stick the landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq",
+       "trapdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Rotational power, shoulder, wrist, trunk",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides, max intent."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "woodchop",
+       "cabrot",
+       "landrot",
+       "cablelift"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Playing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-45 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Lower and lateral",
+    "focus": "Lateral power, leg strength, ankle",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "hopstick",
+       "skater"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Push off hard, stick the landing."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq",
+       "trapdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2,
+      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "latstepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "slrdlbw",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Upper and rotation",
+    "focus": "Rotational power, shoulder, wrist, trunk",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "Both sides, max intent."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "woodchop",
+       "cabrot",
+       "landrot",
+       "cablelift"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "cabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "salmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "er9090"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Playing arm first, then the other."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "dbwristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-45 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-40 min steady",
+    "rest": "None",
+    "intensity": "Conversational pace",
+    "perWeek": 1,
+    "why": "Helps you recover during long tournament days."
+   },
+   {
+    "name": "Multi-ball footwork",
+    "mode": "court",
+    "work": "20-30 s / 30 s rest x 8-10",
+    "rest": "2 min between blocks",
+    "intensity": "Table pace, sharp feet",
+    "perWeek": 1,
+    "why": "Matches the short rallies and quick steps of play."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Multi-ball footwork",
+    "mode": "court",
+    "work": "20-30 s / 30 s rest x 8-10",
+    "rest": "2 min between blocks",
+    "intensity": "Table pace, sharp feet",
+    "perWeek": 2,
+    "why": "Sport-specific speed and footwork."
+   },
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-40 min steady",
+    "rest": "None",
+    "intensity": "Conversational pace",
+    "perWeek": 1,
+    "why": "Recovery between matches on long days."
+   }
+  ],
+  "in": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30 min steady",
+    "rest": "None",
+    "intensity": "Conversational pace",
+    "perWeek": 1,
+    "why": "General health. Play covers the rest."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "sidestep",
+   "name": "Side-step test",
+   "how": "3 m lateral shuffles x 10, time it",
+   "unit": "s",
+   "better": "lower",
+   "bands": {},
+   "note": "Sparse norms. Track your own change."
+  },
+  {
+   "id": "slbalance",
+   "name": "Single-leg balance, eyes closed",
+   "how": "Stand on one leg, eyes closed, up to 30 s. Each leg",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "good": "30"
+   },
+   "note": "Target is a full 30 s each side."
+  },
+  {
+   "id": "mbasym",
+   "name": "Rotational med ball throw asymmetry",
+   "how": "Throw for distance from each side, best of 3, compare",
+   "unit": "%",
+   "better": "lower",
+   "bands": {
+    "good": "10-15",
+    "elite": "<10"
+   },
+   "note": "Above 15% difference is a flag."
+  },
+  {
+   "id": "sideplank",
+   "name": "Side plank hold",
+   "how": "Elbow and feet, straight line, hold to failure. Each side",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "good": "60+"
+   }
+  },
+  {
+   "id": "grip",
+   "name": "Grip strength",
+   "how": "Hand dynamometer, best of 3 each hand",
+   "unit": "kg",
+   "better": "higher",
+   "bands": {},
+   "note": "Track change over time."
+  }
+ ],
+ "week": [
+  "Low systemic fatigue: gym can go on most days.",
+  "Leg session 48 h or more before a tournament.",
+  "No gym the day before a tournament.",
+  "Most weeks 2 sessions; 1 in heavy tournament weeks."
+ ],
+ "primer": [
+  "2 x 3 lateral bounds each side",
+  "Band shoulder external rotation 1-2 x 12",
+  "A few multi-ball footwork reps"
+ ],
+ "taper": {
+  "days": 4,
+  "lines": [
+   "Last strength session 3-4 days before a tournament.",
+   "Primers only on match days.",
+   "Keep shoulder band work daily."
+  ]
+ },
+ "rules": [
+  "Keep strength sessions to 35-45 min. Volume is deliberately modest.",
+  "Train rotation on both sides, not just the forehand side.",
+  "Rotational throw asymmetry above 15%: add sets on the weaker side."
+ ],
+ "sources": [
+  {
+   "source": "Physiology, biomechanics and injuries in table tennis: a systematic review, Science and Sports 2021, 36(2):95-104",
+   "url": "https://lida.sport-iat.de/ta/Record/4062835?lng=en"
+  },
+  {
+   "source": "Epidemiology and risk factors of table-tennis-related injuries: a scoping review, 2022",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9147389/"
+  },
+  {
+   "source": "Zagatto AM et al. 2018, J Sports Sci 36(7)"
+  },
+  {
+   "source": "Andersson et al. 2017, Br J Sports Med 51(14):1073-1080",
+   "url": "https://bjsm.bmj.com/content/51/14/1073"
+  },
+  {
+   "source": "Ronnestad, Nymark and Raastad 2011, J Strength Cond Res 25(10):2653-2660",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/"
+  }
+ ],
+ "missing_ex": []
+}

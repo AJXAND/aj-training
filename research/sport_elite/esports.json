@@ -1,0 +1,1304 @@
+{
+ "id": "esports",
+ "name": "Esports",
+ "aliases": [
+  "gaming",
+  "competitive gaming",
+  "e-sports",
+  "video gaming",
+  "pro gaming"
+ ],
+ "group": "Other",
+ "q": {
+  "maxStrength": 1,
+  "power": 0,
+  "rotational": 0,
+  "unilateral": 1,
+  "upperPull": 2,
+  "upperPush": 1,
+  "lowerBody": 1,
+  "grip": 1,
+  "neck": 1,
+  "trunk": 2,
+  "mass": 0
+ },
+ "prehab": [
+  "wrist",
+  "tspine",
+  "shoulderER",
+  "neck"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 3,
+  "in": 2
+ },
+ "avoidBefore": null,
+ "energy": "Hours of seated play with low energy demand; fitness supports health, posture and focus rather than in-game energy.",
+ "summary": "Esports means long seated sessions with heavy hand and wrist use, and neck, back and wrist pain are common. The gym will not make you better at the game directly, but full-body strength, posture work and activity breaks protect your health and support focus.",
+ "evidence": [
+  {
+   "claim": "In collegiate esports players, eye fatigue (56%), neck and back pain (42%) and wrist pain (36%) were common, and 40% did no physical activity.",
+   "source": "DiFrancisco-Donoghue et al. 2019, BMJ Open Sport and Exercise Medicine",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30792883/"
+  },
+  {
+   "claim": "A 6 min walk during 2 h of play improved executive function compared with a seated rest, without affecting in-game performance.",
+   "source": "DiFrancisco-Donoghue et al. 2021, BMJ Open Sport and Exercise Medicine",
+   "url": "https://bmjopensem.bmj.com/content/7/3/e001118"
+  }
+ ],
+ "confidence": "limited",
+ "variants": [],
+ "sessions": {
+  "off": [
+   {
+    "name": "Full body A",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "legpress",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latpd",
+       "pullup",
+       "bandlatpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Full body B",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "legpress",
+       "goblet",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "csdb",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "rdl",
+       "glutebridge",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "bandpullup",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Full body A",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "legpress",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latpd",
+       "pullup",
+       "bandlatpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Full body B",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "legpress",
+       "goblet",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "csdb",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "rdl",
+       "glutebridge",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "bandpullup",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Full body A",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "legpress",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pushup",
+       "flatdb",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "hipthrust",
+       "dbrdl",
+       "glutebridge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latpd",
+       "pullup",
+       "bandlatpd",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Full body B",
+    "focus": "Whole-body strength, posture and wrist care",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "legpress",
+       "goblet",
+       "dbsquat",
+       "bwsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "cabrow",
+       "csdb",
+       "dbrow",
+       "bandrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Pull shoulder blades back and down."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "chestpress",
+       "incpushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "hipthrust",
+       "rdl",
+       "glutebridge",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "bandpullup",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "csyraise",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "chintuck",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10",
+      "rir": 3,
+      "note": "Slow chin tucks for deep neck flexors."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "dbwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3,
+      "note": "Flexion and extension."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "doorpec",
+       "hkhf"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 1,
+       "adv": 1
+      },
+      "reps": "5 min total",
+      "rir": 4,
+      "note": "Mobility: open book, pec and hip flexor stretch."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "sideplank",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Zone 2",
+    "mode": "any",
+    "work": "20-30 min brisk walk or bike",
+    "rest": "none",
+    "intensity": "zone 2, can talk in sentences",
+    "perWeek": 3,
+    "why": "Counters long sitting; supports sleep and mood."
+   },
+   {
+    "name": "Activity breaks",
+    "mode": "any",
+    "work": "5-10 min every hour of play",
+    "rest": "none",
+    "intensity": "easy",
+    "perWeek": 7,
+    "why": "Breaking up sitting supports thinking in long sessions."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Zone 2",
+    "mode": "any",
+    "work": "20-30 min brisk walk or bike",
+    "rest": "none",
+    "intensity": "zone 2",
+    "perWeek": 3,
+    "why": "Keep it going through bootcamps."
+   },
+   {
+    "name": "Activity breaks",
+    "mode": "any",
+    "work": "5-10 min every hour of play",
+    "rest": "none",
+    "intensity": "easy",
+    "perWeek": 7,
+    "why": "A short walk beats a seated rest."
+   }
+  ],
+  "in": [
+   {
+    "name": "Zone 2",
+    "mode": "any",
+    "work": "20-30 min brisk walk or bike",
+    "rest": "none",
+    "intensity": "zone 2",
+    "perWeek": 3,
+    "why": "Supports sleep and mood in season."
+   },
+   {
+    "name": "Activity breaks",
+    "mode": "any",
+    "work": "5-10 min every hour of play",
+    "rest": "none",
+    "intensity": "easy",
+    "perWeek": 7,
+    "why": "Keep breaks on match days too."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "actmin",
+   "name": "Weekly activity minutes",
+   "how": "Add up moderate activity across the week",
+   "unit": "min",
+   "better": "higher",
+   "bands": {
+    "good": "150-300"
+   },
+   "note": "WHO target."
+  },
+  {
+   "id": "steps",
+   "name": "Daily steps",
+   "how": "Phone or watch, weekly average",
+   "unit": "steps",
+   "better": "higher",
+   "bands": {
+    "good": "7,000-10,000"
+   },
+   "note": "Coach practice."
+  },
+  {
+   "id": "rhr",
+   "name": "Resting heart rate",
+   "how": "Watch or pulse on waking, weekly average",
+   "unit": "bpm",
+   "better": "lower",
+   "bands": {},
+   "note": "Track the trend."
+  },
+  {
+   "id": "pushups",
+   "name": "Push-ups",
+   "how": "Full range, max reps",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your own trend."
+  },
+  {
+   "id": "plank",
+   "name": "Plank hold",
+   "how": "Forearm plank, max hold",
+   "unit": "s",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your own trend."
+  },
+  {
+   "id": "painfree",
+   "name": "Pain-free play hours",
+   "how": "Hours you can play before neck, back or wrist pain",
+   "unit": "h",
+   "better": "higher",
+   "bands": {},
+   "note": "Track the trend."
+  }
+ ],
+ "week": [
+  "2-3 full-body sessions of 30-45 min, on any days",
+  "Daily walking towards your step goal",
+  "5-10 min activity break every hour of play",
+  "Keep training in season; it supports sleep and mood"
+ ],
+ "primer": [
+  "10 min warm-up with light cardio",
+  "Hand and wrist mobility",
+  "Neck and shoulder movement, chin tucks"
+ ],
+ "taper": {
+  "days": 3,
+  "lines": [
+   "No heavy taper needed",
+   "Keep sleep times regular",
+   "Keep activity breaks going",
+   "10 min warm-up before matches"
+  ]
+ },
+ "rules": [
+  "Hand numbness, tingling or night pain: medical review",
+  "Screen at eye level, about an arm's length away, wrists neutral",
+  "Every 20 min, look about 6 m away for 20 s",
+  "Aim for 150-300 min moderate activity a week plus strength on 2+ days"
+ ],
+ "sources": [
+  {
+   "source": "DiFrancisco-Donoghue et al. 2019, BMJ Open Sport and Exercise Medicine",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30792883/"
+  },
+  {
+   "source": "DiFrancisco-Donoghue et al. 2021, BMJ Open Sport and Exercise Medicine",
+   "url": "https://bmjopensem.bmj.com/content/7/3/e001118"
+  },
+  {
+   "source": "Bull et al. 2020, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/54/24/1451"
+  }
+ ],
+ "missing_ex": []
+}

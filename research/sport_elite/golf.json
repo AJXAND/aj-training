@@ -1,0 +1,1093 @@
+{
+ "id": "golf",
+ "name": "Golf",
+ "aliases": [
+  "golfer",
+  "golfing",
+  "pitch and putt"
+ ],
+ "group": "Other",
+ "variants": [],
+ "sessions": {
+  "off": [
+   {
+    "name": "Rotational power and hinge",
+    "focus": "Throws, jumps, trap bar, single-leg, hip and spine rotation",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5/side",
+      "rir": 3,
+      "note": "2-4 kg ball."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "broadjump",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "75-80% 1RM. New: 5-8 reps, 3 in reserve."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "9090",
+       "hipcars",
+       "pigeon"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "woodchop",
+       "pallofb",
+       "cabrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and pull",
+    "focus": "Press power, squat, push, pull, shoulder and wrist care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "salmpress",
+       "mbrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Or landmine rotational press, drive from the hips."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandlatpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 3,
+      "note": "Each direction."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "9090",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Hip and thoracic rotation, every session."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-40 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Hips and carries",
+    "focus": "Hip thrust, lateral lunge, landmine rotation, carries, mobility",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "landrot",
+       "mbrot",
+       "cabrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "hipthrust",
+       "dbhipthrust",
+       "slthrust"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "latlunge",
+       "cossack",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "suitcase",
+       "farmerhold"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-40 m",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "9090",
+       "openbook",
+       "hipcars",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Mobility circuit."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Rotational power and hinge",
+    "focus": "Throws, jumps, trap bar, single-leg, hip and spine rotation",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4/side",
+      "rir": 3,
+      "note": "Max intent."
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "broadjump",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "85% 1RM."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "9090",
+       "hipcars",
+       "pigeon"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "woodchop",
+       "pallofb",
+       "cabrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2,
+      "note": "Fast woodchop."
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and pull",
+    "focus": "Press power, squat, push, pull, shoulder and wrist care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "salmpress",
+       "mbrot"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandlatpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 3,
+      "note": "Each direction."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "9090",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Hip and thoracic rotation, every session."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-40 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Rotational power and hinge",
+    "focus": "Throws, jumps, trap bar, single-leg, hip and spine rotation",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbrot",
+       "mbscoop",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3/side",
+      "rir": 3
+     },
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "broadjump",
+       "boxjp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "3",
+      "rir": 2,
+      "note": "80% 1RM."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "dbsplit",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dbrow",
+       "csdb",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "9090",
+       "hipcars",
+       "pigeon"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "woodchop",
+       "pallofb",
+       "cabrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Squat, press and pull",
+    "focus": "Press power, squat, push, pull, shoulder and wrist care",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "mbchest",
+       "salmpress",
+       "mbrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "4",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "frontsq",
+       "dbfrontsq"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "bstance",
+       "slrdlbw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandlatpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 3,
+      "note": "Plus prone Y-T-W 2 x 8."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "pronsup",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 3,
+      "note": "Each direction."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "9090",
+       "wgs"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Hip and thoracic rotation, every session."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30-40 s/side",
+      "rir": 2
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic health",
+    "mode": "any",
+    "work": "30 min",
+    "rest": "none",
+    "intensity": "Zone 2, conversational",
+    "perWeek": 2,
+    "why": "Health and late-round focus; aim for 150-300 min a week, walking the course counts."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Speed training (overspeed sticks)",
+    "mode": "any",
+    "work": "10-15 min of light and heavy stick swings",
+    "rest": "As the protocol sets",
+    "intensity": "Max swing speed",
+    "perWeek": 3,
+    "why": "Widely used for clubhead speed over 6-8 weeks; small trial base."
+   },
+   {
+    "name": "Aerobic health",
+    "mode": "any",
+    "work": "30 min",
+    "rest": "none",
+    "intensity": "Zone 2",
+    "perWeek": 1,
+    "why": "Health; no hard conditioning needed for golf."
+   }
+  ],
+  "in": [
+   {
+    "name": "Aerobic health",
+    "mode": "any",
+    "work": "30 min",
+    "rest": "none",
+    "intensity": "Zone 2",
+    "perWeek": 1,
+    "why": "Health on non-golf days."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "chs",
+   "name": "Driver clubhead speed",
+   "how": "Launch monitor, best of 5 full drives after warm-up.",
+   "unit": "mph",
+   "better": "higher",
+   "bands": {
+    "club": "90-95",
+    "good": "105-110",
+    "elite": "115+"
+   },
+   "note": "Women: amateur about 70-80, tour about 94-96. Industry data, not peer reviewed."
+  },
+  {
+   "id": "mbrotasym",
+   "name": "Rotational med ball throw, each side",
+   "how": "3 kg ball, side-on throw for distance, best of 3 each way.",
+   "unit": "% difference",
+   "better": "lower",
+   "bands": {
+    "club": ">10",
+    "good": "<10",
+    "elite": "<10"
+   },
+   "note": "Keep left and right within 10%."
+  },
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump app or jump mat, best of 3.",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "<40",
+    "good": "40+"
+   },
+   "note": "Women: 30 cm is a good amateur target."
+  },
+  {
+   "id": "trapdl1rm",
+   "name": "Trap bar deadlift 1RM",
+   "how": "Work up to a hard single, or estimate from a 3-5RM.",
+   "unit": "x BM",
+   "better": "higher",
+   "bands": {
+    "club": "<1.5",
+    "good": "1.5+"
+   }
+  },
+  {
+   "id": "rotscreen",
+   "name": "Rotation screen",
+   "how": "Seated trunk rotation about 45 degrees each way; 90/90 hip IR about 35-45 degrees; deep squat; toe touch.",
+   "unit": "pass/fail",
+   "better": "higher",
+   "bands": {
+    "club": "fail 2+",
+    "good": "fail 1",
+    "elite": "pass all"
+   },
+   "note": "TPI-style screen, coach practice."
+  }
+ ],
+ "week": [
+  "No heavy legs within 48 h of a competitive round.",
+  "Day before a round: mobility and a short speed primer only.",
+  "Speed training can go before a gym session.",
+  "Off-season 2-3 gym sessions, in season 1-2.",
+  "Mobility daily in season."
+ ],
+ "primer": [
+  "15-20 min dynamic warm-up before every round",
+  "Hip and thoracic rotation drills",
+  "A few progressive speed swings"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "One gym session early in the event week.",
+   "That session: power 3 x 3, one lift 2 x 3 at 75%.",
+   "Daily mobility.",
+   "Full dynamic warm-up before every round."
+  ]
+ },
+ "rules": [
+  "Rotational med ball power in every session.",
+  "Hip and thoracic rotation work in every session.",
+  "No heavy legs within 48 h of a competitive round.",
+  "Lead hip pain: flag for medical review.",
+  "Limit range-ball volume off mats to protect the lead wrist."
+ ],
+ "sources": [
+  {
+   "source": "Ehlert A 2020, Journal of Sports Sciences",
+   "url": "https://lida.sport-iat.de/ta/Record/4068865"
+  },
+  {
+   "source": "Wells JET, Mitchell ACS, Charalambous LH, Fletcher IM 2018, Journal of Sports Sciences"
+  },
+  {
+   "source": "Lephart SM et al. 2007, JSCR"
+  },
+  {
+   "source": "McHardy A, Pollard H, Luo K 2006, Sports Medicine"
+  },
+  {
+   "source": "Murray AD et al. 2017, BJSM"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Landmine rotational press",
+   "pattern": "prot",
+   "equipment": "landmine+bb",
+   "why": "Day B rotational power option; mapped to single-arm landmine press."
+  }
+ ]
+}

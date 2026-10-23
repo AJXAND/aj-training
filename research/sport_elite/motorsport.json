@@ -1,0 +1,872 @@
+{
+ "id": "motorsport",
+ "name": "Motorsport",
+ "aliases": [
+  "karting",
+  "racing driver",
+  "rally",
+  "F1",
+  "Formula 1",
+  "single-seater",
+  "saloon car racing",
+  "GT racing",
+  "racing"
+ ],
+ "group": "Wheels",
+ "q": {
+  "maxStrength": 2,
+  "power": 1,
+  "rotational": 1,
+  "unilateral": 1,
+  "upperPull": 2,
+  "upperPush": 2,
+  "lowerBody": 2,
+  "grip": 2,
+  "neck": 3,
+  "trunk": 3,
+  "mass": 0
+ },
+ "prehab": [
+  "neck",
+  "shoulderER",
+  "wrist",
+  "lowback"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 3,
+  "in": 2
+ },
+ "avoidBefore": "all",
+ "energy": "Long periods at high heart rate under heat and g-force, so drivers need a strong aerobic base plus neck and trunk endurance.",
+ "summary": "Racing loads the neck, trunk and forearms for the whole race, while heat and high heart rates wear down concentration. The plan builds neck strength and endurance, grip and an aerobic base, and keeps hard sessions away from race weekends.",
+ "evidence": [
+  {
+   "claim": "Neck strength is the main sport-specific adaptation in Formula 1 drivers, who race at high heart rates under heat stress.",
+   "source": "Tyler et al. 2026, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/60/9/649"
+  },
+  {
+   "claim": "Open-wheel racing produces about 4-5 g in braking and cornering, with upper-body and neck fatigue a prominent response.",
+   "source": "Review of physiological responses to open-wheeled racing 2021, Edith Cowan University",
+   "url": "https://lida.sport-iat.de/ta/Record/4068839?lng=en"
+  }
+ ],
+ "confidence": "limited",
+ "variants": [
+  {
+   "id": "karting",
+   "name": "Karting",
+   "desc": "No power steering and high lateral loads on the trunk and ribs.",
+   "q": {},
+   "prehab": [
+    "trunkLat",
+    "wrist"
+   ],
+   "note": "More lateral trunk and wrist work; wear a rib protector."
+  },
+  {
+   "id": "singleseater",
+   "name": "Single-seaters",
+   "desc": "About 4-5 g in braking and cornering puts the neck under the most load.",
+   "q": {},
+   "prehab": [
+    "neck"
+   ],
+   "note": "Neck work 3 times a week with lateral emphasis is the priority."
+  },
+  {
+   "id": "rally",
+   "name": "Rally",
+   "desc": "Long stages with constant vibration through the seat.",
+   "q": {},
+   "prehab": [
+    "lowback"
+   ],
+   "note": "Back endurance and hip mobility move up the list."
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Day A: deadlift, pull, neck lateral",
+    "focus": "Whole-body strength and cornering neck endurance",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "About 80% 1RM."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "latpd",
+       "dbrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "legpress",
+       "bss",
+       "goblet",
+       "slegpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Brake pedal force."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckmlat",
+       "neckband",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "15/side",
+      "rir": 2,
+      "note": "Then a 30 s isometric hold each side. New: isometrics only for 4 weeks."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2,
+      "note": "Resists lateral g."
+     }
+    ]
+   },
+   {
+    "name": "Day B: squat, press, grip, neck",
+    "focus": "Leg and upper strength, forearms and braking neck strength",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "squat",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "platepinch",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m or 30 s",
+      "rir": 2,
+      "note": "Grip for steering and kickback."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckband",
+       "neckiso",
+       "neckflexplate",
+       "neckextplate"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2,
+      "note": "Flexion and extension, 2-3 s each way."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "radial"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "suitcase",
+       "pallof",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20 m/side",
+      "rir": 2,
+      "note": "Anti-rotation and anti-lateral flexion."
+     }
+    ]
+   }
+  ],
+  "pre": [
+   {
+    "name": "Day A: deadlift, pull, neck lateral",
+    "focus": "Whole-body strength and cornering neck endurance",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Heavy, crisp reps."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "latpd",
+       "dbrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "legpress",
+       "bss",
+       "goblet",
+       "slegpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2,
+      "note": "Brake pedal force."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckmlat",
+       "neckband",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20/side",
+      "rir": 2,
+      "note": "Then 45-60 s isometric holds each side. New: isometrics only for 4 weeks."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2,
+      "note": "Resists lateral g."
+     }
+    ]
+   },
+   {
+    "name": "Day B: squat, press, grip, neck",
+    "focus": "Leg and upper strength, forearms and braking neck strength",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "squat",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "platepinch",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m or 30 s",
+      "rir": 2,
+      "note": "Grip for steering and kickback."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckband",
+       "neckiso",
+       "neckflexplate",
+       "neckextplate"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2,
+      "note": "Flexion and extension, 2-3 s each way."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "radial"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "suitcase",
+       "pallof",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20 m/side",
+      "rir": 2,
+      "note": "Anti-rotation and anti-lateral flexion."
+     }
+    ]
+   }
+  ],
+  "in": [
+   {
+    "name": "Day A: deadlift, pull, neck lateral",
+    "focus": "Whole-body strength and cornering neck endurance",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "rdl",
+       "kbdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "5",
+      "rir": 2,
+      "note": "Keep it heavy, short."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "bbrow",
+       "latpd",
+       "dbrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "legpress",
+       "bss",
+       "goblet",
+       "slegpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2,
+      "note": "Brake pedal force."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckmlat",
+       "neckband",
+       "neckiso"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15/side",
+      "rir": 2,
+      "note": "Short and controlled. New: isometrics only for 4 weeks."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "pallofb",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2,
+      "note": "Resists lateral g."
+     }
+    ]
+   },
+   {
+    "name": "Day B: squat, press, grip, neck",
+    "focus": "Leg and upper strength, forearms and braking neck strength",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "goblet",
+       "squat",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "6",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "bench",
+       "chestpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "farmerwalk",
+       "platepinch",
+       "wristroller"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 m or 30 s",
+      "rir": 2,
+      "note": "Grip for steering and kickback."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckband",
+       "neckiso",
+       "neckflexplate",
+       "neckextplate"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12-20",
+      "rir": 2,
+      "note": "Flexion and extension, 2-3 s each way."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-20",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl",
+       "radial"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15-20",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "suitcase",
+       "pallof",
+       "woodchop"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20 m/side",
+      "rir": 2,
+      "note": "Anti-rotation and anti-lateral flexion."
+     }
+    ]
+   }
+  ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min",
+    "rest": "none",
+    "intensity": "zone 2, conversational",
+    "perWeek": 2,
+    "why": "Drivers race at high heart rates for long periods."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Race-length intervals",
+    "mode": "bike",
+    "work": "2-4 x 10-15 min",
+    "rest": "3-5 min easy",
+    "intensity": "high aerobic, hard but steady",
+    "perWeek": 1,
+    "why": "Matches the sustained heart rate of a race."
+   },
+   {
+    "name": "Heat acclimation",
+    "mode": "any",
+    "work": "60-90 min easy exercise in heat or extra layers",
+    "rest": "none",
+    "intensity": "easy to moderate",
+    "perWeek": 5,
+    "why": "Do on 7-14 days before a hot race; coach practice."
+   }
+  ],
+  "in": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "30-45 min",
+    "rest": "none",
+    "intensity": "zone 2",
+    "perWeek": 1,
+    "why": "Maintain fitness between events."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "neckiso",
+   "name": "Neck isometric force by direction",
+   "how": "Dynamometer or loaded harness hold; compare left and right",
+   "unit": "% difference",
+   "better": "lower",
+   "bands": {
+    "good": "<10"
+   },
+   "note": "Coach practice."
+  },
+  {
+   "id": "grip",
+   "name": "Grip strength",
+   "how": "Hand dynamometer, best of 3 each hand",
+   "unit": "kg",
+   "better": "higher",
+   "bands": {},
+   "note": "Track your own trend."
+  },
+  {
+   "id": "plank",
+   "name": "Plank hold",
+   "how": "Forearm plank, max hold",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "good": "120"
+   },
+   "note": "Coach practice."
+  },
+  {
+   "id": "sideplank",
+   "name": "Side plank hold",
+   "how": "Max hold each side",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "good": "60"
+   },
+   "note": "Coach practice."
+  },
+  {
+   "id": "aerobic",
+   "name": "Aerobic test",
+   "how": "VO2max, or a 5 km bike or 2 km row time trial",
+   "unit": "ml/kg/min",
+   "better": "higher",
+   "bands": {
+    "elite": "about 60"
+   },
+   "note": "About 60 reported in open-wheel drivers. Track bike or row time if no lab test."
+  }
+ ],
+ "week": [
+  "Race week: heavy sessions Monday to Wednesday",
+  "Light Thursday, nothing hard Friday to Sunday",
+  "No hard sessions within 48 h of a race weekend",
+  "Simulator and test days count as neck and focus load"
+ ],
+ "primer": [
+  "5-10 min light cardio",
+  "Neck isometrics at about 50% effort, 10 s each direction",
+  "Hand, wrist and shoulder mobility"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Race week: one strength session early, 2-3 sets",
+   "Neck isometrics twice",
+   "Prioritise hydration and sleep",
+   "No new training stresses"
+  ]
+ },
+ "rules": [
+  "Neck work 3 times a week, lateral emphasis",
+  "Isometric neck work only for the first 4 weeks",
+  "No neck bridging",
+  "No hard sessions within 48 h of a race weekend",
+  "Karting: wear a rib protector",
+  "Crash with a head knock: no training until medically cleared"
+ ],
+ "sources": [
+  {
+   "source": "Tyler et al. 2026, British Journal of Sports Medicine",
+   "url": "https://bjsm.bmj.com/content/60/9/649"
+  },
+  {
+   "source": "Review of physiological responses to open-wheeled racing 2021, Edith Cowan University",
+   "url": "https://lida.sport-iat.de/ta/Record/4068839?lng=en"
+  },
+  {
+   "source": "Potkanowicz & Mendel 2013, Sports Medicine"
+  },
+  {
+   "source": "Collins et al. 2014, Journal of Primary Prevention",
+   "url": "https://www.springermedicine.com/neck-strength-a-protective-factor-reducing-risk-for-concussion-i/21683656"
+  },
+  {
+   "source": "Hrysomallis 2016, Sports Medicine"
+  }
+ ],
+ "missing_ex": []
+}
