@@ -987,6 +987,8 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .trd i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--sunk)}.trd i svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .trd.did i{background:var(--orange)}.trd.plan i{background:none;box-shadow:inset 0 0 0 2px var(--orange)}.trd.miss i{background:none;box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--warn) 55%,transparent)}.trd.rest i{background:none;width:6px;height:6px;margin:7px 0;background:var(--line)}
 .trd em{font-style:normal;font-size:11px;color:var(--muted);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
+.trd.pre{opacity:.45}.trd.pre.sel,.trd.pre.now{opacity:1}.trd.pre i{background:none;box-shadow:inset 0 0 0 2px var(--line)}.trd.sel.pre{opacity:.8}
+.trpre{display:grid;gap:14px}.trpre span{line-height:1.45}
 .trd.now b{color:var(--orange)}.trd.sel{background:var(--pill);color:var(--pill-ink)}.trd.sel .w,.trd.sel em{color:color-mix(in srgb,var(--pill-ink) 65%,transparent)}.trd.sel.now b{color:var(--orange)}.trd.sel.rest i{background:color-mix(in srgb,var(--pill-ink) 40%,transparent)}.trd.sel.plan i{box-shadow:inset 0 0 0 2px var(--orange)}
 .trblk{display:grid;gap:7px;border-top:1px solid var(--line);padding-top:12px}.trblk .segs{display:flex;gap:4px}.trblk .segs i{flex:1;height:6px;border-radius:3px;background:var(--sunk)}.trblk .segs i.d{background:var(--orange)}.trblk .segs i.c{background:var(--orange);box-shadow:0 0 0 2px color-mix(in srgb,var(--orange) 30%,transparent)}.trblk .segs i.dl:not(.d):not(.c){background:repeating-linear-gradient(135deg,var(--sunk) 0 4px,var(--line) 4px 6px)}
 .trblk span{font-size:13px;color:var(--muted)}.trblk b{color:var(--ink);font-weight:700}
@@ -3211,6 +3213,11 @@ function renderAddEx(){
     ${(q||ax.m)&&away?`<button class="link" data-ax="all">${ax.all?"Only show what this gym has":`Show ${away} more that need kit this gym doesn't have`}</button>`:""}
     <button class="btn ghost" data-ax="close">Cancel</button></div>`;
 }
+// Before a plan's first day: say plainly when it starts, and let gym plans start today instead
+function preStart(){
+  const sd=S.prog.startDate, days=Math.round((parseD(sd)-parseD(ymd(new Date())))/864e5), can=!S.prog.endurance;
+  return `<div class="trpre"><span class="small muted">Week 1 starts ${esc(fmtD(sd))}${days===1?", tomorrow":days>1?`, in ${days} days`:""}. The faded days above are a preview of your week.${can?" Want to begin now? Today becomes day one and this week becomes week 1.":" Until then, train as you like."}</span>${can?`<button class="btn orange" data-act="startNow">Start my plan today</button>`:""}</div>`;
+}
 // The week at the top of Train: tap a day to see it. Below it, where you are in the block.
 function trainStrip(dates, sel, bi){
   const td=ymd(new Date());
@@ -3218,12 +3225,13 @@ function trainStrip(dates, sel, bi){
     const did=sessionsOn(ds).length>0||S.cardio.some(c=>c.date===ds&&["run","cycle","swim","hyrox"].includes(c.type)&&(run||lift));
     const sl=d&&d.str?(d.str.find(x=>x.type==="H"&&!x.v)||d.str[0]):null;
     const RSH={easy:"Easy",long:"Long",b2b:"B2B",tt:"Test",race:"Race",tintro:"Steady",tcruise:"Threshold",ttempo:"Tempo",ilong:"Intervals",i3015:"Intervals",hlong:"Hills",rp5:"Race pace",rp10:"Race pace",rph:"Race pace",uclimb:"Climb",uhike:"Hike",runwalk:"Run/walk"};
-    const plan=!!(lift||run), lab=run&&!lift&&RSH[run.type]?RSH[run.type]:sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
-    const st=did?"did":plan?(ds<td?(ds<(S.prog.startDate||"")?"rest":"miss"):"plan"):"rest";
+    const plan=!!(lift||run); let lab=run&&!lift&&RSH[run.type]?RSH[run.type]:sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
+    const pre=ds<(S.prog.startDate||""), st=did?"did":pre?(plan&&ds>=td?"pre":"rest pre"):plan?(ds<td?"miss":"plan"):"rest";
+    if (pre&&ds<td&&!did) lab="";
     return `<button class="trd ${st} ${ds===sel?"sel":""} ${ds===td?"now":""}" data-act="trDay" data-d="${ds}" aria-label="${dt.toLocaleDateString("en-GB",{weekday:"long"})}"><span class="w">${dt.toLocaleDateString("en-GB",{weekday:"short"}).slice(0,3)}</span><b class="num">${dt.getDate()}</b><i>${did?HICON.check:""}</i><em>${esc(lab)}</em></button>`; }).join("");
   const len=bi&&bi.len||0, wk=bi&&!bi.pre?bi.week:0;
   const blk=len&&!bi.pre?`<div class="trblk"><div class="segs">${[...Array(len)].map((_,i)=>`<i class="${i+1<wk?"d":i+1===wk?"c":""} ${i===len-1?"dl":""}"></i>`).join("")}</div>
-    <span>${bi.brk?"Break week: the block is paused":bi.strength?`<b>${esc(bi.phaseName)}</b> · week ${wk} of ${len}${bi.early?" · brought forward":""}`:`<b>Week ${wk} of ${len}</b> · ${bi.deload?"deload: half the sets, easy effort":wk===len-1?"last hard week, deload next":`deload in week ${len}`}`}</span></div>`:bi&&bi.pre?`<div class="trblk"><span>Your block starts ${fmtD(bi.starts)}</span></div>`:"";
+    <span>${bi.brk?"Break week: the block is paused":bi.strength?`<b>${esc(bi.phaseName)}</b> · week ${wk} of ${len}${bi.early?" · brought forward":""}`:`<b>Week ${wk} of ${len}</b> · ${bi.deload?"deload: half the sets, easy effort":wk===len-1?"last hard week, deload next":`deload in week ${len}`}`}</span></div>`:"";
   return `<div class="card trstrip"><div class="spread"><span class="small muted trname">${esc(S.prog.endurance?S.prog.endurance.eventName:S.prog.splitName||S.prog.name)}</span><button class="link" data-segset="planView" data-val="month">Month</button></div>
     <div class="trdays">${cells}</div>${blk}</div>`;
 }
@@ -3274,6 +3282,15 @@ function sportCard(){
     ${sec("Rules the plan follows", lines(E.rules))}
     ${(E.sources||[]).length?sec("Sources", `<ul class="splist">${E.sources.slice(0,12).map(x=>`<li>${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</li>`).join("")}</ul>`):""}</div>`;
 }
+// What a day with no gym session is: rest, a sport session, or match day. Sport days are not rest days.
+function offDay(d, dt){
+  const lab=d&&d.label||"Rest", KEY=["Match day","Competition day","Key session"], sp=S.prog.sport;
+  const prev=new Date(dt); prev.setDate(prev.getDate()-1); const pd=dayForDate(prev), afterKey=pd&&KEY.includes(pd.label);
+  if (KEY.includes(lab)) return {h:lab, t:`No gym today, so you go in fresh.${sp?" Warm up with the match-day primer on your sport card below.":""}`};
+  if (lab!=="Rest"&&d&&d.rest) return {h:lab, t:`${sp&&lab===sp.name?esc(lab)+" training":esc(lab)} today. No gym, and your strength sessions are planned around it.`};
+  if (afterKey) return {h:"Recovery day", t:"Day after a match. Walk or easy cardio, plenty of food and sleep. Hard training waits until you've recovered."};
+  return {h:"Rest day", t:(d&&(d.cond||[]).length?"No gym today. Conditioning below.":esc((d&&d.cardio)||"Walk or easy cardio")+". Rest is when the work you did turns into muscle.")};
+}
 function trainDayBody(ds){
   const dt=parseD(ds), d=dayForDate(dt), td=ymd(new Date()), run=runFor(ds), when=dt.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"});
   const cardio=S.cardio.filter(c=>c.date===ds), done=sessionsOn(ds);
@@ -3287,15 +3304,15 @@ function trainDayBody(ds){
       <button class="btn ghost" data-act="sumShow" data-id="${sx.id}">How it went</button></div>`; }).join("");
   else if (list.length){
     const past=ds<td, sets=list.reduce((a,x)=>a+x[1],0), sameWeek=weekKey(dt)===weekKey(new Date());
-    out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${when}${d.movedFrom!=null?" · moved":""}${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(d.label)}</h2></div>${past?`<span class="tag flag">Missed</span>`:`<span class="tag">Planned</span>`}</div>
+    out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${when}${d.movedFrom!=null?" · moved":""}${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(d.label)}</h2></div>${ds<(S.prog.startDate||"")?`<span class="tag">${past?"Before your plan":"Preview"}</span>`:past?`<span class="tag flag">Missed</span>`:`<span class="tag">Planned</span>`}</div>
       <div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(d,g)}</b><span>min</span></div></div>
       <div class="tdlist2">${list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=strAim(d,k,g)||(ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`);
         return `<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(x.n)}</b><em>${n} × ${x.lo}–${x.hi}${ad.last?` · last ${ad.last.sets[0].w}×${ad.last.sets[0].r}`:""}</em></span><span class="tdaim ${ad.status==="up"?"up":""}">${ad.status==="up"?"↑ ":""}${aim}</span></div>`; }).join("")}</div>
       ${past?"":moveBar(d,ds)}
-      ${past?(sameWeek&&!sessionsOn(td).length?`<button class="btn orange" data-act="moveHere" data-k="${d.k}" data-from="${ds}">Do it today instead</button>`:`<span class="small muted">Missed sessions don't need making up. The next one simply carries on.</span>`)
+      ${past&&ds<(S.prog.startDate||"")?`<span class="small muted">This day was before your plan started, so there's nothing to make up.</span>`:past?(sameWeek&&!sessionsOn(td).length?`<button class="btn orange" data-act="moveHere" data-k="${d.k}" data-from="${ds}">Do it today instead</button>`:`<span class="small muted">Missed sessions don't need making up. The next one simply carries on.</span>`)
         :`<button class="btn ghost" data-act="startDay" data-k="${d.k}" data-g="${g}">Start it now instead</button>`}</div>`;
   }
-  else if (!run) out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${d&&d.label&&d.label!=="Rest"?esc(d.label):"Rest day"}</h2></div><span class="small muted">${d&&(d.cond||[]).length?"No gym today. Conditioning below.":esc((d&&d.cardio)||"Walk or easy cardio")+". Rest days are when the work you did turns into muscle."}</span></div>`;
+  else if (!run){ const od=offDay(d,dt); out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${esc(od.h)}</h2></div><span class="small muted">${od.t}</span></div>`; }
   out+=condCard(d);
   if (cardio.length) out+=`<div class="card"><h2>Cardio and sport</h2>${cardio.map(c=>`<div class="spread cline"><span class="spl">${spIc(c.type)}<b>${esc(CARDIO[c.type]?CARDIO[c.type].n:c.type)}</b> <span class="small muted">${esc(c.level)} · ${c.mins} min${c.km?" · "+c.km+" km":""}</span></span><span class="small muted num">${fmtN(c.net)} kcal</span></div>`).join("")}</div>`;
   return out;
@@ -3344,7 +3361,7 @@ function renderTrainToday(){
   } else {
     const pre=S.prog.startDate && todayStr<S.prog.startDate;
     const run=pre?null:runFor(todayStr), g=t&&!t.rest?dayGym(t):null, list=g?(t.variants[g]||[]):[], done=sessionsOn(todayStr);
-    if (pre) out+=`<div class="card"><div class="stack" style="gap:2px"><span class="small muted">Your plan</span><h2>${esc(S.prog.name)}</h2></div><span class="small muted">Week 1 starts ${fmtD(S.prog.startDate)}. Until then, train as you like or ease in.</span></div>`;
+    if (pre) out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Your plan hasn't started yet</h2></div>${preStart()}</div>`;
     if (run) out+=runCard(run,todayStr);
     if (!pre && list.length){
       const sets=list.reduce((a,x)=>a+x[1],0);
@@ -3358,8 +3375,9 @@ function renderTrainToday(){
         <div class="grid2"><button class="btn ghost" data-goto="train">${last?"See the plan":"Change it"}</button>${last?`<button class="btn orange" data-act="sumShow" data-id="${last.id}">How it went</button>`:`<button class="btn orange" data-act="startDay" data-k="${t.k}" data-g="${g}">Start workout</button>`}</div></div>`;
     } else if (!pre && !run){
       const nx=nextSession(new Date());
-      out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Rest day</h2></div>
-        <span class="small muted">${t&&(t.cond||[]).length?"No gym today. Conditioning below.":esc((t&&t.cardio)||"Walk or easy cardio")+". Rest is when the work you did turns into muscle."}</span>
+      const od=offDay(t,new Date());
+      out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>${esc(od.h)}</h2></div>
+        <span class="small muted">${od.t}</span>
         ${nx&&nx.d.variants?(()=>{ const gg=dayGym(nx.d), l=nx.d.variants[gg]||[]; return l.length?`<div class="upnext"><span class="small muted">Up next · ${nx.dt.toLocaleDateString("en-GB",{weekday:"long"})}</span><b>${esc(nx.d.label)}</b><span class="small muted num">${l.length} exercises · ${l.reduce((a,x)=>a+x[1],0)} ${(+(l.reduce((a,x)=>a+x[1],0)))===1?"set":"sets"} · about ${sessionMins(nx.d,gg)} min</span><span class="small">${l.slice(0,4).map(([k])=>esc(exDef(k).n)).join(", ")}${l.length>4?" and more":""}</span></div>`:""; })():""}
         ${(()=>{ return ""; const ds=weekDates(), plan=ds.filter(dt=>{ const d=dayForDate(dt); return d&&!d.rest; }).length, dn=ds.filter(dt=>sessionsOn(ymd(dt)).length).length; return plan?`<div class="wkdots"><span class="small muted">This week</span><span class="dots">${ds.map(dt=>{ const d=dayForDate(dt), k=ymd(dt), did=sessionsOn(k).length; return `<i class="${did?"on":d&&!d.rest?"pl":""} ${k===todayStr?"now":""}">${"MTWTFSS"[(dt.getDay()+6)%7]}</i>`; }).join("")}</span><b class="num">${dn}/${plan}</b></div>`:""; })()}
         <div class="grid2"><button class="btn ghost" data-goto="train">Train anyway</button>${nx&&nx.d.k&&!String(nx.d.k).startsWith("_r")&&weekKey(nx.dt)===weekKey(new Date())&&nx.d.variants&&(nx.d.variants[dayGym(nx.d)]||[]).length?`<button class="btn ghost" data-act="moveHere" data-k="${nx.d.k}" data-from="${ymd(nx.dt)}">Do ${esc(nx.d.label)} today</button>`:""}</div></div>`;
@@ -3524,7 +3542,9 @@ const REST_STEPS=[45,60,75,90,120,150,180,210,240,300];
 function restScale(){ return {short:0.8,std:1,long:1.25}[S.profile.restPref||"std"]||1; }
 function restOf(e){ const d=exDef(e.k,e.custom); return Math.round((e.rest||d.rest||90)*(e.rest?1:restScale())); }
 function liveCur(a){ if (a.open!=null && a.ex[a.open]) return a.open;   // whatever you opened stays open, finished or not
-  const i=a.ex.findIndex(e=>e.sets.some(s=>!s.done)); return a.open!=null&&a.ex[a.open]?(i<0?a.open:i):(i<0?a.ex.length-1:i); }
+  // a find-your-max or top set stays open until you say how hard it was: the max and back-off sets come from that answer
+  const strWait=e=>{ if (!e.str||!(e.str.cal||e.str.top)) return false; const t=e.sets.find(x=>x.role==="top"); return !!(t&&t.done&&t.q==null); };
+  const i=a.ex.findIndex(e=>e.sets.some(s=>!s.done)||strWait(e)); return a.open!=null&&a.ex[a.open]?(i<0?a.open:i):(i<0?a.ex.length-1:i); }
 function ssName(a, ei){ const e=a.ex[ei]; if (!e.ss) return ""; const grp=a.ex.map((x,j)=>x.ss===e.ss?j:-1).filter(j=>j>=0); return e.ss+(grp.indexOf(ei)+1); }
 // Effort in words people use, not "RIR"
 // effort for one exercise: heavy lifts never go closer than 2 reps from failure, power work is about speed
@@ -4149,7 +4169,7 @@ function logSet(ei, si){
   const a=S.active, e=a.ex[ei], s=e.sets[si], def=exDef(e.k,e.custom);
   if (s.done){ s.done=false; saveActive(); render(); return; }
   const w=s.w!==""?s.w:s.pw, r=s.r!==""?s.r:s.pr;
-  if (w===""||r===""||isNaN(+w)||isNaN(+r)){ toast("Enter weight and reps first"); return; }
+  if (w===""||r===""||isNaN(+w)||isNaN(+r)){ toast(e.str&&e.str.cal?"Warm up in steps, then type the weight of your heaviest solid set of "+(s.pr||3):"Enter weight and reps first"); return; }
   s.w=String(+w); s.r=String(+r); s.done=true; S.justTicked=ei+"-"+si; setTimeout(()=>{ if(S.justTicked===ei+"-"+si) S.justTicked=null; },900);
   const nx=e.sets[si+1]; if (nx && !nx.done && nx.w==="") nx.pw=s.w;            // carry today's weight to the next set
   const before=liveCur(a), dn=x=>x.sets.filter(q=>q.done).length;
@@ -4159,7 +4179,7 @@ function logSet(ei, si){
   else {
     const own=e.sets.findIndex(q=>!q.done);
     if (p){ const c=[[ei,e],[pi,p]].filter(([,x])=>x.sets.some(q=>!q.done)).sort((x,y)=>dn(x[1])-dn(y[1])||x[0]-y[0]); a.open=c.length?c[0][0]:null; }
-    else a.open=own>=0?ei:null;
+    else a.open=(own>=0||(e.str&&(e.str.cal||e.str.top)&&s.role==="top"))?ei:null;   // stay on a top set until its RPE is in
     const c=a.open!=null?a.open:liveCur({...a, open:null}), ce=a.ex[c];
     if (ce && ce.sets.some(q=>!q.done)) label=`${exDef(ce.k,ce.custom).n}, set ${ce.sets.findIndex(q=>!q.done)+1}`;
     if (ce && ce.sets.some(q=>!q.done)){ const ns=ce.sets.find(q=>!q.done), nw=ns.w!==""?ns.w:ns.pw, nr=ns.r!==""?ns.r:ns.pr, nd=exDef(ce.k,ce.custom); T.sub=(nw!==""&&nw!=null?`${nw} kg × ${nr}`:"")+(nd.eq==="bb"&&+nw>20?` · each side: ${platesFor(nw)}`:""); } else T.sub="";
@@ -4706,6 +4726,7 @@ $("#main").addEventListener("click", async e=>{
       if (act==="fbx") o.jx=b.dataset.k; else { o[b.dataset.f]=+b.dataset.v; if (b.dataset.f==="J"&&+b.dataset.v<2) delete o.jx; }
       upsert("sessions",doc); putDoc("sessions",doc.id,doc); render(); return; }
     case "trDay": S.trDay=b.dataset.d; render(); return;
+    case "startNow": { const td=ymd(new Date()); S.prog={...S.prog, startDate:td}; saveProg(); S.trDay=td; render(); toast("Plan started. Week 1 is this week"); return; }
     case "wkAll": S.wkAll=!S.wkAll; render(); return;
     case "sumShow": S.summary=b.dataset.id; go("summary"); return;
     case "sumOpen": S.open=S.summary; go("progress","sessions"); return;

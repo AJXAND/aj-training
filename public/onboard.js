@@ -1839,7 +1839,7 @@ function pStep(s, a){
       <div class="obzones"><span>Short</span><span class="ok">Sweet spot 45-75</span><span>Long</span></div>
       <span class="obhint ${sp.zone[0] === "ok" ? "" : "bad"}">${sp.zone[1]}</span></div>`}; }
   case "gyms": return {title:a.gyms.length > 1 ? "Your gyms" : "Your gym", wide:true, body:`
-    <p class="obnote" style="margin-top:0">Exercises are only picked if your gym has the kit. Add a second gym if you train in more than one place.</p>
+    <p class="obnote" style="margin-top:0">${(a.gyms || []).every(g => !(g.kit || []).length) ? "<b>Pick the kind of gym first.</b> It ticks the usual kit, then you can add or remove anything." : "Exercises are only picked if your gym has the kit. Add a second gym if you train in more than one place."}</p>
     ${gymEditor(a)}
     ${a.gyms.length > 1 && (a.kind === "gym" || a.kind === "hybrid") ? `<div class="obgym"><b>Usual gym each day</b>${WD.filter(([k]) => (a.days || []).includes(k)).map(([k,, sh]) => `<div class="spread"><b>${sh}</b>${seg2("gymOf." + k, a.gyms.map(g => [g.id, g.name.length > 12 ? g.name.split(/\s+/).map(w => w[0]).join("").toUpperCase() : g.name]), (a.gymOf || {})[k] || a.gyms[0].id)}</div>`).join("")}<span class="small muted">You can switch gym on the day; progress on each machine is kept per gym.</span></div>` : ""}`};
   case "sport": { const sel = a.sports || [], q = (F.sq || "").toLowerCase();
@@ -2384,7 +2384,7 @@ function projChart(kg, target, rk, weeks, G){
 /* ---------- Render + events ---------- */
 function draw(){
   const o = el(), steps = stepsOf(), i = Math.max(0, steps.indexOf(F.step)), s = (F.kind === "prog" ? pStep : F.kind === "welcome" ? wStep : nStep)(F.step, F.ans);
-  const blocked = F.kind === "prog" && F.step === "days" && F.ans.kind === "gym" && F.ans.days.length < 1;
+  const blocked = F.kind === "prog" && ((F.step === "days" && F.ans.kind === "gym" && F.ans.days.length < 1) || (F.step === "gyms" && (F.ans.gyms || []).every(g => !(g.kit || []).length)));
   const scrollY = o.querySelector(".obbody") ? o.querySelector(".obbody").scrollTop : 0;
   const openD = F.keepScroll ? [...o.querySelectorAll("details[open] summary b")].map(x => x.textContent) : [];
   const ae = document.activeElement, focusKey = ae && o.contains(ae) && (ae.dataset.conv ? `[data-key="${ae.dataset.key}"][data-conv="${ae.dataset.conv}"]` : ae.dataset.input ? `[data-input="${ae.dataset.input}"]` : ae.dataset.dob ? "[data-dob]" : null);
@@ -2572,7 +2572,7 @@ function bind(o){
     if (b.dataset.ob === "alt"){ F.seed = Math.random().toString(36).slice(2, 7); F.out = generate(F.ans, F.seed); F.keepScroll = true; draw(); toast("New exercise picks"); return; }
     if (b.dataset.src) return window.AJScience && AJScience.open(b.dataset.src);
     if (b.dataset.redir){ const [fam, gt] = b.dataset.redir.split(":"); F.ans.gfam = fam; setGtype(F.ans, gt); F.ans.sportId = null; F.ans.sportCustom = null; saveDraft(); const st = stepsOf(); return go2(st[st.indexOf("goal") + 1] || "build"); }
-    if (b.dataset.spid){ if (F.ans.sportId !== b.dataset.spid) F.ans.sportVar = ""; F.ans.sportId = b.dataset.spid; F.ans.sportCustom = null; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 200); return; }
+    if (b.dataset.spid){ if (F.ans.sportId !== b.dataset.spid) F.ans.sportVar = ""; F.ans.sportId = b.dataset.spid; F.ans.sportCustom = null; saveDraft(); F.keepScroll = true; draw(); { const st = F.step; setTimeout(() => { if (F && F.step === st) next(); }, 200); } return; }
     if (b.dataset.aisport) return aiSport();
     if (b.dataset.wnext) return acceptWelcome(b.dataset.wnext);
     if (b.dataset.set){
@@ -2580,7 +2580,7 @@ function bind(o){
       let v = b.dataset.val; if (["block","prot","nDays","runs","strengthN","triLevel","nTrain"].includes(b.dataset.set) || /^gyms\.\d+\.(dbStep|plate)$/.test(b.dataset.set)) v = +v;
       if (b.dataset.set === "hasDate") v = v === "yes";
       if (b.dataset.set === "block") F.ans.blockSet = true;
-      if (b.dataset.set === "gtype"){ setGtype(F.ans, v); F.ans.customDone = false; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 220); return; }
+      if (b.dataset.set === "gtype"){ setGtype(F.ans, v); F.ans.customDone = false; saveDraft(); F.keepScroll = true; draw(); { const st = F.step; setTimeout(() => { if (F && F.step === st) next(); }, 220); } return; }
       if (b.dataset.set === "nTrain"){ F.ans.nTrain = +v; F.ans.customWeek = null; F.ans.days = chooseDays(+v, sportBlocked(F.ans)); saveDraft(); F.keepScroll = true; return draw(); }
       setPath(F.ans, b.dataset.set, v);
       if (b.dataset.set === "runs" || b.dataset.set === "longDay") F.ans.runDays = null;
@@ -2592,7 +2592,7 @@ function bind(o){
       if (b.dataset.set.startsWith("units.")){ S.profile = {...S.profile, units:Object.assign({}, S.profile.units, F.ans.units)}; saveProfile(); }
       if (b.dataset.set === "type"){ const kg = currentKg(), rr = recRange({type:v}); F.ans.rate = v === "cut" || v === "bulk" ? Math.round((rr[0] + rr[1]) / 2 * 20) / 20 : 0; F.ans.prot = v === "cut" ? 2.2 : 2.0; F.ans.targetKg = r1(v === "cut" ? kg * 0.94 : v === "bulk" ? kg * 1.05 : kg); }
       saveDraft(); F.keepScroll = true; draw();
-      if (b.classList.contains("obopt") && (["level","type"].includes(b.dataset.set) || (b.dataset.set === "event" && !["custom","ultra"].includes(v)))) setTimeout(() => { if (F) next(); }, 220);
+      if (b.classList.contains("obopt") && (["level","type"].includes(b.dataset.set) || (b.dataset.set === "event" && !["custom","ultra"].includes(v)))) { const st = F.step; setTimeout(() => { if (F && F.step === st) next(); }, 220); }
       return;
     }
     if (b.dataset.tog){
@@ -2619,8 +2619,8 @@ function bind(o){
     if (b.dataset.aiinj) return aiInjury();
     if (b.dataset.aisplit) return aiSplit();
     if (b.dataset.aireview) return aiReview();
-    if (b.dataset.look){ const sx = [...LOOKS.male, ...LOOKS.female].find(l => l[0] === b.dataset.look); a.look = sx[0]; a.pri = sx[3].slice(); redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
-    if (b.dataset.gfam){ const g = b.dataset.gfam; a.gfam = g; setGtype(a, g === "race" ? (["hyrox","crossfit","tri"].includes(a.gtype) ? a.gtype : "hyrox") : g === "strength" ? (["strength","power"].includes(a.gtype) ? a.gtype : "strength") : g); a.customDone = false; redraw(); setTimeout(() => { if (F) next(); }, 220); return; }
+    if (b.dataset.look){ const sx = [...LOOKS.male, ...LOOKS.female].find(l => l[0] === b.dataset.look); a.look = sx[0]; a.pri = sx[3].slice(); redraw(); { const st = F.step; setTimeout(() => { if (F && F.step === st) next(); }, 220); } return; }
+    if (b.dataset.gfam){ const g = b.dataset.gfam; a.gfam = g; setGtype(a, g === "race" ? (["hyrox","crossfit","tri"].includes(a.gtype) ? a.gtype : "hyrox") : g === "strength" ? (["strength","power"].includes(a.gtype) ? a.gtype : "strength") : g); a.customDone = false; redraw(); { const st = F.step; setTimeout(() => { if (F && F.step === st) next(); }, 220); } return; }
     if (b.dataset.runlevel != null){ const lv = RUNLEVELS[+b.dataset.runlevel]; a.runLevel = +b.dataset.runlevel; a.weeklyKm = lv[2]; a.longest = lv[3]; a.runs = lv[4]; return redraw(); }
     if (b.dataset.gpreset){ const g = a.gyms.find(x => x.id === b.dataset.g), t = GYMTYPES[b.dataset.gpreset]; g.type = b.dataset.gpreset; g.kit = t[2].slice(); return redraw(); }
     if (b.dataset.dbw){ const g = a.gyms.find(x => x.id === b.dataset.g), w = +b.dataset.dbw; g.dbs = (g.dbs || []).includes(w) ? g.dbs.filter(x => x !== w) : [...(g.dbs || []), w].sort((x, y) => x - y); return redraw(); }

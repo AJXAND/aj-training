@@ -36,6 +36,8 @@ async def m():
                     await pg.click("[data-set=event][data-val=ultra]"); await pg.fill("[data-key=goalKm]","80"); await pg.click(".obtitle")
                 if st=="Where are you now?" and flow=="run":
                     await pg.click("[data-runlevel='0']")
+                if st in ("Your gym","Your gyms") and await pg.locator("#ob [data-ob=next][disabled]").count():
+                    await pg.locator("[data-gpreset=commercial]").first.click(); await pg.wait_for_timeout(500)
                 if st=="BUILD":
                     await pg.wait_for_timeout(3500); continue
                 if st in ("Your block","Your plan"):

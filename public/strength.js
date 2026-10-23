@@ -156,6 +156,8 @@ function after(doc){
       else { L.eT = prev + 0.25 * (eDay - prev); const last = L.hist[L.hist.length - 1]; if (last && last.e < 0.97 * prev && eDay < 0.97 * prev) L.eT = (last.e + eDay) / 2; }
       L.eT = Math.round(L.eT * 2) / 2;
       L.hist = [...(L.hist || []).slice(-40), {d:doc.date, e:Math.round(eDay * 2) / 2, t:L.eT}];
+      // a variant (paused deadlift, close-grip bench...) gives the main lift a starting max if it has none yet
+      const ck = compKey(d.str); if (ck && ck !== x.k){ const C = st.lifts[ck] = st.lifts[ck] || {hist:[]}; if (!C.eT){ C.eT = Math.round(L.eT / (d.ratio || VAR_RATIO[x.k] || 0.9) * 2) / 2; C.hist = [...(C.hist || []), {d:doc.date, e:C.eT, t:C.eT}]; } }
       if (prev && L.eT > prev + 1) notes.push(`${d.n}: max now about ${Math.round(L.eT)} kg`);
     }
     // linear progression: add weight when the last set felt OK; two misses in a row reset to 90%
