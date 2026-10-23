@@ -197,6 +197,31 @@
    "acct": "u1",
    "chat": "922df0aac67df44b",
    "img": 1
+  },
+  "latrow": {
+   "acct": "u1",
+   "chat": "06e966254db06b32",
+   "img": 1
+  },
+  "latpd": {
+   "acct": "u1",
+   "chat": "0dfceca745b3cb34",
+   "img": 1
+  },
+  "diypulley": {
+   "acct": "u1",
+   "chat": "2ea71f3b13b01310",
+   "img": 1
+  },
+  "jungle": {
+   "acct": "u1",
+   "chat": "22a2ddef63d29efa",
+   "img": 1
+  },
+  "chestpress": {
+   "acct": "u1",
+   "chat": "a37e0506e2981861",
+   "img": 1
   }
  },
  "qc_rejects": [
