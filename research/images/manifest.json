@@ -51,7 +51,7 @@
   "wallball"
  ],
  "pending_note": "Gemini daily limit hit 2026-10-22 after 9 grids of grid0. Resume grid0 from item 10 (circusdb...), then grid1, grid2.",
- "method": "Gemini photo EDIT: one real product photo per item, edited to house style (grey backdrop, matte black, no logos). Personal account gemini.google.com/u/1 chat 9a9a975068bc4c62. Also ref-sheet grid results in chat 431d22bcdd5789e3.",
+ "method": "Bing image search -> full thumb overlay -> screenshot -> upload_image into intercepted Gemini file input (HTMLInputElement.click override) -> edit prompt -> canvas grab download ajt_gen_<id>.png -> side-by-side check -> copy to ajt_eq_<id>.png",
  "edit_done": [
   "arctrainer",
   "hack",
@@ -101,7 +101,19 @@
   "smithangled": "AI Studio Lite edit, downloaded ajt_eq_smithangled.png",
   "declinebench": "AI Studio Lite edit, downloaded ajt_eq_declinebench.png",
   "benchrack": "AI Studio Lite edit, downloaded ajt_eq_benchrack.png",
-  "inclinestation": "AI Studio Lite edit, downloaded ajt_eq_inclinestation.png"
+  "inclinestation": "AI Studio Lite edit, downloaded ajt_eq_inclinestation.png",
+  "shoulderbench": {
+   "acct": "u1",
+   "chat": "e180bfc9899568fb",
+   "ref": "Exigo-style Olympic shoulder bench (Google thumb)",
+   "file": "ajt_eq_shoulderbench.png"
+  },
+  "smith3d": {
+   "acct": "u1",
+   "chat": "dc99afd5a5b80491",
+   "ref": "Raze 3D smith (Bing)",
+   "file": "ajt_eq_smith3d.png"
+  }
  },
  "limits": "2026-10-22: work account (u0) limit after ~45 images; personal (u1) limit after ~45 images. Both reset daily. AI Studio Lite (work account) daily quota hit after ~10 edits on 2026-10-22.",
  "next": [
