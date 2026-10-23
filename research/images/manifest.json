@@ -141,186 +141,7 @@
   "u2": "aj@digitaledgecf.com (new, reference-edit only)"
  },
  "rule_u2": "AJ: reference images only on new account, no text-only generations",
- "pending_download": {
-  "cambered": {
-   "acct": "u1",
-   "chat": "4dbd557a8384884d",
-   "img": 1,
-   "note": "also saved ajt_gen_cambered.png"
-  },
-  "axle": {
-   "acct": "u1",
-   "chat": "efad8072492656de",
-   "img": 2
-  },
-  "landmine": {
-   "acct": "u1",
-   "chat": "bf8d58257f5b43b8",
-   "img": 1
-  },
-  "preacher": {
-   "acct": "u1",
-   "chat": "fda695ccdaa1821d",
-   "img": 1
-  },
-  "jhooks": {
-   "acct": "u1",
-   "chat": "330d5581bb10b266",
-   "img": 1
-  },
-  "legattach": {
-   "acct": "u1",
-   "chat": "255d0ce4686b1d39",
-   "img": 1
-  },
-  "racklevers": {
-   "acct": "u1",
-   "chat": "e4a3821235faba5d",
-   "img": 1
-  },
-  "heavydb": {
-   "acct": "u1",
-   "chat": "beae890001495b02",
-   "img": 1
-  },
-  "mace": {
-   "acct": "u1",
-   "chat": "8dbfa4c8fd12ae13",
-   "img": 1
-  },
-  "cable_dual": {
-   "acct": "u1",
-   "chat": "8b3e6360d7098101",
-   "img": 1
-  },
-  "functional": {
-   "acct": "u1",
-   "chat": "922df0aac67df44b",
-   "img": 1
-  },
-  "latrow": {
-   "acct": "u1",
-   "chat": "06e966254db06b32",
-   "img": 1
-  },
-  "latpd": {
-   "acct": "u1",
-   "chat": "0dfceca745b3cb34",
-   "img": 1
-  },
-  "diypulley": {
-   "acct": "u1",
-   "chat": "2ea71f3b13b01310",
-   "img": 1
-  },
-  "jungle": {
-   "acct": "u1",
-   "chat": "22a2ddef63d29efa",
-   "img": 1
-  },
-  "chestpress": {
-   "acct": "u1",
-   "chat": "a37e0506e2981861",
-   "img": 1
-  },
-  "isochestpress": {
-   "acct": "u1",
-   "chat": "27270593f618719b",
-   "img": 1
-  },
-  "lyingchestpress": {
-   "acct": "u1",
-   "chat": "4dfb8ede03ccad4d",
-   "img": 1
-  },
-  "incchestpress": {
-   "acct": "u1",
-   "chat": "53d4a1c09cfa27e3",
-   "img": 1
-  },
-  "isoincpress": {
-   "acct": "u1",
-   "chat": "d1fb998afd9eebac",
-   "img": 1
-  },
-  "pecdeck": {
-   "acct": "u1",
-   "chat": "8c03b1360488d298",
-   "img": 1
-  },
-  "declinepress": {
-   "acct": "u1",
-   "chat": "591bd068e207a8ab",
-   "img": 1
-  },
-  "platefly": {
-   "acct": "u1",
-   "chat": "4f2cf3ff7d8493e2",
-   "img": 1
-  },
-  "pushupm": {
-   "acct": "u1",
-   "chat": "3ed80c9c57ffd4bc",
-   "img": 1,
-   "note": "seated dip HS ref"
-  },
-  "rowm": {
-   "acct": "u1",
-   "chat": "bfa5a34e9379702a",
-   "img": 1
-  },
-  "seatedrowm": {
-   "acct": "u1",
-   "chat": "6a7f08e3c38b1511",
-   "img": 2
-  },
-  "lowrow": {
-   "acct": "u1",
-   "chat": "91fc0b8c034b2901",
-   "img": 1
-  },
-  "cstbar": {
-   "acct": "u1",
-   "chat": "93406a3671528a27",
-   "img": 1
-  },
-  "dipm": {
-   "acct": "u1",
-   "chat": "070b21a8d3b182e8",
-   "img": 1
-  },
-  "backext": {
-   "acct": "u1",
-   "chat": "a13d9c61d6a56bd0",
-   "img": 1,
-   "post": "paint out tiny sticker bottom-left of tower edge"
-  },
-  "deadliftm": {
-   "acct": "u1",
-   "chat": "7c97d2bc6402f019",
-   "img": 1
-  },
-  "frontpulldown": {
-   "acct": "u2",
-   "chat": "097da214c5f01b77",
-   "img": 1
-  },
-  "tbar": {
-   "acct": "u2",
-   "chat": "d2b1c4a5e9d9e168",
-   "img": 1,
-   "post": "paint out small label on base rail"
-  },
-  "shrugm": {
-   "alias": "deadliftm",
-   "note": "ground base deadlift/shrug machine serves both"
-  },
-  "shoulderpress": {
-   "acct": "u2",
-   "chat": "9fb05b577cfc824a",
-   "img": 1
-  }
- },
+ "pending_download": {},
  "qc_rejects": [
   "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle",
   "isochestpress v1 (c342bfd31549fbe2): floating plate, extra horns, 10kg text",
@@ -338,5 +159,26 @@
   "smith-adjacent racks",
   "then shoulders/arms/legs machines in edit_queue order"
  ],
- "downloads_blocked": "Chrome multiple-download guard on gemini.google.com; AJ to click Allow, then fetch all pending_download via Download full size button per chat"
+ "image_failed_to_load": {
+  "landmine": {
+   "acct": "u1",
+   "chat": "bf8d58257f5b43b8",
+   "img": 1
+  },
+  "axle": {
+   "acct": "u1",
+   "chat": "efad8072492656de",
+   "img": 2
+  },
+  "isochestpress": {
+   "acct": "u1",
+   "chat": "27270593f618719b",
+   "img": 1
+  },
+  "dipm": {
+   "acct": "u1",
+   "chat": "070b21a8d3b182e8",
+   "img": 1
+  }
+ }
 }
