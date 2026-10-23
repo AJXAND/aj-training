@@ -140,5 +140,36 @@
   "u1": "personal",
   "u2": "aj@digitaledgecf.com (new, reference-edit only)"
  },
- "rule_u2": "AJ: reference images only on new account, no text-only generations"
+ "rule_u2": "AJ: reference images only on new account, no text-only generations",
+ "pending_download": {
+  "cambered": {
+   "acct": "u1",
+   "chat": "4dbd557a8384884d",
+   "img": 1,
+   "note": "also saved ajt_gen_cambered.png"
+  },
+  "axle": {
+   "acct": "u1",
+   "chat": "efad8072492656de",
+   "img": 2
+  },
+  "landmine": {
+   "acct": "u1",
+   "chat": "bf8d58257f5b43b8",
+   "img": 1
+  },
+  "preacher": {
+   "acct": "u1",
+   "chat": "fda695ccdaa1821d",
+   "img": 1
+  },
+  "jhooks": {
+   "acct": "u1",
+   "chat": "330d5581bb10b266",
+   "img": 1
+  }
+ },
+ "qc_rejects": [
+  "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle"
+ ]
 }
