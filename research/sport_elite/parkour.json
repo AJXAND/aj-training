@@ -1,0 +1,895 @@
+{
+  "id": "parkour",
+  "name": "Parkour",
+  "aliases": [
+    "freerunning",
+    "free running",
+    "art du deplacement",
+    "traceur",
+    "parkour speed run",
+    "parkour freestyle",
+    "tricking"
+  ],
+  "group": "Artistic",
+  "q": {
+    "maxStrength": 2,
+    "power": 3,
+    "rotational": 1,
+    "unilateral": 3,
+    "upperPull": 3,
+    "upperPush": 2,
+    "lowerBody": 3,
+    "grip": 3,
+    "neck": 0,
+    "trunk": 3,
+    "mass": 0
+  },
+  "prehab": [
+    "landing",
+    "ankle",
+    "wrist",
+    "patellar",
+    "calf"
+  ],
+  "season": {
+    "off": 3,
+    "pre": 2,
+    "in": 2
+  },
+  "avoidBefore": "lower",
+  "energy": "Short maximal efforts of jumps, vaults and climbs (ATP-PC), linked into runs of 20-60 s that also tax the glycolytic system; long sessions rest on an aerobic base.",
+  "summary": "Parkour demands explosive jumping, high landing forces, a strong grip and pull for climb-ups, and ankles and wrists that tolerate repeated impacts. The plan builds leg strength and jump power, landing control on both legs, pulling and grip strength, and ankle and wrist resilience.",
+  "evidence": [
+    {
+      "claim": "In 180 traceurs, ankle injuries (mostly sprains) were the most common at 2.3 per 1,000 h; those who did no physical conditioning had more ankle and knee injuries.",
+      "source": "Grospretre & El Khattabi 2022, Movement and Sport Sciences",
+      "url": "https://www.mov-sport-sciences.org/articles/sm/full_html/2022/01/sm210045/sm210045.html",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Parkour precision and roll landings cut peak landing force by about 38-43% and loading rate by about 54-63% compared with a traditional drop landing.",
+      "source": "Puddle & Maulder 2013, Journal of Sports Science and Medicine",
+      "url": "https://www.jssm.org/jssm-12-122.xml-Fulltext",
+      "grade": "moderate"
+    },
+    {
+      "claim": "In 161 practitioners, 70% reported an injury in a year; the ankle (28.5%), knee (18.4%) and wrist (12.6%) were most affected, often on precision jumps.",
+      "source": "Giner Gran 2020, SPORT TK",
+      "url": "https://revistas.um.es/sportk/article/download/412551/278711",
+      "grade": "moderate"
+    }
+  ],
+  "confidence": "limited",
+  "variants": [
+    {
+      "id": "parkour",
+      "name": "Parkour and speed runs",
+      "desc": "Efficient movement over obstacles: precision jumps, vaults, climb-ups and runs against the clock.",
+      "q": {
+        "upperPull": 3,
+        "grip": 3
+      },
+      "prehab": [
+        "ankle",
+        "landing"
+      ],
+      "note": "Your plan adds broad jumps for distance and dead hangs for grip. Train precision jumps on both legs.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "broadjump",
+            "bounding",
+            "splitjump"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "3-4",
+          "rir": 3,
+          "note": "Stick the landing"
+        },
+        {
+          "role": "acc",
+          "ex": [
+            "deadhang",
+            "towelhang",
+            "farmerhold"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "20-40 s",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "freerunning",
+      "name": "Freerunning and freestyle",
+      "desc": "Flips, spins and tricks off walls and bars; more rotation, more head-first risk and bigger landings.",
+      "q": {
+        "rotational": 2,
+        "trunk": 3,
+        "upperPush": 3
+      },
+      "prehab": [
+        "wrist",
+        "landing",
+        "neck"
+      ],
+      "note": "Your plan adds tuck jumps and handstand work for flips. Learn new tricks on soft mats with a coach first.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "tuckjump",
+            "cmj",
+            "boxjp"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "3-4",
+          "rir": 3
+        },
+        {
+          "role": "acc",
+          "ex": [
+            "handstand",
+            "pikepush",
+            "hspu"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "20-30 s or 5-8",
+          "rir": 2
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: legs and jumps",
+        "focus": "Jump power and heavy leg strength",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "broadjump",
+              "boxjp",
+              "cmj",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3-4",
+            "rir": 3,
+            "note": "Max effort, stick the landing, full rest"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "trapdl",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2,
+            "note": "About 80% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "pistol"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-12",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: pull, push and grip",
+        "focus": "Climb-ups, muscle-ups and vault support",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "wpullup",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5-8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dips",
+              "pushup",
+              "flatdb",
+              "ringdip"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "6-10",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "muscleup",
+              "c2b",
+              "negpullup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3-5",
+            "rir": 2,
+            "note": "New: eccentric pull-ups instead"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "deadhang",
+              "towelhang",
+              "farmerhold"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-40 s",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "dbwristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day C: landings and both sides",
+        "focus": "Landing control, ankles and the weaker leg",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "dropstick",
+              "hopstick",
+              "depthjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4-5",
+            "rir": 3,
+            "note": "New: low box only. Land quiet, heels down at the end"
+          },
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "splitjump",
+              "pogo"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3,
+            "note": "Weaker leg first"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "spanishsq",
+              "isosplit",
+              "legext"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-45 s",
+            "rir": 3,
+            "note": "Knee tendon care"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30 s/side",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "abwheel",
+              "hangleg",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s or 8",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: power",
+        "focus": "Max-intent jumps with heavy legs",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "broadjump",
+              "boxjp",
+              "cmj"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Adv: pair with each squat set"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "trapdl",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "3-4",
+            "rir": 2,
+            "note": "About 85% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "dropstick",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper and grip",
+        "focus": "Pulling power and support strength",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "wpullup",
+              "chinup"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dips",
+              "pushup",
+              "ringdip"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "deadhang",
+              "towelhang"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-40 s",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "hangleg",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s or 8",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: short legs and landings",
+        "focus": "Keep strength and landing control, 30 min",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "boxjp",
+              "cmj",
+              "broadjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "About 80-85% 1RM, never to failure"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "dropstick",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "3-4",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper and wrists",
+        "focus": "Pull, push, wrists, 25 min",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "invrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "dips",
+              "pushup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "20-30 s",
+            "rir": 2
+          }
+        ]
+      }
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Aerobic base",
+        "mode": "any",
+        "work": "30-40 min easy run or bike",
+        "rest": "none",
+        "intensity": "Easy, can talk in sentences",
+        "perWeek": 1,
+        "why": "Helps you recover between long training sessions"
+      }
+    ],
+    "pre": [
+      {
+        "name": "Route runs",
+        "mode": "any",
+        "work": "6-8 x 30-60 s flowing runs through a line",
+        "rest": "2-3 min walk",
+        "intensity": "Fast but clean, stop if technique slips",
+        "perWeek": 1,
+        "why": "Matches speed-run and freestyle run length (coach practice)"
+      }
+    ],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "cmj",
+      "name": "Countermovement jump with arm swing",
+      "how": "Jump app or jump-and-reach, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "club": "<45",
+        "good": "45-60",
+        "elite": ">60"
+      },
+      "note": "A group of 15 traceurs averaged 56 cm. Bands are coach practice"
+    },
+    {
+      "id": "broadjump",
+      "name": "Standing long jump",
+      "how": "Two feet, arm swing, measure to the heel, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "club": "<240",
+        "good": "240-280",
+        "elite": ">280"
+      },
+      "note": "Same group averaged 273 cm. Women about 15-20% less"
+    },
+    {
+      "id": "sprint40",
+      "name": "40 m sprint",
+      "how": "Standing start, phone timing or gates, best of 2",
+      "unit": "s",
+      "better": "lower",
+      "bands": {
+        "club": ">5.5",
+        "good": "5.0-5.5",
+        "elite": "<5.0"
+      },
+      "note": "Same group averaged 5.1 s"
+    },
+    {
+      "id": "pullups",
+      "name": "Strict pull-ups",
+      "how": "Dead hang, chin over bar, no kip, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "club": "<8",
+        "good": "8-15",
+        "elite": "15+"
+      },
+      "note": "Coach practice"
+    },
+    {
+      "id": "deadhang",
+      "name": "Dead hang",
+      "how": "Overhand, shoulders active, hold to failure",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "club": "<45",
+        "good": "45-90",
+        "elite": ">90"
+      },
+      "note": "Coach practice"
+    }
+  ],
+  "week": [
+    "Heavy legs early in the week, not the day before a big jump session",
+    "Upper body and grip on the day after a heavy jump session",
+    "Never stack heavy landings in the gym and outdoors on the same day",
+    "Competition or jam weekend: legs no later than 72 h before"
+  ],
+  "primer": [
+    "8-10 min warm-up with real jumps and landings, not just stretching",
+    "2 x 3 broad or box jumps",
+    "1 set of wrist prep and band shoulder rotations",
+    "Easy run-throughs of the line"
+  ],
+  "taper": {
+    "days": 7,
+    "lines": [
+      "Last heavy leg session 5-7 days out",
+      "Cut gym and drop-landing volume by about half",
+      "Keep short, sharp jumps",
+      "No new big moves in the last week"
+    ]
+  },
+  "rules": [
+    "Warm up with jumps and landings, not just light mobility",
+    "Train jumps and landings on both legs",
+    "Build drop height slowly; new athletes keep drops low",
+    "Move to minimalist shoes gradually",
+    "Never train big moves or heights alone",
+    "Under 18: supervised, technique first, follow youth training guidance"
+  ],
+  "sources": [
+    {
+      "source": "Grospretre & El Khattabi 2022, Movement and Sport Sciences",
+      "url": "https://www.mov-sport-sciences.org/articles/sm/full_html/2022/01/sm210045/sm210045.html"
+    },
+    {
+      "source": "Puddle & Maulder 2013, Journal of Sports Science and Medicine",
+      "url": "https://www.jssm.org/jssm-12-122.xml-Fulltext"
+    },
+    {
+      "source": "Giner Gran 2020, SPORT TK",
+      "url": "https://revistas.um.es/sportk/article/download/412551/278711"
+    },
+    {
+      "source": "Elizondo-Donado, Rodriguez-Negro & Yanci 2026, Journal of Human Sport and Exercise",
+      "url": "https://www.jhse.es/index.php/jhse/article/download/morphology-influences-performance-parkour-athletes/227/12559"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Precision jump to a line",
+      "pattern": "land",
+      "equipment": "",
+      "why": "Sport-specific landing accuracy"
+    },
+    {
+      "name": "Wall climb-up",
+      "pattern": "skill",
+      "equipment": "",
+      "why": "Sport-specific pull and push"
+    }
+  ]
+}

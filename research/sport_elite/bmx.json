@@ -1,0 +1,927 @@
+{
+  "id": "bmx",
+  "name": "BMX",
+  "aliases": [
+    "bmx racing",
+    "bmx freestyle",
+    "bmx park",
+    "bmx dirt",
+    "bmx street",
+    "flatland",
+    "supercross bmx",
+    "bicycle motocross"
+  ],
+  "group": "Wheels",
+  "q": {
+    "maxStrength": 3,
+    "power": 3,
+    "rotational": 1,
+    "unilateral": 2,
+    "upperPull": 2,
+    "upperPush": 2,
+    "lowerBody": 3,
+    "grip": 2,
+    "neck": 1,
+    "trunk": 3,
+    "mass": 1
+  },
+  "prehab": [
+    "shoulderER",
+    "wrist",
+    "neck",
+    "lowback",
+    "landing"
+  ],
+  "season": {
+    "off": 3,
+    "pre": 2,
+    "in": 2
+  },
+  "avoidBefore": "lower",
+  "energy": "A race lap lasts about 35-45 s: peak power comes in the first 2 s out of the gate, the rest is pumping and jumping, so it is ATP-PC and glycolytic with an aerobic base for repeat motos.",
+  "summary": "BMX racing is decided by gate-start power and the strength to pump and absorb jumps; freestyle adds big landings and crashes. The plan builds heavy leg strength and power, upper-body and trunk strength for bike control, and shoulder, wrist and neck resilience for falls.",
+  "evidence": [
+    {
+      "claim": "Elite riders finish a race in about 40 s and spend only about a third of it pedalling; the rest is pumping and jumping, so BMX is a strength and power sport.",
+      "source": "Cowell, Cronin & McGuigan 2011, Journal of Sports Science and Medicine",
+      "url": "https://jssm.org/jssm-10-420.xml-Fulltext",
+      "grade": "moderate"
+    },
+    {
+      "claim": "In a systematic review, maximal strength (r = 0.84) and peak sprint power (r = 0.87) were strongly linked to BMX race performance, and jump height to race time.",
+      "source": "Becerra-Patino et al. 2025, Journal of Functional Morphology and Kinesiology",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12194740/",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Contusions, lacerations and fractures are the most common BMX injuries; injury rates reached 37.5 per 100 athletes at the 2016 Olympics, and prevention strategies are barely tested.",
+      "source": "Scoping review 2025, Sports Health",
+      "url": "https://lida.sport-iat.de/ta/Record/4090502?lng=de",
+      "grade": "moderate"
+    }
+  ],
+  "confidence": "limited",
+  "variants": [
+    {
+      "id": "race",
+      "name": "BMX racing",
+      "desc": "One-lap races of 35-45 s from a start gate, several motos a day, with jumps and berms.",
+      "q": {
+        "power": 3,
+        "maxStrength": 3
+      },
+      "prehab": [
+        "shoulderER",
+        "neck"
+      ],
+      "note": "Your plan adds trap bar jumps for gate-start power. Practise gate starts on fresh legs, early in track sessions.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "tbjump",
+            "squatjump",
+            "cmj"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "3",
+          "rir": 3,
+          "note": "Fast as possible; full rest"
+        }
+      ]
+    },
+    {
+      "id": "freestyle",
+      "name": "BMX freestyle (park, dirt, street, flatland)",
+      "desc": "Runs of about a minute of tricks and big airs; landings and crashes load wrists, shoulders, ankles and knees.",
+      "q": {
+        "upperPush": 2,
+        "trunk": 3
+      },
+      "prehab": [
+        "wrist",
+        "landing",
+        "ankle"
+      ],
+      "note": "Your plan adds drop landings to stick and more wrist work. Build new tricks into a foam pit or resi ramp first.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "dropstick",
+            "hopstick"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "4",
+          "rir": 3,
+          "note": "Land quiet, knees over toes"
+        },
+        {
+          "role": "pre",
+          "ex": [
+            "wristcurl",
+            "dbwristcurl",
+            "pronsup"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 2
+          },
+          "reps": "12-15",
+          "rir": 2
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: squat and start power",
+        "focus": "Heavy legs and fast first pedal strokes",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "tbjump",
+              "squatjump",
+              "cmj",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "3-5",
+            "rir": 3,
+            "note": "Full rest, 2 min"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 5
+            },
+            "reps": "4-6",
+            "rir": 2,
+            "note": "About 80-85% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "revlunge",
+              "stepup",
+              "bwss"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "pallofb",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper body and crash resilience",
+        "focus": "Pull, push, shoulders, wrists and neck",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbslam",
+              "mbchest",
+              "clappu"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5-8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bench",
+              "flatdb",
+              "pushup"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "dbrow",
+              "csdb",
+              "bandrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "neckiso",
+              "neckband"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-15 s each way",
+            "rir": 3,
+            "note": "About 50-70% effort, 4 directions"
+          }
+        ]
+      },
+      {
+        "name": "Day C: hinge, power and landings",
+        "focus": "Posterior chain, landings and grip",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "hangclean",
+              "kbswing",
+              "dbsnatch"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3-5",
+            "rir": 3,
+            "note": "New: kettlebell swing only"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "singlerdl",
+              "hipthrust",
+              "glutebridge"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "dropstick",
+              "hopstick",
+              "latbound"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3,
+            "note": "Stick each landing for 2 s"
+          },
+          {
+            "role": "core",
+            "ex": [
+              "suitcase",
+              "farmers",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 m or 30 s/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "dbwristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: strength to power",
+        "focus": "Heavy legs paired with jumps",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "tbjump",
+              "squatjump",
+              "cmj"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Adv: do after each squat set as a contrast pair"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3-4",
+            "rir": 2,
+            "note": "About 85% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "stepup",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "slidecurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "abwheel",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: pull, press and resilience",
+        "focus": "Upper strength and shoulder, wrist and neck care",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "hangclean",
+              "kbswing",
+              "mbslam"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "bench",
+              "flatdb",
+              "pushup"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "neckiso",
+              "neckband"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15 s each way",
+            "rir": 3
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: short heavy and fast",
+        "focus": "Keep strength and power, early in the week",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "tbjump",
+              "squatjump",
+              "cmj"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "About 80-85% 1RM, never to failure"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "slidecurl"
+            ],
+            "sets": {
+              "new": 1,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "5",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "8/side",
+            "rir": 3
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper and prehab",
+        "focus": "Short session, mid-week",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbslam",
+              "mbchest"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "flatdb",
+              "pushup",
+              "bench"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 3
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "dbrow",
+              "csdb",
+              "bandrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "neckiso",
+              "neckband"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10 s each way",
+            "rir": 3
+          }
+        ]
+      }
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Aerobic base",
+        "mode": "bike",
+        "work": "30-45 min steady",
+        "rest": "none",
+        "intensity": "Easy, can talk in sentences",
+        "perWeek": 1,
+        "why": "Helps you recover between motos and between hard sessions"
+      },
+      {
+        "name": "Short sprints",
+        "mode": "bike",
+        "work": "6-8 x 6-8 s all-out from a slow roll",
+        "rest": "2-3 min easy",
+        "intensity": "Maximal",
+        "perWeek": 1,
+        "why": "Peak power is reached in the first 2 s of a race"
+      }
+    ],
+    "pre": [
+      {
+        "name": "Race simulation",
+        "mode": "bike",
+        "work": "4-6 x 35-45 s hard",
+        "rest": "6-10 min easy",
+        "intensity": "Race effort",
+        "perWeek": 1,
+        "why": "Matches lap length and the long gaps between motos (coach practice)",
+        "for": [
+          "race"
+        ]
+      },
+      {
+        "name": "Gate-length sprints",
+        "mode": "bike",
+        "work": "8-10 x 5 s standing start",
+        "rest": "2-3 min easy",
+        "intensity": "Maximal",
+        "perWeek": 1,
+        "why": "Start power; do on a track gate if you can"
+      }
+    ],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "cmj",
+      "name": "Countermovement jump",
+      "how": "Hands on hips, jump app or jump-and-reach, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {
+        "club": "<40",
+        "good": "40-50",
+        "elite": ">50"
+      },
+      "note": "Coach practice. Women about 20% lower"
+    },
+    {
+      "id": "squat3rm",
+      "name": "Back squat (estimated 1RM)",
+      "how": "Estimate from a 3-5 rep max with full depth",
+      "unit": "x BM",
+      "better": "higher",
+      "bands": {
+        "club": "<1.5",
+        "good": "1.5-1.8",
+        "elite": "1.8+"
+      },
+      "note": "Coach practice. Skip true maxes in season"
+    },
+    {
+      "id": "peakpower",
+      "name": "6 s bike sprint peak power",
+      "how": "Smart trainer or gym bike, standing start, best of 2",
+      "unit": "W",
+      "better": "higher",
+      "bands": {
+        "club": "<1000",
+        "good": "1000-1300",
+        "elite": ">1300"
+      },
+      "note": "Elite men in studies reach about 1300-1500 W. Club and good bands are coach practice"
+    },
+    {
+      "id": "pullups",
+      "name": "Strict pull-ups",
+      "how": "Dead hang, chin over bar, no kip, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "club": "<8",
+        "good": "8-12",
+        "elite": "12+"
+      },
+      "note": "Coach practice"
+    },
+    {
+      "id": "gate",
+      "name": "Gate to first jump time",
+      "how": "Same gate and track, video timing, best of 3",
+      "unit": "s",
+      "better": "lower",
+      "bands": {},
+      "note": "Compare with yourself; the best race-specific test"
+    }
+  ],
+  "week": [
+    "Race weekend: heavy legs on Monday or Tuesday, at least 72 h before racing",
+    "Upper body and prehab mid-week",
+    "Friday: rest or a short primer",
+    "Track sessions: gate starts first, while fresh",
+    "Nothing heavy for the legs within 48 h of a race"
+  ],
+  "primer": [
+    "Easy spin and dynamic warm-up",
+    "2 x 3 jumps or squat jumps",
+    "2-3 gate starts or 5 s sprints, full rest",
+    "1 set of band shoulder rotations"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy leg session 5-7 days out",
+      "Cut gym volume by about half, keep the load",
+      "Keep short gate starts and sprints sharp",
+      "No new exercises in the last 2 weeks"
+    ]
+  },
+  "rules": [
+    "Full-face helmet and gloves for every track or park session",
+    "Suspected concussion: stop riding and follow a graded return",
+    "After a shoulder or collarbone injury, no pressing until cleared",
+    "Under 18: supervised, technique first, follow youth training guidance",
+    "No heavy legs within 48 h of a race"
+  ],
+  "sources": [
+    {
+      "source": "Cowell, Cronin & McGuigan 2011, Journal of Sports Science and Medicine",
+      "url": "https://jssm.org/jssm-10-420.xml-Fulltext"
+    },
+    {
+      "source": "Becerra-Patino et al. 2025, Journal of Functional Morphology and Kinesiology",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12194740/"
+    },
+    {
+      "source": "Scoping review 2025, Sports Health (injuries, risk factors and prevention in BMX)",
+      "url": "https://lida.sport-iat.de/ta/Record/4090502?lng=de"
+    },
+    {
+      "source": "Black, Gupta & Rockcliff 2021, British Journal of Sports Medicine (abstract)",
+      "url": "https://bjsm.bmj.com/content/55/Suppl_1/A81.1"
+    },
+    {
+      "source": "Palmer-Green et al. 2014, British Journal of Sports Medicine (abstract)",
+      "url": "https://napier-repository.worktribe.com/output/833732/epidemiological-study-of-injury-in-british-cycling-2011-2013"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Gate start drill on a stationary bike",
+      "pattern": "erg",
+      "equipment": "bike",
+      "why": "Race-specific start power"
+    }
+  ]
+}

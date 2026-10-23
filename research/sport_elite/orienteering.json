@@ -1,0 +1,740 @@
+{
+  "id": "orienteering",
+  "name": "Orienteering",
+  "aliases": [
+    "foot orienteering",
+    "sprint orienteering",
+    "forest orienteering",
+    "urban orienteering",
+    "rogaining",
+    "adventure racing",
+    "mountain marathon",
+    "trail-o"
+  ],
+  "group": "Endurance",
+  "q": {
+    "maxStrength": 1,
+    "power": 1,
+    "rotational": 0,
+    "unilateral": 3,
+    "upperPull": 1,
+    "upperPush": 1,
+    "lowerBody": 2,
+    "grip": 0,
+    "neck": 0,
+    "trunk": 2,
+    "mass": 0
+  },
+  "prehab": [
+    "ankle",
+    "calf",
+    "shin",
+    "hipAbd",
+    "landing"
+  ],
+  "season": {
+    "off": 2,
+    "pre": 2,
+    "in": 1
+  },
+  "avoidBefore": "lower",
+  "energy": "Aerobic running on rough ground: elite orienteers hold a mean heart rate of about 167-172 beats a minute in races of 12-100 min, and forest terrain raises the oxygen cost of running by about 26%.",
+  "summary": "Orienteering is endurance running over uneven ground while navigating, so ankles, calves and shins take the punishment. The plan uses short, focused strength sessions for single-leg control, calf and ankle capacity, alongside the running that drives the fitness.",
+  "evidence": [
+    {
+      "claim": "In a one-year study of elite orienteers, ankle sprains were 37% of acute injuries, and overuse injuries (shin pain, Achilles, peroneal and IT band) were all in the legs.",
+      "source": "Linde 1986, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/20/3/125",
+      "grade": "moderate"
+    },
+    {
+      "claim": "In elite orienteers who did a 10 min calf, balance and hop programme at least twice a week, the odds of substantial injury were about 75% lower (per-protocol; not significant on intention to treat).",
+      "source": "Halvarsson & von Rosen 2019, Physical Therapy in Sport",
+      "url": "https://search.pedro.org.au/search-results/record-detail/58730",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Running in forest terrain costs about 26% more oxygen than road running, and rough terrain drives ankle injuries.",
+      "source": "Creagh & Reilly 1997, Sports Medicine",
+      "url": "https://lida.sport-iat.de/twm/Record/4004305",
+      "grade": "moderate"
+    }
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {
+      "id": "forest",
+      "name": "Forest (long and middle)",
+      "desc": "Races of 30-100 min over rough, steep ground; ankle sprains and calf and shin overuse dominate.",
+      "q": {
+        "unilateral": 3
+      },
+      "prehab": [
+        "ankle",
+        "calf"
+      ],
+      "note": "Your plan adds side hops for ankle control on rough ground. Do some easy runs off-path each week.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "latbound",
+            "hopstick",
+            "pogo"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "6/side",
+          "rir": 3,
+          "note": "Side-to-side hops, land quietly"
+        }
+      ]
+    },
+    {
+      "id": "sprint",
+      "name": "Sprint and urban",
+      "desc": "Races of 12-15 min in towns and parks with constant turns, stairs and hard surfaces.",
+      "q": {
+        "power": 2
+      },
+      "prehab": [
+        "calf",
+        "shin",
+        "landing"
+      ],
+      "note": "Your plan adds deceleration drills for fast turns. Add strides and short hill sprints to your running.",
+      "add": [
+        {
+          "role": "pow",
+          "ex": [
+            "decel",
+            "latbound",
+            "pogo"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "4/side",
+          "rir": 3,
+          "note": "Brake hard in 2-3 steps"
+        }
+      ]
+    },
+    {
+      "id": "ultra",
+      "name": "Rogaining and adventure racing",
+      "desc": "Events of 6-24 h or more, often multi-sport, with a pack and long periods on tired legs.",
+      "q": {
+        "trunk": 2,
+        "upperPull": 2
+      },
+      "prehab": [
+        "lowback",
+        "hipAbd"
+      ],
+      "note": "Your plan adds loaded carries for long days with a pack. Practise eating and drinking on long sessions.",
+      "add": [
+        {
+          "role": "core",
+          "ex": [
+            "farmers",
+            "suitcase",
+            "sandbagcarry"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "40 m",
+          "rir": 2
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: single-leg strength",
+        "focus": "Legs and calves for rough ground",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss",
+              "revlunge"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "6/side",
+            "rir": 2,
+            "note": "Heavy enough that the last 2 reps are hard"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "stepup",
+              "petersen",
+              "latstepup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "standcalf",
+              "stepcalf",
+              "seatedcalf"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 2,
+            "note": "Slow down, 3 s"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 s/side",
+            "rir": 3,
+            "note": "Eyes closed or on a cushion when easy"
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "pallof",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30 s/side",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: hips, shins and hops",
+        "focus": "Lateral hip, shin and reactive ankles",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "latbound",
+              "hurdlehop"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-20 contacts",
+            "rir": 3,
+            "note": "Stiff ankles, short contacts"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "singlerdl",
+              "bstance",
+              "slrdlbw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "cossack",
+              "latlunge",
+              "skater"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "cababd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "tibraise",
+              "banddorsi",
+              "tibbar"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "15-20",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "soleuswall",
+              "seatedcalf",
+              "seateddbcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2,
+            "note": "Bent knee, for the soleus"
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: strength and ankles",
+        "focus": "Hold strength as running quality rises",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4-5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf",
+              "standcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "30 s/side",
+            "rir": 3
+          }
+        ]
+      },
+      {
+        "name": "Day B: reactive and hips",
+        "focus": "Quick feet and lateral control",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "pogo",
+              "latbound",
+              "hurdlehop"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-20 contacts",
+            "rir": 3
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "cossack",
+              "latlunge",
+              "skater"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "tibraise",
+              "banddorsi"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "15-20",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "pallof"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30 s/side",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Maintenance and ankle care",
+        "focus": "20-30 min, early in the week",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5/side",
+            "rir": 3
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10-12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slbalance",
+              "hopstick",
+              "latbound"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30 s/side",
+            "rir": 3
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "pallof"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "30 s/side",
+            "rir": 2
+          }
+        ]
+      }
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Easy terrain runs",
+        "mode": "run",
+        "work": "40-75 min, some off-path",
+        "rest": "none",
+        "intensity": "Easy, can talk in sentences",
+        "perWeek": 3,
+        "why": "Aerobic base and ankle exposure to rough ground"
+      },
+      {
+        "name": "Hill reps",
+        "mode": "run",
+        "work": "8-10 x 60-90 s uphill",
+        "rest": "Jog down",
+        "intensity": "Hard, about 5 km effort",
+        "perWeek": 1,
+        "why": "Strength endurance for steep forest legs"
+      }
+    ],
+    "pre": [
+      {
+        "name": "Terrain intervals",
+        "mode": "run",
+        "work": "5 x 5 min on rough ground",
+        "rest": "2-3 min easy",
+        "intensity": "About threshold, comfortably hard",
+        "perWeek": 1,
+        "why": "Race-pace running on forest ground",
+        "for": [
+          "forest",
+          "ultra"
+        ]
+      },
+      {
+        "name": "Sprint intervals with turns",
+        "mode": "run",
+        "work": "8-10 x 60-90 s with sharp turns or stairs",
+        "rest": "90 s easy",
+        "intensity": "About 3-5 km race pace",
+        "perWeek": 1,
+        "why": "Matches sprint race demands",
+        "for": [
+          "sprint"
+        ]
+      },
+      {
+        "name": "Long day",
+        "mode": "any",
+        "work": "3-6 h moving with a pack",
+        "rest": "none",
+        "intensity": "Easy to steady",
+        "perWeek": 1,
+        "why": "Builds durability for long events",
+        "for": [
+          "ultra"
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Quality session",
+        "mode": "run",
+        "work": "4-6 x 3-4 min",
+        "rest": "2-3 min easy",
+        "intensity": "Hard, about 90% max heart rate",
+        "perWeek": 1,
+        "why": "Keep top-end fitness in weeks without a race"
+      }
+    ]
+  },
+  "tests": [
+    {
+      "id": "run5k",
+      "name": "5 km run (parkrun or flat loop)",
+      "how": "Flat course, full effort",
+      "unit": "m:ss",
+      "better": "lower",
+      "bands": {
+        "club": ">22:00",
+        "good": "18:00-22:00",
+        "elite": "<16:00"
+      },
+      "note": "Coach practice for men; women about 10-12% slower"
+    },
+    {
+      "id": "ybal",
+      "name": "Y-balance anterior reach difference",
+      "how": "Stand on one leg, reach forward with the other, compare sides",
+      "unit": "cm",
+      "better": "lower",
+      "bands": {
+        "good": "<4",
+        "club": ">4"
+      },
+      "note": "A difference above 4 cm flagged more leg injuries in one study"
+    },
+    {
+      "id": "calfreps",
+      "name": "Single-leg calf raise reps",
+      "how": "On a step, full range, 1 rep every 2 s, to failure",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {},
+      "note": "Compare sides; aim within 10%"
+    },
+    {
+      "id": "slbal",
+      "name": "Single-leg balance, eyes closed",
+      "how": "Hands on hips, time until you touch down",
+      "unit": "s",
+      "better": "higher",
+      "bands": {},
+      "note": "Compare with yourself and between legs"
+    }
+  ],
+  "week": [
+    "Gym on easy-run days, after running or 6+ h apart",
+    "Heavy legs no closer than 48 h before a race",
+    "Weekend racing: strength Monday or Tuesday, hops and ankles mid-week",
+    "Race weeks: one short session only"
+  ],
+  "primer": [
+    "10-15 min jog with drills",
+    "4 x 15 s strides",
+    "1 set of single-leg hops and balance per side"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy gym session 7 days out",
+      "Running volume down 40-60%, keep some race-pace work",
+      "Keep the ankle and balance work light",
+      "No new exercises in the last 2 weeks"
+    ]
+  },
+  "rules": [
+    "Previous ankle sprain: balance work all year and consider a brace or tape for races",
+    "Build running volume by no more than about 10% a week",
+    "Shin pain that lingers after runs: cut volume and see a physio",
+    "Strength is heavy and low-rep, not high-rep endurance lifting"
+  ],
+  "sources": [
+    {
+      "source": "Creagh & Reilly 1997, Sports Medicine",
+      "url": "https://lida.sport-iat.de/twm/Record/4004305"
+    },
+    {
+      "source": "Linde 1986, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/20/3/125"
+    },
+    {
+      "source": "Linko, Blomberg & Frilander 1997, British Journal of Sports Medicine",
+      "url": "https://bjsm.bmj.com/content/31/3/205"
+    },
+    {
+      "source": "Halvarsson & von Rosen 2019, Physical Therapy in Sport",
+      "url": "https://search.pedro.org.au/search-results/record-detail/58730"
+    },
+    {
+      "source": "von Rosen & Halvarsson 2018, BMJ Open Sport and Exercise Medicine (protocol)",
+      "url": "https://doaj.org/article/3d20614ceee64cbc8884c221926af37a"
+    }
+  ],
+  "missing_ex": []
+}

@@ -1,7 +1,7 @@
 {
   "id": "karate",
   "name": "Karate",
-  "aliases": ["kumite", "kata", "taekwondo", "tkd", "martial arts", "kung fu", "shotokan"],
+  "aliases": ["kumite", "kata", "martial arts", "kung fu", "shotokan", "wado ryu", "kyokushin"],
   "group": "Combat",
   "q": {"maxStrength":2,"power":3,"rotational":3,"unilateral":3,"upperPull":1,"upperPush":2,"lowerBody":3,"grip":0,"neck":1,"trunk":3,"mass":0},
   "prehab": ["landing", "ankle", "hipFlex", "nordic", "hipAbd"],
@@ -11,7 +11,7 @@
   "summary": "Karate is won with fast, light-load power: winners produce more power at 30% of max, not more max strength. The plan builds explosive single-leg and rotational power, kicking hip strength and repeat-effort fitness, with knee and ankle prevention.",
   "evidence": [
     {"claim":"In official kumite, high-intensity actions last about 1.5 s, the effort to pause ratio is about 1:1.5, and blood lactate reaches about 11 mmol/L.","source":"Chaabene et al. 2014, Asian Journal of Sports Medicine","url":"https://brieflands.com/articles/asjsm-73549"},
-    {"claim":"Winners of national-team kumite bouts produced about 23% more upper-limb and 11% more lower-limb power at 30% 1RM, with no difference in maximal strength or jump height.","source":"Roschel et al. 2009, Journal of Sports Science and Medicine","url":"https://jssm.org/jssm-08-CSSI3-20.xml-Fulltext"},
+    {"claim":"Winners of national-team kumite bouts produced about 23% more upper-limb and 11% more lower-limb power at 30% of one-rep max, with no difference in maximal strength or jump height.","source":"Roschel et al. 2009, Journal of Sports Science and Medicine","url":"https://jssm.org/jssm-08-CSSI3-20.xml-Fulltext"},
     {"claim":"Kumite causes about 88 injuries per 1000 athlete-exposures, mostly minor head and neck contusions.","source":"Lystad et al. 2020, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/54/16/976"}
   ],
   "confidence": "moderate",
@@ -53,7 +53,7 @@
     "pre": [
       {"name":"Speed-strength lower","focus":"Light, fast loads and reactive jumps","slots":[
         {"role":"pow","ex":["hurdlehop","splitjump","pogo"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4","rir":3,"note":"Short ground contact"},
-        {"role":"pow","ex":["tbjump","squatjump","kbswing"],"sets":{"new":2,"inter":3,"adv":4},"reps":"3-5","rir":3,"note":"About 30% 1RM, move it as fast as you can"},
+        {"role":"pow","ex":["tbjump","squatjump","kbswing"],"sets":{"new":2,"inter":3,"adv":4},"reps":"3-5","rir":3,"note":"Light load, about 30% of your max, move it as fast as you can"},
         {"role":"main","ex":["trapdl","frontsq","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-4","rir":2,"note":"Heavy, low volume"},
         {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":1,"inter":2,"adv":2},"reps":"5","rir":2},
         {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10/side","rir":2}]},
@@ -79,7 +79,7 @@
       {"name":"Long intervals","mode":"any","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Raises aerobic power."}
     ],
     "pre": [
-      {"name":"Bout intervals","mode":"any","work":"3-4 rounds of 2-3 min: 2 s all-out burst (pads, shadow or bike) every 4 s","rest":"3 min between rounds","intensity":"All-out bursts, active footwork between","perWeek":2,"for":["kumite"],"why":"Matches the 1:1.5 effort to pause pattern of a bout."},
+      {"name":"Bout intervals","mode":"any","work":"3-4 rounds of 2-3 min: 2 s all-out burst (pads, shadow or bike), then 3 s of light footwork","rest":"3 min between rounds","intensity":"All-out bursts, active footwork between","perWeek":2,"for":["kumite"],"why":"Matches the 1:1.5 effort to pause pattern of a bout."},
       {"name":"Kata-length efforts","mode":"any","work":"4-6 x your longest kata at full intensity","rest":"3-4 min","intensity":"Competition effort","perWeek":2,"for":["kata"],"why":"Trains power that holds up for 1.5-3 min."},
       {"name":"Repeat sprints","mode":"any","work":"2 sets of 6 x 6 s","rest":"24 s between, 4 min between sets","intensity":"Max effort","perWeek":1,"why":"Builds repeat-effort capacity."}
     ],

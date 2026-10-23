@@ -18,7 +18,7 @@
   "variants": [
     {"id":"cutter","name":"Cutter","desc":"Most repeated sprints, deep cuts, high catches and layouts.",
      "q":{"power":3},"prehab":["nordic","landing"],
-     "note":"Your plan adds extra Nordic curls and keeps sprint and repeat-sprint work at the top of the week.",
+     "note":"Your plan adds a second weekly dose of Nordic curls. Keep your sprint and repeat-sprint work early in the week, on fresh legs.",
      "add":[{"role":"pre","ex":["nordicham","slidecurl","ghr"],"sets":{"new":1,"inter":2,"adv":2},"reps":"4-6","rir":2,"note":"Second weekly dose of Nordics"}]},
     {"id":"handler","name":"Handler","desc":"Shorter bursts, pivots and marking, with far more throws.",
      "q":{"rotational":3,"upperPull":2},"prehab":["shoulderER","elbow","trunkLat"],

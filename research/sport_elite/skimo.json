@@ -1,0 +1,770 @@
+{
+  "id": "skimo",
+  "name": "Ski mountaineering",
+  "aliases": [
+    "skimo",
+    "ski touring",
+    "ski mountaineering racing",
+    "splitboarding",
+    "splitboard",
+    "backcountry skiing",
+    "randonnee",
+    "vertical race"
+  ],
+  "group": "Snow",
+  "q": {
+    "maxStrength": 2,
+    "power": 1,
+    "rotational": 0,
+    "unilateral": 3,
+    "upperPull": 2,
+    "upperPush": 1,
+    "lowerBody": 3,
+    "grip": 1,
+    "neck": 0,
+    "trunk": 2,
+    "mass": 0
+  },
+  "prehab": [
+    "landing",
+    "calf",
+    "hipAbd",
+    "lowback"
+  ],
+  "season": {
+    "off": 3,
+    "pre": 2,
+    "in": 1
+  },
+  "avoidBefore": "lower",
+  "energy": "Mostly aerobic: races run at an average of about 87-93% of max heart rate for 20 min to 2 h or more, with short anaerobic surges in sprints and transitions and an eccentric leg load on the descents.",
+  "summary": "Ski mountaineering is a high-volume uphill endurance sport with a downhill that hammers the knees and thighs. The plan uses heavy, low-rep single-leg and hinge strength to make climbing cheaper and descents safer, with calf, hip and back work, while most of the fitness comes from climbing.",
+  "evidence": [
+    {
+      "claim": "Elite male ski mountaineers averaged a VO2max of 71 ml/kg/min against 62.5 in sub-elite; individual races average 93% of max heart rate and even downhills about 85%.",
+      "source": "Bortolan et al. 2021, Frontiers in Physiology",
+      "url": "https://www.frontiersin.org/articles/10.3389/fphys.2021.737249/full",
+      "grade": "moderate"
+    },
+    {
+      "claim": "In a survey of 104 ski mountaineers, most injuries were in the lower body and the knee was the most common site (29.6%); injured skiers did fewer core sessions and more ski sessions a week.",
+      "source": "Etayo-Urtasun et al. 2022, Sports",
+      "url": "https://doaj.org/article/ea312ccea325459a9d04f6a10e2dd758",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Heavy strength training added to endurance training improves running and cycling economy and performance.",
+      "source": "Ronnestad & Mujika 2014, Scandinavian Journal of Medicine and Science in Sports",
+      "url": "https://www.inigomujika.com/en/2013/08/13/optimizing-strength-training-for-running-and-cycling-endurance-performance-a-review-2/3040/",
+      "grade": "strong"
+    }
+  ],
+  "confidence": "limited",
+  "variants": [
+    {
+      "id": "race",
+      "name": "Skimo racing (vertical, individual, sprint)",
+      "desc": "Races from 3 min (sprint) to 2 h (individual) at very high heart rates, with fast transitions and poling.",
+      "q": {
+        "upperPull": 2,
+        "power": 2
+      },
+      "prehab": [
+        "calf",
+        "hipAbd"
+      ],
+      "note": "Your plan adds straight-arm pulldowns for poling. Most of your fitness work is uphill intervals.",
+      "add": [
+        {
+          "role": "acc",
+          "ex": [
+            "ropepullover",
+            "pullover",
+            "bandlatpd"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "10-12",
+          "rir": 2,
+          "note": "Pole-plant pattern, arms nearly straight"
+        }
+      ]
+    },
+    {
+      "id": "touring",
+      "name": "Recreational ski touring or splitboarding",
+      "desc": "Long days of 800-1,500 m of climbing with a pack, then descents on tired legs, often for several days in a row.",
+      "q": {
+        "trunk": 2,
+        "lowerBody": 3
+      },
+      "prehab": [
+        "landing",
+        "lowback"
+      ],
+      "note": "Your plan adds loaded step-ups for long climbs with a pack. Build 6-8 weeks before your trip.",
+      "add": [
+        {
+          "role": "acc",
+          "ex": [
+            "stepup",
+            "petersen",
+            "latstepup"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "10/side",
+          "rir": 2,
+          "note": "Wear your pack, or hold dumbbells"
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: single-leg strength",
+        "focus": "Climbing and descending legs",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "bbbss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "5-6/side",
+            "rir": 2,
+            "note": "Heavy: about 80% effort for inter and adv"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "frontsq",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "stepup",
+              "petersen",
+              "latstepup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "standcalf",
+              "stepcalf",
+              "seatedcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10/side or 30 s",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: hinge, pull and back",
+        "focus": "Posterior chain, poling and back endurance",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "rdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "singlerdl",
+              "hipthrust",
+              "glutebridge"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8/side",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd",
+              "invrow"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "ropepullover",
+              "pullover",
+              "dbrow"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "superman"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-12",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day C: landings and lateral hips",
+        "focus": "Knee control for descents",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "hopstick",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3,
+            "note": "Stick each landing for 2 s"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "isosplit",
+              "wallsit",
+              "spanishsq"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30-45 s",
+            "rir": 2,
+            "note": "Hold a low ski stance"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "cossack",
+              "latlunge",
+              "skater"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "copen"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "nordicham",
+              "slidecurl",
+              "lyingcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: heavy legs",
+        "focus": "Hold strength while climbing volume rises",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4-5/side",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "squat",
+              "trapdl",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3-4",
+            "rir": 2,
+            "note": "About 85% 1RM for inter and adv"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "standcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10/side",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: descent prep",
+        "focus": "Eccentric and lateral control",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "latbound",
+              "hopstick",
+              "boxjp"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "isosplit",
+              "wallsit",
+              "spanishsq"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "45-60 s",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "singlerdl",
+              "dbrdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "bandabd",
+              "sideabd",
+              "copen"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Maintenance",
+        "focus": "One short heavy session mid-week, 30-40 min",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "bss",
+              "dbsplit",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "4/side",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "trapdl",
+              "squat",
+              "goblet",
+              "legpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "About 80-85% 1RM, never to failure"
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "slcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "pallof",
+              "sideplank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10/side",
+            "rir": 2
+          }
+        ]
+      }
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Long uphill",
+        "mode": "any",
+        "work": "1.5-3 h hiking, trail running or cycling",
+        "rest": "none",
+        "intensity": "Easy, can talk in sentences",
+        "perWeek": 2,
+        "why": "Builds the aerobic base that decides skimo performance"
+      },
+      {
+        "name": "Uphill intervals",
+        "mode": "run",
+        "work": "5 x 4 min uphill, with poles if you can",
+        "rest": "3 min easy down",
+        "intensity": "Hard but steady, about 85-90% max heart rate",
+        "perWeek": 1,
+        "why": "Raises VO2max and threshold, the main limiters"
+      }
+    ],
+    "pre": [
+      {
+        "name": "Threshold climbs",
+        "mode": "run",
+        "work": "3 x 10-15 min steep uphill or incline treadmill",
+        "rest": "3-5 min easy",
+        "intensity": "Comfortably hard, about threshold",
+        "perWeek": 1,
+        "why": "Race pace for vertical and individual races"
+      },
+      {
+        "name": "Pack days",
+        "mode": "any",
+        "work": "3-5 h hike with 800-1,200 m climbing and a 6-10 kg pack",
+        "rest": "none",
+        "intensity": "Easy to steady",
+        "perWeek": 1,
+        "why": "Prepares legs and back for long touring days",
+        "for": [
+          "touring"
+        ]
+      },
+      {
+        "name": "Sprint efforts",
+        "mode": "ski",
+        "work": "6-8 x 3 min SkiErg or uphill",
+        "rest": "3 min easy",
+        "intensity": "Very hard",
+        "perWeek": 1,
+        "why": "Matches sprint race length (about 3 min)",
+        "for": [
+          "race"
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Quality climb",
+        "mode": "any",
+        "work": "4-6 x 4 min uphill on skins or on foot",
+        "rest": "3 min easy",
+        "intensity": "Hard, about 90% max heart rate",
+        "perWeek": 1,
+        "why": "Keep top-end fitness between race weekends",
+        "for": [
+          "race"
+        ]
+      }
+    ]
+  },
+  "tests": [
+    {
+      "id": "vo2max",
+      "name": "VO2max",
+      "how": "Lab test, or a sports-watch estimate used the same way each time",
+      "unit": "ml/kg/min",
+      "better": "higher",
+      "bands": {
+        "club": "<55",
+        "good": "55-65",
+        "elite": ">68"
+      },
+      "note": "Elite men in studies about 71, sub-elite about 62. Women lower. Club band is coach practice"
+    },
+    {
+      "id": "climbtt",
+      "name": "Uphill time trial",
+      "how": "Same hill or incline treadmill, fixed climb of 300-500 m, best effort",
+      "unit": "m:ss",
+      "better": "lower",
+      "bands": {},
+      "note": "Compare with yourself every 6-8 weeks"
+    },
+    {
+      "id": "squat3rm",
+      "name": "Trap bar deadlift or squat (estimated 1RM)",
+      "how": "From a 3-5 rep max",
+      "unit": "x BM",
+      "better": "higher",
+      "bands": {
+        "club": "<1.25",
+        "good": "1.25-1.5",
+        "elite": "1.5+"
+      },
+      "note": "Coach practice"
+    },
+    {
+      "id": "wallsit",
+      "name": "Single-leg wall sit or ski-stance hold",
+      "how": "Thighs near parallel, hold to failure",
+      "unit": "s",
+      "better": "higher",
+      "bands": {},
+      "note": "Compare with yourself; legs within 10% of each other"
+    }
+  ],
+  "week": [
+    "Off-season (May to Oct): 2-3 gym sessions on easy days, strength before endurance if same day",
+    "Long climbs at the weekend, hard intervals mid-week",
+    "On snow: one short heavy session mid-week",
+    "Nothing heavy for the legs within 48 h of a race or big tour"
+  ],
+  "primer": [
+    "10 min easy skinning or jog",
+    "3-4 x 20 s strides building to race pace",
+    "2 x 3 squat jumps"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy session 7 days out",
+      "Cut endurance volume 40-60%, keep a few short hard efforts",
+      "Gym volume down by about half",
+      "No new exercises in the last 2 weeks"
+    ]
+  },
+  "rules": [
+    "Strength is heavy and low-rep, not high-rep endurance lifting",
+    "Avalanche training, kit and partner before any off-piste touring",
+    "Build climbing volume by no more than about 10% a week",
+    "Knee pain on descents: cut eccentric volume and see a physio"
+  ],
+  "sources": [
+    {
+      "source": "Bortolan et al. 2021, Frontiers in Physiology",
+      "url": "https://www.frontiersin.org/articles/10.3389/fphys.2021.737249/full"
+    },
+    {
+      "source": "Etayo-Urtasun et al. 2022, Sports",
+      "url": "https://doaj.org/article/ea312ccea325459a9d04f6a10e2dd758"
+    },
+    {
+      "source": "Ronnestad & Mujika 2014, Scandinavian Journal of Medicine and Science in Sports",
+      "url": "https://www.inigomujika.com/en/2013/08/13/optimizing-strength-training-for-running-and-cycling-endurance-performance-a-review-2/3040/"
+    },
+    {
+      "source": "Eihara et al. 2022, Sports Medicine Open",
+      "url": "https://sportsmedicine-open.springeropen.com/counter/pdf/10.1186/s40798-022-00511-1"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Weighted pack step-up",
+      "pattern": "lunge",
+      "equipment": "backpack",
+      "why": "Touring-specific loaded climbing"
+    }
+  ]
+}

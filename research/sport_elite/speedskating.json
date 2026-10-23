@@ -19,15 +19,17 @@
     {"id":"longtrack","name":"Long track","desc":"400 m oval, 500 m to 10,000 m; sprinters need max strength and power, distance skaters need aerobic capacity and crouch endurance.",
      "q":{"maxStrength":3,"power":3},
      "prehab":["lowback","patellar"],
-     "note":"Sprinters keep heavy strength and jumps; distance skaters swap some power work for bike volume."},
+     "note":"Your plan is the standard one. Sprinters: push the heavy lifts and jumps. Distance skaters: add bike volume rather than extra jumps."},
     {"id":"shorttrack","name":"Short track","desc":"111 m oval, 500 m to 1500 m pack racing with tight left turns, crossovers, surges, contact and falls.",
      "q":{"unilateral":3,"neck":2,"trunk":3},
      "prehab":["copenhagen","neck","ankle"],
-     "note":"More lateral power and single-leg work, neck strength for falls, and longer recovery after ice sessions."},
+     "note":"Your plan adds lateral bounds and neck work for falls. Leave a longer gap after hard ice sessions.",
+     "add":[{"role": "pow", "ex": ["latbound", "skater", "hurdlehop"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "4/side", "rir": 3, "note": "Land in the skating position and hold 1 s."}, {"role": "pre", "ex": ["neckiso", "neckband"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "10-15 s each way", "rir": 3}]},
     {"id":"inline","name":"Inline speed skating","desc":"Same crouched stride on wheels, on track and road, with long road races and crashes on hard ground.",
      "q":{"maxStrength":2,"power":2},
      "prehab":["lowback","hipAbd","wrist"],
-     "note":"More aerobic work for road races and wrist protection for falls; the outdoor season runs spring to autumn."}
+     "note":"Your plan adds wrist strength work for falls. For road races, add extra long easy rides; the outdoor season runs spring to autumn.",
+     "add":[{"role": "pre", "ex": ["wristcurl", "revwristcurl", "pronsup"], "sets": {"new": 2, "inter": 2, "adv": 2}, "reps": "12-15", "rir": 2}]}
   ],
   "sessions": {
     "off": [
@@ -105,7 +107,7 @@
       {"name":"Aerobic intervals","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Raises aerobic power for 1500 m and longer races."}
     ],
     "pre": [
-      {"name":"Race-pace intervals","mode":"bike","work":"6-8 x 30-45 s hard","rest":"3-4 min easy","intensity":"Near all-out, RPE 9","perWeek":1,"why":"Lactate tolerance for 500-1500 m efforts; 800 m time trials produced lactate of about 10-11 mmol/L (Hettinga 2016)."},
+      {"name":"Race-pace intervals","mode":"bike","work":"6-8 x 30-45 s hard","rest":"3-4 min easy","intensity":"Near all-out, 9 out of 10 effort","perWeek":1,"why":"Lactate tolerance for 500-1500 m efforts; 800 m time trials produced lactate of about 10-11 mmol/L (Hettinga 2016)."},
       {"name":"Dryland skating imitation","mode":"any","work":"6-10 x 30 s skating-position side jumps or slide board","rest":"60-90 s","intensity":"Hard, hold the crouch","perWeek":1,"why":"Specific crouch endurance off ice (practice)."}
     ],
     "in": [
@@ -115,9 +117,9 @@
   "tests": [
     {"id":"wingate","name":"30 s all-out bike sprint","how":"Wattbike or Monark at 7.5% of body mass, 30 s all-out from a rolling start; record peak power per kg.","unit":"W/kg","better":"higher","bands":{"club":"<12.4","good":"12.4-13.8","elite":">13.8"},"note":"Senior men from Polish national team data (Sitkowski 2025). Senior women: average 10.66-11.41, very high above 12.16."},
     {"id":"broadjump","name":"Standing broad jump","how":"Two-foot take-off, stick the landing, measure to the back heel; best of 3.","unit":"cm","better":"higher","bands":{"club":"210-240","good":"240-270","elite":">270"},"note":"Practice bands for men; women about 15-20% lower."},
-    {"id":"latjump","name":"Single-leg lateral bound","how":"From one leg, bound sideways and stick on the other leg; measure inside foot to inside foot, best of 3 each way.","unit":"cm","better":"higher","bands":{"club":"track change","good":"track change","elite":"track change"},"note":"No verified norms; height dependent. Flag a left-right gap above 10-15% (practice)."},
+    {"id":"latjump","name":"Single-leg lateral bound","how":"From one leg, bound sideways and stick on the other leg; measure inside foot to inside foot, best of 3 each way.","unit":"cm","better":"higher","bands":{},"note":"No verified norms; height dependent. Flag a left-right gap above 10-15% (practice)."},
     {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"34-40","good":"40-46","elite":">46"},"note":"Practice bands for men; women about 20% lower."},
-    {"id":"rm3","name":"Estimated squat 1RM","how":"Work up to a 3-5RM back or front squat and estimate 1RM; divide by body mass.","unit":"x body mass","better":"higher","bands":{"club":"1.2-1.5","good":"1.5-1.8","elite":">1.8"},"note":"Practice bands for men; women about 0.2-0.3 lower. Not for under-16s."}
+    {"id":"rm3","name":"Estimated squat max","how":"Work up to a 3-5 rep max back or front squat and estimate your one-rep max (1RM); divide by body mass.","unit":"x body mass","better":"higher","bands":{"club":"1.2-1.5","good":"1.5-1.8","elite":">1.8"},"note":"Practice bands for men; women about 0.2-0.3 lower. Not for under-16s."}
   ],
   "week": [
     "Race weekend: heavy lower session Monday or Tuesday.",
@@ -143,7 +145,7 @@
     "Short track: helmet, cut-resistant suit, neck guard, shin and ankle protection in every session.",
     "Inline: helmet and wrist guards on the road.",
     "Plan off-ice load as carefully as ice; many short track injuries happen off ice.",
-    "Under 16: no 1RM testing and no depth jumps."
+    "Under 16: no one-rep max testing and no depth jumps."
   ],
   "sources": [
     {"source":"Konings MJ et al. 2015, Sports Med 45(4):505-516","url":"https://researchportal.northumbria.ac.uk/en/publications/performance-characteristics-of-long-track-speed-skaters-a-literat/"},

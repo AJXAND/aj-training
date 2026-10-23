@@ -19,11 +19,12 @@
     {"id":"sparring","name":"Sparring (kyorugi)","desc":"Three 2 min rounds of explosive kicking with contact, footwork and head-kick risk.",
      "q":{"power":3,"neck":2},
      "prehab":["ankle","neck"],
-     "note":"Full plan with round-based intervals, neck work and weight-making rules."},
+     "note":"Your plan includes round-based kicking intervals and neck work; follow the weight-making rules."},
     {"id":"poomsae","name":"Poomsae (forms)","desc":"No contact; balance, flexibility, kick height and control, plus jumping and spinning kicks in freestyle poomsae.",
      "q":{"power":2,"neck":0,"maxStrength":1,"trunk":3},
      "prehab":["landing","ankle","lowback"],
-     "note":"Less conditioning and no neck work; more balance, landing control, trunk and active flexibility."}
+     "note":"Your plan adds landing control and trunk work and skips the round and kicking intervals. The short neck work stays in.",
+     "add":[{"role": "pre", "ex": ["dropstick", "hopstick", "slbalance"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "4", "rir": 3, "note": "Land quietly and hold 2 s."}, {"role": "core", "ex": ["hollow", "abwheel", "deadbug"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "8-10", "rir": 2}]}
   ],
   "sessions": {
     "off": [
@@ -65,7 +66,7 @@
         {"role":"acc","ex":["ffesplit","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
         {"role":"acc","ex":["nordicham","slidecurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2},
         {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-12/side","rir":2},
-        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"4/side","rir":3}
+        {"role":"pre","ex":["hopstick","dropstick","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"4/side","rir":3}
        ]},
       {"name":"Rotation, hips and neck","focus":"Fast rotation and the protection modules.",
        "slots":[
@@ -101,16 +102,16 @@
       {"name":"Aerobic base","mode":"bike","work":"30-40 min steady, or 4 x 4 min","rest":"3 min easy between 4 min reps","intensity":"Steady; intervals 85-95% max heart rate","perWeek":2,"why":"Faster recovery between exchanges, rounds and fights."}
     ],
     "pre": [
-      {"name":"Round simulation","mode":"court","work":"3 x 2 min rounds of pad or bag work: 2-3 s kick flurry, then 5-8 s bouncing footwork, repeated","rest":"1 min between rounds; 3 sets with 5 min between","intensity":"Max effort flurries, light footwork","perWeek":2,"why":"Copies the WT format of three 2 min rounds with 1 min rest (practice for the flurry timing)."},
-      {"name":"Repeat sprint kicks","mode":"court","work":"FSKTmult style: 5 x 10 s max roundhouse kicks","rest":"10 s between sets, 3 min between blocks; 2-3 blocks","intensity":"Max kick rate with full technique","perWeek":1,"why":"Builds the repeat kicking capacity the FSKT measures."}
+      {"name":"Round simulation","mode":"court","work":"3 x 2 min rounds of pad or bag work: 2-3 s kick flurry, then 5-8 s bouncing footwork, repeated","rest":"1 min between rounds; 3 sets with 5 min between","intensity":"Max effort flurries, light footwork","perWeek":2,"why":"Copies the World Taekwondo format of three 2 min rounds with 1 min rest (practice for the flurry timing).","for":["sparring"]},
+      {"name":"Repeat sprint kicks","mode":"court","work":"5 x 10 s max roundhouse kicks, like the multiple kick test","rest":"10 s between sets, 3 min between blocks; 2-3 blocks","intensity":"Max kick rate with full technique","perWeek":1,"why":"Builds the repeat kicking capacity the kick tests measure.","for":["sparring"]}
     ],
     "in": [
-      {"name":"Top-up round simulation","mode":"court","work":"2 sets of 3 x 2 min rounds","rest":"1 min between rounds","intensity":"As pre-season","perWeek":1,"why":"Only in weeks without a competition."}
+      {"name":"Top-up round simulation","mode":"court","work":"2 sets of 3 x 2 min rounds","rest":"1 min between rounds","intensity":"As pre-season","perWeek":1,"why":"Only in weeks without a competition.","for":["sparring"]}
     ]
   },
   "tests": [
-    {"id":"fskt10","name":"Frequency speed of kick test, 10 s","how":"Partner holds a pad at trunk height; alternate-leg roundhouse kicks for 10 s, count valid kicks.","unit":"kicks","better":"higher","bands":{"club":"18-21","good":"22-23","elite":">=24"},"note":"Men's classes from Santos 2019 (regular, good, excellent). Women: regular 17-20, good 21, excellent 22 or more."},
-    {"id":"fsktmult","name":"Multiple frequency speed of kick test","how":"5 x 10 s FSKT with 10 s rest; total kicks and drop-off from best to worst set.","unit":"kicks","better":"higher","bands":{"club":"85-96","good":"97-107","elite":">=108"},"note":"Men (Santos 2019). Women: regular 82-91, good 92-96, excellent 97 or more."},
+    {"id":"fskt10","name":"Frequency speed of kick test, 10 s","how":"Partner holds a pad at trunk height; alternate-leg roundhouse kicks for 10 s, count valid kicks.","unit":"kicks","better":"higher","bands":{"club":"18-21","good":"22-23","elite":"24+"},"note":"Men's classes from Santos 2019 (regular, good, excellent). Women: regular 17-20, good 21, excellent 22 or more."},
+    {"id":"fsktmult","name":"Multiple frequency speed of kick test","how":"5 x 10 s kick tests with 10 s rest; total kicks and drop-off from best to worst set.","unit":"kicks","better":"higher","bands":{"club":"85-96","good":"97-107","elite":"108+"},"note":"Men (Santos 2019). Women: regular 82-91, good 92-96, excellent 97 or more."},
     {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"32-38","good":"38-44","elite":">44"},"note":"Practice bands for men; women about 20% lower."},
     {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on each leg, best of 3; record the difference between legs.","unit":"% difference","better":"lower","bands":{"club":">15","good":"10-15","elite":"<10"},"note":"Over 10-15% is a flag for knee injury risk and kicking imbalance (practice)."},
     {"id":"sebt","name":"Y-balance anterior reach","how":"Single-leg stance, reach forward along a tape line with the other foot; best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A difference over 4 cm is linked to lower-limb injury in other sports (Plisky 2006)."}

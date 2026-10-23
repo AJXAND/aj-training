@@ -1,0 +1,893 @@
+{
+  "id": "diving",
+  "name": "Diving",
+  "aliases": [
+    "springboard diving",
+    "platform diving",
+    "high diving",
+    "cliff diving",
+    "synchronised diving",
+    "3m springboard",
+    "10m platform"
+  ],
+  "group": "Water",
+  "q": {
+    "maxStrength": 2,
+    "power": 3,
+    "rotational": 2,
+    "unilateral": 1,
+    "upperPull": 2,
+    "upperPush": 2,
+    "lowerBody": 3,
+    "grip": 1,
+    "neck": 1,
+    "trunk": 3,
+    "mass": 0
+  },
+  "prehab": [
+    "lowback",
+    "shoulderER",
+    "wrist",
+    "scap",
+    "patellar"
+  ],
+  "season": {
+    "off": 3,
+    "pre": 2,
+    "in": 2
+  },
+  "avoidBefore": "all",
+  "energy": "Each dive is a single maximal take-off and a flight of 1-3 s, so it is almost all ATP-PC; the aerobic demand is low, but sessions hold many repeats.",
+  "summary": "Diving needs a powerful take-off, fast rotation from a stiff, strong trunk, and wrists, shoulders and lower back that tolerate hundreds of water entries. The plan builds jump power and leg strength, anti-extension trunk strength, and shoulder, wrist and back resilience, kept short around pool work.",
+  "evidence": [
+    {
+      "claim": "A systematic review of 28 studies found the shoulder, lower back, trunk and wrist are the most injured areas in divers; low back pain is reported by up to 89% over a career.",
+      "source": "Currie et al. 2025, Sports Health",
+      "url": "https://researchsystem.canberra.edu.au/ws/portalfiles/portal/113004481/currie-et-al-2024-diving-into-the-health-problems-of-competitive-divers-a-systematic-review-of-injuries-and-illnesses.pdf",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Water entry was the mechanism in about 71% of reported injuries; platform divers mostly hurt the upper limb and springboard divers the lower limb.",
+      "source": "Currie et al. 2025, Sports Health",
+      "url": "https://researchsystem.canberra.edu.au/ws/portalfiles/portal/113004481/currie-et-al-2024-diving-into-the-health-problems-of-competitive-divers-a-systematic-review-of-injuries-and-illnesses.pdf",
+      "grade": "moderate"
+    },
+    {
+      "claim": "Back and reverse dives, and platform more than springboard, are linked to more injuries; the wrist, shoulder and lumbar spine are injured most.",
+      "source": "Rubin 1999, Clinics in Sports Medicine",
+      "url": "https://lida.sport-iat.de/ta/Record/4002912?lng=en",
+      "grade": "practice"
+    }
+  ],
+  "confidence": "limited",
+  "variants": [
+    {
+      "id": "springboard",
+      "name": "Springboard (1 m and 3 m)",
+      "desc": "Take-off from a flexing board loads the calves, knees and hips; lower-limb injuries are more common.",
+      "q": {
+        "lowerBody": 3,
+        "power": 3
+      },
+      "prehab": [
+        "patellar",
+        "calf",
+        "lowback"
+      ],
+      "note": "Your plan adds Spanish squat holds for the knee tendons and extra calf work.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "spanishsq",
+            "isosplit",
+            "wallsit"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 4
+          },
+          "reps": "30-45 s",
+          "rir": 3,
+          "note": "Hard but pain no more than 3/10"
+        },
+        {
+          "role": "pre",
+          "ex": [
+            "slcalf",
+            "stepcalf",
+            "standcalf"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "10-12",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "Platform (5 m, 7.5 m, 10 m)",
+      "desc": "Entry speeds of about 50-60 km/h from 10 m and armstand dives load the wrists and shoulders.",
+      "q": {
+        "upperPush": 3,
+        "trunk": 3
+      },
+      "prehab": [
+        "wrist",
+        "shoulderER",
+        "scap"
+      ],
+      "note": "Your plan adds handstand holds and push-up plus for overhead strength. Use grip and wrist tape as your coach advises.",
+      "add": [
+        {
+          "role": "acc",
+          "ex": [
+            "handstand",
+            "pikepush",
+            "standdbohp"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "20-30 s or 6-8",
+          "rir": 2,
+          "note": "Stacked line, ribs down"
+        },
+        {
+          "role": "pre",
+          "ex": [
+            "pushupplus",
+            "scappushup",
+            "serpunch"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 2,
+            "adv": 3
+          },
+          "reps": "10-15",
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "id": "high",
+      "name": "High diving (20 m women, 27 m men)",
+      "desc": "Feet-first entries at very high speed compress the spine, knees and ankles; few dives but each is a big load.",
+      "q": {
+        "trunk": 3,
+        "neck": 2,
+        "maxStrength": 3
+      },
+      "prehab": [
+        "lowback",
+        "neck",
+        "landing"
+      ],
+      "note": "Your plan adds neck strength and hollow-body holds to brace for entry. Build height with your coach, never alone.",
+      "add": [
+        {
+          "role": "pre",
+          "ex": [
+            "neckiso",
+            "neckband"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "10-15 s each way",
+          "rir": 3
+        },
+        {
+          "role": "core",
+          "ex": [
+            "hollow",
+            "deadbug",
+            "plank"
+          ],
+          "sets": {
+            "new": 2,
+            "inter": 3,
+            "adv": 3
+          },
+          "reps": "20-30 s",
+          "rir": 2
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "off": [
+      {
+        "name": "Day A: jump and squat",
+        "focus": "Take-off power and leg strength",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp",
+              "squatjump",
+              "tuckjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3-4",
+            "rir": 3,
+            "note": "Arm swing like a take-off; full rest"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "4-6",
+            "rir": 2,
+            "note": "About 75-80% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "bss",
+              "stepup",
+              "bwss"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6/side",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "standcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-12",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "abwheel",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s or 8",
+            "rir": 2,
+            "note": "Ribs down, no arching"
+          }
+        ]
+      },
+      {
+        "name": "Day B: overhead and shoulders",
+        "focus": "Overhead strength, shoulder blades and wrists",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "mbslam",
+              "mbchest",
+              "clappu"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5-8",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "standdbohp",
+              "ohp",
+              "pikepush",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6-8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "sideer",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "pushupplus",
+              "scappushup",
+              "serpunch"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "10-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "dbwristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day C: hinge, trunk and back",
+        "focus": "Posterior chain and lower-back endurance",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "kbswing",
+              "hangclean",
+              "broadjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "4-5",
+            "rir": 3,
+            "note": "New: kettlebell swing or broad jump"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "rdl",
+              "dbrdl",
+              "trapdl",
+              "kbrdl"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "hipthrust",
+              "glutebridge",
+              "singlerdl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "mcgill"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-12",
+            "rir": 2,
+            "note": "Neutral spine, do not hyperextend"
+          },
+          {
+            "role": "core",
+            "ex": [
+              "sideplank",
+              "pallof",
+              "suitcase"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "30 s/side",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "lsit",
+              "hangleg",
+              "legraise"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "10-20 s or 8",
+            "rir": 2,
+            "note": "Pike compression for tucks and pikes"
+          }
+        ]
+      }
+    ],
+    "pre": [
+      {
+        "name": "Day A: power",
+        "focus": "Max-intent jumps, lighter strength",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 4,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "Full rest"
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "legpress",
+              "goblet"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 4
+            },
+            "reps": "3",
+            "rir": 2,
+            "note": "About 85% 1RM for inter and adv"
+          },
+          {
+            "role": "acc",
+            "ex": [
+              "slcalf",
+              "standcalf",
+              "stepcalf"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "8-10",
+            "rir": 2
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "abwheel",
+              "deadbug"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "20-30 s or 8",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper and resilience",
+        "focus": "Shoulders, wrists, back",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 3,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "5-6",
+            "rir": 2
+          },
+          {
+            "role": "main",
+            "ex": [
+              "standdbohp",
+              "pikepush",
+              "lmpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "6",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup",
+              "dbwristcurl"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "mcgill"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 2
+          }
+        ]
+      }
+    ],
+    "in": [
+      {
+        "name": "Day A: short power and legs",
+        "focus": "Keep take-off power, 30 min",
+        "slots": [
+          {
+            "role": "pow",
+            "ex": [
+              "cmj",
+              "boxjp",
+              "squatjump"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 3,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3
+          },
+          {
+            "role": "main",
+            "ex": [
+              "frontsq",
+              "squat",
+              "goblet",
+              "legpress"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "3",
+            "rir": 3,
+            "note": "About 80-85% 1RM, never to failure"
+          },
+          {
+            "role": "core",
+            "ex": [
+              "hollow",
+              "deadbug",
+              "plank"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "20-30 s",
+            "rir": 2
+          }
+        ]
+      },
+      {
+        "name": "Day B: upper and prehab",
+        "focus": "Shoulders, wrists and back, 20-30 min",
+        "slots": [
+          {
+            "role": "main",
+            "ex": [
+              "pullup",
+              "chinup",
+              "latpd"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 3
+            },
+            "reps": "5",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "cabler",
+              "bander",
+              "ytw"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "wristcurl",
+              "pronsup"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "12-15",
+            "rir": 2
+          },
+          {
+            "role": "pre",
+            "ex": [
+              "hipext",
+              "birddog",
+              "mcgill"
+            ],
+            "sets": {
+              "new": 2,
+              "inter": 2,
+              "adv": 2
+            },
+            "reps": "10",
+            "rir": 2
+          }
+        ]
+      }
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {
+        "name": "Easy aerobic",
+        "mode": "bike",
+        "work": "20-30 min",
+        "rest": "none",
+        "intensity": "Easy, conversational",
+        "perWeek": 1,
+        "why": "Recovery between long pool and dryland days (coach practice)"
+      }
+    ],
+    "pre": [],
+    "in": []
+  },
+  "tests": [
+    {
+      "id": "cmj",
+      "name": "Countermovement jump with arm swing",
+      "how": "Jump app or jump-and-reach, best of 3",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {},
+      "note": "Compare with yourself; no diving norms in our sources"
+    },
+    {
+      "id": "squat3rm",
+      "name": "Front or back squat (estimated 1RM)",
+      "how": "From a 3-5 rep max with good depth",
+      "unit": "x BM",
+      "better": "higher",
+      "bands": {
+        "club": "<1.25",
+        "good": "1.25-1.5",
+        "elite": "1.5+"
+      },
+      "note": "Coach practice, borrowed from gymnastics"
+    },
+    {
+      "id": "hshold",
+      "name": "Handstand hold",
+      "how": "Against a wall or freestanding, straight line",
+      "unit": "s",
+      "better": "higher",
+      "bands": {
+        "good": "60+"
+      },
+      "note": "Platform divers. Coach practice"
+    },
+    {
+      "id": "pullups",
+      "name": "Strict pull-ups",
+      "how": "Dead hang, chin over bar, no kip, max reps",
+      "unit": "reps",
+      "better": "higher",
+      "bands": {
+        "club": "<8",
+        "good": "8-15",
+        "elite": "15+"
+      },
+      "note": "Coach practice. Women about two thirds of these"
+    },
+    {
+      "id": "pike",
+      "name": "Sit and reach (pike)",
+      "how": "Legs straight, reach past toes on a box",
+      "unit": "cm",
+      "better": "higher",
+      "bands": {},
+      "note": "Compare with yourself; pike depth matters for dive shapes"
+    }
+  ],
+  "week": [
+    "Lift after pool training or on lighter days, 30-45 min",
+    "Hardest leg and jump work early in the week",
+    "Never heavy or high-volume dryland the day before a competition",
+    "Competition week: one short power and prehab session"
+  ],
+  "primer": [
+    "Dynamic warm-up with arm swings",
+    "2 x 3 jumps with take-off arm swing",
+    "1 set of band shoulder rotations and wrist prep",
+    "Stop well short of fatigue"
+  ],
+  "taper": {
+    "days": 10,
+    "lines": [
+      "Last heavy session 7-10 days out",
+      "Gym volume down by about half, keep the load",
+      "Keep short, sharp jumps",
+      "No new exercises in the last 2 weeks",
+      "No max testing within 10 days"
+    ]
+  },
+  "rules": [
+    "Under 18: supervised, technique first, follow youth training guidance",
+    "Wrist pain on weight-bearing or entries: stop and see a physio",
+    "Back pain when arching in a young diver: medical review before more diving",
+    "Learn new dives with a qualified coach, never alone",
+    "High diving: only with trained safety divers in the water"
+  ],
+  "sources": [
+    {
+      "source": "Currie et al. 2025, Sports Health",
+      "url": "https://researchsystem.canberra.edu.au/ws/portalfiles/portal/113004481/currie-et-al-2024-diving-into-the-health-problems-of-competitive-divers-a-systematic-review-of-injuries-and-illnesses.pdf"
+    },
+    {
+      "source": "Rubin 1999, Clinics in Sports Medicine",
+      "url": "https://lida.sport-iat.de/ta/Record/4002912?lng=en"
+    }
+  ],
+  "missing_ex": [
+    {
+      "name": "Wrist push-up and plank rocking",
+      "pattern": "wrist",
+      "equipment": "",
+      "why": "Progressive weight-bearing wrist loading for platform entries"
+    },
+    {
+      "name": "Seated pike lift",
+      "pattern": "core",
+      "equipment": "",
+      "why": "Compression strength for tight pike and tuck shapes"
+    }
+  ]
+}

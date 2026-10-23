@@ -1,0 +1,129 @@
+{
+  "id": "polo",
+  "name": "Polo",
+  "aliases": ["horse polo", "field polo", "arena polo", "snow polo", "low goal polo"],
+  "group": "Team",
+  "q": {"maxStrength":2,"power":1,"rotational":3,"unilateral":1,"upperPull":2,"upperPush":1,"lowerBody":2,"grip":2,"neck":1,"trunk":3,"mass":1},
+  "prehab": ["lowback", "copenhagen", "wrist", "shoulderER", "neck", "trunkLat"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "Repeated hard efforts in 7-minute chukkas with short breaks: elite riders average about 150 bpm in a match, so an aerobic base with repeat-effort fitness matters.",
+  "summary": "Polo needs a strong trunk, adductors and legs to stay in the saddle while riding off and swinging, and injuries are rare but often serious, mostly from falls. The plan builds rotation, trunk and groin capacity, hitting-arm forearm and shoulder strength, and neck strength.",
+  "evidence": [
+    {"claim":"In 103 polo riders, 40% were injured over two years and two thirds of injuries kept them out for more than 30 days; falls from the horse caused 44%, and the wrist and low back were the most common overuse pain sites.","source":"Neumayr & Schmitt 2019, German Journal of Sports Medicine","url":"https://www.germanjournalsportsmedicine.com/archive/archiv-2019/issue-2/injuries-in-polo-a-retrospective-evaluation-of-103-polo-riders/"},
+    {"claim":"In Argentine high goal polo, injuries occurred at 7.8 per 1,000 player-game hours, with arms, legs and head most affected and fractures from falls the most common type.","source":"Costa-Paz, Aponte-Tinao & Muscolo 1999, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/33/5/329"},
+    {"claim":"Elite polo players averaged 150 bpm across a match and spent most playing time in the hard heart rate zone.","source":"Wright & Peters 2008, International Journal of Performance Analysis in Sport","url":"https://pureportal.coventry.ac.uk/en/publications/a-heart-rate-analysis-of-the-cardiovascular-demands-of-elite-leve/"}
+  ],
+  "confidence": "limited",
+  "variants": [
+    {"id":"field","name":"Field polo","desc":"Four a side on a big field at high speed, with long swings and many pony changes.","q":{"rotational":3},"prehab":["lowback","wrist"],"note":"Standard plan: rotation, trunk and hitting-arm work."},
+    {"id":"arena","name":"Arena polo","desc":"Three a side in an enclosed arena with more riding off and short, quick play, usually in winter.","q":{"lowerBody":3,"trunk":3},"prehab":["copenhagen","neck"],"note":"More adductor and trunk bracing for riding off; the winter season shifts your in-season block."},
+    {"id":"back","name":"Back (No. 4)","desc":"Defensive role with more riding off and backhand shots.","q":{"rotational":3,"lowerBody":3},"prehab":["copenhagen","shoulderER"],"note":"Train rotation to both sides and extra adductor work."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower and groin strength","focus":"Legs, adductors and back for the saddle","slots":[
+        {"role":"pow","ex":["broadjump","cmj","boxjp"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":3,"note":"Full rest; quality only."},
+        {"role":"main","ex":["trapdl","squat","goblet","legpress"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5-8","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["copen","adductor","addsqueeze"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-10/side","rir":2,"note":"Build over weeks; groin pain is common in polo."},
+        {"role":"pre","ex":["hipext","birddog","revhyp"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12","rir":3},
+        {"role":"core","ex":["wallsit","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s","rir":2,"note":"Wall sit high, like standing in the stirrups."}
+      ]},
+      {"name":"Rotation and upper","focus":"Swing power, pulling and hitting-arm forearm","slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":2,"inter":3,"adv":4},"reps":"5/side","rir":2,"note":"Both sides, hitting side first."},
+        {"role":"main","ex":["pullup","latpd","dbrow","invrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"main","ex":["lmpress","flatdb","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12/side","rir":3},
+        {"role":"pre","ex":["wristcurl","pronsup","wristroller"],"sets":{"new":2,"inter":3,"adv":3},"reps":"15","rir":2,"note":"Hitting arm wrist and forearm; both arms."},
+        {"role":"core","ex":["woodchop","cablelift","pallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2}
+      ]},
+      {"name":"Trunk, neck and carry","focus":"Fall resilience and bracing","slots":[
+        {"role":"main","ex":["dbrdl","rdl","kbrdl"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"acc","ex":["farmers","suitcase","sandbagcarry"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 m","rir":2},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15 s each way","rir":3,"note":"4 directions, about 50-70% effort."},
+        {"role":"pre","ex":["facepull","bandpa","ytw"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":3},
+        {"role":"core","ex":["sideplank","suitcase","dbsidebend"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s/side","rir":2},
+        {"role":"core","ex":["abwheel","deadbug","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+      ]}
+    ],
+    "pre": [
+      {"name":"Lower and groin","focus":"Keep strength, add power","slots":[
+        {"role":"pow","ex":["broadjump","cmj","latbound"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["trapdl","squat","goblet"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["copen","adductor","addsqueeze"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-10/side","rir":2},
+        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":3},
+        {"role":"core","ex":["wallsit","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"45 s","rir":2}
+      ]},
+      {"name":"Rotation and upper","focus":"Swing power and shoulders","slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4/side","rir":2},
+        {"role":"main","ex":["pullup","dbrow","latpd"],"sets":{"new":3,"inter":3,"adv":3},"reps":"5-8","rir":2},
+        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12/side","rir":3},
+        {"role":"pre","ex":["wristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15","rir":2},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-15 s each way","rir":3}
+      ]}
+    ],
+    "in": [
+      {"name":"Strength upkeep","focus":"Short full body early in the week","slots":[
+        {"role":"main","ex":["trapdl","goblet","squat"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":3},
+        {"role":"main","ex":["pullup","dbrow","invrow"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5-6","rir":3},
+        {"role":"pre","ex":["copen","adductor"],"sets":{"new":1,"inter":2,"adv":2},"reps":"6-8/side","rir":3},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":3}
+      ]},
+      {"name":"Trunk and prehab","focus":"Back, neck, forearm; no heavy legs","slots":[
+        {"role":"pow","ex":["mbrot","mbscoop"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3/side","rir":3},
+        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10 s each way","rir":3},
+        {"role":"pre","ex":["wristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":2},"reps":"15","rir":3},
+        {"role":"core","ex":["deadbug","suitcase"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s","rir":3}
+      ]}
+    ]
+  },
+  "conditioning": {
+    "off": [{"name":"Aerobic base","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate, hard but steady","perWeek":1,"why":"Builds the base for repeated hard chukkas."},
+            {"name":"Steady cardio","mode":"any","work":"30-40 min","rest":"none","intensity":"Easy, conversational","perWeek":1,"why":"Recovery and base when not riding."}],
+    "pre": [{"name":"Chukka intervals","mode":"bike","work":"4 x 7 min of 20 s hard / 40 s easy","rest":"3 min easy","intensity":"Hard efforts at RPE 8-9","perWeek":1,"why":"Mimics 7-minute chukkas with 3-minute pony changes; practice."}],
+    "in": []
+  },
+  "tests": [
+    {"id":"copenhold","name":"Copenhagen plank hold","how":"Top leg on a bench at the knee (short lever), time per side","unit":"s","better":"higher","bands":{"club":"15-30","good":"30-45","elite":">45"},"note":"Practice bands. Sides within 10%."},
+    {"id":"sideplank","name":"Side plank hold","how":"Forearm and feet, straight line, each side","unit":"s","better":"higher","bands":{"club":"45-60","good":"60-90","elite":">90"},"note":"Practice bands."},
+    {"id":"mbrotthrow","name":"Rotational med ball throw","how":"3 kg ball, side-on throw for distance, best of 3 each side","unit":"m","better":"higher","bands":{"club":"track change","good":"track change","elite":"track change"},"note":"No polo norms. Keep sides within 10-15%."},
+    {"id":"twopoint","name":"Two-point wall sit","how":"Back on wall, knees about 120 degrees, like standing in stirrups","unit":"s","better":"higher","bands":{"club":"60-90","good":"90-120","elite":">120"},"note":"Practice bands."}
+  ],
+  "week": [
+    "Matches at the weekend: lower and groin session Monday or Tuesday.",
+    "Trunk, neck and upper session midweek.",
+    "No heavy legs within 72 h of a match.",
+    "Stick and ball and riding count as training; cut gym if riding several ponies a day."
+  ],
+  "primer": [
+    "Dynamic hip and trunk warm-up, 5 min",
+    "Med ball rotational throws 2 x 3 per side",
+    "Adductor squeeze 2 x 10 s",
+    "Neck isometrics 1 x 10 s each way"
+  ],
+  "taper": {"days":7, "lines":[
+    "Last heavy lower 4-5 days out.",
+    "Cut gym volume by half, keep loads.",
+    "Keep stick and ball sharp and short.",
+    "Primer only on match days."
+  ]},
+  "rules": [
+    "Wear a helmet that meets the current standard and use face protection.",
+    "Suspected concussion: off at once and no return to play for at least 21 days (HPA rule since 2023).",
+    "Groin pain: reduce riding off and Copenhagen load, then rebuild; do not play through it.",
+    "Train rotation to both sides, not only the hitting side."
+  ],
+  "sources": [
+    {"source":"Neumayr & Schmitt 2019, German Journal of Sports Medicine","url":"https://www.germanjournalsportsmedicine.com/archive/archiv-2019/issue-2/injuries-in-polo-a-retrospective-evaluation-of-103-polo-riders/"},
+    {"source":"Costa-Paz, Aponte-Tinao & Muscolo 1999, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/33/5/329"},
+    {"source":"Wright & Peters 2008, International Journal of Performance Analysis in Sport","url":"https://pureportal.coventry.ac.uk/en/publications/a-heart-rate-analysis-of-the-cardiovascular-demands-of-elite-leve/"},
+    {"source":"HPA 2023, Concussion update: rule change","url":"https://hpa-polo.co.uk/?p=17823"},
+    {"source":"Ham Polo Club, Rules of polo","url":"https://www.hampoloclub.com/rules-of-polo"}
+  ],
+  "missing_ex": [
+    {"name":"Seated rotational med ball throw on a box","pattern":"prot","equipment":"medball+box","why":"Swing pattern from a seated base like the saddle"},
+    {"name":"Isometric adductor squeeze on a ball, half-squat","pattern":"add","equipment":"swissball","why":"Mimics gripping the horse in two-point"}
+  ]
+}

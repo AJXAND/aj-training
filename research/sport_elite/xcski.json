@@ -7,7 +7,7 @@
   "prehab": ["lowback", "shoulderER", "hipAbd", "ankle", "copenhagen"],
   "season": {"off":3,"pre":2,"in":1},
   "avoidBefore": "all",
-  "energy": "Very high aerobic demand (world-class VO2max above 80 ml/kg/min for men, about 70 for women) using the whole body, with hard surges on climbs and in sprint heats.",
+  "energy": "Very high aerobic demand (world-class VO2max, maximal oxygen uptake, above 80 ml/kg/min for men, about 70 for women) using the whole body, with hard surges on climbs and in sprint heats.",
   "summary": "Cross-country skiing is whole-body endurance where poling power and leg drive both matter, and the lower back is the most injured area. The plan uses heavy upper-body pulling and leg strength to improve poling economy, plus back, shoulder and lateral hip work.",
   "evidence": [
     {"claim":"Nine weeks of heavy upper-body strength training improved double-poling economy and time to exhaustion in cross-country skiers.","source":"Osteras, Helgerud & Hoff 2002, European Journal of Applied Physiology","url":"https://lida.sport-iat.de/ta/Record/4007707"},

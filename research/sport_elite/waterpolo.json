@@ -12,22 +12,25 @@
   "evidence": [
     {"claim":"Match play is highly intermittent: bouts average 7.4 s with work:rest about 1:1.6; centre players wrestle about twice as much as outside players.","source":"D'Auria & Gabbett 2008, Int J Sports Physiol Perform","url":"https://acuresearchbank.acu.edu.au/item/8q951/a-time-motion-analysis-of-international-women-s-water-polo-match-play"},
     {"claim":"Shoulder injury rates range from 24% to 51% across studies and shoulder problems are more likely to become chronic than other water polo injuries.","source":"Miller et al. 2018, J Sci Med Sport","url":"https://research-repository.griffith.edu.au/items/613fee5f-b583-5344-8b8a-dc6a16673950"},
-    {"claim":"Low pre-season shoulder rotation strength (ER at or below 12.5% body weight) and loss of dominant shoulder rotation range predicted later shoulder injury in sub-elite players.","source":"Hams et al. 2019, Phys Ther Sport","url":"https://research-repository.griffith.edu.au/items/7824fdf1-2dd8-429f-9029-6dc1851e6a52"}
+    {"claim":"Low pre-season shoulder rotation strength (external rotation at or below 12.5% body weight) and loss of dominant shoulder rotation range predicted later shoulder injury in sub-elite players.","source":"Hams et al. 2019, Phys Ther Sport","url":"https://research-repository.griffith.edu.au/items/7824fdf1-2dd8-429f-9029-6dc1851e6a52"}
   ],
   "confidence": "moderate",
   "variants": [
     {"id":"centre","name":"Centre forward or centre back","desc":"Spends about twice as long wrestling and holding position as outside players, so strength, mass and trunk stiffness matter most.",
      "q":{"maxStrength":3,"mass":3,"trunk":3,"grip":3},
      "prehab":["lowback","shoulderER"],
-     "note":"Heavier pulling and hinge work, more carries and anti-rotation, and extra low back work."},
+     "note":"Your plan adds loaded carries and extra low back work; push your pulls and hinges heavier.",
+     "add":[{"role": "acc", "ex": ["farmers", "suitcase", "farmerhold"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "30 m", "rir": 2}, {"role": "pre", "ex": ["hipext", "revhyp", "birddog"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "10-12", "rir": 2}]},
     {"id":"field","name":"Field player (driver, wing, point)","desc":"Does the most maximal sprint swims and counter-attacks, so repeat sprint capacity and shooting power lead.",
      "q":{"power":3,"rotational":3,"maxStrength":2},
      "prehab":["shoulderER","scap"],
-     "note":"More med ball throwing and repeat sprint swims; strength work stays but volume is lower."},
+     "note":"Your plan adds extra rotational med ball throws for shooting power.",
+     "add":[{"role": "pow", "ex": ["mbrot", "mbscoop", "mbslam"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "4/side", "rir": 3, "note": "Max intent, full rest."}]},
     {"id":"gk","name":"Goalkeeper","desc":"Lower average intensity with sudden eggbeater lifts and lateral lunges out of the water, so leg, hip and adductor power lead.",
      "q":{"lowerBody":3,"power":3,"unilateral":2,"upperPull":2,"rotational":1},
      "prehab":["copenhagen","hipAbd","shoulderER"],
-     "note":"Extra jump, lateral lunge and adductor work; less wrestling-style pulling and less sprint swimming."}
+     "note":"Your plan adds jumps, lateral lunges and extra adductor work for the eggbeater and lunges out of the water.",
+     "add":[{"role": "pow", "ex": ["cmj", "splitjump", "squatjump"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "3", "rir": 3}, {"role": "acc", "ex": ["latlunge", "cossack"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "6/side", "rir": 2}, {"role": "pre", "ex": ["copen", "addsqueeze", "cabadd"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "8/side", "rir": 2}]}
   ],
   "sessions": {
     "off": [
@@ -103,7 +106,7 @@
   },
   "conditioning": {
     "off": [
-      {"name":"Aerobic swim base","mode":"swim","work":"5-8 x 200 m freestyle","rest":"20-30 s","intensity":"Steady, RPE 6-7, even splits","perWeek":2,"why":"Builds the aerobic base that lets you recover between sprints (practice)."},
+      {"name":"Aerobic swim base","mode":"swim","work":"5-8 x 200 m freestyle","rest":"20-30 s","intensity":"Steady, about 6-7 out of 10 effort, even splits","perWeek":2,"why":"Builds the aerobic base that lets you recover between sprints (practice)."},
       {"name":"Low impact intervals","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Aerobic power without extra shoulder load."}
     ],
     "pre": [
@@ -114,9 +117,9 @@
   },
   "tests": [
     {"id":"shotspeed","name":"Shot speed","how":"Radar gun or phone radar app, best of 5 shots from 5 m, both standing-start and after a swim-in.","unit":"km/h","better":"higher","bands":{"club":"<60","good":"60-70","elite":">70"},"note":"Elite German youth squad (mean age 16) averaged 68.5 km/h, range 60-75. Women about 15-20% slower (practice)."},
-    {"id":"swim400","name":"400 m freestyle","how":"Timed 400 m in a 25 m pool after a standard warm-up.","unit":"min:s","better":"lower","bands":{"club":">6:30","good":"5:45-6:30","elite":"<5:30"},"note":"Elite youth men averaged 5:48 (5:14-6:27). Bands are practice built on that."},
+    {"id":"swim400","name":"400 m freestyle","how":"Timed 400 m in a 25 m pool after a standard warm-up.","unit":"min","better":"lower","bands":{"club":">6:30","good":"5:45-6:30","elite":"<5:45"},"note":"Elite youth men averaged 5:48 (5:14-6:27). Bands are practice built on that."},
     {"id":"erstrength","name":"Shoulder external rotation strength","how":"Handheld dynamometer, or a luggage scale on a band, at 90/90; best of 3 each arm, divide by body weight.","unit":"% body weight","better":"higher","bands":{"club":"<12.5","good":"12.5-14.5","elite":">14.5"},"note":"At or below 12.5% body weight was linked to later shoulder injury (Hams 2019). Treat it as a screen, not a target."},
-    {"id":"erir","name":"Shoulder total rotation range","how":"Phone goniometer, lying on your back at 90 deg abduction: ER plus IR each side; record shooting side minus other side.","unit":"deg loss","better":"lower","bands":{"club":">7.5","good":"3-7.5","elite":"<3"},"note":"A loss of 7.5 deg or more on the shooting side raised injury odds (Hams 2019)."},
+    {"id":"erir","name":"Shoulder total rotation range","how":"Phone goniometer, lying on your back with the arm out at 90 deg: external plus internal rotation each side; record shooting side minus other side.","unit":"deg loss","better":"lower","bands":{"club":">7.5","good":"3-7.5","elite":"<3"},"note":"A loss of 7.5 deg or more on the shooting side raised injury odds (Hams 2019)."},
     {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"30-36","good":"36-42","elite":">42"},"note":"Practice bands for men; women about 20% lower. Land jumps only partly predict in-water jump, which tracks arm length."},
     {"id":"pullupmax","name":"Max pull-ups","how":"Strict pull-ups from a dead hang, chin over bar, no kipping.","unit":"reps","better":"higher","bands":{"club":"6-10","good":"10-15","elite":">15"},"note":"Practice bands for men; women about half."}
   ],
@@ -128,7 +131,7 @@
     "MD+1: easy swim 15-20 min and mobility."
   ],
   "primer": [
-    "Band ER 1 x 15 each arm and Y-T-W 1 x 8",
+    "Band external rotation 1 x 15 each arm and Y-T-W 1 x 8",
     "2 x 3 rotational med ball throws each side",
     "2 x 3 jumps",
     "Then the normal pool warm-up with progressive shots"
@@ -146,7 +149,7 @@
     "If the shooting shoulder loses rotation range or hurts at night, cut shots and see a physio.",
     "Wear a cap with ear guards in every session and game.",
     "No heavy overhead pressing within 48 h of a match.",
-    "Under 16: no 1RM testing; technique-led lifting only."
+    "Under 16: no one-rep max (1RM) testing; technique-led lifting only."
   ],
   "sources": [
     {"source":"D'Auria S, Gabbett TJ 2008, Int J Sports Physiol Perform 3:305-319","url":"https://acuresearchbank.acu.edu.au/item/8q951/a-time-motion-analysis-of-international-women-s-water-polo-match-play"},

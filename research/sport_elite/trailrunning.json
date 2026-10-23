@@ -22,7 +22,7 @@
      "add":[{"role":"pow","ex":["dropstick","latbound","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Land soft and quiet, hold 2 s"}]},
     {"id":"ultra","name":"Ultra","desc":"Marathon distance and beyond: durability, eccentric quad tolerance and calf endurance matter most.",
      "q":{"power":1,"trunk":3},"prehab":["calf","patellar","lowback"],
-     "note":"Your plan adds a slow eccentric quad exercise and extra trunk endurance for carrying a pack. Gym drops to 1 short session in your biggest running weeks.",
+     "note":"Your plan adds a slow eccentric quad exercise and extra trunk endurance for carrying a pack. In your biggest running weeks, cut the gym to 1 short session.",
      "add":[{"role":"acc","ex":["nordic","sissy","legext"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-8","rir":2,"note":"4 s lowering for downhill braking"},
             {"role":"core","ex":["suitcase","birddog","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30-40 s/side","rir":2}]},
     {"id":"mountain","name":"Mountain and vertical","desc":"Very steep climbs, often with poles: hip and knee drive and some upper-body pulling.",

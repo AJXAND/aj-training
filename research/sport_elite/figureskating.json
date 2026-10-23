@@ -12,22 +12,25 @@
   "evidence": [
     {"claim":"Ankle sprain is the most common injury, patellar tendinopathy the most common overuse injury, and stress fractures the most common overuse injury in female singles; pairs accounts for most upper-limb injuries.","source":"Han, Geminiani & Micheli 2018, Sports Health","url":"https://lida.sport-iat.de/ta/Record/4051402?lng=en"},
     {"claim":"Jump landing impact rises with extra revolutions, from about 3 to 9 times body weight.","source":"Lockwood, Baudin & Gervais, citing Lockwood & Gervais 1995","url":"https://ojs.ub.uni-konstanz.de/cpa/article/view/2984/2829"},
-    {"claim":"Free skating was estimated at about 74% aerobic, 12% anaerobic lactic and 14% anaerobic alactic, with peak HR about 194 bpm and lactate about 9.7 mmol/L.","source":"ECSS 2012 congress abstract, energetic demand profile in figure skating","url":"https://lida.sport-iat.de/ta/Record/4029741?lng=en"}
+    {"claim":"Free skating was estimated at about 74% aerobic, 12% anaerobic lactic and 14% anaerobic alactic, with peak heart rate about 194 bpm and lactate about 9.7 mmol/L.","source":"ECSS 2012 congress abstract, energetic demand profile in figure skating","url":"https://lida.sport-iat.de/ta/Record/4029741?lng=en"}
   ],
   "confidence": "limited",
   "variants": [
     {"id":"singles","name":"Singles","desc":"The most jumps and the most overuse injuries, including stress fractures in female singles.",
      "q":{"power":3,"rotational":3},
      "prehab":["landing","patellar","shin"],
-     "note":"Most jump power and landing work, plus careful jump-count and energy-intake rules."},
+     "note":"Your plan adds drop landings and extra lower-leg work; follow the jump-count and eating rules.",
+     "add":[{"role": "pre", "ex": ["dropstick", "hopstick"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "4", "rir": 3, "note": "Land softly and hold 2 s."}, {"role": "pre", "ex": ["tibraise", "soleuswall", "stepcalf"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "12-15", "rir": 2}]},
     {"id":"pairs","name":"Pairs","desc":"Lifts, twists and throws: men lift a partner overhead, women land throws and hold positions in the air.",
      "q":{"upperPush":3,"upperPull":2,"maxStrength":3,"trunk":3},
      "prehab":["shoulderER","scap","lowback"],
-     "note":"Men add overhead pressing and shoulder work; women keep the singles landing work and add trunk and shoulder stability."},
+     "note":"Your plan adds overhead pressing and shoulder work for lifts, twists and throws.",
+     "add":[{"role": "main", "ex": ["standdbohp", "lmpress", "pushpress"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "6-8", "rir": 2}, {"role": "pre", "ex": ["cabler", "bander", "pushupplus"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "12-15", "rir": 3}]},
     {"id":"dance","name":"Ice dance","desc":"No multi-revolution jumps; deep edges, footwork, lifts and longer continuous effort.",
      "q":{"power":2,"rotational":2,"upperPush":2},
      "prehab":["hipAbd","lowback","ankle"],
-     "note":"Fewer jumps, more single-leg strength, edge-control hip work and aerobic conditioning; men add lift strength."}
+     "note":"Your plan adds single-leg strength and hip work for deep edges.",
+     "add":[{"role": "acc", "ex": ["skater", "bss", "stepup"], "sets": {"new": 2, "inter": 3, "adv": 3}, "reps": "6/side", "rir": 2}, {"role": "pre", "ex": ["sideabd", "bandabd", "cababd"], "sets": {"new": 2, "inter": 2, "adv": 3}, "reps": "12-15/side", "rir": 2}]}
   ],
   "sessions": {
     "off": [
@@ -37,7 +40,7 @@
         {"role":"main","ex":["frontsq","goblet","trapdl","legpress"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4-8","rir":2},
         {"role":"acc","ex":["bss","ffesplit","dbsplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
         {"role":"acc","ex":["singlerdl","bstance","slrdlbw"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
-        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick the landing on one leg, like a jump landing."},
+        {"role":"pre","ex":["hopstick","dropstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick the landing on one leg, like a jump landing."},
         {"role":"core","ex":["pallof","hkpallof","pallofb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
        ]},
       {"name":"Rotation and single-leg control","focus":"Fast rotation, a stiff trunk and landing-leg strength.",
@@ -138,7 +141,7 @@
     "Bone pain in the shin, foot or lower back that worsens with jumping: stop jumping and see a doctor.",
     "Build jump counts gradually after any break.",
     "Check boot fit each season and after growth spurts.",
-    "Under 16: no depth jumps and no 1RM testing; technique-led lifting.",
+    "Under 16: no depth jumps and no one-rep max (1RM) testing; technique-led lifting.",
     "Train rotation both ways in the gym even though you jump one way."
   ],
   "sources": [

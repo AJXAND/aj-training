@@ -1,7 +1,7 @@
 {
   "id": "skateboarding",
   "name": "Skateboarding",
-  "aliases": ["skate", "skating", "street skating", "park skating", "bowl", "vert", "skatepark"],
+  "aliases": ["skate", "skateboard", "street skating", "park skating", "bowl", "vert", "skatepark"],
   "group": "Wheels",
   "q": {"maxStrength":1,"power":3,"rotational":2,"unilateral":3,"upperPull":0,"upperPush":1,"lowerBody":3,"grip":0,"neck":0,"trunk":2,"mass":1},
   "prehab": ["ankle", "wrist", "landing", "calf", "patellar"],
