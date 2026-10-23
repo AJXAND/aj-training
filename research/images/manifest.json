@@ -167,6 +167,36 @@
    "acct": "u1",
    "chat": "330d5581bb10b266",
    "img": 1
+  },
+  "legattach": {
+   "acct": "u1",
+   "chat": "255d0ce4686b1d39",
+   "img": 1
+  },
+  "racklevers": {
+   "acct": "u1",
+   "chat": "e4a3821235faba5d",
+   "img": 1
+  },
+  "heavydb": {
+   "acct": "u1",
+   "chat": "beae890001495b02",
+   "img": 1
+  },
+  "mace": {
+   "acct": "u1",
+   "chat": "8dbfa4c8fd12ae13",
+   "img": 1
+  },
+  "cable_dual": {
+   "acct": "u1",
+   "chat": "8b3e6360d7098101",
+   "img": 1
+  },
+  "functional": {
+   "acct": "u1",
+   "chat": "922df0aac67df44b",
+   "img": 1
   }
  },
  "qc_rejects": [
