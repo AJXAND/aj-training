@@ -22974,5 +22974,280 @@
   ],
   "aliases": [],
   "unit": "s"
+ },
+ {
+  "key": "pushupplus",
+  "name": "Push-up plus",
+  "pattern": "scap",
+  "muscles": {},
+  "equipment": [],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   10,
+   15
+  ],
+  "rest_s": 45,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Top of a push-up, arms straight",
+   "Push the floor away so the shoulder blades wrap round the ribs",
+   "Slow back, no sagging hips"
+  ],
+  "variations": [],
+  "aliases": [
+   "serratus push-up",
+   "push up plus"
+  ]
+ },
+ {
+  "key": "decel",
+  "name": "Deceleration drill",
+  "pattern": "plat",
+  "muscles": {
+   "quads": 0.5,
+   "glutes": 0.5
+  },
+  "equipment": [],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   3,
+   5
+  ],
+  "rest_s": 90,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Run 10-15 m at speed",
+   "Stop in 2-3 short steps, low hips, chest over knees",
+   "Hold the finish 2 s, then walk back"
+  ],
+  "variations": [],
+  "aliases": [
+   "decel drill",
+   "stopping drill"
+  ]
+ },
+ {
+  "key": "isosplit",
+  "name": "Isometric split squat hold",
+  "pattern": "lunge",
+  "muscles": {
+   "quads": 1,
+   "glutes": 0.5
+  },
+  "equipment": [],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   20,
+   40
+  ],
+  "rest_s": 75,
+  "unilateral": true,
+  "technical_failure": false,
+  "cues": [
+   "Back knee just off the floor",
+   "Push hard into the front foot as if to stand",
+   "Breathe steadily, hold the position"
+  ],
+  "variations": [],
+  "aliases": [
+   "split squat hold",
+   "iso split squat"
+  ],
+  "unit": "s"
+ },
+ {
+  "key": "scrumhold",
+  "name": "Scrum isometric hold",
+  "pattern": "squat",
+  "muscles": {
+   "quads": 1,
+   "glutes": 1,
+   "abs": 0.5
+  },
+  "equipment": [
+   "rack"
+  ],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   6,
+   8
+  ],
+  "rest_s": 120,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Scrum stance against a bar set at shoulder height",
+   "Flat back, head up, hips just above knees",
+   "Drive maximally into the bar for the whole hold"
+  ],
+  "variations": [],
+  "aliases": [
+   "scrum iso",
+   "isometric scrum push"
+  ],
+  "unit": "s"
+ },
+ {
+  "key": "splitjump",
+  "name": "Split-stance jump",
+  "pattern": "plow",
+  "muscles": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "calves": 0.5
+  },
+  "equipment": [],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   3,
+   5
+  ],
+  "rest_s": 90,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Start in a split stance",
+   "Jump as high as you can, swap legs in the air if asked",
+   "Land softly in the split, knees in line"
+  ],
+  "variations": [],
+  "aliases": [
+   "split jump",
+   "lunge jump"
+  ]
+ },
+ {
+  "key": "dropstick",
+  "name": "Drop landing to stick",
+  "pattern": "land",
+  "muscles": {
+   "quads": 0.5,
+   "glutes": 0.5
+  },
+  "equipment": [
+   "box"
+  ],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   4,
+   6
+  ],
+  "rest_s": 75,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Step off a 30-45 cm box",
+   "Land on both feet and freeze: knees over toes, hips back",
+   "Hold 2 s; no knees caving in"
+  ],
+  "variations": [],
+  "aliases": [
+   "depth drop",
+   "drop and stick"
+  ]
+ },
+ {
+  "key": "landpunch",
+  "name": "Landmine punch press",
+  "pattern": "pup",
+  "muscles": {
+   "chest": 0.5,
+   "fdelt": 0.5,
+   "triceps": 0.5,
+   "obliques": 0.5
+  },
+  "equipment": [
+   "landmine"
+  ],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   4,
+   6
+  ],
+  "rest_s": 90,
+  "unilateral": true,
+  "technical_failure": false,
+  "cues": [
+   "Fighting stance, bar end in the rear hand",
+   "Drive from the back foot and rotate the hips",
+   "Punch the bar up and out fast, control it back"
+  ],
+  "variations": [],
+  "aliases": [
+   "landmine punch",
+   "rotational landmine press"
+  ]
+ },
+ {
+  "key": "fingerext",
+  "name": "Band finger extension",
+  "pattern": "fing",
+  "muscles": {
+   "forearms": 0.5
+  },
+  "equipment": [
+   "bands"
+  ],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   15,
+   25
+  ],
+  "rest_s": 45,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Band round the fingertips",
+   "Open the hand fully against the band",
+   "Slow close, keep the wrist still"
+  ],
+  "variations": [],
+  "aliases": [
+   "finger extensor",
+   "rubber band finger ext"
+  ]
+ },
+ {
+  "key": "benchthrow",
+  "name": "Smith bench throw",
+  "pattern": "pup",
+  "muscles": {
+   "chest": 0.5,
+   "triceps": 0.5,
+   "fdelt": 0.5
+  },
+  "equipment": [
+   "smith",
+   "bench"
+  ],
+  "compound": false,
+  "stretch": 1,
+  "reps": [
+   3,
+   5
+  ],
+  "rest_s": 120,
+  "unilateral": false,
+  "technical_failure": false,
+  "cues": [
+   "Light load, 20-30% of your bench max",
+   "Lower under control, then throw the bar as fast as you can",
+   "Catch and reset each rep"
+  ],
+  "variations": [],
+  "aliases": [
+   "bench throw",
+   "ballistic bench"
+  ]
  }
 ]

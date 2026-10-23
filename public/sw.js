@@ -1,6 +1,6 @@
 /* AJ Training service worker: keeps the app available offline and shows push notifications. */
 const VERSION = "ajt-v73";
-const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/coach.js", "/strength.js", "/run.js", "/science.js", "/sports.js", "/sportprofiles.js", "/sporticons.js", "/gymicons.js", "/equipment.js", "/exlib.js", "/programmes.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
+const SHELL = ["/", "/index.html", "/config.js", "/platform.js", "/scanner.js", "/onboard.js", "/coach.js", "/strength.js", "/run.js", "/science.js", "/sports.js", "/sportprofiles.js", "/sporticons.js", "/gymicons.js", "/equipment.js", "/exlib.js", "/sportelite.js", "/programmes.js", "/vendor/supabase.js", "/vendor/zxing.min.js", "/vendor/zxing-reader.js", "/vendor/zxing_reader.wasm", "/barcode-worker.js",
   "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png", "/icons/badge-96.png", "/foods-db.json"];
 
 self.addEventListener("install", e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });

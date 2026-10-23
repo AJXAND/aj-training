@@ -968,6 +968,11 @@ a.btn{display:block;text-align:center;text-decoration:none}
 .suprow.done{opacity:.6;cursor:default}.suprow.done b{text-decoration:line-through}.suprow>i{font-style:normal;font-size:24px;color:var(--muted)}
 .suprow .ctaic{color:#fff}
 .trsub{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;color:var(--muted);font-weight:500;margin:-4px 0 2px}
+.condc .condi,.spcard2 .condi{display:grid;gap:2px;padding:10px 0;border-top:1px solid var(--line)}.condc .condi:first-of-type{border-top:0}
+.spsec{border-top:1px solid var(--line);padding:4px 0}.spsec summary{cursor:pointer;font-weight:600;padding:10px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}.spsec summary::-webkit-details-marker{display:none}
+.spsec summary::after{content:"›";color:var(--muted);font-size:20px;transition:transform .2s}.spsec[open] summary::after{transform:rotate(90deg)}.spsec summary em{font-style:normal;font-weight:500;color:var(--muted);font-size:13px;margin-left:auto;margin-right:10px}
+.splist{margin:0 0 8px;padding-left:18px;display:grid;gap:6px;font-size:14px;line-height:1.4}.splist a{color:inherit}
+.sptest{display:grid;gap:4px;padding:10px 0;border-top:1px solid var(--line)}.sptest:first-of-type{border-top:0}.sptest .good{color:var(--good)}
 .tdeff{display:flex;gap:10px;align-items:flex-start;background:var(--orange-soft);border-radius:14px;padding:11px 12px;font-size:14px;line-height:1.35}.tdeff svg{width:18px;height:18px;flex:none;color:var(--orange);margin-top:1px}.tdeff b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--orange)}
 .wkdots{margin:2px 0 4px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}.wkdots .dots{display:flex;gap:6px;justify-content:center}.wkdots i{font:700 11px var(--body);font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wkdots i.pl{box-shadow:inset 0 0 0 1.5px var(--orange);color:var(--orange);background:none}.wkdots i.on{background:var(--orange);color:#fff}.wkdots i.now{outline:2px solid var(--ink);outline-offset:1px}
 .wday.rest{grid-template-columns:48px 1fr auto;padding:8px 14px;background:color-mix(in srgb,var(--card) 55%,transparent)}.wday.rest .d{white-space:nowrap;width:auto;height:auto;background:none;display:block;font-size:13px;color:var(--muted);font-weight:600;text-align:left}.wday.rest .d b{font-size:13px;font-family:var(--body)}.wday.rest .f{display:flex;gap:8px;align-items:baseline}.wday.rest .f b{display:inline;color:var(--muted);font-weight:600;font-size:14px}
@@ -3078,7 +3083,7 @@ function renderPlan(){
   if (S.prog.placeholder) return head("Train")+workoutsCard(true)+renderTrainToday();
   if (S.planView==="month") return head("Train")+`<button class="link trback" data-segset="planView" data-val="today">${ICON.back}<span>Back to this week</span></button>`+renderMonthView()+planFoot();
   const td=ymd(new Date()), dates=weekDates(), sel=S.trDay&&dates.some(d=>ymd(d)===S.trDay)?S.trDay:td;
-  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+workoutsCard(false)+(S.prog.strength?strengthCard():runCoachCard()+coachCard())+planFoot();
+  return head("Train")+trainStrip(dates,sel,bi)+(sel===td?renderTrainToday():trainDayBody(sel))+sportCard()+workoutsCard(false)+(S.prog.strength?strengthCard():runCoachCard()+coachCard())+planFoot();
 }
 /* ---------- Workouts without a plan ----------
    Quick workouts built on the spot, your own saved workouts (coached or exactly as written), and logging one you didn't track. */
@@ -3223,6 +3228,48 @@ function trainStrip(dates, sel, bi){
     <div class="trdays">${cells}</div>${blk}</div>`;
 }
 // Any day other than today: what's planned (or what you did), and what you can do with it
+// A sport plan's conditioning for the day: what to do, how hard, and why
+const CMODE={run:"Run",bike:"Bike",row:"Rower",swim:"Swim",ski:"SkiErg",court:"On court or pitch",any:"Any cardio"};
+function condCard(d){
+  if (!d||!(d.cond||[]).length) return "";
+  return `<div class="card condc"><div class="spread"><h2>Conditioning</h2><span class="small muted">${d.rest?"No gym today":"After the gym, or later"}</span></div>${d.cond.map(c=>`<div class="condi"><b>${esc(c.name)}</b><span class="num">${esc(c.work)}${c.rest?` · ${esc(c.rest)} between`:""}</span>${c.intensity?`<span class="small">${esc(c.intensity)}</span>`:""}<span class="small muted">${esc(CMODE[c.mode]||c.mode||"")}${c.why?" · "+esc(c.why):""}</span></div>`).join("")}</div>`;
+}
+/* Sport coaching card on Train: position, this season's conditioning, the match week, primer, field tests with bands, peaking and rules.
+   Test results live in profile.sportTests[sport][test] = [{d, v}]. */
+// A band is a range ("1.75-1.85"), a bound ("<1.72", ">50", "45+") or a single threshold ("1.85"). You reach a band when you're at
+// least as good as its weaker edge.
+const mss=t=>String(t||"").replace(/(\d+):(\d{2})/g,(_,m,x)=>String(+m*60+ +x));   // 5:15 -> 315 seconds
+const isClock=t=>/:/.test(t.unit||"")||/\d:\d\d/.test(JSON.stringify(t.bands||{}));
+const fmtClock=v=>Math.floor(v/60)+":"+String(Math.round(v%60)).padStart(2,"0");
+function bandEdge(t, lower){ t=mss(t).replace(/(\d),(\d{3})/g,"$1$2").replace(/[–−]/g,"-"); const m=t.match(/(-?\d+(?:\.\d+)?)(?:\s*(?:-|to)\s*(-?\d+(?:\.\d+)?))?/); if (!m) return null;
+  const a=+m[1], b=m[2]!=null?+m[2]:a; return lower?Math.max(a,b):Math.min(a,b); }
+function testBand(t, v){ const B=t.bands||{}, lower=t.better==="lower";
+  for (const k of ["elite","good","club"]){ const e=bandEdge(B[k],lower); if (e!=null&&(lower?v<=e:v>=e)) return k; }
+  return bandEdge(B.club,lower)!=null?"below":null; }
+const BANDN={elite:"Elite",good:"Good",club:"Club level",below:"Building"};
+function sportCard(){
+  const sp=S.prog.sport; if (!sp) return "";
+  const E=(window.AJSportElite||{})[sp.id]; if (!E) return "";
+  const su=S.prog.setup||{}, v=(E.variants||[]).find(x=>x.id===su.sportVar), se=sp.season||"off", cond=((E.conditioning||{})[se]||[]).filter(c=>!c.for||!c.for.length||!su.sportVar||c.for.includes(su.sportVar)), res=((S.profile.sportTests||{})[sp.id])||{};
+  const sec=(t,body,open)=>body?`<details class="spsec"${open?" open":""}><summary>${t}</summary>${body}</details>`:"";
+  const lines=a=>(a||[]).length?`<ul class="splist">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
+  const tests=(E.tests||[]).map(t=>{ const h=res[t.id]||[], last=h[h.length-1], prev=h[h.length-2], b=last?testBand(t,last.v):null;
+    const ch=last&&prev?last.v-prev.v:null, good=ch!=null&&(t.better==="lower"?ch<0:ch>0);
+    return `<div class="sptest"><div class="spread"><b>${esc(t.name)}</b>${last?`<span class="num"><b>${isClock(t)?fmtClock(last.v):last.v}</b> ${isClock(t)?"":esc(t.unit||"")}${b?` <span class="tag ${b==="elite"||b==="good"?"up":""}">${BANDN[b]}</span>`:""}</span>`:""}</div>
+      <span class="small">${esc(t.how||"")}</span>
+      <span class="small muted num">${["club","good","elite"].filter(k=>(t.bands||{})[k]).map(k=>`${BANDN[k]} ${esc(t.bands[k])}`).join(" · ")}${t.unit?" "+esc(t.unit):""}${t.note?`. ${esc(t.note)}`:""}</span>
+      ${ch!=null?`<span class="small ${good?"good":"muted"} num">${ch>0?"+":"−"}${isClock(t)?fmtClock(Math.abs(ch)):Math.round(Math.abs(ch)*100)/100} since ${fmtD(prev.d)}</span>`:""}
+      <div class="row" style="flex-wrap:nowrap"><input class="field" id="spt-${esc(t.id)}" inputmode="decimal" placeholder="${last?"New result":"Your result"}${isClock(t)?" (m:ss)":t.unit?" ("+esc(t.unit)+")":""}" style="flex:1"><button class="btn small ghost" data-act="spTest" data-t="${esc(t.id)}">Save</button></div></div>`; }).join("");
+  return `<div class="card spcard2"><div class="spread"><div class="stack" style="gap:2px"><h2>${esc(sp.name)} coaching</h2><span class="small muted">${v?esc(v.name)+" · ":""}${{off:"Off-season",pre:"Pre-season",in:"In-season"}[se]}</span></div></div>
+    ${v&&v.note?`<span class="small">${esc(v.note)}</span>`:""}
+    ${sec(`Conditioning this phase${cond.length?` <em>${cond.reduce((a,c)=>a+(Math.round(+c.perWeek)||1),0)} a week</em>`:""}`, cond.length?cond.map(c=>`<div class="condi"><b>${esc(c.name)}</b><span class="num">${esc(c.work||"")}${c.rest?` · ${esc(c.rest)} between`:""}</span>${c.intensity?`<span class="small">${esc(c.intensity)}</span>`:""}${c.why?`<span class="small muted">${esc(c.why)}</span>`:""}</div>`).join(""):`<span class="small muted">Your ${esc(sp.name.toLowerCase())} training covers your fitness in this phase, so the plan adds none.</span>`)}
+    ${sec("Your match week", lines(E.week))}
+    ${sec("Match-day primer", lines(E.primer))}
+    ${sec(`Fitness tests <em>every 6-8 weeks</em>`, tests)}
+    ${sec("Peaking for a big event", E.taper?lines(E.taper.lines):"")}
+    ${sec("Rules the plan follows", lines(E.rules))}
+    ${(E.sources||[]).length?sec("Sources", `<ul class="splist">${E.sources.slice(0,12).map(x=>`<li>${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</li>`).join("")}</ul>`):""}</div>`;
+}
 function trainDayBody(ds){
   const dt=parseD(ds), d=dayForDate(dt), td=ymd(new Date()), run=runFor(ds), when=dt.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"});
   const cardio=S.cardio.filter(c=>c.date===ds), done=sessionsOn(ds);
@@ -3244,7 +3291,8 @@ function trainDayBody(ds){
       ${past?(sameWeek&&!sessionsOn(td).length?`<button class="btn orange" data-act="moveHere" data-k="${d.k}" data-from="${ds}">Do it today instead</button>`:`<span class="small muted">Missed sessions don't need making up. The next one simply carries on.</span>`)
         :`<button class="btn ghost" data-act="startDay" data-k="${d.k}" data-g="${g}">Start it now instead</button>`}</div>`;
   }
-  else if (!run) out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${d&&d.label&&d.label!=="Rest"?esc(d.label):"Rest day"}</h2></div><span class="small muted">${esc((d&&d.cardio)||"Walk or easy cardio")}. Rest days are when the work you did turns into muscle.</span></div>`;
+  else if (!run) out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${d&&d.label&&d.label!=="Rest"?esc(d.label):"Rest day"}</h2></div><span class="small muted">${d&&(d.cond||[]).length?"No gym today. Conditioning below.":esc((d&&d.cardio)||"Walk or easy cardio")+". Rest days are when the work you did turns into muscle."}</span></div>`;
+  out+=condCard(d);
   if (cardio.length) out+=`<div class="card"><h2>Cardio and sport</h2>${cardio.map(c=>`<div class="spread cline"><span class="spl">${spIc(c.type)}<b>${esc(CARDIO[c.type]?CARDIO[c.type].n:c.type)}</b> <span class="small muted">${esc(c.level)} · ${c.mins} min${c.km?" · "+c.km+" km":""}</span></span><span class="small muted num">${fmtN(c.net)} kcal</span></div>`).join("")}</div>`;
   return out;
 }
@@ -3307,13 +3355,13 @@ function renderTrainToday(){
     } else if (!pre && !run){
       const nx=nextSession(new Date());
       out+=`<div class="card hero"><div class="stack" style="gap:2px"><span class="small muted">Today</span><h2>Rest day</h2></div>
-        <span class="small muted">${esc((t&&t.cardio)||"Walk or easy cardio")}. Rest is when the work you did turns into muscle.</span>
+        <span class="small muted">${t&&(t.cond||[]).length?"No gym today. Conditioning below.":esc((t&&t.cardio)||"Walk or easy cardio")+". Rest is when the work you did turns into muscle."}</span>
         ${nx&&nx.d.variants?(()=>{ const gg=dayGym(nx.d), l=nx.d.variants[gg]||[]; return l.length?`<div class="upnext"><span class="small muted">Up next · ${nx.dt.toLocaleDateString("en-GB",{weekday:"long"})}</span><b>${esc(nx.d.label)}</b><span class="small muted num">${l.length} exercises · ${l.reduce((a,x)=>a+x[1],0)} ${(+(l.reduce((a,x)=>a+x[1],0)))===1?"set":"sets"} · about ${sessionMins(nx.d,gg)} min</span><span class="small">${l.slice(0,4).map(([k])=>esc(exDef(k).n)).join(", ")}${l.length>4?" and more":""}</span></div>`:""; })():""}
         ${(()=>{ return ""; const ds=weekDates(), plan=ds.filter(dt=>{ const d=dayForDate(dt); return d&&!d.rest; }).length, dn=ds.filter(dt=>sessionsOn(ymd(dt)).length).length; return plan?`<div class="wkdots"><span class="small muted">This week</span><span class="dots">${ds.map(dt=>{ const d=dayForDate(dt), k=ymd(dt), did=sessionsOn(k).length; return `<i class="${did?"on":d&&!d.rest?"pl":""} ${k===todayStr?"now":""}">${"MTWTFSS"[(dt.getDay()+6)%7]}</i>`; }).join("")}</span><b class="num">${dn}/${plan}</b></div>`:""; })()}
         <div class="grid2"><button class="btn ghost" data-goto="train">Train anyway</button>${nx&&nx.d.k&&!String(nx.d.k).startsWith("_r")&&weekKey(nx.dt)===weekKey(new Date())&&nx.d.variants&&(nx.d.variants[dayGym(nx.d)]||[]).length?`<button class="btn ghost" data-act="moveHere" data-k="${nx.d.k}" data-from="${ymd(nx.dt)}">Do ${esc(nx.d.label)} today</button>`:""}</div></div>`;
     }
   }
-  return out+cardioCard(todayStr);
+  return out+condCard(t)+cardioCard(todayStr);
 }
 function recentSports(){ const seen=[]; for (const c of S.cardio){ if (CARDIO[c.type] && !seen.includes(c.type)) seen.push(c.type); if (seen.length>=6) break; } return seen; }
 function cardioCard(ds){
@@ -4676,6 +4724,8 @@ $("#main").addEventListener("click", async e=>{
       const doc=makeCardio(f.type,f.level,mins,km,date,f.phoneOn);
       if (f.type==="run" && +km>0){ const prevMax=Math.max(0,...S.cardio.filter(c=>c.type==="run"&&c.id!==doc.id&&(parseD(date)-parseD(c.date))/864e5<=30&&(parseD(date)-parseD(c.date))>0).map(c=>+c.km||0)); if (prevMax>=3 && +km>prevMax*1.1) setTimeout(()=>toast(`Heads up: ${km} km is ${Math.round((km/prevMax-1)*100)}% past your longest run this month. Runs that jump past +10% carry more injury risk.`),2700); }
       S.cardioForm={type:f.type,level:f.level,mins:"",km:"",date:null}; S.planView="today"; go("plan"); toast(`Saved: ${CARDIO[doc.type].n}, ${doc.net} kcal extra`); return; }
+    case "spTest": { const sp=S.prog.sport, id=b.dataset.t, el=$("#spt-"+id), raw=String(el&&el.value||"").trim(), v=/\d:\d/.test(raw)?+mss(raw):parseFloat(raw.replace(",",".")); if (!sp||!isFinite(v)){ toast("Enter a number"); return; }
+      const all={...(S.profile.sportTests||{})}, mine={...(all[sp.id]||{})}; mine[id]=[...(mine[id]||[]), {d:ymd(new Date()), v}].slice(-20); all[sp.id]=mine; S.profile={...S.profile, sportTests:all}; saveProfile(); render(); toast("Result saved"); return; }
     case "cardioDel": { const c=S.all.cardio.find(x=>x.id===b.dataset.id); if(!c) return; removeItem("cardio",c.id); render(); toast(`Deleted ${CARDIO[c.type]?CARDIO[c.type].n:"cardio"}`, ()=>{ upsert("cardio",c); putDoc("cardio",c.id,c); }); return; }
     case "phoneToggle": { const c=S.all.cardio.find(x=>x.id===b.dataset.id); if(!c) return; const d={...c, phoneOn:!cardioPhoneOn(c)}; upsert("cardio",d); putDoc("cardio",d.id,d); render(); return; }
     case "hday": { const d=parseD(S.habitDate||ymd(new Date())); d.setDate(d.getDate()+(+b.dataset.d)); const x=ymd(d); if (x>ymd(new Date())) return; S.habitDate=x; render(); return; }
@@ -5136,6 +5186,7 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 <script src="/gymicons.js"></script>
 <script src="/equipment.js"></script>
 <script src="/exlib.js"></script>
+<script src="/sportelite.js"></script>
 <script src="/programmes.js"></script>
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>

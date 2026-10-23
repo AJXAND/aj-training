@@ -884,6 +884,10 @@ function generate(ans, seed){
         Object.assign(def, {n:e.n + (nw ? "" : " (heavy)"), lo:one ? rlo + 2 : rlo, hi:one ? rhi + 2 : rhi, rest:Math.round((nw ? 120 : 180) * rs / 15) * 15}); }
       else if (x.role === "pow" && ans.season === "in" && e.unit !== "s"){ def.lo = Math.min(def.lo, 3); def.hi = Math.min(def.hi, 3); }
       else if (x.role === "acc"){ const big = (spP.q || {}).mass >= 2 && ans.season !== "in"; Object.assign(def, {lo:big ? 8 : 6, hi:big ? 12 : 10, rest:Math.round((e.c ? 120 : 75) * rs / 15) * 15}); }
+      // the sport's template sets the reps, the effort and a cue (not for primers, or a dumbbell standing in for a heavy barbell lift)
+      if (x.tp && !x.primer && !(x.role === "main" && ["db","kb","other","bw"].includes(e.eq) && e.p !== "lunge")){
+        const r = spReps(x.tp.reps); if (r){ def.lo = r[0]; def.hi = r[1]; const bits = [r[2] ? `Hold ${r[0] === r[1] ? r[0] : r[0] + "-" + r[1]} seconds: log seconds as reps` : "", r[3] ? "Each side" : "", x.tp.note || ""].filter(Boolean); if (bits.length) def.note = bits.join(". "); }
+        if (x.tp.rir != null && x.role !== "pre" && x.role !== "core") def.rirMin = Math.max(def.rirMin || 0, +x.tp.rir || 0); }
     }
     else if (ans.level === "new" && !special(e.p) && e.k !== "plank"){ if (e.c){ def.lo = Math.max(def.lo, 8); def.hi = Math.min(12, Math.max(def.hi, 12)); } else { def.lo = Math.max(def.lo, 10); def.hi = 15; } }
     else if (ans.goal === "strength" && x.main){ key = e.k + "-hvy"; Object.assign(def, {n:e.n + " (heavy)", lo:3, hi:6, rest:Math.round(210 * rs / 15) * 15}); }
@@ -917,6 +921,7 @@ function generate(ans, seed){
       variants:Object.fromEntries(gl.map(g => [g.id, toList(vs[g.id], i)]))};
   });
   if (spP){ let n2 = 0; const tr = days.filter(d => !d.rest); if (tr.length > 1) tr.forEach(d => { d.label = T.sp1.label + " " + "ABCD"[n2++]; }); }
+  if (spP) placeCond(days, (((SPE()[spP.id] || {}).conditioning || {})[ans.season || "off"] || []).filter(c => c && c.name && (!c.for || !c.for.length || !ans.sportVar || c.for.includes(ans.sportVar))), ans);
   const weeks = +ans.block || (coachMode(ans) ? coachA(ans) + 1 : 6);
   const ownName = ans.name && ans.name !== "Block 1" ? ans.name : null;
   const autoName = ans.customAI && ans.customAI.title ? ans.customAI.title : spP ? spP.name + " plan" : `${GTYPES[ans.gtype] && ans.gtype !== "custom" ? GTYPES[ans.gtype][2] : {size:"Build muscle", strength:"Build strength", power:"Powerbuilding", crossfit:"CrossFit-style", athletic:"Athletic"}[ans.goal] || "Training"}: ${split.name}`;
@@ -932,7 +937,16 @@ function generate(ans, seed){
    heavier sets than a muscle plan (the sport itself is the main training load), and keeps hard leg work off the day before a match.
    Season dose: 2-3 sessions off-season builds strength; 1 a week keeps it in-season (Rønnestad 2011). */
 const SPP = () => window.AJSportProfiles || {sports:[], general:[]};
-function sportProfile(a){ return a.sportCustom || SPP().sports.find(s => s.id === a.sportId) || null; }
+// Detailed coaching per sport (sportelite.js, from research/sport_elite): positions, session templates by season, conditioning, tests, taper
+const SPE = () => window.AJSportElite || {};
+function sportVarOf(id, vid){ const e = SPE()[id]; return e && vid ? (e.variants || []).find(v => v.id === vid) || null : null; }
+function sportProfile(a){
+  const p = a.sportCustom || SPP().sports.find(s => s.id === a.sportId) || null, v = p && sportVarOf(p.id, a.sportVar);
+  if (!v) return p;
+  // a position or event changes what the sport demands: its own demand scores, and its injury risks go first
+  return {...p, q:{...(p.q || {}), ...(v.q || {})}, prehab:[...new Set([...(v.prehab || []), ...(p.prehab || [])])], variant:v};
+}
+function sportElite(a){ const p = sportProfile(a); return p ? SPE()[p.id] || null : null; }
 const SPORT_GENERIC = {id:"generic", name:"Your sport", group:"Other", q:{maxStrength:2, power:2, rotational:1, unilateral:2, upperPull:2, upperPush:1, lowerBody:2, grip:1, neck:0, trunk:2, mass:1}, prehab:["nordic","shoulderER","ankle"], season:{off:3, pre:2, in:1}, avoidBefore:"lower", energy:"", summary:"", evidence:[], confidence:"limited"};
 const PREHAB = {nordic:["nordicham","ghr","lyingcurl","seatedcurl"], copenhagen:["copen","adductor"], shoulderER:["cabler","er9090","bander","sideer","ytw"], neck:["neckband","neckiso"],
   ankle:["slbalance"], landing:["hopstick"], calf:["slcalf","standcalf","seatedcalf"], wrist:["wristcurl"], fingers:["hangboard","deadhang"], lowback:["hipext","goodmorning","kbrdl"], hipAbd:["bandabd","abductor"],
@@ -981,14 +995,26 @@ function spPick(list, ctx, role){
 const SP_LOWER = new Set(["squat","hinge","lunge","glute","kneeflex","kneeext","plow","plat"]);
 function buildSportVariant(seq, gym, ans, seed, wds){
   const kit = (ans.kit && ans.kit[gym]) || (((flowGyms() || gymList()).find(g => g.id === gym) || {}).kit) || KIT_DEFAULT[gym] || KIT_FULL, used = new Set();
-  const se = ans.season || "off", lv = ans.level || "inter", p = sportProfile(ans) || SPORT_GENERIC, dose = SPDOSE[se] || SPDOSE.off, bp = sportBlueprint(p, seq.length);
+  const se = ans.season || "off", lv = ans.level || "inter", p = sportProfile(ans) || SPORT_GENERIC, dose = SPDOSE[se] || SPDOSE.off;
+  // the sport's own session templates for this season when the research has them; otherwise built from what the sport demands
+  const tpls = ((SPE()[p.id] || {}).sessions || {})[se], useT = !!(tpls && tpls.length && tpls.every(t => (t.slots || []).length >= 3));
+  const bp = useT ? seq.map((_, di) => { const t = tpls[di % tpls.length], sl = t.slots.map(x => ["tpl", x.role === "cond" ? "core" : x.role || "acc", x]);
+      // a position's injury risks: make sure its first prevention module is in every session
+      const vp = (p.variant || {}).prehab || []; if (vp[0] && PREHAB[vp[0]] && !sl.some(x => x[2].ex.some(k => PREHAB[vp[0]].includes(k)))) sl.splice(sl.length - 1, 0, ["pre:" + vp[0], "pre"]);
+      // the position's own extra work (a scrum hold for props, push press for locks), shared out across the week's sessions
+      const add = ((p.variant || {}).add || []).filter(x => x && (x.ex || []).some(k => L[k])), m = Math.max(1, Math.min(seq.length, add.length));
+      add.forEach((x, j) => { if (j % m === di % m) sl.splice(sl.length - 1, 0, ["tpl", x.role || "acc", x]); });
+      return sl; })
+    : sportBlueprint(p, seq.length);
   const days = seq.map((tk, di) => { const dayUsed = new Set(), list = [];
     // two days out from a match: a short primer (fast, low-volume lower body), no heavy or eccentric leg work (research 0.4)
     const off = wds ? mdOffset(ans, wds[di]) : null, primer = off === 2 || off === 1;
-    for (const [slot, role] of bp[di] || []){
-      const keys = slot.startsWith("pre:") ? PREHAB[slot.slice(4)] : SPX[slot];
-      if (primer && slot === "pre:nordic") continue;
+    for (const [slot, role, tp] of bp[di] || []){
+      let keys = slot === "tpl" ? tp.ex.filter(k => L[k]) : slot.startsWith("pre:") ? PREHAB[slot.slice(4)] : SPX[slot];
+      if (primer && (slot === "pre:nordic" || (tp && keys.some(k => PREHAB.nordic.includes(k))))) continue;
       let k = spPick(keys || [], {kit, ans, used, dayUsed}, role);
+      // none of the template's options fit this gym: the closest lift with the same movement that does
+      if (!k && tp && keys.length){ const pat = L[keys[0]].p; k = spPick(Object.values(L).filter(e => e.p === pat && !e.xl).map(e => e.k), {kit, ans, used, dayUsed}, role); }
       if (!k && role === "pow") k = spPick(SPX.plow, {kit, ans, used, dayUsed}, role);     // no med ball or landmine: jump instead
       if (!k) continue;
       const e = L[k];
@@ -997,7 +1023,8 @@ function buildSportVariant(seq, gym, ans, seed, wds){
       used.add(k); dayUsed.add(k);
       let sets = role === "main" ? ((SPMAIN[se] || SPMAIN.off)[lv] || SPMAIN.off.inter)[0] : role === "pow" ? ((SPPOW[se] || SPPOW.off)[lv] || 3) : (dose[role] || 2);
       if (role === "acc" && (p.q || {}).mass >= 2 && se === "off") sets++;
-      const x = {ex:e, sets, role};
+      if (tp && tp.sets && +tp.sets[lv]) sets = +tp.sets[lv];
+      const x = {ex:e, sets, role, ...(tp ? {tp} : {})};
       if (primer && (role === "pow" || (role === "main" && SP_LOWER.has(e.p)))){ x.sets = 2; if (role === "main") x.primer = true; }
       list.push(x);
     }
@@ -1013,6 +1040,23 @@ function buildSportVariant(seq, gym, ans, seed, wds){
   const vol = {}; days.forEach(d => d.list.forEach(x => { for (const [m, f] of Object.entries(x.ex.mu)) vol[m] = (vol[m] || 0) + f * x.sets; }));
   return {days, vol, tg:{}, mins:days.map(dayMins)};
 }
+// The sport's conditioning for this season (intervals, tempo runs, court drills), on days away from the match and its eve:
+// free days first, then upper-body gym days, so hard running doesn't land on top of heavy legs.
+function placeCond(days, cond, ans){
+  if (!cond.length) return;
+  const mi = ans.matchDay && ans.matchDay !== "none" ? WD.findIndex(x => x[0] === ans.matchDay) : -1, sport = new Set(ans.sport || []);
+  const near = d => { const i = WD.findIndex(x => x[0] === d.k); return mi >= 0 && (i === mi || i === (mi + 6) % 7 || i === (mi + 1) % 7); };
+  const order = [...days.filter(d => d.rest && !sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !LOWER.has(d.tpl) && !near(d)), ...days.filter(d => d.rest && sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !near(d))]
+    .filter((d, i, arr) => arr.indexOf(d) === i);
+  const jobs = cond.flatMap(c => Array(Math.max(1, Math.min(3, Math.round(+c.perWeek) || 1))).fill(c));
+  // spread them out: take every other free day before doubling up
+  const pick = []; for (let i = 0; i < order.length && pick.length < jobs.length; i += 2) pick.push(order[i]); for (const d of order) if (pick.length < jobs.length && !pick.includes(d)) pick.push(d);
+  jobs.forEach((c, i) => { const d = pick[i]; if (d) (d.cond = d.cond || []).push({name:c.name, mode:c.mode || "any", work:c.work || "", rest:c.rest || "", intensity:c.intensity || "", why:c.why || ""}); });
+  days.forEach(d => { if (!d.cond) return; if (d.rest && !sport.has(d.k)){ d.label = "Conditioning"; d.focus = d.cond.map(c => c.name).join(" + "); d.cardio = "Conditioning today"; } });
+}
+// "3-5", "5", "6/side", "20 s", "20-30 s" -> [lo, hi, seconds?, each side?]
+function spReps(t){ const m = String(t || "").match(/(\d+)(?:\s*-\s*(\d+))?/); if (!m) return null; const lo = +m[1], hi = +(m[2] || m[1]);
+  return [Math.min(lo, hi), Math.max(lo, hi), /\d\s*s\b|sec/.test(t) && !/sets/.test(t), /side|each|leg|arm/i.test(t)]; }
 function sportSeason(a){ return {off:"Off-season", pre:"Pre-season", in:"In-season"}[a.season || "off"]; }
 function sportBlocked(a){
   if (a.gtype !== "sport") return a.blocked || [];
@@ -1021,13 +1065,22 @@ function sportBlocked(a){
   if (md){ out.add(md); const i = WD.findIndex(x => x[0] === md); if (p.avoidBefore) out.add(WD[(i + 6) % 7][0]); out.add(WD[(i + 1) % 7][0]); }
   return [...out];
 }
+const SP_REDIR = [[/^(run|runn|jog|marat|half m|5 ?k|10 ?k|parkrun|ultra|road r)/, "run", "run", "Running has its own planner", "Week-by-week runs for 5k to ultra, with strength fitted in. Better than a gym-only plan for runners."],
+  [/^hyro/, "race", "hyrox", "HYROX has its own planner", "Runs, station work and race simulations, built back from your race date."],
+  [/^(tri|iron|dua)/, "race", "tri", "Triathlon has its own planner", "Swim, bike and run sessions with bricks and strength, built back from your race."],
+  [/^(cross ?f|functional fit)/, "race", "crossfit", "CrossFit-style has its own planner", "Strength plus short, hard conditioning pieces several days a week."],
+  [/^(power ?l|bench pr|deadl)/, "strength", "powerlifting", "Powerlifting has its own planner", "Squat, bench and deadlift with tracked maxes, peaked for a meet."],
+  [/^(bodyb|physiq)/, "muscle", "muscle", "Bodybuilding: use Build muscle", "The most productive volume, with priority muscles for the look you want."]];
 // Search-first: the most common sports as a small grid; typing shows a handful of matches; no match offers the AI
 const SP_POPULAR = ["football","tennis","padel","rugbyunion","golf","swimming","climbing","mma","boxing","basketball","cycling","netball"];
 function sportRowsPick(q){
   const all = SPP().sports, chip = s => `<button class="spchip" data-spid="${s.id}" aria-pressed="${F.ans.sportId === s.id && !F.ans.sportCustom}"><span class="spic">${window.AJSportIcon ? AJSportIcon(s.id) : ""}</span><span>${esc(s.name.replace(/ \(.*\)$/, "").replace(" & bouldering", ""))}</span></button>`;
   if (!q) return `<div class="spgrid">${SP_POPULAR.map(id => all.find(s => s.id === id)).filter(Boolean).map(chip).join("")}</div><p class="small muted">Not here? Search above: ${all.length} sports, or type any other.</p>`;
   const hit = all.filter(s => (s.name + " " + (s.aliases || []).join(" ")).toLowerCase().includes(q)).slice(0, 6);
-  return (hit.length ? `<div class="spgrid">${hit.map(chip).join("")}</div>` : "")
+  // sports with their own full planner in the app: send them there rather than to a gym-only sport plan
+  const rd = SP_REDIR.find(r => r[0].test(q));
+  return (rd ? `<button class="obcard aicard wcard" data-redir="${rd[1]}:${rd[2]}"><span class="obic">${gIc(rd[1] === "race" ? "race" : rd[1])}</span><span class="wct"><b>${rd[3]}</b><span>${rd[4]}</span></span></button>` : "")
+    + (hit.length ? `<div class="spgrid">${hit.map(chip).join("")}</div>` : "")
     + `<button class="btn ghost" data-aisport="1" ${F.busy ? "disabled" : ""}>${F.busy ? "Working it out…" : `${hit.length ? "Something else? " : ""}Build a plan for “${esc(F.spq.trim().slice(0, 30))}” with AI`}</button>`;
 }
 async function aiSport(){
@@ -1623,7 +1676,7 @@ function psteps(){
 function psteps0(){
   const a = F.ans;
   if (a.gtype === "custom" && !a.customDone) return ["intro","goal","custom","build","review"];
-  if (a.gtype === "sport") return ["intro","goal","sportpick","season","sportdays","level","days","gyms","inj","build","review"];
+  if (a.gtype === "sport") return ["intro","goal","sportpick", ...(((sportElite(a) || {}).variants || []).length ? ["sportrole"] : []), "season","sportdays","level","days","gyms","inj","build","review"];
   if (a.gtype === "premade") return PSTEPS.lib;
   return PSTEPS[a.kind].filter(x => !(x === "look" && a.gtype !== "aesthetic") && !(x === "split" && a.goal === "crossfit") && !(x === "racedate" && a.event === "general")
     && !(x === "gyms" && ["endurance","tri"].includes(a.kind) && !(+a.strengthN > 0)) && !(x === "lifts" && a.goal === "crossfit") && !(x === "strlifts" && a.goal !== "strength") && !(["split","pri"].includes(x) && a.goal === "strength")).concat(a.gtype === "custom" ? [] : []).filter((x, i, arr) => arr.indexOf(x) === i);
@@ -1705,13 +1758,18 @@ function pStep(s, a){
     <button class="libcta" data-gfam="premade" aria-pressed="${a.gfam === "premade"}"><span class="libcta-t"><em>Ready-made</em><b>Coach-written programmes</b><span>${(window.AJProgrammes || {list:[]}).list.length} complete plans, from push, pull, legs to a priority protocol. Pick one and start.</span></span><span class="libcta-a">→</span></button>
     <span class="obl" style="margin-top:4px">Or build your own around a goal</span>
     <div class="obgrid g3 obgoals">${GFAM.map(([k, t, d]) => `<button class="obcard gcard" data-gfam="${k}" aria-pressed="${a.gfam === k}"><span class="obic">${gIc(k === "aesthetic" ? "look" : k)}</span><b>${t}</b><span>${d}</span></button>`).join("")}</div>
-    <button class="obcard aicard spcard wcard" data-gfam="sport" aria-pressed="${a.gfam === "sport"}"><span class="obic">${gIc("sport")}</span><span class="wct"><b>Train for my sport</b><span>Tennis, football, climbing, MMA, swimming and 40+ more: strength, power and injury prevention built around how your sport works.</span></span></button>
+    <button class="obcard aicard spcard wcard" data-gfam="sport" aria-pressed="${a.gfam === "sport"}"><span class="obic">${gIc("sport")}</span><span class="wct"><b>Train for my sport</b><span>Tennis, football, rugby, MMA, swimming and ${Math.floor((SPP().sports.length - 5) / 10) * 10}+ more: your position, season and match week, with strength, conditioning, injury prevention and fitness tests.</span></span></button>
     <button class="obcard aicard wcard" data-gfam="custom" aria-pressed="${a.gfam === "custom"}"><span class="obic">${gIc("ai")}</span><span class="wct"><b>Anything else? Tell the AI.</b><span>Describe any goal in your own words, a sport, an event, a look or a deadline, and AJ Training AI builds the plan around it.</span></span></button>`};
   case "sportpick": { const p = a.sportCustom;
     return {title:"Which sport?", body:`
     <label class="sb card"><span>${ICON.search}</span><input data-spq="1" placeholder="Search any sport" value="${esc(F.spq || "")}" autocomplete="off"></label>
     <div id="obspq" class="sprows">${sportRowsPick((F.spq || "").toLowerCase())}</div>
     ${p ? `<div class="card obai"><b>${esc(p.name)}</b><span>${esc(p.summary || "")}</span><span class="small muted">There's little research on training for this sport specifically, so the plan uses what the sport demands plus general athletic-training evidence. It's a sound plan, but less tailored than the sports in the list.</span></div>` : ""}`, cta:p ? "Use this" : "Continue"}; }
+  case "sportrole": { const p = sportProfile(a) || SPORT_GENERIC, vs = (sportElite(a) || {}).variants || [];
+    return {title:`Your ${/Combat|Athletics|Endurance|Snow/.test(p.group || "") ? "event or style" : "position or role"}`, body:`<div class="obopts">
+    ${vs.map(v => opt("sportVar", v.id, esc(v.name), esc(v.desc || ""), a.sportVar)).join("")}
+    ${opt("sportVar", "", "All-round", "A bit of everything, or you play more than one", a.sportVar || "")}</div>
+    ${a.sportVar && sportVarOf(p.id, a.sportVar) && sportVarOf(p.id, a.sportVar).note ? `<p class="obnote">${esc(sportVarOf(p.id, a.sportVar).note)}</p>` : ""}`}; }
   case "season": { const p = sportProfile(a) || SPORT_GENERIC, se = p.season || SPORT_GENERIC.season;
     return {title:"Where are you in your season?", body:`<div class="obopts">
     ${opt("season","off","Off-season","Building: " + se.off + " gym sessions a week to get stronger and more powerful while the sport load is low.",a.season)}
@@ -1958,6 +2016,10 @@ function sportWhy(prog, su){
     .filter((x, i, arr) => arr.findIndex(y => y.source === x.source) === i);
   return `<div class="card obwhy"><h2>Why it's built this way</h2>
     ${p.summary ? `<div><b>${esc(p.name)}</b><span>${esc(p.summary)}${p.energy ? " " + esc(p.energy) : ""}</span></div>` : ""}
+    ${p.variant ? `<div><b>${esc(p.variant.name)}</b><span>${esc(p.variant.desc || "")}${p.variant.note ? " " + esc(p.variant.note) : ""}</span></div>` : ""}
+    ${(() => { const E = SPE()[p.id] || {}, c = ((E.conditioning || {})[se] || []).filter(x => !x.for || !x.for.length || !su.sportVar || x.for.includes(su.sportVar)), t = E.tests || [];
+      return (c.length ? `<div><b>Conditioning</b><span>${c.map(x => esc(x.name)).join(", ")}: placed away from matches and heavy leg days. Details are on each day in Train.</span></div>` : "")
+        + (t.length ? `<div><b>Fitness tests</b><span>${t.map(x => esc(x.name)).join(", ")}. Log them every 6-8 weeks in Train to see where you stand against club and elite players.</span></div>` : ""); })()}
     <div><b>Strength and power</b><span>${su.level === "new" ? "Main lifts at 6-10 reps while you learn them, building to heavier work." : `Main lifts at 3-${se === "in" ? 5 : 6} reps, with jumps or throws first while you're fresh.`} Stronger athletes sprint, jump and change direction better, and the gym adds little bulk at this volume.</span></div>
     ${pre.length ? `<div><b>Injury prevention</b><span>${pre.map(k => PREHAB_N[k]).join(", ").replace(/^./, c => c.toUpperCase())}. Chosen for the injuries most common in ${esc(p.name.toLowerCase())}, where trials show these exercises cut injury rates.</span></div>` : ""}
     <div><b>${sportSeason(su)}</b><span>${se === "off" ? "More sessions and sets to build while your sport load is lower." : se === "pre" ? "Less volume, more speed and power, as sport training ramps up." : "One or two short sessions: enough to keep your strength through the season without leaving you tired for matches."}</span></div>
@@ -2503,7 +2565,8 @@ function bind(o){
     if (b.dataset.ob === "close") return close();
     if (b.dataset.ob === "alt"){ F.seed = Math.random().toString(36).slice(2, 7); F.out = generate(F.ans, F.seed); F.keepScroll = true; draw(); toast("New exercise picks"); return; }
     if (b.dataset.src) return window.AJScience && AJScience.open(b.dataset.src);
-    if (b.dataset.spid){ F.ans.sportId = b.dataset.spid; F.ans.sportCustom = null; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 200); return; }
+    if (b.dataset.redir){ const [fam, gt] = b.dataset.redir.split(":"); F.ans.gfam = fam; setGtype(F.ans, gt); F.ans.sportId = null; F.ans.sportCustom = null; saveDraft(); const st = stepsOf(); return go2(st[st.indexOf("goal") + 1] || "build"); }
+    if (b.dataset.spid){ if (F.ans.sportId !== b.dataset.spid) F.ans.sportVar = ""; F.ans.sportId = b.dataset.spid; F.ans.sportCustom = null; saveDraft(); F.keepScroll = true; draw(); setTimeout(() => { if (F) next(); }, 200); return; }
     if (b.dataset.aisport) return aiSport();
     if (b.dataset.wnext) return acceptWelcome(b.dataset.wnext);
     if (b.dataset.set){
