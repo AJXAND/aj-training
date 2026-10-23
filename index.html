@@ -2811,6 +2811,41 @@ function weighCard(){
     :`<div class="row" style="flex-wrap:nowrap"><input class="field big" id="kg" inputmode="decimal" placeholder="${S.weights.length?S.weights[S.weights.length-1].kg.toFixed(1):"75.0"} kg" aria-label="Weight in kg" style="flex:1"><input class="field" id="kgDate" type="date" value="${today}" aria-label="Date" style="width:132px;flex:none;font-size:14px"><button class="btn small orange" data-act="kg">Save</button></div>`}
     ${w&&!S.reweigh?"":`<span class="small muted">First thing, after the toilet, before food or drink. Your targets use the 7-day average, so one high or low reading barely moves them.</span>`}</div>`;
 }
+/* Scale coach: for people who weigh in but don't log food. Fits a line through the last 14 days of morning weigh-ins
+   (falls back to 21), turns it into % bodyweight a week and compares it with the goal's band. Daily weighing with a
+   trend line beats single readings, which swing 1-2 kg with water, salt and gut contents (Hall 2008; Helms 2014).
+   The change is given as food, not numbers: about 150-450 kcal a day, sized from the gap (energyPerKg). */
+const SC_ADD=[[150,"a glass of milk or a yoghurt each day (about 150 kcal)"],[300,"a bowl of oats with milk (about 300 kcal)"],[450,"a peanut butter sandwich and a glass of milk (about 450 kcal)"]];
+const SC_CUT=[[150,"one sugary drink (swap it for diet or water) or a spoon of cooking oil (about 150 kcal)"],[300,"half the rice, pasta or bread at one meal, or one snack like crisps or chocolate (about 300 kcal)"],[450,"the second helping at dinner and one snack (about 450 kcal)"]];
+function scaleCoach(){
+  const today=ymd(new Date()), back=n=>ymd(new Date(Date.now()-n*864e5));
+  const ph=PHASES[S.profile.phase]||PHASES.maintain, band=(window.AJGoal&&AJGoal.band())||ph.rate, kg=currentKg();
+  const sl=slopeKgPerDay(back(13),today)||slopeKgPerDay(back(20),today);
+  const prot=Math.round((S.profile.goal&&+S.profile.goal.prot||ph.prot)*kg), serv=Math.max(3,Math.round(prot/30));
+  const protLine=`<span class="small"><b>Protein:</b> ${serv} servings a day, spread out, about 30 g each: a chicken breast, a tin of tuna or 200 g of Greek yoghurt (${prot}&nbsp;g in all).</span>`;
+  const n14=S.weights.filter(w=>w.d>=back(13)).length;
+  let head, body;
+  if (!sl){
+    head="Not enough weigh-ins yet";
+    body=`Weigh in most mornings. After a week (at least 4 readings) you get your first verdict. ${n14} so far.`;
+  } else {
+    const r=sl.b*7/kg*100, e=sl.se*7/kg*100, lo=Math.min(...band), hi=Math.max(...band), mid=(lo+hi)/2;
+    const amt=x=>Math.abs(x*kg/100).toFixed(2), mv=x=>Math.abs(x*kg/100)<0.05?"holding steady":(x>0?"gaining ":"losing ")+amt(x)+" kg a week";
+    const tgt=lo>=0?`gaining ${amt(lo)} to ${amt(hi)} kg`:hi<=0?`losing ${amt(hi)} to ${amt(lo)} kg`:`within ${amt(Math.max(-lo,hi))} kg either way`;
+    const gap=r<lo?lo-r:r>hi?r-hi:0, close=gap<=e;
+    const kcal=Math.abs(mid-r)/100*kg*energyPerKg()/7, pick=t=>(t.find(([k])=>kcal<=k+75)||t[t.length-1])[1];
+    const now=`You're ${mv(r)}. Your target is ${tgt} a week.`;
+    if (!gap){ head="Keep going"; body=`${now} You're on track, so eat the way you have been.`; }
+    else if (close){ head="Too close to call"; body=`${now} You're just off it, but the readings are noisy. Eat the same for one more week.`; }
+    else if (r<lo){ head="Eat a bit more"; body=`${now} Add ${pick(SC_ADD)}, then check again in a week.`; }
+    else { head="Eat a bit less"; body=`${now} Cut ${pick(SC_CUT)}, then check again in a week.`; }
+    const ps=S.profile.phaseStart, early=ps&&(Date.now()-parseD(ps))/864e5<14&&S.profile.phase!=="maintain";
+    if (early&&gap) body+=" The first 2 weeks of a new phase include water and food weight, so expect a bigger jump at first.";
+  }
+  return `<div class="card" id="scalecoach"><div class="spread"><h2>Scale coach</h2><span class="small muted">${esc(ph.label)}</span></div>
+    <b style="font-size:18px">${head}</b><span class="small">${body}</span>${protLine}
+    <span class="small muted">Judged on the trend of your morning weigh-ins over 2 weeks, not any single day. No food logging needed.</span></div>`;
+}
 function renderFoodSheet(){
   const el=$("#foodSheet"), a=S.foodAdd;
   if (!a){ hideAnim(el,240); if ($("#chat").hidden && ($("#actions").hidden||$("#actions").classList.contains("out"))) hideAnim($("#scrim")); return; }
@@ -3846,7 +3881,7 @@ function renderBody(){
     ${S.condOpen===p.id?`<div class="conds">${condChips(p.cond,p.id)}</div>`:""}${p.bf&&p.bf.vs_previous?`<p class="small muted">${esc(p.bf.vs_previous)}</p>`:""}
     <div class="row" style="gap:16px"><button class="link muted" data-act="condOpen" data-id="${p.id}">${S.condOpen===p.id?"Hide conditions":"Conditions"}</button>${imgOk?`<button class="link" data-act="reanalyse" data-id="${p.id}">${S.busy==="an:"+p.id?"Analysing…":"Analyse again"}</button>`:""}<button class="link muted" data-act="photoDel" data-id="${p.id}">${S.confirm==="pdel:"+p.id?"Tap again to delete":"Delete"}</button></div></div>`).join("");
   const staged=S.staged.map((s,i)=>`<figure><img src="${s.url}" alt="Photo ${i+1}"><button class="link muted" data-act="unstage" data-i="${i}">Remove</button></figure>`).join("");
-  return weighCard()+`<div class="card"><div class="spread"><h2>Body weight</h2></div>
+  return weighCard()+scaleCoach()+`<div class="card"><div class="spread"><h2>Body weight</h2></div>
     <div class="stat"><div><span>7-day avg</span><b>${a7!=null?a7.toFixed(1):"–"}</b></div><div><span>vs prior 7</span><b>${chg==null?"–":(chg>=0?"+":"")+chg.toFixed(2)}</b></div><div><span>Lean mass</span><b>${lbm.toFixed(1)}</b></div></div>
     ${weightChart()}
     ${w.length?`<div class="kv">${w.slice(0,7).map(e=>`<div><span class="num">${fmtD(e.d)}${e.s?' <span class="tag">Sample</span>':""}</span><span class="num">${e.kg.toFixed(1)} kg <button class="link muted" data-act="kgdel" data-d="${e.d}">Delete</button></span></div>`).join("")}</div>`:""}</div>
