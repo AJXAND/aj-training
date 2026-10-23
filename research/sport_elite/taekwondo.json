@@ -1,0 +1,164 @@
+{
+  "id": "taekwondo",
+  "name": "Taekwondo",
+  "aliases": ["taekwondo", "tae kwon do", "tkd", "kyorugi", "sparring", "poomsae", "olympic taekwondo", "itf taekwondo"],
+  "group": "Combat",
+  "q": {"maxStrength":2,"power":3,"rotational":2,"unilateral":3,"upperPull":1,"upperPush":1,"lowerBody":3,"grip":0,"neck":2,"trunk":2,"mass":0},
+  "prehab": ["ankle", "landing", "copenhagen", "hipFlex", "neck"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "Repeated short kicking exchanges inside three 2 min rounds with 1 min rest, so high anaerobic power on a moderate to high aerobic base.",
+  "summary": "Sparring is fast, repeated kicking on one leg with contact to the body and head, and most injuries hit the foot, knee and ankle. The plan builds single-leg strength and kicking power, hip flexor and adductor strength, ankle and landing control, neck strength, and keeps weight making safe.",
+  "evidence": [
+    {"claim":"Lower-limb injuries are the most common in high-performance taekwondo, especially foot and knee; contusions lead, then sprains and ligament tears, mostly from direct contact.","source":"Epidemiology of injuries in high-performance taekwondo 2025, Cureus","url":"https://lida.sport-iat.de/djb/Record/4096204"},
+    {"claim":"Amateur competition injury incidence was about 60 per 1,000 athlete-exposures, with about a third of injuries moderate to severe.","source":"Lystad, Graham & Poulos 2013, Br J Sports Med","url":"https://bjsm.bmj.com/content/47/7/441"},
+    {"claim":"Rapid weight loss of 2-10% in the final days before weigh-in is common in combat sports and has documented health harms.","source":"Artioli et al. 2016, Sports Med","url":"https://www.iat.uni-leipzig.de/datenbanken/iks/dfb-fechten/Record/4042943"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"sparring","name":"Sparring (kyorugi)","desc":"Three 2 min rounds of explosive kicking with contact, footwork and head-kick risk.",
+     "q":{"power":3,"neck":2},
+     "prehab":["ankle","neck"],
+     "note":"Full plan with round-based intervals, neck work and weight-making rules."},
+    {"id":"poomsae","name":"Poomsae (forms)","desc":"No contact; balance, flexibility, kick height and control, plus jumping and spinning kicks in freestyle poomsae.",
+     "q":{"power":2,"neck":0,"maxStrength":1,"trunk":3},
+     "prehab":["landing","ankle","lowback"],
+     "note":"Less conditioning and no neck work; more balance, landing control, trunk and active flexibility."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and jump power","focus":"Leg strength and vertical power for kicks and footwork.",
+       "slots":[
+        {"role":"pow","ex":["cmj","squatjump","boxjp"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-4","rir":3},
+        {"role":"main","ex":["frontsq","trapdl","goblet","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"4-8","rir":2},
+        {"role":"acc","ex":["bss","ffesplit","dbsplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["nordicham","slidecurl","singlerdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze","sideadd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-10/side","rir":2},
+        {"role":"core","ex":["pallof","pallofb","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Hips, rotation, ankles and neck","focus":"Kicking-hip strength, rotational power and protection work.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot","mbscoop"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5/side","rir":3},
+        {"role":"pow","ex":["latbound","pogo"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"main","ex":["pullup","invrow","dbrow","trxrow"],"sets":{"new":3,"inter":3,"adv":3},"reps":"6-10","rir":2},
+        {"role":"acc","ex":["pushup","lmpress","flatdb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2},
+        {"role":"pre","ex":["psoasmarch","cabhipflex","slr"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10/side","rir":2,"note":"Strong hip flexors at end range lift the kick and protect the front of the hip."},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":3},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15 s each way","rir":3},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Single-leg control and mobility","focus":"Standing-leg strength, glutes and active range.",
+       "slots":[
+        {"role":"main","ex":["skater","boxpistol","pistol","stepup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5-8/side","rir":2},
+        {"role":"acc","ex":["hipthrust","slthrust","glutebridge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"acc","ex":["cossack","latlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
+        {"role":"acc","ex":["stepcalf","slcalf","standcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15","rir":2},
+        {"role":"pre","ex":["9090","hipcars","pigeon"],"sets":{"new":2,"inter":2,"adv":2},"reps":"6-8/side","rir":3},
+        {"role":"core","ex":["abwheel","plank","hollow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+       ]}
+    ],
+    "pre": [
+      {"name":"Heavy lower and kick power","focus":"Max strength then explosive single-leg power.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj","tbjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3,"note":"Advanced: contrast with the main lift."},
+        {"role":"main","ex":["trapdl","frontsq","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["ffesplit","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["nordicham","slidecurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-12/side","rir":2},
+        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"4/side","rir":3}
+       ]},
+      {"name":"Rotation, hips and neck","focus":"Fast rotation and the protection modules.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4/side","rir":3},
+        {"role":"pow","ex":["latbound","hurdlehop","pogo"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3/side","rir":3},
+        {"role":"acc","ex":["invrow","dbrow","pullup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["psoasmarch","cabhipflex","slr"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-15 s each way","rir":3},
+        {"role":"core","ex":["sideplank","pallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]}
+    ],
+    "in": [
+      {"name":"Competition week strength","focus":"Hold strength and power in 30 minutes, early in the week.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["frontsq","trapdl","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3","rir":2},
+        {"role":"acc","ex":["ffesplit","bss"],"sets":{"new":1,"inter":2,"adv":2},"reps":"5/side","rir":3},
+        {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
+       ]},
+      {"name":"Light rotation and protection","focus":"Short session up to 3 days before competing.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3/side","rir":3},
+        {"role":"pre","ex":["psoasmarch","slr"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":3},
+        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10 s each way","rir":3},
+        {"role":"acc","ex":["invrow","dbrow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8","rir":2},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}
+       ]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic base","mode":"bike","work":"30-40 min steady, or 4 x 4 min","rest":"3 min easy between 4 min reps","intensity":"Steady; intervals 85-95% max heart rate","perWeek":2,"why":"Faster recovery between exchanges, rounds and fights."}
+    ],
+    "pre": [
+      {"name":"Round simulation","mode":"court","work":"3 x 2 min rounds of pad or bag work: 2-3 s kick flurry, then 5-8 s bouncing footwork, repeated","rest":"1 min between rounds; 3 sets with 5 min between","intensity":"Max effort flurries, light footwork","perWeek":2,"why":"Copies the WT format of three 2 min rounds with 1 min rest (practice for the flurry timing)."},
+      {"name":"Repeat sprint kicks","mode":"court","work":"FSKTmult style: 5 x 10 s max roundhouse kicks","rest":"10 s between sets, 3 min between blocks; 2-3 blocks","intensity":"Max kick rate with full technique","perWeek":1,"why":"Builds the repeat kicking capacity the FSKT measures."}
+    ],
+    "in": [
+      {"name":"Top-up round simulation","mode":"court","work":"2 sets of 3 x 2 min rounds","rest":"1 min between rounds","intensity":"As pre-season","perWeek":1,"why":"Only in weeks without a competition."}
+    ]
+  },
+  "tests": [
+    {"id":"fskt10","name":"Frequency speed of kick test, 10 s","how":"Partner holds a pad at trunk height; alternate-leg roundhouse kicks for 10 s, count valid kicks.","unit":"kicks","better":"higher","bands":{"club":"18-21","good":"22-23","elite":">=24"},"note":"Men's classes from Santos 2019 (regular, good, excellent). Women: regular 17-20, good 21, excellent 22 or more."},
+    {"id":"fsktmult","name":"Multiple frequency speed of kick test","how":"5 x 10 s FSKT with 10 s rest; total kicks and drop-off from best to worst set.","unit":"kicks","better":"higher","bands":{"club":"85-96","good":"97-107","elite":">=108"},"note":"Men (Santos 2019). Women: regular 82-91, good 92-96, excellent 97 or more."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"32-38","good":"38-44","elite":">44"},"note":"Practice bands for men; women about 20% lower."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on each leg, best of 3; record the difference between legs.","unit":"% difference","better":"lower","bands":{"club":">15","good":"10-15","elite":"<10"},"note":"Over 10-15% is a flag for knee injury risk and kicking imbalance (practice)."},
+    {"id":"sebt","name":"Y-balance anterior reach","how":"Single-leg stance, reach forward along a tape line with the other foot; best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A difference over 4 cm is linked to lower-limb injury in other sports (Plisky 2006)."}
+  ],
+  "week": [
+    "Competition Saturday: heavy lower session Monday or Tuesday.",
+    "Rotation and protection session Wednesday at the latest.",
+    "Hardest sparring 4-5 days out, technical work only in the last 2 days.",
+    "No heavy lower work within 72 h of competing.",
+    "Day after competing: easy bike, walk or swim and mobility."
+  ],
+  "primer": [
+    "Dynamic warm-up with skipping and footwork",
+    "2 x 3 jumps",
+    "2 x 5 fast kicks each leg on the pad",
+    "Neck activation 1 x 10 s each way"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower lift 5-7 days before competing.",
+    "Gym volume down about 50%, keep the load.",
+    "Hard sparring stops 4 days out.",
+    "Be at your category weight a week out by eating normally, not by cutting water.",
+    "Eat and drink normally after weigh-in; random weigh-ins on the day allow only 5% over."
+  ]},
+  "rules": [
+    "No dehydration to make weight for any amateur: no saunas, sweat suits, fluid restriction or spitting.",
+    "Under 18: no weight cutting at all. Compete at natural weight and move up a category if you grow.",
+    "Adults: pick a category close to your normal morning weight and lose any extra slowly over weeks.",
+    "If you need to drop more than about 2-3% in the final week, choose the next category up.",
+    "Keep sparring sessions to about an hour; longer sessions were linked to more injuries.",
+    "Head guard, gum shield and shin and foot guards in all sparring.",
+    "Any head knock with symptoms: stop that day and follow return-to-play steps."
+  ],
+  "sources": [
+    {"source":"Bridge CA et al. 2014, Sports Med 44(6):713-733","url":"https://www.bisp-surf.de/Record/PU201409008874"},
+    {"source":"Time-motion analysis and physiological responses to taekwondo combat, systematic review 2020, Strength Cond J 42(2):103-121","url":"https://lida.sport-iat.de/ta/Record/4062880?lng=en"},
+    {"source":"Lystad RP, Pollard H, Graham PL 2009, J Sci Med Sport 12(6):614-621","url":"https://lida.sport-iat.de/ta/Record/4017768?lng=en"},
+    {"source":"Lystad RP, Graham PL, Poulos RG 2013, Br J Sports Med 47(7):441-446","url":"https://bjsm.bmj.com/content/47/7/441"},
+    {"source":"Epidemiology of injuries in high-performance taekwondo 2025, Cureus 17(9):e93356","url":"https://lida.sport-iat.de/djb/Record/4096204"},
+    {"source":"Portuguese taekwondo injury survey 2020, Rev Assoc Med Bras","url":"https://scielo.br/j/ramb/a/fcvttJ3xCfF5fNMDGNzytrc/?lang=en"},
+    {"source":"Santos JFS, Herrera-Valenzuela T, Franchini E 2019, Kinesiology 51(2):213-218","url":"https://hrcak.srce.hr/en/227873"},
+    {"source":"World Taekwondo 2018 competition rule changes","url":"https://www.worldtaekwondo.org/wtnews/view.html?nid=103899"},
+    {"source":"Taekwondo Canada 2026 Canada Open information package (WT format and weigh-in)","url":"https://taekwondo-canada.com/wp-content/uploads/2026/01/2026-Canada-Open-Kyorugi-Information-Package_G2_2026.pdf"},
+    {"source":"Artioli GG et al. 2016, Sports Med 46(11):1579-1584","url":"https://www.iat.uni-leipzig.de/datenbanken/iks/dfb-fechten/Record/4042943"},
+    {"source":"British Judo, Weight Control Guidance","url":"https://www.britishjudo.org.uk/wp-content/uploads/2025/11/Weight-Control-Guidance.pdf"}
+  ],
+  "missing_ex": [
+    {"name":"Banded roundhouse kick","pattern":"prot","equipment":"bands","why":"Loaded kicking pattern for hip flexor and rotational power."},
+    {"name":"Standing knee-lift hold (active flexibility)","pattern":"hipflex","equipment":"","why":"End-range hip flexor strength for kick height."}
+  ]
+}

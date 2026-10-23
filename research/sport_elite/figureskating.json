@@ -1,0 +1,156 @@
+{
+  "id": "figureskating",
+  "name": "Figure skating",
+  "aliases": ["figure skating", "ice skating", "skating", "singles skating", "pairs skating", "ice dance", "ice dancing", "synchronised skating", "synchro"],
+  "group": "Artistic",
+  "q": {"maxStrength":2,"power":3,"rotational":3,"unilateral":3,"upperPull":1,"upperPush":1,"lowerBody":3,"grip":0,"neck":0,"trunk":3,"mass":0},
+  "prehab": ["ankle", "landing", "patellar", "lowback", "hipAbd"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "A free skate of about 4 min is roughly three quarters aerobic, with the rest from short explosive jumps, spins and footwork.",
+  "summary": "Figure skating needs explosive take-offs, fast rotation and single-leg landings of up to 9 times body weight, and the knee, ankle and foot carry most injuries. The plan builds leg power and landing capacity, a stiff rotating trunk, tendon and ankle robustness, and keeps energy intake high enough to protect bone.",
+  "evidence": [
+    {"claim":"Ankle sprain is the most common injury, patellar tendinopathy the most common overuse injury, and stress fractures the most common overuse injury in female singles; pairs accounts for most upper-limb injuries.","source":"Han, Geminiani & Micheli 2018, Sports Health","url":"https://lida.sport-iat.de/ta/Record/4051402?lng=en"},
+    {"claim":"Jump landing impact rises with extra revolutions, from about 3 to 9 times body weight.","source":"Lockwood, Baudin & Gervais, citing Lockwood & Gervais 1995","url":"https://ojs.ub.uni-konstanz.de/cpa/article/view/2984/2829"},
+    {"claim":"Free skating was estimated at about 74% aerobic, 12% anaerobic lactic and 14% anaerobic alactic, with peak HR about 194 bpm and lactate about 9.7 mmol/L.","source":"ECSS 2012 congress abstract, energetic demand profile in figure skating","url":"https://lida.sport-iat.de/ta/Record/4029741?lng=en"}
+  ],
+  "confidence": "limited",
+  "variants": [
+    {"id":"singles","name":"Singles","desc":"The most jumps and the most overuse injuries, including stress fractures in female singles.",
+     "q":{"power":3,"rotational":3},
+     "prehab":["landing","patellar","shin"],
+     "note":"Most jump power and landing work, plus careful jump-count and energy-intake rules."},
+    {"id":"pairs","name":"Pairs","desc":"Lifts, twists and throws: men lift a partner overhead, women land throws and hold positions in the air.",
+     "q":{"upperPush":3,"upperPull":2,"maxStrength":3,"trunk":3},
+     "prehab":["shoulderER","scap","lowback"],
+     "note":"Men add overhead pressing and shoulder work; women keep the singles landing work and add trunk and shoulder stability."},
+    {"id":"dance","name":"Ice dance","desc":"No multi-revolution jumps; deep edges, footwork, lifts and longer continuous effort.",
+     "q":{"power":2,"rotational":2,"upperPush":2},
+     "prehab":["hipAbd","lowback","ankle"],
+     "note":"Fewer jumps, more single-leg strength, edge-control hip work and aerobic conditioning; men add lift strength."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and jump power","focus":"Leg strength and vertical take-off power.",
+       "slots":[
+        {"role":"pow","ex":["cmj","squatjump","boxjp"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-4","rir":3,"note":"Land quietly on two feet; full rest."},
+        {"role":"main","ex":["frontsq","goblet","trapdl","legpress"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4-8","rir":2},
+        {"role":"acc","ex":["bss","ffesplit","dbsplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["singlerdl","bstance","slrdlbw"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick the landing on one leg, like a jump landing."},
+        {"role":"core","ex":["pallof","hkpallof","pallofb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Rotation and single-leg control","focus":"Fast rotation, a stiff trunk and landing-leg strength.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot","mbscoop"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4/side","rir":3,"note":"Both directions, even though you jump one way."},
+        {"role":"main","ex":["skater","boxpistol","pistol","stepup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5-8/side","rir":2},
+        {"role":"acc","ex":["latstepup","latlunge","cossack"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"acc","ex":["sideabd","bandabd","cababd","clamshell"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15/side","rir":2},
+        {"role":"pre","ex":["spanishsq","wallsit","slegext"],"sets":{"new":3,"inter":4,"adv":4},"reps":"30-45 s","rir":3,"note":"Isometric holds for the patellar tendon."},
+        {"role":"core","ex":["sideplank","birddog","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Upper body, back and ankles","focus":"Upper strength for arms and lifts, lumbar capacity and lower leg.",
+       "slots":[
+        {"role":"pow","ex":["mbslam","mbchest"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5","rir":3},
+        {"role":"main","ex":["pullup","bandpullup","latpd","invrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5-8","rir":2},
+        {"role":"main","ex":["standdbohp","lmpress","pushup","ohp"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2,"note":"Pairs men: progress overhead pressing here."},
+        {"role":"acc","ex":["hipthrust","glutebridge","slthrust"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["stepcalf","slcalf","soleuswall","tibraise"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2},
+        {"role":"pre","ex":["hipext","birddog","mcgill"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":2},
+        {"role":"core","ex":["abwheel","hollow","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+       ]}
+    ],
+    "pre": [
+      {"name":"Heavy lower and jump power","focus":"Max strength then take-off power.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj","tbjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3},
+        {"role":"main","ex":["frontsq","trapdl","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["bss","ffesplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"pre","ex":["spanishsq","wallsit"],"sets":{"new":3,"inter":3,"adv":4},"reps":"30-45 s","rir":3},
+        {"role":"core","ex":["pallof","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Rotation, upper and tendons","focus":"Rotational speed, lift strength and lower-leg capacity.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3/side","rir":3},
+        {"role":"main","ex":["skater","boxpistol","stepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["pullup","latpd","invrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
+        {"role":"acc","ex":["standdbohp","lmpress","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["stepcalf","slcalf","tibraise"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]}
+    ],
+    "in": [
+      {"name":"Competition season strength","focus":"Hold strength and power in 30 minutes.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["frontsq","goblet","trapdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["bss","skater"],"sets":{"new":1,"inter":2,"adv":2},"reps":"5/side","rir":3},
+        {"role":"pre","ex":["spanishsq","wallsit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s","rir":3},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Rotation and protection","focus":"Short session up to 3 days before a competition.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","landrot"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3/side","rir":3},
+        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3/side","rir":3},
+        {"role":"pre","ex":["stepcalf","tibraise"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
+        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10","rir":3},
+        {"role":"core","ex":["deadbug","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}
+       ]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic base","mode":"bike","work":"30-40 min steady, or 4 x 4 min","rest":"3 min easy between 4 min reps","intensity":"Steady; intervals 85-95% max heart rate","perWeek":2,"why":"About three quarters of a free skate is aerobic; a low-impact base spares the landing leg."}
+    ],
+    "pre": [
+      {"name":"Programme-length intervals","mode":"bike","work":"4 x 4 min with 10 s sprints every 40 s","rest":"3 min easy","intensity":"Hard but steady with all-out bursts","perWeek":1,"why":"Matches a 4 min free skate with jumps inside it (practice)."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"28-34","good":"34-40","elite":">40"},"note":"No verified skating norms; practice bands for adult men, women about 20% lower, juniors lower still. Track change."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on each leg, best of 3; record the difference between legs.","unit":"% difference","better":"lower","bands":{"club":">15","good":"10-15","elite":"<10"},"note":"Landing leg and take-off leg differ; flag gaps over 10-15% (practice)."},
+    {"id":"sebt","name":"Y-balance anterior reach","how":"Single-leg stance, reach forward along a tape line with the other foot; best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A difference over 4 cm is linked to lower-limb injury in other sports (Plisky 2006)."},
+    {"id":"sideplank","name":"Side plank hold","how":"Forearm side plank, straight line from head to heel, held to failure each side.","unit":"s","better":"higher","bands":{"club":"45-75","good":"75-105","elite":">105"},"note":"Practice bands; track left-right balance, which matters for one-way rotation."}
+  ],
+  "week": [
+    "Competition weekend: heavy lower session Monday or Tuesday.",
+    "Rotation and protection session Wednesday at the latest.",
+    "Keep jump-heavy on-ice sessions away from the day after heavy lifting where possible.",
+    "No heavy lower work within 72 h of competing.",
+    "Day after competing: easy bike or swim and mobility."
+  ],
+  "primer": [
+    "Off-ice dynamic warm-up and skipping",
+    "2 x 3 jumps",
+    "2 x 2 off-ice half or single turn jumps each way",
+    "1 x 3 single-leg hop and stick each side"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower lift 5-7 days before competing.",
+    "Gym volume down about 50%, keep the load.",
+    "Cut total jump count, keep full run-throughs sharp.",
+    "Keep eating normally; do not diet into a competition."
+  ]},
+  "rules": [
+    "Never restrict food to stay light; skipped meals and low energy intake are linked to injury and stress fractures.",
+    "Bone pain in the shin, foot or lower back that worsens with jumping: stop jumping and see a doctor.",
+    "Build jump counts gradually after any break.",
+    "Check boot fit each season and after growth spurts.",
+    "Under 16: no depth jumps and no 1RM testing; technique-led lifting.",
+    "Train rotation both ways in the gym even though you jump one way."
+  ],
+  "sources": [
+    {"source":"Energetic demand profile in figure skating 2012, ECSS Book of Abstracts pp. 605-606","url":"https://lida.sport-iat.de/ta/Record/4029741?lng=en"},
+    {"source":"Physiology and physiological assessment of figure skating 2018, The Science of Figure Skating, Routledge","url":"https://lida.sport-iat.de/deu/Record/4052847"},
+    {"source":"Lockwood KL, Baudin JP, Gervais PL, impact absorption during landings of multi-revolution jumps","url":"https://ojs.ub.uni-konstanz.de/cpa/article/view/2984/2829"},
+    {"source":"Han JS, Geminiani ET, Micheli LJ 2018, Sports Health 10(6):532-537","url":"https://lida.sport-iat.de/ta/Record/4051402?lng=en"},
+    {"source":"Schmidt NT 2023, systematic review (MSc dissertation, University of Pretoria)","url":"https://repository.up.ac.za/items/0af125ea-6728-4e85-94ed-5c8cf5032a0b/full"}
+  ],
+  "missing_ex": [
+    {"name":"Off-ice rotational jump (half and single turn)","pattern":"plow","equipment":"","why":"Main off-ice drill for take-off and air position."},
+    {"name":"Single-leg landing on a rotation (land and hold)","pattern":"land","equipment":"","why":"Landing-specific balance with rotation."},
+    {"name":"Slide board","pattern":"plat","equipment":"slideboard","why":"Edge and stroking pattern off ice."}
+  ]
+}

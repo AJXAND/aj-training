@@ -1,0 +1,137 @@
+{
+  "id": "xcski",
+  "name": "Cross-country skiing",
+  "aliases": ["nordic skiing", "xc skiing", "cross country skiing", "classic skiing", "skate skiing", "roller skiing", "rollerski", "skimo", "biathlon"],
+  "group": "Snow",
+  "q": {"maxStrength":3,"power":2,"rotational":1,"unilateral":2,"upperPull":3,"upperPush":2,"lowerBody":3,"grip":1,"neck":0,"trunk":3,"mass":1},
+  "prehab": ["lowback", "shoulderER", "hipAbd", "ankle", "copenhagen"],
+  "season": {"off":3,"pre":2,"in":1},
+  "avoidBefore": "all",
+  "energy": "Very high aerobic demand (world-class VO2max above 80 ml/kg/min for men, about 70 for women) using the whole body, with hard surges on climbs and in sprint heats.",
+  "summary": "Cross-country skiing is whole-body endurance where poling power and leg drive both matter, and the lower back is the most injured area. The plan uses heavy upper-body pulling and leg strength to improve poling economy, plus back, shoulder and lateral hip work.",
+  "evidence": [
+    {"claim":"Nine weeks of heavy upper-body strength training improved double-poling economy and time to exhaustion in cross-country skiers.","source":"Osteras, Helgerud & Hoff 2002, European Journal of Applied Physiology","url":"https://lida.sport-iat.de/ta/Record/4007707"},
+    {"claim":"World-class skiers train about 860 h a year, with about 6% as strength training; skiing and roller skiing make up 68% of endurance time.","source":"Walther et al. 2023, Frontiers in Physiology","url":"https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2023.1288606/full"},
+    {"claim":"Cross-country skiing has the lowest injury rate of the World Cup ski disciplines, 6.3 time-loss injuries per 100 athletes a season.","source":"Florenes et al. 2012, Scandinavian Journal of Medicine and Science in Sports","url":"https://lida.sport-iat.de/svd/Record/4023959"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"classic","name":"Classic","desc":"Double poling and diagonal stride: lats, triceps and trunk flexion do much of the work.",
+     "q":{"upperPull":3,"trunk":3},"prehab":["lowback","shoulderER","elbow"],
+     "note":"Your plan adds straight-arm pulldowns and triceps work to match the double-pole stroke.",
+     "add":[{"role":"acc","ex":["pullover","ropepullover","floorpo"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2,"note":"Hinge at the hips like a pole stroke"},
+            {"role":"acc","ex":["tridip","cgbench","pdbar"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-10","rir":2}]},
+    {"id":"skate","name":"Skate","desc":"A lateral push off an edged ski: more single-leg and lateral hip power.",
+     "q":{"unilateral":3,"power":3},"prehab":["hipAbd","copenhagen","ankle"],
+     "note":"Your plan adds lateral bounds and lateral lunges for the skating push.",
+     "add":[{"role":"pow","ex":["latbound","hopstick"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4/side","rir":3,"note":"Push out and slightly forward, stick 1 s"},
+            {"role":"acc","ex":["latlunge","cossack","latstepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2}]},
+    {"id":"roller","name":"UK roller skier","desc":"Most specific training is on roller skis on tarmac, where falls hurt more and snow time is short.",
+     "q":{},"prehab":["wrist","shoulderER","ankle"],
+     "note":"Your plan adds wrist and forearm work for falls and poling. Always ski with a helmet and gloves.",
+     "add":[{"role":"pre","ex":["wristcurl","revwristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12-15","rir":2}]}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Heavy upper pull and poling","focus":"Max strength for the poling stroke","slots":[
+        {"role":"pow","ex":["mbslam","mbohthrow","skiint"],"sets":{"new":2,"inter":3,"adv":4},"reps":"5 or 10 s","rir":3,"note":"Fast and hard, like a sprint pole stroke"},
+        {"role":"main","ex":["pullup","wpullup","latpd"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4-6","rir":2,"note":"New: 8-10 reps, RIR 3"},
+        {"role":"main","ex":["pullover","ropepullover","floorpo"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2,"note":"Heavy straight-arm pull"},
+        {"role":"acc","ex":["tridip","cgbench","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["sideer","bander","ytw"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":2},
+        {"role":"core","ex":["abwheel","hangleg","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2,"note":"Trunk flexion drives double poling"}]},
+      {"name":"Heavy legs","focus":"Leg strength for kick and climbs","slots":[
+        {"role":"pow","ex":["cmj","boxjp","broadjump"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4","rir":3},
+        {"role":"main","ex":["squat","trapdl","frontsq","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4-6","rir":2,"note":"About 80-85% 1RM (one-rep max) for intermediate"},
+        {"role":"acc","ex":["bss","stepup","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
+        {"role":"acc","ex":["rdl","dbrdl","hipthrust"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["hipext","revhyp","birddog"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-12","rir":2,"note":"Lower back capacity"},
+        {"role":"pre","ex":["slbalance","stepcalf"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}]},
+      {"name":"Single leg, lateral and trunk","focus":"Skating push, hips, trunk endurance","slots":[
+        {"role":"pow","ex":["latbound","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"main","ex":["latlunge","cossack","latstepup"],"sets":{"new":3,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"acc","ex":["dbrow","cabrow","invrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["copen","adductor","bandabd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8-12/side","rir":2},
+        {"role":"core","ex":["sideplank","suitcase","pallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-40 s/side","rir":2},
+        {"role":"core","ex":["birddog","mcgill","plank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":2}]}
+    ],
+    "pre": [
+      {"name":"Upper power and strength","focus":"Poling power, lower volume","slots":[
+        {"role":"pow","ex":["skiint","mbslam","mbohthrow"],"sets":{"new":3,"inter":4,"adv":5},"reps":"10 s or 5","rir":3,"note":"Max power, full recovery"},
+        {"role":"main","ex":["pullup","wpullup","latpd"],"sets":{"new":2,"inter":3,"adv":4},"reps":"3-5","rir":2},
+        {"role":"main","ex":["pullover","ropepullover"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5-6","rir":2},
+        {"role":"pre","ex":["sideer","bander"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":2},
+        {"role":"core","ex":["abwheel","hangleg"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8","rir":2}]},
+      {"name":"Leg power and strength","focus":"Kick power and back capacity","slots":[
+        {"role":"pow","ex":["latbound","boxjp","bounding"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4/side","rir":3},
+        {"role":"main","ex":["squat","trapdl","bss"],"sets":{"new":2,"inter":3,"adv":4},"reps":"3-5","rir":2,"note":"Heavy, low volume"},
+        {"role":"acc","ex":["latlunge","stepup"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6/side","rir":2},
+        {"role":"pre","ex":["hipext","revhyp","birddog"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10","rir":2},
+        {"role":"core","ex":["sideplank","pallof"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}]}
+    ],
+    "in": [
+      {"name":"Race-season maintenance","focus":"Hold strength, 30-40 min","slots":[
+        {"role":"pow","ex":["mbslam","cmj"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3-5","rir":3},
+        {"role":"main","ex":["pullup","latpd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-5","rir":2},
+        {"role":"main","ex":["squat","trapdl","bss"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3-5","rir":2,"note":"Heavy but short"},
+        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":1,"inter":2,"adv":2},"reps":"10","rir":2},
+        {"role":"core","ex":["sideplank","abwheel"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s or 8","rir":2}]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Long easy endurance","mode":"any","work":"60-120 min roller ski, run, bike or hike","rest":"none","intensity":"Easy, conversational","perWeek":3,"why":"World-class skiers do about 90% of their endurance time at low intensity."},
+      {"name":"Double-pole intervals","mode":"ski","work":"5-6 x 4 min on SkiErg or roller skis, double pole only","rest":"2-3 min easy","intensity":"Threshold, comfortably hard","perWeek":1,"why":"Upper-body endurance that transfers to the poling stroke."}
+    ],
+    "pre": [
+      {"name":"Ski walking and bounding uphill","mode":"run","work":"5-8 x 3-4 min uphill with poles","rest":"Walk or jog down","intensity":"Hard, about 85-90% max heart rate","perWeek":1,"why":"The classic dryland session for diagonal stride power and VO2max."},
+      {"name":"Sprint heats","mode":"ski","work":"4-6 x 3 min on roller skis or SkiErg","rest":"4-5 min easy","intensity":"Race pace for a sprint heat","perWeek":1,"why":"Sprint heats last about 3 min, so this trains repeat heats."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"pullups","name":"Max pull-ups","how":"Dead hang start, chin over bar, no kipping.","unit":"reps","better":"higher","bands":{"club":"6-10","good":"10-16","elite":">16"},"note":"Women about half. Bands are a coaching guide."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3.","unit":"cm","better":"higher","bands":{},"note":"Compare with yourself every 6-8 weeks."},
+    {"id":"skierg1k","name":"SkiErg 1000 m","how":"Double pole only, damper 5-7, full effort, after a warm-up.","unit":"m:ss","better":"lower","bands":{},"note":"Compare with yourself; same damper every time."},
+    {"id":"backhold","name":"Back extension hold","how":"Hips on the edge of a bench, body straight, time until you drop.","unit":"s","better":"higher","bands":{},"note":"Tracks lower back endurance. Compare with yourself."},
+    {"id":"latboundtest","name":"Lateral bound for distance","how":"Bound sideways off one leg, stick the landing, best of 3 each side.","unit":"% difference","better":"lower","bands":{"club":"10-15","good":"5-10","elite":"<5"},"note":"Skate skiers: keep sides within 10%."}
+  ],
+  "week": [
+    "Lift after easy sessions or 6+ hours after hard ones.",
+    "Never lift heavy the day before intervals or a race.",
+    "Split upper and lower days, like elite skiers pair uphill and double-pole days.",
+    "Race weekends: last gym session 3-4 days before."
+  ],
+  "primer": [
+    "Easy ski 15-20 min",
+    "3-4 x 15-20 s race-pace bursts",
+    "2 x 3 med ball slams for sprint days"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy session 7-10 days out.",
+    "Cut gym sets by about half; keep loads heavy.",
+    "Keep some short race-pace bursts.",
+    "Arrive at altitude or snow early if you can; first days on snow feel hard."
+  ]},
+  "rules": [
+    "Roller ski with a helmet and gloves, on quiet roads, and only where you can stop.",
+    "Ramp off-season running slowly; overuse injuries peak in the off-season.",
+    "Lower back work every week, all year.",
+    "No heavy lifting the day before intervals or racing."
+  ],
+  "sources": [
+    {"source":"Sandbakk & Holmberg 2017, International Journal of Sports Physiology and Performance","url":"https://lida.sport-iat.de/ta/Record/4046143"},
+    {"source":"Solli, Tonnessen & Sandbakk 2017, Frontiers in Physiology","url":"https://www.frontiersin.org/articles/10.3389/fphys.2017.01069/pdf"},
+    {"source":"Walther et al. 2023, Frontiers in Physiology","url":"https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2023.1288606/full"},
+    {"source":"Osteras, Helgerud & Hoff 2002, European Journal of Applied Physiology","url":"https://lida.sport-iat.de/ta/Record/4007707"},
+    {"source":"Hoff et al. 1999, Medicine and Science in Sports and Exercise","url":"https://lida.sport-iat.de/ta/Record/4001636"},
+    {"source":"Losnegard et al. 2009, ECSS Congress abstract","url":"https://lida.sport-iat.de/ta/Record/4017565"},
+    {"source":"Florenes et al. 2012, Scandinavian Journal of Medicine and Science in Sports","url":"https://lida.sport-iat.de/svd/Record/4023959"},
+    {"source":"Xu et al. 2021, Frontiers in Physiology","url":"https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2020.589983/pdf"},
+    {"source":"Worth, Reid & Henry 2017, British Journal of Sports Medicine (abstract)","url":"https://openrepository.aut.ac.nz/handle/10292/10398"},
+    {"source":"Ronnestad & Mujika 2014, Scandinavian Journal of Medicine and Science in Sports","url":"https://doi.org/10.1111/sms.12104"}
+  ],
+  "missing_ex": [
+    {"name":"Standing double-pole cable pull","pattern":"latiso","equipment":"cable_hi","why":"Closest gym match to the double-pole stroke with trunk flexion"}
+  ]
+}

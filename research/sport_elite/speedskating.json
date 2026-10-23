@@ -1,0 +1,162 @@
+{
+  "id": "speedskating",
+  "name": "Speed skating",
+  "aliases": ["speed skating", "speedskating", "long track", "short track", "inline skating", "inline speed skating", "roller speed skating", "ice racing"],
+  "group": "Endurance",
+  "q": {"maxStrength":3,"power":3,"rotational":0,"unilateral":3,"upperPull":1,"upperPush":0,"lowerBody":3,"grip":0,"neck":1,"trunk":2,"mass":1},
+  "prehab": ["lowback", "copenhagen", "patellar", "hipAbd", "tspine"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "From mostly anaerobic in the 500 m to mostly aerobic over 5,000 to 10,000 m, all in a deep crouch that restricts blood flow to the thighs.",
+  "summary": "Speed skating is repeated sideways leg pushes from a deep crouch, and back pain, knee overuse and falls are the main problems. The plan builds deep-knee leg strength and lateral power, adductor and hip strength, a robust lower and upper back, and an aerobic base mainly on the bike.",
+  "evidence": [
+    {"claim":"Seasonal back pain prevalence reaches up to 84% in long and short track skaters, and no study has yet tested whether any prevention measure works.","source":"Hendricks, Verhagen & van de Water 2024, Scand J Med Sci Sports","url":"https://www.citedrive.com/en/discovery/epidemiology-etiology-and-prevention-of-injuries-in-competitive-ice-speed-skatinglimited-current-evidence-multiple-future-priorities-a-scoping-review"},
+    {"claim":"In elite youth long track skaters the knee had the highest repetitive injury burden (11 days lost per 1,000 h), followed by the thoracic spine.","source":"Hendricks, van de Water & Verhagen 2024, Br J Sports Med","url":"https://bjsm.bmj.com/content/58/14/785"},
+    {"claim":"Reference levels for 30 s anaerobic power in national team skaters: senior men average 12.4-13.3 W/kg peak power, very high above 14.25.","source":"Sitkowski, Starczewski & Klusiewicz 2025, Biol Sport","url":"https://termedia.pl/Reference-levels-of-mean-and-peak-anaerobic-power-for-male-and-r-nfemale-long-track-speed-skaters,78,55023,1,0.html"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"longtrack","name":"Long track","desc":"400 m oval, 500 m to 10,000 m; sprinters need max strength and power, distance skaters need aerobic capacity and crouch endurance.",
+     "q":{"maxStrength":3,"power":3},
+     "prehab":["lowback","patellar"],
+     "note":"Sprinters keep heavy strength and jumps; distance skaters swap some power work for bike volume."},
+    {"id":"shorttrack","name":"Short track","desc":"111 m oval, 500 m to 1500 m pack racing with tight left turns, crossovers, surges, contact and falls.",
+     "q":{"unilateral":3,"neck":2,"trunk":3},
+     "prehab":["copenhagen","neck","ankle"],
+     "note":"More lateral power and single-leg work, neck strength for falls, and longer recovery after ice sessions."},
+    {"id":"inline","name":"Inline speed skating","desc":"Same crouched stride on wheels, on track and road, with long road races and crashes on hard ground.",
+     "q":{"maxStrength":2,"power":2},
+     "prehab":["lowback","hipAbd","wrist"],
+     "note":"More aerobic work for road races and wrist protection for falls; the outdoor season runs spring to autumn."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Max strength in the crouch","focus":"Deep-knee leg strength and vertical power.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","tbjump","boxjp","cmj"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-4","rir":3},
+        {"role":"main","ex":["squat","frontsq","beltsq","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"4-8","rir":2,"note":"Work to below a 100 deg knee angle, the skating position."},
+        {"role":"acc","ex":["bss","ffesplit","dbsplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["rdl","dbrdl","singlerdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["copen","adductor","cabadd","addsqueeze"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-10/side","rir":2},
+        {"role":"core","ex":["sideplank","birddog","pallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Lateral power and hips","focus":"Side-to-side push power, single-leg strength and the lower back.",
+       "slots":[
+        {"role":"pow","ex":["latbound","bounding","hurdlehop"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4/side","rir":3,"note":"Land in the skating position and hold 1 s."},
+        {"role":"main","ex":["latlunge","cossack","latstepup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6/side","rir":2},
+        {"role":"acc","ex":["stepup","skater","boxpistol"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["hipthrust","slthrust","glutebridge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["sideabd","bandabd","cababd"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15/side","rir":2},
+        {"role":"pre","ex":["hipext","revhyp","superman"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-12","rir":2},
+        {"role":"core","ex":["pallof","pallofb","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Upper back, trunk and crouch endurance","focus":"Thoracic strength and the ability to hold the skating position.",
+       "slots":[
+        {"role":"main","ex":["pullup","latpd","bandpullup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"acc","ex":["csdb","dbrow","cabrow","trxrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"acc","ex":["pushup","flatdb","lmpress"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8-12","rir":2},
+        {"role":"acc","ex":["wallsit","spanishsq"],"sets":{"new":3,"inter":3,"adv":4},"reps":"45-60 s","rir":3,"note":"Hold the skating knee angle; also loads the patellar tendon."},
+        {"role":"pre","ex":["openbook","tspineroller","catcow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":3},
+        {"role":"core","ex":["deadbug","abwheel","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+       ]}
+    ],
+    "pre": [
+      {"name":"Heavy lower and power","focus":"Max strength then explosive push-off.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","tbjump","boxjp"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3,"note":"Advanced: contrast with the squat."},
+        {"role":"main","ex":["squat","frontsq","beltsq"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["bss","ffesplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"pre","ex":["copen","adductor","addsqueeze"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-12/side","rir":2},
+        {"role":"pre","ex":["hipext","revhyp"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10","rir":2},
+        {"role":"core","ex":["sideplank","birddog"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Lateral power and back","focus":"Skating-specific power and back capacity.",
+       "slots":[
+        {"role":"pow","ex":["latbound","bounding"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3/side","rir":3},
+        {"role":"main","ex":["latlunge","cossack","latstepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["rdl","singlerdl","dbrdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5-6","rir":2},
+        {"role":"acc","ex":["csdb","dbrow","cabrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["sideabd","bandabd"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12/side","rir":2},
+        {"role":"pre","ex":["wallsit","spanishsq"],"sets":{"new":2,"inter":3,"adv":3},"reps":"45 s","rir":3}
+       ]}
+    ],
+    "in": [
+      {"name":"Race season strength","focus":"Hold strength and power in 30-35 minutes.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","latbound"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["squat","frontsq","beltsq","legpress"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["bss","latlunge"],"sets":{"new":1,"inter":2,"adv":2},"reps":"5/side","rir":3},
+        {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10","rir":2}
+       ]},
+      {"name":"Back and trunk top-up","focus":"Short session to keep the back robust through the season.",
+       "slots":[
+        {"role":"acc","ex":["csdb","dbrow","trxrow"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["hipext","revhyp","superman"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":2},
+        {"role":"pre","ex":["openbook","tspineroller"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":3},
+        {"role":"pre","ex":["sideabd","bandabd"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12/side","rir":2},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}
+       ]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic bike base","mode":"bike","work":"45-90 min steady ride","rest":"none","intensity":"Easy to moderate, can hold a conversation","perWeek":2,"why":"Cycling is the usual skater cross-training and uses a similar crouched leg action (practice)."},
+      {"name":"Aerobic intervals","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Raises aerobic power for 1500 m and longer races."}
+    ],
+    "pre": [
+      {"name":"Race-pace intervals","mode":"bike","work":"6-8 x 30-45 s hard","rest":"3-4 min easy","intensity":"Near all-out, RPE 9","perWeek":1,"why":"Lactate tolerance for 500-1500 m efforts; 800 m time trials produced lactate of about 10-11 mmol/L (Hettinga 2016)."},
+      {"name":"Dryland skating imitation","mode":"any","work":"6-10 x 30 s skating-position side jumps or slide board","rest":"60-90 s","intensity":"Hard, hold the crouch","perWeek":1,"why":"Specific crouch endurance off ice (practice)."}
+    ],
+    "in": [
+      {"name":"Easy aerobic ride","mode":"bike","work":"30-45 min","rest":"none","intensity":"Easy","perWeek":1,"why":"Keeps the aerobic base without adding fatigue in race weeks."}
+    ]
+  },
+  "tests": [
+    {"id":"wingate","name":"30 s all-out bike sprint","how":"Wattbike or Monark at 7.5% of body mass, 30 s all-out from a rolling start; record peak power per kg.","unit":"W/kg","better":"higher","bands":{"club":"<12.4","good":"12.4-13.8","elite":">13.8"},"note":"Senior men from Polish national team data (Sitkowski 2025). Senior women: average 10.66-11.41, very high above 12.16."},
+    {"id":"broadjump","name":"Standing broad jump","how":"Two-foot take-off, stick the landing, measure to the back heel; best of 3.","unit":"cm","better":"higher","bands":{"club":"210-240","good":"240-270","elite":">270"},"note":"Practice bands for men; women about 15-20% lower."},
+    {"id":"latjump","name":"Single-leg lateral bound","how":"From one leg, bound sideways and stick on the other leg; measure inside foot to inside foot, best of 3 each way.","unit":"cm","better":"higher","bands":{"club":"track change","good":"track change","elite":"track change"},"note":"No verified norms; height dependent. Flag a left-right gap above 10-15% (practice)."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"34-40","good":"40-46","elite":">46"},"note":"Practice bands for men; women about 20% lower."},
+    {"id":"rm3","name":"Estimated squat 1RM","how":"Work up to a 3-5RM back or front squat and estimate 1RM; divide by body mass.","unit":"x body mass","better":"higher","bands":{"club":"1.2-1.5","good":"1.5-1.8","elite":">1.8"},"note":"Practice bands for men; women about 0.2-0.3 lower. Not for under-16s."}
+  ],
+  "week": [
+    "Race weekend: heavy lower session Monday or Tuesday.",
+    "Lateral power and back work Wednesday at the latest.",
+    "Short track sessions need more recovery; avoid heavy lifting the day after a hard ice session.",
+    "No heavy lower work within 72 h of racing.",
+    "Day after racing: easy ride and mobility."
+  ],
+  "primer": [
+    "Dynamic warm-up and easy bike or jog",
+    "2 x 3 squat jumps",
+    "2 x 3 lateral bounds each side",
+    "Then the normal on-ice warm-up with starts"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower lift 5-7 days before the race.",
+    "Gym volume down about 50%, keep the load.",
+    "Keep a few short race-pace efforts, cut total volume.",
+    "Short track: allow an extra recovery day after the hardest ice session."
+  ]},
+  "rules": [
+    "Back pain is the most common complaint: do the back work every week, all year.",
+    "Short track: helmet, cut-resistant suit, neck guard, shin and ankle protection in every session.",
+    "Inline: helmet and wrist guards on the road.",
+    "Plan off-ice load as carefully as ice; many short track injuries happen off ice.",
+    "Under 16: no 1RM testing and no depth jumps."
+  ],
+  "sources": [
+    {"source":"Konings MJ et al. 2015, Sports Med 45(4):505-516","url":"https://researchportal.northumbria.ac.uk/en/publications/performance-characteristics-of-long-track-speed-skaters-a-literat/"},
+    {"source":"Hettinga FJ, Konings MJ, Cooper CE 2016, Front Physiol 7:619","url":"https://www.frontiersin.org/articles/10.3389/fphys.2016.00619/pdf"},
+    {"source":"Hendricks M, Verhagen E, van de Water ATM 2024, Scand J Med Sci Sports","url":"https://www.citedrive.com/en/discovery/epidemiology-etiology-and-prevention-of-injuries-in-competitive-ice-speed-skatinglimited-current-evidence-multiple-future-priorities-a-scoping-review"},
+    {"source":"Hendricks M, van de Water ATM, Verhagen E 2024, Br J Sports Med 58(14)","url":"https://bjsm.bmj.com/content/58/14/785"},
+    {"source":"Ziegler J et al. 2025, JSAMS Plus 5:100080","url":"https://fis.tu-dresden.de/portal/en/publications/injuries-in-german-national-shorttrack-speed-skating-athletes(a8768a06-c0bb-4a12-a228-3cbc769031c6).html"},
+    {"source":"Hip adductor or abductor strength and future groin pain, systematic review 2024, Br J Sports Med","url":"https://zaguan.unizar.es/record/150494"},
+    {"source":"Sitkowski D, Starczewski M, Klusiewicz A 2025, Biol Sport 42(2):207-213","url":"https://termedia.pl/Reference-levels-of-mean-and-peak-anaerobic-power-for-male-and-r-nfemale-long-track-speed-skaters,78,55023,1,0.html"}
+  ],
+  "missing_ex": [
+    {"name":"Slide board skating","pattern":"plat","equipment":"slideboard","why":"Closest dryland copy of the skating stroke."},
+    {"name":"Skating-position side jumps (dryland imitation)","pattern":"plat","equipment":"","why":"Classic skater dryland drill for crouch endurance and push-off."},
+    {"name":"Low-position sled push","pattern":"sled","equipment":"sled","why":"Push-off strength in the crouch."}
+  ]
+}

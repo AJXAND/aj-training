@@ -1,0 +1,124 @@
+{
+  "id": "trailrunning",
+  "name": "Trail and fell running",
+  "aliases": ["trail running", "fell running", "mountain running", "ultra", "ultramarathon", "skyrunning", "vertical km"],
+  "group": "Endurance",
+  "q": {"maxStrength":2,"power":2,"rotational":0,"unilateral":3,"upperPull":0,"upperPush":0,"lowerBody":3,"grip":0,"neck":0,"trunk":2,"mass":0},
+  "prehab": ["ankle", "calf", "patellar", "shin", "hipAbd"],
+  "season": {"off":2,"pre":2,"in":1},
+  "avoidBefore": "lower",
+  "energy": "Long aerobic running where climbs demand hip and knee power and descents demand eccentric braking strength.",
+  "summary": "Trail running is long aerobic work with steep climbs and technical descents; downhill braking damages muscle most in runners who rarely do it. The plan builds leg strength and stiffness, eccentric quad tolerance and ankle and calf capacity, and keeps gym volume low so it does not compete with running.",
+  "evidence": [
+    {"claim":"Uphill and downhill time-trial performance were both predicted by maximal knee extensor strength alongside aerobic speed.","source":"Lemire et al. 2021, Journal of Science and Medicine in Sport","url":"https://lab3072.unistra.fr/publications/publications-marquantes/physiological-factors-determining-downhill-vs-uphill-running-endurance-performance"},
+    {"claim":"Downhill running causes muscle damage that cuts performance, worst in runners with little downhill experience; prior downhill exposure is the best-supported protection.","source":"Bontemps et al. 2020, Sports Medicine","url":"https://researchonline.ljmu.ac.uk/id/eprint/14430/"},
+    {"claim":"Strength training (resistance plus plyometrics, 2-3 times a week for 8-12 weeks) produced a large improvement in running economy in highly trained distance runners.","source":"Balsalobre-Fernandez, Santos-Concejero & Grivas 2016, Journal of Strength and Conditioning Research","url":"https://pubmed.ncbi.nlm.nih.gov/26694507/"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"short","name":"Short trail and fell","desc":"Up to about 2 h on steep, technical ground: power, fast descending and quick ankles.",
+     "q":{"power":3},"prehab":["ankle","landing"],
+     "note":"Your plan adds drop landings and lateral bounds for fast, rough descents.",
+     "add":[{"role":"pow","ex":["dropstick","latbound","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Land soft and quiet, hold 2 s"}]},
+    {"id":"ultra","name":"Ultra","desc":"Marathon distance and beyond: durability, eccentric quad tolerance and calf endurance matter most.",
+     "q":{"power":1,"trunk":3},"prehab":["calf","patellar","lowback"],
+     "note":"Your plan adds a slow eccentric quad exercise and extra trunk endurance for carrying a pack. Gym drops to 1 short session in your biggest running weeks.",
+     "add":[{"role":"acc","ex":["nordic","sissy","legext"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-8","rir":2,"note":"4 s lowering for downhill braking"},
+            {"role":"core","ex":["suitcase","birddog","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30-40 s/side","rir":2}]},
+    {"id":"mountain","name":"Mountain and vertical","desc":"Very steep climbs, often with poles: hip and knee drive and some upper-body pulling.",
+     "q":{"maxStrength":3,"upperPull":1},"prehab":["calf","patellar"],
+     "note":"Your plan adds weighted step-ups and a light pull for poling.",
+     "add":[{"role":"acc","ex":["stepup","bbstepup","petersen"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2,"note":"High box, drive through the whole foot"},
+            {"role":"acc","ex":["pullover","ropepullover","bandlatpd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":2,"note":"Straight arms, like a pole plant"}]}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Strength A: climbing legs","focus":"Heavy hip and knee strength, calves","slots":[
+        {"role":"pow","ex":["pogo","cmj","boxjp"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10 pogos or 4 jumps","rir":3,"note":"Stiff, springy ankles"},
+        {"role":"main","ex":["trapdl","squat","goblet","legpress"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5","rir":2,"note":"New: 8-10 reps, RIR 3"},
+        {"role":"acc","ex":["stepup","bss","bbstepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["singlerdl","dbrdl","slrdlbw"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["slcalf","standcalf","stepcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2,"note":"Heavy, slow lowering"},
+        {"role":"pre","ex":["seatedcalf","soleuswall"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2,"note":"Bent knee for the soleus"}]},
+      {"name":"Strength B: descending legs","focus":"Eccentric quads, ankles, hips, trunk","slots":[
+        {"role":"pow","ex":["hopstick","latbound","dropstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick each landing"},
+        {"role":"main","ex":["defrevlunge","bss","revlunge"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6/side","rir":2,"note":"3-4 s lowering"},
+        {"role":"acc","ex":["petersen","nordic","sissy"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2,"note":"Slow knee-forward work for downhill braking"},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":3,"note":"Eyes closed or on a cushion when easy"},
+        {"role":"pre","ex":["tibraise","tibbar","banddorsi"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15-20","rir":2},
+        {"role":"core","ex":["bandabd","sideabd","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15/side","rir":2}]}
+    ],
+    "pre": [
+      {"name":"Power and stiffness","focus":"Reactive jumps, heavy and fast","slots":[
+        {"role":"pow","ex":["hurdlehop","pogo","bounding"],"sets":{"new":2,"inter":3,"adv":4},"reps":"5","rir":3,"note":"Short contacts. New: pogo only"},
+        {"role":"main","ex":["trapdl","squat","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2,"note":"Heavy, low volume"},
+        {"role":"acc","ex":["stepup","petersen"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6/side","rir":2},
+        {"role":"pre","ex":["slcalf","stepcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":2}]},
+      {"name":"Eccentric and ankles","focus":"Downhill tolerance and rough-ground control","slots":[
+        {"role":"pow","ex":["latbound","hopstick","decel"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"main","ex":["defrevlunge","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2,"note":"Slow lowering"},
+        {"role":"acc","ex":["spanishsq","nordic","isosplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s or 6-8","rir":2},
+        {"role":"pre","ex":["slbalance","tibraise"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}]}
+    ],
+    "in": [
+      {"name":"Race-season maintenance","focus":"Keep strength and stiffness, 30 min","slots":[
+        {"role":"pow","ex":["pogo","cmj"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10 pogos or 3 jumps","rir":3},
+        {"role":"main","ex":["trapdl","bss","goblet"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3-5","rir":2,"note":"Heavy but short, never to failure"},
+        {"role":"acc","ex":["defrevlunge","petersen"],"sets":{"new":1,"inter":2,"adv":2},"reps":"6/side","rir":2},
+        {"role":"pre","ex":["slcalf","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10","rir":2}]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Downhill exposure","mode":"run","work":"Start 4-6 x 1 min easy downhill on a smooth path, build by about 1-2 min a week","rest":"Walk back up","intensity":"Easy to steady, relaxed","perWeek":1,"why":"Repeated downhill running is the best-supported way to cut muscle damage on race day."},
+      {"name":"Power hiking","mode":"any","work":"20-40 min steep walking: hill, stairs or incline treadmill","rest":"none","intensity":"Steady, nose-breathing hard","perWeek":1,"why":"Builds climbing strength and the hike you use on steep race ground."}
+    ],
+    "pre": [
+      {"name":"Technical descents","mode":"run","work":"6-10 x 1-3 min on the kind of ground you will race","rest":"Walk or jog back up","intensity":"Race pace on the way down","perWeek":1,"why":"Trains the footwork, ankles and quads for your race terrain."},
+      {"name":"Hill reps","mode":"run","work":"6-10 x 2-3 min uphill","rest":"Jog down","intensity":"Hard, about 8 out of 10","perWeek":1,"for":["short","mountain"],"why":"Climbing power; skip if your running plan already has hill reps."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"heelraise","name":"Single-leg heel raise to fatigue","how":"On a step, full range, 1 rep every 2 s, until form fails. Each leg.","unit":"reps","better":"higher","bands":{"club":"20-25","good":"25-35","elite":">35"},"note":"General population median is about 25. Keep legs within 10% of each other."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3.","unit":"cm","better":"higher","bands":{},"note":"Compare with yourself. A drop of over 10% after a big block means back off."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on one leg, best of 3 each side.","unit":"% difference","better":"lower","bands":{"club":"10-15","good":"5-10","elite":"<5"},"note":"A gap above 10-15% between legs is a flag."},
+    {"id":"sebt","name":"Y-balance anterior reach","how":"Stand on one leg, reach forward with the other foot, best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A left-right gap over 4 cm is a flag."},
+    {"id":"wallsit1","name":"Single-leg wall sit","how":"Back on wall, knee at 90 degrees, one foot up, time to failure. Each leg.","unit":"s","better":"higher","bands":{},"note":"Tracks quad endurance for long descents. Compare with yourself."}
+  ],
+  "week": [
+    "Lift on hard running days, after the run or 6+ hours later, so easy days stay easy.",
+    "Heavy legs at least 48 h before a long run or key hill session.",
+    "No gym 2-3 days before a race.",
+    "After an ultra or a big descent race: no heavy lower work until soreness is gone, usually 5-7 days."
+  ],
+  "primer": [],
+  "taper": {"days":12, "lines":[
+    "Last heavy gym session 7-10 days out.",
+    "One short session of jumps and calf work 4-5 days out.",
+    "Last big downhill session 10-14 days out, so the muscle damage clears.",
+    "Running taper follows your running plan."
+  ]},
+  "rules": [
+    "Build downhill running gradually; never do a big new descent session in the last 10 days before a race.",
+    "Previous ankle sprain: balance work 3 times a week, all year.",
+    "Big running blocks: cut gym to 1 short session, keep the weights heavy.",
+    "Pain that changes how you run means stop and get it checked."
+  ],
+  "sources": [
+    {"source":"Viljoen et al. 2021, Sports Medicine","url":"https://repository.up.ac.za/handle/2263/80943"},
+    {"source":"Viljoen et al. 2022, British Journal of Sports Medicine","url":"https://repository.up.ac.za/handle/2263/90063"},
+    {"source":"Vernillo et al. 2017, Sports Medicine","url":"https://www.iat.uni-leipzig.de/datenbanken/iks/mint/Record/4043194"},
+    {"source":"Bontemps et al. 2020, Sports Medicine","url":"https://researchonline.ljmu.ac.uk/id/eprint/14430/"},
+    {"source":"Lemire et al. 2021, Journal of Science and Medicine in Sport","url":"https://lab3072.unistra.fr/publications/publications-marquantes/physiological-factors-determining-downhill-vs-uphill-running-endurance-performance"},
+    {"source":"Sleeswijk Visser et al. 2025, Brazilian Journal of Physical Therapy","url":"https://figshare.le.ac.uk/articles/journal_contribution/Normative_values_for_calf_muscle_strength-endurance_in_the_general_population_assessed_with_the_Calf_Raise_Application_A_large_international_cross-sectional_study/30209584"},
+    {"source":"Blagrove, Howatson & Hayes 2018, Sports Medicine","url":"https://repository.lboro.ac.uk/articles/journal_contribution/Effects_of_strength_training_on_the_physiological_determinants_of_middle-_and_long-distance_running_performance_a_systematic_review/9619553"},
+    {"source":"Balsalobre-Fernandez, Santos-Concejero & Grivas 2016, Journal of Strength and Conditioning Research","url":"https://pubmed.ncbi.nlm.nih.gov/26694507/"},
+    {"source":"Schiftan, Ross & Hahne 2015, Journal of Science and Medicine in Sport","url":"https://pubmed.ncbi.nlm.nih.gov/24831756/"}
+  ],
+  "missing_ex": [
+    {"name":"Eccentric lateral step-down","pattern":"lunge","equipment":"box","why":"Slow single-leg lowering for downhill braking"},
+    {"name":"Banded ankle eversion","pattern":"ankle","equipment":"bands","why":"Ankle sprain prevention on rough ground"}
+  ]
+}
