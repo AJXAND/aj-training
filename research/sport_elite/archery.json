@@ -1,128 +1,960 @@
 {
-  "id": "archery",
-  "name": "Archery",
-  "aliases": ["recurve", "compound bow", "barebow", "target archery", "field archery", "3D archery", "bow shooting"],
-  "group": "Precision",
-  "q": {"maxStrength":1,"power":0,"rotational":1,"unilateral":1,"upperPull":3,"upperPush":2,"lowerBody":1,"grip":2,"neck":0,"trunk":2,"mass":0},
-  "prehab": ["shoulderER", "scap", "tspine", "elbow", "lowback"],
-  "season": {"off":3,"pre":2,"in":2},
-  "avoidBefore": "upper",
-  "energy": "Low energy demand: dozens of short static holds over a long day, so shoulder girdle endurance and an easy aerobic base matter more than fitness for sprinting.",
-  "summary": "Archery asks the shoulders to hold a heavy draw steady, shot after shot, and shoulder pain is very common. The plan builds rotator cuff and scapular endurance on both sides, a stable trunk and stance, and grows arrow volume gradually.",
-  "evidence": [
-    {"claim":"In 156 competitive archers, 54% had shoulder pain at the time of the survey and 83% had had it at some point; past shoulder pain was the main linked factor.","source":"Grover & Sinha 2017, Asian Journal of Sports Medicine","url":"https://brieflands.com/articles/asjsm-13338"},
-    {"claim":"Archers who train only one side showed more rotation, mainly internal rotation, on the pull-arm shoulder than archers who train both sides; the authors suggest bilateral training to limit this.","source":"Schmitt, Vogt, Wilke & Niederer 2021, BMC Sports Science, Medicine and Rehabilitation","url":"https://doaj.org/article/49de7c94863d4e259a63b45f564cbbf9"},
-    {"claim":"In US emergency department data, about two thirds of archery injuries in men were to the fingers, mostly cuts, pointing to technique and equipment as the main fixes for acute injury.","source":"Konda et al. 2023, Orthopedic Reviews","url":"https://orthopedicreviews.openmedicalpublishing.org/article/88933-archery-related-musculoskeletal-injuries-an-epidemiological-study-revealing-injury-sites-risk-factors-and-implications-for-prevention"}
-  ],
-  "confidence": "limited",
-  "variants": [
-    {"id":"recurve","name":"Recurve","desc":"Full draw weight is held at anchor through the clicker, with fingers on the string.","q":{"upperPull":3,"grip":2},"prehab":["scap","shoulderER"],"note":"Extra scapular endurance and full-draw holds with a band."},
-    {"id":"compound","name":"Compound","desc":"Let-off lowers the holding force, but peak draw weight is usually higher and a release aid is used.","q":{"upperPull":3,"grip":1,"maxStrength":2},"prehab":["shoulderER"],"note":"A bit more pulling strength for the peak of the draw, less finger and grip work."},
-    {"id":"barebow","name":"Barebow","desc":"No sight or stabilisers; string or face walking changes the anchor and the bow is lighter to hold out.","q":{"upperPull":3,"upperPush":1},"prehab":["scap","elbow"],"note":"Same as recurve with less bow-arm holding load and more draw-hand forearm work."}
-  ],
-  "sessions": {
-    "off": [
-      {"name":"Pull and shoulder endurance","focus":"Draw-side strength and cuff endurance, both sides","slots":[
-        {"role":"main","ex":["csdb","dbrow","cabrow","invrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"8-12","rir":2,"note":"Do both arms. Pause 2 s at the top with the shoulder blade back."},
-        {"role":"main","ex":["lmpress","ohp","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2,"note":"Keep pushing to balance all the pulling."},
-        {"role":"acc","ex":["facepull","bandfp","revfly","dbrevfly"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15/side","rir":3,"note":"Both arms, slow and controlled."},
-        {"role":"pre","ex":["serpunch","scappushup","wallslide"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":3},
-        {"role":"core","ex":["pallof","pallofb","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
-      ]},
-      {"name":"Stance and trunk","focus":"Stable legs and trunk for long days on the line","slots":[
-        {"role":"main","ex":["goblet","trapdl","squat","dbsquat"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
-        {"role":"acc","ex":["singlerdl","dbrdl","kbrdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
-        {"role":"acc","ex":["bss","revlunge","bwss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
-        {"role":"pre","ex":["hipext","birddog","superman"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-12","rir":3,"note":"Back endurance for standing a full day."},
-        {"role":"pre","ex":["wristcurl","dbwristcurl","farmerhold"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15","rir":2,"note":"Draw-hand forearm and grip."},
-        {"role":"core","ex":["sideplank","suitcase","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
-      ]},
-      {"name":"Full body and balance","focus":"Vertical pull, carries and single-leg balance","slots":[
-        {"role":"main","ex":["pullup","ngpd","latpd","bandlatpd"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
-        {"role":"main","ex":["flatdb","pushup","dbfloor"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2},
-        {"role":"acc","ex":["suitcase","farmers","ohcarry"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 m/side","rir":2},
-        {"role":"pre","ex":["ytw","er9090","bandpa"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":3},
-        {"role":"pre","ex":["openbook","tspineroller","wgs"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":3,"note":"Thoracic rotation for a tall, open draw."},
-        {"role":"core","ex":["slbalance","hollow","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s","rir":2}
-      ]}
-    ],
-    "pre": [
-      {"name":"Pull strength and holds","focus":"Heavier pulls plus long isometric holds","slots":[
-        {"role":"main","ex":["csdb","dbrow","sacabrow","invrow"],"sets":{"new":3,"inter":4,"adv":4},"reps":"6-8","rir":2},
-        {"role":"acc","ex":["stcabrow","bandrow","trxrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"20-30 s hold","rir":2,"note":"Hold at full row like full draw. Both sides."},
-        {"role":"acc","ex":["lmpress","sadbohp","pushup"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8","rir":2},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12/side","rir":3},
-        {"role":"core","ex":["pallof","sideplank","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
-      ]},
-      {"name":"Legs, trunk and balance","focus":"Keep the base strong without leg soreness","slots":[
-        {"role":"main","ex":["goblet","trapdl","legpress"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
-        {"role":"acc","ex":["singlerdl","stepup","revlunge"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2},
-        {"role":"pre","ex":["serpunch","ytw","wallslide"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":3},
-        {"role":"pre","ex":["hipext","birddog","superman"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":3},
-        {"role":"core","ex":["slbalance","suitcase","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
-      ]}
-    ],
-    "in": [
-      {"name":"Shoulder maintenance","focus":"Short, both sides, away from competition days","slots":[
-        {"role":"main","ex":["csdb","dbrow","cabrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":3},
-        {"role":"acc","ex":["lmpress","pushup","ohp"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8","rir":3},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12/side","rir":3},
-        {"role":"pre","ex":["facepull","bandpa","serpunch"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12-15","rir":3},
-        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":3}
-      ]},
-      {"name":"Base and back","focus":"Legs and back endurance, light","slots":[
-        {"role":"main","ex":["goblet","trapdl","dbsquat"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5-6","rir":3},
-        {"role":"acc","ex":["singlerdl","dbrdl"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":3},
-        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
-        {"role":"core","ex":["slbalance","suitcase"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
-      ]}
+ "id": "archery",
+ "name": "Archery",
+ "aliases": [
+  "recurve",
+  "compound bow",
+  "barebow",
+  "target archery",
+  "field archery",
+  "3D archery",
+  "bow shooting"
+ ],
+ "group": "Precision",
+ "q": {
+  "maxStrength": 1,
+  "power": 0,
+  "rotational": 1,
+  "unilateral": 1,
+  "upperPull": 3,
+  "upperPush": 2,
+  "lowerBody": 1,
+  "grip": 2,
+  "neck": 0,
+  "trunk": 2,
+  "mass": 0
+ },
+ "prehab": [
+  "shoulderER",
+  "scap",
+  "tspine",
+  "elbow",
+  "lowback"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 2,
+  "in": 2
+ },
+ "avoidBefore": "upper",
+ "energy": "Low energy demand: dozens of short static holds over a long day, so shoulder girdle endurance and an easy aerobic base matter more than fitness for sprinting.",
+ "summary": "Archery asks the shoulders to hold a heavy draw steady, shot after shot, and shoulder pain is very common. The plan builds rotator cuff and scapular endurance on both sides, a stable trunk and stance, and grows arrow volume gradually.",
+ "evidence": [
+  {
+   "claim": "In 156 competitive archers, 54% had shoulder pain at the time of the survey and 83% had had it at some point; past shoulder pain was the main linked factor.",
+   "source": "Grover & Sinha 2017, Asian Journal of Sports Medicine",
+   "url": "https://brieflands.com/articles/asjsm-13338"
+  },
+  {
+   "claim": "Archers who train only one side showed more rotation, mainly internal rotation, on the pull-arm shoulder than archers who train both sides; the authors suggest bilateral training to limit this.",
+   "source": "Schmitt, Vogt, Wilke & Niederer 2021, BMC Sports Science, Medicine and Rehabilitation",
+   "url": "https://doaj.org/article/49de7c94863d4e259a63b45f564cbbf9"
+  },
+  {
+   "claim": "In US emergency department data, about two thirds of archery injuries in men were to the fingers, mostly cuts, pointing to technique and equipment as the main fixes for acute injury.",
+   "source": "Konda et al. 2023, Orthopedic Reviews",
+   "url": "https://orthopedicreviews.openmedicalpublishing.org/article/88933-archery-related-musculoskeletal-injuries-an-epidemiological-study-revealing-injury-sites-risk-factors-and-implications-for-prevention"
+  }
+ ],
+ "confidence": "limited",
+ "variants": [
+  {
+   "id": "recurve",
+   "name": "Recurve",
+   "desc": "Full draw weight is held at anchor through the clicker, with fingers on the string.",
+   "q": {
+    "upperPull": 3,
+    "grip": 2
+   },
+   "prehab": [
+    "scap",
+    "shoulderER"
+   ],
+   "note": "Your plan adds band full-draw holds on both sides, extra shoulder blade endurance and draw-hand finger work.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "bandrow",
+      "stcabrow",
+      "trxrow"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20-30 s hold/side",
+     "rir": 2,
+     "note": "Hold at your anchor like full draw. Both sides."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "pushupplus",
+      "serpunch",
+      "scappushup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 3
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "fingerext",
+      "wristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15-25",
+     "rir": 3,
+     "note": "Draw-hand fingers."
+    }
+   ]
+  },
+  {
+   "id": "compound",
+   "name": "Compound",
+   "desc": "Let-off lowers the holding force, but peak draw weight is usually higher and a release aid is used.",
+   "q": {
+    "upperPull": 3,
+    "grip": 1,
+    "maxStrength": 2
+   },
+   "prehab": [
+    "shoulderER"
+   ],
+   "note": "Your plan adds a heavier row for the peak of the draw and puts less weight on grip, since the release aid takes load off the fingers.",
+   "add": [
+    {
+     "role": "main",
+     "ex": [
+      "csdb",
+      "sacabrow",
+      "dbrow"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "5-6",
+     "rir": 2,
+     "note": "Heavier rows for the peak of the draw."
+    }
+   ]
+  },
+  {
+   "id": "barebow",
+   "name": "Barebow",
+   "desc": "No sight or stabilisers; string or face walking changes the anchor and the bow is lighter to hold out.",
+   "q": {
+    "upperPull": 3,
+    "upperPush": 1
+   },
+   "prehab": [
+    "scap",
+    "elbow"
+   ],
+   "note": "Your plan adds draw-hand forearm work, with a little less pressing because the bow is lighter to hold out.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "wristcurl",
+      "fingerext",
+      "revwristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15",
+     "rir": 2,
+     "note": "Draw-hand forearm."
+    }
+   ]
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Pull and shoulder endurance",
+    "focus": "Draw-side strength and cuff endurance, both sides",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8-12",
+      "rir": 2,
+      "note": "Do both arms. Pause 2 s at the top with the shoulder blade back."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Keep pushing to balance all the pulling."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "facepull",
+       "bandfp",
+       "revfly",
+       "dbrevfly"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15/side",
+      "rir": 3,
+      "note": "Both arms, slow and controlled."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "pushupplus",
+       "scappushup",
+       "wallslide"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "hkpallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
     ]
-  },
-  "conditioning": {
-    "off": [{"name":"Aerobic base","mode":"any","work":"30-45 min steady","rest":"none","intensity":"Easy, can hold a conversation","perWeek":2,"why":"Long shooting days with walking to targets; practice, not trial evidence."}],
-    "pre": [{"name":"Aerobic base","mode":"any","work":"30 min steady","rest":"none","intensity":"Easy to moderate","perWeek":1,"why":"Keeps general fitness without tiring the shoulders."}],
-    "in": [{"name":"Easy cardio","mode":"any","work":"20-30 min","rest":"none","intensity":"Easy","perWeek":1,"why":"Recovery and general health between competitions."}]
-  },
-  "tests": [
-    {"id":"invrowmax","name":"Inverted row max reps","how":"Bar at hip height, body straight, chest to bar, stop when form breaks","unit":"reps","better":"higher","bands":{"club":"8-12","good":"13-20","elite":">20"},"note":"Practice bands, no archery norms published. Women typically lower."},
-    {"id":"sideplank","name":"Side plank hold","how":"Forearm and feet, straight line, time to form break, each side","unit":"s","better":"higher","bands":{"club":"45-60","good":"60-90","elite":">90"},"note":"Practice bands. Left and right within 10%."},
-    {"id":"drawhold","name":"Band full-draw hold","how":"Draw a band to your anchor in your shooting stance and hold, time to shake or shoulder drop","unit":"s","better":"higher","bands":{"club":"20-30","good":"30-45","elite":">45"},"note":"Practice. Use the same band each time. Test the non-shooting side too."},
-    {"id":"slbalanceec","name":"Single-leg balance, eyes closed","how":"Barefoot, hands on hips, time until the foot moves or the other foot touches","unit":"s","better":"higher","bands":{"club":"10-20","good":"20-30","elite":">30"},"note":"Practice bands. Stance stability supports a quiet hold."},
-    {"id":"erir","name":"Shoulder ER:IR strength ratio","how":"Handheld dynamometer or matched band reps, both arms","unit":"ratio","better":"higher","bands":{"club":"0.6","good":"0.66-0.75","elite":">0.75"},"note":"About 0.66 or more is the overhead-sport target; archery-specific data absent."}
+   },
+   {
+    "name": "Stance and trunk",
+    "focus": "Stable legs and trunk for long days on the line",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "trapdl",
+       "squat",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "dbrdl",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "revlunge",
+       "bwss"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 3,
+      "note": "Back endurance for standing a full day."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "dbwristcurl",
+       "farmerhold"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 2,
+      "note": "Draw-hand forearm and grip."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Full body and balance",
+    "focus": "Vertical pull, carries and single-leg balance",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "ngpd",
+       "latpd",
+       "bandlatpd"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "flatdb",
+       "pushup",
+       "dbfloor"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "suitcase",
+       "farmers",
+       "ohcarry"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "ytw",
+       "er9090",
+       "bandpa"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3,
+      "note": "Thoracic rotation for a tall, open draw."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance",
+       "hollow",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "week": [
-    "Competition Saturday: pull session Monday or Tuesday, base session Wednesday.",
-    "No heavy pulling or pressing within 48 h of a competition.",
-    "Shoot on fresh shoulders: gym after shooting, or on non-shooting days.",
-    "Two-day events: no gym in the 2 days before or during."
+  "pre": [
+   {
+    "name": "Pull strength and holds",
+    "focus": "Heavier pulls plus long isometric holds",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "sacabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "stcabrow",
+       "bandrow",
+       "trxrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-30 s hold",
+      "rir": 2,
+      "note": "Hold at full row like full draw. Both sides."
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "sadbohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "sideplank",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Legs, trunk and balance",
+    "focus": "Keep the base strong without leg soreness",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "trapdl",
+       "legpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "stepup",
+       "revlunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "ytw",
+       "wallslide"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance",
+       "suitcase",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "primer": [
-    "Band ER and pull-aparts 1 x 15",
-    "Scapular push-ups 1 x 10",
-    "Band draws at anchor 2 x 5, 5 s hold",
-    "Thoracic rotation 1 x 8 per side"
-  ],
-  "taper": {"days":7, "lines":[
-    "Last full pull session 5 days out.",
-    "Cut gym volume by about half, keep loads.",
-    "Keep arrow counts steady; no new technique changes.",
-    "Prehab primer only in the last 2 days."
-  ]},
-  "rules": [
-    "Raise arrow counts gradually after a break; sudden jumps are a common start of shoulder pain (practice).",
-    "Train both sides: rows, ER work and band draws on the non-shooting side too.",
-    "Shoulder pain at full draw: drop draw weight and see a physio before adding gym load.",
-    "Never dry-fire a bow.",
-    "Use a finger tab or glove and an arm guard; most acute injuries are to the fingers."
-  ],
-  "sources": [
-    {"source":"Grover & Sinha 2017, Asian Journal of Sports Medicine","url":"https://brieflands.com/articles/asjsm-13338"},
-    {"source":"Schmitt, Vogt, Wilke & Niederer 2021, BMC Sports Science, Medicine and Rehabilitation","url":"https://doaj.org/article/49de7c94863d4e259a63b45f564cbbf9"},
-    {"source":"Konda et al. 2023, Orthopedic Reviews","url":"https://orthopedicreviews.openmedicalpublishing.org/article/88933-archery-related-musculoskeletal-injuries-an-epidemiological-study-revealing-injury-sites-risk-factors-and-implications-for-prevention"}
-  ],
-  "missing_ex": [
-    {"name":"Band full-draw hold","pattern":"row","equipment":"bands","why":"Archery-specific isometric for draw and bow arm"},
-    {"name":"Reverse-side band draw","pattern":"row","equipment":"bands","why":"Balances one-sided training"}
+  "in": [
+   {
+    "name": "Shoulder maintenance",
+    "focus": "Short, both sides, away from competition days",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "pushup",
+       "ohp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "facepull",
+       "bandpa",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12-15",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Base and back",
+    "focus": "Legs and back endurance, light",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "trapdl",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "5-6",
+      "rir": 3
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "singlerdl",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   }
   ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-45 min steady",
+    "rest": "none",
+    "intensity": "Easy, can hold a conversation",
+    "perWeek": 2,
+    "why": "Long shooting days with walking to targets. Coaching practice."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30 min steady",
+    "rest": "none",
+    "intensity": "Easy to moderate",
+    "perWeek": 1,
+    "why": "Keeps general fitness without tiring the shoulders."
+   }
+  ],
+  "in": [
+   {
+    "name": "Easy cardio",
+    "mode": "any",
+    "work": "20-30 min",
+    "rest": "none",
+    "intensity": "Easy",
+    "perWeek": 1,
+    "why": "Recovery and general health between competitions."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "invrowmax",
+   "name": "Inverted row max reps",
+   "how": "Bar at hip height, body straight, chest to bar, stop when form breaks",
+   "unit": "reps",
+   "better": "higher",
+   "bands": {
+    "club": "8-12",
+    "good": "13-20",
+    "elite": ">20"
+   },
+   "note": "Coaching guide, not a published norm. Women often score lower."
+  },
+  {
+   "id": "sideplank",
+   "name": "Side plank hold",
+   "how": "Forearm and feet, straight line, time to form break, each side",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "45-60",
+    "good": "60-90",
+    "elite": ">90"
+   },
+   "note": "Coaching guide, not a published norm. Left and right within 10%."
+  },
+  {
+   "id": "drawhold",
+   "name": "Band full-draw hold",
+   "how": "Draw a band to your anchor in your shooting stance and hold, time to shake or shoulder drop",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "20-30",
+    "good": "30-45",
+    "elite": ">45"
+   },
+   "note": "Coaching guide, not a published norm. Use the same band each time and test the other side too."
+  },
+  {
+   "id": "slbalanceec",
+   "name": "Single-leg balance, eyes closed",
+   "how": "Barefoot, hands on hips, time until the foot moves or the other foot touches",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "10-20",
+    "good": "20-30",
+    "elite": ">30"
+   },
+   "note": "Coaching guide, not a published norm. A steady stance helps a quiet hold."
+  },
+  {
+   "id": "erir",
+   "name": "Shoulder rotation strength ratio",
+   "how": "Handheld dynamometer or matched band reps, both arms: outward (external) rotation strength divided by inward (internal) rotation strength",
+   "unit": "ratio",
+   "better": "higher",
+   "bands": {
+    "club": "0.6",
+    "good": "0.66-0.75",
+    "elite": ">0.75"
+   },
+   "note": "About 0.66 or more is the usual target in overhead sports. No archery norms, so treat the bands as a coaching guide."
+  }
+ ],
+ "week": [
+  "Competition Saturday: pull session Monday or Tuesday, base session Wednesday.",
+  "No heavy pulling or pressing within 48 h of a competition.",
+  "Shoot on fresh shoulders: gym after shooting, or on non-shooting days.",
+  "Two-day events: no gym in the 2 days before or during."
+ ],
+ "primer": [
+  "Band external rotation and pull-aparts 1 x 15",
+  "Scapular push-ups 1 x 10",
+  "Band draws at anchor 2 x 5, 5 s hold",
+  "Thoracic rotation 1 x 8 per side"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Last full pull session 5 days out.",
+   "Cut gym volume by about half, keep loads.",
+   "Keep arrow counts steady; no new technique changes.",
+   "Prehab primer only in the last 2 days."
+  ]
+ },
+ "rules": [
+  "Raise arrow counts gradually after a break; sudden jumps often start shoulder pain.",
+  "Train both sides: rows, external rotation work and band draws on the non-shooting side too.",
+  "Shoulder pain at full draw: drop draw weight and see a physio before adding gym load.",
+  "Never dry-fire a bow.",
+  "Use a finger tab or glove and an arm guard; most acute injuries are to the fingers."
+ ],
+ "sources": [
+  {
+   "source": "Grover & Sinha 2017, Asian Journal of Sports Medicine",
+   "url": "https://brieflands.com/articles/asjsm-13338"
+  },
+  {
+   "source": "Schmitt, Vogt, Wilke & Niederer 2021, BMC Sports Science, Medicine and Rehabilitation",
+   "url": "https://doaj.org/article/49de7c94863d4e259a63b45f564cbbf9"
+  },
+  {
+   "source": "Konda et al. 2023, Orthopedic Reviews",
+   "url": "https://orthopedicreviews.openmedicalpublishing.org/article/88933-archery-related-musculoskeletal-injuries-an-epidemiological-study-revealing-injury-sites-risk-factors-and-implications-for-prevention"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Band full-draw hold",
+   "pattern": "row",
+   "equipment": "bands",
+   "why": "Archery-specific isometric for draw and bow arm"
+  },
+  {
+   "name": "Reverse-side band draw",
+   "pattern": "row",
+   "equipment": "bands",
+   "why": "Balances one-sided training"
+  }
+ ]
 }

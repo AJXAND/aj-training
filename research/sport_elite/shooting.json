@@ -1,126 +1,964 @@
 {
-  "id": "shooting",
-  "name": "Shooting",
-  "aliases": ["target shooting", "rifle shooting", "air rifle", "smallbore", "fullbore", "pistol shooting", "air pistol", "clay shooting", "clay pigeon", "trap", "skeet", "sporting clays", "shotgun"],
-  "group": "Precision",
-  "q": {"maxStrength":1,"power":0,"rotational":1,"unilateral":1,"upperPull":1,"upperPush":1,"lowerBody":1,"grip":1,"neck":1,"trunk":3,"mass":0},
-  "prehab": ["lowback", "trunkLat", "shoulderER", "scap", "wrist", "tspine"],
-  "season": {"off":3,"pre":2,"in":2},
-  "avoidBefore": "upper",
-  "energy": "Very low energy demand: long static holds and repeated gun mounts over a long day, so trunk and shoulder endurance and an easy aerobic base matter most.",
-  "summary": "Shooting rewards a still hold and clean trigger, and rifle shooters very often get low back pain from the twisted standing position. The plan builds trunk and back endurance, shoulder endurance for the hold or mount, and balance, while keeping fatigue away from competition days.",
-  "evidence": [
-    {"claim":"In elite air rifle shooters, hold stability, aiming accuracy and the timing and cleanness of triggering explained 81% of score variation, and postural balance affected score directly and through a steadier hold.","source":"Ihalainen 2018, University of Jyväskylä doctoral thesis","url":"https://jyx.jyu.fi/jyx/Record/jyx_123456789_58545"},
-    {"claim":"89% of 114 college rifle athletes reported low back pain linked to shooting, and 24% of them missed training or competition because of it.","source":"Urbach et al. 2025, International Journal of Sports Physical Therapy","url":"https://ijspt.scholasticahq.com/article/127385-high-prevalence-of-low-back-pain-in-college-rifle-athletes"},
-    {"claim":"Across 19 studies, acute injuries in shooting were rare, but rifle shooters mostly reported low back problems, pistol shooters wrist and hand, and shotgun shooters shoulder problems from recoil.","source":"Harr et al. 2021, International Journal of Sports Physical Therapy","url":"https://ijspt.scholasticahq.com/article/28231-prevalence-and-incidence-of-injury-during-olympic-style-shooting-events-a-systematic-review"}
-  ],
-  "confidence": "limited",
-  "variants": [
-    {"id":"rifle","name":"Rifle","desc":"Standing position loads one side of the low back in extension and side bend; prone and kneeling load the neck and hips.","q":{"trunk":3,"neck":1},"prehab":["lowback","trunkLat"],"note":"More back extensor and side plank work, and hip mobility for kneeling."},
-    {"id":"pistol","name":"Pistol","desc":"One arm holds the pistol out at shoulder height for every shot, so shoulder and wrist endurance on that arm lead.","q":{"upperPush":2,"grip":2},"prehab":["shoulderER","wrist","scap"],"note":"Extra shoulder endurance and wrist work; train the other arm too."},
-    {"id":"shotgun","name":"Shotgun and clay","desc":"Repeated fast gun mounts, swinging through rotation and recoil into the shoulder, with walking between stands.","q":{"rotational":2,"upperPush":2,"lowerBody":2},"prehab":["shoulderER","tspine"],"note":"Adds rotation control and shoulder strength; check gun fit if the shoulder or cheek bruises."}
-  ],
-  "sessions": {
-    "off": [
-      {"name":"Trunk and back endurance","focus":"Back, side and anti-rotation endurance for long holds","slots":[
-        {"role":"main","ex":["trapdl","dbrdl","kbrdl","goblet"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
-        {"role":"acc","ex":["bss","revlunge","stepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
-        {"role":"pre","ex":["hipext","hyper90","birddog","superman"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":3,"note":"Slow, end with a 10 s hold."},
-        {"role":"pre","ex":["sideplank","suitcase","dbsidebend"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s/side","rir":2},
-        {"role":"core","ex":["pallof","pallofb","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2},
-        {"role":"core","ex":["slbalance","hipcars"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":3,"note":"Balance links to a steadier hold."}
-      ]},
-      {"name":"Upper endurance","focus":"Shoulder, scapular and forearm endurance on both arms","slots":[
-        {"role":"main","ex":["csdb","dbrow","cabrow","invrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"8-12","rir":2},
-        {"role":"main","ex":["lmpress","ohp","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2},
-        {"role":"acc","ex":["dblat","cablat","bandlat"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15-20","rir":2,"note":"Pistol: add a 20 s hold at shoulder height."},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15/side","rir":3},
-        {"role":"pre","ex":["serpunch","ytw","wallslide"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":3},
-        {"role":"pre","ex":["wristcurl","pronsup","revwristcurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15","rir":2}
-      ]},
-      {"name":"Full body and mobility","focus":"General strength, carries and thoracic and hip mobility","slots":[
-        {"role":"main","ex":["goblet","squat","legpress","dbsquat"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
-        {"role":"main","ex":["pullup","latpd","ngpd","bandlatpd"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-10","rir":2},
-        {"role":"acc","ex":["farmers","suitcase","ohcarry"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 m","rir":2},
-        {"role":"acc","ex":["woodchop","cablelift","landrot"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2,"note":"Shotgun: controlled swing through rotation."},
-        {"role":"pre","ex":["openbook","tspineroller","wgs"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":3},
-        {"role":"core","ex":["plank","hollow","abwheel"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s","rir":2}
-      ]}
-    ],
-    "pre": [
-      {"name":"Trunk and legs","focus":"Hold endurance with less volume","slots":[
-        {"role":"main","ex":["trapdl","dbrdl","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
-        {"role":"pre","ex":["hipext","birddog","superman"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12","rir":3},
-        {"role":"pre","ex":["sideplank","suitcase"],"sets":{"new":2,"inter":3,"adv":3},"reps":"45 s/side","rir":2},
-        {"role":"core","ex":["pallof","deadbug","pallofb"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10/side","rir":2},
-        {"role":"core","ex":["slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":3}
-      ]},
-      {"name":"Shoulder endurance","focus":"Hold arm and mount strength","slots":[
-        {"role":"main","ex":["csdb","dbrow","cabrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
-        {"role":"acc","ex":["lmpress","sadbohp","pushup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12/side","rir":3},
-        {"role":"pre","ex":["wristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":2},"reps":"15","rir":2},
-        {"role":"core","ex":["woodchop","cabrot","landrot"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2}
-      ]}
-    ],
-    "in": [
-      {"name":"Back and balance","focus":"Short maintenance, never the day before shooting","slots":[
-        {"role":"main","ex":["goblet","trapdl","dbrdl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6","rir":3},
-        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
-        {"role":"pre","ex":["sideplank","suitcase"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3},
-        {"role":"core","ex":["slbalance","pallof"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
-      ]},
-      {"name":"Shoulder upkeep","focus":"Light cuff and scapular work","slots":[
-        {"role":"main","ex":["csdb","cabrow","invrow"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8","rir":3},
-        {"role":"pre","ex":["cabler","bander","sideer"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12/side","rir":3},
-        {"role":"pre","ex":["serpunch","bandpa","ytw"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
-        {"role":"core","ex":["deadbug","plank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s","rir":3}
-      ]}
+ "id": "shooting",
+ "name": "Shooting",
+ "aliases": [
+  "target shooting",
+  "rifle shooting",
+  "air rifle",
+  "smallbore",
+  "fullbore",
+  "pistol shooting",
+  "air pistol",
+  "clay shooting",
+  "clay pigeon",
+  "trap",
+  "skeet",
+  "sporting clays",
+  "shotgun"
+ ],
+ "group": "Precision",
+ "q": {
+  "maxStrength": 1,
+  "power": 0,
+  "rotational": 1,
+  "unilateral": 1,
+  "upperPull": 1,
+  "upperPush": 1,
+  "lowerBody": 1,
+  "grip": 1,
+  "neck": 1,
+  "trunk": 3,
+  "mass": 0
+ },
+ "prehab": [
+  "lowback",
+  "trunkLat",
+  "shoulderER",
+  "scap",
+  "wrist",
+  "tspine"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 2,
+  "in": 2
+ },
+ "avoidBefore": "upper",
+ "energy": "Very low energy demand: long static holds and repeated gun mounts over a long day, so trunk and shoulder endurance and an easy aerobic base matter most.",
+ "summary": "Shooting rewards a still hold and clean trigger, and rifle shooters very often get low back pain from the twisted standing position. The plan builds trunk and back endurance, shoulder endurance for the hold or mount, and balance, while keeping fatigue away from competition days.",
+ "evidence": [
+  {
+   "claim": "In elite air rifle shooters, hold stability, aiming accuracy and the timing and cleanness of triggering explained 81% of score variation, and postural balance affected score directly and through a steadier hold.",
+   "source": "Ihalainen 2018, University of Jyväskylä doctoral thesis",
+   "url": "https://jyx.jyu.fi/jyx/Record/jyx_123456789_58545"
+  },
+  {
+   "claim": "89% of 114 college rifle athletes reported low back pain linked to shooting, and 24% of them missed training or competition because of it.",
+   "source": "Urbach et al. 2025, International Journal of Sports Physical Therapy",
+   "url": "https://ijspt.scholasticahq.com/article/127385-high-prevalence-of-low-back-pain-in-college-rifle-athletes"
+  },
+  {
+   "claim": "Across 19 studies, acute injuries in shooting were rare, but rifle shooters mostly reported low back problems, pistol shooters wrist and hand, and shotgun shooters shoulder problems from recoil.",
+   "source": "Harr et al. 2021, International Journal of Sports Physical Therapy",
+   "url": "https://ijspt.scholasticahq.com/article/28231-prevalence-and-incidence-of-injury-during-olympic-style-shooting-events-a-systematic-review"
+  }
+ ],
+ "confidence": "limited",
+ "variants": [
+  {
+   "id": "rifle",
+   "name": "Rifle",
+   "desc": "Standing position loads one side of the low back in extension and side bend; prone and kneeling load the neck and hips.",
+   "q": {
+    "trunk": 3,
+    "neck": 1
+   },
+   "prehab": [
+    "lowback",
+    "trunkLat"
+   ],
+   "note": "Your plan adds back extensions, side planks and hip mobility for kneeling.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "hyper90",
+      "hipext",
+      "superman"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-12",
+     "rir": 3,
+     "note": "Hold 10 s at the top on the last rep."
+    },
+    {
+     "role": "core",
+     "ex": [
+      "sideplank",
+      "suitcase",
+      "dbsidebend"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30-45 s/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "hipcars",
+      "pigeon",
+      "frog"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "5/side",
+     "rir": 3,
+     "note": "Hip mobility for kneeling."
+    }
+   ]
+  },
+  {
+   "id": "pistol",
+   "name": "Pistol",
+   "desc": "One arm holds the pistol out at shoulder height for every shot, so shoulder and wrist endurance on that arm lead.",
+   "q": {
+    "upperPush": 2,
+    "grip": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "wrist",
+    "scap"
+   ],
+   "note": "Your plan adds aim-height shoulder holds and wrist work, on both arms.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "dblat",
+      "cablat",
+      "bandlat"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20-30 s hold/side",
+     "rir": 2,
+     "note": "Hold the arm out at shoulder height like aiming. Both arms."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "wristcurl",
+      "pronsup",
+      "radial"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15",
+     "rir": 2
+    }
+   ]
+  },
+  {
+   "id": "shotgun",
+   "name": "Shotgun and clay",
+   "desc": "Repeated fast gun mounts, swinging through rotation and recoil into the shoulder, with walking between stands.",
+   "q": {
+    "rotational": 2,
+    "upperPush": 2,
+    "lowerBody": 2
+   },
+   "prehab": [
+    "shoulderER",
+    "tspine"
+   ],
+   "note": "Your plan adds rotation control and landmine punches for mount strength. If your shoulder or cheek bruises, get your gun fit checked.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "cablelift",
+      "woodchop",
+      "landrot"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "8/side",
+     "rir": 2,
+     "note": "Controlled, like swinging through a target."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "landpunch",
+      "lmpress",
+      "pushup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "6/side",
+     "rir": 2,
+     "note": "Drive from the legs, like a fast gun mount."
+    }
+   ]
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Trunk and back endurance",
+    "focus": "Back, side and anti-rotation endurance for long holds",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "dbrdl",
+       "kbrdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "revlunge",
+       "stepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "hyper90",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 3,
+      "note": "Slow, end with a 10 s hold."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "sideplank",
+       "suitcase",
+       "dbsidebend"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "pallofb",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance",
+       "hipcars"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 3,
+      "note": "Balance links to a steadier hold."
+     }
     ]
-  },
-  "conditioning": {
-    "off": [{"name":"Aerobic base","mode":"any","work":"30-45 min steady","rest":"none","intensity":"Easy, conversational","perWeek":2,"why":"General health and stamina for long competition days; practice."}],
-    "pre": [{"name":"Aerobic base","mode":"any","work":"30 min steady","rest":"none","intensity":"Easy to moderate","perWeek":1,"why":"Keep fitness without fatigue."}],
-    "in": [{"name":"Easy cardio","mode":"any","work":"20-30 min","rest":"none","intensity":"Easy","perWeek":1,"why":"Recovery and general health."}]
-  },
-  "tests": [
-    {"id":"sideplank","name":"Side plank hold","how":"Forearm and feet, straight line, time to form break, each side","unit":"s","better":"higher","bands":{"club":"45-60","good":"60-90","elite":">90"},"note":"Practice bands. Sides within 10%."},
-    {"id":"backhold","name":"Back extension hold","how":"Hips on a bench edge, partner holds ankles, hold the trunk level","unit":"s","better":"higher","bands":{"club":"60-90","good":"90-150","elite":">150"},"note":"Practice bands. Stop at any back pain."},
-    {"id":"slbalanceec","name":"Single-leg balance, eyes closed","how":"Barefoot, hands on hips, time until the foot moves","unit":"s","better":"higher","bands":{"club":"10-20","good":"20-30","elite":">30"},"note":"Practice bands."},
-    {"id":"erir","name":"Shoulder ER:IR strength ratio","how":"Handheld dynamometer or matched band reps, both arms","unit":"ratio","better":"higher","bands":{"club":"0.6","good":"0.66-0.75","elite":">0.75"},"note":"Pistol and shotgun mainly. About 0.66 or more is the overhead-sport target."}
+   },
+   {
+    "name": "Upper endurance",
+    "focus": "Shoulder, scapular and forearm endurance on both arms",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "lmpress",
+       "ohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-12",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "dblat",
+       "cablat",
+       "bandlat"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "15-20",
+      "rir": 2,
+      "note": "Slow and controlled; pause at shoulder height."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "ytw",
+       "wallslide"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Full body and mobility",
+    "focus": "General strength, carries and thoracic and hip mobility",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "squat",
+       "legpress",
+       "dbsquat"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "ngpd",
+       "bandlatpd"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "farmers",
+       "suitcase",
+       "ohcarry"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 m",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "woodchop",
+       "cablelift",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2,
+      "note": "Controlled, like swinging through a target."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "openbook",
+       "tspineroller",
+       "wgs"
+      ],
+      "sets": {
+       "new": 1,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "8/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "plank",
+       "hollow",
+       "abwheel"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30-45 s",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "week": [
-    "Competition Saturday: trunk session Monday or Tuesday, shoulder session Wednesday.",
-    "Nothing hard for the shoulders within 48 h of shooting; tremor rises with fatigue.",
-    "Leg and back work fine 2-3 days out; light balance and mobility the day before.",
-    "Gym after range practice, not before it."
+  "pre": [
+   {
+    "name": "Trunk and legs",
+    "focus": "Hold endurance with less volume",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "dbrdl",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog",
+       "superman"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "sideplank",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "45 s/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "pallof",
+       "deadbug",
+       "pallofb"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10/side",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Shoulder endurance",
+    "focus": "Hold arm and mount strength",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "dbrow",
+       "cabrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "lmpress",
+       "sadbohp",
+       "pushup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "pronsup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "core",
+      "ex": [
+       "woodchop",
+       "cabrot",
+       "landrot"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "primer": [
-    "Cat-cow and open book 1 x 8",
-    "Band ER and pull-aparts 1 x 15",
-    "Single-leg balance 2 x 20 s per side",
-    "Slow breathing, 2 min"
-  ],
-  "taper": {"days":7, "lines":[
-    "Last full gym session 4-5 days out.",
-    "Cut gym volume by half, keep loads.",
-    "Mobility and balance only in the last 2 days.",
-    "Keep range routine and sleep regular."
-  ]},
-  "rules": [
-    "Eye and hearing protection every time you shoot.",
-    "Never train shoulders to failure in the 2 days before a competition.",
-    "Rifle low back pain: work with your coach on position before adding load.",
-    "Shotgun shoulder or cheek bruising: get gun fit checked first.",
-    "Wash hands after shooting and before eating (lead residue)."
-  ],
-  "sources": [
-    {"source":"Ihalainen 2018, University of Jyväskylä doctoral thesis","url":"https://jyx.jyu.fi/jyx/Record/jyx_123456789_58545"},
-    {"source":"Urbach et al. 2025, International Journal of Sports Physical Therapy","url":"https://ijspt.scholasticahq.com/article/127385-high-prevalence-of-low-back-pain-in-college-rifle-athletes"},
-    {"source":"Harr et al. 2021, International Journal of Sports Physical Therapy","url":"https://ijspt.scholasticahq.com/article/28231-prevalence-and-incidence-of-injury-during-olympic-style-shooting-events-a-systematic-review"}
-  ],
-  "missing_ex": [
-    {"name":"Weighted aim hold","pattern":"lat","equipment":"db","why":"Pistol-specific shoulder-height isometric"},
-    {"name":"Biering-Sorensen hold","pattern":"hinge","equipment":"bench","why":"Back endurance test and exercise"}
+  "in": [
+   {
+    "name": "Back and balance",
+    "focus": "Short maintenance, never the day before shooting",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "goblet",
+       "trapdl",
+       "dbrdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "6",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "sideplank",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "slbalance",
+       "pallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Shoulder upkeep",
+    "focus": "Light cuff and scapular work",
+    "slots": [
+     {
+      "role": "main",
+      "ex": [
+       "csdb",
+       "cabrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "8",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander",
+       "sideer"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "serpunch",
+       "bandpa",
+       "ytw"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "plank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 3
+     }
+    ]
+   }
   ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30-45 min steady",
+    "rest": "none",
+    "intensity": "Easy, conversational",
+    "perWeek": 2,
+    "why": "General health and stamina for long competition days. Coaching practice."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Aerobic base",
+    "mode": "any",
+    "work": "30 min steady",
+    "rest": "none",
+    "intensity": "Easy to moderate",
+    "perWeek": 1,
+    "why": "Keep fitness without fatigue."
+   }
+  ],
+  "in": [
+   {
+    "name": "Easy cardio",
+    "mode": "any",
+    "work": "20-30 min",
+    "rest": "none",
+    "intensity": "Easy",
+    "perWeek": 1,
+    "why": "Recovery and general health."
+   }
+  ]
+ },
+ "tests": [
+  {
+   "id": "sideplank",
+   "name": "Side plank hold",
+   "how": "Forearm and feet, straight line, time to form break, each side",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "45-60",
+    "good": "60-90",
+    "elite": ">90"
+   },
+   "note": "Coaching guide, not a published norm. Sides within 10%."
+  },
+  {
+   "id": "backhold",
+   "name": "Back extension hold",
+   "how": "Hips on a bench edge, partner holds ankles, hold the trunk level",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "60-90",
+    "good": "90-150",
+    "elite": ">150"
+   },
+   "note": "Coaching guide, not a published norm. Stop at any back pain."
+  },
+  {
+   "id": "slbalanceec",
+   "name": "Single-leg balance, eyes closed",
+   "how": "Barefoot, hands on hips, time until the foot moves",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "10-20",
+    "good": "20-30",
+    "elite": ">30"
+   },
+   "note": "Coaching guide, not a published norm."
+  },
+  {
+   "id": "erir",
+   "name": "Shoulder rotation strength ratio",
+   "how": "Handheld dynamometer or matched band reps, both arms: outward (external) rotation strength divided by inward (internal) rotation strength",
+   "unit": "ratio",
+   "better": "higher",
+   "bands": {
+    "club": "0.6",
+    "good": "0.66-0.75",
+    "elite": ">0.75"
+   },
+   "note": "Pistol and shotgun mainly. About 0.66 or more is the usual target in overhead sports; no shooting norms, so treat the bands as a coaching guide."
+  }
+ ],
+ "week": [
+  "Competition Saturday: trunk session Monday or Tuesday, shoulder session Wednesday.",
+  "Nothing hard for the shoulders within 48 h of shooting; tremor rises with fatigue.",
+  "Leg and back work fine 2-3 days out; light balance and mobility the day before.",
+  "Gym after range practice, not before it."
+ ],
+ "primer": [
+  "Cat-cow and open book 1 x 8",
+  "Band external rotation and pull-aparts 1 x 15",
+  "Single-leg balance 2 x 20 s per side",
+  "Slow breathing, 2 min"
+ ],
+ "taper": {
+  "days": 7,
+  "lines": [
+   "Last full gym session 4-5 days out.",
+   "Cut gym volume by half, keep loads.",
+   "Mobility and balance only in the last 2 days.",
+   "Keep range routine and sleep regular."
+  ]
+ },
+ "rules": [
+  "Eye and hearing protection every time you shoot.",
+  "Never train shoulders to failure in the 2 days before a competition.",
+  "Rifle low back pain: work with your coach on position before adding load.",
+  "Shotgun shoulder or cheek bruising: get gun fit checked first.",
+  "Wash hands after shooting and before eating (lead residue)."
+ ],
+ "sources": [
+  {
+   "source": "Ihalainen 2018, University of Jyväskylä doctoral thesis",
+   "url": "https://jyx.jyu.fi/jyx/Record/jyx_123456789_58545"
+  },
+  {
+   "source": "Urbach et al. 2025, International Journal of Sports Physical Therapy",
+   "url": "https://ijspt.scholasticahq.com/article/127385-high-prevalence-of-low-back-pain-in-college-rifle-athletes"
+  },
+  {
+   "source": "Harr et al. 2021, International Journal of Sports Physical Therapy",
+   "url": "https://ijspt.scholasticahq.com/article/28231-prevalence-and-incidence-of-injury-during-olympic-style-shooting-events-a-systematic-review"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Weighted aim hold",
+   "pattern": "lat",
+   "equipment": "db",
+   "why": "Pistol-specific shoulder-height isometric"
+  },
+  {
+   "name": "Biering-Sorensen hold",
+   "pattern": "hinge",
+   "equipment": "bench",
+   "why": "Back endurance test and exercise"
+  }
+ ]
 }

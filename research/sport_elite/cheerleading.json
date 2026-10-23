@@ -1,137 +1,1087 @@
 {
-  "id": "cheerleading",
-  "name": "Cheerleading",
-  "aliases": ["cheer", "all star cheer", "competitive cheer", "stunting", "university cheer", "cheerleader"],
-  "group": "Artistic",
-  "q": {"maxStrength":3,"power":3,"rotational":2,"unilateral":2,"upperPull":1,"upperPush":3,"lowerBody":3,"grip":1,"neck":1,"trunk":3,"mass":1},
-  "prehab": ["ankle", "landing", "wrist", "lowback", "shoulderER", "neck"],
-  "season": {"off":3,"pre":2,"in":2},
-  "avoidBefore": "all",
-  "energy": "Routines last under 3 minutes at near-maximal effort with tumbling, stunts and jumps, so power and anaerobic capacity lead, backed by enough aerobic fitness to recover across long practices.",
-  "summary": "Cheer asks bases to squat, press and catch a person overhead, and flyers to balance, twist and land from height; most injuries happen in stunts, and concussion is the most common single injury. The plan builds leg and overhead strength, landing, ankle and wrist capacity, and trunk stiffness, and sets strict concussion and stunting rules.",
-  "evidence": [
-    {"claim":"Stunts caused 60% of cheerleading injuries and 96% of concussions and closed head injuries; spotting or basing caused a third of stunt injuries, and the ankle was the most injured body part.","source":"Shields, Fernandez & Smith 2009, Journal of Athletic Training","url":"https://nata.kglmeridian.com/view/journals/attr/44/6/article-p586.xml"},
-    {"claim":"In US high schools, concussion was the most common cheer injury (31%), and cheer had one of the highest shares of injuries costing 3 or more weeks out.","source":"Currie et al. 2016, Pediatrics","url":"https://news.cuanschutz.edu/news-stories/cheerleading-among-safest-high-school-sports-but-injuries-can-be-severe"},
-    {"claim":"Paediatric guidance: remove any cheerleader with signs of head injury and do not let them return without written medical clearance; give bases and spotters strength and conditioning; keep stunts off hard or uneven surfaces.","source":"Brenner et al. (American Academy of Pediatrics) 2012, Pediatrics","url":"https://profiles.wustl.edu/en/publications/cheerleading-injuries-epidemiology-and-recommendations-for-preven/"}
-  ],
-  "confidence": "moderate",
-  "variants": [
-    {"id":"base","name":"Base","desc":"Lifts, presses and catches the flyer, so leg drive, overhead strength, wrists and the low back take the load.","q":{"maxStrength":3,"upperPush":3,"mass":2},"prehab":["wrist","lowback","shoulderER"],"note":"Heavier squats and overhead pressing, plus wrist and back endurance."},
-    {"id":"flyer","name":"Flyer","desc":"Balances on one foot on the bases' hands, holds body tension, twists in the air and lands from height.","q":{"maxStrength":2,"upperPush":2,"unilateral":3,"mass":0},"prehab":["ankle","landing"],"note":"More single-leg balance, landing and trunk tension work; lighter overhead pressing."},
-    {"id":"backspot","name":"Back spot","desc":"Controls the flyer from behind and catches the head and shoulders on dismounts.","q":{"maxStrength":3,"upperPush":3,"upperPull":2},"prehab":["neck","shoulderER","lowback"],"note":"Strength like a base, plus neck and pulling work for catches."},
-    {"id":"tumbler","name":"Tumbler","desc":"Standing and running tumbling loads the wrists, ankles and Achilles with big landings.","q":{"power":3,"upperPush":2},"prehab":["wrist","ankle","landing"],"note":"More plyometric landing, calf and wrist work; count tumbling passes as jump load."}
-  ],
-  "sessions": {
-    "off": [
-      {"name":"Lower strength and power","focus":"Leg drive for tosses and landings","slots":[
-        {"role":"pow","ex":["cmj","boxjp","hangclean","tbjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":3,"note":"New lifters: CMJ or low box only. Stick landings."},
-        {"role":"main","ex":["frontsq","squat","goblet","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"4-8","rir":2},
-        {"role":"acc","ex":["rdl","dbrdl","trapdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
-        {"role":"acc","ex":["bss","stepup","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
-        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":3,"note":"Landing and ankle module."},
-        {"role":"pre","ex":["standcalf","slcalf","stepcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15","rir":2}
-      ]},
-      {"name":"Overhead strength","focus":"Press, lock out and catch overhead","slots":[
-        {"role":"pow","ex":["pushpress","mbohthrow","mbchest"],"sets":{"new":3,"inter":3,"adv":4},"reps":"3-5","rir":2,"note":"New lifters: med ball throws."},
-        {"role":"main","ex":["bbohp","standdbohp","lmpress","kbpress"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5-8","rir":2},
-        {"role":"main","ex":["pullup","latpd","dbrow","invrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
-        {"role":"acc","ex":["ohcarry","pushup","dips"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2,"note":"Overhead carry builds lockout stability."},
-        {"role":"pre","ex":["cabler","sideer","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12/side","rir":3},
-        {"role":"pre","ex":["wristcurl","revwristcurl","planchelean"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2,"note":"Wrist capacity for tumbling and basing."}
-      ]},
-      {"name":"Trunk, back and neck","focus":"Body tension, back endurance, neck strength","slots":[
-        {"role":"pow","ex":["latbound","broadjump","pogo"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
-        {"role":"main","ex":["trapdl","deadlift","kbrdl"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5-6","rir":2},
-        {"role":"pre","ex":["hipext","birddog","revhyp"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12","rir":3},
-        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15 s each way","rir":3,"note":"4 directions at about 50-70% effort."},
-        {"role":"core","ex":["hollow","abwheel","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"20-30 s","rir":2,"note":"Hollow body tension for flyers."},
-        {"role":"core","ex":["sideplank","pallof","suitcase"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
-      ]}
-    ],
-    "pre": [
-      {"name":"Lower power and landing","focus":"Peak leg power, landing quality","slots":[
-        {"role":"pow","ex":["boxjp","cmj","hangclean","depthjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3,"note":"Depth jumps for advanced only."},
-        {"role":"main","ex":["frontsq","squat","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
-        {"role":"acc","ex":["bss","stepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
-        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":3},
-        {"role":"pre","ex":["standcalf","slcalf"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":2}
-      ]},
-      {"name":"Overhead and trunk","focus":"Lockout strength and body tension","slots":[
-        {"role":"pow","ex":["pushpress","mbohthrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"3","rir":2},
-        {"role":"main","ex":["bbohp","standdbohp","lmpress"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4-6","rir":2},
-        {"role":"acc","ex":["pullup","dbrow","invrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8","rir":2},
-        {"role":"pre","ex":["wristcurl","revwristcurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"15","rir":2},
-        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-15 s each way","rir":3},
-        {"role":"core","ex":["hollow","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s","rir":2}
-      ]}
-    ],
-    "in": [
-      {"name":"Strength upkeep","focus":"Early in the week, 35-40 min","slots":[
-        {"role":"pow","ex":["cmj","boxjp","mbohthrow"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
-        {"role":"main","ex":["frontsq","squat","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2},
-        {"role":"main","ex":["bbohp","standdbohp","lmpress"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2},
-        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3},
-        {"role":"core","ex":["hollow","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s","rir":3}
-      ]},
-      {"name":"Prehab and trunk","focus":"Wrists, back, neck, ankles; no heavy legs","slots":[
-        {"role":"pre","ex":["wristcurl","revwristcurl"],"sets":{"new":2,"inter":2,"adv":2},"reps":"15","rir":3},
-        {"role":"pre","ex":["hipext","birddog"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
-        {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10 s each way","rir":3},
-        {"role":"pre","ex":["cabler","bander"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12/side","rir":3},
-        {"role":"core","ex":["deadbug","pallof"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":3}
-      ]}
+ "id": "cheerleading",
+ "name": "Cheerleading",
+ "aliases": [
+  "cheer",
+  "all star cheer",
+  "competitive cheer",
+  "stunting",
+  "university cheer",
+  "cheerleader"
+ ],
+ "group": "Artistic",
+ "q": {
+  "maxStrength": 3,
+  "power": 3,
+  "rotational": 2,
+  "unilateral": 2,
+  "upperPull": 1,
+  "upperPush": 3,
+  "lowerBody": 3,
+  "grip": 1,
+  "neck": 1,
+  "trunk": 3,
+  "mass": 1
+ },
+ "prehab": [
+  "ankle",
+  "landing",
+  "wrist",
+  "lowback",
+  "shoulderER",
+  "neck"
+ ],
+ "season": {
+  "off": 3,
+  "pre": 2,
+  "in": 2
+ },
+ "avoidBefore": "all",
+ "energy": "Routines last under 3 minutes at near-maximal effort with tumbling, stunts and jumps, so power and anaerobic capacity lead, backed by enough aerobic fitness to recover across long practices.",
+ "summary": "Cheer asks bases to squat, press and catch a person overhead, and flyers to balance, twist and land from height; most injuries happen in stunts, and concussion is the most common single injury. The plan builds leg and overhead strength, landing, ankle and wrist capacity, and trunk stiffness, and sets strict concussion and stunting rules.",
+ "evidence": [
+  {
+   "claim": "Stunts caused 60% of cheerleading injuries and 96% of concussions and closed head injuries; spotting or basing caused a third of stunt injuries, and the ankle was the most injured body part.",
+   "source": "Shields, Fernandez & Smith 2009, Journal of Athletic Training",
+   "url": "https://nata.kglmeridian.com/view/journals/attr/44/6/article-p586.xml"
+  },
+  {
+   "claim": "In US high schools, concussion was the most common cheer injury (31%), and cheer had one of the highest shares of injuries costing 3 or more weeks out.",
+   "source": "Currie et al. 2016, Pediatrics",
+   "url": "https://news.cuanschutz.edu/news-stories/cheerleading-among-safest-high-school-sports-but-injuries-can-be-severe"
+  },
+  {
+   "claim": "Paediatric guidance: remove any cheerleader with signs of head injury and do not let them return without written medical clearance; give bases and spotters strength and conditioning; keep stunts off hard or uneven surfaces.",
+   "source": "Brenner et al. (American Academy of Pediatrics) 2012, Pediatrics",
+   "url": "https://profiles.wustl.edu/en/publications/cheerleading-injuries-epidemiology-and-recommendations-for-preven/"
+  }
+ ],
+ "confidence": "moderate",
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "desc": "Lifts, presses and catches the flyer, so leg drive, overhead strength, wrists and the low back take the load.",
+   "q": {
+    "maxStrength": 3,
+    "upperPush": 3,
+    "mass": 2
+   },
+   "prehab": [
+    "wrist",
+    "lowback",
+    "shoulderER"
+   ],
+   "note": "Your plan adds overhead carries, plus extra wrist and back endurance work.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "ohcarry",
+      "bbohp",
+      "standdbohp"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "20-30 m",
+     "rir": 2,
+     "note": "Arms locked overhead, like holding a flyer."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "wristcurl",
+      "revwristcurl",
+      "planchelean"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "hipext",
+      "hyper90",
+      "birddog"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 3
+    }
+   ]
+  },
+  {
+   "id": "flyer",
+   "name": "Flyer",
+   "desc": "Balances on one foot on the bases' hands, holds body tension, twists in the air and lands from height.",
+   "q": {
+    "maxStrength": 2,
+    "upperPush": 2,
+    "unilateral": 3,
+    "mass": 0
+   },
+   "prehab": [
+    "ankle",
+    "landing"
+   ],
+   "note": "Your plan adds single-leg balance, drop landings and hollow holds, with less weight on overhead pressing.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "slbalance",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30 s/side",
+     "rir": 3
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4-6",
+     "rir": 3,
+     "note": "Stick each landing for 2 s."
+    },
+    {
+     "role": "core",
+     "ex": [
+      "hollow",
+      "plank"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20-30 s",
+     "rir": 2
+    }
+   ]
+  },
+  {
+   "id": "backspot",
+   "name": "Back spot",
+   "desc": "Controls the flyer from behind and catches the head and shoulders on dismounts.",
+   "q": {
+    "maxStrength": 3,
+    "upperPush": 3,
+    "upperPull": 2
+   },
+   "prehab": [
+    "neck",
+    "shoulderER",
+    "lowback"
+   ],
+   "note": "Your plan adds extra neck and pulling work for catches.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "10-15 s each way",
+     "rir": 3
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "dbrow",
+      "pullup",
+      "invrow"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8-10",
+     "rir": 2
+    }
+   ]
+  },
+  {
+   "id": "tumbler",
+   "name": "Tumbler",
+   "desc": "Standing and running tumbling loads the wrists, ankles and Achilles with big landings.",
+   "q": {
+    "power": 3,
+    "upperPush": 2
+   },
+   "prehab": [
+    "wrist",
+    "ankle",
+    "landing"
+   ],
+   "note": "Your plan adds drop landings, calf and wrist work. Count your tumbling passes as jump load.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4-6",
+     "rir": 3,
+     "note": "Stick each landing for 2 s."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "slcalf",
+      "standcalf",
+      "stepcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "wristcurl",
+      "planchelean",
+      "revwristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2
+    }
+   ]
+  }
+ ],
+ "sessions": {
+  "off": [
+   {
+    "name": "Lower strength and power",
+    "focus": "Leg drive for tosses and landings",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "hangclean",
+       "tbjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3-5",
+      "rir": 3,
+      "note": "New lifters: countermovement jump or low box only. Stick landings."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "squat",
+       "goblet",
+       "legpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 5
+      },
+      "reps": "4-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "rdl",
+       "dbrdl",
+       "trapdl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "stepup",
+       "revlunge"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "dropstick",
+       "hopstick",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5",
+      "rir": 3,
+      "note": "Landing and ankle work. Stick each landing for 2 s."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf",
+       "stepcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2
+     }
     ]
-  },
-  "conditioning": {
-    "off": [{"name":"Aerobic base","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate, hard but steady","perWeek":1,"why":"Recovery between routine run-throughs and long practices."}],
-    "pre": [{"name":"Routine intervals","mode":"any","work":"4-6 x 2.5 min hard","rest":"3-4 min easy","intensity":"Near max, RPE 9","perWeek":1,"why":"Matches a sub-3-minute full-out routine; practice."}],
-    "in": []
-  },
-  "tests": [
-    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3","unit":"cm","better":"higher","bands":{"club":"26-32","good":"32-38","elite":">38"},"note":"Practice bands for women; men about 25-30% higher. No published cheer norms."},
-    {"id":"ohpbw","name":"Overhead press, 3RM","how":"Standing barbell or DB press, 3 clean reps, report as x body mass","unit":"x BM","better":"higher","bands":{"club":"0.4-0.5","good":"0.5-0.65","elite":">0.65"},"note":"Practice bands. Bases and back spots mainly. Men higher."},
-    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick, best of 3 each leg","unit":"%","better":"lower","bands":{"club":"<15","good":"<10","elite":"<5"},"note":"Gap between legs. Over 10-15% is a flag."},
-    {"id":"hshold","name":"Wall handstand hold","how":"Chest to wall, arms locked, time to form break","unit":"s","better":"higher","bands":{"club":"20-30","good":"30-60","elite":">60"},"note":"Practice bands. Shoulder and wrist capacity for tumbling."},
-    {"id":"slbalanceec","name":"Single-leg balance, eyes closed","how":"Barefoot, hands on hips, time until the foot moves","unit":"s","better":"higher","bands":{"club":"10-20","good":"20-30","elite":">30"},"note":"Practice bands. Flyers mainly."}
+   },
+   {
+    "name": "Overhead strength",
+    "focus": "Press, lock out and catch overhead",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pushpress",
+       "mbohthrow",
+       "mbchest"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3-5",
+      "rir": 2,
+      "note": "New lifters: med ball throws."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "standdbohp",
+       "lmpress",
+       "kbpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "5-8",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "pullup",
+       "latpd",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "6-10",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "ohcarry",
+       "pushup",
+       "dips"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "8-10",
+      "rir": 2,
+      "note": "Overhead carry builds lockout stability."
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "sideer",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl",
+       "planchelean"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12-15",
+      "rir": 2,
+      "note": "Wrist capacity for tumbling and basing."
+     }
+    ]
+   },
+   {
+    "name": "Trunk, back and neck",
+    "focus": "Body tension, back endurance, neck strength",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "latbound",
+       "broadjump",
+       "pogo"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "4/side",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "trapdl",
+       "deadlift",
+       "kbrdl"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "5-6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog",
+       "revhyp"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "10-15 s each way",
+      "rir": 3,
+      "note": "4 directions at about 50-70% effort."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hollow",
+       "abwheel",
+       "deadbug"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "20-30 s",
+      "rir": 2,
+      "note": "Hollow body tension for flyers."
+     },
+     {
+      "role": "core",
+      "ex": [
+       "sideplank",
+       "pallof",
+       "suitcase"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s/side",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "week": [
-    "Competition weekend: lower strength Monday, overhead session Tuesday or Wednesday.",
-    "No heavy legs or big jump volume within 72 h of competition.",
-    "Gym after stunting practice, never before it: tired bases drop flyers.",
-    "Rest day before competition.",
-    "Count tumbling passes and basket tosses as jump load."
+  "pre": [
+   {
+    "name": "Lower power and landing",
+    "focus": "Peak leg power, landing quality",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "boxjp",
+       "cmj",
+       "hangclean",
+       "depthjump"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 3,
+      "note": "Depth jumps for advanced only."
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 4,
+       "adv": 4
+      },
+      "reps": "3-5",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "bss",
+       "stepup"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6/side",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "dropstick",
+       "hopstick",
+       "slbalance"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "5/side",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "standcalf",
+       "slcalf"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-12",
+      "rir": 2
+     }
+    ]
+   },
+   {
+    "name": "Overhead and trunk",
+    "focus": "Lockout strength and body tension",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "pushpress",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "3",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "standdbohp",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 3,
+       "inter": 3,
+       "adv": 4
+      },
+      "reps": "4-6",
+      "rir": 2
+     },
+     {
+      "role": "acc",
+      "ex": [
+       "pullup",
+       "dbrow",
+       "invrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "6-8",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "15",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10-15 s each way",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hollow",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "30 s",
+      "rir": 2
+     }
+    ]
+   }
   ],
-  "primer": [
-    "Wrist and ankle warm-up, 3 min",
-    "2 x 3 CMJ with stick landings",
-    "Band ER and pull-aparts 1 x 15",
-    "Hollow hold 2 x 15 s"
-  ],
-  "taper": {"days":10, "lines":[
-    "Last heavy session 5 days out.",
-    "Cut gym volume by half, keep loads.",
-    "Shorter full-out run-throughs, more rest between them.",
-    "Rest day the day before competition."
-  ]},
-  "rules": [
-    "Suspected concussion: stop at once, no return that day, and no stunting or tumbling until cleared.",
-    "UK guidance: rest 24 h, then a graded return; no contact-risk activity, which includes stunting, for at least 21 days after a confirmed concussion.",
-    "Get written medical clearance before returning after a head injury.",
-    "Stunt only on proper surfaces (sprung floor or mats), never on hard, wet or uneven ground.",
-    "Pyramids and new stunts only with trained spotters and a qualified coach.",
-    "Only move up a skill after the earlier progression is solid.",
-    "No stunting when bases or spotters are exhausted after a gym session."
-  ],
-  "sources": [
-    {"source":"Shields, Fernandez & Smith 2009, Journal of Athletic Training","url":"https://nata.kglmeridian.com/view/journals/attr/44/6/article-p586.xml"},
-    {"source":"Currie et al. 2016, Pediatrics (summary by CU Anschutz)","url":"https://news.cuanschutz.edu/news-stories/cheerleading-among-safest-high-school-sports-but-injuries-can-be-severe"},
-    {"source":"Brenner et al. (American Academy of Pediatrics) 2012, Pediatrics","url":"https://profiles.wustl.edu/en/publications/cheerleading-injuries-epidemiology-and-recommendations-for-preven/"},
-    {"source":"Deng & Yu 2025, Frontiers in Public Health","url":"https://www.frontiersin.org/articles/10.3389/fpubh.2025.1614164/full"},
-    {"source":"Gavanda, von Andrian-Werburg & Wiewelhove 2023, Frontiers in Sports and Active Living","url":"https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2023.1105510/pdf"},
-    {"source":"Sport England 2023, UK concussion guidelines for grassroots sport","url":"https://www.sportengland.org/new-concussion-guidelines-grassroots-sport"}
-  ],
-  "missing_ex": [
-    {"name":"Overhead DB or barbell lockout hold","pattern":"ohp","equipment":"bb+rack","why":"Base and back spot overhead catch stability"},
-    {"name":"Drop landing and stick","pattern":"land","equipment":"box","why":"Flyer and tumbler landing progression"}
+  "in": [
+   {
+    "name": "Strength upkeep",
+    "focus": "Early in the week, 35-40 min",
+    "slots": [
+     {
+      "role": "pow",
+      "ex": [
+       "cmj",
+       "boxjp",
+       "mbohthrow"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "3",
+      "rir": 3
+     },
+     {
+      "role": "main",
+      "ex": [
+       "frontsq",
+       "squat",
+       "goblet"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 3,
+       "adv": 3
+      },
+      "reps": "3-5",
+      "rir": 2
+     },
+     {
+      "role": "main",
+      "ex": [
+       "bbohp",
+       "standdbohp",
+       "lmpress"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "4-6",
+      "rir": 2
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "slbalance",
+       "hopstick"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "hollow",
+       "sideplank"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "30 s",
+      "rir": 3
+     }
+    ]
+   },
+   {
+    "name": "Prehab and trunk",
+    "focus": "Wrists, back, neck, ankles; no heavy legs",
+    "slots": [
+     {
+      "role": "pre",
+      "ex": [
+       "wristcurl",
+       "revwristcurl"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "15",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "hipext",
+       "birddog"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "neckiso",
+       "neckband"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10 s each way",
+      "rir": 3
+     },
+     {
+      "role": "pre",
+      "ex": [
+       "cabler",
+       "bander"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "12/side",
+      "rir": 3
+     },
+     {
+      "role": "core",
+      "ex": [
+       "deadbug",
+       "pallof"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 2
+      },
+      "reps": "10/side",
+      "rir": 3
+     }
+    ]
+   }
   ]
+ },
+ "conditioning": {
+  "off": [
+   {
+    "name": "Aerobic base",
+    "mode": "bike",
+    "work": "4 x 4 min",
+    "rest": "3 min easy",
+    "intensity": "85-95% max heart rate, hard but steady",
+    "perWeek": 1,
+    "why": "Recovery between routine run-throughs and long practices."
+   }
+  ],
+  "pre": [
+   {
+    "name": "Routine intervals",
+    "mode": "any",
+    "work": "4-6 x 2.5 min hard",
+    "rest": "3-4 min easy",
+    "intensity": "Near max, about 9 out of 10",
+    "perWeek": 1,
+    "why": "Matches a full-out routine of under 3 minutes. Coaching practice."
+   }
+  ],
+  "in": []
+ },
+ "tests": [
+  {
+   "id": "cmj",
+   "name": "Countermovement jump",
+   "how": "Hands on hips, jump app or mat, best of 3",
+   "unit": "cm",
+   "better": "higher",
+   "bands": {
+    "club": "26-32",
+    "good": "32-38",
+    "elite": ">38"
+   },
+   "note": "Coaching guide, not a published norm. Bands for women; men about 25-30% higher."
+  },
+  {
+   "id": "ohpbw",
+   "name": "Overhead press, 3RM",
+   "how": "Standing barbell or dumbbell press, 3 clean reps, divide the weight by your body mass",
+   "unit": "x body mass",
+   "better": "higher",
+   "bands": {
+    "club": "0.4-0.5",
+    "good": "0.5-0.65",
+    "elite": ">0.65"
+   },
+   "note": "Coaching guide, not a published norm. Bases and back spots mainly. Men higher."
+  },
+  {
+   "id": "sljump",
+   "name": "Single-leg hop for distance",
+   "how": "Hop and stick, best of 3 each leg",
+   "unit": "%",
+   "better": "lower",
+   "bands": {
+    "club": "10-15",
+    "good": "5-10",
+    "elite": "<5"
+   },
+   "note": "Report the gap between legs as a percentage. Over 10-15% is a flag."
+  },
+  {
+   "id": "hshold",
+   "name": "Wall handstand hold",
+   "how": "Chest to wall, arms locked, time to form break",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "20-30",
+    "good": "30-60",
+    "elite": ">60"
+   },
+   "note": "Coaching guide, not a published norm. Shoulder and wrist capacity for tumbling."
+  },
+  {
+   "id": "slbalanceec",
+   "name": "Single-leg balance, eyes closed",
+   "how": "Barefoot, hands on hips, time until the foot moves",
+   "unit": "s",
+   "better": "higher",
+   "bands": {
+    "club": "10-20",
+    "good": "20-30",
+    "elite": ">30"
+   },
+   "note": "Coaching guide, not a published norm. Flyers mainly."
+  }
+ ],
+ "week": [
+  "Competition weekend: lower strength Monday, overhead session Tuesday or Wednesday.",
+  "No heavy legs or big jump volume within 72 h of competition.",
+  "Gym after stunting practice, never before it: tired bases drop flyers.",
+  "Rest day before competition.",
+  "Count tumbling passes and basket tosses as jump load."
+ ],
+ "primer": [
+  "Wrist and ankle warm-up, 3 min",
+  "2 x 3 countermovement jumps with stick landings",
+  "Band external rotation and pull-aparts 1 x 15",
+  "Hollow hold 2 x 15 s"
+ ],
+ "taper": {
+  "days": 10,
+  "lines": [
+   "Last heavy session 5 days out.",
+   "Cut gym volume by half, keep loads.",
+   "Shorter full-out run-throughs, more rest between them.",
+   "Rest day the day before competition."
+  ]
+ },
+ "rules": [
+  "Suspected concussion: stop at once, no return that day, and no stunting or tumbling until cleared.",
+  "UK guidance: rest 24 h, then a graded return; no contact-risk activity, which includes stunting, for at least 21 days after a confirmed concussion.",
+  "Get written medical clearance before returning after a head injury.",
+  "Stunt only on proper surfaces (sprung floor or mats), never on hard, wet or uneven ground.",
+  "Pyramids and new stunts only with trained spotters and a qualified coach.",
+  "Only move up a skill after the earlier progression is solid.",
+  "No stunting when bases or spotters are exhausted after a gym session."
+ ],
+ "sources": [
+  {
+   "source": "Shields, Fernandez & Smith 2009, Journal of Athletic Training",
+   "url": "https://nata.kglmeridian.com/view/journals/attr/44/6/article-p586.xml"
+  },
+  {
+   "source": "Currie et al. 2016, Pediatrics (summary by CU Anschutz)",
+   "url": "https://news.cuanschutz.edu/news-stories/cheerleading-among-safest-high-school-sports-but-injuries-can-be-severe"
+  },
+  {
+   "source": "Brenner et al. (American Academy of Pediatrics) 2012, Pediatrics",
+   "url": "https://profiles.wustl.edu/en/publications/cheerleading-injuries-epidemiology-and-recommendations-for-preven/"
+  },
+  {
+   "source": "Deng & Yu 2025, Frontiers in Public Health",
+   "url": "https://www.frontiersin.org/articles/10.3389/fpubh.2025.1614164/full"
+  },
+  {
+   "source": "Gavanda, von Andrian-Werburg & Wiewelhove 2023, Frontiers in Sports and Active Living",
+   "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2023.1105510/pdf"
+  },
+  {
+   "source": "Sport England 2023, UK concussion guidelines for grassroots sport",
+   "url": "https://www.sportengland.org/new-concussion-guidelines-grassroots-sport"
+  }
+ ],
+ "missing_ex": [
+  {
+   "name": "Overhead DB or barbell lockout hold",
+   "pattern": "ohp",
+   "equipment": "bb+rack",
+   "why": "Base and back spot overhead catch stability"
+  }
+ ]
 }
