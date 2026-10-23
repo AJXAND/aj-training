@@ -1,0 +1,131 @@
+{
+  "id": "korfball",
+  "name": "Korfball",
+  "aliases": ["korfbal", "beach korfball", "mixed korfball"],
+  "group": "Team",
+  "q": {"maxStrength":2,"power":3,"rotational":1,"unilateral":2,"upperPull":1,"upperPush":2,"lowerBody":2,"grip":0,"neck":0,"trunk":2,"mass":1},
+  "prehab": ["ankle", "landing", "calf", "patellar", "hipAbd", "nordic"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "High-intensity intermittent: short sprints to lose a marker, sudden stops, jump-stops and shots, on an aerobic base (no korfball time-motion data, so netball and basketball are the model).",
+  "summary": "Korfball is short sprints, hard stops, jump-stops and running-in shots, and ankle and knee injuries lead the injury list. The plan builds leg strength and jump power, with landing, deceleration and ankle balance work all year.",
+  "evidence": [
+    {"claim":"In 118 korfball players, the foot and ankle (34%) and knee (20%) were the most injured areas, and strains and sprains were the most common types.","source":"Alp & Özdinç 2020, Turkish Journal of Sport and Exercise","url":"https://doaj.org/article/5b505656ef1b49009ecbeb6377b0b29b"},
+    {"claim":"In indoor korfball players aged 30 and over, injuries ran at 7.2 per 1,000 hours, 27% came from twisting and two thirds caused time out of sport.","source":"Jans, den Bak & Backx 1998, Geneeskunde en Sport","url":"https://www.bisp-surf.de/Record/PU199806302307"},
+    {"claim":"Across athletes, balance training cut the risk of ankle sprains (risk ratio 0.62).","source":"de Vasconcelos et al. 2018, Clinical Rehabilitation","url":"https://search.pedro.org.au/search-results/record-detail/55592"}
+  ],
+  "confidence": "limited",
+  "variants": [
+    {"id":"masters","name":"Masters (30+)","desc":"Older players get more muscle strains and knee problems, and a past injury raises the chance of the next one.","q":{"power":2},"prehab":["calf","nordic"],"note":"More calf and hamstring capacity work, fewer max-height jumps."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and landing","focus":"Leg strength and clean landings","slots":[
+        {"role":"pow","ex":["cmj","boxjp","squatjump"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4-5","rir":3,"note":"Stick every landing for 2 s."},
+        {"role":"main","ex":["trapdl","squat","goblet","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"5-8","rir":2},
+        {"role":"acc","ex":["bss","revlunge","stepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2,"note":"3 s lowering."},
+        {"role":"pre","ex":["nordicham","slidecurl","ghr"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["standcalf","slcalf","stepcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15","rir":2},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":3}
+      ]},
+      {"name":"Upper and trunk","focus":"Passing and shooting strength, trunk control","slots":[
+        {"role":"pow","ex":["mbchest","mbohthrow","mbslam"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5","rir":2},
+        {"role":"main","ex":["flatdb","bench","pushup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"main","ex":["dbrow","pullup","invrow","latpd"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"acc","ex":["ohp","lmpress","pikepush"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["bandabd","sideabd","cababd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2},
+        {"role":"core","ex":["pallof","sideplank","abwheel"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+      ]},
+      {"name":"Single-leg power and tendon","focus":"Reactive jumps, deceleration and tendon load","slots":[
+        {"role":"pow","ex":["latbound","hurdlehop","pogo"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"New lifters: pogo only."},
+        {"role":"main","ex":["singlerdl","dbrdl","rdl"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","latstepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["spanishsq","legext","wallsit"],"sets":{"new":3,"inter":4,"adv":4},"reps":"30-45 s","rir":3,"note":"Patellar tendon isometric."},
+        {"role":"pre","ex":["seatedcalf","soleuswall"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2},
+        {"role":"core","ex":["deadbug","hollow","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s","rir":2}
+      ]}
+    ],
+    "pre": [
+      {"name":"Lower power","focus":"Convert strength to jump and sprint power","slots":[
+        {"role":"pow","ex":["boxjp","cmj","hurdlehop"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-4","rir":3},
+        {"role":"main","ex":["trapdl","squat","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["bss","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
+        {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":2,"inter":2,"adv":2},"reps":"5","rir":2},
+        {"role":"pre","ex":["hopstick","slbalance"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":3}
+      ]},
+      {"name":"Upper, trunk and tendon","focus":"Throw power, trunk, calves and knees","slots":[
+        {"role":"pow","ex":["mbchest","mbohthrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4","rir":2},
+        {"role":"main","ex":["flatdb","pushup","bench"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5-8","rir":2},
+        {"role":"main","ex":["dbrow","pullup","invrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5-8","rir":2},
+        {"role":"pre","ex":["spanishsq","legext"],"sets":{"new":3,"inter":3,"adv":4},"reps":"30-45 s","rir":3},
+        {"role":"pre","ex":["standcalf","slcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-12","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+      ]}
+    ],
+    "in": [
+      {"name":"Strength and power upkeep","focus":"MD-4 or MD-3, 35-45 min","slots":[
+        {"role":"pow","ex":["cmj","boxjp","latbound"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["trapdl","squat","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["dbrow","pullup","pushup"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":1,"inter":2,"adv":2},"reps":"4-5","rir":3},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
+      ]},
+      {"name":"Prehab and upper","focus":"MD-2, light, no heavy legs","slots":[
+        {"role":"pow","ex":["mbchest","mbohthrow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3","rir":3},
+        {"role":"acc","ex":["flatdb","pushup","dbrow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8","rir":3},
+        {"role":"pre","ex":["spanishsq","wallsit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s","rir":3},
+        {"role":"pre","ex":["standcalf","slcalf"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":3},
+        {"role":"core","ex":["sideplank","pallof"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
+      ]}
+    ]
+  },
+  "conditioning": {
+    "off": [{"name":"Aerobic base","mode":"run","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate, hard but steady","perWeek":1,"why":"Aerobic base for repeated sprints (Helgerud 2001 model from football)."},
+            {"name":"Tempo runs","mode":"run","work":"10-15 x 100 m","rest":"walk 100 m","intensity":"About 65-70% of top speed","perWeek":1,"why":"Builds running capacity with low tendon stress."}],
+    "pre": [{"name":"Court intervals","mode":"court","work":"8-10 x (5 m sprint, stop, cut, 5 m sprint, jump-stop and shot), 15 s on","rest":"15-30 s; 3 min between 3 sets","intensity":"Max effort each rep","perWeek":1,"why":"Matches the sprint, stop and shoot pattern of losing a defender; practice."},
+            {"name":"Repeated sprints","mode":"court","work":"2-3 sets of 6 x 10-15 m with a stop","rest":"20 s; 4 min between sets","intensity":"Max","perWeek":1,"why":"Repeat sprint ability for the zone switches."}],
+    "in": []
+  },
+  "tests": [
+    {"id":"sprint10","name":"10 m sprint","how":"Start 0.5 m behind the line, timing app or gates, best of 3","unit":"s","better":"lower","bands":{"club":"1.85-1.95","good":"1.75-1.85","elite":"<1.75"},"note":"Men. Women about 0.1-0.15 s slower (netball club about 2.05 s). Borrowed bands."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3","unit":"cm","better":"higher","bands":{"club":"38-44","good":"44-52","elite":">52"},"note":"Men, basketball bands. Women: netball club 26-30, good 30-35, elite >35."},
+    {"id":"505","name":"505 change of direction","how":"10 m run-in, time 5 m to the line, turn 180 degrees and 5 m back, both sides","unit":"s","better":"lower","bands":{"club":"2.50-2.60","good":"2.40-2.50","elite":"<2.40"},"note":"Men, borrowed from tennis bands. Women: netball club 2.65-2.80, good 2.55-2.65, elite <2.50."},
+    {"id":"yoyo1","name":"Yo-Yo IR1","how":"2 x 20 m shuttles at rising speed with 10 s jog recovery","unit":"m","better":"higher","bands":{"club":"1000-1400","good":"1400-1800","elite":">1800"},"note":"Men. Women: netball club 600-900, good 900-1200, elite >1200."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick, best of 3 each leg","unit":"%","better":"lower","bands":{"club":"<15","good":"<10","elite":"<5"},"note":"Report the gap between legs. Over 10-15% is a flag."}
+  ],
+  "week": [
+    "Match Saturday, club training Tue and Thu: lower strength Monday (MD-5) or Wednesday (MD-3).",
+    "No heavy legs or high jump volume within 72 h of a match.",
+    "MD-2: light upper and prehab only.",
+    "MD+1: easy bike or swim and mobility.",
+    "Tournament days: no gym; landing warm-up before each game."
+  ],
+  "primer": [
+    "Landing warm-up: 2-foot then 1-foot stick landings, 2 x 4",
+    "Sprint, stop and cut 3 x 2 per side",
+    "2 x 3 CMJ",
+    "Ankle balance 1 x 20 s per side"
+  ],
+  "taper": {"days":7, "lines":[
+    "Last heavy lower 5 days out.",
+    "Cut gym volume by about half, keep loads.",
+    "Last hard court conditioning 4 days out.",
+    "Primer before games."
+  ]},
+  "rules": [
+    "Landing and ankle balance work every week, all year.",
+    "After an ankle sprain: brace or tape for matches and do balance work for at least the next season.",
+    "New lifters: low box and pogo jumps only, no depth jumps.",
+    "Knee pain below the kneecap: cut jump volume, keep isometrics, see a physio if it lasts."
+  ],
+  "sources": [
+    {"source":"Alp & Özdinç 2020, Turkish Journal of Sport and Exercise","url":"https://doaj.org/article/5b505656ef1b49009ecbeb6377b0b29b"},
+    {"source":"Jans, den Bak & Backx 1998, Geneeskunde en Sport","url":"https://www.bisp-surf.de/Record/PU199806302307"},
+    {"source":"de Vasconcelos et al. 2018, Clinical Rehabilitation","url":"https://search.pedro.org.au/search-results/record-detail/55592"},
+    {"source":"Korfball rules summary, Wikipedia","url":"https://en.wikipedia.org/wiki/Korfball"}
+  ],
+  "missing_ex": [
+    {"name":"Deceleration drill (sprint to one-step stop)","pattern":"land","equipment":"","why":"Core korfball movement and knee protection"},
+    {"name":"Drop landing and stick","pattern":"land","equipment":"box","why":"Landing module progression"}
+  ]
+}

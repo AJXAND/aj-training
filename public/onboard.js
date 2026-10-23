@@ -938,7 +938,7 @@ function generate(ans, seed){
    Season dose: 2-3 sessions off-season builds strength; 1 a week keeps it in-season (Rønnestad 2011). */
 const SPP = () => window.AJSportProfiles || {sports:[], general:[]};
 // Detailed coaching per sport (sportelite.js, from research/sport_elite): positions, session templates by season, conditioning, tests, taper
-const SPE = () => window.AJSportElite || {};
+const SPE = () => { if (!window.AJSportElite && window.AJLoadElite) AJLoadElite().then(() => { if (F) draw(); }); return window.AJSportElite || {}; };
 function sportVarOf(id, vid){ const e = SPE()[id]; return e && vid ? (e.variants || []).find(v => v.id === vid) || null : null; }
 function sportProfile(a){
   const p = a.sportCustom || SPP().sports.find(s => s.id === a.sportId) || null, v = p && sportVarOf(p.id, a.sportVar);

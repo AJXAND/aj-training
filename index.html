@@ -3247,8 +3247,12 @@ function testBand(t, v){ const B=t.bands||{}, lower=t.better==="lower";
   for (const k of ["elite","good","club"]){ const e=bandEdge(B[k],lower); if (e!=null&&(lower?v<=e:v>=e)) return k; }
   return bandEdge(B.club,lower)!=null?"below":null; }
 const BANDN={elite:"Elite",good:"Good",club:"Club level",below:"Building"};
+// the sport coaching data is big (all sports), so it loads only when someone has a sport plan or is building one
+function loadElite(){ if (window.AJSportElite||window._eliteP) return window._eliteP||Promise.resolve(); window._eliteP=new Promise(res=>{ const sc=document.createElement("script"); sc.src="/sportelite.js"; sc.onload=()=>{ res(); try{ render(); }catch(e){} }; sc.onerror=()=>{ window._eliteP=null; res(); }; document.head.appendChild(sc); }); return window._eliteP; }
+window.AJLoadElite=loadElite;
 function sportCard(){
   const sp=S.prog.sport; if (!sp) return "";
+  if (!window.AJSportElite){ loadElite(); return ""; }
   const E=(window.AJSportElite||{})[sp.id]; if (!E) return "";
   const su=S.prog.setup||{}, v=(E.variants||[]).find(x=>x.id===su.sportVar), se=sp.season||"off", cond=((E.conditioning||{})[se]||[]).filter(c=>!c.for||!c.for.length||!su.sportVar||c.for.includes(su.sportVar)), res=((S.profile.sportTests||{})[sp.id])||{};
   const sec=(t,body,open)=>body?`<details class="spsec"${open?" open":""}><summary>${t}</summary>${body}</details>`:"";
@@ -5186,7 +5190,6 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 <script src="/gymicons.js"></script>
 <script src="/equipment.js"></script>
 <script src="/exlib.js"></script>
-<script src="/sportelite.js"></script>
 <script src="/programmes.js"></script>
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>
