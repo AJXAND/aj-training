@@ -222,9 +222,30 @@
    "acct": "u1",
    "chat": "a37e0506e2981861",
    "img": 1
+  },
+  "isochestpress": {
+   "acct": "u1",
+   "chat": "27270593f618719b",
+   "img": 1
+  },
+  "lyingchestpress": {
+   "acct": "u1",
+   "chat": "4dfb8ede03ccad4d",
+   "img": 1
+  },
+  "incchestpress": {
+   "acct": "u1",
+   "chat": "53d4a1c09cfa27e3",
+   "img": 1
+  },
+  "isoincpress": {
+   "acct": "u1",
+   "chat": "d1fb998afd9eebac",
+   "img": 1
   }
  },
  "qc_rejects": [
-  "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle"
+  "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle",
+  "isochestpress v1 (c342bfd31549fbe2): floating plate, extra horns, 10kg text"
  ]
 }
