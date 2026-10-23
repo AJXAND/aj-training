@@ -76,8 +76,6 @@ I("smith","Smith machine","RB",["Smith","guided barbell"],["fullbody"],PL,[C,BB,
  "a tall steel frame with a barbell fixed to vertical guide rods so it runs straight up and down, with hooks on the bar that rotate into slots on the uprights, plate pegs on the bar and adjustable safety stops at the base")
 I("smithangled","Angled Smith machine","RB",["incline Smith","angled Smith","7 degree Smith","counterbalanced Smith"],["fullbody"],PL,[C,BB],
  "a Smith machine whose twin guide rods lean backwards at a slight angle of about 7 degrees, with a counterweighted barbell on the rails, rotating hooks and plate pegs, and safety stops at the base")
-I("smith3d","3D Smith machine","RB",["3D Smith","multi-plane Smith","free-motion Smith"],["fullbody"],PL,[C,BB],
- "a large Smith machine whose barbell rides on a carriage that slides both up and down and forwards and backwards on horizontal rails across the top of the frame, allowing movement in two planes")
 I("bench","Adjustable bench","RB",["FID bench","incline bench","utility bench","flat incline decline bench"],["chest","fdelt","triceps"],FW,[H,G,C,BB,HO,U],
  "a padded weight bench with a long back pad that ratchets from flat to fully upright on a steel ladder, a separate adjustable seat pad, a wheeled front leg and a handle at the rear")
 I("flatbench","Flat bench","RB",["flat utility bench","bench"],["chest","triceps"],FW,[H,G,C,BB,HO,U],

@@ -523,7 +523,10 @@
    "group": "Racks and benches",
    "aliases": [
     "Smith",
-    "guided barbell"
+    "guided barbell",
+    "3D Smith",
+    "multi-plane Smith",
+    "free-motion Smith"
    ],
    "muscles": [
     "fullbody"
@@ -557,25 +560,6 @@
     "bodybuilding"
    ],
    "image_prompt": "An angled Smith machine, a Smith machine whose twin guide rods lean backwards at a slight angle of about 7 degrees, with a counterweighted barbell on the rails, rotating hooks and plate pegs, and safety stops at the base."
-  },
-  {
-   "id": "smith3d",
-   "name": "3D Smith machine",
-   "group": "Racks and benches",
-   "aliases": [
-    "3D Smith",
-    "multi-plane Smith",
-    "free-motion Smith"
-   ],
-   "muscles": [
-    "fullbody"
-   ],
-   "loading": "plate-loaded",
-   "common_in": [
-    "commercial",
-    "bodybuilding"
-   ],
-   "image_prompt": "A 3D Smith machine, a large Smith machine whose barbell rides on a carriage that slides both up and down and forwards and backwards on horizontal rails across the top of the frame, allowing movement in two planes."
   },
   {
    "id": "bench",
