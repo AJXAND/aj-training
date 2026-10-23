@@ -543,10 +543,10 @@
    "name": "Angled Smith machine",
    "group": "Racks and benches",
    "aliases": [
-    "incline Smith",
-    "angled Smith",
     "7 degree Smith",
-    "counterbalanced Smith"
+    "angled Smith",
+    "counterbalanced Smith",
+    "incline Smith"
    ],
    "muscles": [
     "fullbody"
@@ -1576,13 +1576,15 @@
   },
   {
    "id": "pecdeck",
-   "name": "Pec deck",
+   "name": "Pec deck / rear delt fly",
    "group": "Chest machines",
    "aliases": [
-    "pec fly",
-    "chest fly machine",
     "butterfly machine",
-    "pec deck / rear delt"
+    "chest fly machine",
+    "pec deck / rear delt",
+    "pec fly",
+    "rear delt fly",
+    "reverse pec deck"
    ],
    "muscles": [
     "chest",
@@ -1640,11 +1642,13 @@
   },
   {
    "id": "pushupm",
-   "name": "Plate-loaded push-up / dip combo",
+   "name": "Plate-loaded dip machine",
    "group": "Chest machines",
    "aliases": [
+    "dip machine",
     "dip press",
-    "dip machine"
+    "plate-loaded dip",
+    "seated dip press"
    ],
    "muscles": [
     "chest",
