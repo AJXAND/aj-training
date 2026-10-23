@@ -305,5 +305,18 @@
   "jhooks v1 (chat 2882ff538fce3b50 img after spending text): redrawn slots + angle",
   "isochestpress v1 (c342bfd31549fbe2): floating plate, extra horns, 10kg text",
   "frontpulldown (06929053209c09dc): invented/moved horns, redo with another ref"
- ]
+ ],
+ "next_up": [
+  "frontpulldown (new ref)",
+  "pulloverm (lateral-raise ref found by mistake; need real pullover)",
+  "highrow",
+  "dyrow",
+  "tbar",
+  "pullupplate",
+  "shrugm",
+  "chestback",
+  "smith-adjacent racks",
+  "then shoulders/arms/legs machines in edit_queue order"
+ ],
+ "downloads_blocked": "Chrome multiple-download guard on gemini.google.com; AJ to click Allow, then fetch all pending_download via Download full size button per chat"
 }
