@@ -1,0 +1,161 @@
+{
+  "id": "fencing",
+  "name": "Fencing",
+  "aliases": ["fencing", "foil", "epee", "épée", "sabre", "saber", "olympic fencing", "swordfighting"],
+  "group": "Combat",
+  "q": {"maxStrength":2,"power":3,"rotational":1,"unilateral":3,"upperPull":1,"upperPush":1,"lowerBody":3,"grip":1,"neck":0,"trunk":2,"mass":0},
+  "prehab": ["ankle", "nordic", "copenhagen", "patellar", "lowback"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "lower",
+  "energy": "Short explosive lunges and footwork bursts (about 2.5 s per point in sabre, 5 s in foil, 15 s in épée) on an aerobic base that has to last a long tournament day.",
+  "summary": "Fencing is repeated lunging and fast changes of direction from an asymmetric stance, and most injuries are ankle sprains and lower-limb strains. The plan builds horizontal leg power and single-leg strength on both sides, strong hamstrings and adductors, and ankle control.",
+  "evidence": [
+    {"claim":"In FIE competitions 72% of time-loss injuries were lower limb, ankle sprain was the most common single injury (25%), and épée had about half the injury risk of foil and sabre.","source":"Harmer 2019, Br J Sports Med","url":"https://bjsm.bmj.com/content/53/7/442"},
+    {"claim":"Standing broad jump was the strongest predictor of lunge velocity and change-of-direction speed in fencers, and single-leg jumps were 9% stronger on the front leg.","source":"Turner et al. 2016, J Strength Cond Res","url":"https://bibgraph.hpcr.jp/abst/pubmed/26808849"},
+    {"claim":"Work:rest differs by weapon: about 1:1 to 2:1 in épée, 1:1 to 1:3 in foil and 1:5 to 1:6 in sabre.","source":"Oates, Price & Bottoms 2023, J Elite Sport Perform","url":"https://uhra.herts.ac.uk/id/eprint/10363/2/73815-physiological-demands-of-fencing-a-narrative-review.pdf"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"foil","name":"Foil","desc":"Points last about 5 s with work:rest about 1:1 to 1:3; fast attacks and parries in a small target area.",
+     "q":{},
+     "prehab":["ankle"],
+     "note":"Standard plan; conditioning uses short bursts with slightly longer rests."},
+    {"id":"epee","name":"Épée","desc":"Longest actions (about 15 s) and the most continuous footwork, with the lowest injury rate of the three weapons.",
+     "q":{"power":2},
+     "prehab":["calf"],
+     "note":"More aerobic and repeated-effort conditioning; gym stays the same."},
+    {"id":"sabre","name":"Sabre","desc":"Shortest, most explosive actions (about 2.5 s) with long rests, and a higher injury risk than épée.",
+     "q":{"maxStrength":3,"power":3},
+     "prehab":["nordic","ankle"],
+     "note":"More max strength and power, very short conditioning bursts with full rests, and strict hamstring work."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and lunge power","focus":"Horizontal power and leg strength, both sides.",
+       "slots":[
+        {"role":"pow","ex":["broadjump","squatjump","boxjp"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-4","rir":3,"note":"Stick each landing. Full rest."},
+        {"role":"main","ex":["frontsq","trapdl","goblet","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"4-8","rir":2},
+        {"role":"acc","ex":["ffesplit","bss","revlunge","dbsplit"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2,"note":"Start with your weaker leg and match reps on the other."},
+        {"role":"acc","ex":["nordicham","slidecurl","ghr","ballcurl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":3},
+        {"role":"core","ex":["pallof","pallofb","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Single-leg, adductors and upper","focus":"Hinge and lateral strength, groin and a balanced upper body.",
+       "slots":[
+        {"role":"pow","ex":["latbound","bounding","pogo"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4/side","rir":3},
+        {"role":"main","ex":["singlerdl","bstance","dbrdl","slrdlbw"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","latstepup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["dbrow","invrow","cabrow","bandrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"acc","ex":["pushup","lmpress","flatdb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-12","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze","sideadd","cabadd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-10/side","rir":2},
+        {"role":"core","ex":["sideplank","suitcase"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Reactive power and tendons","focus":"Stiff ankles, knee tendon capacity and posterior chain.",
+       "slots":[
+        {"role":"pow","ex":["pogo","hurdlehop","depthjump"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":3,"note":"Depth jumps for advanced only."},
+        {"role":"main","ex":["hipthrust","dbhipthrust","glutebridge"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2},
+        {"role":"acc","ex":["stepcalf","standcalf","seatedcalf","slcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10-15","rir":2},
+        {"role":"pre","ex":["spanishsq","wallsit","slegext"],"sets":{"new":3,"inter":4,"adv":4},"reps":"30-45 s","rir":3,"note":"Isometric holds for the front knee tendon."},
+        {"role":"pre","ex":["hipext","birddog","revhyp"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":2},
+        {"role":"core","ex":["deadbug","abwheel","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+       ]}
+    ],
+    "pre": [
+      {"name":"Heavy lower and lunge power","focus":"Max strength then horizontal power.",
+       "slots":[
+        {"role":"pow","ex":["broadjump","bounding","squatjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3,"note":"Advanced: contrast with the main lift."},
+        {"role":"main","ex":["trapdl","frontsq","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"acc","ex":["ffesplit","bss","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["nordicham","slidecurl","ghr"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
+       ]},
+      {"name":"Lateral power and groin","focus":"Change of direction power and adductor strength.",
+       "slots":[
+        {"role":"pow","ex":["latbound","hurdlehop","pogo"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3/side","rir":3},
+        {"role":"main","ex":["singlerdl","bstance","dbrdl"],"sets":{"new":3,"inter":3,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["latlunge","cossack"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5/side","rir":2},
+        {"role":"acc","ex":["dbrow","invrow","cabrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze","cabadd"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-12/side","rir":2},
+        {"role":"pre","ex":["spanishsq","wallsit"],"sets":{"new":3,"inter":3,"adv":4},"reps":"30-45 s","rir":3},
+        {"role":"core","ex":["sideplank","pallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]}
+    ],
+    "in": [
+      {"name":"Competition week strength","focus":"Hold strength and power in 30 minutes, early in the week.",
+       "slots":[
+        {"role":"pow","ex":["broadjump","squatjump"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["frontsq","trapdl","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3","rir":2},
+        {"role":"acc","ex":["nordicham","slidecurl"],"sets":{"new":1,"inter":2,"adv":2},"reps":"4","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}
+       ]},
+      {"name":"Light lateral and upper","focus":"Short session up to 3 days before a tournament.",
+       "slots":[
+        {"role":"pow","ex":["latbound","pogo"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3/side","rir":3},
+        {"role":"acc","ex":["bstance","singlerdl"],"sets":{"new":2,"inter":2,"adv":2},"reps":"5/side","rir":3},
+        {"role":"acc","ex":["dbrow","invrow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8","rir":2},
+        {"role":"acc","ex":["stepcalf","standcalf"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":2},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}
+       ]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic base","mode":"bike","work":"30-40 min steady, or 4 x 4 min","rest":"3 min easy between 4 min reps","intensity":"Steady: can talk in short sentences; intervals 85-95% max heart rate","perWeek":2,"why":"Recovery between bouts across a long tournament day."}
+    ],
+    "pre": [
+      {"name":"Weapon-specific footwork intervals","mode":"court","work":"3 x 3 min blocks of footwork bursts on the piste","rest":"1 min between blocks, like a DE","intensity":"Max effort bursts: sabre 3 s on / 15 s off; foil 5 s on / 10 s off; épée 10-15 s on / 10-15 s off","perWeek":2,"why":"Copies each weapon's work:rest (Oates 2023)."},
+      {"name":"Repeat sprints with direction change","mode":"court","work":"2 sets of 6 x 10 m with a turn","rest":"20 s between reps, 3 min between sets","intensity":"Max effort","perWeek":1,"why":"Repeated explosive efforts without fading (practice)."}
+    ],
+    "in": [
+      {"name":"Top-up footwork intervals","mode":"court","work":"2 x 3 min blocks","rest":"1 min","intensity":"Weapon work:rest as pre-season","perWeek":1,"why":"Only in weeks without a tournament."}
+    ]
+  },
+  "tests": [
+    {"id":"broadjump","name":"Standing broad jump","how":"Two-foot take-off, stick the landing, measure to the back heel; best of 3.","unit":"cm","better":"higher","bands":{"club":"200-230","good":"230-260","elite":">260"},"note":"Best single predictor of lunge speed (Turner 2016). Bands are practice for men; women about 15-20% lower."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on each leg, best of 3; compare front and rear leg.","unit":"% difference","better":"lower","bands":{"club":">15","good":"10-15","elite":"<10"},"note":"Elite fencers averaged 9% in favour of the front leg (Turner 2016). Over 15% is a flag (practice)."},
+    {"id":"sebt","name":"Y-balance anterior reach","how":"Stand on one leg and reach forward with the other foot along a tape line; best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A difference over 4 cm is linked to lower-limb injury in other sports (Plisky 2006)."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"32-38","good":"38-44","elite":">44"},"note":"Practice bands for men; women about 20% lower. Also a quick fatigue check on tournament weeks."},
+    {"id":"lungedist","name":"Max lunge distance","how":"From en garde, lunge as far as you can and recover; measure front toe start to finish, best of 3.","unit":"cm","better":"higher","bands":{"club":"track change","good":"track change","elite":"track change"},"note":"No verified norms; height dependent, so track your own change."}
+  ],
+  "week": [
+    "Tournament Saturday or Sunday: heavy lower strength Monday or Tuesday.",
+    "Lateral and upper session Wednesday at the latest.",
+    "Thursday and Friday: club fencing and a primer only.",
+    "No heavy lower work within 72 h of a tournament.",
+    "Day after a tournament: easy bike or walk and mobility."
+  ],
+  "primer": [
+    "Dynamic warm-up with footwork",
+    "2 x 3 broad jumps or lunges at full speed",
+    "2 x 10 s pogo hops",
+    "Repeat a short footwork primer before the DE rounds after a long wait"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower lift 5-7 days before the event.",
+    "Gym volume down about 50%, keep the load.",
+    "Keep jumps, cut contacts by half.",
+    "Bouting stays sharp but shorter.",
+    "Plan food, fluids and cooling between poules and DEs."
+  ]},
+  "rules": [
+    "Train both legs equally; the stance builds asymmetry.",
+    "Do the weaker leg first and match its reps on the other leg.",
+    "Nordic hamstring work all year, at least once a week in season.",
+    "No heavy lower work within 72 h of a tournament.",
+    "Previous ankle sprain: tape or brace for competition and keep balance work going.",
+    "Under 16: no depth jumps and no 1RM testing."
+  ],
+  "sources": [
+    {"source":"Oates LW, Price MJ, Bottoms LM 2023, J Elite Sport Perform","url":"https://uhra.herts.ac.uk/id/eprint/10363/2/73815-physiological-demands-of-fencing-a-narrative-review.pdf"},
+    {"source":"Turner A et al. 2016, J Strength Cond Res 30(8):2235-2241","url":"https://bibgraph.hpcr.jp/abst/pubmed/26808849"},
+    {"source":"Turner A et al. 2014, J Strength Cond Res 28(10):3001-3011","url":"https://repository.mdx.ac.uk/item/860xq"},
+    {"source":"Middlesex University, physical preparation of GBR fencers case study","url":"https://www.mdx.ac.uk/media/middlesex-university/research-pdfs/The-physical-preparation-of-GBR-Fencers-for-the-2016-Rio-Olympics-and-beyond.pdf"},
+    {"source":"Harmer PA 2019, Br J Sports Med 53(7):442-448","url":"https://bjsm.bmj.com/content/53/7/442"},
+    {"source":"Wong SCY et al. 2025, Clin J Sport Med 35(6):e105-e133","url":"https://ira.lib.polyu.edu.hk/handle/10397/115701"}
+  ],
+  "missing_ex": [
+    {"name":"Lunge and recover drill","pattern":"plow","equipment":"","why":"Sport-specific horizontal power and front-leg deceleration."},
+    {"name":"Weighted lunge jump to stick","pattern":"plow","equipment":"db","why":"Loaded horizontal power for advanced fencers."}
+  ]
+}
