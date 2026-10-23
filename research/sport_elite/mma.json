@@ -19,7 +19,25 @@
     "wrist",
     "neck"
    ],
-   "note": "Power and med ball work stay high; heavy strength volume comes down slightly."
+   "note": "Your plan adds punch-pattern power work and puts slightly less weight on heavy strength.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "landpunch",
+      "mbchest",
+      "clappu"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Max speed, both sides."
+    }
+   ]
   },
   {
    "id": "grappler",
@@ -30,13 +48,47 @@
     "neck",
     "copenhagen"
    ],
-   "note": "Heavy strength, towel pull-ups and carries take priority."
+   "note": "Your plan adds heavy carries and towel hangs for grip, with heavy strength first.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "farmers",
+      "farmerwalk",
+      "suitcase"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "30 m",
+     "rir": 2,
+     "note": "Heavy."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "towelhang",
+      "deadhang",
+      "platepinch"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20-40 s",
+     "rir": 2,
+     "note": "Grip for clinch and grappling."
+    }
+   ]
   },
   {
    "id": "pro",
    "name": "Professional (3 x 5 min or 5 x 5 min)",
    "desc": "Longer rounds and more sport sessions (8-12 a week) mean more fatigue to manage.",
-   "note": "Round simulations match 3 x 5 or 5 x 5 min, and gym stays at 2 sessions in camp."
+   "note": "Your round simulations match your bout, 3 x 5 or 5 x 5 min. Keep the gym to 2 sessions a week in camp."
   }
  ],
  "sessions": {
@@ -970,7 +1022,7 @@
    "better": "higher",
    "bands": {
     "good": "50",
-    "elite": "55-60+"
+    "elite": "55+"
    },
    "note": "Practice values; ranges reported by Lenetsky and Harris 2012."
   }
