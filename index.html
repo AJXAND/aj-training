@@ -4610,13 +4610,14 @@ $("#main").addEventListener("click", async e=>{
     const n=b.dataset.segset, v=b.dataset.val;
     if (n==="progSeg"){ S.progSeg=v; S.exView=null; }
     else if (n==="planView") S.planView=v;
+    else if (n==="wkView") S.wkView=v;
     else if (n==="foodMode"){ S.foodMode=v; try{ localStorage.setItem("ajfoodmode",v); }catch(e){} }
     else if (n==="nutMode") { S.profile.nutrition={...(S.profile.nutrition||{}), mode:v}; saveProfile(); }
     else if (n==="theme") setTheme(v);
     else if (n==="restPref") { S.profile={...S.profile, restPref:v}; saveProfile(); }
     else if (n==="pSexSeg") S.profile={...S.profile, sex:v}, saveProfile();
     else if (n==="unitH"||n==="unitW") { if ($("#pName")){ S.profile={...S.profile, name:$("#pName").value.trim()}; } S.profile={...S.profile, units:{...(S.profile.units||{}), [n==="unitH"?"h":"w"]:v}}; saveProfile(); }
-    render(); if (["progSeg","planView"].includes(n)) pageAnim("soft"); return;
+    render(); if (["progSeg","planView","wkView"].includes(n)) pageAnim("soft"); return;
   }
   const act=b.dataset.act, prev=S.confirm;
   if (!["finish","discard","del","photoDel","slip","hSlip","trkFinish","trkDiscard"].includes(act)) S.confirm=null;
