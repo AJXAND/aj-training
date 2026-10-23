@@ -20,11 +20,44 @@
     "patellar",
     "ankle"
    ],
-   "note": "Block jumps from a shuffle, lateral footwork and Spanish squats every lower day."
+   "note": "Your plan adds Spanish squats and lateral bounds. Do your block jumps from a shuffle.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "spanishsq",
+      "wallsit",
+      "isosplit"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 4,
+      "adv": 4
+     },
+     "reps": "30-45 s",
+     "rir": 2,
+     "note": "Patellar tendon hold."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/side",
+     "rir": 2,
+     "note": "Lateral footwork: push off and stick."
+    }
+   ]
   },
   {
    "id": "outside",
-   "name": "Outside hitter / opposite",
+   "name": "Outside hitter or opposite",
    "desc": "Highest-intensity spikes and jump serves: very high shoulder load.",
    "q": {
     "rotational": 3
@@ -33,7 +66,25 @@
     "shoulderER",
     "patellar"
    ],
-   "note": "Shoulder module comes first; adds rotational med ball work."
+   "note": "Shoulder work comes first in your plan, and it adds rotational med ball throws.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbrot",
+      "landrot",
+      "cabrot"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 2,
+     "note": "Both sides, max intent."
+    }
+   ]
   },
   {
    "id": "setter",
@@ -45,7 +96,37 @@
     "fingers",
     "patellar"
    ],
-   "note": "Adds finger and ankle care; jump power stays submaximal."
+   "note": "Your plan adds finger and ankle work. Keep your jumps below max effort.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "fingerext",
+      "wristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "15-20",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "slbalance",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30 s/side",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "libero",
@@ -59,7 +140,52 @@
     "hipAbd",
     "lowback"
    ],
-   "note": "Drops approach jumps, adds lateral lunges, deep squat mobility and more ankle work."
+   "note": "Your plan adds lateral lunges, deep squat holds and ankle work. Skip approach jumps in your jump sets.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "latlunge",
+      "cossack"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "6/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "deepsquathold",
+      "kneetowall",
+      "9090"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "30-45 s",
+     "rir": 3
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "slbalance",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "30 s/side",
+     "rir": 2
+    }
+   ]
   },
   {
    "id": "beach",
@@ -73,7 +199,39 @@
     "ankle",
     "shoulderER"
    ],
-   "note": "More calf and hip work, sand intervals, and summer tournaments with several matches a day."
+   "note": "Your plan adds calf and hip work and sand intervals. Summer tournaments mean several matches a day.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "slcalf",
+      "standcalf",
+      "stepcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "bandabd",
+      "sideabd",
+      "cababd"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2
+    }
+   ]
   }
  ],
  "sessions": {
@@ -292,9 +450,9 @@
      {
       "role": "pre",
       "ex": [
+       "pushupplus",
        "scappushup",
-       "serpunch",
-       "wallslide"
+       "serpunch"
       ],
       "sets": {
        "new": 2,
@@ -302,8 +460,7 @@
        "adv": 2
       },
       "reps": "12",
-      "rir": 3,
-      "note": "Push-up plus."
+      "rir": 3
      },
      {
       "role": "core",
@@ -522,7 +679,7 @@
       },
       "reps": "3-6",
       "rir": 2,
-      "note": "Adv: push press 3. Others: DB press 6."
+      "note": "Adv: push press 3. Others: dumbbell press 6."
      },
      {
       "role": "main",
@@ -787,13 +944,16 @@
     "why": "Matches rally length; most players need little else."
    },
    {
-    "name": "Sand intervals (beach)",
+    "name": "Sand intervals",
     "mode": "court",
     "work": "10 x 10 s on sand",
     "rest": "20 s",
     "intensity": "hard",
     "perWeek": 1,
-    "why": "Beach-specific conditioning on the real surface."
+    "why": "Beach-specific conditioning on the real surface.",
+    "for": [
+     "beach"
+    ]
    }
   ],
   "in": []
@@ -860,7 +1020,7 @@
  ],
  "primer": [
   "2 x 3 max-effort jumps.",
-  "Shoulder ER and scapular warm-up.",
+  "Shoulder external rotation and shoulder blade warm-up.",
   "Ankle balance 30 s per side."
  ],
  "taper": {
@@ -872,10 +1032,10 @@
   ]
  },
  "rules": [
-  "Previous ankle sprain: prompt to brace or tape for play.",
+  "Previous ankle sprain: brace or tape for play.",
   "In season, no more than 20 plyo contacts per gym session.",
   "Watch weekly jump counts; avoid doubling them week to week.",
-  "Shoulder ER:IR strength ratio under 0.66 means more cuff work.",
+  "If shoulder external rotation strength is under two thirds of internal rotation, do more rotator cuff work.",
   "Female players: landing module 2-3 times a week, all year."
  ],
  "sources": [
@@ -927,12 +1087,6 @@
    "pattern": "squat",
    "equipment": "slant board",
    "why": "patellar tendon loading"
-  },
-  {
-   "name": "Push-up plus",
-   "pattern": "scap",
-   "equipment": "",
-   "why": "scapular control; scapular push-up used instead"
   }
  ]
 }

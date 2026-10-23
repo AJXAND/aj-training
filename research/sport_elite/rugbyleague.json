@@ -22,7 +22,56 @@
    "prehab": [
     "neck"
    ],
-   "note": "Adds extra neck isometrics, towel pull-ups 3 x 5 and heavy farmers or bear-hug carries."
+   "note": "Your plan adds extra neck work, towel pull-ups and heavy carries.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband",
+      "neckharness"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15 s each way",
+     "rir": 3
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "towelhang",
+      "pullup",
+      "deadhang"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "5",
+     "rir": 2,
+     "note": "Towel pull-ups if you can, or towel hangs."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "sandbagcarry",
+      "farmers",
+      "farmerwalk"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "20 m",
+     "rir": 2,
+     "note": "Heavy."
+    }
+   ]
   },
   {
    "id": "edge",
@@ -33,7 +82,25 @@
     "neck",
     "nordic"
    ],
-   "note": "Full strength plan plus regular acceleration work."
+   "note": "Your plan keeps the full strength work and adds acceleration work, with neck and Nordics first.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "sledpush",
+      "broadjump",
+      "splitjump"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 4
+     },
+     "reps": "10 m",
+     "rir": 2,
+     "note": "Short, hard drives for acceleration."
+    }
+   ]
   },
   {
    "id": "adjustable",
@@ -46,7 +113,7 @@
     "nordic",
     "ankle"
    ],
-   "note": "3 sets per main lift, less upper-body volume, more 15/15 intervals and accelerations."
+   "note": "Your plan has less mass work and puts Nordics and ankle work first. Treat the 15/15 intervals as your key conditioning."
   },
   {
    "id": "outside",
@@ -60,7 +127,41 @@
     "nordic",
     "landing"
    ],
-   "note": "Nordics first, max-velocity sprints, jumping and landing for high balls."
+   "note": "Your plan adds jumps and landings for high balls, puts Nordics first and adds max-velocity runs.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "For high balls: land and stick."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "hopstick",
+      "splitjump",
+      "latbound"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/leg",
+     "rir": 2,
+     "note": "Single-leg jumps: stick each landing."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -436,6 +537,22 @@
       "rir": 3
      },
      {
+      "role": "pre",
+      "ex": [
+       "pushupplus",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2,
+      "note": "Shoulder health for tackling."
+     },
+     {
       "role": "core",
       "ex": [
        "pallof",
@@ -638,7 +755,7 @@
       },
       "reps": "3-6",
       "rir": 2,
-      "note": "Adv: push press 3-4. Others: DB or landmine press, 6."
+      "note": "Adv: push press 3-4. Others: dumbbell or landmine press, 6."
      },
      {
       "role": "acc",
@@ -905,6 +1022,22 @@
       "rir": 3
      },
      {
+      "role": "pre",
+      "ex": [
+       "pushupplus",
+       "scappushup",
+       "serpunch"
+      ],
+      "sets": {
+       "new": 2,
+       "inter": 2,
+       "adv": 3
+      },
+      "reps": "10-15",
+      "rir": 2,
+      "note": "Shoulder health for tackling."
+     },
+     {
       "role": "core",
       "ex": [
        "pallof",
@@ -932,7 +1065,7 @@
     "rest": "3 min easy",
     "intensity": "90-95% max heart rate",
     "perWeek": 1,
-    "why": "Aerobic base with low impact while building mass (as union)."
+    "why": "Aerobic base with low impact while building mass."
    },
    {
     "name": "Tempo runs",
@@ -973,13 +1106,16 @@
     "why": "Copies the 10 m defensive retreat."
    },
    {
-    "name": "Max velocity (outside backs)",
+    "name": "Max velocity",
     "mode": "run",
     "work": "3-5 x 30-40 m build-ups",
     "rest": "2-3 min, full recovery",
     "intensity": "above 90-95% of top speed",
     "perWeek": 1,
-    "why": "Top-speed exposure protects hamstrings."
+    "why": "Top-speed exposure protects hamstrings.",
+    "for": [
+     "outside"
+    ]
    }
   ],
   "in": [
@@ -1093,7 +1229,7 @@
   ]
  },
  "rules": [
-  "Reported concussion: stop all training prompts and follow the governing body's graduated return to play.",
+  "Reported concussion: stop training and follow the governing body's graduated return to play.",
   "Neck work in at least 2 sessions a week, all year.",
   "Pre-season conditioning defaults to repeated high-intensity efforts.",
   "Weeks with full-contact training: cut lower-body eccentric volume by about a third.",
@@ -1142,12 +1278,6 @@
    "pattern": "cond",
    "equipment": "partner or tackle bag",
    "why": "league-specific contact conditioning"
-  },
-  {
-   "name": "Push-up plus",
-   "pattern": "scap",
-   "equipment": "",
-   "why": "shoulder robustness for tacklers"
   }
  ]
 }

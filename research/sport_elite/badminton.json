@@ -11,7 +11,7 @@
    "id": "singles",
    "name": "Singles",
    "desc": "Most court coverage: aerobic power and repeated lunges matter most.",
-   "note": "Footwork intervals use 10 s on / 20 s off and the aerobic session stays in."
+   "note": "Your footwork intervals are 10 s on, 20 s off, and the aerobic session stays in."
   },
   {
    "id": "doubles",
@@ -20,7 +20,25 @@
    "prehab": [
     "shoulderER"
    ],
-   "note": "Intervals shorten to 6-8 s on / 15 s off and power work gets priority."
+   "note": "Your footwork intervals are shorter, 6-8 s on and 15 s off, and your plan adds extra smash-pattern med ball throws.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "mbslam",
+      "mbohthrow",
+      "mbchest"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "Smash pattern, max intent."
+    }
+   ]
   },
   {
    "id": "over35",
@@ -30,7 +48,25 @@
     "calf",
     "ankle"
    ],
-   "note": "Calf and Achilles work comes first and plyometrics progress more slowly."
+   "note": "Your plan adds extra calf and Achilles work. Progress your jumps more slowly than younger players.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "seatedcalf",
+      "soleuswall",
+      "seateddbcalf"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "12",
+     "rir": 2,
+     "note": "Slow lowering. Soleus and Achilles."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -42,6 +78,7 @@
      {
       "role": "pow",
       "ex": [
+       "splitjump",
        "jumplunge",
        "latbound",
        "hopstick"
@@ -53,7 +90,7 @@
       },
       "reps": "4/side",
       "rir": 3,
-      "note": "Split jumps for inter and advanced. New: lateral bounds."
+      "note": "Split jumps for intermediate and advanced. New: lateral bounds."
      },
      {
       "role": "pow",
@@ -330,6 +367,7 @@
      {
       "role": "pow",
       "ex": [
+       "splitjump",
        "jumplunge",
        "latbound",
        "hopstick"
@@ -341,7 +379,7 @@
       },
       "reps": "4/side",
       "rir": 3,
-      "note": "Split jumps for inter and advanced. New: lateral bounds."
+      "note": "Split jumps for intermediate and advanced. New: lateral bounds."
      },
      {
       "role": "pow",
@@ -374,7 +412,7 @@
       },
       "reps": "4-5",
       "rir": 2,
-      "note": "New: 6-8 reps at RIR 2-3. Inter: 80-85%. Advanced: 2-4 reps at 85-90%."
+      "note": "New: 6-8 reps at RIR 2-3. Intermediate: 80-85%. Advanced: 2-4 reps at 85-90%."
      },
      {
       "role": "acc",
@@ -618,6 +656,7 @@
      {
       "role": "pow",
       "ex": [
+       "splitjump",
        "jumplunge",
        "latbound",
        "hopstick"
@@ -866,18 +905,50 @@
     "rest": "3 min between sets",
     "intensity": "Match pace",
     "perWeek": 1,
-    "why": "Work:rest of 1:2 matches the game."
+    "why": "Work:rest of 1:2 matches the game.",
+    "for": [
+     "singles",
+     "over35"
+    ]
+   },
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "6-8 s to the six corners / 15 s rest x 12-15, 3 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace",
+    "perWeek": 1,
+    "why": "Doubles rallies are shorter and faster.",
+    "for": [
+     "doubles"
+    ]
    }
   ],
   "pre": [
    {
     "name": "Shadow footwork",
     "mode": "court",
-    "work": "10 s / 20 s x 10-12, 3 sets (doubles: 6-8 s / 15 s)",
+    "work": "10 s / 20 s x 10-12, 3 sets",
     "rest": "3 min between sets",
     "intensity": "Match pace or a touch faster",
     "perWeek": 2,
-    "why": "Builds repeated explosive movement at the game's work:rest ratio."
+    "why": "Builds repeated explosive movement at the game's work:rest ratio.",
+    "for": [
+     "singles",
+     "over35"
+    ]
+   },
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "6-8 s / 15 s x 12-15, 3 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace or a touch faster",
+    "perWeek": 2,
+    "why": "Doubles rallies are shorter and faster.",
+    "for": [
+     "doubles"
+    ]
    },
    {
     "name": "Aerobic base",
@@ -897,7 +968,23 @@
     "rest": "3 min between sets",
     "intensity": "Match pace",
     "perWeek": 1,
-    "why": "Top-up only. Not the day before a match."
+    "why": "Top-up only. Not the day before a match.",
+    "for": [
+     "singles",
+     "over35"
+    ]
+   },
+   {
+    "name": "Shadow footwork",
+    "mode": "court",
+    "work": "6-8 s / 15 s x 12, 2 sets",
+    "rest": "3 min between sets",
+    "intensity": "Match pace",
+    "perWeek": 1,
+    "why": "Top-up only. Not the day before a match.",
+    "for": [
+     "doubles"
+    ]
    }
   ]
  },
@@ -961,7 +1048,7 @@
     "good": "30+",
     "elite": "35+"
    },
-   "note": "Practice benchmark, not research."
+   "note": "Coaching practice benchmark."
   }
  ],
  "week": [

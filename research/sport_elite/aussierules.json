@@ -1166,7 +1166,7 @@
    "id": "tt2k",
    "name": "2 km time trial",
    "how": "Flat 400 m track or measured loop, run all out.",
-   "unit": "m:ss",
+   "unit": "min:s",
    "better": "lower",
    "bands": {
     "club": "7:00-7:45",

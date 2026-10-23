@@ -20,7 +20,40 @@
     "ankle",
     "hipAbd"
    ],
-   "note": "More court intervals and lateral work; aerobic power is a priority."
+   "note": "Your plan adds lateral bounds and deceleration drills. Treat the court intervals as your key conditioning.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "decel",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/side",
+     "rir": 2,
+     "note": "Push off sideways and stick each landing."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "decel",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 2,
+     "note": "Sprint 5 m, stop in 2 steps and stick."
+    }
+   ]
   },
   {
    "id": "forward",
@@ -31,11 +64,11 @@
     "landing",
     "ankle"
    ],
-   "note": "The standard plan."
+   "note": "Your plan is the standard plan."
   },
   {
    "id": "big",
-   "name": "Centre / big",
+   "name": "Centre or big",
    "desc": "Most jumps and contact: strength, upper body, trunk and tendon care.",
    "q": {
     "maxStrength": 3,
@@ -46,7 +79,40 @@
     "patellar",
     "landing"
    ],
-   "note": "Spanish squats every lower day and more upper-body and trunk strength."
+   "note": "Your plan adds Spanish squats for the knees and extra trunk work, with more upper-body strength.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "spanishsq",
+      "wallsit",
+      "isosplit"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 4,
+      "adv": 4
+     },
+     "reps": "30-45 s",
+     "rir": 2,
+     "note": "Patellar tendon hold."
+    },
+    {
+     "role": "core",
+     "ex": [
+      "pallof",
+      "suitcase",
+      "sideplank"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "10/side",
+     "rir": 2
+    }
+   ]
   }
  ],
  "sessions": {
@@ -381,6 +447,7 @@
      {
       "role": "pre",
       "ex": [
+       "decel",
        "hopstick",
        "latbound"
       ],
@@ -546,7 +613,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "Adv: push press. Others: DB press."
+      "note": "Adv: push press. Others: dumbbell press."
      },
      {
       "role": "main",
@@ -943,9 +1010,9 @@
    "unit": "m",
    "better": "higher",
    "bands": {
-    "club": "1,000-1,400",
-    "good": "1,400-1,800",
-    "elite": ">1,800"
+    "club": "1000-1400",
+    "good": "1400-1800",
+    "elite": ">1800"
    }
   },
   {
@@ -984,7 +1051,7 @@
   ]
  },
  "rules": [
-  "Previous ankle sprain: prompt to wear a lace-up brace in all play.",
+  "Previous ankle sprain: wear a lace-up brace in all play.",
   "Count gym jumps in the weekly jump load; in heavy practice weeks cut gym plyos.",
   "Female players: landing module is priority 1, 2-3 times a week, all year.",
   "Y-balance anterior reach difference over 4 cm is a flag.",
@@ -1025,12 +1092,6 @@
    "pattern": "plow",
    "equipment": "",
    "why": "signature jump; cmj used instead"
-  },
-  {
-   "name": "Deceleration drill (sprint and stop)",
-   "pattern": "land",
-   "equipment": "",
-   "why": "court braking; hop and stick used instead"
   }
  ]
 }

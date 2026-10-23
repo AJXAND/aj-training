@@ -27,7 +27,54 @@
    "prehab": [
     "neck"
    ],
-   "note": "Adds scrum isometric holds 4 x 6-8 s, trap bar shrugs 3 x 8 and extra neck work."
+   "note": "Your plan adds scrum holds, shrugs and extra neck work, and less running.",
+   "add": [
+    {
+     "role": "main",
+     "ex": [
+      "scrumhold",
+      "isosplit"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 4,
+      "adv": 4
+     },
+     "reps": "6-8 s",
+     "rir": 2,
+     "note": "Push into the rack in your scrum position."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "trapshrug",
+      "bbshrug",
+      "dbshrug"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "neckiso",
+      "neckband",
+      "neckharness"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15 s each way",
+     "rir": 3
+    }
+   ]
   },
   {
    "id": "lock",
@@ -41,7 +88,57 @@
     "landing",
     "shoulderER"
    ],
-   "note": "Adds push press, overhead holds and split-stance jumps 3 x 3 for lineouts."
+   "note": "Your plan adds split-stance jumps, push press and overhead carries for lineouts.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "splitjump",
+      "cmj",
+      "boxjp"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3",
+     "rir": 2,
+     "note": "Lineout jump: from a split stance, drive up and stick."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "pushpress",
+      "standdbohp",
+      "lmpress"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 3,
+      "adv": 4
+     },
+     "reps": "4-6",
+     "rir": 2,
+     "note": "Adv: push press. Others: dumbbell or landmine press."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "ohcarry",
+      "bbohp",
+      "kbpress"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20 m",
+     "rir": 2,
+     "note": "Overhead hold for lineout lifting."
+    }
+   ]
   },
   {
    "id": "backrow",
@@ -52,7 +149,25 @@
     "neck",
     "shoulderER"
    ],
-   "note": "Keeps the full strength plan and more repeated-effort conditioning."
+   "note": "Your plan keeps the full strength work and adds push-up plus for the shoulders. Treat the repeated-effort sessions as your key conditioning.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "pushupplus",
+      "scappushup",
+      "serpunch"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15",
+     "rir": 2,
+     "note": "Shoulder health for tackling."
+    }
+   ]
   },
   {
    "id": "halfback",
@@ -65,7 +180,25 @@
     "hipFlex",
     "nordic"
    ],
-   "note": "Less mass work, more aerobic intervals and acceleration; adds hip flexor work for kicking."
+   "note": "Your plan has less mass work and adds hip flexor work for kicking. Treat the aerobic intervals as your key conditioning.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "psoasmarch",
+      "cabhipflex",
+      "nordic"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10/leg",
+     "rir": 2,
+     "note": "Hip flexor strength for kicking."
+    }
+   ]
   },
   {
    "id": "centre",
@@ -78,12 +211,30 @@
     "neck",
     "shoulderER"
    ],
-   "note": "Full upper-body strength plan with neck and shoulder work kept at the front."
+   "note": "Your plan keeps the full upper-body strength work, with neck and shoulder work at the front and added push-up plus.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "pushupplus",
+      "scappushup",
+      "serpunch"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15",
+     "rir": 2,
+     "note": "Shoulder health for tackling."
+    }
+   ]
   },
   {
    "id": "backthree",
-   "name": "Back three (11, 14, 15)",
-   "desc": "Top speed and aerial contests: sprinting, hamstrings, jumping and landing.",
+   "name": "Back three (11, 14, 15) or sevens",
+   "desc": "Top speed and aerial contests: sprinting, hamstrings, jumping and landing. Sevens adds more open running and several matches a day.",
    "q": {
     "unilateral": 3,
     "mass": 1
@@ -92,20 +243,40 @@
     "nordic",
     "landing"
    ],
-   "note": "Swaps one upper accessory for max-velocity sprints and single-leg plyos; Nordics come first."
-  },
-  {
-   "id": "sevens",
-   "name": "Sevens",
-   "desc": "Tournament rugby: several matches a day, more open running and top-speed work per player.",
-   "q": {
-    "mass": 1
-   },
-   "prehab": [
-    "nordic",
-    "landing"
-   ],
-   "note": "Tournament weeks are no gym except a primer; train like a back three player otherwise (practice)."
+   "note": "Your plan adds single-leg jumps and landings, with less mass work and Nordics first. Sevens: in tournament weeks, only do a primer in the gym.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "hopstick",
+      "splitjump",
+      "latbound"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/leg",
+     "rir": 2,
+     "note": "Single-leg jumps: stick each landing."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "dropstick",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "4",
+     "rir": 3,
+     "note": "For high balls: land and stick."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -666,7 +837,7 @@
       },
       "reps": "3-6",
       "rir": 2,
-      "note": "Adv: push press 3-4. Others: DB or landmine press, 6."
+      "note": "Adv: push press 3-4. Others: dumbbell or landmine press, 6."
      },
      {
       "role": "acc",
@@ -963,22 +1134,32 @@
     "why": "Builds the aerobic base with low impact while bulking."
    },
    {
-    "name": "Tempo runs (backs)",
+    "name": "Tempo runs",
     "mode": "run",
     "work": "12-16 x 100 m",
     "rest": "walk 100 m",
     "intensity": "about 65-70% of top speed",
     "perWeek": 1,
-    "why": "Running volume for backs without high strain."
+    "why": "Running volume without high strain.",
+    "for": [
+     "halfback",
+     "centre",
+     "backthree"
+    ]
    },
    {
-    "name": "Sled pushes (forwards)",
+    "name": "Sled pushes",
     "mode": "any",
     "work": "8 x 20 m",
     "rest": "walk back",
     "intensity": "hard, steady drive",
     "perWeek": 1,
-    "why": "Forward-specific leg drive and conditioning."
+    "why": "Leg drive and conditioning for scrums and mauls.",
+    "for": [
+     "frontrow",
+     "lock",
+     "backrow"
+    ]
    }
   ],
   "pre": [
@@ -1001,22 +1182,32 @@
     "why": "Aerobic power for repeated efforts."
    },
    {
-    "name": "Max velocity (backs)",
+    "name": "Max velocity",
     "mode": "run",
     "work": "3-5 x 30-40 m build-ups",
     "rest": "2-3 min, full recovery",
     "intensity": "above 90-95% of top speed",
     "perWeek": 1,
-    "why": "Regular top-speed exposure protects hamstrings."
+    "why": "Regular top-speed exposure protects hamstrings.",
+    "for": [
+     "halfback",
+     "centre",
+     "backthree"
+    ]
    },
    {
-    "name": "Wrestle conditioning (forwards)",
+    "name": "Wrestle conditioning",
     "mode": "any",
     "work": "6 x 20 s ruck clear-out or wrestling",
     "rest": "walk back",
     "intensity": "hard",
     "perWeek": 1,
-    "why": "Forward contact-specific conditioning."
+    "why": "Contact-specific conditioning for rucks and mauls.",
+    "for": [
+     "frontrow",
+     "lock",
+     "backrow"
+    ]
    }
   ],
   "in": [
@@ -1136,7 +1327,7 @@
   ]
  },
  "rules": [
-  "Reported concussion: stop all training prompts and follow World Rugby graduated return to play.",
+  "Reported concussion: stop training and follow World Rugby graduated return to play.",
   "Neck work in at least 2 sessions a week, all year.",
   "Do the Activate warm-up at least 3 times a week.",
   "Weeks with full-contact training: cut lower-body eccentric volume by about a third.",
@@ -1189,24 +1380,5 @@
    "source": "Collins et al. 2014, J Prim Prev"
   }
  ],
- "missing_ex": [
-  {
-   "name": "Scrum isometric hold",
-   "pattern": "isometric",
-   "equipment": "sled or wall",
-   "why": "front-row scrum strength"
-  },
-  {
-   "name": "Split-stance jump",
-   "pattern": "plow",
-   "equipment": "",
-   "why": "lineout jump for locks"
-  },
-  {
-   "name": "Push-up plus",
-   "pattern": "scap",
-   "equipment": "",
-   "why": "shoulder robustness for tacklers"
-  }
- ]
+ "missing_ex": []
 }

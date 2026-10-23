@@ -10,7 +10,7 @@
  "variants": [
   {
    "id": "bigs",
-   "name": "Linemen (OL, DL)",
+   "name": "Offensive and defensive linemen",
    "desc": "Collide on every snap: maximal strength, first-step power from a stance, hand-fighting and mass.",
    "q": {
     "maxStrength": 3,
@@ -23,11 +23,11 @@
     "neck",
     "shoulderER"
    ],
-   "note": "Heaviest strength work, Upper 2 kept for mass, conditioning is 10-15 yd bursts."
+   "note": "Your plan has the heaviest strength work, and your conditioning is 10-15 yd bursts from a stance."
   },
   {
    "id": "bigskill",
-   "name": "LB, TE, FB, RB",
+   "name": "Linebacker, tight end, fullback or running back",
    "desc": "Strength-power plus acceleration and change of direction, with a collision most plays.",
    "q": {
     "power": 3
@@ -36,11 +36,11 @@
     "neck",
     "nordic"
    ],
-   "note": "Full strength plan plus 15-25 yd drives with a cut."
+   "note": "Your plan keeps the full strength work, and your conditioning is 15-25 yd drives with a cut."
   },
   {
    "id": "skill",
-   "name": "WR and DB",
+   "name": "Wide receiver or defensive back",
    "desc": "Top speed, change of direction and contested jumps, with less mass.",
    "q": {
     "maxStrength": 2,
@@ -52,7 +52,7 @@
     "nordic",
     "landing"
    ],
-   "note": "Upper 2 is swapped for a speed session; Nordics come first."
+   "note": "Your plan adds a weekly speed session and puts Nordics first."
   },
   {
    "id": "qb",
@@ -66,11 +66,45 @@
     "shoulderER",
     "elbow"
    ],
-   "note": "Adds elbow and shoulder care; no heavy overhead pressing near games."
+   "note": "Your plan adds elbow and shoulder care. Near games, use the landmine press instead of heavy overhead pressing.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "pronsup",
+      "wristcurl",
+      "revwristcurl"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "12-15",
+     "rir": 2,
+     "note": "Forearm work for the elbow."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "pushupplus",
+      "scappushup",
+      "ytw"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10-15",
+     "rir": 2,
+     "note": "Shoulder blade control for throwing."
+    }
+   ]
   },
   {
    "id": "specialist",
-   "name": "Kicker, punter, long snapper",
+   "name": "Kicker, punter or long snapper",
    "desc": "Kicking needs hip flexor and groin capacity; long snappers need back and shoulder.",
    "q": {
     "mass": 1
@@ -79,7 +113,39 @@
     "copenhagen",
     "hipFlex"
    ],
-   "note": "Copenhagen 2-3 times a week and hip flexor work."
+   "note": "Your plan adds Copenhagen planks and hip flexor work to every session.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "copen",
+      "cabadd",
+      "adductor"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "20-30 s/side",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "psoasmarch",
+      "cabhipflex"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "10/leg",
+     "rir": 2,
+     "note": "Hip flexor strength for kicking."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -830,7 +896,7 @@
       },
       "reps": "5",
       "rir": 2,
-      "note": "QB: landmine press, not heavy overhead work near games."
+      "note": "Quarterbacks: landmine press, not heavy overhead work near games."
      },
      {
       "role": "acc",
@@ -884,51 +950,66 @@
  "conditioning": {
   "off": [
    {
-    "name": "Aerobic base (bigs)",
+    "name": "Aerobic base",
     "mode": "bike",
     "work": "20-30 min steady",
     "rest": "none",
     "intensity": "easy to moderate, can talk",
     "perWeek": 2,
-    "why": "Faster recovery between plays and drives."
+    "why": "Faster recovery between plays and drives.",
+    "for": [
+     "bigs"
+    ]
    },
    {
-    "name": "Speed session (skill)",
+    "name": "Speed session",
     "mode": "run",
     "work": "6 x 10 yd starts, 4 x 30 yd at top speed, 6 x pro agility",
     "rest": "full recovery, 2-3 min",
     "intensity": "maximal",
     "perWeek": 1,
-    "why": "Replaces Upper 2 for WR and DB."
+    "why": "Top speed and cuts decide your plays.",
+    "for": [
+     "skill"
+    ]
    }
   ],
   "pre": [
    {
-    "name": "Drives: bigs",
+    "name": "Short drives",
     "mode": "run",
     "work": "2-3 sets of 8-12 x 10-15 yd from a stance",
     "rest": "25-35 s between reps, 3-4 min between sets",
     "intensity": "maximal",
     "perWeek": 3,
-    "why": "Matches play length and rest for linemen."
+    "why": "Matches play length and rest for linemen.",
+    "for": [
+     "bigs"
+    ]
    },
    {
-    "name": "Drives: big skill",
+    "name": "Drives with a cut",
     "mode": "run",
     "work": "2-3 sets of 8-12 x 15-25 yd with a cut",
     "rest": "25-35 s between reps, 3-4 min between sets",
     "intensity": "maximal",
     "perWeek": 3,
-    "why": "Matches play length for LB, TE and RB."
+    "why": "Matches the length of your plays.",
+    "for": [
+     "bigskill"
+    ]
    },
    {
-    "name": "Drives: skill",
+    "name": "Long drives",
     "mode": "run",
     "work": "2-3 sets of 8-12 x 20-40 yd",
     "rest": "30-40 s between reps, 3-4 min between sets",
     "intensity": "maximal",
     "perWeek": 3,
-    "why": "Matches play length for WR and DB. Add max-velocity runs."
+    "why": "Matches the length of your plays. Add max-velocity runs.",
+    "for": [
+     "skill"
+    ]
    }
   ],
   "in": []
@@ -958,7 +1039,7 @@
     "good": "1.58-1.65",
     "elite": "1.50-1.58"
    },
-   "note": "Skill shown. Linemen: amateur 1.85-1.95, elite 1.75-1.85."
+   "note": "Skill positions shown. Linemen: amateur 1.85-1.95, elite 1.75-1.85."
   },
   {
    "id": "vertjump",
@@ -971,7 +1052,7 @@
     "good": "70-90",
     "elite": "90-100"
    },
-   "note": "Skill shown. Linemen: amateur 50-60, elite 70-80."
+   "note": "Skill positions shown. Linemen: amateur 50-60, elite 70-80."
   },
   {
    "id": "proagility",
@@ -984,7 +1065,7 @@
     "good": "4.2-4.4",
     "elite": "4.0-4.2"
    },
-   "note": "Skill shown. Linemen: amateur 4.8-5.0, elite 4.5-4.8."
+   "note": "Skill positions shown. Linemen: amateur 4.8-5.0, elite 4.5-4.8."
   },
   {
    "id": "squat1rm",
@@ -993,11 +1074,11 @@
    "unit": "x body mass",
    "better": "higher",
    "bands": {
-    "club": "1.5",
+    "club": "<1.5",
     "good": "1.5-1.75",
-    "elite": "1.75"
+    "elite": "1.75+"
    },
-   "note": "Skill shown. Linemen elite 2.0, LB/TE/RB 1.9."
+   "note": "Skill positions shown. Linemen elite 2.0, linebackers, tight ends and running backs 1.9."
   }
  ],
  "week": [
@@ -1022,11 +1103,11 @@
   ]
  },
  "rules": [
-  "Reported concussion: stop all training prompts and follow the governing body's graduated return to play.",
+  "Reported concussion: stop training and follow the governing body's graduated return to play.",
   "Neck work 2-3 times a week, all year.",
   "Summer camp: phase in helmets and pads over about 14 days for heat acclimatisation.",
   "Keep pulling volume at least equal to pressing.",
-  "QB: no heavy overhead pressing near games.",
+  "Quarterbacks: no heavy overhead pressing near games.",
   "No heavy lower or high-volume plyos before MD+3 after a collision-heavy game."
  ],
  "sources": [

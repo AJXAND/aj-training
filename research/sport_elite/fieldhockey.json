@@ -12,7 +12,7 @@
    "id": "def",
    "name": "Defender",
    "desc": "Most minutes on the pitch and most time above 85% heart rate.",
-   "note": "Aerobic power gets priority in your conditioning."
+   "note": "Your plan is the standard plan. Treat the 15/15 intervals as your key conditioning session."
   },
   {
    "id": "mid",
@@ -21,7 +21,7 @@
    "prehab": [
     "nordic"
    ],
-   "note": "Repeated sprints and aerobic power lead."
+   "note": "Nordics come first in your prehab. Treat the repeated sprints and 15/15 intervals as your key sessions."
   },
   {
    "id": "fwd",
@@ -30,7 +30,25 @@
    "prehab": [
     "nordic"
    ],
-   "note": "More top-speed and acceleration work."
+   "note": "Your plan adds acceleration work and puts Nordics first. Touch top speed at least once a week.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "sledpush",
+      "broadjump",
+      "splitjump"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 4
+     },
+     "reps": "10 m",
+     "rir": 2,
+     "note": "Short, hard drives for acceleration."
+    }
+   ]
   },
   {
    "id": "dragflick",
@@ -45,7 +63,7 @@
     "copenhagen",
     "trunkLat"
    ],
-   "note": "Back and groin work move to the front; count your flicks each week like a bowler counts deliveries (practice)."
+   "note": "Back and groin work move to the front of your plan. Count your flicks each week, as a bowler counts deliveries."
   },
   {
    "id": "gk",
@@ -58,7 +76,41 @@
     "copenhagen",
     "hipRot"
    ],
-   "note": "Hip mobility, groin and single-leg strength; little aerobic running."
+   "note": "Your plan adds hip mobility and lateral bounds on top of groin and single-leg strength, and drops the long aerobic runs.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "9090",
+      "deepsquathold",
+      "cossack"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 3
+     },
+     "reps": "8/side",
+     "rir": 3,
+     "note": "Hip mobility for splits and saves."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "decel",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "3/side",
+     "rir": 2,
+     "note": "Push off sideways and stick each landing."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -1009,7 +1061,13 @@
     "rest": "3 min easy jog",
     "intensity": "90-95% max heart rate",
     "perWeek": 1,
-    "why": "Builds aerobic power (Helgerud 2001)."
+    "why": "Builds aerobic power (Helgerud 2001).",
+    "for": [
+     "def",
+     "mid",
+     "fwd",
+     "dragflick"
+    ]
    },
    {
     "name": "Tempo runs",
@@ -1018,7 +1076,13 @@
     "rest": "Walk 100 m",
     "intensity": "About 65-70% of top speed",
     "perWeek": 1,
-    "why": "Running volume and tissue capacity, low stress."
+    "why": "Running volume and tissue capacity, low stress.",
+    "for": [
+     "def",
+     "mid",
+     "fwd",
+     "dragflick"
+    ]
    }
   ],
   "pre": [
@@ -1029,7 +1093,13 @@
     "rest": "3 min between sets",
     "intensity": "95-100% of 30-15 IFT speed",
     "perWeek": 1,
-    "why": "Rolling subs make short, very hard bouts the norm."
+    "why": "Rolling subs make short, very hard bouts the norm.",
+    "for": [
+     "def",
+     "mid",
+     "fwd",
+     "dragflick"
+    ]
    },
    {
     "name": "Repeated sprints",
@@ -1067,7 +1137,13 @@
     "rest": "3 min",
     "intensity": "RPE 8-9",
     "perWeek": 1,
-    "why": "Only for players with low minutes."
+    "why": "Only for players with low minutes.",
+    "for": [
+     "def",
+     "mid",
+     "fwd",
+     "dragflick"
+    ]
    }
   ]
  },
@@ -1131,8 +1207,8 @@
    "unit": "s",
    "better": "higher",
    "bands": {
-    "club": ">90",
-    "good": ">120",
+    "club": "90-120",
+    "good": "120-150",
     "elite": ">150"
    },
    "note": "Practice bands."

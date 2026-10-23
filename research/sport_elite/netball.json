@@ -9,19 +9,19 @@
  "variants": [
   {
    "id": "centrecourt",
-   "name": "Centre court (C, WA, WD)",
+   "name": "Centre court (centre, wing attack, wing defence)",
    "desc": "Most running: repeated sprints and aerobic power matter most.",
    "q": {},
    "prehab": [
     "landing",
     "ankle"
    ],
-   "note": "Adds 15/15 intervals; upper body stays at 2-3 sets of one push and one pull."
+   "note": "Your plan adds 15/15 intervals for the extra running. Upper body stays at 2-3 sets of one push and one pull."
   },
   {
    "id": "circle",
-   "name": "Circle (GS, GK)",
-   "desc": "Most jumping and holding position: landing, upper-body and trunk strength. GA and GD sit between the two.",
+   "name": "Circle (goal shooter, goalkeeper)",
+   "desc": "Most jumping and holding position: landing, upper-body and trunk strength. Goal attack and goal defence sit between the two.",
    "q": {
     "upperPush": 2,
     "upperPull": 2,
@@ -31,7 +31,41 @@
     "landing",
     "patellar"
    ],
-   "note": "Adds one upper set and anti-rotation trunk work, plus patellar tendon isometrics."
+   "note": "Your plan adds anti-rotation trunk work and patellar tendon holds. Add 1 set to your upper-body lifts.",
+   "add": [
+    {
+     "role": "core",
+     "ex": [
+      "pallof",
+      "pallofb",
+      "hkpallof"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "10/side",
+     "rir": 2,
+     "note": "Anti-rotation: do not let the band turn you."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "spanishsq",
+      "wallsit",
+      "isosplit"
+     ],
+     "sets": {
+      "new": 3,
+      "inter": 4,
+      "adv": 4
+     },
+     "reps": "30-45 s",
+     "rir": 2,
+     "note": "Patellar tendon hold."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -369,6 +403,7 @@
      {
       "role": "pre",
       "ex": [
+       "decel",
        "hopstick",
        "latbound"
       ],
@@ -501,6 +536,7 @@
      {
       "role": "pre",
       "ex": [
+       "decel",
        "hopstick",
        "latbound"
       ],
@@ -887,7 +923,7 @@
     "rest": "3 min easy",
     "intensity": "90-95% max heart rate",
     "perWeek": 1,
-    "why": "Aerobic base for repeated sprints (shared method)."
+    "why": "Aerobic base for repeated sprints."
    }
   ],
   "pre": [
@@ -910,13 +946,16 @@
     "why": "Repeated sprints plus braking control."
    },
    {
-    "name": "15/15 intervals (centre court)",
+    "name": "15/15 intervals",
     "mode": "run",
     "work": "2 x 6-8 min, 15 s run / 15 s rest",
     "rest": "3 min between sets",
     "intensity": "90-95% of 30-15 IFT speed, or RPE 8-9",
     "perWeek": 1,
-    "why": "Aerobic power for the highest-running positions."
+    "why": "Aerobic power for the highest-running positions.",
+    "for": [
+     "centrecourt"
+    ]
    }
   ],
   "in": []
@@ -969,8 +1008,8 @@
    "better": "higher",
    "bands": {
     "club": "600-900",
-    "good": "900-1,200",
-    "elite": ">1,200"
+    "good": "900-1200",
+    "elite": ">1200"
    },
    "note": "Senior female; centre court higher."
   },
@@ -994,9 +1033,7 @@
    "unit": "%",
    "better": "lower",
    "bands": {
-    "club": "<10",
-    "good": "<10",
-    "elite": "<10"
+    "good": "<10"
    },
    "note": "Over 10% is a flag at any level."
   }
@@ -1024,10 +1061,9 @@
  },
  "rules": [
   "Start every session with the 10 min KNEE / NetballSmart block.",
-  "Previous ankle sprain: prompt to brace or tape for play.",
+  "Previous ankle sprain: brace or tape for play.",
   "Landing module 2-3 times a week, all year.",
-  "Count gym jumps in the weekly jump load; in heavy practice weeks cut gym plyos.",
-  "Assume female by default, but men's and mixed netball exist: do not hard-code it."
+  "Count gym jumps in the weekly jump load; in heavy practice weeks cut gym plyos."
  ],
  "sources": [
   {
@@ -1050,12 +1086,5 @@
    "source": "Schiftan, Ross & Hahne 2015, J Sci Med Sport"
   }
  ],
- "missing_ex": [
-  {
-   "name": "Deceleration drill (sprint and one-foot stop)",
-   "pattern": "land",
-   "equipment": "",
-   "why": "the main netball injury mechanism; hop and stick used instead"
-  }
- ]
+ "missing_ex": []
 }

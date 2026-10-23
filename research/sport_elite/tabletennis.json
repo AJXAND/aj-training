@@ -19,7 +19,40 @@
     "shoulderER",
     "lowback"
    ],
-   "note": "Lateral bounds and rotational throws get an extra set."
+   "note": "Your plan adds an extra set of lateral bounds and rotational throws.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 1,
+      "adv": 1
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Push off hard, stick the landing."
+    },
+    {
+     "role": "pow",
+     "ex": [
+      "mbrot",
+      "mbscoop",
+      "landrot"
+     ],
+     "sets": {
+      "new": 1,
+      "inter": 1,
+      "adv": 1
+     },
+     "reps": "5/side",
+     "rir": 3,
+     "note": "Both sides."
+    }
+   ]
   },
   {
    "id": "blocker",
@@ -28,7 +61,7 @@
    "q": {
     "power": 1
    },
-   "note": "Less power volume. Keep shoulder, back and balance work."
+   "note": "Your plan puts less weight on power. Keep up your shoulder, back and balance work."
   },
   {
    "id": "older",
@@ -40,7 +73,39 @@
    "prehab": [
     "ankle"
    ],
-   "note": "Balance and single-leg strength come first. Power work is fast but low amplitude."
+   "note": "Your plan adds extra balance and single-leg strength work. Keep power work fast but small.",
+   "add": [
+    {
+     "role": "pre",
+     "ex": [
+      "slbalance",
+      "hopstick"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "30 s/side",
+     "rir": 3,
+     "note": "Hold something nearby at first."
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "stepup",
+      "latstepup",
+      "bwss"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8/side",
+     "rir": 2
+    }
+   ]
   }
  ],
  "sessions": {
@@ -54,7 +119,7 @@
       "ex": [
        "latbound",
        "hopstick",
-       "skater"
+       "pogo"
       ],
       "sets": {
        "new": 2,
@@ -80,7 +145,7 @@
       },
       "reps": "6",
       "rir": 2,
-      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+      "note": "New: 10 reps at RIR 3. Intermediate: 75-80%. Advanced: 4 reps at 85%."
      },
      {
       "role": "acc",
@@ -287,7 +352,7 @@
       "ex": [
        "latbound",
        "hopstick",
-       "skater"
+       "pogo"
       ],
       "sets": {
        "new": 3,
@@ -313,7 +378,7 @@
       },
       "reps": "6",
       "rir": 2,
-      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+      "note": "New: 10 reps at RIR 3. Intermediate: 75-80%. Advanced: 4 reps at 85%."
      },
      {
       "role": "acc",
@@ -520,7 +585,7 @@
       "ex": [
        "latbound",
        "hopstick",
-       "skater"
+       "pogo"
       ],
       "sets": {
        "new": 2,
@@ -546,7 +611,7 @@
       },
       "reps": "6",
       "rir": 2,
-      "note": "New: 10 reps at RIR 3. Inter: 75-80%. Advanced: 4 reps at 85%."
+      "note": "New: 10 reps at RIR 3. Intermediate: 75-80%. Advanced: 4 reps at 85%."
      },
      {
       "role": "acc",

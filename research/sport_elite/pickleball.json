@@ -14,7 +14,7 @@
     "ankle",
     "calf"
    ],
-   "note": "Default when you are over 55. Balance, leg power and bone loading lead the plan."
+   "note": "Pick this if you are over 55. Your plan leads with balance, leg strength and bone loading. Turn and run for lobs, never backpedal."
   },
   {
    "id": "younger",
@@ -28,7 +28,55 @@
     "shoulderER",
     "elbow"
    ],
-   "note": "Lateral power, shoulder and elbow work get more weight."
+   "note": "Your plan adds extra lateral power, shoulder and elbow work.",
+   "add": [
+    {
+     "role": "pow",
+     "ex": [
+      "latbound",
+      "hopstick",
+      "pogo"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "4/side",
+     "rir": 3,
+     "note": "Push off hard, stick the landing."
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "er9090",
+      "sideer",
+      "cabler"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "12",
+     "rir": 2
+    },
+    {
+     "role": "pre",
+     "ex": [
+      "revwristcurl",
+      "pronsup"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 2,
+      "adv": 2
+     },
+     "reps": "15",
+     "rir": 2,
+     "note": "Lower slowly."
+    }
+   ]
   }
  ],
  "sessions": {
@@ -52,7 +100,7 @@
       },
       "reps": "6-10",
       "rir": 2,
-      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Intermediate and advanced: 6, heavier."
      },
      {
       "role": "acc",
@@ -300,7 +348,7 @@
       },
       "reps": "6-10",
       "rir": 2,
-      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Intermediate and advanced: 6, heavier."
      },
      {
       "role": "acc",
@@ -548,7 +596,7 @@
       },
       "reps": "6-10",
       "rir": 2,
-      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Inter and adv: 6, heavier."
+      "note": "Sit to a box: fast up, 3 s down. New: 8-10 reps. Intermediate and advanced: 6, heavier."
      },
      {
       "role": "acc",
@@ -831,7 +879,7 @@
    "bands": {
     "club": "12-13",
     "good": "14-17",
-    "elite": ">18"
+    "elite": "18+"
    },
    "note": "Bands for ages 60-69. Under 12 needs work."
   },
@@ -869,7 +917,7 @@
    "better": "higher",
    "bands": {
     "club": "30-35",
-    "good": "35-40",
+    "good": "35-45",
     "elite": ">45"
    },
    "note": "Men shown. Women: needs work under 20, good 22-26, excellent over 28."

@@ -12,13 +12,13 @@
    "id": "amateur",
    "name": "Amateur (3 x 3 min)",
    "desc": "Short bouts with high lactate and frequent same-day or day-before weigh-ins.",
-   "note": "Round simulations use 4 x 3 min. Default to no acute weight cut."
+   "note": "Your round simulations are 4 x 3 min, your bout rounds plus one. Plan for no acute weight cut."
   },
   {
    "id": "pro",
    "name": "Professional (4-12 x 3 min)",
    "desc": "Longer bouts lean harder on the aerobic system to recover between rounds and exchanges.",
-   "note": "More aerobic base in the off-season and round simulations of bout rounds plus one."
+   "note": "Your plan adds an extra aerobic session in the off-season. Round simulations are your bout rounds plus one."
   },
   {
    "id": "upclass",
@@ -27,7 +27,54 @@
    "q": {
     "mass": 1
    },
-   "note": "Off-season adds hypertrophy accessory volume. Relative power still matters most."
+   "note": "Your plan adds extra muscle-building accessory work. Relative power still matters most.",
+   "add": [
+    {
+     "role": "acc",
+     "ex": [
+      "flatdb",
+      "incdb",
+      "dips"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "8-12",
+     "rir": 2
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "dbrow",
+      "cabrow",
+      "csdb"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "10-12",
+     "rir": 2
+    },
+    {
+     "role": "acc",
+     "ex": [
+      "dbsplit",
+      "legpress",
+      "goblet"
+     ],
+     "sets": {
+      "new": 2,
+      "inter": 3,
+      "adv": 3
+     },
+     "reps": "10-12",
+     "rir": 2
+    }
+   ]
   }
  ],
  "sessions": {
@@ -158,9 +205,9 @@
      {
       "role": "pow",
       "ex": [
+       "landpunch",
        "mbchest",
-       "clappu",
-       "salmpress"
+       "clappu"
       ],
       "sets": {
        "new": 3,
@@ -515,9 +562,9 @@
      {
       "role": "pow",
       "ex": [
+       "landpunch",
        "mbchest",
-       "clappu",
-       "salmpress"
+       "clappu"
       ],
       "sets": {
        "new": 3,
@@ -548,6 +595,7 @@
      {
       "role": "pow",
       "ex": [
+       "benchthrow",
        "clappu",
        "mbchest"
       ],
@@ -799,9 +847,9 @@
      {
       "role": "pow",
       "ex": [
+       "landpunch",
        "mbchest",
-       "clappu",
-       "salmpress"
+       "clappu"
       ],
       "sets": {
        "new": 2,
@@ -961,6 +1009,18 @@
     "intensity": "About 85% max heart rate",
     "perWeek": 1,
     "why": "Raises aerobic power without big fatigue."
+   },
+   {
+    "name": "Extra aerobic base",
+    "mode": "any",
+    "work": "30-45 min",
+    "rest": "None",
+    "intensity": "Zone 2, conversational pace",
+    "perWeek": 1,
+    "why": "Longer bouts lean harder on aerobic recovery between rounds.",
+    "for": [
+     "pro"
+    ]
    }
   ],
   "pre": [
@@ -1050,7 +1110,7 @@
    "bands": {
     "good": "70+"
    },
-   "note": "Flexion at least 70% of extension, left and right within 10%. Practice."
+   "note": "Flexion at least 70% of extension, left and right within 10%. Coaching practice benchmark."
   }
  ],
  "week": [
@@ -1138,18 +1198,5 @@
    "source": "Haff GG, Triplett NT (eds) 2016, Essentials of Strength Training and Conditioning, 4th ed."
   }
  ],
- "missing_ex": [
-  {
-   "name": "Landmine punch press",
-   "pattern": "pup",
-   "equipment": "landmine+bb",
-   "why": "Boxing-specific upper power; single-arm landmine press used instead"
-  },
-  {
-   "name": "Bench throw (Smith or ballistic bench)",
-   "pattern": "pup",
-   "equipment": "smith+bench",
-   "why": "Camp contrast pair after bench; clap push-up used instead"
-  }
- ]
+ "missing_ex": []
 }
