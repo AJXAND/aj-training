@@ -2426,6 +2426,8 @@ function runCard(r, date){
     ${done.length?`<span class="tag up">Done · ${done.map(c=>(c.km?c.km+" km":c.mins+" min")).join(", ")}</span>${sp==="run"&&window.AJRun&&AJRun.RP()?runFbCard(done[0],r):""}`:(sp==="run"||sp==="cycle"?`<div class="grid2"><button class="btn ghost" data-act="logRun" data-t="${sp}" data-km="${sp==="run"&&r.type!=="runwalk"?r.km||"":""}" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log it</button><button class="btn orange" data-act="trackStart" data-t="${sp}">Start ${sp==="cycle"?"ride":"run"}</button></div>`:`<button class="btn orange" data-act="logRun" data-t="${sp}" data-km="" data-mins="${r.mins||""}" data-lv="${esc(r.level||"")}">Log this ${sp==="swim"?"swim":sp==="hyrox"?"session":"session"}</button>`)}</div>`;
 }
 // muscles an exercise trains, by display name: {Chest:1, Triceps:0.5}
+// coaching cues from the exercise library, for lifts without their own note
+function libCues(k){ const l=window.AJOnboard&&AJOnboard.lib[String(k).replace(/-hvy$/,"")]; return l&&l.cues?l.cues.join(". "):""; }
 function exMuscles(k){
   const def=S.prog.exercises&&S.prog.exercises[k], lib=window.AJOnboard&&AJOnboard.lib[k.replace(/-hvy$/,"")], MUSN=(window.AJOnboard&&AJOnboard.MUS)||{};
   const mu=(def&&def.mu)||(lib&&lib.mu); if (mu) return Object.fromEntries(Object.entries(mu).map(([m,f])=>[MUSN[m]||m,f]));
@@ -3156,7 +3158,7 @@ function renderAddEx(){
   const ax=S.addEx; if (!ax){ hideAnim(el,240); if (!S.foodAdd&&!S.swap&&S.hDraft===undefined) hideAnim($("#scrim")); return; }
   el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
   const L=AJOnboard.lib, gid=ax.to==="live"&&S.active?S.active.gym:(S.qw&&S.qw.gym)||(gymList()[0]||{}).id, kit=(gymList().find(g=>g.id===gid)||{kit:[]}).kit||[], q=(ax.q||"").trim().toLowerCase(), have=new Set((ax.to==="wb"?S.wb.list:(S.active?S.active.ex.map(e=>[e.k]):[])).map(x=>x[0]));
-  const pool=Object.values(L).filter(x=>!["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(x.p)&&!x.pv&&!x.cf&&!have.has(x.k)&&(!ax.m||x.mu[ax.m]>=1)&&(!q||(x.n+" "+Object.keys(x.mu).map(musN).join(" ")).toLowerCase().includes(q)))
+  const pool=Object.values(L).filter(x=>!["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(x.p)&&!x.pv&&!x.cf&&!have.has(x.k)&&(!ax.m||x.mu[ax.m]>=1)&&(!q||(x.n+" "+(x.al||[]).join(" ")+" "+Object.keys(x.mu).map(musN).join(" ")).toLowerCase().includes(q)))
     .map(x=>({...x, ok:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a,b)=>(b.ok-a.ok)||(b.c-a.c)||(b.len-a.len)).slice(0,q||ax.m?30:0);
   if (ax.c){ el.innerHTML=`<div class="in"><div class="grab"></div>${customForm(ax.c)}</div>`; return; }
   el.innerHTML=`<div class="in"><div class="grab"></div><h2>Add an exercise</h2>
@@ -3485,7 +3487,7 @@ function renderLive(){
       ${e.str?(()=>{ const top=e.sets.find(x=>x.role==="top"), tgt=top||((dn===e.sets.length&&e.sets.length)?e.sets[e.sets.length-1]:null); if (!tgt||!tgt.done||tgt.q!=null&&tgt.spd!=null) return "";
         const rv=tgt.q!=null?10-tgt.q:null; return `<div class="rirq strq"><span>${top?"Top set":"Last set"}: how hard was it?</span><div class="rirch rpech">${[6,6.5,7,7.5,8,8.5,9,9.5,10].map(v=>`<button data-act="strRPE" data-e="${ei}" data-v="${v}" aria-pressed="${rv===v}" class="${rv==null&&v===tgt.trpe?"dflt":""}">${v}</button>`).join("")}</div>
         <span class="small muted">8 = 2 more reps in you · 10 = nothing left</span>${rv!=null?`<span>How did it move?</span><div class="rirch">${["Fast","Normal","Slow","Grind"].map((l,v)=>`<button data-act="strSpd" data-e="${ei}" data-v="${v}" aria-pressed="${tgt.spd===v}">${l}</button>`).join("")}</div>`:""}</div>`; })():""}
-      <div class="exfoot"><span>${esc(ex.note||"")}</span><span class="row" style="gap:16px"><button class="link" data-act="addDrop" data-e="${ei}" data-s="${e.sets.length-1}">+ Drop set</button><button class="link" data-act="addset" data-e="${ei}">+ Set</button></span></div>
+      <div class="exfoot"><span>${esc(ex.note||libCues(e.k))}</span><span class="row" style="gap:16px"><button class="link" data-act="addDrop" data-e="${ei}" data-s="${e.sets.length-1}">+ Drop set</button><button class="link" data-act="addset" data-e="${ei}">+ Set</button></span></div>
       <textarea class="field" id="note-${ei}" data-note="${ei}" rows="1" placeholder="Form notes, shown next time">${esc(e.note)}</textarea></section>`;
   };
   const CO=!!(window.AJCoach&&AJCoach.C()), WU=CO?AJCoach.warmups(a):{};
@@ -3526,7 +3528,7 @@ function renderSwap(){
   el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
   const e=S.active.ex[sw.ei], cur=exDef(e.k,e.custom), opts=swapOptions(sw.ei, sw.reason);
   const q=(sw.q||"").trim().toLowerCase(), L=AJOnboard.lib, g=gymList().find(x=>x.id===S.active.gym)||{kit:[]}, kit=[...(g.kit||[])];
-  const hits=q?Object.values(L).filter(x=>!["cond","sled","carry","erg"].includes(x.p)&&x.k!==String(e.k).replace(/-hvy$/,"")&&(x.n+" "+Object.keys(x.mu).map(m=>AJOnboard.MUS[m]||m).join(" ")).toLowerCase().includes(q)).map(x=>({...x, have:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a2,b2)=>(b2.have?1:0)-(a2.have?1:0)||a2.n.length-b2.n.length).slice(0,12):null;
+  const hits=q?Object.values(L).filter(x=>!["cond","sled","carry","erg"].includes(x.p)&&x.k!==String(e.k).replace(/-hvy$/,"")&&(x.n+" "+(x.al||[]).join(" ")+" "+Object.keys(x.mu).map(m=>AJOnboard.MUS[m]||m).join(" ")).toLowerCase().includes(q)).map(x=>({...x, have:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a2,b2)=>(b2.have?1:0)-(a2.have?1:0)||a2.n.length-b2.n.length).slice(0,12):null;
   el.innerHTML=`<div class="in"><div class="grab"></div><h2>Swap ${esc(cur.n)}</h2>
     <div class="searchbar"><span class="sb">${ICON.search}<input id="swQ" placeholder="Search every exercise" value="${esc(sw.q||"")}" autocomplete="off" aria-label="Search exercises"></span></div>
     <div class="chips">${[["taken","Machine taken"],["pain","Doesn't feel right"],["kit","Not at this gym"],["pref","Just fancy a change"]].map(([k,n])=>`<button class="chip" data-sw="reason" data-r="${k}" aria-pressed="${sw.reason===k}">${n}</button>`).join("")}</div>
@@ -5095,6 +5097,7 @@ if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message",
 <script src="/sporticons.js"></script>
 <script src="/gymicons.js"></script>
 <script src="/equipment.js"></script>
+<script src="/exlib.js"></script>
 <script src="/programmes.js"></script>
 <script src="/science.js"></script>
 <script src="/onboard.js"></script>

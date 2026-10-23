@@ -311,6 +311,14 @@ X("sideplank","Side plank","core",{abs:1},[],{lo:20,hi:40,rest:45,eq:"bw",ml:"Tr
 X("hopstick","Single-leg hop and stick","land",{quads:.5,glutes:.5},[],{lo:4,hi:6,rest:60,eq:"bw",ml:"Landing control",note:"Each leg. Land softly, knee over toes, hold 2 s"});
 X("slbalance","Single-leg balance reach","ankle",{},[],{lo:6,hi:8,rest:45,eq:"bw",ml:"Balance",note:"Each leg, reach forward, sideways and back"});
 
+// The full library (public/exlib.js, 635 lifts): other names and coaching cues for every lift, plus ~430 more lifts
+// for search, swaps and "add an exercise". The extra ones (xl) aren't picked for plans unless you mark them as a lift you love.
+{ const XL = window.AJExLib || {}, XMU = {traps:"upback", obliques:"abs"};
+  for (const [k, x] of Object.entries(XL)){
+    if (L[k]){ L[k].al = x.al; L[k].cues = x.cues; L[k].vars = x.vars; continue; }
+    const mu = {}; for (const [m, v] of Object.entries(x.mu)){ const mm = MUS[m] ? m : XMU[m]; if (mm) mu[mm] = Math.max(mu[mm] || 0, v); }
+    X(k, x.n, x.p, mu, x.q, {c:x.c, len:x.len, lo:x.lo, hi:x.hi, rest:x.rest, eq:x.eq, note:(x.cues || []).slice(0, 2).join(". "), cues:x.cues, al:x.al, vars:x.vars, uni:!!x.uni, unit:x.unit, xl:true});
+  } }
 for (const e of Object.values(L)) e.rest = restFor(e);
 
 /* ---------- Day templates (slots are movement patterns, in training order) ---------- */
@@ -511,6 +519,7 @@ function exScore(ex, ctx){
   if (ctx.ans.goal === "crossfit" && ex.q.includes("smith")) s -= 10;
   if (ex.cf && ctx.ans.goal !== "crossfit") s -= 20;
   if (ex.pv) s -= 40;
+  if (ex.xl && !(ctx.ans.love || []).includes(ex.k)) s -= 200;   // never auto-picked, as if not in the library
   if (ctx.used.has(ex.k)) s -= !ranked ? 2.5 : ctx.dayUsed.size === 0 ? 2 : 8;   // the day's main lift can repeat; the rest should vary      // two different exercises per muscle across the week
   if (ctx.dayUsed.has(ex.k)) s -= 100;
   return s + (ctx.seed ? (hash(ex.k + ctx.seed) % 100) / 100 : 0);
@@ -629,7 +638,7 @@ function buildVariant(dayKeys, gym, ans, seed){
       const ok = days.filter(d => (small || (lowerMus.has(m) ? isLowerDay(d) : !isLowerDay(d))) && d.list.length < 8 && dayMins(d) + 6 <= cap);
       if (!ok.length) continue;
       ok.sort((a, b) => dayMins(a) - dayMins(b));
-      const d = ok[0], pats = [...new Set(Object.values(L).filter(e => e.mu[m] === 1 && !e.c && has(kit, e)).map(e => e.p))];
+      const d = ok[0], pats = [...new Set(Object.values(L).filter(e => !e.xl && e.mu[m] === 1 && !e.c && has(kit, e)).map(e => e.p))];
       let ex = null; for (const pat of pats){ ex = pick(pat, {kit, ans, gym, used, dayUsed:new Set(d.list.map(x => x.ex.k)), seed}); if (ex) break; }
       if (!ex) continue;
       used.add(ex.k); d.list.push({ex, sets:2, extra:true}); did = true; break;
@@ -643,7 +652,7 @@ function buildVariant(dayKeys, gym, ans, seed){
     if (direct()[m]) continue;
     const small = ["sdelt","rdelt","biceps","triceps","calves","abs"].includes(m);
     const ok = days.filter(d => small || (lowerMus.has(m) ? isLowerDay(d) : !isLowerDay(d)) || days.length <= 3).sort((a, b) => dayMins(a) - dayMins(b));
-    const pats = [...new Set(Object.values(L).filter(e => e.mu[m] === 1 && has(kit, e)).sort((a, b) => a.c - b.c).map(e => e.p))];
+    const pats = [...new Set(Object.values(L).filter(e => !e.xl && e.mu[m] === 1 && has(kit, e)).sort((a, b) => a.c - b.c).map(e => e.p))];
     for (const d of ok){ let ex = null; for (const pat of pats){ ex = pick(pat, {kit, ans, gym, used, dayUsed:new Set(d.list.map(x => x.ex.k)), seed}); if (ex) break; }
       if (ex){ used.add(ex.k); d.list.push({ex, sets:2, extra:true, keep:true}); break; } }
   }
@@ -784,7 +793,7 @@ function generateStrength(ans, seed){
   const placed = WD.filter(([k]) => ans.days.includes(k));
   const kitOf = g => (ans.kit && ans.kit[g.id]) || g.kit || KIT_DEFAULT[g.id] || KIT_FULL;
   const defOf = (e, extra) => Object.fromEntries(Object.entries(Object.assign({n:e.n, lo:e.lo, hi:e.hi, rest:Math.max(e.rest, e.c ? 180 : e.rest), eq:e.eq, m:MUS[Object.keys(e.mu).find(m => e.mu[m] >= 1)] || "Other", mu:e.mu, note:e.note, len:e.len}, extra || {})).filter(([, v]) => v !== undefined));
-  const mainKey = (lift, kit, v) => (v ? LIFT_VAR[lift] : LIFT_KEY[lift]).find(k => L[k] && L[k].q.every(r => kitHas(kit, r)));
+  const mainKey = (lift, kit, v) => (v ? LIFT_VAR[lift] : LIFT_KEY[lift]).find(k => L[k] && !L[k].xl && L[k].q.every(r => kitHas(kit, r)));
   const tpl = STR_DAYS[n].map((d, i) => d.concat(mode === "gen" && (STR_GEN[Math.min(4, n)] || [])[i] ? STR_GEN[Math.min(4, n)][i] : []).filter(x => !(x[3] === "io" && lvl === "new")));
   const dayList = (g, i) => {
     const kit = kitOf(g), list = [], dayUsed = new Set(), slots = [];
@@ -949,7 +958,7 @@ function sportBlueprint(p, n){
   return days;
 }
 function spPick(list, ctx, role){
-  const lvlNew = ctx.ans.level === "new", love = ctx.ans.love || [], ok = k => { const e = L[k]; return e && has(ctx.kit, e) && !(ctx.ans.ban || []).includes(k) && !(ctx.ans.injAvoid || []).includes(k) && !ctx.dayUsed.has(k)
+  const lvlNew = ctx.ans.level === "new", love = ctx.ans.love || [], ok = k => { const e = L[k]; return e && (!e.xl || love.includes(k)) && has(ctx.kit, e) && !(ctx.ans.ban || []).includes(k) && !(ctx.ans.injAvoid || []).includes(k) && !ctx.dayUsed.has(k)
     && !(e.inj || []).some(j => (ctx.ans.inj || []).includes(j)) && !(lvlNew && SP_NEW_AVOID.has(k)) && !(SP_ADV_ONLY.has(k) && ctx.ans.level !== "adv" && !love.includes(k)); };
   const cand = list.filter(ok).sort((x, y) => (love.includes(y) - love.includes(x)));
   if (!cand.length) return null;
@@ -1796,13 +1805,14 @@ function pStep(s, a){
     ${a.injAI ? `<div class="card obai"><b>What the plan will do</b><span>${esc(a.injAI.summary || "")}</span>${(a.injAI.avoid || []).length ? `<span class="small muted">Avoiding: ${a.injAI.avoid.map(k => L[k] ? L[k].n : k).join(", ")}</span>` : ""}<span class="small muted">Not medical advice. Sharp, worsening or lasting pain needs a physio or doctor.</span></div>` : ""}`, cta:(a.inj || []).length || (a.injText || "").trim() ? "Continue" : "Nothing, skip"};
   case "lifts": { const q = (F.lq || "").toLowerCase().trim(), mf = F.lm || "";
     const kitArr = a.gyms.flatMap(g => g.kit), kit = {has:r => kitHas(kitArr, r)};
-    const pool = Object.values(L).filter(e => !["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(e.p) && !e.pv && !e.cf);
+    const full = Object.values(L).filter(e => !["cond","sled","carry","erg","plow","plat","prot","pup","er","neck","fing","grip","land","ankle","core"].includes(e.p) && !e.pv && !e.cf);
+    const pool = full.filter(e => !e.xl || a.love.includes(e.k) || a.ban.includes(e.k));
     const picked = pool.filter(e => a.love.includes(e.k) || a.ban.includes(e.k));
-    const list = q ? pool.filter(e => e.n.toLowerCase().includes(q)) : mf ? pool.filter(e => e.mu[mf] >= 1) : [];
+    const list = q ? full.filter(e => (e.n + " " + (e.al || []).join(" ")).toLowerCase().includes(q)).sort((x, y) => (x.xl ? 1 : 0) - (y.xl ? 1 : 0)).slice(0, 40) : mf ? pool.filter(e => e.mu[mf] >= 1) : [];
     const count = m => pool.filter(e => e.mu[m] >= 1 && (a.love.includes(e.k) || a.ban.includes(e.k))).length;
     return {title:"Lifts you love or hate", body:`
       <p class="obnote" style="margin-top:0">Optional. <b>Love</b> a lift and the plan uses it whenever your gym allows. <b>Ban</b> one and it never appears.</p>
-      <label class="sb card"><span>${ICON.search}</span><input data-lq="1" placeholder="Search ${pool.length} exercises" value="${esc(F.lq || "")}" autocomplete="off"></label>
+      <label class="sb card"><span>${ICON.search}</span><input data-lq="1" placeholder="Search ${full.length} exercises" value="${esc(F.lq || "")}" autocomplete="off"></label>
       <div id="oblifts">${q || mf ? `${!q ? `<div class="spread lhead"><button class="link" data-lm="">← All muscles</button><b>${MUS[mf]}</b></div>` : ""}${liftRows(list, a, kit)}`
         : `<div class="lmus">${PRIORITY_CHOICES.map(m => { const n = count(m); return `<button data-lm="${m}"><b>${MUS[m]}</b><span>${n ? n + " picked" : pool.filter(e => e.mu[m] >= 1).length + " lifts"}</span></button>`; }).join("")}</div>
         ${picked.length ? `<span class="obl" style="margin-top:6px">Your picks</span>${liftRows(picked, a, kit)}` : ""}`}</div>
@@ -2429,7 +2439,7 @@ Reply with only JSON: {"gtype": one of the types, "title": short plan title, "su
 }
 async function aiInjury(){
   const a = F.ans; F.busy = true; F.keepScroll = true; draw();
-  const lib = Object.values(L).map(e => `${e.k}: ${e.n}`).join("; ");
+  const lib = Object.values(L).filter(e => !e.xl).map(e => `${e.k}: ${e.n}`).join("; ");
   try{
     const r = await aiJson(`You adapt exercise selection for someone with a joint issue in a strength app. This is not diagnosis. Their words: """${(a.injText || "").slice(0, 600)}""". Joints they ticked: ${(a.inj || []).join(", ") || "none"}.
 Exercise library (key: name): ${lib}.
