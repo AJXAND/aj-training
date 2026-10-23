@@ -1,0 +1,124 @@
+{
+  "id": "skateboarding",
+  "name": "Skateboarding",
+  "aliases": ["skate", "skating", "street skating", "park skating", "bowl", "vert", "skatepark"],
+  "group": "Wheels",
+  "q": {"maxStrength":1,"power":3,"rotational":2,"unilateral":3,"upperPull":0,"upperPush":1,"lowerBody":3,"grip":0,"neck":0,"trunk":2,"mass":1},
+  "prehab": ["ankle", "wrist", "landing", "calf", "patellar"],
+  "season": {"off":2,"pre":2,"in":1},
+  "avoidBefore": "lower",
+  "energy": "Long sessions of short explosive pushes, pops and landings with walking and rest between; heart rate averages about 72% of max.",
+  "summary": "Skateboarding is repeated jumping and hard landings, and most injuries are wrist and forearm fractures from falls, then ankle injuries. The plan builds leg power and landing control, ankle and calf capacity, and wrist and upper-body strength to take falls.",
+  "evidence": [
+    {"claim":"In 5026 hospital presentations, 56% of injuries were to the upper limb (mostly hand and wrist), 44% were fractures, and ankle injuries made up about 45% of lower-limb injuries.","source":"Quinn et al. 2024, Cureus","url":"https://assets.cureus.com/uploads/original_article/pdf/229446/20240306-17519-stj7rh.pdf"},
+    {"claim":"Skateboarding had 21 injuries per 100 athletes at the Tokyo 2020 Olympics, more than double the Games average.","source":"Soligard et al. 2023, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/57/1/46"},
+    {"claim":"In a randomised trial in 5029 snowboarders, wrist guards cut wrist injuries from 29 to 8.","source":"Ronning et al. 2001, American Journal of Sports Medicine","url":"https://pubmed.ncbi.nlm.nih.gov/11573916/"}
+  ],
+  "confidence": "limited",
+  "variants": [
+    {"id":"street","name":"Street","desc":"Stairs, rails and gaps: the biggest drops and hardest landings on the heels and ankles.",
+     "q":{"power":3},"prehab":["landing","ankle"],
+     "note":"Your plan adds drop landings to stick, so your legs take more of each landing.",
+     "add":[{"role":"pow","ex":["dropstick","hopstick","boxjp"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4","rir":3,"note":"Start from a low box, land soft and quiet"}]},
+    {"id":"park","name":"Park and bowl","desc":"Pumping transitions and carving in repeated runs: more leg endurance and airs.",
+     "q":{"lowerBody":3,"trunk":3},"prehab":["patellar","hipAbd"],
+     "note":"Your plan adds isometric split squat holds for pumping, and pre-season has run-length intervals.",
+     "add":[{"role":"acc","ex":["isosplit","wallsit","spanishsq"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30-45 s/side","rir":2,"note":"Hold at your pumping depth"}]},
+    {"id":"vert","name":"Vert","desc":"High airs on a big ramp, with big falls onto the knees, hips, shoulders and wrists.",
+     "q":{"upperPush":2,"trunk":3},"prehab":["wrist","shoulderER","patellar"],
+     "note":"Your plan adds shoulder strength for slams. Wear knee pads, a helmet and wrist guards, and practise knee slides.",
+     "add":[{"role":"pre","ex":["sideer","bander","pushupplus"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":2}]}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Legs and landings","focus":"Jump power, single-leg strength, landing control","slots":[
+        {"role":"pow","ex":["boxjp","cmj","tuckjump"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4","rir":3,"note":"Add 90-180 degree turns once landings are clean"},
+        {"role":"main","ex":["goblet","trapdl","squat"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6","rir":2,"note":"New: 8-10 reps, RIR 3"},
+        {"role":"acc","ex":["bss","stepup","bwss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["dropstick","hopstick"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4/side","rir":3,"note":"Knees over toes, hold 2 s"},
+        {"role":"pre","ex":["slbalance","stepcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":3,"note":"Eyes closed or on a cushion when easy"},
+        {"role":"core","ex":["pallof","pallofb","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}]},
+      {"name":"Upper, wrists and trunk","focus":"Take falls better, rotate harder","slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":3,"note":"Both sides, for spins"},
+        {"role":"main","ex":["pushup","flatdb","dbfloor"],"sets":{"new":3,"inter":3,"adv":3},"reps":"8-12","rir":2},
+        {"role":"main","ex":["dbrow","invrow","pullup"],"sets":{"new":3,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["wristcurl","revwristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2,"note":"Both arms"},
+        {"role":"pre","ex":["pushupplus","bander","sideer"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":2},
+        {"role":"core","ex":["sideplank","plank","hollow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s","rir":2}]}
+    ],
+    "pre": [
+      {"name":"Power and reactive","focus":"Pop, rotation and stiff ankles","slots":[
+        {"role":"pow","ex":["pogo","hurdlehop","boxjp"],"sets":{"new":2,"inter":3,"adv":4},"reps":"5","rir":3,"note":"Short ground contacts"},
+        {"role":"pow","ex":["latbound","splitjump"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"main","ex":["trapdl","bss","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4-5","rir":2},
+        {"role":"pre","ex":["slcalf","stepcalf"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":2},
+        {"role":"core","ex":["landrot","woodchop","pallof"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6/side","rir":2}]},
+      {"name":"Landing and wrists","focus":"Absorb impact, protect wrists and knees","slots":[
+        {"role":"pow","ex":["dropstick","hopstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4","rir":3},
+        {"role":"main","ex":["defrevlunge","stepup","petersen"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2,"note":"Slow lowering"},
+        {"role":"acc","ex":["spanishsq","nordic","wallsit"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30-45 s or 6-8","rir":2,"note":"Knee tendon capacity"},
+        {"role":"pre","ex":["wristcurl","pronsup"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12-15","rir":2},
+        {"role":"pre","ex":["slbalance","tibraise"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}]}
+    ],
+    "in": [
+      {"name":"Heavy skating maintenance","focus":"Keep strength without tiring legs, 25-30 min","slots":[
+        {"role":"pow","ex":["cmj","pogo"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3","rir":3},
+        {"role":"main","ex":["goblet","bss","trapdl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5","rir":2},
+        {"role":"pre","ex":["slbalance","stepcalf"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3},
+        {"role":"pre","ex":["wristcurl","pushupplus"],"sets":{"new":1,"inter":2,"adv":2},"reps":"12","rir":2}]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Easy aerobic base","mode":"bike","work":"30-40 min","rest":"none","intensity":"Easy, conversational","perWeek":1,"why":"Helps you recover between runs and sessions when you skate less in winter."}
+    ],
+    "pre": [
+      {"name":"Run-length intervals","mode":"any","work":"6-8 x 45 s hard (bike, skipping or pumping a bowl)","rest":"90 s easy","intensity":"Hard, about 8 out of 10","perWeek":1,"for":["park","vert"],"why":"Contest runs are short and hard; this keeps legs working to the end of a run."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3.","unit":"cm","better":"higher","bands":{},"note":"Compare with yourself every 6-8 weeks."},
+    {"id":"slbal","name":"Single-leg balance, eyes closed","how":"Stand on one leg, eyes closed, hands on hips, time until you touch down. Each leg.","unit":"s","better":"higher","bands":{"club":"<15","good":"15-30","elite":">30"},"note":"Bands are a coaching guide. Watch the gap between legs."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on one leg, best of 3 each side.","unit":"% difference","better":"lower","bands":{"club":"10-15","good":"5-10","elite":"<5"},"note":"A gap above 10-15% between legs is a flag."},
+    {"id":"kneewall","name":"Knee-to-wall ankle test","how":"Foot facing a wall, push knee to the wall with heel down, measure toe to wall. Each side.","unit":"cm","better":"higher","bands":{},"note":"Stiff ankles after sprains show up here. Compare sides."},
+    {"id":"pushups","name":"Max push-ups","how":"Chest to a fist-height target, full lockout, no rest at the top.","unit":"reps","better":"higher","bands":{},"note":"Compare with yourself."}
+  ],
+  "week": [
+    "Skate first, gym later, or gym on rest days.",
+    "No heavy legs or jump work the day before a big session or contest.",
+    "After a heavy slam day: upper body and mobility only.",
+    "Wet days are good gym days."
+  ],
+  "primer": [
+    "5 min easy skating",
+    "Ankle and hip mobility",
+    "2 x 3 jumps",
+    "Build up tricks from easy to hard"
+  ],
+  "taper": {"days":7, "lines":[
+    "Last heavy gym session 5-7 days before a contest.",
+    "Practise your run at the venue if you can, but keep sessions short.",
+    "No new big tricks in the last 2 days."
+  ]},
+  "rules": [
+    "Helmet for park, bowl and vert; wrist guards strongly advised for all skaters, especially beginners.",
+    "Learn to fall: roll out or knee-slide, do not land on straight arms.",
+    "Previous ankle sprain: balance work 3 times a week and consider a brace.",
+    "Head knock: no skating until symptom-free and cleared."
+  ],
+  "sources": [
+    {"source":"Epidemiology of injury in skateboarding 2012, Medicine and Sport Science","url":"https://lida.sport-iat.de/svd/Record/4079483?lng=en"},
+    {"source":"Quinn et al. 2024, Cureus","url":"https://assets.cureus.com/uploads/original_article/pdf/229446/20240306-17519-stj7rh.pdf"},
+    {"source":"Soligard et al. 2023, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/57/1/46"},
+    {"source":"Ronning et al. 2001, American Journal of Sports Medicine","url":"https://pubmed.ncbi.nlm.nih.gov/11573916/"},
+    {"source":"Kim & Lee 2011, Bulletin of the NYU Hospital for Joint Diseases","url":"https://vivo.weill.cornell.edu/display/pubid22035394"},
+    {"source":"Skatepark heart rate study 2020, International Journal of Exercise Science","url":"https://lida.sport-iat.de/ta/Record/4079643"},
+    {"source":"Hetzler et al. 2011, Research Quarterly for Exercise and Sport","url":"https://lida.sport-iat.de/ta/Record/4079440"},
+    {"source":"Schiftan, Ross & Hahne 2015, Journal of Science and Medicine in Sport","url":"https://pubmed.ncbi.nlm.nih.gov/24831756/"}
+  ],
+  "missing_ex": [
+    {"name":"Banded ankle eversion","pattern":"ankle","equipment":"bands","why":"Ankle sprain prevention"},
+    {"name":"Wrist extension push-up on fists or fingertips progression","pattern":"wrist","equipment":"","why":"Wrist load tolerance for falls"}
+  ]
+}
