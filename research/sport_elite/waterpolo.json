@@ -1,0 +1,166 @@
+{
+  "id": "waterpolo",
+  "name": "Water polo",
+  "aliases": ["water polo", "waterpolo", "polo", "centre forward", "hole set", "water polo goalkeeper"],
+  "group": "Water",
+  "q": {"maxStrength":2,"power":3,"rotational":3,"unilateral":1,"upperPull":3,"upperPush":2,"lowerBody":2,"grip":2,"neck":1,"trunk":3,"mass":2},
+  "prehab": ["shoulderER", "scap", "tspine", "copenhagen", "trunkLat"],
+  "season": {"off":3,"pre":2,"in":2},
+  "avoidBefore": "upper",
+  "energy": "An aerobic base carrying repeated bursts of about 7 s (sprint swims, wrestling, shots) with work:rest near 1:1.6.",
+  "summary": "Water polo is repeated sprint swimming, wrestling and overhead shooting while treading water, and the shoulder takes most of the training injuries. The plan builds pulling strength, throwing and rotational power, adductor strength for the eggbeater, and a shoulder programme that never drops out in season.",
+  "evidence": [
+    {"claim":"Match play is highly intermittent: bouts average 7.4 s with work:rest about 1:1.6; centre players wrestle about twice as much as outside players.","source":"D'Auria & Gabbett 2008, Int J Sports Physiol Perform","url":"https://acuresearchbank.acu.edu.au/item/8q951/a-time-motion-analysis-of-international-women-s-water-polo-match-play"},
+    {"claim":"Shoulder injury rates range from 24% to 51% across studies and shoulder problems are more likely to become chronic than other water polo injuries.","source":"Miller et al. 2018, J Sci Med Sport","url":"https://research-repository.griffith.edu.au/items/613fee5f-b583-5344-8b8a-dc6a16673950"},
+    {"claim":"Low pre-season shoulder rotation strength (ER at or below 12.5% body weight) and loss of dominant shoulder rotation range predicted later shoulder injury in sub-elite players.","source":"Hams et al. 2019, Phys Ther Sport","url":"https://research-repository.griffith.edu.au/items/7824fdf1-2dd8-429f-9029-6dc1851e6a52"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"centre","name":"Centre forward or centre back","desc":"Spends about twice as long wrestling and holding position as outside players, so strength, mass and trunk stiffness matter most.",
+     "q":{"maxStrength":3,"mass":3,"trunk":3,"grip":3},
+     "prehab":["lowback","shoulderER"],
+     "note":"Heavier pulling and hinge work, more carries and anti-rotation, and extra low back work."},
+    {"id":"field","name":"Field player (driver, wing, point)","desc":"Does the most maximal sprint swims and counter-attacks, so repeat sprint capacity and shooting power lead.",
+     "q":{"power":3,"rotational":3,"maxStrength":2},
+     "prehab":["shoulderER","scap"],
+     "note":"More med ball throwing and repeat sprint swims; strength work stays but volume is lower."},
+    {"id":"gk","name":"Goalkeeper","desc":"Lower average intensity with sudden eggbeater lifts and lateral lunges out of the water, so leg, hip and adductor power lead.",
+     "q":{"lowerBody":3,"power":3,"unilateral":2,"upperPull":2,"rotational":1},
+     "prehab":["copenhagen","hipAbd","shoulderER"],
+     "note":"Extra jump, lateral lunge and adductor work; less wrestling-style pulling and less sprint swimming."}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and eggbeater base","focus":"Leg strength, jump power and adductors for the eggbeater.",
+       "slots":[
+        {"role":"pow","ex":["cmj","squatjump","boxjp"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4","rir":3,"note":"Full rest, every rep at max height."},
+        {"role":"main","ex":["frontsq","goblet","trapdl","legpress"],"sets":{"new":3,"inter":4,"adv":5},"reps":"5-8","rir":2},
+        {"role":"acc","ex":["bss","dbsplit","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","sumosq"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2,"note":"Wide stance strength carries straight into the eggbeater."},
+        {"role":"pre","ex":["copen","addsqueeze","adductor","cabadd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6-10/side","rir":2},
+        {"role":"core","ex":["pallof","pallofb","hkpallof"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Upper pull, throw and shoulder","focus":"Pulling strength, rotational throwing power and the shoulder programme.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5/side","rir":3,"note":"Both sides, hips lead the throw."},
+        {"role":"main","ex":["pullup","bandpullup","latpd"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5-8","rir":2},
+        {"role":"main","ex":["lmpress","salmpress","flatdb","pushup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-10","rir":2,"note":"Landmine angle is kinder to a thrower's shoulder than heavy overhead pressing."},
+        {"role":"acc","ex":["csdb","dbrow","trxrow","cabrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2},
+        {"role":"pre","ex":["er9090","cabler","bander","sideer"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":3},
+        {"role":"pre","ex":["ytw","serpunch","scappushup","wallslide"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10-12","rir":3},
+        {"role":"core","ex":["sideplank","suitcase","pallofb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]},
+      {"name":"Full body strength and trunk","focus":"Hinge strength, grip and trunk for wrestling, plus rotation range.",
+       "slots":[
+        {"role":"pow","ex":["mbslam","mbchest","pushpress"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5","rir":3},
+        {"role":"main","ex":["trapdl","rdl","dbrdl","kbrdl"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5-8","rir":2},
+        {"role":"main","ex":["wpullup","chinup","ngpd"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5-8","rir":2},
+        {"role":"acc","ex":["farmers","suitcase","farmerhold"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 m","rir":2},
+        {"role":"pre","ex":["sleeper","openbook","tspineroller"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3,"note":"Keeps internal rotation and thoracic range on the shooting side."},
+        {"role":"core","ex":["abwheel","deadbug","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}
+       ]}
+    ],
+    "pre": [
+      {"name":"Lower power and pull","focus":"Convert strength to jump and drive power.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj","boxjp","tbjump"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3","rir":3,"note":"Advanced: pair with the squat as a contrast set."},
+        {"role":"main","ex":["frontsq","trapdl","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2},
+        {"role":"main","ex":["pullup","wpullup","latpd"],"sets":{"new":3,"inter":3,"adv":4},"reps":"4-6","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze","cabadd"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8-12/side","rir":2},
+        {"role":"core","ex":["pallof","hkpallof","pallofb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Throwing power and shoulder","focus":"Max intent throws and the full shoulder module.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4/side","rir":3},
+        {"role":"pow","ex":["mbslam","mbchest"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5","rir":3},
+        {"role":"main","ex":["lmpress","salmpress","flatdb"],"sets":{"new":3,"inter":3,"adv":4},"reps":"5","rir":2},
+        {"role":"acc","ex":["csdb","dbrow","trxrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["er9090","cabler","bander"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12","rir":3},
+        {"role":"pre","ex":["ytw","serpunch","scappushup"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":3},
+        {"role":"core","ex":["sideplank","suitcase"],"sets":{"new":2,"inter":3,"adv":3},"reps":"30 s/side","rir":2}
+       ]}
+    ],
+    "in": [
+      {"name":"In-season strength","focus":"Hold strength and power in 35 minutes.",
+       "slots":[
+        {"role":"pow","ex":["squatjump","cmj","mbrot"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["trapdl","frontsq","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2},
+        {"role":"main","ex":["pullup","latpd","bandpullup"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["copen","addsqueeze"],"sets":{"new":1,"inter":2,"adv":2},"reps":"8/side","rir":2},
+        {"role":"core","ex":["pallof","pallofb"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":2}
+       ]},
+      {"name":"Shoulder and trunk top-up","focus":"Short shoulder session that should never be skipped.",
+       "slots":[
+        {"role":"pow","ex":["mbrot","mbscoop"],"sets":{"new":2,"inter":2,"adv":2},"reps":"3/side","rir":3},
+        {"role":"acc","ex":["csdb","trxrow","dbrow"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8","rir":2},
+        {"role":"pre","ex":["er9090","cabler","bander"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":3},
+        {"role":"pre","ex":["ytw","serpunch","wallslide"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10","rir":3},
+        {"role":"pre","ex":["sleeper","openbook"],"sets":{"new":1,"inter":2,"adv":2},"reps":"30 s/side","rir":3},
+        {"role":"core","ex":["sideplank","deadbug"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":2}
+       ]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic swim base","mode":"swim","work":"5-8 x 200 m freestyle","rest":"20-30 s","intensity":"Steady, RPE 6-7, even splits","perWeek":2,"why":"Builds the aerobic base that lets you recover between sprints (practice)."},
+      {"name":"Low impact intervals","mode":"bike","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Aerobic power without extra shoulder load."}
+    ],
+    "pre": [
+      {"name":"Repeat sprint swims","mode":"swim","work":"3 sets of 6 x 15 m heads-up sprint","rest":"20 s between sprints, 3 min between sets","intensity":"Max effort each sprint","perWeek":2,"why":"Matches match bouts of about 7 s at roughly 1:1.6 to 1:2 work:rest (D'Auria & Gabbett 2008)."},
+      {"name":"Eggbeater intervals","mode":"swim","work":"6-8 x 30 s eggbeater, hands up","rest":"30 s easy scull","intensity":"Hard, hips high","perWeek":1,"why":"Leg endurance for holding position and blocking (practice)."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"shotspeed","name":"Shot speed","how":"Radar gun or phone radar app, best of 5 shots from 5 m, both standing-start and after a swim-in.","unit":"km/h","better":"higher","bands":{"club":"<60","good":"60-70","elite":">70"},"note":"Elite German youth squad (mean age 16) averaged 68.5 km/h, range 60-75. Women about 15-20% slower (practice)."},
+    {"id":"swim400","name":"400 m freestyle","how":"Timed 400 m in a 25 m pool after a standard warm-up.","unit":"min:s","better":"lower","bands":{"club":">6:30","good":"5:45-6:30","elite":"<5:30"},"note":"Elite youth men averaged 5:48 (5:14-6:27). Bands are practice built on that."},
+    {"id":"erstrength","name":"Shoulder external rotation strength","how":"Handheld dynamometer, or a luggage scale on a band, at 90/90; best of 3 each arm, divide by body weight.","unit":"% body weight","better":"higher","bands":{"club":"<12.5","good":"12.5-14.5","elite":">14.5"},"note":"At or below 12.5% body weight was linked to later shoulder injury (Hams 2019). Treat it as a screen, not a target."},
+    {"id":"erir","name":"Shoulder total rotation range","how":"Phone goniometer, lying on your back at 90 deg abduction: ER plus IR each side; record shooting side minus other side.","unit":"deg loss","better":"lower","bands":{"club":">7.5","good":"3-7.5","elite":"<3"},"note":"A loss of 7.5 deg or more on the shooting side raised injury odds (Hams 2019)."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump mat or My Jump app, best of 3.","unit":"cm","better":"higher","bands":{"club":"30-36","good":"36-42","elite":">42"},"note":"Practice bands for men; women about 20% lower. Land jumps only partly predict in-water jump, which tracks arm length."},
+    {"id":"pullupmax","name":"Max pull-ups","how":"Strict pull-ups from a dead hang, chin over bar, no kipping.","unit":"reps","better":"higher","bands":{"club":"6-10","good":"10-15","elite":">15"},"note":"Practice bands for men; women about half."}
+  ],
+  "week": [
+    "Match Saturday: lower and full body strength on Monday or Tuesday (MD-5 or MD-4).",
+    "Upper pull and throwing power midweek, at least 48 h before the match.",
+    "No heavy overhead pressing or high-volume throwing the day before a match.",
+    "Shoulder module 3 times a week as a warm-up, including the day before the match.",
+    "MD+1: easy swim 15-20 min and mobility."
+  ],
+  "primer": [
+    "Band ER 1 x 15 each arm and Y-T-W 1 x 8",
+    "2 x 3 rotational med ball throws each side",
+    "2 x 3 jumps",
+    "Then the normal pool warm-up with progressive shots"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lift 5-6 days before the first game.",
+    "Gym volume down about 50%, keep the load.",
+    "Shooting volume down, keep quality and full-speed shots.",
+    "Keep the shoulder module every other day.",
+    "Tournaments with daily games: primers only."
+  ]},
+  "rules": [
+    "Never drop the shoulder programme in season.",
+    "Build shooting volume gradually after a break; sudden spikes load the shoulder.",
+    "If the shooting shoulder loses rotation range or hurts at night, cut shots and see a physio.",
+    "Wear a cap with ear guards in every session and game.",
+    "No heavy overhead pressing within 48 h of a match.",
+    "Under 16: no 1RM testing; technique-led lifting only."
+  ],
+  "sources": [
+    {"source":"D'Auria S, Gabbett TJ 2008, Int J Sports Physiol Perform 3:305-319","url":"https://acuresearchbank.acu.edu.au/item/8q951/a-time-motion-analysis-of-international-women-s-water-polo-match-play"},
+    {"source":"Botonis PG, Toubekis AG, Platanou TI 2015, J Sports Sci Med 14(1):84-90","url":"https://jssm.org/jssm-14-84.xml-abst"},
+    {"source":"Physiological demands of water polo goalkeeping 2009, J Sci Med Sport 12(1):244-250","url":"https://lida.sport-iat.de/ta/Record/4015595?lng=en"},
+    {"source":"Zinner C et al. 2015, J Hum Kinet 45:149-156","url":"https://johk.pl/?p=3284"},
+    {"source":"Croteau F et al. 2021, BMJ Open Sport Exerc Med 7(2):e001081","url":"https://doaj.org/article/17c477f0d2be42eb956d297c3b88d34f"},
+    {"source":"Miller AH et al. 2018, J Sci Med Sport","url":"https://research-repository.griffith.edu.au/items/613fee5f-b583-5344-8b8a-dc6a16673950"},
+    {"source":"Hams A et al. 2019, Phys Ther Sport 40:231-237","url":"https://research-repository.griffith.edu.au/items/7824fdf1-2dd8-429f-9029-6dc1851e6a52"},
+    {"source":"Shoulder IR and ER strength and prediction of injury in water polo 2019, Scand J Med Sci Sports 29(9):1414-1420","url":"https://lida.sport-iat.de/ta/Record/4053860?lng=en"},
+    {"source":"Andersson SH et al. 2017, Br J Sports Med 51(14):1073-1080","url":"https://bjsm.bmj.com/content/51/14/1073"}
+  ],
+  "missing_ex": [
+    {"name":"Standing overhead med ball throw (forward)","pattern":"pup","equipment":"medball","why":"Closest dry-land match to the shot."},
+    {"name":"Cross-body sleeper stretch","pattern":"mob","equipment":"","why":"Second internal rotation range option for the shooting shoulder."}
+  ]
+}

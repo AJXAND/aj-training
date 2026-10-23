@@ -1,0 +1,135 @@
+{
+  "id": "karate",
+  "name": "Karate",
+  "aliases": ["kumite", "kata", "taekwondo", "tkd", "martial arts", "kung fu", "shotokan"],
+  "group": "Combat",
+  "q": {"maxStrength":2,"power":3,"rotational":3,"unilateral":3,"upperPull":1,"upperPush":2,"lowerBody":3,"grip":0,"neck":1,"trunk":3,"mass":0},
+  "prehab": ["landing", "ankle", "hipFlex", "nordic", "hipAbd"],
+  "season": {"off":3,"pre":2,"in":1},
+  "avoidBefore": "lower",
+  "energy": "Kumite is mostly aerobic (about 78%) with 1.5 s explosive actions in a 1:1.5 effort to pause pattern; kata is 1.5-3 min of continuous controlled power.",
+  "summary": "Karate is won with fast, light-load power: winners produce more power at 30% of max, not more max strength. The plan builds explosive single-leg and rotational power, kicking hip strength and repeat-effort fitness, with knee and ankle prevention.",
+  "evidence": [
+    {"claim":"In official kumite, high-intensity actions last about 1.5 s, the effort to pause ratio is about 1:1.5, and blood lactate reaches about 11 mmol/L.","source":"Chaabene et al. 2014, Asian Journal of Sports Medicine","url":"https://brieflands.com/articles/asjsm-73549"},
+    {"claim":"Winners of national-team kumite bouts produced about 23% more upper-limb and 11% more lower-limb power at 30% 1RM, with no difference in maximal strength or jump height.","source":"Roschel et al. 2009, Journal of Sports Science and Medicine","url":"https://jssm.org/jssm-08-CSSI3-20.xml-Fulltext"},
+    {"claim":"Kumite causes about 88 injuries per 1000 athlete-exposures, mostly minor head and neck contusions.","source":"Lystad et al. 2020, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/54/16/976"}
+  ],
+  "confidence": "moderate",
+  "variants": [
+    {"id":"kumite","name":"Kumite (sparring)","desc":"Repeated 1.5 s explosive attacks, fast footwork and pivots, with head contact.",
+     "q":{"power":3,"neck":1},"prehab":["landing","ankle","neck"],
+     "note":"Your plan adds split-stance jumps for explosive entries and short neck work, and pre-season has bout-length intervals.",
+     "add":[{"role":"pow","ex":["splitjump","latbound","jumplunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Fast off the floor, fighting stance"},
+            {"role":"pre","ex":["neckiso","neckband"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10 s each way","rir":3,"note":"About 50-70% effort"}]},
+    {"id":"kata","name":"Kata (forms)","desc":"1.5-3 min of controlled power from deep stances, with high hip range and sharp stops.",
+     "q":{"maxStrength":2,"power":2,"trunk":3},"prehab":["patellar","hipAbd","landing"],
+     "note":"Your plan adds isometric split squat holds at stance depth and loaded hip mobility, and drops bout intervals for kata-length efforts.",
+     "add":[{"role":"acc","ex":["isosplit","wallsit","spanishsq"],"sets":{"new":2,"inter":3,"adv":3},"reps":"20-40 s/side","rir":2,"note":"Hold your deepest stance, no knee pain"},
+            {"role":"acc","ex":["cossack","latlunge","9090"],"sets":{"new":2,"inter":2,"adv":3},"reps":"6/side","rir":2,"note":"Slow, full range"}]}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and kicking power","focus":"Single-leg strength, hip strength, jumps","slots":[
+        {"role":"pow","ex":["cmj","boxjp","broadjump"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4","rir":3,"note":"Full rest between sets"},
+        {"role":"main","ex":["trapdl","frontsq","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"5","rir":2,"note":"New: 8-10 reps, RIR 3"},
+        {"role":"acc","ex":["bss","revlunge","bwss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"acc","ex":["psoasmarch","cabhipflex","slr"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2,"note":"Knee above hip, control the lowering"},
+        {"role":"pre","ex":["nordicham","slidecurl","ghr"],"sets":{"new":2,"inter":2,"adv":3},"reps":"4-6","rir":2,"note":"Hamstrings brake every kick"},
+        {"role":"core","ex":["pallof","pallofb","deadbug"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}]},
+      {"name":"Upper and rotation","focus":"Punch power, pulling, trunk","slots":[
+        {"role":"pow","ex":["mbrot","mbchest","landpunch"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4/side","rir":3,"note":"Max speed, both sides"},
+        {"role":"main","ex":["pullup","dbrow","latpd"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2},
+        {"role":"main","ex":["lmpress","flatdb","pushup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2},
+        {"role":"acc","ex":["facepull","bandpa","sideer"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2},
+        {"role":"core","ex":["landrot","woodchop","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2}]},
+      {"name":"Lateral power and landings","focus":"Footwork power, knee control, ankles","slots":[
+        {"role":"pow","ex":["latbound","hopstick","dropstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick each landing 2 s"},
+        {"role":"main","ex":["stepup","petersen","boxpistol"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2},
+        {"role":"acc","ex":["singlerdl","slrdlbw"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"acc","ex":["copen","bandabd","sideabd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8-12/side","rir":2,"note":"Inner and outer hip for kicking"},
+        {"role":"pre","ex":["slbalance","stepcalf"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":3},
+        {"role":"core","ex":["hangleg","abwheel","hollow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}]}
+    ],
+    "pre": [
+      {"name":"Speed-strength lower","focus":"Light, fast loads and reactive jumps","slots":[
+        {"role":"pow","ex":["hurdlehop","splitjump","pogo"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4","rir":3,"note":"Short ground contact"},
+        {"role":"pow","ex":["tbjump","squatjump","kbswing"],"sets":{"new":2,"inter":3,"adv":4},"reps":"3-5","rir":3,"note":"About 30% 1RM, move it as fast as you can"},
+        {"role":"main","ex":["trapdl","frontsq","bss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-4","rir":2,"note":"Heavy, low volume"},
+        {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":1,"inter":2,"adv":2},"reps":"5","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":3},"reps":"10/side","rir":2}]},
+      {"name":"Upper speed and footwork","focus":"Punch speed, deceleration, trunk","slots":[
+        {"role":"pow","ex":["landpunch","mbchest","clappu"],"sets":{"new":3,"inter":4,"adv":4},"reps":"4/side","rir":3,"note":"Explode and stop sharp"},
+        {"role":"pow","ex":["decel","latbound"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3/side","rir":3},
+        {"role":"main","ex":["pullup","dbrow"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5","rir":2},
+        {"role":"acc","ex":["psoasmarch","cabhipflex"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":2},
+        {"role":"core","ex":["landrot","woodchop","mbrot"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2}]}
+    ],
+    "in": [
+      {"name":"Competition-week maintenance","focus":"Stay fast and fresh, 30 min","slots":[
+        {"role":"pow","ex":["cmj","splitjump","latbound"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["trapdl","bss","goblet"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3,"note":"About 80%, crisp reps"},
+        {"role":"main","ex":["pullup","dbrow"],"sets":{"new":2,"inter":2,"adv":2},"reps":"5","rir":2},
+        {"role":"pre","ex":["slbalance","nordicham"],"sets":{"new":1,"inter":1,"adv":2},"reps":"5","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"8/side","rir":2}]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic base","mode":"any","work":"30-40 min","rest":"none","intensity":"Easy, conversational","perWeek":2,"why":"Kumite is mostly aerobic; a big base speeds recovery between exchanges and bouts."},
+      {"name":"Long intervals","mode":"any","work":"4 x 4 min","rest":"3 min easy","intensity":"85-95% max heart rate","perWeek":1,"why":"Raises aerobic power."}
+    ],
+    "pre": [
+      {"name":"Bout intervals","mode":"any","work":"3-4 rounds of 2-3 min: 2 s all-out burst (pads, shadow or bike) every 4 s","rest":"3 min between rounds","intensity":"All-out bursts, active footwork between","perWeek":2,"for":["kumite"],"why":"Matches the 1:1.5 effort to pause pattern of a bout."},
+      {"name":"Kata-length efforts","mode":"any","work":"4-6 x your longest kata at full intensity","rest":"3-4 min","intensity":"Competition effort","perWeek":2,"for":["kata"],"why":"Trains power that holds up for 1.5-3 min."},
+      {"name":"Repeat sprints","mode":"any","work":"2 sets of 6 x 6 s","rest":"24 s between, 4 min between sets","intensity":"Max effort","perWeek":1,"why":"Builds repeat-effort capacity."}
+    ],
+    "in": []
+  },
+  "tests": [
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or mat, best of 3.","unit":"cm","better":"higher","bands":{"club":"30-37","good":"37-45","elite":">45"},"note":"Elite mixed men and women averaged about 37 cm. Women about 20% lower than men."},
+    {"id":"sprint10","name":"10 m sprint","how":"Start 0.5 m behind the line, phone slow-motion video, best of 3.","unit":"s","better":"lower","bands":{"club":"1.85-1.95","good":"1.75-1.85","elite":"<1.75"},"note":"Kumite athletes are faster over 10 m than kata athletes. Bands are a coaching guide."},
+    {"id":"yoyo1","name":"Yo-Yo intermittent recovery level 1","how":"20 m shuttles to beeps with 10 s jog recovery, until you miss two beeps.","unit":"m","better":"higher","bands":{},"note":"Compare with yourself every 6-8 weeks."},
+    {"id":"sebt","name":"Y-balance anterior reach","how":"Stand on one leg, reach forward with the other foot, best of 3 each side.","unit":"cm difference","better":"lower","bands":{"club":">4","good":"2-4","elite":"<2"},"note":"A left-right gap over 4 cm is a flag."},
+    {"id":"split","name":"Side split","how":"Slide into a side split against a wall, measure floor to crotch.","unit":"cm","better":"lower","bands":{},"note":"Kata athletes track hip range here. Compare with yourself."}
+  ],
+  "week": [
+    "Hard sparring is the hard day: never lift heavy legs the day before it.",
+    "Heavy lower 3-4 days before a tournament at the latest.",
+    "Upper and rotation can go 2 days out.",
+    "Day before competing: rest or a 15 min primer.",
+    "Keep easy technical sessions easy."
+  ],
+  "primer": [
+    "Dynamic warm-up and hip mobility",
+    "2 x 3 jumps",
+    "2 x 3 med ball punches per side",
+    "Short, sharp footwork and pad work"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower session 7 days out.",
+    "Cut gym sets by about half; keep loads heavy and fast.",
+    "Last hard sparring or bout intervals 4-5 days out.",
+    "Weight classes: make weight by diet, not dehydration."
+  ]},
+  "rules": [
+    "No heavy legs or high-volume jumps the day before hard sparring or competition.",
+    "Mouthguard and approved protection for all sparring.",
+    "No dehydration weight cuts for amateurs, and none at all for under-18s.",
+    "Kata: train deep stances only to a depth you can hold without knee pain."
+  ],
+  "sources": [
+    {"source":"Lystad et al. 2020, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/54/16/976"},
+    {"source":"Soligard et al. 2023, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/57/1/46"},
+    {"source":"Chaabene et al. 2014, Asian Journal of Sports Medicine","url":"https://brieflands.com/articles/asjsm-73549"},
+    {"source":"Doria et al. 2009, European Journal of Applied Physiology","url":"https://air.unimi.it/handle/2434/154901"},
+    {"source":"Roschel et al. 2009, Journal of Sports Science and Medicine","url":"https://jssm.org/jssm-08-CSSI3-20.xml-Fulltext"},
+    {"source":"Koropanovski et al. 2011, Journal of Human Kinetics","url":"https://johk.pl/?p=2169"},
+    {"source":"Balsalobre-Fernandez et al. 2013, Revista de Artes Marciales Asiaticas","url":"https://doaj.org/article/6bee25e39ad741488b2d9c8b665adbd7"},
+    {"source":"Spigolon et al. 2018, Journal of Exercise Physiology Online","url":"https://www.asep.org/asep/asep/JEPonlineFEBRUARY2018_Spigolon.pdf"},
+    {"source":"Severe knee injuries among karate athletes 2021, Journal of Sports Medicine and Physical Fitness","url":"https://lida.sport-iat.de/djb/Record/4071638?lng=en"},
+    {"source":"James et al. 2016, Sports Medicine","url":"https://ro.ecu.edu.au/ecuworkspost2013/2325"}
+  ],
+  "missing_ex": [
+    {"name":"Banded kick (hip flexion against band, fighting stance)","pattern":"hipflex","equipment":"bands","why":"Kick-specific hip flexor power"}
+  ]
+}

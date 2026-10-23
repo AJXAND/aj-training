@@ -1,0 +1,144 @@
+{
+  "id": "ultimate",
+  "name": "Ultimate",
+  "aliases": ["ultimate frisbee", "frisbee", "beach ultimate", "indoor ultimate", "disc"],
+  "group": "Team",
+  "q": {"maxStrength":2,"power":3,"rotational":2,"unilateral":3,"upperPull":1,"upperPush":1,"lowerBody":3,"grip":0,"neck":0,"trunk":2,"mass":1},
+  "prehab": ["landing", "nordic", "ankle", "calf", "shoulderER"],
+  "season": {"off":3,"pre":2,"in":1},
+  "avoidBefore": "lower",
+  "energy": "Repeated sprints and cuts on a high aerobic base: heart rate averages about 82% of max, and sprint output drops late in each half.",
+  "summary": "Ultimate is repeated sprints, hard cuts and jumps to catch, with knee, thigh and ankle injuries most common. The plan builds leg strength, speed and repeat-sprint fitness, and adds landing, hamstring, ankle and shoulder work.",
+  "evidence": [
+    {"claim":"Male players covered about 4.7 km a game with 17 sprints, averaged 82% of max heart rate, and did 43-47% less high-intensity running late in each half.","source":"Krustrup & Mohr 2015, Journal of Strength and Conditioning Research","url":"https://test01.ku.dk/:obvius/pureproxy/3974268/en/publications/physical-demands-in-competitive-ultimate-frisbee"},
+    {"claim":"The lower limb is most often injured, mainly the knee and thigh; muscle strains and joint sprains are the most common types.","source":"Fajardo Pulido & Lystad 2020, Sports","url":"https://doaj.org/article/235dc187d31246f58217b8c89f36d037"},
+    {"claim":"Neuromuscular injury-prevention programmes cut ACL injuries by about 50% overall and non-contact ACL injuries in female athletes by about 67%.","source":"Webster & Hewett 2018, Journal of Orthopaedic Research","url":"https://lida.sport-iat.de/ta/Record/4054906"}
+  ],
+  "confidence": "limited",
+  "variants": [
+    {"id":"cutter","name":"Cutter","desc":"Most repeated sprints, deep cuts, high catches and layouts.",
+     "q":{"power":3},"prehab":["nordic","landing"],
+     "note":"Your plan adds extra Nordic curls and keeps sprint and repeat-sprint work at the top of the week.",
+     "add":[{"role":"pre","ex":["nordicham","slidecurl","ghr"],"sets":{"new":1,"inter":2,"adv":2},"reps":"4-6","rir":2,"note":"Second weekly dose of Nordics"}]},
+    {"id":"handler","name":"Handler","desc":"Shorter bursts, pivots and marking, with far more throws.",
+     "q":{"rotational":3,"upperPull":2},"prehab":["shoulderER","elbow","trunkLat"],
+     "note":"Your plan adds forearm and rotation work for throwing volume. Keep 10 min of easy throws in every warm-up.",
+     "add":[{"role":"acc","ex":["pronsup","wristcurl","revwristcurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12-15","rir":2,"note":"Throwing arm, both directions"},
+            {"role":"core","ex":["landrot","woodchop","mbrot"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6/side","rir":2,"note":"Both sides, fast but controlled"}]},
+    {"id":"beach","name":"Beach","desc":"Sand cuts impact but costs about 1.2-1.6 times the energy of grass running, with lower jumps.",
+     "q":{"power":2},"prehab":["calf","ankle"],
+     "note":"Your plan adds extra calf work for sand. Build sand running time over 2-3 weeks before a beach event.",
+     "add":[{"role":"pre","ex":["stepcalf","slcalf","seatedcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2,"note":"Full range, slow down"}]}
+  ],
+  "sessions": {
+    "off": [
+      {"name":"Lower strength and speed","focus":"Heavy legs, jumps, hamstrings","slots":[
+        {"role":"pow","ex":["cmj","boxjp","broadjump"],"sets":{"new":2,"inter":3,"adv":4},"reps":"4","rir":3,"note":"Full rest, land quiet"},
+        {"role":"main","ex":["trapdl","squat","goblet"],"sets":{"new":3,"inter":4,"adv":5},"reps":"5","rir":2,"note":"New: 8-10 reps, RIR 3"},
+        {"role":"acc","ex":["bss","revlunge","bwss"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6-8/side","rir":2},
+        {"role":"pre","ex":["nordicham","slidecurl","ghr"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4-6","rir":2,"note":"Lower slowly, 3-4 s"},
+        {"role":"pre","ex":["slbalance","hopstick"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":3},
+        {"role":"core","ex":["pallof","pallofb","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}]},
+      {"name":"Upper and rotation","focus":"Pull, push, throw power, shoulder","slots":[
+        {"role":"pow","ex":["mbrot","mbscoop","landrot"],"sets":{"new":2,"inter":3,"adv":4},"reps":"5/side","rir":3,"note":"Both sides, max intent"},
+        {"role":"main","ex":["pullup","chinup","latpd","dbrow"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2},
+        {"role":"main","ex":["lmpress","flatdb","pushup"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6-8","rir":2},
+        {"role":"pre","ex":["sideer","bander","er9090"],"sets":{"new":2,"inter":2,"adv":3},"reps":"12","rir":2},
+        {"role":"pre","ex":["pushupplus","ytw","facepull"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10-12","rir":2,"note":"Shoulder blade control for layouts"},
+        {"role":"core","ex":["abwheel","deadbug","plank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8-10","rir":2}]},
+      {"name":"Single leg and cutting","focus":"Lateral power, landings, calves","slots":[
+        {"role":"pow","ex":["latbound","hopstick","dropstick"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3,"note":"Stick each landing 2 s"},
+        {"role":"main","ex":["stepup","bss","petersen"],"sets":{"new":3,"inter":3,"adv":4},"reps":"6/side","rir":2},
+        {"role":"acc","ex":["singlerdl","slrdlbw","dbrdl"],"sets":{"new":2,"inter":3,"adv":3},"reps":"8/side","rir":2},
+        {"role":"acc","ex":["latlunge","cossack","copen"],"sets":{"new":2,"inter":2,"adv":3},"reps":"8/side","rir":2},
+        {"role":"pre","ex":["stepcalf","standcalf","slcalf"],"sets":{"new":2,"inter":3,"adv":3},"reps":"12-15","rir":2},
+        {"role":"core","ex":["sideplank","suitcase","pallofb"],"sets":{"new":2,"inter":2,"adv":3},"reps":"30 s/side","rir":2}]}
+    ],
+    "pre": [
+      {"name":"Power and strength","focus":"Turn strength into speed","slots":[
+        {"role":"pow","ex":["hurdlehop","boxjp","cmj"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":3,"note":"Advanced: drop jumps instead"},
+        {"role":"main","ex":["trapdl","squat","frontsq","goblet"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3-5","rir":2,"note":"80-85% 1RM (one-rep max) for intermediate"},
+        {"role":"acc","ex":["bss","splitjump","revlunge"],"sets":{"new":2,"inter":3,"adv":3},"reps":"5/side","rir":2,"note":"Advanced: pair with split jumps"},
+        {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":3,"adv":3},"reps":"10/side","rir":2}]},
+      {"name":"Cutting and upper","focus":"Deceleration, throw power, shoulder","slots":[
+        {"role":"pow","ex":["decel","latbound","dropstick"],"sets":{"new":3,"inter":4,"adv":4},"reps":"3/side","rir":3,"note":"Sprint 10 m, stop in 2-3 steps"},
+        {"role":"pow","ex":["mbrot","mbscoop"],"sets":{"new":2,"inter":3,"adv":3},"reps":"4/side","rir":3},
+        {"role":"main","ex":["pullup","dbrow","latpd"],"sets":{"new":3,"inter":3,"adv":3},"reps":"5-6","rir":2},
+        {"role":"main","ex":["lmpress","pushup","flatdb"],"sets":{"new":2,"inter":3,"adv":3},"reps":"6","rir":2},
+        {"role":"pre","ex":["sideer","bander"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":2},
+        {"role":"pre","ex":["slbalance","stepcalf"],"sets":{"new":2,"inter":2,"adv":2},"reps":"30 s/side","rir":3}]}
+    ],
+    "in": [
+      {"name":"In-season full body","focus":"Hold strength and speed, 30-40 min","slots":[
+        {"role":"pow","ex":["cmj","boxjp","latbound"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["trapdl","squat","goblet"],"sets":{"new":2,"inter":3,"adv":3},"reps":"3-5","rir":2,"note":"Heavy but fast, never to failure"},
+        {"role":"main","ex":["pullup","dbrow","latpd"],"sets":{"new":2,"inter":2,"adv":3},"reps":"5","rir":2},
+        {"role":"pre","ex":["nordicham","slidecurl"],"sets":{"new":1,"inter":2,"adv":2},"reps":"4-6","rir":2},
+        {"role":"pre","ex":["sideer","slbalance"],"sets":{"new":1,"inter":2,"adv":2},"reps":"12","rir":2},
+        {"role":"core","ex":["pallof","sideplank"],"sets":{"new":2,"inter":2,"adv":2},"reps":"10/side","rir":2}]},
+      {"name":"Short primer","focus":"Midweek top-up if you have a free day","slots":[
+        {"role":"pow","ex":["cmj","pogo","latbound"],"sets":{"new":2,"inter":2,"adv":3},"reps":"3","rir":3},
+        {"role":"main","ex":["bss","stepup","revlunge"],"sets":{"new":2,"inter":2,"adv":2},"reps":"5/side","rir":3},
+        {"role":"pre","ex":["stepcalf","slbalance"],"sets":{"new":2,"inter":2,"adv":2},"reps":"12","rir":2}]}
+    ]
+  },
+  "conditioning": {
+    "off": [
+      {"name":"Aerobic base","mode":"run","work":"4 x 4 min","rest":"3 min easy jog","intensity":"85-95% max heart rate, hard but steady","perWeek":1,"why":"Average heart rate in a game is about 82% of max, so the aerobic base sets how well you recover between points."},
+      {"name":"Tempo runs","mode":"run","work":"10-16 x 100 m","rest":"Walk 100 m","intensity":"About 70% of top speed","perWeek":1,"why":"Builds running volume and tissue tolerance before faster work."}
+    ],
+    "pre": [
+      {"name":"Repeat sprints with cuts","mode":"run","work":"2-3 sets of 6 x 20-30 m with a 90 degree cut","rest":"20-25 s between sprints, 4 min between sets","intensity":"Max effort","perWeek":1,"why":"Sprint output drops late in each half; this trains you to repeat it."},
+      {"name":"15 s on, 15 s off","mode":"run","work":"2 sets of 8 min","rest":"3 min between sets","intensity":"Hard, about 9 out of 10","perWeek":1,"why":"Raises aerobic power for point after point."},
+      {"name":"Top speed exposure","mode":"run","work":"4 x 30-40 m build-ups","rest":"2-3 min walk","intensity":"90-95% of top speed","perWeek":1,"why":"Regular near-max sprinting helps protect the hamstrings."},
+      {"name":"Sand running","mode":"run","work":"4-6 x 2-3 min on sand","rest":"1-2 min walk","intensity":"Hard but controlled","perWeek":1,"for":["beach"],"why":"Sand costs more energy and loads the calves differently, so build it up before beach events."}
+    ],
+    "in": [
+      {"name":"Top-up sprints","mode":"run","work":"6 x 20 m plus 3 x 30 m build-ups","rest":"Full walk back","intensity":"Max effort, low volume","perWeek":1,"why":"For weeks with no game or little playing time."}
+    ]
+  },
+  "tests": [
+    {"id":"sprint10","name":"10 m sprint","how":"Start 0.5 m behind the line, phone slow-motion video, best of 3.","unit":"s","better":"lower","bands":{"club":"1.85-1.95","good":"1.75-1.85","elite":"<1.75"},"note":"Women about 0.1-0.15 s slower. Bands are a coaching guide."},
+    {"id":"cmj","name":"Countermovement jump","how":"Hands on hips, jump app or jump mat, best of 3.","unit":"cm","better":"higher","bands":{"club":"32-40","good":"40-48","elite":">48"},"note":"Youth national team selection cut-off was about 40.5 cm. Women about 20% lower."},
+    {"id":"yoyo1","name":"Yo-Yo intermittent recovery level 1","how":"20 m shuttles to beeps with 10 s jog recovery, until you miss two beeps.","unit":"m","better":"higher","bands":{"club":"1400-1800","good":"1800-2200","elite":">2200"},"note":"Moderately trained men averaged about 1790 m. Women about 30% lower."},
+    {"id":"505","name":"505 change of direction","how":"10 m run-in, time the 5 m to the line, 180 degree turn and 5 m back. Both sides.","unit":"s","better":"lower","bands":{"club":"2.50-2.65","good":"2.35-2.50","elite":"<2.35"},"note":"Compare left and right turns. Bands are a coaching guide."},
+    {"id":"sljump","name":"Single-leg hop for distance","how":"Hop and stick on one leg, best of 3 each side.","unit":"% difference","better":"lower","bands":{"club":"10-15","good":"5-10","elite":"<5"},"note":"A gap above 10-15% between legs is a flag to work on."}
+  ],
+  "week": [
+    "Game Saturday, training Tue and Thu: heavy lower on Monday or Wednesday, at least 72 h before the first game.",
+    "Upper body and rotation can go 2 days before.",
+    "Day before a tournament: rest or a 15 min primer only.",
+    "Day after a tournament weekend: walk, bike or swim 20-30 min, mobility.",
+    "No heavy lower work within 48 h after a 2-day tournament."
+  ],
+  "primer": [
+    "Dynamic warm-up with cutting drills",
+    "2 x 3 jumps",
+    "3 x 20 m sprints with a cut",
+    "Easy throws, building up to full power"
+  ],
+  "taper": {"days":10, "lines":[
+    "Last heavy lower session 5-7 days before the event.",
+    "Cut gym sets by about half; keep the weights heavy.",
+    "Last hard conditioning 4-5 days out.",
+    "Between games: eat and drink after every game, keep moving, stay out of the sun."
+  ]},
+  "rules": [
+    "No heavy lower or high-volume jumps within 72 h before a game or tournament.",
+    "Nordic curls stay in all year, at least 1 set a week in season.",
+    "Players with a past ankle sprain: brace or tape for games.",
+    "Build sand running gradually before beach events."
+  ],
+  "sources": [
+    {"source":"Krustrup & Mohr 2015, Journal of Strength and Conditioning Research","url":"https://test01.ku.dk/:obvius/pureproxy/3974268/en/publications/physical-demands-in-competitive-ultimate-frisbee"},
+    {"source":"Fajardo Pulido & Lystad 2020, Sports","url":"https://doaj.org/article/235dc187d31246f58217b8c89f36d037"},
+    {"source":"Connor, Berkelmans & Doma 2023, International Journal of Sports Physiology and Performance","url":"https://researchonline.jcu.edu.au/81058/"},
+    {"source":"Raya-Gonzalez et al. 2020, European Journal of Human Movement","url":"https://eurjhm.com/index.php/eurjhm/article/view/579"},
+    {"source":"Binnie et al. 2014, Journal of Sports Sciences","url":"https://formation.ffr.fr/sites/default/files/documents/doc/2017-08/Sand%20training%20a%20review%20of%20current%20research%20and%20practical%20applications%20(Binnie%202014).pdf"},
+    {"source":"Webster & Hewett 2018, Journal of Orthopaedic Research","url":"https://lida.sport-iat.de/ta/Record/4054906"},
+    {"source":"van Dyk, Behan & Whiteley 2019, British Journal of Sports Medicine","url":"https://bjsm.bmj.com/content/53/21/1362"},
+    {"source":"Schiftan, Ross & Hahne 2015, Journal of Science and Medicine in Sport","url":"https://pubmed.ncbi.nlm.nih.gov/24831756/"}
+  ],
+  "missing_ex": []
+}
