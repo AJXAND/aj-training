@@ -1028,6 +1028,9 @@ function buildSportVariant(seq, gym, ans, seed, wds){
       if (primer && (role === "pow" || (role === "main" && SP_LOWER.has(e.p)))){ x.sets = 2; if (role === "main") x.primer = true; }
       list.push(x);
     }
+    // a primer day can lose most of its lower-body work: top it up with trunk and injury-prevention work so it's still a session
+    for (const sl of [...(p.prehab || []).map(k => "pre:" + k), "core", "rotcore"]){ if (list.length >= 3) break; const keys = sl.startsWith("pre:") ? PREHAB[sl.slice(4)] : SPX[sl]; if (primer && sl === "pre:nordic") continue;
+      const k = spPick(keys || [], {kit, ans, used, dayUsed}, "pre"); if (k){ used.add(k); dayUsed.add(k); list.push({ex:L[k], sets:2, role:sl.startsWith("pre:") ? "pre" : "core"}); } }
     return {tk, list}; });
   const dayMins = d => d.list.reduce((a, x) => a + exTime(x.ex, x.sets), 4), cap = +ans.mins || 60;
   days.forEach(d => { for (let g = 0; g < 30 && dayMins(d) > cap; g++){
@@ -1046,7 +1049,10 @@ function placeCond(days, cond, ans){
   if (!cond.length) return;
   const mi = ans.matchDay && ans.matchDay !== "none" ? WD.findIndex(x => x[0] === ans.matchDay) : -1, sport = new Set(ans.sport || []);
   const near = d => { const i = WD.findIndex(x => x[0] === d.k); return mi >= 0 && (i === mi || i === (mi + 6) % 7 || i === (mi + 1) % 7); };
-  const order = [...days.filter(d => d.rest && !sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !LOWER.has(d.tpl) && !near(d)), ...days.filter(d => d.rest && sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !near(d))]
+  // a gym day is leg-heavy if a heavy squat, hinge or lunge is in it (the template names don't say)
+  const legs = d => (Object.values(d.variants || {})[0] || []).some(([k]) => /-hvy$/.test(k) && L[k.replace(/-hvy$/, "")] && ["squat","hinge","lunge"].includes(L[k.replace(/-hvy$/, "")].p));
+  const order = [...days.filter(d => d.rest && !sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !legs(d) && !sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !legs(d) && !near(d)),
+    ...days.filter(d => !d.rest && !sport.has(d.k) && !near(d)), ...days.filter(d => d.rest && sport.has(d.k) && !near(d)), ...days.filter(d => !d.rest && !near(d))]
     .filter((d, i, arr) => arr.indexOf(d) === i);
   const jobs = cond.flatMap(c => Array(Math.max(1, Math.min(3, Math.round(+c.perWeek) || 1))).fill(c));
   // spread them out: take every other free day before doubling up
