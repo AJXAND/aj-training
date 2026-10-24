@@ -48,13 +48,13 @@ def process(path):
     a = np.clip(a * (BG / np.maximum(border_colour(a), 1)), 0, 255)
     l, t, r, b = bbox(a)
     w, h = r - l, b - t
-    side = max(w, h) / FILL
+    H, W = a.shape[:2]
+    # crop a square from the photo itself; never pad onto a bigger canvas (a pasted photo shows as a box when the backdrop is shaded)
+    side = min(max(w, h) / FILL, W, H)
     cx, cy = (l + r) / 2, (t + b) / 2 + side * 0.02
-    canvas = Image.new("RGB", (int(side), int(side)), tuple(int(x) for x in BG))
+    x0 = int(round(min(max(cx - side / 2, 0), W - side))); y0 = int(round(min(max(cy - side / 2, 0), H - side)))
     src = Image.fromarray(a.astype(np.uint8))
-    canvas.paste(src, (int(side / 2 - cx), int(side / 2 - cy)))
-    # soften the paste edge where the source didn't cover the canvas
-    return canvas.resize((SIZE, SIZE), Image.LANCZOS)
+    return src.crop((x0, y0, x0 + int(side), y0 + int(side))).resize((SIZE, SIZE), Image.LANCZOS)
 
 if __name__ == "__main__":
     src = sys.argv[1]

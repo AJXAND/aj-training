@@ -3381,10 +3381,12 @@
   },
   {
    "id": "recumbent",
-   "name": "Recumbent bike",
+   "name": "Seated bike with backrest",
    "group": "Cardio",
    "aliases": [
-    "reclined bike"
+    "reclined bike",
+    "recumbent",
+    "recumbent bike"
    ],
    "muscles": [
     "cardio",

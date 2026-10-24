@@ -21662,7 +21662,7 @@
  },
  {
   "key": "recumbent",
-  "name": "Recumbent bike",
+  "name": "Seated bike with backrest",
   "pattern": "erg",
   "muscles": {
    "quads": 0.5

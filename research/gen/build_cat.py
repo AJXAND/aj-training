@@ -360,7 +360,7 @@ I("airbike","Assault / air bike","CV",["fan bike","Assault bike","Echo bike","Ai
  "an upright bike with a large fan wheel at the front, moving handlebars linked to the pedals, a saddle and a small console")
 I("uprightbike","Upright bike","CV",["exercise bike","stationary bike"],["cardio","quads"],AIR,[H,C,HO,U],
  "an upright stationary bike with a saddle, pedals, handlebars and console on a sleek frame with an enclosed flywheel")
-I("recumbent","Recumbent bike","CV",["reclined bike"],["cardio","quads"],AIR,[C,HO,U,R],
+I("recumbent","Seated bike with backrest","CV",["reclined bike"],["cardio","quads"],AIR,[C,HO,U,R],
  "a stationary bike with a low seat with backrest and pedals in front of the user, with side handles and a console")
 I("spinbike","Spin bike","CV",["indoor cycle","studio bike","Peloton bike","Wattbike"],["cardio","quads"],AIR,[H,C,HO,U],
  "an indoor cycling bike with a heavy exposed flywheel at the front, a narrow saddle, drop handlebars and a resistance knob")
