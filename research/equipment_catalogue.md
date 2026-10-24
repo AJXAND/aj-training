@@ -1,6 +1,6 @@
 # AJ Training equipment catalogue
 
-248 items in 17 groups. Full data (aliases, muscles, loading, gym types, image prompts) is in equipment_catalogue.json. Items marked * keep a key from the old onboard.js EQG list.
+247 items in 17 groups. Full data (aliases, muscles, loading, gym types, image prompts) is in equipment_catalogue.json. Items marked * keep a key from the old onboard.js EQG list.
 
 ## Bars and plates (15)
 
@@ -20,7 +20,7 @@
 - Chains* `chains` (free weight)
 - Thick grips `fatgrips` (free weight)
 
-## Racks and benches (22)
+## Racks and benches (21)
 
 - Power rack / squat rack* `rack` (free weight)
 - Half rack / squat stands* `halfrack` (free weight)
@@ -29,7 +29,6 @@
 - Home multi-gym `multigym` (selectorised)
 - Smith machine* `smith` (plate-loaded)
 - Angled Smith machine `smithangled` (plate-loaded)
-- 3D Smith machine `smith3d` (plate-loaded)
 - Adjustable bench* `bench` (free weight)
 - Flat bench* `flatbench` (free weight)
 - Decline bench* `declinebench` (free weight)
@@ -108,22 +107,22 @@
 - Deadlift / ground base machine `deadliftm` (plate-loaded)
 - Neck machine `neckm` (selectorised)
 
-## Shoulder machines (6)
+## Shoulder machines (7)
 
 - Shoulder press machine (selectorised)* `shoulderpress` (selectorised)
 - Iso-lateral shoulder press (plate-loaded) `isoshoulderpress` (plate-loaded)
 - Lateral raise machine* `latraisem` (selectorised)
+- Standing lateral raise machine `standlatraisem` (selectorised)
 - Rear delt machine* `revdelt` (selectorised)
 - Jammer `jammer` (plate-loaded)
 - Viking press machine `vikingm` (plate-loaded)
 
-## Arm machines (5)
+## Arm machines (4)
 
 - Biceps curl machine* `curlm` (selectorised)
 - Preacher curl machine* `preacherm` (plate-loaded)
 - Triceps extension machine* `triextm` (selectorised)
 - Seated dip machine* `tridipm` (selectorised)
-- Standing curl machine `standcurlm` (plate-loaded)
 
 ## Leg machines: quads (19)
 
@@ -198,7 +197,7 @@
 - BikeErg* `bikeerg` (air/flywheel)
 - Assault / air bike* `airbike` (air/flywheel)
 - Upright bike* `uprightbike` (air/flywheel)
-- Recumbent bike* `recumbent` (air/flywheel)
+- Seated bike with backrest* `recumbent` (air/flywheel)
 - Spin bike* `spinbike` (air/flywheel)
 - Smart turbo trainer `turbo` (air/flywheel)
 - Cross-trainer* `elliptical` (air/flywheel)

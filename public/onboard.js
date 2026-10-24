@@ -47,7 +47,7 @@ const EQG = [
   ["Dumbbells and kettlebells", [["db","Dumbbells"],["kb","Kettlebells"],["adjdb","Adjustable dumbbells"]]],
   ["Bodyweight and accessories", [["pullup","Pull-up bar"],["dip","Dip bars"],["rings","Gymnastic rings"],["trx","Suspension trainer (TRX)"],["anchor","Somewhere to anchor feet"],["bands","Resistance bands"],["box","Plyo box"],["hangboard","Fingerboard / hangboard"],["abwheel","Ab wheel"],["swissball","Stability ball"],["parallettes","Parallettes"],["dipbelt","Dip / weight belt"],["medball","Medicine ball"],["slamball","Slam ball"],["wallball","Wall ball + target"],["battleropes","Battle ropes"],["climbrope","Climbing rope"],["pegboard","Pegboard"]]],
   ["Cables", [["cable_hi","High pulley"],["cable_mid","Adjustable pulley (any height)"],["cable_low","Low pulley / seated row"],["cable_dual","Cable crossover (two stacks)"],["functional","Functional trainer"],["latpd","Lat pulldown"]]],
-  ["Chest and shoulder machines", [["chestpress","Seated chest press"],["incchestpress","Incline chest press machine"],["declinepress","Decline press machine"],["pecdeck","Pec deck / rear delt fly"],["revdelt","Rear delt machine"],["shoulderpress","Shoulder press machine"],["latraisem","Lateral raise machine"],["smith","Smith machine"],["dipm","Assisted dip / pull-up machine"]]],
+  ["Chest and shoulder machines", [["chestpress","Seated chest press"],["incchestpress","Incline chest press machine"],["declinepress","Decline press machine"],["pecdeck","Pec deck / rear delt fly"],["revdelt","Rear delt machine"],["shoulderpress","Shoulder press machine"],["latraisem","Lateral raise machine"],["standlatraisem","Standing lateral raise machine"],["smith","Smith machine"],["dipm","Assisted dip / pull-up machine"]]],
   ["Back machines", [["rowm","Chest-supported row machine"],["tbar","T-bar row"],["seatedrowm","Seated row machine"],["highrow","High row machine"],["lowrow","Low row machine"],["pulloverm","Pullover machine"],["latpdplate","Plate-loaded pulldown"],["backext","Back extension machine"]]],
   ["Arm machines", [["curlm","Biceps curl machine"],["preacherm","Preacher curl machine"],["triextm","Triceps extension machine"],["tridipm","Seated dip machine"]]],
   ["Leg machines", [["legpress","45° leg press"],["hlegpress","Horizontal leg press"],["hack","Hack squat"],["pendulum","Pendulum squat"],["beltsquat","Belt squat"],["vsquat","V-squat"],["legext","Leg extension"],["lyingcurl","Lying leg curl"],["seatedcurl","Seated leg curl"],["standcurl","Standing leg curl"],["kneelcurl","Kneeling leg curl"],["hipext","45° back extension"],["ghd","Glute-ham developer"],["revhyper","Reverse hyper"],["nordicbench","Nordic curl bench"],["glutedrive","Hip thrust machine"],["kickbackm","Glute kickback machine"],["multihip","Multi-hip machine"],["adductor","Hip adductor"],["abductor","Hip abductor"],["calfm","Standing calf raise"],["seatedcalf","Seated calf raise"],["donkeycalf","Donkey calf raise"],["tibbar","Tibialis bar"]]],
@@ -237,6 +237,7 @@ X("kickbackmach","Glute kickback machine","glute",{glutes:1},["kickbackm"],{len:
 X("donkey","Donkey calf raise","calf",{calves:1},["donkeycalf"],{len:2,rest:75,eq:"machine"});
 X("incmachine","Incline chest press machine","ipress",{chest:1,fdelt:.5,triceps:.5},["incchestpress"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
 X("latraisemach","Lateral raise machine","lat",{sdelt:1},["latraisem"],{len:1,eq:"machine"});
+X("standlatraisemach","Standing lateral raise machine","lat",{sdelt:1},["standlatraisem"],{len:1,eq:"machine"});
 X("revdeltm","Rear delt machine","rear",{rdelt:1},["revdelt"],{eq:"machine"});
 X("seatedrowmach","Seated row machine","row",{upback:1,lats:.5,rdelt:.5,biceps:.5},["seatedrowm"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
 X("highrowm","High row machine","vpull",{lats:1,upback:.5,biceps:.5},["highrow"],{c:true,lo:8,hi:12,rest:120,eq:"machine"});
@@ -480,7 +481,7 @@ const RANK = {
   latiso:["pullovermach","pullover","floorpo"],
   row:["csrow","tbarrow","cabrow","seatedrowmach","csdb","dbrow","meadows","vbar","bbrow","dbbor","invrow","trxrow","bandrow"],
   ohp:["mshoulder","smithohp","ohp","arnold","bbohp","pikepush"],
-  lat:["cablat","latraisemach","dblat","lyinglat","cabyraise","cabupright","bandlat"],
+  lat:["cablat","latraisemach","standlatraisemach","dblat","lyinglat","cabyraise","cabupright","bandlat"],
   rear:["revpec","revdeltm","revfly","facepull","dbrevfly","bodbrev","bandfp","bandpa"],
   curl:["incurl","preacher","bayes","ezcurl","dbpreacher","cabcurl","curlmach","bbcurl","dbcurl","hammer","ropehammer","spider","bandcurl","revcurl"],
   triext:["ohext","ezskull","triextmach","skull","dbohext","xbodyext","bwtriext"],

@@ -6,7 +6,7 @@
   },
   {
    "name": "Racks and benches",
-   "count": 22
+   "count": 21
   },
   {
    "name": "Dumbbells and kettlebells",
@@ -26,11 +26,11 @@
   },
   {
    "name": "Shoulder machines",
-   "count": 6
+   "count": 7
   },
   {
    "name": "Arm machines",
-   "count": 5
+   "count": 4
   },
   {
    "name": "Leg machines: quads",
@@ -523,10 +523,7 @@
    "group": "Racks and benches",
    "aliases": [
     "Smith",
-    "guided barbell",
-    "3D Smith",
-    "multi-plane Smith",
-    "free-motion Smith"
+    "guided barbell"
    ],
    "muscles": [
     "fullbody"
@@ -546,10 +543,10 @@
    "name": "Angled Smith machine",
    "group": "Racks and benches",
    "aliases": [
-    "7 degree Smith",
+    "incline Smith",
     "angled Smith",
-    "counterbalanced Smith",
-    "incline Smith"
+    "7 degree Smith",
+    "counterbalanced Smith"
    ],
    "muscles": [
     "fullbody"
@@ -1560,15 +1557,13 @@
   },
   {
    "id": "pecdeck",
-   "name": "Pec deck / rear delt fly",
+   "name": "Pec deck",
    "group": "Chest machines",
    "aliases": [
-    "butterfly machine",
-    "chest fly machine",
-    "pec deck / rear delt",
     "pec fly",
-    "rear delt fly",
-    "reverse pec deck"
+    "chest fly machine",
+    "butterfly machine",
+    "pec deck / rear delt"
    ],
    "muscles": [
     "chest",
@@ -1626,13 +1621,11 @@
   },
   {
    "id": "pushupm",
-   "name": "Plate-loaded dip machine",
+   "name": "Plate-loaded push-up / dip combo",
    "group": "Chest machines",
    "aliases": [
-    "dip machine",
     "dip press",
-    "plate-loaded dip",
-    "seated dip press"
+    "dip machine"
    ],
    "muscles": [
     "chest",
@@ -2024,7 +2017,7 @@
    "aliases": [
     "side raise machine",
     "delt raise",
-    "standing lateral raise",
+    "seated lateral raise machine",
     "plate-loaded lateral raise"
    ],
    "muscles": [
@@ -2037,6 +2030,25 @@
     "uni"
    ],
    "image_prompt": "A lateral raise machine, a pin-loaded machine with a seat and chest pad, two arms with elbow pads or handles out to the sides that rotate upwards away from the body, and a weight stack behind."
+  },
+  {
+   "id": "standlatraisem",
+   "name": "Standing lateral raise machine",
+   "group": "Shoulder machines",
+   "aliases": [
+    "standing lateral raise",
+    "standing side raise machine",
+    "standing delt raise"
+   ],
+   "muscles": [
+    "sdelt"
+   ],
+   "loading": "selectorised",
+   "common_in": [
+    "commercial",
+    "bodybuilding"
+   ],
+   "image_prompt": "A standing lateral raise machine, a tall pin-loaded machine with a standing foot platform and chest pad, two long padded arms hanging down beside the body that rotate out and up to the sides, and a weight stack behind."
   },
   {
    "id": "revdelt",
@@ -2108,7 +2120,8 @@
    "aliases": [
     "arm curl",
     "seated curl",
-    "bicep machine"
+    "bicep machine",
+    "standing biceps curl machine"
    ],
    "muscles": [
     "biceps"
@@ -2180,23 +2193,6 @@
     "uni"
    ],
    "image_prompt": "A seated dip machine, a pin-loaded machine with a seat and back pad, two handles beside the hips on arms that push straight down, and a weight stack behind."
-  },
-  {
-   "id": "standcurlm",
-   "name": "Standing curl machine",
-   "group": "Arm machines",
-   "aliases": [
-    "standing biceps curl",
-    "standing preacher"
-   ],
-   "muscles": [
-    "biceps"
-   ],
-   "loading": "plate-loaded",
-   "common_in": [
-    "bodybuilding"
-   ],
-   "image_prompt": "A standing curl machine, a standing frame with an upright angled arm pad at chest height and a lever arm with a curl handle that rotates upward, with a loading horn for plates."
   },
   {
    "id": "legpress",
@@ -3384,9 +3380,7 @@
    "name": "Seated bike with backrest",
    "group": "Cardio",
    "aliases": [
-    "reclined bike",
-    "recumbent",
-    "recumbent bike"
+    "reclined bike"
    ],
    "muscles": [
     "cardio",
@@ -3399,7 +3393,7 @@
     "uni",
     "rehab"
    ],
-   "image_prompt": "A recumbent bike, a stationary bike with a low wide seat with a padded backrest, pedals in front of the user at hip height, side handles and a console on an upright."
+   "image_prompt": "A seated bike with backrest, a stationary bike with a low wide seat with a padded backrest, pedals in front of the user at hip height, side handles and a console on an upright."
   },
   {
    "id": "spinbike",

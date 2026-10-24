@@ -214,8 +214,10 @@ I("shoulderpress","Shoulder press machine (selectorised)","SH",["seated shoulder
  "a pin-loaded machine with an upright seat and back pad, a weight stack behind, and two handle arms beside the head that press straight up overhead")
 I("isoshoulderpress","Iso-lateral shoulder press (plate-loaded)","SH",["Hammer shoulder press","plate-loaded shoulder press"],["fdelt","sdelt","triceps"],PL,[C,BB,U],
  "a plate-loaded machine with an upright seat and back pad, two independent lever arms coming forward from behind with handles at shoulder height that drive upwards, with loading horns on each arm")
-I("latraisem","Lateral raise machine","SH",["side raise machine","delt raise","standing lateral raise","plate-loaded lateral raise"],["sdelt"],SEL,[C,BB,U],
+I("latraisem","Lateral raise machine","SH",["side raise machine","delt raise","seated lateral raise machine","plate-loaded lateral raise"],["sdelt"],SEL,[C,BB,U],
  "a pin-loaded machine with a seat and chest pad, two arms with elbow pads or handles out to the sides that rotate upwards away from the body, and a weight stack behind")
+I("standlatraisem","Standing lateral raise machine","SH",["standing lateral raise","standing side raise machine","standing delt raise"],["sdelt"],SEL,[C,BB],
+ "a tall pin-loaded machine with a standing foot platform and chest pad, two long padded arms hanging down beside the body that rotate out and up to the sides, and a weight stack behind")
 I("revdelt","Rear delt machine","SH",["reverse pec deck","rear delt fly","reverse fly"],["rdelt","upback"],SEL,[C,BB,HO,U],
  "a pin-loaded machine with a seat facing a vertical chest pad, two swinging arms with handles in front of the chest that open out to the sides, and a weight stack behind")
 I("jammer","Jammer","SH",["ground base jammer","standing press jammer"],["fdelt","triceps","quads","chest"],PL,[C,BB,BX],
@@ -224,7 +226,7 @@ I("vikingm","Viking press machine","SH",["Viking press","landmine Viking press"]
  "a standing frame with a lever pivoting at floor level, rising to a pair of parallel overhead handles at shoulder height, and a loading horn for plates on the end of the lever")
 
 # ---------------- Arm machines ----------------
-I("curlm","Biceps curl machine","AR",["arm curl","seated curl","bicep machine"],["biceps"],SEL,[C,HO,U],
+I("curlm","Biceps curl machine","AR",["arm curl","seated curl","bicep machine","standing biceps curl machine"],["biceps"],SEL,[C,HO,U],
  "a pin-loaded machine with a seat in front of an angled padded arm rest, a rotating cam arm with handles that curls towards the face, and a weight stack beside")
 I("preacherm","Preacher curl machine","AR",["plate-loaded preacher curl","Hammer biceps curl","preacher machine"],["biceps"],PL,[C,BB],
  "a seat in front of an angled padded arm rest, with two independent lever arms with handles that curl upwards and a loading horn for plates on each arm")
@@ -232,8 +234,6 @@ I("triextm","Triceps extension machine","AR",["triceps machine","overhead tricep
  "a pin-loaded machine with a seat in front of an angled padded arm rest, a rotating arm with handles that extends forwards and down, and a weight stack beside")
 I("tridipm","Seated dip machine","AR",["triceps dip machine","seated dip","dip press"],["triceps","chest"],SEL,[C,HO,U],
  "a pin-loaded machine with a seat and back pad, two handles beside the hips on arms that push straight down, and a weight stack behind")
-I("standcurlm","Standing curl machine","AR",["standing biceps curl","standing preacher"],["biceps"],PL,[BB],
- "a standing frame with an upright angled arm pad at chest height and a lever arm with a curl handle that rotates upward, with a loading horn for plates")
 
 # ---------------- Leg machines: quads ----------------
 I("legpress","45-degree leg press","LQ",["leg press","linear leg press","sled leg press","plate-loaded leg press"],["quads","glutes","adductors"],PL,[C,BB,U,HO,G],
