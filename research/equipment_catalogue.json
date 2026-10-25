@@ -504,7 +504,6 @@
    "aliases": [
     "multi gym",
     "all-in-one gym",
-    "multi-station",
     "home gym station"
    ],
    "muscles": [
@@ -612,7 +611,6 @@
    "name": "Decline bench",
    "group": "Racks and benches",
    "aliases": [
-    "decline sit-up bench",
     "Olympic decline bench",
     "decline press bench"
    ],
@@ -962,8 +960,8 @@
    "name": "Adjustable kettlebell",
    "group": "Dumbbells and kettlebells",
    "aliases": [
-    "adjustable kettlebell",
-    "plate-loaded kettlebell"
+    "plate-loaded kettlebell",
+    "selector kettlebell"
    ],
    "muscles": [
     "fullbody",
@@ -1475,7 +1473,6 @@
    "name": "Lying chest press machine",
    "group": "Chest machines",
    "aliases": [
-    "iso-lateral bench press",
     "lying press",
     "decline/flat bench machine",
     "horizontal bench press machine"
@@ -1624,7 +1621,7 @@
    "name": "Plate-loaded push-up / dip combo",
    "group": "Chest machines",
    "aliases": [
-    "dip press",
+    "push-up machine",
     "dip machine"
    ],
    "muscles": [
@@ -2343,7 +2340,7 @@
    "group": "Leg machines: quads",
    "aliases": [
     "pendulum",
-    "pendulum squat"
+    "pendulum squat machine"
    ],
    "muscles": [
     "quads",
@@ -2442,8 +2439,7 @@
    "group": "Leg machines: quads",
    "aliases": [
     "Pit Shark",
-    "hip belt squat",
-    "belt squat machine"
+    "hip belt squat"
    ],
    "muscles": [
     "quads",
@@ -2762,7 +2758,6 @@
    "group": "Leg machines: hamstrings and glutes",
    "aliases": [
     "Glute Drive",
-    "hip thrust machine",
     "glute bridge machine",
     "plate-loaded hip thrust",
     "pendulum hip press"
@@ -2900,8 +2895,8 @@
    "name": "Reverse lunge machine",
    "group": "Leg machines: hamstrings and glutes",
    "aliases": [
-    "lunge machine",
-    "Booty Builder lunge"
+    "Booty Builder lunge",
+    "sliding lunge machine"
    ],
    "muscles": [
     "glutes",
@@ -3128,8 +3123,7 @@
    "aliases": [
     "vertical knee raise",
     "VKR",
-    "power tower",
-    "dip station"
+    "power tower"
    ],
    "muscles": [
     "abs",
@@ -3188,8 +3182,8 @@
    "name": "Ab coaster",
    "group": "Core machines",
    "aliases": [
-    "ab coaster",
-    "knee-up glider"
+    "knee-up glider",
+    "ab glider"
    ],
    "muscles": [
     "abs"
@@ -3377,9 +3371,10 @@
   },
   {
    "id": "recumbent",
-   "name": "Seated bike with backrest",
+   "name": "Recumbent bike",
    "group": "Cardio",
    "aliases": [
+    "seated bike with backrest",
     "reclined bike"
    ],
    "muscles": [
@@ -3393,7 +3388,7 @@
     "uni",
     "rehab"
    ],
-   "image_prompt": "A seated bike with backrest, a stationary bike with a low wide seat with a padded backrest, pedals in front of the user at hip height, side handles and a console on an upright."
+   "image_prompt": "A recumbent bike, a stationary bike with a low wide seat with a padded backrest, pedals in front of the user at hip height, side handles and a console on an upright."
   },
   {
    "id": "spinbike",
@@ -3661,8 +3656,7 @@
    "group": "Conditioning and HYROX",
    "aliases": [
     "sled rope",
-    "tow rope",
-    "harness"
+    "tow rope"
    ],
    "muscles": [
     "upback",
@@ -4022,8 +4016,7 @@
    "group": "Conditioning and HYROX",
    "aliases": [
     "heavy bag",
-    "boxing bag",
-    "speed bag"
+    "boxing bag"
    ],
    "muscles": [
     "cardio",
@@ -4283,7 +4276,7 @@
    "name": "Fingal's fingers",
    "group": "Strongman",
    "aliases": [
-    "Fingal's fingers"
+    "Fingals fingers"
    ],
    "muscles": [
     "fullbody",
@@ -4531,8 +4524,7 @@
    "name": "Ab wheel",
    "group": "Bodyweight and accessories",
    "aliases": [
-    "ab roller",
-    "ab wheel"
+    "ab roller"
    ],
    "muscles": [
     "abs"
@@ -4809,7 +4801,6 @@
    "name": "Foam roller",
    "group": "Mobility and rehab",
    "aliases": [
-    "foam roller",
     "grid roller",
     "massage roller"
    ],

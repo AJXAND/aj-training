@@ -197,7 +197,7 @@
 - BikeErg* `bikeerg` (air/flywheel)
 - Assault / air bike* `airbike` (air/flywheel)
 - Upright bike* `uprightbike` (air/flywheel)
-- Seated bike with backrest* `recumbent` (air/flywheel)
+- Recumbent bike* `recumbent` (air/flywheel)
 - Spin bike* `spinbike` (air/flywheel)
 - Smart turbo trainer `turbo` (air/flywheel)
 - Cross-trainer* `elliptical` (air/flywheel)

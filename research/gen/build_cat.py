@@ -70,7 +70,7 @@ I("monolift","Monolift","RB",["mono lift","powerlifting monolift"],["quads","glu
  "a heavy two-post squat stand with hooks on swinging arms that hold the bar then pivot out of the way, a foot-operated lever cam at the base and long safety arms projecting forward")
 I("rig","Functional training rig","RB",["crossfit rig","pull-up rig","free-standing rig","wall rig"],["fullbody"],FW,[BX,C,U],
  "a long run of connected steel uprights and crossbeams forming several squat bays, with multiple pull-up bars at different heights, monkey bar rungs across the top, J-hooks on the uprights and hanging gymnastic rings")
-I("multigym","Home multi-gym","RB",["multi gym","all-in-one gym","multi-station","home gym station"],["fullbody"],SEL,[H,HO],
+I("multigym","Home multi-gym","RB",["multi gym","all-in-one gym","home gym station"],["fullbody"],SEL,[H,HO],
  "a single-stack steel home gym with a central weight stack, a padded seat with a chest press arm, a high pulley with lat bar, a low pulley at the front and a leg extension and curl roller pad at the base of the seat")
 I("smith","Smith machine","RB",["Smith","guided barbell"],["fullbody"],PL,[C,BB,HO,U,H],
  "a tall steel frame with a barbell fixed to vertical guide rods so it runs straight up and down, with hooks on the bar that rotate into slots on the uprights, plate pegs on the bar and adjustable safety stops at the base")
@@ -80,7 +80,7 @@ I("bench","Adjustable bench","RB",["FID bench","incline bench","utility bench","
  "a padded weight bench with a long back pad that ratchets from flat to fully upright on a steel ladder, a separate adjustable seat pad, a wheeled front leg and a handle at the rear")
 I("flatbench","Flat bench","RB",["flat utility bench","bench"],["chest","triceps"],FW,[H,G,C,BB,HO,U],
  "a long narrow padded flat bench on a sturdy three-point steel frame at knee height, with no uprights")
-I("declinebench","Decline bench","RB",["decline sit-up bench","Olympic decline bench","decline press bench"],["chest","triceps","abs"],FW,[C,BB,U],
+I("declinebench","Decline bench","RB",["Olympic decline bench","decline press bench"],["chest","triceps","abs"],FW,[C,BB,U],
  "a padded bench angled head-down at about 20 degrees with a padded leg hook roller at the raised end to lock the legs in and a small pair of bar uprights at the low end")
 I("benchrack","Bench press station","RB",["Olympic flat bench","flat bench press","bench with uprights","combo rack"],["chest","triceps","fdelt"],FW,[C,BB,U,HO],
  "a flat padded bench joined to a pair of steel uprights at the head end with bar catches at two heights, a barbell resting in the catches and plate storage horns on the uprights")
@@ -112,7 +112,7 @@ I("heavydb","Heavy dumbbells (50 kg+)","DK",["heavy dumbbells","bodybuilding dum
  "a rack of very large round dumbbells with thick plates welded to chunky knurled handles, the heaviest pairs at the end being much bigger than the others")
 I("kb","Kettlebells","DK",["kettlebell","competition kettlebells","cast iron kettlebells"],["fullbody","glutes","hams"],FW,[H,G,C,BX,HO,U],
  "a row of cast iron ball-shaped weights with flat bottoms and thick looped handles on top, coloured by weight, from small to large")
-I("adjkb","Adjustable kettlebell","DK",["adjustable kettlebell","plate-loaded kettlebell"],["fullbody","glutes"],FW,[H,G],
+I("adjkb","Adjustable kettlebell","DK",["plate-loaded kettlebell","selector kettlebell"],["fullbody","glutes"],FW,[H,G],
  "a kettlebell made of a handle and core that accepts stacked weight plates locked into its base, with a selector dial or locking pin")
 I("clubs","Clubbells / Indian clubs","DK",["Indian clubs","clubbells","steel clubs"],["fdelt","forearms","upback"],FW,[G,BX,R],
  "a pair of bowling-pin-shaped steel or wooden clubs, narrow at the knurled handle and widening to a heavy rounded end")
@@ -158,7 +158,7 @@ I("chestpress","Seated chest press (selectorised)","CH",["chest press","convergi
  "a pin-loaded machine with an upright padded seat and backrest, a weight stack behind the seat, and two handle arms that swing forwards from beside the shoulders with vertical and horizontal grips")
 I("isochestpress","Iso-lateral chest press (plate-loaded)","CH",["Hammer chest press","iso-lateral bench press","iso-lateral wide chest","plate-loaded chest press","horizontal chest press"],["chest","triceps","fdelt"],PL,[C,BB,U],
  "a plate-loaded machine with an upright padded seat and back pad, two independent pivoting lever arms coming over the shoulders from behind to handles in front of the chest, and a loading horn for plates at the rear of each arm")
-I("lyingchestpress","Lying chest press machine","CH",["iso-lateral bench press","lying press","decline/flat bench machine","horizontal bench press machine"],["chest","triceps","fdelt"],PL,[BB,C],
+I("lyingchestpress","Lying chest press machine","CH",["lying press","decline/flat bench machine","horizontal bench press machine"],["chest","triceps","fdelt"],PL,[BB,C],
  "a flat padded bench with two independent lever arms arching over the top, each ending in handles above the chest, with plate loading horns at the head end and a footrest at the foot")
 I("incchestpress","Incline chest press (selectorised)","CH",["incline press machine","incline chest press"],["chest","fdelt","triceps"],SEL,[C,HO,U],
  "a pin-loaded machine with a seat and a backrest reclined at about 30 degrees, a weight stack behind, and two handle arms that move upwards and forwards at an incline")
@@ -172,7 +172,7 @@ I("platefly","Plate-loaded chest fly","CH",["iso-lateral fly","plate-loaded pec 
  "a plate-loaded machine with a seat and back pad and two long lever arms pivoting from above each shoulder, ending in vertical handles out to the sides, with loading horns on each arm")
 I("chestback","Iso-lateral chest / back combo","CH",["chest/back","iso-lateral chest back","combo press row"],["chest","upback","lats"],PL,[C,U],
  "a plate-loaded machine with a seat that faces either way, and two lever arms that can be pushed forwards as a chest press or pulled back as a row, with a chest pad and loading horns")
-I("pushupm","Plate-loaded push-up / dip combo","CH",["dip press","dip machine"],["chest","triceps"],PL,[BB],
+I("pushupm","Plate-loaded push-up / dip combo","CH",["push-up machine","dip machine"],["chest","triceps"],PL,[BB],
  "a plate-loaded machine with a seat and back pad and two lever arms with low handles beside the hips that press straight downwards, with loading horns at the rear")
 
 # ---------------- Back machines ----------------
@@ -250,7 +250,7 @@ I("hack","Hack squat","LQ",["hack squat machine","plate-loaded hack squat"],["qu
  "a plate-loaded machine with a back pad and shoulder pads on a sled that rides up and down rails angled at about 45 degrees, a large angled footplate at the base and loading horns on the sled")
 I("revhack","Reverse hack / hack squat combo","LQ",["reverse hack","hack squat reverse","front-facing hack"],["glutes","hams","quads"],PL,[C,BB],
  "a hack squat machine whose sled has a chest pad as well as a back pad so the user can face into it, with shoulder pads, angled rails, a large footplate and loading horns")
-I("pendulum","Pendulum squat","LQ",["pendulum","pendulum squat"],["quads","glutes"],PL,[C,BB],
+I("pendulum","Pendulum squat","LQ",["pendulum","pendulum squat machine"],["quads","glutes"],PL,[C,BB],
  "a plate-loaded machine with a padded back and shoulder pads on a long swinging arm that pivots from the top of a rear frame, an angled footplate at the base and a loading horn on the arm")
 I("vsquat","V-squat","LQ",["V squat","squat press"],["quads","glutes"],PL,[C,BB],
  "a plate-loaded machine with shoulder pads on a lever arm that moves up and slightly forward in an arc from a pivot behind the user, an angled footplate and loading horns at the rear")
@@ -260,7 +260,7 @@ I("squatlunge","Squat lunge machine","LQ",["squat lunge","lunge machine"],["quad
  "a plate-loaded machine with shoulder pads and handles on a long lever pivoting from the front at floor level, with a long flat platform to stand on in a squat or lunge stance and a loading horn")
 I("beltsquat","Belt squat machine","LQ",["lever belt squat","belt squat"],["quads","glutes"],PL,[C,BB,G],
  "a raised platform with a pivoting lever arm running underneath, a hip belt on a chain hanging from the lever between the feet, handrails at waist height and a loading horn at the end of the lever")
-I("pitshark","Pit Shark / hip belt squat machine","LQ",["Pit Shark","hip belt squat","belt squat machine"],["quads","glutes"],PL,[BB,C],
+I("pitshark","Pit Shark / hip belt squat machine","LQ",["Pit Shark","hip belt squat"],["quads","glutes"],PL,[BB,C],
  "a wide square platform with a swing arm beneath it on a central post, a hip belt hanging from the swing arm, waist-high handrails all round and plate loading posts on the arm")
 I("beltsquatplat","Portable belt squat platform","LQ",["DIY belt squat","belt squat stand","dip belt squat boxes"],["quads","glutes"],FW,[H,G],
  "a pair of sturdy boxes or a low steel platform with a gap in the middle, used with a dip belt and chain holding plates hanging between the feet")
@@ -294,7 +294,7 @@ I("revhyper","Reverse hyper","LH",["reverse hyperextension","Westside reverse hy
  "a tall steel frame with a flat face-down pad at hip height, two front handles, and a swinging arm hanging beneath the back of the pad with an ankle strap and a loading horn for plates")
 I("nordicbench","Nordic curl bench","LH",["Nordic bench","Nordic hamstring curl","Nordic station"],["hams"],BWT,[G,U,BB,C,R],
  "a long padded kneeling bench with a low steel frame, padded ankle hooks behind the knees and a slightly inclined board in front, so the user kneels and leans forward")
-I("glutedrive","Hip thrust machine","LH",["Glute Drive","hip thrust machine","glute bridge machine","plate-loaded hip thrust","pendulum hip press"],["glutes","hams"],PL,[C,BB],
+I("glutedrive","Hip thrust machine","LH",["Glute Drive","glute bridge machine","plate-loaded hip thrust","pendulum hip press"],["glutes","hams"],PL,[C,BB],
  "a low plate-loaded machine with a reclined back pad, a padded belt or lever pad that sits across the hips, a footplate in front, and loading horns on each side of the hip lever")
 I("standhipthrust","Standing hip thrust machine","LH",["Booty Builder standing hip thrust","standing glute thrust"],["glutes"],SEL,[C],
  "a standing machine with a footplate, a vertical chest pad, and a padded belt behind the hips connected to a weight stack or plate lever that the user drives forwards")
@@ -308,7 +308,7 @@ I("adductor","Hip adductor","LH",["inner thigh machine","adduction machine"],["a
  "a pin-loaded machine with a reclined seat and two padded leg arms on the inside of the knees that squeeze inwards, with a weight stack at the rear")
 I("multihip","Multi-hip machine","LH",["4-way hip","multi hip"],["glutes","adductors","abductors","hipflex"],SEL,[C,U,R],
  "a pin-loaded machine with a standing platform that raises and lowers, front handles and a rotating padded lever at hip height that can be set for kicks forwards, backwards, inwards and outwards")
-I("revlunge","Reverse lunge machine","LH",["lunge machine","Booty Builder lunge"],["glutes","quads"],PL,[C],
+I("revlunge","Reverse lunge machine","LH",["Booty Builder lunge","sliding lunge machine"],["glutes","quads"],PL,[C],
  "a standing machine with a footplate at the front and a lever with shoulder pads or handles that the user steps back away from into a lunge, loaded with plates")
 I("splitsquatm","Split squat machine","LH",["split squat","Bulgarian split squat stand","split squat stand"],["quads","glutes"],FW,[C,G],
  "a frame with a forward footplate and a padded roller behind on an adjustable post to rest the rear foot on, sometimes with a lever and loading horn above for shoulder loading")
@@ -334,13 +334,13 @@ I("abcrunchm","Ab crunch machine","CO",["abdominal machine","crunch machine"],["
  "a pin-loaded machine with a seat, padded foot rollers and padded handles or chest pads on an arm above, which curl down towards the knees, and a weight stack at the side")
 I("torso","Rotary torso","CO",["torso rotation machine","oblique machine"],["obliques","abs"],SEL,[C,U],
  "a pin-loaded machine with a rotating seat, padded knee and chest pads and handles, which twists from side to side, with a weight stack at the rear")
-I("captain","Captain's chair","CO",["vertical knee raise","VKR","power tower","dip station"],["abs","hipflex"],BWT,[C,HO,U,H],
+I("captain","Captain's chair","CO",["vertical knee raise","VKR","power tower"],["abs","hipflex"],BWT,[C,HO,U,H],
  "a tall steel station with a padded back rest, two padded forearm rests with handles at elbow height so the legs hang free, and often a pull-up bar on top")
 I("declinesitup","Decline sit-up bench","CO",["sit-up bench","decline ab bench"],["abs"],BWT,[C,HO,U,H],
  "a padded bench angled head-down with an adjustable height and foot rollers at the raised end to lock the feet")
 I("abbench","Ab crunch bench","CO",["ab board","ab bench","crunch board"],["abs"],BWT,[C,H],
  "a short low padded bench with a curved back pad and front foot rollers, used for crunches lying flat")
-I("abcoaster","Ab coaster","CO",["ab coaster","knee-up glider"],["abs"],BWT,[C],
+I("abcoaster","Ab coaster","CO",["knee-up glider","ab glider"],["abs"],BWT,[C],
  "a steel frame with a curved rail on which a padded knee carriage slides up and down, with arm rests and handles at the top")
 
 # ---------------- Cardio ----------------
@@ -360,7 +360,7 @@ I("airbike","Assault / air bike","CV",["fan bike","Assault bike","Echo bike","Ai
  "an upright bike with a large fan wheel at the front, moving handlebars linked to the pedals, a saddle and a small console")
 I("uprightbike","Upright bike","CV",["exercise bike","stationary bike"],["cardio","quads"],AIR,[H,C,HO,U],
  "an upright stationary bike with a saddle, pedals, handlebars and console on a sleek frame with an enclosed flywheel")
-I("recumbent","Seated bike with backrest","CV",["reclined bike"],["cardio","quads"],AIR,[C,HO,U,R],
+I("recumbent","Recumbent bike","CV",["seated bike with backrest","reclined bike"],["cardio","quads"],AIR,[C,HO,U,R],
  "a stationary bike with a low seat with backrest and pedals in front of the user, with side handles and a console")
 I("spinbike","Spin bike","CV",["indoor cycle","studio bike","Peloton bike","Wattbike"],["cardio","quads"],AIR,[H,C,HO,U],
  "an indoor cycling bike with a heavy exposed flywheel at the front, a narrow saddle, drop handlebars and a resistance knob")
@@ -390,7 +390,7 @@ I("nustep","Recumbent cross-trainer","CV",["NuStep","seated stepper"],["cardio"]
 # ---------------- Conditioning and HYROX ----------------
 I("sled","Sled / prowler","HY",["prowler","push sled","drag sled","HYROX sled"],["quads","glutes","cardio"],FW,[BX,C,G,U],
  "a steel sled with flat runners, two vertical push poles of different heights, a central loading post for plates and a tow ring for a rope")
-I("sledrope","Sled pull rope","HY",["sled rope","tow rope","harness"],["upback","lats","biceps"],FW,[BX,C],
+I("sledrope","Sled pull rope","HY",["sled rope","tow rope"],["upback","lats","biceps"],FW,[BX,C],
  "a long thick braided rope clipped to the front of a loaded sled, coiled on the floor in front of it")
 I("turf","Turf track","HY",["astro track","sled track"],["fullbody"],BWT,[BX,C,U],
  "a long strip of green artificial turf laid flat on a gym floor, edged with white lane lines")
@@ -444,7 +444,7 @@ I("conanwheel","Conan's wheel","SM",["Conan wheel","wheel walk"],["fullbody","ab
  "a long steel lever arm attached to a central pivot post, with a crook handle at the end that the user carries in the crook of the arms as they walk in a circle, and loading horns near the end")
 I("armover","Arm-over-arm pull","SM",["truck pull rope","hand-over-hand sled","arm over arm"],["lats","biceps","upback"],FW,["strongman"],
  "a loaded sled at the end of a long thick rope that passes over a low bench or seated platform, so the user pulls the rope hand over hand")
-I("fingal","Fingal's fingers","SM",["Fingal's fingers"],["fullbody","fdelt"],FW,["strongman"],
+I("fingal","Fingal's fingers","SM",["Fingals fingers"],["fullbody","fdelt"],FW,["strongman"],
  "a set of long steel poles hinged at their bottom ends, which the user walks up from horizontal to vertical, increasing in size")
 I("carDL","Car deadlift frame","SM",["deadlift jack","car deadlift"],["fullbody","glutes","hams"],FW,["strongman"],
  "a long steel lever frame with handles at one end and plate loading horns at the other, sitting on a pivot, simulating lifting a car")
@@ -470,7 +470,7 @@ I("minibands","Mini bands / hip circle","BW",["hip circle","booty band","glute b
  "a set of short, wide fabric or latex loop bands in different colours")
 I("hangboard","Fingerboard / hangboard","BW",["hangboard","fingerboard"],["forearms","lats"],BWT,[H,G],
  "a wooden or resin board mounted on the wall above a doorway, with edges and pockets of various depths for gripping")
-I("abwheel","Ab wheel","BW",["ab roller","ab wheel"],["abs"],BWT,[H,G,C,HO],
+I("abwheel","Ab wheel","BW",["ab roller"],["abs"],BWT,[H,G,C,HO],
  "a small rubber wheel with a central axle and two short foam-covered handles sticking out from each side")
 I("swissball","Stability ball","BW",["Swiss ball","exercise ball","gym ball"],["abs","fullbody"],BWT,[H,C,HO,R],
  "a large inflatable PVC ball about 65 cm across")
@@ -498,7 +498,7 @@ I("sprintharness","Resisted sprint harness","HY",["sprint parachute","partner ha
  "x")
 
 # ---------------- Mobility and rehab ----------------
-I("foamroller","Foam roller","MR",["foam roller","grid roller","massage roller"],["fullbody"],BWT,[H,G,C,HO,U,BX,R],
+I("foamroller","Foam roller","MR",["grid roller","massage roller"],["fullbody"],BWT,[H,G,C,HO,U,BX,R],
  "x")
 I("massageball","Massage ball","MR",["lacrosse ball","peanut ball","trigger point ball"],["fullbody"],BWT,[H,G,C,R],
  "x")
@@ -545,7 +545,7 @@ I("jungle","Multi-station cable jungle","CA",["4-stack multi-station","jungle gy
  "a large central steel frame with four weight stacks arranged around it, each feeding a different station: a lat pulldown seat, a low row bench, a high and low adjustable pulley and a crossover arm")
 I("treadwall","Climbing wall / treadwall","HY",["bouldering wall","Treadwall","rotating climbing wall"],["lats","forearms","fullbody"],MOT,[U,C],
  "a tall panelled wall covered in coloured resin climbing holds, either a fixed bouldering wall with crash mats beneath or a motorised rotating wall panel loop")
-I("punchbag","Punch bag","HY",["heavy bag","boxing bag","speed bag"],["cardio","fdelt","abs"],BWT,[C,BX,G,H,HO],
+I("punchbag","Punch bag","HY",["heavy bag","boxing bag"],["cardio","fdelt","abs"],BWT,[C,BX,G,H,HO],
  "a long cylindrical black leather heavy bag about 1.2 m tall hanging from a ceiling bracket by four chains joined to a swivel, with a pair of boxing gloves on the floor beneath")
 I("rebounder","Mini trampoline / rebounder","HY",["rebounder","mini trampoline"],["cardio","calves"],BWT,[H,C,R],
  "a small round trampoline about 1 m across on six short legs, with a black jumping mat and a padded cover over the springs, and an optional T-shaped handle bar")
