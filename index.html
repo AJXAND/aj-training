@@ -4200,7 +4200,7 @@ function finishSession(){
   if (planDay && window.AJCoach&&AJCoach.C()) AJCoach.settle(a);
   const doc={schema:SCHEMA,id:a.id,ts:a.startedAt,date:a.past||ymd(new Date(a.startedAt)),dayKey:a.dayKey,...(a.label?{label:a.label}:{}),...(a.past?{past:true}:{}),gym:a.gym,phase:a.phase,deload:!!a.deload,mins:a.past?Math.round(ex.reduce((t,e)=>t+e.sets.length,0)*2.6+5):Math.round((Date.now()-a.startedAt)/60000),ex,
     ...(bi&&!bi.pre&&!bi.brk?{rir:bi.rir, block:bi.block, wk:bi.week}:{}), ...(a.rec&&Object.keys(a.rec).length?{rec:a.rec}:{}), ...(a.rd!=null?{rd:a.rd}:{})};
-  upsert("sessions",doc); putDoc("sessions",doc.id,doc);
+  upsert("sessions",doc); Promise.resolve(putDoc("sessions",doc.id,doc)).then(()=>window.AJP&&AJP.syncNow&&AJP.syncNow());
   if (S.prog.strength&&window.AJStrength){ const nt=AJStrength.after(doc); if (nt.length) setTimeout(()=>toast({title:"Your lifts", detail:nt.join(". ")}),600); }
   return doc;
 }

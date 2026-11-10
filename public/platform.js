@@ -76,7 +76,7 @@ const dbApi = {doc:p => docRef(NS() + p), collection:c => collection(NS() + c)};
 async function resetDemo(){ await ready; for (const d of [...mem.values()]) if (d.path.startsWith("demo~/") && !d.deleted) await write(d.path, null, true); await sync(); }
 
 /* ---------- Sync with Supabase ---------- */
-let syncTimer = null, syncing = false, resync = false;
+let syncTimer = null, syncing = false, resync = false, lastWarn = 0;
 function scheduleSync(ms){ clearTimeout(syncTimer); syncTimer = setTimeout(sync, ms == null ? 1500 : ms); }
 async function sync(){
   if (!sb || !user) { status.sync = "local"; return; }
@@ -85,13 +85,20 @@ async function sync(){
   syncing = true; status.sync = "syncing";
   try{
     await ready;
-    const dirty = [...mem.values()].filter(d => d.dirty);
+    const dirty = [...mem.values()].filter(d => d.dirty), row = d => ({user_id:user.id, path:d.path, col:d.col, data:d.deleted ? null : d.data, deleted:d.deleted});
+    const clean = async list => { for (const d of list){ const cur = mem.get(d.path); if (cur && cur.v === d.v){ cur.dirty = false; await idb.put("docs", cur); } } };
+    const failed = [];
     for (let i = 0; i < dirty.length; i += 200){
       const chunk = dirty.slice(i, i + 200);
-      const {error} = await sb.from("docs").upsert(chunk.map(d => ({user_id:user.id, path:d.path, col:d.col, data:d.deleted ? null : d.data, deleted:d.deleted})), {onConflict:"user_id,path"});
-      if (error) throw error;
-      for (const d of chunk){ const cur = mem.get(d.path); if (cur && cur.v === d.v){ cur.dirty = false; await idb.put("docs", cur); } }
+      const {error} = await sb.from("docs").upsert(chunk.map(row), {onConflict:"user_id,path"});
+      if (!error){ await clean(chunk); continue; }
+      // one bad doc must never block the rest: retry this chunk one doc at a time
+      for (const d of chunk){
+        const r = await sb.from("docs").upsert([row(d)], {onConflict:"user_id,path"});
+        if (r.error) failed.push(d.path + ": " + (r.error.message || r.error)); else await clean([d]);
+      }
     }
+    if (failed.length) console.warn("sync failed for", failed);
     let since = (await idb.get("meta", "lastPull")) || "1970-01-01T00:00:00Z";
     const from = new Date(new Date(since).getTime() - 5 * 60 * 1000).toISOString(), changed = new Set();
     let maxTs = since, page = 0;
@@ -109,14 +116,17 @@ async function sync(){
     }
     await idb.put("meta", maxTs, "lastPull");
     await uploadPending();
-    status.sync = "synced"; status.lastSync = Date.now(); status.error = null;
+    status.sync = failed.length ? "error" : "synced"; status.lastSync = Date.now(); status.error = failed.length ? "Couldn't upload " + failed.length + ": " + failed.slice(0, 3).join("; ") : null;
     if (changed.size) notify(changed);
   }catch(e){ console.warn("sync", e); status.sync = "error"; status.error = String(e.message || e); }
   syncing = false; status.pending = [...mem.values()].filter(d => d.dirty).length;
+  if (status.pending && status.sync === "error" && Date.now() - lastWarn > 5 * 60 * 1000){ lastWarn = Date.now(); try{ (window.toast || console.warn)(status.pending + " change" + (status.pending === 1 ? "" : "s") + " not synced yet. Settings > Sync now to retry."); }catch(e){} }
   if (resync){ resync = false; scheduleSync(500); }
 }
 window.addEventListener("online", () => scheduleSync(200));
-document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") scheduleSync(200); });
+// sync straight away when the app is hidden or closed too, so a workout finished just before locking the phone still uploads
+document.addEventListener("visibilitychange", () => scheduleSync(document.visibilityState === "visible" ? 200 : 0));
+window.addEventListener("pagehide", () => scheduleSync(0));
 setInterval(() => scheduleSync(0), 60000);
 
 /* ---------- Photos (same shape as Claude's assets) ---------- */
@@ -382,7 +392,7 @@ async function importExport(file){
 }
 
 /* ---------- Settings cards (rendered inside the app's Settings screen) ---------- */
-const P = {status, user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
+const P = {status, syncNow:() => sync(), user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
 P.settingsCards = (only) => {
   if (!HAS_BACKEND) return only && only !== "account" ? "" : `<div class="card"><h2>Account</h2><span class="small muted">Running on this device only. Add your Supabase details in config.js to sync and unlock AI features.</span></div>`;
   const s = status, when = s.lastSync ? new Date(s.lastSync).toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit"}) : "never";
