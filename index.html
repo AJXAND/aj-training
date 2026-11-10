@@ -2443,6 +2443,7 @@ function exMuscles(k){
 function blockInfo(){
   const p=S.prog; if (p.strength&&window.AJStrength) return AJStrength.blockInfo(); if (!p.rir) return null;
   const bw=blockWeek(Date.now()); if (bw===-2) return {pre:false, brk:true, week:0, len:p.deloadEvery||p.rir.length, rir:"–", deload:false}; if (bw<0) return {pre:true, starts:p.startDate};
+  if (p.noDeload) return {week:bw+1, len:0, open:true, block:1, rir:p.rir[0]||"2", deload:false};
   const len=p.deloadEvery||p.rir.length, i=bw%len, r=p.rir[i]||"2";
   return {week:i+1, len, block:Math.floor(bw/len)+1, rir:r, deload:r==="DL"};
 }
@@ -3233,7 +3234,7 @@ function trainStrip(dates, sel, bi){
   const blk=len&&!bi.pre?`<div class="trblk"><div class="segs">${[...Array(len)].map((_,i)=>`<i class="${i+1<wk?"d":i+1===wk?"c":""} ${i===len-1?"dl":""}"></i>`).join("")}</div>
     <span>${bi.brk?"Break week: the block is paused":bi.strength?`<b>${esc(bi.phaseName)}</b> · week ${wk} of ${len}${bi.early?" · brought forward":""}`:`<b>Week ${wk} of ${len}</b> · ${bi.deload?"deload: half the sets, easy effort":wk===len-1?"last hard week, deload next":`deload in week ${len}`}`}</span></div>`:"";
   return `<div class="card trstrip"><div class="spread"><span class="small muted trname">${esc(S.prog.endurance?S.prog.endurance.eventName:S.prog.splitName||S.prog.name)}</span><button class="link" data-segset="planView" data-val="month">Month</button></div>
-    <div class="trdays">${cells}</div>${blk}</div>`;
+    <div class="trdays">${cells}</div>${blk||(bi&&bi.open?`<div class="trblk"><span><b>Week ${bi.week}</b> · deload only when you need one</span></div>`:"")}</div>`;
 }
 // Any day other than today: what's planned (or what you did), and what you can do with it
 // A sport plan's conditioning for the day: what to do, how hard, and why
@@ -3369,7 +3370,7 @@ function renderTrainToday(){
       const vol=last?last.ex.reduce((a,e)=>a+e.sets.reduce((x,q)=>x+(+q.w||0)*(+q.r||0),0),0):0, nsets=last?last.ex.reduce((a,e)=>a+e.sets.length,0):0;
       out+=`<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">Today${t.movedFrom!=null?" · moved":""}${gymList().length>1?" · "+esc(gymName(g)):""}</span><h2>${esc(t.label)}</h2></div>${last?`<span class="tag up">Done</span>`:""}</div>
         ${last?`<div class="tdstats"><div><b class="num">${nsets}</b><span>sets</span></div><div><b class="num">${last.mins||"<1"}</b><span>min</span></div><div><b class="num">${fmtN(Math.round(vol))}</b><span>kg lifted</span></div></div>`
-          :`<div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(t,g)}</b><span>min</span></div></div>${eff?(()=>{ const hv=list.some(([k])=>exEffort(k,bi.deload?"DL":bi.rir)!==eff); return `<div class="tdeff"><span><b>Effort this week</b> ${esc(eff)} on ${hv?"most working sets":"every working set"}.${hv?" Heavy and explosive lifts have their own target in the workout.":""}</span></div>`; })():""}${libWeekNote()?`<div class="tdeff"><span><b>This week</b> ${esc(libWeekNote())}</span></div>`:""}`}
+          :`<div class="tdstats"><div><b class="num">${list.length}</b><span>exercises</span></div><div><b class="num">${sets}</b><span>sets</span></div><div><b class="num">~${sessionMins(t,g)}</b><span>min</span></div></div>${S.prog.effortNote&&eff?`<div class="tdeff"><span><b>Effort</b> ${esc(S.prog.effortNote)}</span></div>`:eff?(()=>{ const hv=list.some(([k])=>exEffort(k,bi.deload?"DL":bi.rir)!==eff); return `<div class="tdeff"><span><b>Effort this week</b> ${esc(eff)} on ${hv?"most working sets":"every working set"}.${hv?" Heavy and explosive lifts have their own target in the workout.":""}</span></div>`; })():""}${libWeekNote()?`<div class="tdeff"><span><b>This week</b> ${esc(libWeekNote())}</span></div>`:""}`}
         <div class="tdlist2">${last?last.ex.map((e,i)=>`<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(e.n||exDef(e.k).n)}</b><em>${e.sets.map(q=>q.w+"×"+q.r).join(", ")}</em></span><span class="tdaim muted">${e.sets.length} ${(+(e.sets.length))===1?"set":"sets"}</span></div>`).join(""):list.map(([k,n],i)=>{ const x=exDef(k), ad=advice(k,null,g), aim=strAim(t,k,g)||(ad.status==="new"?"New":ad.cross?"New here":`${ad.tw} × ${ad.tr}`);
           return `<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(x.n)}</b><em>${n} × ${x.lo}–${x.hi}${ad.last?` · last ${ad.last.sets[0].w}×${ad.last.sets[0].r}`:""}</em></span><span class="tdaim ${ad.status==="up"?"up":""}">${ad.status==="up"?"↑ ":""}${aim}</span></div>`; }).join("")}</div>${last?"":`<span class="small muted">Right-hand numbers are today's aim, from your last session.</span>`}
         <div class="grid2"><button class="btn ghost" data-goto="train">${last?"See the plan":"Change it"}</button>${last?`<button class="btn orange" data-act="sumShow" data-id="${last.id}">How it went</button>`:`<button class="btn orange" data-act="startDay" data-k="${t.k}" data-g="${g}">Start workout</button>`}</div></div>`;
@@ -3455,8 +3456,8 @@ function renderMonthView(){
   let stat={done:0,planned:0,sets:0,cMins:0,cKcal:0};
   for (let w=0; w<weeks; w++){
     const wkStart=new Date(gridStart); wkStart.setDate(gridStart.getDate()+w*7);
-    const bw=blockWeek(wkStart.getTime()), deload=bw>=0 && (bw%every)===every-1;
-    cells+=`<div class="mwk ${deload?"dl":""}">${bw>=0?`<b>W${(bw%every)+1}</b>`:""}${deload?"<span>DL</span>":""}</div>`;
+    const bw=blockWeek(wkStart.getTime()), deload=!S.prog.noDeload && bw>=0 && (bw%every)===every-1;
+    cells+=`<div class="mwk ${deload?"dl":""}">${bw>=0?`<b>W${S.prog.noDeload?bw+1:(bw%every)+1}</b>`:""}${deload?"<span>DL</span>":""}</div>`;
     for (let i=0;i<7;i++){
       const dt=new Date(wkStart); dt.setDate(wkStart.getDate()+i); const ds=ymd(dt), inMonth=dt.getMonth()===m;
       const day=dayForDate(dt), done=sessionsOn(ds), cardio=S.cardio.filter(c=>c.date===ds), food=dayTotals(ds);
