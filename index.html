@@ -4049,7 +4049,8 @@ function settingsPage(pg){
 
 /* ---------- Rest timer ---------- */
 const T={end:0,total:0,label:"",beeped:false}; let wake=null, actx=null;
-function startRest(sec,label){ T.end=Date.now()+sec*1000; T.total=sec; T.label=label; T.beeped=false; $("#timer").hidden=false; tick(); }
+const restPush=at=>{ try{ window.AJP&&AJP.restPush&&AJP.restPush(at, at?"Rest's over. Next: "+T.label:null); }catch(e){} };
+function startRest(sec,label){ T.end=Date.now()+sec*1000; T.total=sec; T.label=label; T.beeped=false; T.pushed=false; $("#timer").hidden=false; tick(); restPush(T.end); }
 function tick(){
   if (S.active && $("#elapsed")) $("#elapsed").textContent=fmtT((Date.now()-S.active.startedAt)/1000);
   if ($("#timer").hidden) return;
@@ -4058,6 +4059,8 @@ function tick(){
   $("#tBig").textContent=left>0?fmtT(left):"+"+fmtT(-left);
   $("#tLab").textContent=left>0?"Next: "+T.label:"Go: "+T.label; const ts=$("#tSub"); if (ts){ ts.textContent=T.sub||""; ts.hidden=!T.sub; }
   $("#tBar").style.width=Math.min(100,Math.max(0,(1-left/T.total)*100))+"%";
+  // app open when the rest ends: the in-app beep is enough, so cancel the push just before it would fire
+  if (left<=2.5&&!T.pushed&&document.visibilityState==="visible"){ T.pushed=true; restPush(null); }
   if (left<=0&&!T.beeped){ T.beeped=true; try{navigator.vibrate&&navigator.vibrate([200,100,200]);}catch(e){} beep(); }
 }
 function beep(){ try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); const o=actx.createOscillator(),g=actx.createGain(); o.frequency.value=880; g.gain.value=.15; o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime+.35);}catch(e){} }
@@ -4188,7 +4191,7 @@ function logSet(ei, si){
   }
   saveActive(); render();
   if (liveCur(a)!==before) setTimeout(()=>{ const c=document.querySelector(".excard.open"); c&&c.scrollIntoView({block:"start",behavior:"smooth"}); },60);
-  if (label && !a.past) startRest(sec,label); else $("#timer").hidden=true;
+  if (label && !a.past) startRest(sec,label); else { if (!$("#timer").hidden) restPush(null); $("#timer").hidden=true; }
 }
 function finishSession(){
   const a=S.active;
@@ -4703,7 +4706,7 @@ $("#main").addEventListener("click", async e=>{
     case "finish": {
       if (prev!=="finish"){ S.confirm="finish"; render(); return; }
       S.confirm=null; const doc=finishSession(); if(!doc){ render(); return; }
-      S.active=null; S.pick=null; S.gym=null; S.deload=false; saveActive(true); $("#timer").hidden=true; try{ wake&&wake.release(); }catch(err){}
+      S.active=null; S.pick=null; S.gym=null; S.deload=false; saveActive(true); $("#timer").hidden=true; restPush(null); try{ wake&&wake.release(); }catch(err){}
       S.summary=doc.id; go("summary"); return; }
     case "recSet": { const m=b.dataset.m, v=+b.dataset.v, p=AJCoach.pending(S.active.ex.map(e=>[e.k,e.sets.length])).find(x=>x.m===m); S.active.rec=S.active.rec||{}; S.active.rec[m]=v; saveActive();
       const res=p?AJCoach.decide(m,p.sess,v):null; render();
@@ -4731,7 +4734,7 @@ $("#main").addEventListener("click", async e=>{
     case "wkAll": S.wkAll=!S.wkAll; render(); return;
     case "sumShow": S.summary=b.dataset.id; go("summary"); return;
     case "sumOpen": S.open=S.summary; go("progress","sessions"); return;
-    case "discard": if(prev!=="discard"){ S.confirm="discard"; render(); return; } S.confirm=null; S.active=null; saveActive(true); $("#timer").hidden=true; go("home"); toast("Session discarded"); return;
+    case "discard": if(prev!=="discard"){ S.confirm="discard"; render(); return; } S.confirm=null; S.active=null; saveActive(true); $("#timer").hidden=true; restPush(null); go("home"); toast("Session discarded"); return;
     case "dayview": S.dayView=S.dayView===b.dataset.k?null:b.dataset.k; render(); return;
     case "moveDay": moveSession(b.dataset.k, b.dataset.from, b.dataset.to); S.dayView=null; render(); return;
     case "moveHere": moveSession(b.dataset.k, b.dataset.from, ymd(new Date())); render(); return;
@@ -4890,9 +4893,9 @@ $("#main").addEventListener("click", async e=>{
   }
   if (b.dataset.goto){ go(b.dataset.goto, b.dataset.seg); }
 });
-$("#tPlus").onclick=()=>{ T.end+=30000; T.total+=30; T.beeped=false; tick(); };
-$("#tMinus").onclick=()=>{ T.end-=15000; tick(); };
-$("#tSkip").onclick=()=>{ $("#timer").hidden=true; };
+$("#tPlus").onclick=()=>{ T.end+=30000; T.total+=30; T.beeped=false; T.pushed=false; tick(); restPush(T.end); };
+$("#tMinus").onclick=()=>{ T.end-=15000; tick(); if (!T.pushed) restPush(T.end); };
+$("#tSkip").onclick=()=>{ $("#timer").hidden=true; restPush(null); };
 
 /* ---------- Shared logging used by the UI and by Claude ---------- */
 function makeCardio(type, level, mins, km, date, phoneOn){

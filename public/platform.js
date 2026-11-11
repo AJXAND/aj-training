@@ -361,6 +361,21 @@ async function disablePush(){
   if (sub){ await sb.from("push_subs").delete().eq("endpoint", sub.endpoint); await sub.unsubscribe(); }
 }
 
+/* Rest timer alerts: the server sends a push to this phone when a rest ends, so it still arrives with the app closed or the phone locked.
+   One pending timer per user (a new rest replaces the old one); at = end time in ms, null cancels. */
+let restT = null;
+function restPush(at, body){
+  clearTimeout(restT);
+  restT = setTimeout(async () => {
+    try{
+      if (!sb || !user || P.push !== "on" || !navigator.onLine) return;
+      if (!at){ await sb.from("rest_timers").delete().eq("user_id", user.id); return; }
+      const reg = await navigator.serviceWorker.ready, sub = await reg.pushManager.getSubscription(); if (!sub) return;
+      await sb.from("rest_timers").upsert({user_id:user.id, endpoint:sub.endpoint, due_at:new Date(at - 1500).toISOString(), body:body || "Rest's over. Next set."}, {onConflict:"user_id"});
+    }catch(e){ console.warn("restPush", e); }
+  }, 300);
+}
+
 /* ---------- Apple Health steps (iOS Shortcut posts here) ---------- */
 async function healthToken(){
   let {data} = await sb.from("health_tokens").select("token").limit(1);
@@ -392,11 +407,11 @@ async function importExport(file){
 }
 
 /* ---------- Settings cards (rendered inside the app's Settings screen) ---------- */
-const P = {status, syncNow:() => sync(), user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
+const P = {status, syncNow:() => sync(), restPush:(at, body) => restPush(at, body), user:() => user, hasBackend:HAS_BACKEND, push:"…", token:null, isAdmin:() => isAdmin(), mode:() => (MODE === "demo" && isAdmin()) ? "demo" : "me"};
 P.settingsCards = (only) => {
   if (!HAS_BACKEND) return only && only !== "account" ? "" : `<div class="card"><h2>Account</h2><span class="small muted">Running on this device only. Add your Supabase details in config.js to sync and unlock AI features.</span></div>`;
   const s = status, when = s.lastSync ? new Date(s.lastSync).toLocaleTimeString("en-GB", {hour:"2-digit", minute:"2-digit"}) : "never";
-  const pushTxt = {on:"On. You'll get the weigh-in reminder each morning.", off:"Off.", denied:"Blocked. Turn notifications on for AJ Training in iPhone Settings.", unsupported:"Add the app to your Home Screen first, then open it from there to turn these on.", unconfigured:"Not set up on the server yet."}[P.push] || "Checking…";
+  const pushTxt = {on:"On. You'll get the weigh-in reminder each morning and an alert when each rest timer ends, even with the phone locked.", off:"Off.", denied:"Blocked. Turn notifications on for AJ Training in iPhone Settings.", unsupported:"Add the app to your Home Screen first, then open it from there to turn these on.", unconfigured:"Not set up on the server yet."}[P.push] || "Checking…";
   const admin = isAdmin() ? `<div class="card admin"><div class="spread"><h2>Staff</h2><span class="tag rep">Admin</span></div>
       <div class="seg" role="group" style="grid-template-columns:1fr 1fr"><button data-plat="modeMe" aria-pressed="${MODE !== "demo"}">My account</button><button data-plat="modeDemo" aria-pressed="${MODE === "demo"}">Demo (new user)</button></div>
       <span class="small muted">${MODE === "demo" ? "You're in the demo: exactly what a brand-new user sees. Nothing here touches your real data." : "Switch to the demo to see the app as a new user would, before any setup."}</span>
@@ -406,7 +421,7 @@ P.settingsCards = (only) => {
       ${s.pending ? `<div><span>Waiting to sync</span><span>${s.pending}</span></div>` : ""}${s.error ? `<div class="note">${escH(s.error)}</div>` : ""}</div>
       <div class="grid2"><button class="btn ghost" data-plat="sync">Sync now</button><button class="btn ghost" data-plat="signout">Sign out</button></div>
       <button class="btn ghost" data-plat="password">Change password</button></div>`,
-    notif:`<div class="card"><h2>Weigh-in reminder</h2><span class="small muted">${pushTxt}</span>
+    notif:`<div class="card"><h2>Notifications</h2><span class="small muted">${pushTxt}</span>
       <div class="row" style="flex-wrap:nowrap"><input class="field" id="pushTime" type="time" value="${escH(P.pushTime || "07:00")}" style="flex:1" aria-label="Reminder time">
       <button class="btn small ${P.push === "on" ? "ghost" : "orange"}" data-plat="${P.push === "on" ? "pushOff" : "pushOn"}">${P.push === "on" ? "Turn off" : "Turn on"}</button></div>
       ${P.push === "on" ? `<button class="link" data-plat="pushOn">Save new time</button>` : ""}</div>`,

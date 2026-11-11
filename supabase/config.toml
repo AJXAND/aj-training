@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.health-steps]
 verify_jwt = false
+
+[functions.rest-push]
+verify_jwt = false

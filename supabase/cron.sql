@@ -10,3 +10,13 @@ select cron.schedule('weighin-push', '*/5 * * * *', $$
     body := '{}'::jsonb
   );
 $$);
+
+-- Rest-timer alerts: checks every 5 seconds, and only calls the function when a timer is due.
+select cron.unschedule('rest-push') where exists (select 1 from cron.job where jobname = 'rest-push');
+select cron.schedule('rest-push', '5 seconds', $$
+  select net.http_post(
+    url := 'https://PROJECT_REF.supabase.co/functions/v1/rest-push',
+    headers := jsonb_build_object('Content-Type','application/json'),
+    body := '{}'::jsonb
+  ) where exists (select 1 from public.rest_timers where due_at <= now());
+$$);

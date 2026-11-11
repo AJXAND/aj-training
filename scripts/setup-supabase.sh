@@ -19,6 +19,7 @@ $SB secrets set ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" ALLOWED_EMAILS="$OWNER_EM
 $SB functions deploy claude
 $SB functions deploy weighin-push --no-verify-jwt
 $SB functions deploy health-steps --no-verify-jwt
+$SB functions deploy rest-push --no-verify-jwt
 
 sed -e "s/PROJECT_REF/$PROJECT_REF/" -e "s/CRON_SECRET/$CRON_SECRET/" supabase/cron.sql > /tmp/ajt-cron.sql
 $SB db execute --file /tmp/ajt-cron.sql 2>/dev/null || echo ">> Paste /tmp/ajt-cron.sql into the Supabase SQL editor and run it."
