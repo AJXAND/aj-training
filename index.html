@@ -1939,6 +1939,28 @@ function libSync(){
   p.days.forEach(d=>{ const sid=w[d.k]; if (sid&&p.sessions[sid]){ d.variants=p.sessions[sid]; d.label=(p.sessNames||{})[sid]||d.label; d.rest=false; } });
 }
 function libWeekNote(){ const p=S.prog; if (!p||!p.weekNotes) return ""; let bw=blockWeek(Date.now()); if (bw<0) bw=0; return p.weekNotes[bw%p.weekNotes.length]||""; }
+/* Put new HTML into a container without ever detaching the text box you're typing in.
+   Rebuilding the box on each keystroke (plain innerHTML) drops letters on iPhone and breaks autocorrect and predictive text,
+   so the focused box stays in the page and everything around it is swapped for the new version. */
+function setHTML(el, html){
+  const ae=document.activeElement, keep=ae&&ae.id&&el.contains(ae)&&(ae.tagName==="TEXTAREA"||(ae.tagName==="INPUT"&&!/^(checkbox|radio|button|submit|range|file|date|time)$/.test(ae.type)))?ae:null;
+  if (!keep){ el.innerHTML=html; return; }
+  const tpl=document.createElement("template"); tpl.innerHTML=html;
+  let newN=tpl.content.getElementById(keep.id);
+  if (!newN||newN.tagName!==keep.tagName){ el.innerHTML=html; return; }
+  for (const a of [...newN.attributes]) if (a.name!=="value"&&keep.getAttribute(a.name)!==a.value) keep.setAttribute(a.name,a.value);
+  let oldN=keep;
+  while (oldN!==el){
+    const op=oldN.parentNode, np=newN.parentNode, before=[], after=[];
+    for (let x=newN.previousSibling; x; x=x.previousSibling) before.unshift(x);
+    for (let x=newN.nextSibling; x; x=x.nextSibling) after.push(x);
+    for (const c of [...op.childNodes]) if (c!==oldN) op.removeChild(c);
+    for (const x of before) op.insertBefore(x, oldN);
+    for (const x of after) op.appendChild(x);
+    if (op!==el){ for (const a of [...op.attributes]) if (!np.hasAttribute(a.name)) op.removeAttribute(a.name); for (const a of [...np.attributes]) if (op.getAttribute(a.name)!==a.value) op.setAttribute(a.name,a.value); }
+    oldN=op; newN=np;
+  }
+}
 function render(){
   try{ libSync(); }catch(e){}
   const train=on("training")||on("endurance"), navShow={food:on("nutrition"), habits:!on("nutrition")&&on("habits")};
@@ -1953,7 +1975,7 @@ function render(){
   plus.setAttribute("aria-label", S.active ? "Resume workout" : "Add or start");
   if (!S.ready){ $("#main").innerHTML=`<div class="loadwait"><div class="sk"></div><div class="sk"></div><div class="sk short"></div><p class="small muted">Loading your data…</p></div>`; return; }
   const f={summary:renderSummary, trackpick:renderTrackPick, track:renderTrack, energy:renderEnergy, home:renderHome, homeedit:renderHomeEdit, food:renderFood, foodadd:renderFoodAdd, plan:renderPlan, train:S.active?renderLive:renderTrain, workouts:renderWorkouts, wbuild:renderWBuild, progress:renderProgress, cardio:renderCardio, settings:renderSettings, habits:renderHabits}[S.tab]||renderHome;
-  $("#main").innerHTML=f();
+  setHTML($("#main"), f());
   if (S.tab==="home") fillHome();
   chartsToEnd();
   renderFoodSheet();
@@ -2858,9 +2880,9 @@ function renderFoodSheet(){
   const el=$("#foodSheet"), a=S.foodAdd;
   if (!a){ hideAnim(el,240); if ($("#chat").hidden && ($("#actions").hidden||$("#actions").classList.contains("out"))) hideAnim($("#scrim")); return; }
   el.classList.remove("out"); $("#scrim").classList.remove("out"); el.hidden=false; $("#scrim").hidden=false;
-  if (a.ed){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+edHtml(a.ed); return; }
-  if (a.mv){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+mvHtml(a.mv); return; }
-  const special=foodSheetSpecial(a); if (special){ $("#foodSheetIn").innerHTML=`<div class="grab"></div>`+special; return; }
+  if (a.ed){ setHTML($("#foodSheetIn"), `<div class="grab"></div>`+edHtml(a.ed)); return; }
+  if (a.mv){ setHTML($("#foodSheetIn"), `<div class="grab"></div>`+mvHtml(a.mv)); return; }
+  const special=foodSheetSpecial(a); if (special){ setHTML($("#foodSheetIn"), `<div class="grab"></div>`+special); return; }
   let body;
   if (a.quick){
     body=`<h2>${a.entryId?"Edit entry":"Quick add"}</h2>
@@ -2877,11 +2899,11 @@ function renderFoodSheet(){
   }
   const n=(S.tray||[]).length, fresh=!a.entryId&&a.trayK==null, gm=fresh?(S.addMeal||guessMeal([...(S.tray||[]),{name:a.quick?a.name:a.food.name}],foodDate())):null;
   const mealSel=a.entryId?`<div class="lab">Meal<div class="chips">${MEALS.map(([k,n])=>`<button class="chip" data-fs="meal" data-m="${k}" aria-pressed="${(a.meal||a.autoMeal||"")===k}">${n}</button>`).join("")}</div></div>`:"";
-  $("#foodSheetIn").innerHTML=`<div class="grab"></div>${body}${mealSel}
+  setHTML($("#foodSheetIn"), `<div class="grab"></div>${body}${mealSel}
     ${!a.quick&&a.food&&a.food.id&&S.foods.some(x=>x.id===a.food.id)?`<button class="link" data-fs="fav">${a.food.fav?"★ Favourite":"☆ Add to favourites"}</button>`:""}
     ${fresh?`<div class="grid2"><button class="btn ghost" data-fs="tray">Add to plate</button><button class="btn orange" data-fs="save">${n?"Log all "+(n+1):"Log it"}</button></div><span class="small muted center">Logs to ${mealName(gm)}${n?` with the ${n} on your plate`:""}</span>`:`<button class="btn orange" data-fs="save">Update</button>`}
     ${a.entryId?`<button class="btn danger" data-fs="delete">${S.confirm==="fdel"?"Tap again to delete":"Delete entry"}</button>`:""}
-    <button class="btn ghost" data-fs="close">Cancel</button>`;
+    <button class="btn ghost" data-fs="close">Cancel</button>`);
 }
 /* ---------- Food editor: one sheet for editing a logged food, a basket item, or a food you're about to add ----------
    You change the amount (stepper, or ½× to 2× of what it was), tell AI what was different ("extra chicken, less noodles"),
@@ -3206,13 +3228,13 @@ function renderAddEx(){
     .map(x=>({...x, ok:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a,b)=>(b.ok-a.ok)||(b.c-a.c)||(b.len-a.len));
   const away=kit.length?pool0.filter(x=>!x.ok).length:0, pool=pool0.filter(x=>ax.all||!kit.length||x.ok).slice(0,q||ax.m?30:0);
   if (ax.c){ el.innerHTML=`<div class="in"><div class="grab"></div>${customForm(ax.c)}</div>`; return; }
-  el.innerHTML=`<div class="in"><div class="grab"></div><h2>Add an exercise</h2>
+  setHTML(el, `<div class="in"><div class="grab"></div><h2>Add an exercise</h2>
     <div class="searchbar"><span class="sb">${ICON.search}<input id="axQ" placeholder="Search every exercise" value="${esc(ax.q||"")}" autocomplete="off" aria-label="Search exercises"></span></div>
     <div class="chips axm">${MUSP.map(m=>`<button class="chip" data-ax="mus" data-m="${m}" aria-pressed="${ax.m===m}">${musN(m)}</button>`).join("")}</div>
     <button class="link cxnew" data-ax="cnew">Can't find it? Create your own exercise</button>
     ${pool.length?`<div class="list">${pool.map(x=>`<button class="li btnli" data-ax="pick" data-k="${x.k}"><span><b>${esc(x.n)}</b> <span class="small muted">${esc(Object.keys(x.mu).filter(m=>x.mu[m]>=1).map(musN).join(", "))}</span></span><span class="small muted">${x.ok?`${x.lo}–${x.hi}`:"not at this gym"}</span></button>`).join("")}</div>`:`<p class="small muted">${q||ax.m?(away&&!ax.all?"Nothing at this gym matches.":"Nothing matches."):"Pick a muscle or search."}</p>`}
     ${(q||ax.m)&&away?`<button class="link" data-ax="all">${ax.all?"Only show what this gym has":`Show ${away} more that need kit this gym doesn't have`}</button>`:""}
-    <button class="btn ghost" data-ax="close">Cancel</button></div>`;
+    <button class="btn ghost" data-ax="close">Cancel</button></div>`);
 }
 // Before a plan's first day: say plainly when it starts, and let gym plans start today instead
 function preStart(){
@@ -3640,14 +3662,14 @@ function renderSwap(){
   const e=S.active.ex[sw.ei], cur=exDef(e.k,e.custom), opts=swapOptions(sw.ei, sw.reason);
   const q=(sw.q||"").trim().toLowerCase(), L=AJOnboard.lib, g=gymList().find(x=>x.id===S.active.gym)||{kit:[]}, kit=[...(g.kit||[])];
   const hits=q?Object.values(L).filter(x=>!["cond","sled","carry","erg"].includes(x.p)&&x.k!==String(e.k).replace(/-hvy$/,"")&&(x.n+" "+(x.al||[]).join(" ")+" "+Object.keys(x.mu).map(m=>AJOnboard.MUS[m]||m).join(" ")).toLowerCase().includes(q)).map(x=>({...x, have:x.q.every(r=>AJOnboard.kitHas(kit,r))})).sort((a2,b2)=>(b2.have?1:0)-(a2.have?1:0)||a2.n.length-b2.n.length).slice(0,12):null;
-  el.innerHTML=`<div class="in"><div class="grab"></div><h2>Swap ${esc(cur.n)}</h2>
+  setHTML(el, `<div class="in"><div class="grab"></div><h2>Swap ${esc(cur.n)}</h2>
     <div class="searchbar"><span class="sb">${ICON.search}<input id="swQ" placeholder="Search every exercise" value="${esc(sw.q||"")}" autocomplete="off" aria-label="Search exercises"></span></div>
     <div class="chips">${[["taken","Machine taken"],["pain","Doesn't feel right"],["kit","Not at this gym"],["pref","Just fancy a change"]].map(([k,n])=>`<button class="chip" data-sw="reason" data-r="${k}" aria-pressed="${sw.reason===k}">${n}</button>`).join("")}</div>
     ${sw.reason==="pain"?`<p class="small muted">Options that load the same joint less come first. Sharp or worsening pain is a reason to stop and get it checked.</p>`:""}
     ${hits?`<div class="list">${hits.length?hits.map(x=>`<button class="li btnli" data-sw="pick" data-k="${x.k}"><span><b>${esc(x.n)}</b> <span class="small muted">${esc(Object.keys(x.mu).filter(m=>x.mu[m]>=1).map(m=>AJOnboard.MUS[m]||m).join(", "))}</span></span><span class="small muted">${x.have?`${x.lo}–${x.hi}`:"not at this gym"}</span></button>`).join(""):`<p class="small muted">No exercise matches "${esc(sw.q)}".</p>`}</div>`
       :`<span class="small muted">Best matches for this gym</span><div class="list">${opts.length?opts.map(x=>`<button class="li btnli" data-sw="pick" data-k="${x.k}"><span><b>${esc(x.n)}</b></span><span class="small muted">${x.lo}–${x.hi}${x.len===2?" · stretch":""}</span></button>`).join(""):`<p class="small muted">No close matches with this gym's kit. Search above for anything else.</p>`}</div>`}
     <div class="spread"><span class="small"><b>Save to my plan</b> <span class="muted">use it every time at ${esc(GYMS[S.active.gym])}</span></span><button class="switch" data-sw="always" role="switch" aria-checked="${!!sw.always}" aria-label="Use from now on"><i></i></button></div>
-    <button class="btn ghost" data-sw="close">Cancel</button></div>`;
+    <button class="btn ghost" data-sw="close">Cancel</button></div>`);
 }
 function swapClick(ev){
   const b=ev.target.closest("[data-sw]"); if (!b) return; const sw=S.swap, k=b.dataset.sw;
