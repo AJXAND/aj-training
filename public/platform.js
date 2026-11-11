@@ -7,7 +7,7 @@
 const CFG = window.AJ_CONFIG || {};
 const HAS_BACKEND = !!(CFG.supabaseUrl && CFG.supabaseAnonKey && window.supabase);
 const sb = HAS_BACKEND ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {auth:{persistSession:true, autoRefreshToken:true, detectSessionInUrl:false}}) : null;
-let user = null;
+let user = null, accessToken = null;
 const status = {sync:"local", lastSync:null, pending:0, error:null};
 
 /* ---------- IndexedDB ---------- */
@@ -325,7 +325,8 @@ const authReady = (async () => {
   if (!data.session && document.readyState === "loading") await new Promise(r => document.addEventListener("DOMContentLoaded", r, {once:true}));
   user = data.session ? data.session.user : await loginScreen();
   if (recovering){ if (window.splashDone) setTimeout(window.splashDone, 0); await newPasswordScreen(); }
-  sb.auth.onAuthStateChange((ev, session) => { user = session ? session.user : null; if (ev === "SIGNED_OUT") location.reload(); });
+  accessToken = data.session ? data.session.access_token : null; if (!accessToken){ try{ accessToken = ((await sb.auth.getSession()).data.session || {}).access_token || null; }catch(e){} }
+  sb.auth.onAuthStateChange((ev, session) => { user = session ? session.user : null; accessToken = session ? session.access_token : null; if (ev === "SIGNED_OUT") location.reload(); });
   return user;
 })();
 // First run on a new device: wait for the first pull so the app opens with your data.
@@ -363,18 +364,22 @@ async function disablePush(){
 
 /* Rest timer alerts: the server sends a push to this phone when a rest ends, so it still arrives with the app closed or the phone locked.
    One pending timer per user (a new rest replaces the old one); at = end time in ms, null cancels. */
-let restT = null;
-function restPush(at, body){
-  clearTimeout(restT);
-  restT = setTimeout(async () => {
-    try{
-      if (!sb || !user || P.push !== "on" || !navigator.onLine) return;
-      if (!at){ await sb.from("rest_timers").delete().eq("user_id", user.id); return; }
-      const reg = await navigator.serviceWorker.ready, sub = await reg.pushManager.getSubscription(); if (!sub) return;
-      await sb.from("rest_timers").upsert({user_id:user.id, endpoint:sub.endpoint, due_at:new Date(at - 1500).toISOString(), body:body || "Rest's over. Next set."}, {onConflict:"user_id"});
-    }catch(e){ console.warn("restPush", e); }
-  }, 300);
+// The request goes out the instant the rest starts, as a keepalive fetch with no awaits in front of it:
+// iOS freezes the app as soon as the phone locks, and keepalive lets the request finish anyway.
+let pushEndpoint = null, restCur = null;
+async function loadEndpoint(){ try{ const reg = await navigator.serviceWorker.ready, sub = await reg.pushManager.getSubscription(); pushEndpoint = sub ? sub.endpoint : null; }catch(e){ pushEndpoint = null; } }
+function restSend(){
+  if (!sb || !user || !accessToken || !pushEndpoint) return;
+  const base = CFG.supabaseUrl + "/rest/v1/rest_timers", h = {apikey:CFG.supabaseAnonKey, Authorization:"Bearer " + accessToken, "Content-Type":"application/json"};
+  try{
+    if (!restCur) fetch(base + "?user_id=eq." + user.id, {method:"DELETE", headers:h, keepalive:true}).catch(() => {});
+    else fetch(base + "?on_conflict=user_id", {method:"POST", headers:{...h, Prefer:"resolution=merge-duplicates,return=minimal"}, keepalive:true,
+      body:JSON.stringify({user_id:user.id, endpoint:pushEndpoint, due_at:new Date(restCur.at - 3000).toISOString(), body:restCur.body})}).catch(() => {});
+  }catch(e){ console.warn("restPush", e); }
 }
+function restPush(at, body){ restCur = at ? {at, body:body || "Rest's over. Next set."} : null; restSend(); }
+// belt and braces: send the running timer again the moment the app is hidden or the phone locks
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden" && restCur && restCur.at > Date.now()) restSend(); });
 
 /* ---------- Apple Health steps (iOS Shortcut posts here) ---------- */
 async function healthToken(){
@@ -448,7 +453,7 @@ document.addEventListener("click", async e => {
     if (a === "sync"){ await sync(); rerender(); t(status.sync === "synced" ? "Synced" : "Couldn't sync: " + (status.error || status.sync)); }
     if (a === "signout"){ await sb.auth.signOut(); }
     if (a === "password"){ await newPasswordScreen(); }
-    if (a === "pushOn"){ const time = (document.getElementById("pushTime") || {}).value || "07:00"; P.pushTime = time; await enablePush(time); P.push = await pushState(); rerender(); t(`Reminder set for ${time}`); }
+    if (a === "pushOn"){ const time = (document.getElementById("pushTime") || {}).value || "07:00"; P.pushTime = time; await enablePush(time); P.push = await pushState(); await loadEndpoint(); rerender(); t(`Reminder set for ${time}`); }
     if (a === "pushOff"){ await disablePush(); P.push = await pushState(); rerender(); t("Reminders off"); }
     if (a === "token"){ P.token = await healthToken(); rerender(); }
     if (a === "copyLink"){ const link = `${CFG.supabaseUrl}/functions/v1/health-steps?k=${P.token}&steps=`; await navigator.clipboard.writeText(link); P.copied = true; rerender(); t("Link copied. Now open Shortcuts."); }
@@ -464,7 +469,7 @@ document.addEventListener("change", async e => {
   try{ t("Importing…"); const r = await importExport(e.target.files[0]); t(`Imported ${r.sessions} workouts, ${r.food} food days and ${r.photos} photos`); setTimeout(() => location.reload(), 1500); }
   catch(err){ t("Import failed: " + (err.message || err)); }
 });
-authReady.then(async () => { try{ P.push = await pushState(); rerender(); if (sb && user){ const {data} = await sb.from("push_subs").select("remind_at").limit(1); if (data && data[0]) P.pushTime = data[0].remind_at; } }catch(e){ P.push = "unsupported"; } });
+authReady.then(async () => { try{ P.push = await pushState(); loadEndpoint(); rerender(); if (sb && user){ const {data} = await sb.from("push_subs").select("remind_at").limit(1); if (data && data[0]) P.pushTime = data[0].remind_at; } }catch(e){ P.push = "unsupported"; } });
 P.dashBanner = () => {
   const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
   if (!standalone && /iPhone|iPad/.test(navigator.userAgent)) return `<div class="banner info"><b>Install the app.</b> Tap Share, then Add to Home Screen, and open it from there. That's what turns on offline mode and notifications.</div>`;

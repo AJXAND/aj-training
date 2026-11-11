@@ -4060,7 +4060,7 @@ function tick(){
   $("#tLab").textContent=left>0?"Next: "+T.label:"Go: "+T.label; const ts=$("#tSub"); if (ts){ ts.textContent=T.sub||""; ts.hidden=!T.sub; }
   $("#tBar").style.width=Math.min(100,Math.max(0,(1-left/T.total)*100))+"%";
   // app open when the rest ends: the in-app beep is enough, so cancel the push just before it would fire
-  if (left<=2.5&&!T.pushed&&document.visibilityState==="visible"){ T.pushed=true; restPush(null); }
+  if (left<=4&&!T.pushed&&document.visibilityState==="visible"){ T.pushed=true; restPush(null); }
   if (left<=0&&!T.beeped){ T.beeped=true; try{navigator.vibrate&&navigator.vibrate([200,100,200]);}catch(e){} beep(); }
 }
 function beep(){ try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); const o=actx.createOscillator(),g=actx.createGain(); o.frequency.value=880; g.gain.value=.15; o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime+.35);}catch(e){} }
