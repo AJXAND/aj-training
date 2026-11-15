@@ -436,6 +436,7 @@ h1{margin-top:2px}
 .smrows{display:grid}.smr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}.smr:first-child{border-top:0}.smn{display:grid;min-width:0}.smn b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.smn em{font-style:normal;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .smv{display:flex;gap:6px;align-items:center}.smd{font-size:13px;font-weight:700;color:var(--muted)}.smd.up{color:var(--good)}.smd.down{color:var(--warn)}
 .tdcard{display:grid;gap:10px}.tdcard .tdlist>div>span{border-top:0;padding:0;font-size:13px}.tdcard .tdlist>div>span.tdn{display:grid;font-size:12px}.mwk{display:grid;gap:10px}.mwk>div{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:14px;text-align:left}.mwb{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}.mwb i{display:block;height:100%;background:var(--orange);border-radius:4px}.mwk b{text-align:right;font-size:14px}.mwk em{font-style:normal;color:var(--muted);font-weight:500}.tdn{width:24px;height:24px;border-radius:50%;background:var(--sunk);color:var(--muted);font-size:12px;font-weight:700;display:grid;place-items:center}.rnext{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;border:0;border-top:1px solid var(--line);background:none;padding:12px 0 0;font:inherit;color:inherit;text-align:left;cursor:pointer}.rnext>span:first-child{grid-column:1}.rnext>b{grid-column:1;font-size:16px}.rnext>span.num{grid-column:1}.rnext>i{grid-column:2;grid-row:1/span 3;font-style:normal;font-size:22px;color:var(--muted)}.tdic.rest{background:var(--weight)}.upnext{display:grid;gap:6px;background:var(--sunk);border-radius:14px;padding:12px}.upnext>b{font-size:16px}
+.restpick{display:grid;gap:8px}
 .wstrip{display:grid;gap:12px}.wsrow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.wsd{display:grid;justify-items:center;gap:5px;min-width:0}.wsd>span{font-size:12px;font-weight:600;color:var(--muted)}
 .wsd i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}.wsd i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .wsd.plan i{box-shadow:inset 0 0 0 2px var(--orange);background:none;color:var(--orange)}.wsd.did i{background:var(--orange);color:#fff}.wsd.miss i{box-shadow:inset 0 0 0 2px var(--line);background:none}.wsd.rest i{background:var(--sunk);opacity:.6}
@@ -2138,13 +2139,15 @@ function homeParts(){
     insights:tiles.length?`<h2 class="sect">Insights</h2><div class="tiles">${tiles.join("")}</div>`:""};
 }
 // This week's training at a glance: one dot per day, ticked when done
+// What you actually trained on a date (beats what the plan had there): "Push" even if the plan said Priorities
+function didLabel(ds){ const sx=sessionsOn(ds)[0]; if (!sx) return ""; return String(sx.label||(dayBy(sx.dayKey)||{}).label||"Workout").split(/[ +]/)[0]; }
 function weekStrip(){
   const dates=weekDates(), td=ymd(new Date()); let planned=0, done=0;
   const cells=dates.map(dt=>{ const ds=ymd(dt), d=dayForDate(dt), lift=d&&!d.rest&&d.variants&&(d.variants[dayGym(d)]||[]).length, run=runFor(ds), isPlan=!!(lift||run);
     const did=sessionsOn(ds).length>0||S.cardio.some(c=>c.date===ds&&["run","cycle","swim","hyrox"].includes(c.type));
     if (isPlan) planned++; if (did&&isPlan) done++;
     const sportDay=d&&d.rest&&d.label&&d.label!=="Rest"; const cls=did?"did":isPlan?(ds<td?"miss":"plan"):sportDay?"sportd":"rest";
-    return `<div class="wsd ${cls} ${ds===td?"today":""}"><span>${dt.toLocaleDateString("en-GB",{weekday:"narrow"})}</span><i>${did?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':isPlan?(lift?ICON.lift:ICON.cardio):sportDay&&window.AJSportIcon?AJSportIcon((S.prog.sport||{}).id):""}</i><em>${isPlan?esc(((lift?d.label:run.n)||"").split(/[ +]/)[0]):sportDay?esc(d.label==="Match day"?"Match":d.label.split(/[ (]/)[0]):""}</em></div>`; }).join("");
+    return `<div class="wsd ${cls} ${ds===td?"today":""}"><span>${dt.toLocaleDateString("en-GB",{weekday:"narrow"})}</span><i>${did?'<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':isPlan?(lift?ICON.lift:ICON.cardio):sportDay&&window.AJSportIcon?AJSportIcon((S.prog.sport||{}).id):""}</i><em>${didLabel(ds)?esc(didLabel(ds)):isPlan?esc(((lift?d.label:run.n)||"").split(/[ +]/)[0]):sportDay?esc(d.label==="Match day"?"Match":d.label.split(/[ (]/)[0]):""}</em></div>`; }).join("");
   return `<div class="card wstrip"><div class="spread"><h2>This week</h2><span class="small muted num">${done} of ${planned} ${(+(planned))===1?"session":"sessions"}</span></div><div class="wsrow">${cells}</div></div>`;
 }
 // Strength: estimated max of the lift you've done most, session by session, plus how many lifts are going up
@@ -3251,6 +3254,7 @@ function trainStrip(dates, sel, bi){
     const plan=!!(lift||run); let lab=run&&!lift&&RSH[run.type]?RSH[run.type]:sl?((window.AJOnboard&&AJOnboard.LIFT_N||{})[sl.lift]||"Lift"):plan?((lift?d.label:run.n)||"").split(/[ +]/)[0]:d&&d.rest&&d.label&&d.label!=="Rest"?d.label.split(/[ (]/)[0]:"Rest";
     const pre=ds<(S.prog.startDate||""), st=did?"did":pre?(plan&&ds>=td?"pre":"rest pre"):plan?(ds<td?"miss":"plan"):"rest";
     if (pre&&ds<td&&!did) lab="";
+    if (didLabel(ds)) lab=didLabel(ds);
     return `<button class="trd ${st} ${ds===sel?"sel":""} ${ds===td?"now":""}" data-act="trDay" data-d="${ds}" aria-label="${dt.toLocaleDateString("en-GB",{weekday:"long"})}"><span class="w">${dt.toLocaleDateString("en-GB",{weekday:"short"}).slice(0,3)}</span><b class="num">${dt.getDate()}</b><i>${did?HICON.check:""}</i><em>${esc(lab)}</em></button>`; }).join("");
   const len=bi&&bi.len||0, wk=bi&&!bi.pre?bi.week:0;
   const blk=len&&!bi.pre?`<div class="trblk"><div class="segs">${[...Array(len)].map((_,i)=>`<i class="${i+1<wk?"d":i+1===wk?"c":""} ${i===len-1?"dl":""}"></i>`).join("")}</div>
@@ -3321,7 +3325,7 @@ function trainDayBody(ds){
   if (run) out+=runCard(run,ds);
   const g=d&&!d.rest?dayGym(d):null, list=g?(d.variants[g]||[]):[];
   if (done.length) out+=done.map(sx=>{ const vol=sx.ex.reduce((a,e)=>a+e.sets.reduce((x,q)=>x+(+q.w||0)*(+q.r||0),0),0), n=sx.ex.reduce((a,e)=>a+e.sets.length,0);
-    return `<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${esc((dayBy(sx.dayKey)||d||{}).label||"Workout")}</h2></div><span class="tag up">Done</span></div>
+    return `<div class="card hero tday"><div class="spread"><div class="stack" style="gap:2px"><span class="small muted">${when}</span><h2>${esc(sx.label||(dayBy(sx.dayKey)||d||{}).label||"Workout")}</h2></div><span class="tag up">Done</span></div>
       <div class="tdstats"><div><b class="num">${n}</b><span>sets</span></div><div><b class="num">${sx.mins||"<1"}</b><span>min</span></div><div><b class="num">${fmtN(Math.round(vol))}</b><span>kg lifted</span></div></div>
       <div class="tdlist2">${sx.ex.map((e,i)=>`<div><span class="tdn">${i+1}</span><span class="tdnm"><b>${esc(e.n||exDef(e.k).n)}</b><em>${e.sets.map(q=>q.w+"×"+q.r).join(", ")}</em></span><span class="tdaim muted">${e.sets.length} ${(+(e.sets.length))===1?"set":"sets"}</span></div>`).join("")}</div>
       <button class="btn ghost" data-act="sumShow" data-id="${sx.id}">How it went</button></div>`; }).join("");
@@ -3403,6 +3407,9 @@ function renderTrainToday(){
         <span class="small muted">${od.t}</span>
         ${nx&&nx.d.variants?(()=>{ const gg=dayGym(nx.d), l=nx.d.variants[gg]||[]; return l.length?`<div class="upnext"><span class="small muted">Up next · ${nx.dt.toLocaleDateString("en-GB",{weekday:"long"})}</span><b>${esc(nx.d.label)}</b><span class="small muted num">${l.length} exercises · ${l.reduce((a,x)=>a+x[1],0)} ${(+(l.reduce((a,x)=>a+x[1],0)))===1?"set":"sets"} · about ${sessionMins(nx.d,gg)} min</span><span class="small">${l.slice(0,4).map(([k])=>esc(exDef(k).n)).join(", ")}${l.length>4?" and more":""}</span></div>`:""; })():""}
         ${(()=>{ return ""; const ds=weekDates(), plan=ds.filter(dt=>{ const d=dayForDate(dt); return d&&!d.rest; }).length, dn=ds.filter(dt=>sessionsOn(ymd(dt)).length).length; return plan?`<div class="wkdots"><span class="small muted">This week</span><span class="dots">${ds.map(dt=>{ const d=dayForDate(dt), k=ymd(dt), did=sessionsOn(k).length; return `<i class="${did?"on":d&&!d.rest?"pl":""} ${k===todayStr?"now":""}">${"MTWTFSS"[(dt.getDay()+6)%7]}</i>`; }).join("")}</span><b class="num">${dn}/${plan}</b></div>`:""; })()}
+        ${(()=>{ const wk=weekDates().map(ymd), doneK=new Set(S.sessions.filter(x=>wk.includes(x.date)).map(x=>x.dayKey)), ds=S.prog.days.filter(d=>!d.rest&&d.variants&&(d.variants[dayGym(d)]||[]).length);
+          if (!ds.length) return ""; const ord=[...ds.filter(d=>!doneK.has(d.k)),...ds.filter(d=>doneK.has(d.k))];
+          return `<div class="restpick"><span class="small muted">Train today instead</span><div class="chips">${ord.map(d=>`<button class="chip" data-act="pickTrain" data-k="${d.k}">${esc(d.label)}${doneK.has(d.k)?" ✓":""}</button>`).join("")}</div></div>`; })()}
         <div class="grid2"><button class="btn ghost" data-goto="train">Train anyway</button>${nx&&nx.d.k&&!String(nx.d.k).startsWith("_r")&&weekKey(nx.dt)===weekKey(new Date())&&nx.d.variants&&(nx.d.variants[dayGym(nx.d)]||[]).length?`<button class="btn ghost" data-act="moveHere" data-k="${nx.d.k}" data-from="${ymd(nx.dt)}">Do ${esc(nx.d.label)} today</button>`:""}</div></div>`;
     }
   }
@@ -3509,7 +3516,7 @@ function renderMonthView(){
 
 /* ---------- Train ---------- */
 function chosenGym(d){ return (S.gym && gymList().some(g=>g.id===S.gym)) ? S.gym : dayGym(d); }
-function dayOptions(){ const t=todayDay(); return S.prog.days.map(x=>[x.k, `${x.label}${x.k===t.k?" (today)":""}`]); }
+function dayOptions(){ const t=todayDay()||{}; return S.prog.days.map(x=>[x.k, `${x.label}${x.k===t.k?" (today)":""}`]); }
 function renderTrain(){
   const t=todayDay(), d=dayBy(S.pick||t.k), gym=d.rest?null:chosenGym(d), ds=deloadStatus();
   let banner="";
@@ -4718,6 +4725,7 @@ $("#main").addEventListener("click", async e=>{
       else startWorkout({list:[], defs:{}, label:"Workout", past:dt});
       return; }
     case "startDay": startSession(dayBy(b.dataset.k), b.dataset.g); return;
+    case "pickTrain": S.pick=b.dataset.k; S.gym=null; go("train"); return;
     case "tick": logSet(+b.dataset.e,+b.dataset.s); return;
     case "exOpen": S.active.open=+b.dataset.e; saveActive(); render(); setTimeout(()=>{ const c=document.querySelector(".excard.open"); c&&c.scrollIntoView({block:"start",behavior:"smooth"}); },40); return;
     case "restCycle": { const e=S.active.ex[+b.dataset.e], cur=restOf(e), nx=REST_STEPS.find(x=>x>cur)||REST_STEPS[0]; e.rest=nx; saveActive(); render(); toast(`Rest ${fmtT(nx)} for this exercise`); return; }
